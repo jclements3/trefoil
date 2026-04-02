@@ -173,6 +173,61 @@ def name_voicing(notes, root):
     return name
 
 
+def best_name(notes):
+    """Try all diatonic roots and return the best terse name.
+    Prefer mod-free names (up to 1 char longer), then shortest, then fewest mods."""
+    candidates = []
+    for root in SCALE:
+        name = name_voicing(notes, root)
+        # Count +/- modifiers (excluding +8 octave doubling)
+        mods = name.replace('+8', '').count('+') + name.count('-')
+        candidates.append((len(name), mods, name))
+    candidates.sort()
+    shortest_len = candidates[0][0]
+    # Prefer a mod-free name if within 1 char of shortest
+    for length, mods, name in candidates:
+        if length > shortest_len + 1:
+            break
+        if mods == 0:
+            return name
+    return candidates[0][2]
+
+
+ROMAN_ROOT = {
+    'C': ('I', ''),    # major: uppercase, drop nothing
+    'D': ('ii', 'm'),  # minor: lowercase, drop 'm'
+    'E': ('iii', 'm'),
+    'F': ('IV', ''),
+    'G': ('V', ''),
+    'A': ('vi', 'm'),
+    'B': ('vii', ''),  # dim: ° is in the name already
+}
+
+def roman_name(notes):
+    """Return key-independent Roman numeral chord name."""
+    candidates = []
+    for root in SCALE:
+        name = name_voicing(notes, root)
+        mods = name.replace('+8', '').count('+') + name.count('-')
+        # Convert to Roman
+        roman, drop = ROMAN_ROOT[root]
+        # Strip root letter from name
+        suffix = name[len(root):]
+        # Drop quality letter that's encoded in case
+        if drop and suffix.startswith(drop):
+            suffix = suffix[len(drop):]
+        rname = roman + suffix
+        candidates.append((len(rname), mods, rname))
+    candidates.sort()
+    shortest_len = candidates[0][0]
+    for length, mods, name in candidates:
+        if length > shortest_len + 1:
+            break
+        if mods == 0:
+            return name
+    return candidates[0][2]
+
+
 if __name__ == '__main__':
     tests = [
         # Triads

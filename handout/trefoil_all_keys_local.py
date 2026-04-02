@@ -89,13 +89,20 @@ def notes_to_abc_chord(note_names, base_octave):
     for note in note_names:
         base = note[0]
         idx  = SCALE.index(base)
-        if prev_idx != -1 and idx < prev_idx: octave += 1
+        if prev_idx != -1 and idx <= prev_idx: octave += 1
         abc.append(to_abc_pitch(note, octave))
         prev_idx = idx
-    return '[' + ''.join(abc) + ']' if len(abc) > 1 else abc[0]
+    return '[' + ''.join(abc) + ']' if len(abc) > 1 else abc[0], octave
 
-def rh_abc(notes): return notes_to_abc_chord(notes, 2)
-def lh_abc(notes): return notes_to_abc_chord(notes, 1)
+def lh_rh_abc(lh_notes, rh_notes):
+    """Compute LH and RH ABC chords with gap-aware octave assignment."""
+    lh_abc_str, lh_top_oct = notes_to_abc_chord(lh_notes, 1)
+    # RH base octave: start above LH top note (same logic as MIDI path)
+    last_lh_idx  = SCALE.index(lh_notes[-1][0])
+    first_rh_idx = SCALE.index(rh_notes[0][0])
+    rh_base = lh_top_oct if first_rh_idx > last_lh_idx else lh_top_oct + 1
+    rh_abc_str, _ = notes_to_abc_chord(rh_notes, rh_base)
+    return lh_abc_str, rh_abc_str
 
 def build_voice(tokens):
     bars = []
@@ -119,8 +126,9 @@ def make_abc_tune(num, key_name, abc_key, trans, results):
         for row in [r for r in results if r['seg']==seg]:
             lh = [trans[n] for n in row['lh_notes']]
             rh = [trans[n] for n in row['rh_notes']]
-            rh_tokens.append(rh_abc(rh))
-            lh_tokens.append(lh_abc(lh))
+            lh_tok, rh_tok = lh_rh_abc(lh, rh)
+            rh_tokens.append(rh_tok)
+            lh_tokens.append(lh_tok)
     return '\n'.join([
         f'X:{num}',
         f'T:Trefoil  {key_name}  CCW4-CCW3-CCW2-CW2-CW3-CW4',
@@ -383,6 +391,9 @@ def main():
 
     out_dir = './output'
     trefoil_pdf = './trefoil.pdf'
+
+    # Handout uses Eb + C only
+    handout_pair = (KEYS[0], KEYS[3])  # Eb, C
 
     pairs = [(KEYS[i], KEYS[i+1]) for i in range(0, 8, 2)]
 
