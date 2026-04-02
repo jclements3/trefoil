@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+<title>ABC Strip Chart</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; overflow: hidden; background: #f8f6f1; font-family: sans-serif; }
+
+#controls {
+  background: #f8f6f1; border-bottom: 1px solid #ccc; padding: 4px 10px;
+}
+#controls .row { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+#controls .row:last-child { margin-bottom: 0; }
+#title { font-size: 16px; font-weight: bold; color: #2a2a2a; flex: 1; }
+#counter { font-size: 13px; color: #888; }
+button {
+  font-size: 14px; padding: 6px 14px; border: 2px solid #ccc;
+  border-radius: 8px; background: #fff; color: #2a2a2a; cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+button:active { background: #dbeafe; border-color: #2563eb; }
+#bpm-val { font-size: 15px; font-weight: bold; min-width: 30px; text-align: center; }
+label { font-size: 13px; color: #888; }
+
+#score-area {
+  position: relative; overflow: hidden; flex: 1;
+}
+#score-container {
+  position: absolute; top: 0; left: 0;
+  transform-origin: 0 0;
+}
+#playhead-glow {
+  position: absolute; top: 0; bottom: 0; width: 6px;
+  background: rgba(37, 99, 235, 0.25); z-index: 50;
+  pointer-events: none;
+}
+#playhead-line {
+  position: absolute; top: 0; bottom: 0; width: 2px;
+  background: #2563eb; z-index: 51;
+  pointer-events: none;
+}
+
+.abcr { fill: #2563eb !important; fill-opacity: 0; z-index: 15; }
+
+#app { display: flex; flex-direction: column; height: 100vh; }
+
+/* Library browser */
+#library {
+  flex: 1; min-height: 0;
+  display: flex; flex-direction: column;
+  border-top: 2px solid #ccc;
+  background: #fff;
+}
+#lib-search {
+  padding: 10px 14px;
+  border: none; border-bottom: 1px solid #ddd;
+  font-size: 16px; outline: none;
+  background: #f8f8f8;
+  -webkit-tap-highlight-color: transparent;
+}
+#lib-search::placeholder { color: #aaa; }
+#lib-tabs {
+  display: flex;
+  border-bottom: 2px solid #ddd;
+  background: #f0f4ff;
+}
+.lib-tab {
+  flex: 1; text-align: center;
+  padding: 12px 8px;
+  font-size: 15px; font-weight: bold;
+  color: #666; cursor: pointer;
+  border-bottom: 3px solid transparent;
+  -webkit-tap-highlight-color: transparent;
+}
+.lib-tab.active {
+  color: #2563eb;
+  border-bottom-color: #2563eb;
+  background: #fff;
+}
+.lib-panel {
+  display: none;
+  flex: 1; flex-direction: column; min-height: 0;
+}
+.lib-panel.active {
+  display: flex;
+}
+#drill-list {
+  flex: 1; overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+#hymn-cols {
+  flex: 1; display: flex; min-height: 0;
+}
+.hymn-col {
+  flex: 1; overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  border-right: 1px solid #eee;
+}
+.hymn-col:last-child { border-right: none; }
+#score-area { height: 43vh; margin-top: 24px; }
+.lib-item {
+  padding: 10px 10px;
+  font-size: 13px;
+  color: #2a2a2a;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  break-inside: avoid;
+}
+.lib-item:active { background: #dbeafe; }
+.lib-item.active { background: #dbeafe; font-weight: bold; }
+.letter-header {
+  padding: 10px 12px;
+  font-size: 15px; font-weight: bold;
+  color: #2563eb; background: #f0f4ff;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.letter-header.collapsed::after { content: ' +'; color: #999; }
+.letter-header:not(.collapsed)::after { content: ' \2212'; color: #999; }
+.letter-items { }
+.letter-items.hidden { display: none; }
+
+/* Chord fraction overlays */
+.chord-frac {
+  position: absolute;
+  text-align: left;
+  font-family: monospace;
+  pointer-events: none;
+  z-index: 40;
+  line-height: 1.1;
+}
+.chord-frac .cf-name {
+  font-size: 11px;
+  font-weight: bold;
+  color: #2563eb;
+  white-space: nowrap;
+}
+.chord-frac .cf-line {
+  border-top: 1px solid #999;
+  margin: 1px 0;
+}
+.chord-frac .cf-rh {
+  font-size: 9px;
+  color: #333;
+  white-space: nowrap;
+}
+.chord-frac .cf-rh .cf-chname, .chord-frac .cf-lh .cf-chname {
+  color: #16a34a;
+  font-weight: bold;
+  margin-right: 2px;
+}
+.chord-frac .cf-lh {
+  font-size: 9px;
+  color: #666;
+  white-space: nowrap;
+}
+</style>
+</head>
+<body>
+<div id="app">
+<div id="controls">
+  <div class="row">
+    <span id="title">Select a drill or hymn</span>
+    <button id="btn-play">Play</button>
+    <label>BPM:</label>
+    <input type="range" id="bpm-slider" min="20" max="240" value="80" style="width:100px;vertical-align:middle;"/>
+    <span id="bpm-val" style="font-size:14px;font-weight:bold;min-width:28px;text-align:center;">80</span>
+    <label>Vol:</label>
+    <input type="range" id="vol-slider" min="0" max="100" value="0" style="width:100px;vertical-align:middle;"/>
+    <span id="vol-label" style="font-size:11px;color:#888;min-width:18px;">0</span>
+  </div>
+</div>
+<div id="score-area">
+  <div id="score-container"></div>
+  <div id="playhead-glow"></div>
+  <div id="playhead-line"></div>
+</div>
+<div id="library">
+  <input type="text" id="lib-search" placeholder="Search hymns and drills..."/>
+  <div id="lib-tabs">
+    <div class="lib-tab active" data-panel="hymn-panel">Hymns</div>
+    <div class="lib-tab" data-panel="drill-panel">Drills</div>
+  </div>
+  <div id="hymn-panel" class="lib-panel active">
+    <div id="hymn-cols">
+      <div id="hymn-col-left" class="hymn-col"></div>
+      <div id="hymn-col-right" class="hymn-col"></div>
+    </div>
+  </div>
+  <div id="drill-panel" class="lib-panel">
+    <div id="drill-list"></div>
+  </div>
+</div>
+</div>
+
+<script src="abc2svg/abc2svg-1.js"></script>
+<script src="abc2svg/snd-1.js"></script>
+<script>
+// Override loadjs to handle file:///android_asset/ paths correctly.
+// The default loadjs prepends jsdir which can break with file:// protocol.
+abc2svg.jsdir = '';
+abc2svg.loadjs = function(fn, relay, onerror) {
+  // sfu='abc2svg/Scc1t2' so fn will be 'abc2svg/Scc1t2/0.js'
+  console.log('loadjs: ' + fn);
+  var s = document.createElement('script');
+  s.src = fn;
+  s.onload = function() { console.log('loadjs OK: ' + fn); relay(); };
+  s.onerror = function() {
+    console.error('loadjs FAIL: ' + fn);
+    if (onerror) onerror(fn);
+  };
+  document.head.appendChild(s);
+};
+</script>
+
+<script>
+// ── Embedded drill ABC data ──
+var DRILLS = [
+{n:"1001",t:"Drill: I Placing (Full)",abc:"X: 1001\nT: Drill: I Placing (Full)\nM: 4/4\nL: 1/4\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\nK: C\n[Q:1/4=80] C D E F | D E F G | E F G A | F G A B | G A B c | A G F E | G F E D | F E D C | C4 |]\n"},
+{n:"1002",t:"Drill: II Broken Thirds",abc:"X: 1002\nT: Drill: II Broken Thirds\nM: 4/4\nL: 1/4\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\nK: C\n[Q:1/4=80] C E D F | E G F A | G B A c | B A G F | E D C2 |]\n"},
+{n:"1003",t:"Drill: III Block Chords",abc:"X: 1003\nT: Drill: III Block Chords\nM: 4/4\nL: 1/4\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\nK: C\n[Q:1/4=72] F G A B | c B A G | F4 |]\n"},
+{n:"1004",t:"Drill: IV Arpeggios Up",abc:"X: 1004\nT: Drill: IV Arpeggios Up\nM: 4/4\nL: 1/4\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\nK: C\n[Q:1/4=80] C E G c | D F A d | E G B e | F A c f | e c A F | d B G E | c A F D | C4 |]\n"},
+{n:"1005",t:"Drill: V Arpeggios Down",abc:"X: 1005\nT: Drill: V Arpeggios Down\nM: 4/4\nL: 1/4\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\nK: C\n[Q:1/4=80] c G E C | d A F D | e B G E | f c A F | F A c f | E G B e | D F A d | C4 |]\n"},
+{n:"1006",t:"Drill: VI Zigzag",abc:"X: 1006\nT: Drill: VI Zigzag\nM: 3/4\nL: 1/4\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\nK: C\n[Q:1/4=80] C D E | F E D | E F G | A G F | G A B | c B A | B A G | F E D | C3 |]\n"},
+{n:"1007",t:"Drill: VII Scale Up Down",abc:"X: 1007\nT: Drill: VII Scale Up Down\nM: 4/4\nL: 1/4\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\nK: C\n[Q:1/4=72] C D E F | G A B c | c B A G | F E D C | C4 |]\n"},
+{n:"1008",t:"Drill: VIII Contrary Motion",abc:"X: 1008\nT: Drill: VIII Contrary Motion\nM: 4/4\nL: 1/4\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\nK: C\n[Q:1/4=72] C D E F | G A B c | c B A G | F E D C | C4 |]\n"},
+{n:"1009",t:"Drill: IX Scale + Chord",abc:"X: 1009\nT: Drill: IX Scale + Chord\nM: 4/4\nL: 1/4\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\nK: C\n[Q:1/4=72] C D E F | G A B c | c4 | c B A G | F E D C | C4 |]\n"},
+{n:"1101",t:"Adv a1: Finger Passing (4+4)",abc:"X: 1101\nT: Adv a1: Finger Passing (4+4)\nM: 4/4\nL: 1/8\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\nK: C\n[Q:1/4=60] CDEF GABc | DEFG ABcd | EFGa bcde | fgab c'4 |]\n"},
+{n:"1102",t:"Adv a2: Finger Passing (4+4 desc)",abc:"X: 1102\nT: Adv a2: Finger Passing (4+4 desc)\nM: 4/4\nL: 1/8\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\nK: C\n[Q:1/4=60] cBAG FEDC | dcBA GFED | edcB AGFE | DC C4 z2 |]\n"},
+{n:"1103",t:"Adv a3: Finger Passing (5+5)",abc:"X: 1103\nT: Adv a3: Finger Passing (5+5)\nM: 4/4\nL: 1/8\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\nK: C\n[Q:1/4=60] CDEFG ABcde | DEFGa bcdef | EFGab cdefg | a4 z4 |]\n"},
+{n:"1104",t:"Adv a4: Finger Passing (5+5 desc)",abc:"X: 1104\nT: Adv a4: Finger Passing (5+5 desc)\nM: 4/4\nL: 1/8\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\nK: C\n[Q:1/4=60] agfed cBAGF | gfedc BAGFE | fedcB AGFED | C4 z4 |]\n"},
+{n:"1105",t:"Adv a5: Finger Passing (6+6)",abc:"X: 1105\nT: Adv a5: Finger Passing (6+6)\nM: 4/4\nL: 1/8\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\nK: C\n[Q:1/4=60] CDEFGA Bcdefg | DEFGAb cdefga | EFGabc defgab | c'4 z4 |]\n"},
+{n:"1106",t:"Adv a6: Finger Passing (6+5)",abc:"X: 1106\nT: Adv a6: Finger Passing (6+5)\nM: 4/4\nL: 1/8\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\nK: C\n[Q:1/4=60] CDEFGA Bcdef | DEFGAb cdefg | EFGAbc defga | b4 z4 |]\n"},
+{n:"1107",t:"Rodriguez VII: Accelerating Scale",abc:"X: 1107\nT: Rodriguez VII: Accelerating Scale\nM: 4/4\nL: 1/8\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\nK: C\n[Q:1/4=60] C2 D2 E2 F2|GA Bc de fg| (3abc (3def g/a/b/c'/ d'/e'/f'/g'/|c'8|]\n"},
+{n:"1108",t:"Rodriguez VIII: Fix Position Scale",abc:"X: 1108\nT: Rodriguez VIII: Fix Position Scale\nM: 4/4\nL: 1/8\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\nK: C\n[Q:1/4=60] C2 D2 E2 F2|GA Bc de fg| (3abc (3def g/a/b/c'/ d'/e'/f'/g'/|c'8|]\n"},
+{n:"1109",t:"Rodriguez IX: Crossing Scale",abc:"X: 1109\nT: Rodriguez IX: Crossing Scale\nM: 4/4\nL: 1/8\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\nK: C\n[Q:1/4=60] C,D,E,F, G,A,B,C|DEFG ABcd|efga bc'd'e'|c'8|]\n"},
+{n:"1110",t:"Rodriguez X: Scale with Chords",abc:"X: 1110\nT: Rodriguez X: Scale with Chords\nM: 4/4\nL: 1/8\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\nK: C\n[Q:1/4=60] CDEF GABc|[CEGc]4 z4|defg abc'd'|[c'e'g'c'']4 z4|]\n"},
+{n:"1111",t:"Rodriguez XI: Zigzag Scale",abc:"X: 1111\nT: Rodriguez XI: Zigzag Scale\nM: 3/4\nL: 1/8\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\nK: C\n[Q:1/4=60] CDEFED|EFGAGF|GABcBA|Bcdedc|defgfe|fgabag|bagfga|gfedfe|edcBcd|cBAGAB|AGFEFG|FEDC C2|]\n"},
+{n:"1112",t:"Rodriguez XII: Accent Combos",abc:"X: 1112\nT: Rodriguez XII: Accent Combos\nM: 4/4\nL: 1/8\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\nK: C\n[Q:1/4=60] CDEF GABc|defg abc'd'|c'8|]\n"},
+{n:"1113",t:"Rodriguez XIII: Hand Interchange",abc:"X: 1113\nT: Rodriguez XIII: Hand Interchange\nM: 3/4\nL: 1/8\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\nK: C\n[Q:1/4=60] z4 EF|GABc z2|z4 ef|gabc' z2|c'6|]\n"},
+{n:"1114",t:"Rodriguez XIV: Combined Fingerings",abc:"X: 1114\nT: Rodriguez XIV: Combined Fingerings\nM: 4/4\nL: 1/4\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\nK: C\n[Q:1/4=60] C D E F|G A B c|d e f g|a b c' d'|c'4|]\n"},
+{n:"1115",t:"Rodriguez XV: Connecting Patterns",abc:"X: 1115\nT: Rodriguez XV: Connecting Patterns\nM: 4/4\nL: 1/8\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\nK: C\n[Q:1/4=60] C3/D/ E3/F/ G3/A/ B3/c/|d3/e/ f3/g/ a3/b/ c'4|]\n"},
+{n:"2001",t:"Trefoil Eb (Full)",abc:"X: 2001\nT: Trefoil Eb (Full)\nM: 4/4\nL: 1/4\n%%pagewidth 200cm\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%continueall 1\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: Eb\n[V: RH] [Q:1/4=60] [_B_eg] [_Adf_a] [DF_B_e] [Gc_e_a] | [CF_Bd] [CF_A] [DF_B] [_B_eg] | [_B_eg] [C_EGc] [C_E_A] [DF_A] | [DF_Bd] [DF_B] [_EG_B] [C_EG] | [C_EG] [DGcf] [CF_B] [DF_B] | [_Ac_eg] [_Bdg] [CF_A] [C_EG] | [C_EG] [_Acf] [G_B_e_a] [C_E_A] | [DG_B] [CF_Ad] [DGc_e] [_B_eg] | [_B_eg] [_Bdg] [DG_B] [_Bdf] | [CF_A] [_Acf_a] [CF_Ac] [C_EG] | [C_EG] [DGcf] [CF_B] [DF_B] | [_Ac_eg] [_Bdg] [CF_A] [C_EG] |]\n[V: LH] [_E,_A,DG] [_A,C_EG] [D,F,_B,] [G,CF] | [C,_E,G,_B,] [F,_A,DG] [_B,DF_B] [_E,_A,CF] | [_E,_A,CF] [C,_E,_A,] [_A,CF_A] [F,_B,_EG] | [D,F,_A,] [_B,_EG_B] [D,G,_B,] [_B,_EG] | [_E,_A,DF] [D,F,_A,] [C,_E,G,_B,] [_B,_EG_B] | [_A,DG] [G,_B,DG] [F,_A,DG] [_E,_A,DG] | [_E,_A,DG] [F,_A,DG] [G,CF] [_A,C_E_A] | [_B,DG_B] [C,_E,G,] [D,F,_B,] [_E,_A,CF] | [_E,_A,CF] [G,_B,_EG] [_B,_EG_B] [D,G,C_E] | [D,F,_A,] [_A,CF] [C,_E,G,_B,] [_B,_EG] | [_E,_A,DF] [D,F,_A,] [C,_E,G,_B,] [_B,_EG_B] | [_A,DG] [G,_B,DG] [F,_A,DG] [_E,_A,DG] |]"},
+{n:"2002",t:"Trefoil Eb Fourths",abc:"X: 2002\nT: Trefoil Eb Fourths\nM: 4/4\nL: 1/4\n%%pagewidth 200cm\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%continueall 1\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: Eb\n[V: RH] [Q:1/4=60] [C_EG] [_Bdg] [CF_A] [C_EG_B] | [Gcf] [DF_Ad] [C_E_A] [C_EG] | [_B_eg] [_Adf_a] [DF_B_e] [Gc_e_a] | [CF_Bd] [CF_A] [DF_B] [_B_eg] |]\n[V: LH] [_B,_EG] [_B,DF] [F,_A,DG] [C,_E,_A,] | [G,_B,DF] [D,G,C] [_A,C_E_A] [_E,_A,DG] | [_E,_A,DG] [_A,C_EG] [D,F,_B,] [G,CF] | [C,_E,G,_B,] [F,_A,DG] [_B,DF_B] [_E,_A,CF] |]"},
+{n:"2003",t:"Trefoil Eb Thirds",abc:"X: 2003\nT: Trefoil Eb Thirds\nM: 4/4\nL: 1/4\n%%pagewidth 200cm\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%continueall 1\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: Eb\n[V: RH] [Q:1/4=60] [_B_eg] [_Bdg] [DG_B] [_Bdf] | [CF_A] [_Acf_a] [CF_Ac] [C_EG] | [_B_eg] [C_EGc] [C_E_A] [DF_A] | [DF_Bd] [DF_B] [_EG_B] [C_EG] |]\n[V: LH] [_E,_A,CF] [G,_B,_EG] [_B,_EG_B] [D,G,C_E] | [D,F,_A,] [_A,CF] [C,_E,G,_B,] [_B,_EG] | [_E,_A,CF] [C,_E,_A,] [_A,CF_A] [F,_B,_EG] | [D,F,_A,] [_B,_EG_B] [D,G,_B,] [_B,_EG] |]"},
+{n:"2004",t:"Trefoil Eb Seconds",abc:"X: 2004\nT: Trefoil Eb Seconds\nM: 4/4\nL: 1/4\n%%pagewidth 200cm\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%continueall 1\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: Eb\n[V: RH] [Q:1/4=60] [C_EG] [_Acf] [G_B_e_a] [C_E_A] | [DG_B] [CF_Ad] [DGc_e] [_B_eg] | [C_EG] [DGcf] [CF_B] [DF_B] | [_Ac_eg] [_Bdg] [CF_A] [C_EG] |]\n[V: LH] [_E,_A,DG] [F,_A,DG] [G,CF] [_A,C_E_A] | [_B,DG_B] [C,_E,G,] [D,F,_B,] [_E,_A,CF] | [_E,_A,DF] [D,F,_A,] [C,_E,G,_B,] [_B,_EG_B] | [_A,DG] [G,_B,DG] [F,_A,DG] [_E,_A,DG] |]"},
+{n:"2005",t:"Trefoil C (Full)",abc:"X: 2005\nT: Trefoil C (Full)\nM: 4/4\nL: 1/4\n%%pagewidth 200cm\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%continueall 1\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: C\n[V: RH] [Q:1/4=60] [Ace] [Acf] [B,DFB] [EAd] | [Aceg] [Adf] [GBe] [Ace] | [Ace] [Adfa] [FAdf] [Adf] | [GBd] [Beg] [GBe] [Gce] | [Ace] [CFAd] [Acfa] [Bdg] | [Acf] [EGcf] [Adf] [Gce] | [Gce] [Adf] [EGcf] [Acf] | [Bdg] [Acfa] [CFAd] [Ace] | [Gce] [GBe] [Beg] [GBd] | [Adf] [FAdf] [Adfa] [Ace] | [Ace] [GBe] [Adf] [Aceg] | [EAd] [B,DFB] [Acf] [Ace] |]\n[V: LH] [C,F,B,E] [F,A,CF] [B,,E,A,] [E,G,B,D] | [A,CF] [D,F,B,E] [G,B,D] [G,CE] | [G,CE] [A,CEG] [F,A,D] [B,DF] | [B,,E,A,C] [G,CEG] [E,G,CE] [C,F,A,D] | [G,CE] [B,,E,A,] [A,CF] [G,CEG] | [F,A,CF] [E,A,D] [D,F,B,E] [C,F,A,D] | [C,F,A,D] [D,F,B,E] [E,A,D] [F,A,CF] | [G,CEG] [A,CF] [B,,E,A,] [G,CE] | [C,F,A,D] [E,G,CE] [G,CEG] [B,,E,A,C] | [B,DF] [F,A,D] [A,CEG] [G,CE] | [G,CE] [G,B,D] [D,F,B,E] [A,CF] | [E,G,B,D] [B,,E,A,] [F,A,CF] [C,F,B,E] |]"},
+{n:"2006",t:"Trefoil C Fourths",abc:"X: 2006\nT: Trefoil C Fourths\nM: 4/4\nL: 1/4\n%%pagewidth 200cm\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%continueall 1\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: C\n[V: RH] [Q:1/4=60] [Ace] [Acf] [B,DFB] [EAd] | [Aceg] [Adf] [GBe] [Ace] | [Ace] [GBe] [Adf] [Aceg] | [EAd] [B,DFB] [Acf] [Ace] |]\n[V: LH] [C,F,B,E] [F,A,CF] [B,,E,A,] [E,G,B,D] | [A,CF] [D,F,B,E] [G,B,D] [G,CE] | [G,CE] [G,B,D] [D,F,B,E] [A,CF] | [E,G,B,D] [B,,E,A,] [F,A,CF] [C,F,B,E] |]"},
+{n:"2007",t:"Trefoil C Thirds",abc:"X: 2007\nT: Trefoil C Thirds\nM: 4/4\nL: 1/4\n%%pagewidth 200cm\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%continueall 1\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: C\n[V: RH] [Q:1/4=60] [Ace] [Adfa] [FAdf] [Adf] | [GBd] [Beg] [GBe] [Gce] | [Gce] [GBe] [Beg] [GBd] | [Adf] [FAdf] [Adfa] [Ace] |]\n[V: LH] [G,CE] [A,CEG] [F,A,D] [B,DF] | [B,,E,A,C] [G,CEG] [E,G,CE] [C,F,A,D] | [C,F,A,D] [E,G,CE] [G,CEG] [B,,E,A,C] | [B,DF] [F,A,D] [A,CEG] [G,CE] |]"},
+{n:"2008",t:"Trefoil C Seconds",abc:"X: 2008\nT: Trefoil C Seconds\nM: 4/4\nL: 1/4\n%%pagewidth 200cm\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%continueall 1\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: C\n[V: RH] [Q:1/4=60] [Ace] [CFAd] [Acfa] [Bdg] | [Acf] [EGcf] [Adf] [Gce] | [Gce] [Adf] [EGcf] [Acf] | [Bdg] [Acfa] [CFAd] [Ace] |]\n[V: LH] [G,CE] [B,,E,A,] [A,CF] [G,CEG] | [F,A,CF] [E,A,D] [D,F,B,E] [C,F,A,D] | [C,F,A,D] [D,F,B,E] [E,A,D] [F,A,CF] | [G,CEG] [A,CF] [B,,E,A,] [G,CE] |]"},
+];
+
+// ── State ──
+var currentDrill = 0, playing = false, bpm = 80, muted = true;
+var abc = null, abcplay = null, svgScale = 1, scrollX = 0;
+var targetScrollX = 0, animId = null;
+
+var $title = document.getElementById('title');
+var $container = document.getElementById('score-container');
+var $area = document.getElementById('score-area');
+var $phGlow = document.getElementById('playhead-glow');
+var $phLine = document.getElementById('playhead-line');
+var $bpmVal = document.getElementById('bpm-val');
+var $btnPlay = document.getElementById('btn-play');
+
+function getPlayheadX() { return $area.offsetWidth * 0.2; }
+
+function setScroll(x) {
+  scrollX = x;
+  $container.style.transform = 'scale(' + svgScale + ') translateX(' + (x / svgScale) + 'px)';
+}
+
+// Continuous linear scroll: compute start/end positions from the SVG,
+// then scroll at constant velocity for the entire piece duration.
+var playStartTime = 0, playStartX = 0, playEndX = 0, playTotalDuration = 0;
+
+function animateScroll(now) {
+  if (!now) now = performance.now();
+  if (playTotalDuration > 0) {
+    var elapsed = now - playStartTime;
+    var t = Math.min(elapsed / playTotalDuration, 1.0);
+    setScroll(playStartX + (playEndX - playStartX) * t);
+  }
+  if (playing) {
+    animId = requestAnimationFrame(animateScroll);
+  }
+}
+
+function startScrollAnim() {
+  if (animId) cancelAnimationFrame(animId);
+  animId = requestAnimationFrame(animateScroll);
+}
+
+function stopScrollAnim() {
+  if (animId) { cancelAnimationFrame(animId); animId = null; }
+}
+
+function positionPlayhead() {
+  var px = getPlayheadX();
+  $phGlow.style.left = (px - 2) + 'px';
+  $phLine.style.left = px + 'px';
+}
+
+// ── Render ──
+function renderDrill(idx) {
+  if (playing) stopPlayback();
+  currentDrill = idx;
+  var drill = DRILLS[idx];
+  $title.textContent = drill.t;
+  $container.innerHTML = '';
+
+  var qm = drill.abc.match(/Q:\s*\d+\/\d+=(\d+)/);
+  if (qm) bpm = parseInt(qm[1]);
+  $bpmVal.textContent = bpm;
+  if ($bpmSlider) $bpmSlider.value = bpm;
+
+  // Track note x-positions for chord fraction placement
+  var notePositions = []; // [{x, y, w, h, beatIndex}]
+  var beatCounter = 0;
+
+  var user = {
+    img_out: function(svg) { $container.innerHTML += svg; },
+    anno_stop: function(type, start, stop, x, y, w, h) {
+      if (type !== 'note' && type !== 'rest') return;
+      notePositions.push({x: x, y: y, w: w, h: h, beat: beatCounter});
+      beatCounter++;
+      if (abc.out_sxsy && abc.sh) {
+        abc.out_svg('<rect class="abcr _' + start + '_" x="');
+        abc.out_sxsy(x, '" y="', y);
+        abc.out_svg('" width="' + w.toFixed(2) + '" height="' + abc.sh(h).toFixed(2) + '"/>\n');
+      } else {
+        abc.out_svg('<rect class="abcr _' + start + '_" x="' + x.toFixed(2) +
+          '" y="' + y.toFixed(2) + '" width="' + w.toFixed(2) + '" height="' + h.toFixed(2) + '"/>\n');
+      }
+    },
+    errmsg: function(msg) { console.warn('abc2svg:', msg); },
+    read_file: function() { return ''; }
+  };
+
+  abc = new abc2svg.Abc(user);
+  abc.tosvg('drill', drill.abc);
+
+  // Scale SVG to fill viewport height
+  var svgs = $container.getElementsByTagName('svg');
+  var totalH = 0;
+  for (var i = 0; i < svgs.length; i++) totalH += parseFloat(svgs[i].getAttribute('height') || 0);
+  var areaH = $area.offsetHeight;
+  svgScale = (areaH > 0 && totalH > 0) ? (areaH * 0.9) / totalH : 1;
+  if (svgScale < 1) svgScale = 1;
+  if (svgScale > 3) svgScale = 3;
+  console.log('areaH=' + areaH + ' totalH=' + totalH + ' svgScale=' + svgScale.toFixed(2) + ' playheadX=' + getPlayheadX().toFixed(1));
+  $container.style.transformOrigin = '0 0';
+
+  // Build chord fraction overlays using rendered DOM positions
+  if (drill.chords && drill.chords.length > 0) {
+    setTimeout(function() {
+      var rects = $container.querySelectorAll('.abcr');
+      if (!rects.length) return;
+      var cRect = $container.getBoundingClientRect();
+      // Find topmost rect Y in unscaled container coords
+      var topY = 9999;
+      for (var i = 0; i < rects.length; i++) {
+        var br = rects[i].getBoundingClientRect();
+        var ry = (br.top - cRect.top) / svgScale;
+        if (ry < topY) topY = ry;
+      }
+      // Build beat→X map from rect positions
+      var fracContainer = document.createElement('div');
+      fracContainer.style.position = 'absolute';
+      fracContainer.style.top = '0';
+      fracContainer.style.left = '0';
+      fracContainer.style.pointerEvents = 'none';
+      $container.appendChild(fracContainer);
+
+      for (var ci = 0; ci < drill.chords.length; ci++) {
+        var ch = drill.chords[ci];
+        if (ch.beat >= rects.length) continue;
+        var br = rects[ch.beat].getBoundingClientRect();
+        var cx = (br.left - cRect.left + br.width / 2) / svgScale;
+        var div = document.createElement('div');
+        div.className = 'chord-frac';
+        div.style.left = cx + 'px';
+        div.style.top = (topY - 38) + 'px';
+        var rhn = ch.rhn ? '<span class="cf-chname">' + ch.rhn + '</span>' : '';
+        var lhn = ch.lhn ? '<span class="cf-chname">' + ch.lhn + '</span>' : '';
+        div.innerHTML =
+          '<div class="cf-name">' + ch.name + '</div>' +
+          '<div class="cf-rh">' + rhn + ch.rh.replace(/ /g,'') + '</div>' +
+          '<div class="cf-line"></div>' +
+          '<div class="cf-lh">' + lhn + ch.lh.replace(/ /g,'') + '</div>';
+        fracContainer.appendChild(div);
+      }
+      console.log('Placed ' + drill.chords.length + ' fractions, topY=' + topY.toFixed(1));
+    }, 100);
+  }
+
+  positionPlayhead();
+  setScroll(getPlayheadX());
+}
+
+// ── Playback ──
+function startPlayback() {
+  console.log('startPlayback: abc=' + !!abc + ' tunes=' + (abc ? abc.tunes.length : 0));
+  if (!abc || !abc.tunes) { console.log('no abc/tunes'); return; }
+  var tune = null;
+  for (var i = 0; i < abc.tunes.length; i++) { if (abc.tunes[i]) { tune = abc.tunes[i]; break; } }
+  if (!tune) { console.log('no tune found'); return; }
+  console.log('tune found, symbols=' + !!tune[0]);
+
+  var qm = DRILLS[currentDrill].abc.match(/Q:\s*\d+\/\d+=(\d+)/);
+  var nativeBpm = qm ? parseInt(qm[1]) : 80;
+
+  var playconf = {
+    onend: function() { playing = false; $btnPlay.textContent = 'Play'; stopScrollAnim(); },
+    onnote: function(istart, on) {
+      // Scroll is handled by the continuous animation loop — nothing to do here
+    },
+    sfu: 'abc2svg/Scc1t2'
+  };
+
+  if (!abcplay) abcplay = AbcPlay(playconf);
+  abcplay.add(tune[0], tune[1], tune[3]);
+  abcplay.set_speed(bpm / nativeBpm);
+  abcplay.set_vol(parseInt($volSlider.value) / 100);
+
+  // Compute total piece duration from the symbol chain
+  var totalBeats = 0;
+  for (var s = tune[0]; s; s = s.ts_next) {
+    if (s.dur) totalBeats = Math.max(totalBeats, (s.time + s.dur));
+  }
+  // abc2svg time units: BLEN (1536) = one whole note = 4 beats
+  var totalBeatCount = totalBeats / 384; // 384 = quarter note in abc2svg units
+  playTotalDuration = (totalBeatCount / bpm) * 60 * 1000; // ms
+
+  // Compute scroll range from first and last note overlay positions
+  var allNotes = $container.getElementsByClassName('abcr');
+  var firstNote = allNotes[0];
+  var lastNote = allNotes[allNotes.length - 1];
+  var cRect = $container.getBoundingClientRect();
+  var firstX = firstNote ? (firstNote.getBoundingClientRect().left - cRect.left) / svgScale : 0;
+  var lastX = lastNote ? (lastNote.getBoundingClientRect().left - cRect.left) / svgScale : firstX + 100;
+  playStartX = getPlayheadX() - firstX * svgScale;
+  playEndX = getPlayheadX() - lastX * svgScale;
+
+  setScroll(playStartX);
+  playStartTime = performance.now();
+
+  playing = true;
+  $btnPlay.textContent = 'Pause';
+  startScrollAnim();
+  abcplay.play(tune[0], null);
+}
+
+function stopPlayback() {
+  if (abcplay) abcplay.stop();
+  playing = false;
+  $btnPlay.textContent = 'Play';
+  stopScrollAnim();
+}
+
+// ── Drag to scroll ──
+var dragStartX = 0, dragScrollX = 0, dragging = false;
+$area.addEventListener('touchstart', function(e) {
+  if (playing) return; dragging = true;
+  dragStartX = e.touches[0].clientX; dragScrollX = scrollX;
+  $container.style.transition = 'none'; e.preventDefault();
+}, {passive: false});
+$area.addEventListener('touchmove', function(e) {
+  if (!dragging) return;
+  setScroll(dragScrollX + e.touches[0].clientX - dragStartX);
+  e.preventDefault();
+}, {passive: false});
+$area.addEventListener('touchend', function() { dragging = false; });
+$area.addEventListener('mousedown', function(e) {
+  if (playing) return; dragging = true;
+  dragStartX = e.clientX; dragScrollX = scrollX;
+  $container.style.transition = 'none';
+});
+window.addEventListener('mousemove', function(e) {
+  if (!dragging) return;
+  setScroll(dragScrollX + e.clientX - dragStartX);
+});
+window.addEventListener('mouseup', function() { dragging = false; });
+
+// ── Buttons ──
+$btnPlay.onclick = function() {
+  console.log('Play clicked, playing=' + playing + ' currentDrill=' + currentDrill);
+  if (playing) stopPlayback();
+  else startPlayback();
+};
+var $bpmSlider = document.getElementById('bpm-slider');
+$bpmSlider.oninput = function() {
+  bpm = parseInt(this.value);
+  $bpmVal.textContent = bpm;
+  if (playing && abcplay) {
+    var q = DRILLS[currentDrill].abc.match(/Q:\s*\d+\/\d+=(\d+)/);
+    abcplay.set_speed(bpm / (q ? parseInt(q[1]) : 80));
+  }
+};
+var $volSlider = document.getElementById('vol-slider');
+var $volLabel = document.getElementById('vol-label');
+$volSlider.oninput = function() {
+  var vol = parseInt(this.value);
+  muted = (vol === 0);
+  $volLabel.textContent = vol;
+  if (abcplay) abcplay.set_vol(vol / 100);
+};
+window.addEventListener('resize', function() { positionPlayhead(); });
+// Spacebar = Play/Pause
+document.addEventListener('keydown', function(e) {
+  if (e.code === 'Space' || e.keyCode === 32) {
+    e.preventDefault();
+    $btnPlay.click();
+  }
+});
+
+// ── Library browser ──
+function getCat(drill) {
+  var n = parseInt(drill.n);
+  if (n >= 1001 && n <= 1005) return 'Grossi Drills';
+  if (n >= 1006 && n <= 1009) return 'Grossi Drills';
+  if (n >= 1101 && n <= 1106) return 'Adv a: Finger Passing';
+  if (n >= 1107 && n <= 1115) return 'Rodriguez VII-XV';
+  if (n >= 1120 && n <= 1151) return 'Adv b: Fix Position';
+  if (n >= 1152 && n <= 1158) return 'Adv c: Crossing';
+  if (n >= 1159 && n <= 1170) return 'Adv d: Scales+Chords';
+  if (n >= 1171 && n <= 1184) return 'Adv e: Zigzag';
+  if (n >= 1185 && n <= 1200) return 'Adv f: Accents';
+  if (n >= 1201 && n <= 1202) return 'Adv g: Hand Interchange';
+  if (n >= 1203 && n <= 1214) return 'Adv h: Combined';
+  if (n >= 1215 && n <= 1221) return 'Adv i: Connecting';
+  if (n >= 1300 && n <= 1399) return 'Lever Harp Technique';
+  if (n >= 1400 && n <= 1404) return 'Thomas: Accent/Touch';
+  if (n >= 1405 && n <= 1608) return 'Thomas: Major Keys';
+  if (n >= 1609 && n <= 1678) return 'Thomas: Minor Keys';
+  if (n >= 1679 && n <= 1699) return 'Thomas: Glissando';
+  if (n >= 2001 && n <= 2004) return 'Trefoil Eb';
+  if (n >= 2005 && n <= 2008) return 'Trefoil C';
+  if (n >= 3000) return 'Hymns';
+  return 'Other';
+}
+
+function selectDrill(drillIdx) {
+  var all = document.querySelectorAll('.lib-item.active');
+  for (var k = 0; k < all.length; k++) all[k].classList.remove('active');
+  var el = document.querySelector('.lib-item[data-idx="' + drillIdx + '"]');
+  if (el) el.classList.add('active');
+  renderDrill(drillIdx);
+}
+
+function buildLibrary() {
+  var $drillList = document.getElementById('drill-list');
+  var $colL = document.getElementById('hymn-col-left');
+  var $colR = document.getElementById('hymn-col-right');
+  $drillList.innerHTML = '';
+  $colL.innerHTML = '';
+  $colR.innerHTML = '';
+
+  // Drills tab content
+  for (var i = 0; i < DRILLS.length; i++) {
+    if (parseInt(DRILLS[i].n) >= 3000) continue;
+    var item = document.createElement('div');
+    item.className = 'lib-item';
+    item.dataset.idx = i;
+    item.textContent = DRILLS[i].t;
+    item.onclick = (function(idx) {
+      return function() { selectDrill(idx); };
+    })(i);
+    $drillList.appendChild(item);
+  }
+
+  // Hymns: collect and sort alphabetically
+  var hymnIndices = [];
+  for (var i = 0; i < DRILLS.length; i++) {
+    if (parseInt(DRILLS[i].n) >= 3000) hymnIndices.push(i);
+  }
+  hymnIndices.sort(function(a,b) {
+    return DRILLS[a].t.localeCompare(DRILLS[b].t);
+  });
+
+  // Build alphabet bar
+  var letters = {};
+  for (var i = 0; i < hymnIndices.length; i++) {
+    var first = DRILLS[hymnIndices[i]].t.charAt(0).toUpperCase();
+    if (!letters[first]) letters[first] = [];
+    letters[first].push(hymnIndices[i]);
+  }
+  // Build two-column alphabet with expandable letter tabs
+  var sortedLetters = Object.keys(letters).sort();
+  var midLetter = 'N'; // A-M left, N-Z right
+
+  function buildLetterTab(container, letter, indices) {
+    var header = document.createElement('div');
+    header.className = 'letter-header collapsed';
+    header.textContent = letter + ' (' + indices.length + ')';
+    var itemsDiv = document.createElement('div');
+    itemsDiv.className = 'letter-items hidden';
+
+    header.onclick = function() {
+      header.classList.toggle('collapsed');
+      itemsDiv.classList.toggle('hidden');
+    };
+
+    for (var j = 0; j < indices.length; j++) {
+      var idx = indices[j];
+      var item = document.createElement('div');
+      item.className = 'lib-item';
+      item.dataset.idx = idx;
+      item.textContent = DRILLS[idx].t;
+      item.onclick = (function(drillIdx) {
+        return function() { selectDrill(drillIdx); };
+      })(idx);
+      itemsDiv.appendChild(item);
+    }
+    container.appendChild(header);
+    container.appendChild(itemsDiv);
+  }
+
+  for (var li = 0; li < sortedLetters.length; li++) {
+    var letter = sortedLetters[li];
+    var col = letter < midLetter ? $colL : $colR;
+    buildLetterTab(col, letter, letters[letter]);
+  }
+}
+
+// Tab switching
+var tabs = document.querySelectorAll('.lib-tab');
+for (var i = 0; i < tabs.length; i++) {
+  tabs[i].onclick = function() {
+    for (var j = 0; j < tabs.length; j++) tabs[j].classList.remove('active');
+    this.classList.add('active');
+    var panels = document.querySelectorAll('.lib-panel');
+    for (var j = 0; j < panels.length; j++) panels[j].classList.remove('active');
+    document.getElementById(this.dataset.panel).classList.add('active');
+  };
+}
+
+// Search filter
+document.getElementById('lib-search').addEventListener('input', function() {
+  var q = this.value.toLowerCase().trim();
+  var $cols = document.getElementById('hymn-cols');
+  var $drillList = document.getElementById('drill-list');
+
+  if (!q) {
+    // Reset: collapse all, show all headers
+    var headers = $cols.querySelectorAll('.letter-header');
+    var itemDivs = $cols.querySelectorAll('.letter-items');
+    for (var i = 0; i < headers.length; i++) {
+      headers[i].style.display = '';
+      headers[i].classList.add('collapsed');
+    }
+    for (var i = 0; i < itemDivs.length; i++) {
+      itemDivs[i].classList.add('hidden');
+      var items = itemDivs[i].querySelectorAll('.lib-item');
+      for (var j = 0; j < items.length; j++) items[j].style.display = '';
+    }
+    var drills = $drillList.querySelectorAll('.lib-item');
+    for (var i = 0; i < drills.length; i++) drills[i].style.display = '';
+    return;
+  }
+
+  // Search: hide headers, expand all, filter items
+  var headers = $cols.querySelectorAll('.letter-header');
+  for (var i = 0; i < headers.length; i++) headers[i].style.display = 'none';
+  var itemDivs = $cols.querySelectorAll('.letter-items');
+  for (var i = 0; i < itemDivs.length; i++) {
+    itemDivs[i].classList.remove('hidden');
+    var items = itemDivs[i].querySelectorAll('.lib-item');
+    for (var j = 0; j < items.length; j++) {
+      items[j].style.display = items[j].textContent.toLowerCase().indexOf(q) >= 0 ? '' : 'none';
+    }
+  }
+  var drills = $drillList.querySelectorAll('.lib-item');
+  for (var i = 0; i < drills.length; i++) {
+    drills[i].style.display = drills[i].textContent.toLowerCase().indexOf(q) >= 0 ? '' : 'none';
+  }
+});
+
+// ── Load hymnal and init ──
+positionPlayhead();
+
+// Load advanced drills and hymnal data, then build library
+var loaded = 0, toLoad = 4;
+function onDataLoaded() {
+  loaded++;
+  if (loaded >= toLoad) {
+    buildLibrary();
+    // Default to first hymn
+    for (var di = 0; di < DRILLS.length; di++) {
+      if (parseInt(DRILLS[di].n) >= 3000) { renderDrill(di); break; }
+    }
+  }
+}
+
+// Load advanced drills
+var xhr1 = new XMLHttpRequest();
+xhr1.open('GET', 'advanced_drills.json', true);
+xhr1.onload = function() {
+  if (xhr1.status === 200) {
+    var data = JSON.parse(xhr1.responseText);
+    for (var i = 0; i < data.length; i++) DRILLS.push(data[i]);
+    console.log('Loaded ' + data.length + ' advanced drills');
+  }
+  onDataLoaded();
+};
+xhr1.onerror = function() { onDataLoaded(); };
+xhr1.send();
+
+// Load Thomas 280
+var xhr4 = new XMLHttpRequest();
+xhr4.open('GET', 'thomas_280.json', true);
+xhr4.onload = function() {
+  if (xhr4.status === 200) {
+    var data = JSON.parse(xhr4.responseText);
+    for (var i = 0; i < data.length; i++) DRILLS.push(data[i]);
+    console.log('Loaded ' + data.length + ' Thomas exercises');
+  }
+  onDataLoaded();
+};
+xhr4.onerror = function() { onDataLoaded(); };
+xhr4.send();
+
+// Load lever drills
+var xhr3 = new XMLHttpRequest();
+xhr3.open('GET', 'lever_drills.json', true);
+xhr3.onload = function() {
+  if (xhr3.status === 200) {
+    var data = JSON.parse(xhr3.responseText);
+    for (var i = 0; i < data.length; i++) DRILLS.push(data[i]);
+    console.log('Loaded ' + data.length + ' lever drills');
+  }
+  onDataLoaded();
+};
+xhr3.onerror = function() { onDataLoaded(); };
+xhr3.send();
+
+// Load hymnal
+var xhr2 = new XMLHttpRequest();
+xhr2.open('GET', 'hymnal_data.json', true);
+xhr2.onload = function() {
+  if (xhr2.status === 200) {
+    var data = JSON.parse(xhr2.responseText);
+    for (var i = 0; i < data.length; i++) DRILLS.push(data[i]);
+    console.log('Loaded ' + data.length + ' hymns');
+  }
+  onDataLoaded();
+};
+xhr2.onerror = function() { onDataLoaded(); };
+xhr2.send();
+// Default to first hymn
+for (var di = 0; di < DRILLS.length; di++) {
+  if (parseInt(DRILLS[di].n) >= 3000) { renderDrill(di); break; }
+}
+</script>
+</body>
+</html>

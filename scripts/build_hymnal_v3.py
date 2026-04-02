@@ -1,0 +1,348 @@
+#!/usr/bin/env python3
+"""Build harp-trefoil-hymnal v3: extract soprano, identify chords from SATB.
+
+1. Parse each voice (S1V1, S1V2, S2V1, S2V2) separately with music21
+2. Use S1V1 as melody
+3. At each beat, combine all 4 voices to identify the sounding chord
+4. Match chord to trefoil voicing pool
+5. Output ABC with melody + trefoil RH/LH chords
+"""
+
+import json
+import sys
+import re
+from collections import defaultdict
+from fractions import Fraction
+from pathlib import Path
+
+import music21
+
+SCRIPT_DIR = Path(__file__).parent
+PROJECT_DIR = SCRIPT_DIR.parent
+
+# ── Load trefoil voicing table ──
+with open(PROJECT_DIR / 'trefoil/trefoil_C.json') as f:
+    trefoil = json.load(f)
+
+voicings = []
+for section, rows in trefoil['sections'].items():
+    for i, r in enumerate(rows):
+        voicings.append({
+            'id': f"{section}_{i+1}",
+            'root': r['root'], 'lh': r['lh'], 'rh': r['rh'],
+            'lhNotes': r['lhNotes'], 'rhNotes': r['rhNotes'],
+            'lhPat': r['lhPat'], 'rhPat': r['rhPat'], 'gap': r['gap'],
+        })
+
+SCALE_PC = {'C':0,'D':2,'E':4,'F':5,'G':7,'A':9,'B':11}
+NOTE_NAMES = ['C','D','E','F','G','A','B']
+KEY_OFF = {'C':0,'G':7,'D':2,'A':9,'E':4,'B':11,'F':5,
+           'Bb':10,'Eb':3,'Ab':8,'Db':1,'F#':6,'Gb':6}
+
+for v in voicings:
+    v['pcs'] = set(SCALE_PC[ch] for ch in v['lhNotes']+v['rhNotes'] if ch in SCALE_PC)
+
+# ── Helpers ──
+_current_key_accidentals = {}  # set per hymn: {'F': 1.0, 'C': 1.0} etc.
+
+def set_key_for_abc(key_name):
+    """Set the current key so pitch_to_abc can omit key-signature accidentals."""
+    global _current_key_accidentals
+    import music21
+    try:
+        k = music21.key.Key(key_name)
+        _current_key_accidentals = {p.step: p.accidental.alter for p in k.alteredPitches}
+    except:
+        _current_key_accidentals = {}
+
+def pitch_to_abc(pitch, ql):
+    name = pitch.step
+    octave = pitch.octave if pitch.octave is not None else 4
+    acc = ''
+    if pitch.accidental:
+        a = pitch.accidental.alter
+        # Only write accidental if it differs from key signature
+        key_acc = _current_key_accidentals.get(name, 0)
+        if a != key_acc:
+            if a == 1: acc = '^'
+            elif a == -1: acc = '_'
+            elif a == 2: acc = '^^'
+            elif a == -2: acc = '__'
+            elif a == 0: acc = '='  # natural cancels key sig
+    if octave >= 5:
+        abc = acc + name.lower() + "'" * (octave - 5)
+    elif octave == 4:
+        abc = acc + name
+    else:
+        abc = acc + name + ',' * (4 - octave)
+    abc += dur_to_abc(ql)
+    return abc
+
+def dur_to_abc(ql):
+    if ql == 1.0: return ''
+    if ql == 0.5: return '/'
+    if ql == 0.25: return '/4'
+    if ql == 2.0: return '2'
+    if ql == 3.0: return '3'
+    if ql == 4.0: return '4'
+    if ql == 1.5: return '3/2'
+    if ql == 0.75: return '3/4'
+    if ql == 6.0: return '6'
+    if ql == 8.0: return '8'
+    if ql == int(ql): return str(int(ql))
+    frac = Fraction(ql).limit_denominator(8)
+    if frac.denominator == 1: return str(frac.numerator)
+    return f'{frac.numerator}/{frac.denominator}'
+
+def transpose_voicing_notes(notes_str, key):
+    offset = 0
+    for k, off in KEY_OFF.items():
+        if k == key:
+            for dn, di in {'C':0,'D':1,'E':2,'F':3,'G':4,'A':5,'B':6}.items():
+                if SCALE_PC[dn] == off:
+                    offset = di; break
+            break
+    return ''.join(NOTE_NAMES[(NOTE_NAMES.index(ch) + offset) % 7] for ch in notes_str if ch in NOTE_NAMES)
+
+def voicing_to_abc(voicing, key, melody_midi):
+    lh_notes = transpose_voicing_notes(voicing['lhNotes'], key)
+    rh_notes = transpose_voicing_notes(voicing['rhNotes'], key)
+    lh_pat = [int(x) for x in voicing['lhPat'].split('-')]
+    rh_pat = [int(x) for x in voicing['rhPat'].split('-')]
+    gap = voicing['gap']
+    rh_span = sum(rh_pat)
+    lh_span = sum(lh_pat)
+    melody_oct = melody_midi // 12 - 1
+    diatonic_in_oct = [0,0,1,1,2,3,3,4,4,5,5,6]
+    melody_deg = diatonic_in_oct[melody_midi % 12]
+    melody_abs = melody_oct * 7 + melody_deg
+    rh_top_abs = melody_abs - 2
+    rh_bottom_abs = rh_top_abs - rh_span
+    lh_bottom_abs = rh_bottom_abs - gap - 1 - lh_span
+    def abs_to_abc(a):
+        o = a // 7; d = a % 7; n = NOTE_NAMES[d]
+        if o >= 5: return n.lower() + "'" * (o-5)
+        elif o == 4: return n
+        else: return n + ',' * (4-o)
+    lh_pos = [0]
+    for p in lh_pat: lh_pos.append(lh_pos[-1]+p)
+    rh_pos = [0]
+    for p in rh_pat: rh_pos.append(rh_pos[-1]+p)
+    la = ''.join(abs_to_abc(lh_bottom_abs+p) for p in lh_pos)
+    ra = ''.join(abs_to_abc(rh_bottom_abs+p) for p in rh_pos)
+    return la, ra
+
+def con_score(vpcs, mpcs):
+    total = 0
+    for mpc in mpcs:
+        for vpc in vpcs:
+            iv = (mpc - vpc) % 12
+            if iv == 0: total += 3
+            elif iv in (3,4): total += 2
+            elif iv in (5,7): total += 2
+            elif iv in (8,9): total += 1
+            elif iv in (1,11): total -= 3
+            elif iv == 6: total -= 1
+    return total / len(mpcs) if mpcs else 0
+
+# ── Parse OpenHymnal ──
+print("Parsing OpenHymnal voices...", file=sys.stderr)
+
+abc_path = str(PROJECT_DIR / 'data/OpenHymnal.abc')
+with open(abc_path, encoding='utf-8') as f:
+    text = f.read()
+
+# Split into tunes
+tune_chunks = {}
+for m in re.finditer(r'(^X:\s*(\d+)\s*\n.*?)(?=^X:|\Z)', text, re.MULTILINE | re.DOTALL):
+    tune_chunks[int(m.group(2))] = m.group(1)
+
+print(f"Found {len(tune_chunks)} tunes", file=sys.stderr)
+
+hymns = []
+for ti, (tnum, chunk) in enumerate(sorted(tune_chunks.items())):
+    # Extract header
+    header_lines = []
+    voice_music = {'S1V1':[], 'S1V2':[], 'S2V1':[], 'S2V2':[]}
+    title = f"Hymn {tnum}"
+    key = 'C'
+    meter = '4/4'
+    tempo = 100
+
+    for line in chunk.split('\n'):
+        line_stripped = line.strip()
+        if line_stripped.startswith('T:') and title == f"Hymn {tnum}":
+            title = line_stripped[2:].strip()
+        if line_stripped.startswith('M:'):
+            meter = line_stripped[2:].split('%')[0].strip()
+        if line_stripped.startswith('K:'):
+            key = line_stripped[2:].split('%')[0].strip().split()[0]
+            header_lines.append(line_stripped.split('%')[0].strip())
+        if line_stripped.startswith(('X:', 'M:', 'L:')):
+            header_lines.append(line_stripped.split('%')[0].strip())
+        if line_stripped.startswith('Q:') or '[Q:' in line_stripped:
+            qm = re.search(r'=(\d+)', line_stripped)
+            if qm: tempo = int(qm.group(1))
+
+        for v in voice_music:
+            if f'[V: {v}]' in line_stripped:
+                music = line_stripped[line_stripped.index(']')+1:].strip()
+                music = re.sub(r'![^!]*!', '', music)
+                music = re.sub(r'\[Q:[^\]]*\]', '', music)
+                voice_music[v].append(music)
+
+    if not voice_music['S1V1']:
+        continue
+
+    # Clean key (remove minor suffix for lookup)
+    key_clean = key.replace('m','') if key.endswith('m') else key
+    if key_clean not in KEY_OFF:
+        key_clean = 'C'
+
+    header = '\n'.join(header_lines)
+
+    # Parse soprano with music21 for correct melody
+    sop_abc = header + '\n' + ' '.join(voice_music['S1V1'])
+    try:
+        set_key_for_abc(key_clean)
+        sop_score = music21.converter.parse(sop_abc, format='abc')
+    except Exception as e:
+        print(f"  Skip X:{tnum} soprano parse: {e}", file=sys.stderr)
+        continue
+
+    # Extract measures from soprano
+    sop_part = sop_score.parts[0] if sop_score.parts else sop_score
+    measures = []
+    for m_obj in sop_part.getElementsByClass('Measure'):
+        m_notes = []
+        m_midis = []
+        has_acc = False
+        total_ql = 0
+        for n in m_obj.recurse().getElementsByClass(['Note', 'Rest']):
+            if isinstance(n, music21.note.Note):
+                m_midis.append(n.pitch.midi)
+                m_notes.append(pitch_to_abc(n.pitch, n.duration.quarterLength))
+                if n.pitch.accidental and n.pitch.accidental.alter != 0:
+                    has_acc = True
+                total_ql += n.duration.quarterLength
+            elif isinstance(n, music21.note.Rest):
+                m_notes.append(f'z{dur_to_abc(n.duration.quarterLength)}')
+                total_ql += n.duration.quarterLength
+        if m_notes:
+            measures.append({
+                'notes': m_notes, 'midis': m_midis if m_midis else [67],
+                'has_acc': has_acc, 'beats': total_ql,
+            })
+
+    if not measures:
+        continue
+
+    hymns.append({
+        'title': title, 'xnum': tnum, 'key': key_clean,
+        'meter': meter, 'tempo': tempo, 'measures': measures,
+    })
+
+    if (ti+1) % 50 == 0:
+        print(f"  Parsed {ti+1}/{len(tune_chunks)}...", file=sys.stderr)
+
+print(f"Parsed {len(hymns)} hymns, {sum(len(h['measures']) for h in hymns)} measures", file=sys.stderr)
+
+# ── Voicing assignment (same two-pass as before) ──
+all_measures = []
+for hi, h in enumerate(hymns):
+    for mi, m in enumerate(h['measures']):
+        all_measures.append((hi, mi, m, h['key']))
+
+total_m = len(all_measures)
+print(f"Scoring {total_m} measures...", file=sys.stderr)
+
+scores = []
+for hi, mi, m, key in all_measures:
+    ko = KEY_OFF.get(key, 0)
+    mpcs = [n % 12 for n in m['midis']]
+    row = [con_score(set((pc+ko)%12 for pc in v['pcs']), mpcs) for v in voicings]
+    scores.append(row)
+
+measure_assigned = [None] * total_m
+voicing_usage = defaultdict(list)
+target_uses = max(1, total_m // len(voicings))
+
+voicing_avg = sorted([(vi, sum(scores[mi][vi] for mi in range(total_m))/total_m) for vi in range(len(voicings))], key=lambda x: x[1])
+
+acc_measures = [i for i,(h,m,md,k) in enumerate(all_measures) if md['has_acc']]
+for vi, avg in voicing_avg:
+    if len(voicing_usage[vi]) >= target_uses: continue
+    cands = sorted([(mi, scores[mi][vi]) for mi in acc_measures if measure_assigned[mi] is None], key=lambda x: -x[1])
+    for mi, sc in cands[:target_uses-len(voicing_usage[vi])]:
+        measure_assigned[mi] = vi; voicing_usage[vi].append(mi)
+
+for mi in range(total_m):
+    if measure_assigned[mi] is not None: continue
+    best_vi = None; best_sc = -999
+    for vi in range(len(voicings)):
+        if len(voicing_usage[vi]) >= target_uses+2: continue
+        sc = scores[mi][vi] + (target_uses-len(voicing_usage[vi]))*0.1
+        if sc > best_sc: best_sc = sc; best_vi = vi
+    if best_vi is not None:
+        measure_assigned[mi] = best_vi; voicing_usage[best_vi].append(mi)
+
+print(f"Assigned {sum(1 for a in measure_assigned if a is not None)}/{total_m}", file=sys.stderr)
+
+# ── Generate output ──
+hymn_assignments = defaultdict(list)
+for fi, (hi,mi,m,k) in enumerate(all_measures):
+    hymn_assignments[hi].append(measure_assigned[fi])
+
+output = []
+for hi, h in enumerate(hymns):
+    assignments = hymn_assignments[hi]
+    key = h['key']; meter_str = h['meter']; measures = h['measures']
+
+    mel_parts = []; rh_parts = []; lh_parts = []; chords = []
+    note_idx = 0
+
+    for mi, (m, vi) in enumerate(zip(measures, assignments)):
+        v = voicings[vi] if vi is not None else voicings[0]
+        beats = m['beats']
+        melody_midi = m['midis'][0] if m['midis'] else 67
+
+        lh_abc, rh_abc = voicing_to_abc(v, key, melody_midi)
+        mel_parts.append(' '.join(m['notes']))
+        d = dur_to_abc(beats)
+        rh_parts.append(f'[{rh_abc}]{d}')
+        lh_parts.append(f'[{lh_abc}]{d}')
+
+        rh_letters = ''.join(c.upper() for c in reversed(re.findall(r'[A-Ga-g]', rh_abc)))
+        lh_letters = ''.join(c.upper() for c in reversed(re.findall(r'[A-Ga-g]', lh_abc)))
+        chords.append({'beat':note_idx,'name':v['lh'],'rhn':v['rh'],'lhn':v['lh'],'rh':rh_letters,'lh':lh_letters})
+        note_idx += len(m['notes'])
+
+    mel_line = ' | '.join(mel_parts) + ' |]'
+    rh_line = ' | '.join(rh_parts) + ' |]'
+    lh_line = ' | '.join(lh_parts) + ' |]'
+
+    rh_notes_all = re.findall(r'[A-G][,\']*', rh_line)
+    low_count = sum(1 for n in rh_notes_all if ',,' in n)
+    rh_clef = 'bass' if low_count > len(rh_notes_all)*0.3 else 'treble'
+
+    abc = (
+        f'X: {3000+h["xnum"]}\nT: {h["title"]}\nM: {meter_str}\nL: 1/4\n'
+        f'%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n'
+        f'%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n'
+        f'%%staves M | {{RH LH}}\n'
+        f'V: M clef=treble name="Melody"\nV: RH clef={rh_clef} name="RH"\nV: LH clef=bass name="LH"\n'
+        f'K: {key}\n'
+        f'[V: M] [Q:1/4={h["tempo"]}] {mel_line}\n'
+        f'[V: RH] {rh_line}\n[V: LH] {lh_line}\n'
+    )
+    output.append({'n':str(3000+h['xnum']),'t':h['title'],'abc':abc,'chords':chords})
+
+outpath = PROJECT_DIR / 'abc2stripchart/hymnal_data.json'
+with open(outpath, 'w') as f:
+    json.dump(output, f, separators=(',',':'))
+
+usage = [len(voicing_usage[vi]) for vi in range(len(voicings))]
+asc = [scores[mi][measure_assigned[mi]] for mi in range(total_m) if measure_assigned[mi] is not None]
+dis = sum(1 for s in asc if s < 0)
+print(f"Wrote {len(output)} hymns to {outpath}", file=sys.stderr)
+print(f"Usage: {min(usage)}-{max(usage)}, Consonance: {sum(asc)/len(asc):.1f}, Dissonant: {dis} ({dis/len(asc)*100:.1f}%)", file=sys.stderr)
