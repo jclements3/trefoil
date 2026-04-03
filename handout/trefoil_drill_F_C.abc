@@ -14,33 +14,35 @@
 %%musicspace 2
 
 X:1
-T:Trefoil in Gb
+T:Trefoil in F
 M:8/4
 L:1/4
+Q:1/4=60
+K:F
+%%MIDI program 46
 %%staves {RH LH}
-%%writefields Q 0
 V:RH clef=treble stem=up
 V:LH clef=bass stem=down
-K:Gb
 [V:RH]
-[dgb] [CFAc] [FAdg] [Begc'] [EAdf] [eac'] [FAd] [dgb] | [dgb] [dfb] [FBd] [dfa] [EAc] [EAce] [EAce] [EGB] | [egb] [FBea] [EAd] [FAd] [CEGB] [dfb] [eac'] [egb] |
-[egb] [cea] [Bdgc'] [EGc] [FBd] [EAcf] [FBeg] [dgb] | [dgb] [EGBe] [EGc] [fac'] [FAdf] [FAd] [GBd] [EGB] | [EGB] [DFB] [eac'] [EGBd] [Bea] [FAcf] [EGc] [egb] |]
+[cfa] [Begb] [EGcf] [Adfb] [DGce] [dgb] [EGc] [cfa] | [cfa] [cea] [EAc] [ceg] [DGB] [Bdgb] [DGBd] [DFA] | [dfa] [EAdg] [DGc] [EGc] [Bdfa] [cea] [dgb] [dfa] |
+[dfa] [Bdg] [Acfb] [dfb] [EAc] [DGBe] [EAdf] [cfa] | [cfa] [DFAd] [dfb] [egb] [EGce] [EGc] [FAc] [DFA] | [DFA] [CEA] [dgb] [DFAc] [Adg] [EGBe] [dfb] [dfa] |]
 [V:LH]
-[G,CFB] [C,E,G,B,] [F,A,D] [B,EA] [E,G,B,D] [A,CFB] [D,F,A,D] [G,CEA] | [G,CEA] [B,DGB] [D,G,B,D] [F,B,EG] [F,A,C] [C,E,A,] [E,G,B,D] [D,G,B,] | [G,CFA] [F,A,C] [E,G,B,D] [D,G,B,D] [C,F,B,] [B,DFB] [A,CFB] [G,CFB] |
-[G,CFB] [A,CFB] [B,EA] [C,E,G,C] [D,F,B,D] [E,G,B,] [F,A,D] [G,CEA] | [G,CEA] [E,G,C] [C,E,A,C] [A,DGB] [F,A,C] [D,G,B,D] [F,B,D] [D,G,B,] | [D,G,B,] [D,F,A,] [A,CFB] [E,G,C] [B,DFA] [F,B,E] [C,E,G,C] [G,CFB] |]
+[F,B,EA] [B,DFA] [E,G,C] [A,DG] [D,F,A,C] [G,B,EA] [C,E,G,C] [F,B,DG] | [F,B,DG] [A,CFA] [C,F,A,C] [E,A,DF] [E,G,B,] [B,DG] [D,F,A,C] [C,F,A,] | [F,B,EG] [E,G,B,] [D,F,A,C] [C,F,A,C] [B,EA] [A,CEA] [G,B,EA] [F,B,EA] |
+[F,B,EA] [G,B,EA] [A,DG] [B,DFB] [C,E,A,C] [D,F,A,] [E,G,C] [F,B,DG] | [F,B,DG] [D,F,B,] [B,DGB] [G,CFA] [E,G,B,] [C,F,A,C] [E,A,C] [C,F,A,] | [C,F,A,] [C,E,G,] [G,B,EA] [D,F,B,] [A,CEG] [E,A,D] [B,DFB] [F,B,EA] |]
 
-%%vskip 36
-X:1
-T:Trefoil in Cb
+%%sep 18 0 18
+X:2
+T:Trefoil in C
 M:8/4
 L:1/4
+Q:1/4=60
+K:C
+%%MIDI program 46
 %%staves {RH LH}
-%%writefields Q 0
 V:RH clef=treble stem=up
 V:LH clef=bass stem=down
-K:Cb
 [V:RH]
-[Gce] [FBdf] [Bdgc'] [EAcf] [Adgb] [Adf] [Bdg] [Gce] | [Gce] [GBe] [Beg] [gbd'] [Adf] [Adfa] [Adfa] [Ace] | [Ace] [Bead'] [Adg] [Bdg] [FAce] [GBe] [Adf] [Ace] |
+[Gce] [FBdf] [Bdgc'] [EAcf] [Adgb] [Adf] [Bdg] [Gce] | [Gce] [GBe] [Beg] [gbd'] [Adf] [FAdf] [Adfa] [Ace] | [Ace] [Bead'] [Adg] [Bdg] [FAce] [GBe] [Adf] [Ace] |
 [Ace] [FAd] [EGcf] [Acf] [Beg] [Adfb] [Beac'] [Gce] | [Gce] [Acea] [Acf] [Bdf] [Bdgb] [Bdg] [ceg] [Ace] | [Ace] [GBe] [Adf] [Aceg] [EAd] [Bdfb] [Acf] [Ace] |]
 [V:LH]
 [C,F,B,E] [F,A,CE] [B,DG] [E,A,D] [A,CEG] [D,F,B,E] [G,B,DG] [C,F,A,D] | [C,F,A,D] [E,G,CE] [G,CEG] [B,EAc] [B,DF] [F,A,D] [A,CEG] [G,CE] | [C,F,B,D] [B,DF] [A,CEG] [G,CEG] [F,B,E] [E,G,B,E] [D,F,B,E] [C,F,B,E] |
