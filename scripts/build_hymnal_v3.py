@@ -109,39 +109,50 @@ def transpose_voicing_notes(notes_str, key):
     return ''.join(NOTE_NAMES[(NOTE_NAMES.index(ch) + offset) % 7] for ch in notes_str if ch in NOTE_NAMES)
 
 def voicing_to_abc(voicing, key, melody_midi):
-    """Fixed-register voicing: LH in octave 2-3 range, RH above LH.
-    Clamped to C, (octave 1) through c' (octave 4) range."""
+    """Compute ABC from the voicing's actual string pattern and gap.
+    Uses lhPat/rhPat intervals to build absolute diatonic positions,
+    then transposes to the target key. Range: C, to d'."""
     lh_notes = list(transpose_voicing_notes(voicing['lhNotes'], key))
     rh_notes = list(transpose_voicing_notes(voicing['rhNotes'], key))
+    lh_pat = [int(x) for x in voicing['lhPat'].split('-')]
+    rh_pat = [int(x) for x in voicing['rhPat'].split('-')]
+    gap = voicing['gap']
 
-    def assign_oct(notes, base):
-        result = []; prev = -1; o = base
-        for n in notes:
-            idx = NOTE_NAMES.index(n)
-            if prev != -1 and idx <= prev: o += 1
-            result.append((n, o)); prev = idx
-        return result
+    # Build absolute diatonic positions from patterns
+    # LH: start at position 0, each interval adds to position
+    lh_positions = [0]
+    for p in lh_pat:
+        lh_positions.append(lh_positions[-1] + p)
+    # RH: starts gap+1 above LH top
+    rh_start = lh_positions[-1] + gap + 1
+    rh_positions = [rh_start]
+    for p in rh_pat:
+        rh_positions.append(rh_positions[-1] + p)
 
-    # Use handout's octave system: octave 1=C, 2=C 3=c 4=c'
-    # Start LH at octave 1 (ABC: C,) — same as handout
-    lh_oct = assign_oct(lh_notes, 1)
-    last_n, last_o = lh_oct[-1]
-    first_rh_idx = NOTE_NAMES.index(rh_notes[0])
-    last_lh_idx = NOTE_NAMES.index(last_n)
-    rh_base = last_o if first_rh_idx > last_lh_idx else last_o + 1
-    rh_oct = assign_oct(rh_notes, rh_base)
+    # Total span
+    total_span = rh_positions[-1]
 
-    # Handout octave-to-ABC mapping (matches trefoil_all_keys_local.py):
-    # octave 0 = C,,  octave 1 = C,  octave 2 = C  octave 3 = c  octave 4 = c'
-    def to_abc(name, octave):
+    # Center the voicing in the C, to d' range (23 strings: positions 0-22)
+    # Position 0 = C,  position 7 = C  position 14 = c  position 21 = c'  position 22 = d'
+    available = 22  # 0 to 22
+    offset = (available - total_span) // 2  # center it
+    offset = max(0, min(offset, available - total_span))  # clamp
+
+    def pos_to_abc(note_letter, pos):
+        """Convert a note letter + absolute diatonic position to ABC."""
+        abs_pos = pos + offset
+        octave = abs_pos // 7  # 0=C,, 1=C, 2=C 3=c etc
+        # Map to handout octave system: +1 because position 0-6 = octave 1 (C, range)
+        octave += 1
+        name = note_letter
         if octave <= 0: return name + ',,' + ','*(-octave)
         elif octave == 1: return name + ','
         elif octave == 2: return name
         elif octave == 3: return name.lower()
         else: return name.lower() + "'" * (octave - 3)
 
-    la = ''.join(to_abc(n, o) for n, o in lh_oct)
-    ra = ''.join(to_abc(n, o) for n, o in rh_oct)
+    la = ''.join(pos_to_abc(lh_notes[i], lh_positions[i]) for i in range(len(lh_notes)))
+    ra = ''.join(pos_to_abc(rh_notes[i], rh_positions[i]) for i in range(len(rh_notes)))
     return la, ra
 
 def con_score(vpcs, mpcs):

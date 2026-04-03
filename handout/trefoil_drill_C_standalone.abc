@@ -1,5 +1,5 @@
 %%encoding utf-8
-%%staffsep 25
+%%staffsep 40
 %%sysstaffsep 0
 %%leftmargin 0.5cm
 %%rightmargin 0.5cm
@@ -9,7 +9,7 @@
 %%topmargin 0.2cm
 %%botmargin 0.2cm
 %%pagewidth 27.94cm
-%%pageheight 12cm
+%%pageheight 14cm
 %%titlespace 1
 %%musicspace 1
 
@@ -19,12 +19,13 @@ M:8/4
 L:1/4
 %%staves {RH LH}
 %%writefields Q 0
+%%vocalfont Helvetica 8
 V:RH clef=treble stem=up
 V:LH clef=bass stem=down
 K:C
 [V:RH]
-[GCe] [FBDf] [B,DGc] [E,ACf] [A,DGb] [ADf] [BDg] [GCe] | [GCe] [GBe] [BEg] [GBd] [ADF] [ADFa] [ADFa] [ACE] | [ACe] [B,EAd] [ADg] [BDg] [FACe] [GBe] [ADf] [ACe] |
-[ACe] [FAd] [E,GCf] [ACf] [BEg] [A,DFb] [B,EAc] [GCe] | [GCe] [ACEa] [ACf] [BDf] [BDGb] [BDg] [CEG] [ACE] | [ACE] [GBE] [ADf] [ACEg] [EAd] [BDFb] [ACf] [ACe] |]
+"^I"[GCe] "^IV"[FBDf] "^vii~"[B,DGc] "^iii"[E,ACf] "^vi"[A,DGb] "^ii"[ADf] "^V"[BDg] "^I"[GCe] | "^I"[GCe] "^iii"[GBe] "^V"[BEg] "^vii~"[GBd] "^ii"[ADF] "^IV"[ADFa] "^vi"[ADFa] "^I"[ACE] | "^I"[ACe] "^vii~"[B,EAd] "^vi"[ADg] "^V"[BDg] "^IV"[FACe] "^iii"[GBe] "^ii"[ADf] "^I"[ACe] |
+"^I"[ACe] "^ii"[FAd] "^iii"[E,GCf] "^IV"[ACf] "^V"[BEg] "^vi"[A,DFb] "^vii~"[B,EAc] "^I"[GCe] | "^I"[GCe] "^vi"[ACEa] "^IV"[ACf] "^ii"[BDf] "^vii~"[BDGb] "^V"[BDg] "^iii"[CEG] "^I"[ACE] | "^I"[ACE] "^V"[GBE] "^ii"[ADf] "^vi"[ACEg] "^iii"[EAd] "^vii~"[BDFb] "^IV"[ACf] "^I"[ACe] |]
 [V:LH]
 [C,,F,B,E] [F,A,C,E,] [B,,D,G,] [E,,A,D,] [A,,C,E,G,] [D,,F,B,E] [G,B,D,G] [C,,F,A,D] | [C,,F,A,D] [E,G,C,E] [G,C,E,G] [B,,E,A,C] [B,D,F,] [F,A,D,] [A,C,E,G,] [G,C,E,] | [C,,F,B,D] [B,,D,F,] [A,C,E,G] [G,C,E,G] [F,B,E] [E,G,B,E] [D,,F,B,E] [C,,F,B,E] |
 [C,,F,B,E] [D,F,B,E] [E,,A,D,] [F,A,C,F] [G,B,E,G] [A,,C,E,] [B,,D,G,] [C,,F,A,D] | [C,,F,A,D] [A,C,F,] [F,A,D,F] [D,,G,C,E] [B,D,F,] [G,C,E,G] [B,E,G,] [G,C,E,] | [G,C,E,] [G,B,D,] [D,,F,B,E] [A,C,F,] [E,G,B,D] [B,E,A,] [F,A,C,F] [C,,F,B,E] |]

@@ -1,0 +1,779 @@
+
+\newpage
+\begin{center}
+{\Large\bfseries Trefoil Inventory --- C}
+\end{center}
+\vspace{0.1in}
+\renewcommand{\arraystretch}{1.1}
+\begin{center}
+\begin{tabular}{c l l c c l l}
+{\normalsize\bfseries \#} & {\normalsize\bfseries LH} & {\normalsize\bfseries RH} &
+{\normalsize\bfseries LH Pat} & {\normalsize\bfseries RH Pat} &
+{\normalsize\bfseries LH ABC} & {\normalsize\bfseries RH ABC} \\\midrule
+{\normalsize 1} & {\normalsize IV$\Delta$s\textsuperscript{2}} & {\normalsize I\textsuperscript{2}} & {\normalsize\ttfamily 3-3-3} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily C,F,B,E} & {\normalsize\ttfamily Gce} \\
+{\normalsize 2} & {\normalsize IV$\Delta$} & {\normalsize vii\textdegree{}\textsuperscript{2}\kern-1.5pt +8} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily F,A,CE} & {\normalsize\ttfamily FBdf} \\
+{\normalsize 3} & {\normalsize V\textsuperscript{1}} & {\normalsize I$\Delta$s2\textsuperscript{3}} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily B,DG} & {\normalsize\ttfamily Bdgc'} \\
+{\normalsize 4} & {\normalsize vis\textsuperscript{2}} & {\normalsize IV$\Delta$\textsuperscript{3}} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 3-2-3} & {\normalsize\ttfamily E,A,D} & {\normalsize\ttfamily EAcf} \\
+{\normalsize 5} & {\normalsize vi7} & {\normalsize V+2} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily A,CEG} & {\normalsize\ttfamily Adgb} \\
+{\normalsize 6} & {\normalsize iii7s2\textsuperscript{3}} & {\normalsize ii\textsuperscript{2}} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily D,F,B,E} & {\normalsize\ttfamily Adf} \\
+{\normalsize 7} & {\normalsize V+8} & {\normalsize V\textsuperscript{1}} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily G,B,DG} & {\normalsize\ttfamily Bdg} \\
+{\normalsize 8} & {\normalsize ii7\textsuperscript{3}} & {\normalsize I\textsuperscript{2}} & {\normalsize\ttfamily 3-2-3} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily C,F,A,D} & {\normalsize\ttfamily Gce} \\
+{\normalsize 9} & {\normalsize I\textsuperscript{1}\kern-1.5pt +8} & {\normalsize iii\textsuperscript{1}} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily E,G,CE} & {\normalsize\ttfamily GBe} \\
+{\normalsize 10} & {\normalsize I\textsuperscript{2}\kern-1.5pt +8} & {\normalsize iii\textsuperscript{2}} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily G,CEG} & {\normalsize\ttfamily Beg} \\
+{\normalsize 11} & {\normalsize vi+2} & {\normalsize V} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily B,EAc} & {\normalsize\ttfamily gbd'} \\
+{\normalsize 12} & {\normalsize vii\textdegree{}} & {\normalsize ii\textsuperscript{2}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily B,DF} & {\normalsize\ttfamily Adf} \\
+{\normalsize 13} & {\normalsize ii\textsuperscript{1}} & {\normalsize ii\textsuperscript{2}\kern-1.5pt +8} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily F,A,D} & {\normalsize\ttfamily Adfa} \\
+{\normalsize 14} & {\normalsize vi7} & {\normalsize ii\textsuperscript{2}\kern-1.5pt +8} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily A,CEG} & {\normalsize\ttfamily Adfa} \\
+{\normalsize 15} & {\normalsize I\textsuperscript{2}} & {\normalsize vi} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily G,CE} & {\normalsize\ttfamily Ace} \\
+{\normalsize 16} & {\normalsize I$\Delta$9s-5} & {\normalsize vi} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily C,F,B,D} & {\normalsize\ttfamily Ace} \\
+{\normalsize 17} & {\normalsize vii\textdegree{}} & {\normalsize iii7s\textsuperscript{2}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 3-3-3} & {\normalsize\ttfamily B,DF} & {\normalsize\ttfamily Bead'} \\
+{\normalsize 18} & {\normalsize vi7} & {\normalsize Vs2\textsuperscript{1}} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily A,CEG} & {\normalsize\ttfamily Adg} \\
+{\normalsize 19} & {\normalsize I\textsuperscript{2}\kern-1.5pt +8} & {\normalsize V\textsuperscript{1}} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily G,CEG} & {\normalsize\ttfamily Bdg} \\
+{\normalsize 20} & {\normalsize iiis2\textsuperscript{1}} & {\normalsize IV$\Delta$} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily F,B,E} & {\normalsize\ttfamily FAce} \\
+{\normalsize 21} & {\normalsize iii+8} & {\normalsize iii\textsuperscript{1}} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily E,G,B,E} & {\normalsize\ttfamily GBe} \\
+{\normalsize 22} & {\normalsize IV$\Delta$s\textsuperscript{2}} & {\normalsize vi} & {\normalsize\ttfamily 3-3-3} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily C,F,B,E} & {\normalsize\ttfamily Ace} \\
+{\normalsize 23} & {\normalsize iii7s2\textsuperscript{3}} & {\normalsize ii\textsuperscript{1}} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily D,F,B,E} & {\normalsize\ttfamily FAd} \\
+{\normalsize 24} & {\normalsize vis\textsuperscript{2}} & {\normalsize Is+3} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily E,A,D} & {\normalsize\ttfamily EGcf} \\
+{\normalsize 25} & {\normalsize IV+8} & {\normalsize IV\textsuperscript{1}} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily F,A,CF} & {\normalsize\ttfamily Acf} \\
+{\normalsize 26} & {\normalsize iii\textsuperscript{1}\kern-1.5pt +8} & {\normalsize iii\textsuperscript{2}} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily G,B,EG} & {\normalsize\ttfamily Beg} \\
+{\normalsize 27} & {\normalsize vi} & {\normalsize vii\o{}7\textsuperscript{3}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 3-2-3} & {\normalsize\ttfamily A,CE} & {\normalsize\ttfamily Adfb} \\
+{\normalsize 28} & {\normalsize V\textsuperscript{1}} & {\normalsize vi+2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily B,DG} & {\normalsize\ttfamily Beac'} \\
+{\normalsize 29} & {\normalsize IV\textsuperscript{1}} & {\normalsize vi+8} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily A,CF} & {\normalsize\ttfamily Acea} \\
+{\normalsize 30} & {\normalsize ii\textsuperscript{1}\kern-1.5pt +8} & {\normalsize IV\textsuperscript{1}} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily F,A,DF} & {\normalsize\ttfamily Acf} \\
+{\normalsize 31} & {\normalsize I+2} & {\normalsize vii\textdegree{}} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily D,G,CE} & {\normalsize\ttfamily Bdf} \\
+{\normalsize 32} & {\normalsize vii\textdegree{}} & {\normalsize V\textsuperscript{1}\kern-1.5pt +8} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily B,DF} & {\normalsize\ttfamily Bdgb} \\
+{\normalsize 33} & {\normalsize iii\textsuperscript{2}} & {\normalsize I} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily B,EG} & {\normalsize\ttfamily ceg} \\
+{\normalsize 34} & {\normalsize V} & {\normalsize iii\textsuperscript{1}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily G,B,D} & {\normalsize\ttfamily GBe} \\
+{\normalsize 35} & {\normalsize IV\textsuperscript{1}} & {\normalsize vi7} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily A,CF} & {\normalsize\ttfamily Aceg} \\
+{\normalsize 36} & {\normalsize iii7} & {\normalsize vis\textsuperscript{2}} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily E,G,B,D} & {\normalsize\ttfamily EAd} \\
+{\normalsize 37} & {\normalsize iiis\textsuperscript{2}} & {\normalsize vii\textdegree{}+8} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily B,EA} & {\normalsize\ttfamily Bdfb} \\
+\end{tabular}
+\end{center}
+
+
+\newpage
+\begin{center}
+{\Large\bfseries Trefoil Inventory --- G}
+\end{center}
+\vspace{0.1in}
+\renewcommand{\arraystretch}{1.1}
+\begin{center}
+\begin{tabular}{c l l c c l l}
+{\normalsize\bfseries \#} & {\normalsize\bfseries LH} & {\normalsize\bfseries RH} &
+{\normalsize\bfseries LH Pat} & {\normalsize\bfseries RH Pat} &
+{\normalsize\bfseries LH ABC} & {\normalsize\bfseries RH ABC} \\\midrule
+{\normalsize 1} & {\normalsize IV$\Delta$s\textsuperscript{2}} & {\normalsize I\textsuperscript{2}} & {\normalsize\ttfamily 3-3-3} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily G,C,F,B} & {\normalsize\ttfamily Dgb} \\
+{\normalsize 2} & {\normalsize IV$\Delta$} & {\normalsize vii\textdegree{}\textsuperscript{2}\kern-1.5pt +8} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily C,E,GB} & {\normalsize\ttfamily CFac} \\
+{\normalsize 3} & {\normalsize V\textsuperscript{1}} & {\normalsize I$\Delta$s2\textsuperscript{3}} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily F,AD} & {\normalsize\ttfamily Fadg'} \\
+{\normalsize 4} & {\normalsize vis\textsuperscript{2}} & {\normalsize IV$\Delta$\textsuperscript{3}} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 3-2-3} & {\normalsize\ttfamily B,E,A} & {\normalsize\ttfamily BEgc} \\
+{\normalsize 5} & {\normalsize vi7} & {\normalsize V+2} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily E,GBD} & {\normalsize\ttfamily Eadf} \\
+{\normalsize 6} & {\normalsize iii7s2\textsuperscript{3}} & {\normalsize ii\textsuperscript{2}} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily A,C,F,B} & {\normalsize\ttfamily Eac} \\
+{\normalsize 7} & {\normalsize V+8} & {\normalsize V\textsuperscript{1}} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily D,F,AD} & {\normalsize\ttfamily Fad} \\
+{\normalsize 8} & {\normalsize ii7\textsuperscript{3}} & {\normalsize I\textsuperscript{2}} & {\normalsize\ttfamily 3-2-3} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily G,C,E,A} & {\normalsize\ttfamily Dgb} \\
+{\normalsize 9} & {\normalsize I\textsuperscript{1}\kern-1.5pt +8} & {\normalsize iii\textsuperscript{1}} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily B,D,GB} & {\normalsize\ttfamily DFb} \\
+{\normalsize 10} & {\normalsize I\textsuperscript{2}\kern-1.5pt +8} & {\normalsize iii\textsuperscript{2}} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily D,GBD} & {\normalsize\ttfamily Fbd} \\
+{\normalsize 11} & {\normalsize vi+2} & {\normalsize V} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily F,BEg} & {\normalsize\ttfamily dfa'} \\
+{\normalsize 12} & {\normalsize vii\textdegree{}} & {\normalsize ii\textsuperscript{2}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily F,AC} & {\normalsize\ttfamily Eac} \\
+{\normalsize 13} & {\normalsize ii\textsuperscript{1}} & {\normalsize ii\textsuperscript{2}\kern-1.5pt +8} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily C,E,A} & {\normalsize\ttfamily Eace} \\
+{\normalsize 14} & {\normalsize vi7} & {\normalsize ii\textsuperscript{2}\kern-1.5pt +8} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily E,GBD} & {\normalsize\ttfamily Eace} \\
+{\normalsize 15} & {\normalsize I\textsuperscript{2}} & {\normalsize vi} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily D,GB} & {\normalsize\ttfamily Egb} \\
+{\normalsize 16} & {\normalsize I$\Delta$9s-5} & {\normalsize vi} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily G,C,F,A} & {\normalsize\ttfamily Egb} \\
+{\normalsize 17} & {\normalsize vii\textdegree{}} & {\normalsize iii7s\textsuperscript{2}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 3-3-3} & {\normalsize\ttfamily F,AC} & {\normalsize\ttfamily Fbea'} \\
+{\normalsize 18} & {\normalsize vi7} & {\normalsize Vs2\textsuperscript{1}} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily E,GBD} & {\normalsize\ttfamily Ead} \\
+{\normalsize 19} & {\normalsize I\textsuperscript{2}\kern-1.5pt +8} & {\normalsize V\textsuperscript{1}} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily D,GBD} & {\normalsize\ttfamily Fad} \\
+{\normalsize 20} & {\normalsize iiis2\textsuperscript{1}} & {\normalsize IV$\Delta$} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily C,F,B} & {\normalsize\ttfamily CEgb} \\
+{\normalsize 21} & {\normalsize iii+8} & {\normalsize iii\textsuperscript{1}} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily B,D,F,B} & {\normalsize\ttfamily DFb} \\
+{\normalsize 22} & {\normalsize IV$\Delta$s\textsuperscript{2}} & {\normalsize vi} & {\normalsize\ttfamily 3-3-3} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily G,C,F,B} & {\normalsize\ttfamily Egb} \\
+{\normalsize 23} & {\normalsize iii7s2\textsuperscript{3}} & {\normalsize ii\textsuperscript{1}} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily A,C,F,B} & {\normalsize\ttfamily CEa} \\
+{\normalsize 24} & {\normalsize vis\textsuperscript{2}} & {\normalsize Is+3} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily B,E,A} & {\normalsize\ttfamily BDgc} \\
+{\normalsize 25} & {\normalsize IV+8} & {\normalsize IV\textsuperscript{1}} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily C,E,GC} & {\normalsize\ttfamily Egc} \\
+{\normalsize 26} & {\normalsize iii\textsuperscript{1}\kern-1.5pt +8} & {\normalsize iii\textsuperscript{2}} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily D,F,BD} & {\normalsize\ttfamily Fbd} \\
+{\normalsize 27} & {\normalsize vi} & {\normalsize vii\o{}7\textsuperscript{3}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 3-2-3} & {\normalsize\ttfamily E,GB} & {\normalsize\ttfamily Eacf} \\
+{\normalsize 28} & {\normalsize V\textsuperscript{1}} & {\normalsize vi+2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily F,AD} & {\normalsize\ttfamily Fbeg'} \\
+{\normalsize 29} & {\normalsize IV\textsuperscript{1}} & {\normalsize vi+8} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily E,GC} & {\normalsize\ttfamily Egbe} \\
+{\normalsize 30} & {\normalsize ii\textsuperscript{1}\kern-1.5pt +8} & {\normalsize IV\textsuperscript{1}} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily C,E,AC} & {\normalsize\ttfamily Egc} \\
+{\normalsize 31} & {\normalsize I+2} & {\normalsize vii\textdegree{}} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily A,D,GB} & {\normalsize\ttfamily Fac} \\
+{\normalsize 32} & {\normalsize vii\textdegree{}} & {\normalsize V\textsuperscript{1}\kern-1.5pt +8} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily F,AC} & {\normalsize\ttfamily Fadf} \\
+{\normalsize 33} & {\normalsize iii\textsuperscript{2}} & {\normalsize I} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily F,BD} & {\normalsize\ttfamily gbd} \\
+{\normalsize 34} & {\normalsize V} & {\normalsize iii\textsuperscript{1}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily D,F,A} & {\normalsize\ttfamily DFb} \\
+{\normalsize 35} & {\normalsize IV\textsuperscript{1}} & {\normalsize vi7} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily E,GC} & {\normalsize\ttfamily Egbd} \\
+{\normalsize 36} & {\normalsize iii7} & {\normalsize vis\textsuperscript{2}} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily B,D,F,A} & {\normalsize\ttfamily BEa} \\
+{\normalsize 37} & {\normalsize iiis\textsuperscript{2}} & {\normalsize vii\textdegree{}+8} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily F,BE} & {\normalsize\ttfamily Facf} \\
+\end{tabular}
+\end{center}
+
+
+\newpage
+\begin{center}
+{\Large\bfseries Trefoil Inventory --- D}
+\end{center}
+\vspace{0.1in}
+\renewcommand{\arraystretch}{1.1}
+\begin{center}
+\begin{tabular}{c l l c c l l}
+{\normalsize\bfseries \#} & {\normalsize\bfseries LH} & {\normalsize\bfseries RH} &
+{\normalsize\bfseries LH Pat} & {\normalsize\bfseries RH Pat} &
+{\normalsize\bfseries LH ABC} & {\normalsize\bfseries RH ABC} \\\midrule
+{\normalsize 1} & {\normalsize IV$\Delta$s\textsuperscript{2}} & {\normalsize I\textsuperscript{2}} & {\normalsize\ttfamily 3-3-3} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily D,G,C,F} & {\normalsize\ttfamily Adf} \\
+{\normalsize 2} & {\normalsize IV$\Delta$} & {\normalsize vii\textdegree{}\textsuperscript{2}\kern-1.5pt +8} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily G,B,DF} & {\normalsize\ttfamily GCeg} \\
+{\normalsize 3} & {\normalsize V\textsuperscript{1}} & {\normalsize I$\Delta$s2\textsuperscript{3}} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily C,EA} & {\normalsize\ttfamily Cead'} \\
+{\normalsize 4} & {\normalsize vis\textsuperscript{2}} & {\normalsize IV$\Delta$\textsuperscript{3}} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 3-2-3} & {\normalsize\ttfamily F,B,E} & {\normalsize\ttfamily FBdg} \\
+{\normalsize 5} & {\normalsize vi7} & {\normalsize V+2} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily B,DFA} & {\normalsize\ttfamily Beac} \\
+{\normalsize 6} & {\normalsize iii7s2\textsuperscript{3}} & {\normalsize ii\textsuperscript{2}} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily E,G,C,F} & {\normalsize\ttfamily Beg} \\
+{\normalsize 7} & {\normalsize V+8} & {\normalsize V\textsuperscript{1}} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily A,C,EA} & {\normalsize\ttfamily Cea} \\
+{\normalsize 8} & {\normalsize ii7\textsuperscript{3}} & {\normalsize I\textsuperscript{2}} & {\normalsize\ttfamily 3-2-3} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily D,G,B,E} & {\normalsize\ttfamily Adf} \\
+{\normalsize 9} & {\normalsize I\textsuperscript{1}\kern-1.5pt +8} & {\normalsize iii\textsuperscript{1}} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily F,A,DF} & {\normalsize\ttfamily ACf} \\
+{\normalsize 10} & {\normalsize I\textsuperscript{2}\kern-1.5pt +8} & {\normalsize iii\textsuperscript{2}} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily A,DFA} & {\normalsize\ttfamily Cfa} \\
+{\normalsize 11} & {\normalsize vi+2} & {\normalsize V} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily C,FBd} & {\normalsize\ttfamily ace'} \\
+{\normalsize 12} & {\normalsize vii\textdegree{}} & {\normalsize ii\textsuperscript{2}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily C,EG} & {\normalsize\ttfamily Beg} \\
+{\normalsize 13} & {\normalsize ii\textsuperscript{1}} & {\normalsize ii\textsuperscript{2}\kern-1.5pt +8} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily G,B,E} & {\normalsize\ttfamily Begb} \\
+{\normalsize 14} & {\normalsize vi7} & {\normalsize ii\textsuperscript{2}\kern-1.5pt +8} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily B,DFA} & {\normalsize\ttfamily Begb} \\
+{\normalsize 15} & {\normalsize I\textsuperscript{2}} & {\normalsize vi} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily A,DF} & {\normalsize\ttfamily Bdf} \\
+{\normalsize 16} & {\normalsize I$\Delta$9s-5} & {\normalsize vi} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily D,G,C,E} & {\normalsize\ttfamily Bdf} \\
+{\normalsize 17} & {\normalsize vii\textdegree{}} & {\normalsize iii7s\textsuperscript{2}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 3-3-3} & {\normalsize\ttfamily C,EG} & {\normalsize\ttfamily Cfbe'} \\
+{\normalsize 18} & {\normalsize vi7} & {\normalsize Vs2\textsuperscript{1}} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily B,DFA} & {\normalsize\ttfamily Bea} \\
+{\normalsize 19} & {\normalsize I\textsuperscript{2}\kern-1.5pt +8} & {\normalsize V\textsuperscript{1}} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily A,DFA} & {\normalsize\ttfamily Cea} \\
+{\normalsize 20} & {\normalsize iiis2\textsuperscript{1}} & {\normalsize IV$\Delta$} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily G,C,F} & {\normalsize\ttfamily GBdf} \\
+{\normalsize 21} & {\normalsize iii+8} & {\normalsize iii\textsuperscript{1}} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily F,A,C,F} & {\normalsize\ttfamily ACf} \\
+{\normalsize 22} & {\normalsize IV$\Delta$s\textsuperscript{2}} & {\normalsize vi} & {\normalsize\ttfamily 3-3-3} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily D,G,C,F} & {\normalsize\ttfamily Bdf} \\
+{\normalsize 23} & {\normalsize iii7s2\textsuperscript{3}} & {\normalsize ii\textsuperscript{1}} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily E,G,C,F} & {\normalsize\ttfamily GBe} \\
+{\normalsize 24} & {\normalsize vis\textsuperscript{2}} & {\normalsize Is+3} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily F,B,E} & {\normalsize\ttfamily FAdg} \\
+{\normalsize 25} & {\normalsize IV+8} & {\normalsize IV\textsuperscript{1}} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily G,B,DG} & {\normalsize\ttfamily Bdg} \\
+{\normalsize 26} & {\normalsize iii\textsuperscript{1}\kern-1.5pt +8} & {\normalsize iii\textsuperscript{2}} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily A,C,FA} & {\normalsize\ttfamily Cfa} \\
+{\normalsize 27} & {\normalsize vi} & {\normalsize vii\o{}7\textsuperscript{3}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 3-2-3} & {\normalsize\ttfamily B,DF} & {\normalsize\ttfamily Begc} \\
+{\normalsize 28} & {\normalsize V\textsuperscript{1}} & {\normalsize vi+2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily C,EA} & {\normalsize\ttfamily Cfbd'} \\
+{\normalsize 29} & {\normalsize IV\textsuperscript{1}} & {\normalsize vi+8} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily B,DG} & {\normalsize\ttfamily Bdfb} \\
+{\normalsize 30} & {\normalsize ii\textsuperscript{1}\kern-1.5pt +8} & {\normalsize IV\textsuperscript{1}} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily G,B,EG} & {\normalsize\ttfamily Bdg} \\
+{\normalsize 31} & {\normalsize I+2} & {\normalsize vii\textdegree{}} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily E,A,DF} & {\normalsize\ttfamily Ceg} \\
+{\normalsize 32} & {\normalsize vii\textdegree{}} & {\normalsize V\textsuperscript{1}\kern-1.5pt +8} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily C,EG} & {\normalsize\ttfamily Ceac} \\
+{\normalsize 33} & {\normalsize iii\textsuperscript{2}} & {\normalsize I} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily C,FA} & {\normalsize\ttfamily dfa} \\
+{\normalsize 34} & {\normalsize V} & {\normalsize iii\textsuperscript{1}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily A,C,E} & {\normalsize\ttfamily ACf} \\
+{\normalsize 35} & {\normalsize IV\textsuperscript{1}} & {\normalsize vi7} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily B,DG} & {\normalsize\ttfamily Bdfa} \\
+{\normalsize 36} & {\normalsize iii7} & {\normalsize vis\textsuperscript{2}} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily F,A,C,E} & {\normalsize\ttfamily FBe} \\
+{\normalsize 37} & {\normalsize iiis\textsuperscript{2}} & {\normalsize vii\textdegree{}+8} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily C,FB} & {\normalsize\ttfamily Cegc} \\
+\end{tabular}
+\end{center}
+
+
+\newpage
+\begin{center}
+{\Large\bfseries Trefoil Inventory --- A}
+\end{center}
+\vspace{0.1in}
+\renewcommand{\arraystretch}{1.1}
+\begin{center}
+\begin{tabular}{c l l c c l l}
+{\normalsize\bfseries \#} & {\normalsize\bfseries LH} & {\normalsize\bfseries RH} &
+{\normalsize\bfseries LH Pat} & {\normalsize\bfseries RH Pat} &
+{\normalsize\bfseries LH ABC} & {\normalsize\bfseries RH ABC} \\\midrule
+{\normalsize 1} & {\normalsize IV$\Delta$s\textsuperscript{2}} & {\normalsize I\textsuperscript{2}} & {\normalsize\ttfamily 3-3-3} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily A,D,G,C} & {\normalsize\ttfamily Eac} \\
+{\normalsize 2} & {\normalsize IV$\Delta$} & {\normalsize vii\textdegree{}\textsuperscript{2}\kern-1.5pt +8} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily D,F,AC} & {\normalsize\ttfamily DGbd} \\
+{\normalsize 3} & {\normalsize V\textsuperscript{1}} & {\normalsize I$\Delta$s2\textsuperscript{3}} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily G,BE} & {\normalsize\ttfamily Gbea'} \\
+{\normalsize 4} & {\normalsize vis\textsuperscript{2}} & {\normalsize IV$\Delta$\textsuperscript{3}} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 3-2-3} & {\normalsize\ttfamily C,F,B} & {\normalsize\ttfamily CFad} \\
+{\normalsize 5} & {\normalsize vi7} & {\normalsize V+2} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily F,ACE} & {\normalsize\ttfamily Fbeg} \\
+{\normalsize 6} & {\normalsize iii7s2\textsuperscript{3}} & {\normalsize ii\textsuperscript{2}} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily B,D,G,C} & {\normalsize\ttfamily Fbd} \\
+{\normalsize 7} & {\normalsize V+8} & {\normalsize V\textsuperscript{1}} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily E,G,BE} & {\normalsize\ttfamily Gbe} \\
+{\normalsize 8} & {\normalsize ii7\textsuperscript{3}} & {\normalsize I\textsuperscript{2}} & {\normalsize\ttfamily 3-2-3} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily A,D,F,B} & {\normalsize\ttfamily Eac} \\
+{\normalsize 9} & {\normalsize I\textsuperscript{1}\kern-1.5pt +8} & {\normalsize iii\textsuperscript{1}} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily C,E,AC} & {\normalsize\ttfamily EGc} \\
+{\normalsize 10} & {\normalsize I\textsuperscript{2}\kern-1.5pt +8} & {\normalsize iii\textsuperscript{2}} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily E,ACE} & {\normalsize\ttfamily Gce} \\
+{\normalsize 11} & {\normalsize vi+2} & {\normalsize V} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily G,CFa} & {\normalsize\ttfamily egb'} \\
+{\normalsize 12} & {\normalsize vii\textdegree{}} & {\normalsize ii\textsuperscript{2}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily G,BD} & {\normalsize\ttfamily Fbd} \\
+{\normalsize 13} & {\normalsize ii\textsuperscript{1}} & {\normalsize ii\textsuperscript{2}\kern-1.5pt +8} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily D,F,B} & {\normalsize\ttfamily Fbdf} \\
+{\normalsize 14} & {\normalsize vi7} & {\normalsize ii\textsuperscript{2}\kern-1.5pt +8} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily F,ACE} & {\normalsize\ttfamily Fbdf} \\
+{\normalsize 15} & {\normalsize I\textsuperscript{2}} & {\normalsize vi} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily E,AC} & {\normalsize\ttfamily Fac} \\
+{\normalsize 16} & {\normalsize I$\Delta$9s-5} & {\normalsize vi} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily A,D,G,B} & {\normalsize\ttfamily Fac} \\
+{\normalsize 17} & {\normalsize vii\textdegree{}} & {\normalsize iii7s\textsuperscript{2}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 3-3-3} & {\normalsize\ttfamily G,BD} & {\normalsize\ttfamily Gcfb'} \\
+{\normalsize 18} & {\normalsize vi7} & {\normalsize Vs2\textsuperscript{1}} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily F,ACE} & {\normalsize\ttfamily Fbe} \\
+{\normalsize 19} & {\normalsize I\textsuperscript{2}\kern-1.5pt +8} & {\normalsize V\textsuperscript{1}} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily E,ACE} & {\normalsize\ttfamily Gbe} \\
+{\normalsize 20} & {\normalsize iiis2\textsuperscript{1}} & {\normalsize IV$\Delta$} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily D,G,C} & {\normalsize\ttfamily DFac} \\
+{\normalsize 21} & {\normalsize iii+8} & {\normalsize iii\textsuperscript{1}} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily C,E,G,C} & {\normalsize\ttfamily EGc} \\
+{\normalsize 22} & {\normalsize IV$\Delta$s\textsuperscript{2}} & {\normalsize vi} & {\normalsize\ttfamily 3-3-3} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily A,D,G,C} & {\normalsize\ttfamily Fac} \\
+{\normalsize 23} & {\normalsize iii7s2\textsuperscript{3}} & {\normalsize ii\textsuperscript{1}} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily B,D,G,C} & {\normalsize\ttfamily DFb} \\
+{\normalsize 24} & {\normalsize vis\textsuperscript{2}} & {\normalsize Is+3} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily C,F,B} & {\normalsize\ttfamily CEad} \\
+{\normalsize 25} & {\normalsize IV+8} & {\normalsize IV\textsuperscript{1}} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily D,F,AD} & {\normalsize\ttfamily Fad} \\
+{\normalsize 26} & {\normalsize iii\textsuperscript{1}\kern-1.5pt +8} & {\normalsize iii\textsuperscript{2}} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily E,G,CE} & {\normalsize\ttfamily Gce} \\
+{\normalsize 27} & {\normalsize vi} & {\normalsize vii\o{}7\textsuperscript{3}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 3-2-3} & {\normalsize\ttfamily F,AC} & {\normalsize\ttfamily Fbdg} \\
+{\normalsize 28} & {\normalsize V\textsuperscript{1}} & {\normalsize vi+2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily G,BE} & {\normalsize\ttfamily Gcfa'} \\
+{\normalsize 29} & {\normalsize IV\textsuperscript{1}} & {\normalsize vi+8} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily F,AD} & {\normalsize\ttfamily Facf} \\
+{\normalsize 30} & {\normalsize ii\textsuperscript{1}\kern-1.5pt +8} & {\normalsize IV\textsuperscript{1}} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily D,F,BD} & {\normalsize\ttfamily Fad} \\
+{\normalsize 31} & {\normalsize I+2} & {\normalsize vii\textdegree{}} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily B,E,AC} & {\normalsize\ttfamily Gbd} \\
+{\normalsize 32} & {\normalsize vii\textdegree{}} & {\normalsize V\textsuperscript{1}\kern-1.5pt +8} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily G,BD} & {\normalsize\ttfamily Gbeg} \\
+{\normalsize 33} & {\normalsize iii\textsuperscript{2}} & {\normalsize I} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily G,CE} & {\normalsize\ttfamily ace} \\
+{\normalsize 34} & {\normalsize V} & {\normalsize iii\textsuperscript{1}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily E,G,B} & {\normalsize\ttfamily EGc} \\
+{\normalsize 35} & {\normalsize IV\textsuperscript{1}} & {\normalsize vi7} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily F,AD} & {\normalsize\ttfamily Face} \\
+{\normalsize 36} & {\normalsize iii7} & {\normalsize vis\textsuperscript{2}} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily C,E,G,B} & {\normalsize\ttfamily CFb} \\
+{\normalsize 37} & {\normalsize iiis\textsuperscript{2}} & {\normalsize vii\textdegree{}+8} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily G,CF} & {\normalsize\ttfamily Gbdg} \\
+\end{tabular}
+\end{center}
+
+
+\newpage
+\begin{center}
+{\Large\bfseries Trefoil Inventory --- E}
+\end{center}
+\vspace{0.1in}
+\renewcommand{\arraystretch}{1.1}
+\begin{center}
+\begin{tabular}{c l l c c l l}
+{\normalsize\bfseries \#} & {\normalsize\bfseries LH} & {\normalsize\bfseries RH} &
+{\normalsize\bfseries LH Pat} & {\normalsize\bfseries RH Pat} &
+{\normalsize\bfseries LH ABC} & {\normalsize\bfseries RH ABC} \\\midrule
+{\normalsize 1} & {\normalsize IV$\Delta$s\textsuperscript{2}} & {\normalsize I\textsuperscript{2}} & {\normalsize\ttfamily 3-3-3} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily E,A,D,G} & {\normalsize\ttfamily Beg} \\
+{\normalsize 2} & {\normalsize IV$\Delta$} & {\normalsize vii\textdegree{}\textsuperscript{2}\kern-1.5pt +8} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily A,C,EG} & {\normalsize\ttfamily ADfa} \\
+{\normalsize 3} & {\normalsize V\textsuperscript{1}} & {\normalsize I$\Delta$s2\textsuperscript{3}} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily D,FB} & {\normalsize\ttfamily Dfbe'} \\
+{\normalsize 4} & {\normalsize vis\textsuperscript{2}} & {\normalsize IV$\Delta$\textsuperscript{3}} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 3-2-3} & {\normalsize\ttfamily G,C,F} & {\normalsize\ttfamily GCea} \\
+{\normalsize 5} & {\normalsize vi7} & {\normalsize V+2} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily C,EGB} & {\normalsize\ttfamily Cfbd} \\
+{\normalsize 6} & {\normalsize iii7s2\textsuperscript{3}} & {\normalsize ii\textsuperscript{2}} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily F,A,D,G} & {\normalsize\ttfamily Cfa} \\
+{\normalsize 7} & {\normalsize V+8} & {\normalsize V\textsuperscript{1}} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily B,D,FB} & {\normalsize\ttfamily Dfb} \\
+{\normalsize 8} & {\normalsize ii7\textsuperscript{3}} & {\normalsize I\textsuperscript{2}} & {\normalsize\ttfamily 3-2-3} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily E,A,C,F} & {\normalsize\ttfamily Beg} \\
+{\normalsize 9} & {\normalsize I\textsuperscript{1}\kern-1.5pt +8} & {\normalsize iii\textsuperscript{1}} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily G,B,EG} & {\normalsize\ttfamily BDg} \\
+{\normalsize 10} & {\normalsize I\textsuperscript{2}\kern-1.5pt +8} & {\normalsize iii\textsuperscript{2}} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily B,EGB} & {\normalsize\ttfamily Dgb} \\
+{\normalsize 11} & {\normalsize vi+2} & {\normalsize V} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily D,GCe} & {\normalsize\ttfamily bdf'} \\
+{\normalsize 12} & {\normalsize vii\textdegree{}} & {\normalsize ii\textsuperscript{2}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily D,FA} & {\normalsize\ttfamily Cfa} \\
+{\normalsize 13} & {\normalsize ii\textsuperscript{1}} & {\normalsize ii\textsuperscript{2}\kern-1.5pt +8} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily A,C,F} & {\normalsize\ttfamily Cfac} \\
+{\normalsize 14} & {\normalsize vi7} & {\normalsize ii\textsuperscript{2}\kern-1.5pt +8} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily C,EGB} & {\normalsize\ttfamily Cfac} \\
+{\normalsize 15} & {\normalsize I\textsuperscript{2}} & {\normalsize vi} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily B,EG} & {\normalsize\ttfamily Ceg} \\
+{\normalsize 16} & {\normalsize I$\Delta$9s-5} & {\normalsize vi} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily E,A,D,F} & {\normalsize\ttfamily Ceg} \\
+{\normalsize 17} & {\normalsize vii\textdegree{}} & {\normalsize iii7s\textsuperscript{2}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 3-3-3} & {\normalsize\ttfamily D,FA} & {\normalsize\ttfamily Dgcf'} \\
+{\normalsize 18} & {\normalsize vi7} & {\normalsize Vs2\textsuperscript{1}} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily C,EGB} & {\normalsize\ttfamily Cfb} \\
+{\normalsize 19} & {\normalsize I\textsuperscript{2}\kern-1.5pt +8} & {\normalsize V\textsuperscript{1}} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily B,EGB} & {\normalsize\ttfamily Dfb} \\
+{\normalsize 20} & {\normalsize iiis2\textsuperscript{1}} & {\normalsize IV$\Delta$} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily A,D,G} & {\normalsize\ttfamily ACeg} \\
+{\normalsize 21} & {\normalsize iii+8} & {\normalsize iii\textsuperscript{1}} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily G,B,D,G} & {\normalsize\ttfamily BDg} \\
+{\normalsize 22} & {\normalsize IV$\Delta$s\textsuperscript{2}} & {\normalsize vi} & {\normalsize\ttfamily 3-3-3} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily E,A,D,G} & {\normalsize\ttfamily Ceg} \\
+{\normalsize 23} & {\normalsize iii7s2\textsuperscript{3}} & {\normalsize ii\textsuperscript{1}} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily F,A,D,G} & {\normalsize\ttfamily ACf} \\
+{\normalsize 24} & {\normalsize vis\textsuperscript{2}} & {\normalsize Is+3} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily G,C,F} & {\normalsize\ttfamily GBea} \\
+{\normalsize 25} & {\normalsize IV+8} & {\normalsize IV\textsuperscript{1}} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily A,C,EA} & {\normalsize\ttfamily Cea} \\
+{\normalsize 26} & {\normalsize iii\textsuperscript{1}\kern-1.5pt +8} & {\normalsize iii\textsuperscript{2}} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily B,D,GB} & {\normalsize\ttfamily Dgb} \\
+{\normalsize 27} & {\normalsize vi} & {\normalsize vii\o{}7\textsuperscript{3}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 3-2-3} & {\normalsize\ttfamily C,EG} & {\normalsize\ttfamily Cfad} \\
+{\normalsize 28} & {\normalsize V\textsuperscript{1}} & {\normalsize vi+2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily D,FB} & {\normalsize\ttfamily Dgce'} \\
+{\normalsize 29} & {\normalsize IV\textsuperscript{1}} & {\normalsize vi+8} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily C,EA} & {\normalsize\ttfamily Cegc} \\
+{\normalsize 30} & {\normalsize ii\textsuperscript{1}\kern-1.5pt +8} & {\normalsize IV\textsuperscript{1}} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily A,C,FA} & {\normalsize\ttfamily Cea} \\
+{\normalsize 31} & {\normalsize I+2} & {\normalsize vii\textdegree{}} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily F,B,EG} & {\normalsize\ttfamily Dfa} \\
+{\normalsize 32} & {\normalsize vii\textdegree{}} & {\normalsize V\textsuperscript{1}\kern-1.5pt +8} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily D,FA} & {\normalsize\ttfamily Dfbd} \\
+{\normalsize 33} & {\normalsize iii\textsuperscript{2}} & {\normalsize I} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily D,GB} & {\normalsize\ttfamily egb} \\
+{\normalsize 34} & {\normalsize V} & {\normalsize iii\textsuperscript{1}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily B,D,F} & {\normalsize\ttfamily BDg} \\
+{\normalsize 35} & {\normalsize IV\textsuperscript{1}} & {\normalsize vi7} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily C,EA} & {\normalsize\ttfamily Cegb} \\
+{\normalsize 36} & {\normalsize iii7} & {\normalsize vis\textsuperscript{2}} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily G,B,D,F} & {\normalsize\ttfamily GCf} \\
+{\normalsize 37} & {\normalsize iiis\textsuperscript{2}} & {\normalsize vii\textdegree{}+8} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily D,GC} & {\normalsize\ttfamily Dfad} \\
+\end{tabular}
+\end{center}
+
+
+\newpage
+\begin{center}
+{\Large\bfseries Trefoil Inventory --- B}
+\end{center}
+\vspace{0.1in}
+\renewcommand{\arraystretch}{1.1}
+\begin{center}
+\begin{tabular}{c l l c c l l}
+{\normalsize\bfseries \#} & {\normalsize\bfseries LH} & {\normalsize\bfseries RH} &
+{\normalsize\bfseries LH Pat} & {\normalsize\bfseries RH Pat} &
+{\normalsize\bfseries LH ABC} & {\normalsize\bfseries RH ABC} \\\midrule
+{\normalsize 1} & {\normalsize IV$\Delta$s\textsuperscript{2}} & {\normalsize I\textsuperscript{2}} & {\normalsize\ttfamily 3-3-3} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily B,E,A,D} & {\normalsize\ttfamily Fbd} \\
+{\normalsize 2} & {\normalsize IV$\Delta$} & {\normalsize vii\textdegree{}\textsuperscript{2}\kern-1.5pt +8} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily E,G,BD} & {\normalsize\ttfamily EAce} \\
+{\normalsize 3} & {\normalsize V\textsuperscript{1}} & {\normalsize I$\Delta$s2\textsuperscript{3}} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily A,CF} & {\normalsize\ttfamily Acfb'} \\
+{\normalsize 4} & {\normalsize vis\textsuperscript{2}} & {\normalsize IV$\Delta$\textsuperscript{3}} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 3-2-3} & {\normalsize\ttfamily D,G,C} & {\normalsize\ttfamily DGbe} \\
+{\normalsize 5} & {\normalsize vi7} & {\normalsize V+2} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily G,BDF} & {\normalsize\ttfamily Gcfa} \\
+{\normalsize 6} & {\normalsize iii7s2\textsuperscript{3}} & {\normalsize ii\textsuperscript{2}} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily C,E,A,D} & {\normalsize\ttfamily Gce} \\
+{\normalsize 7} & {\normalsize V+8} & {\normalsize V\textsuperscript{1}} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily F,A,CF} & {\normalsize\ttfamily Acf} \\
+{\normalsize 8} & {\normalsize ii7\textsuperscript{3}} & {\normalsize I\textsuperscript{2}} & {\normalsize\ttfamily 3-2-3} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily B,E,G,C} & {\normalsize\ttfamily Fbd} \\
+{\normalsize 9} & {\normalsize I\textsuperscript{1}\kern-1.5pt +8} & {\normalsize iii\textsuperscript{1}} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily D,F,BD} & {\normalsize\ttfamily FAd} \\
+{\normalsize 10} & {\normalsize I\textsuperscript{2}\kern-1.5pt +8} & {\normalsize iii\textsuperscript{2}} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily F,BDF} & {\normalsize\ttfamily Adf} \\
+{\normalsize 11} & {\normalsize vi+2} & {\normalsize V} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily A,DGb} & {\normalsize\ttfamily fac'} \\
+{\normalsize 12} & {\normalsize vii\textdegree{}} & {\normalsize ii\textsuperscript{2}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily A,CE} & {\normalsize\ttfamily Gce} \\
+{\normalsize 13} & {\normalsize ii\textsuperscript{1}} & {\normalsize ii\textsuperscript{2}\kern-1.5pt +8} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily E,G,C} & {\normalsize\ttfamily Gceg} \\
+{\normalsize 14} & {\normalsize vi7} & {\normalsize ii\textsuperscript{2}\kern-1.5pt +8} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily G,BDF} & {\normalsize\ttfamily Gceg} \\
+{\normalsize 15} & {\normalsize I\textsuperscript{2}} & {\normalsize vi} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily F,BD} & {\normalsize\ttfamily Gbd} \\
+{\normalsize 16} & {\normalsize I$\Delta$9s-5} & {\normalsize vi} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily B,E,A,C} & {\normalsize\ttfamily Gbd} \\
+{\normalsize 17} & {\normalsize vii\textdegree{}} & {\normalsize iii7s\textsuperscript{2}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 3-3-3} & {\normalsize\ttfamily A,CE} & {\normalsize\ttfamily Adgc'} \\
+{\normalsize 18} & {\normalsize vi7} & {\normalsize Vs2\textsuperscript{1}} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily G,BDF} & {\normalsize\ttfamily Gcf} \\
+{\normalsize 19} & {\normalsize I\textsuperscript{2}\kern-1.5pt +8} & {\normalsize V\textsuperscript{1}} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily F,BDF} & {\normalsize\ttfamily Acf} \\
+{\normalsize 20} & {\normalsize iiis2\textsuperscript{1}} & {\normalsize IV$\Delta$} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily E,A,D} & {\normalsize\ttfamily EGbd} \\
+{\normalsize 21} & {\normalsize iii+8} & {\normalsize iii\textsuperscript{1}} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily D,F,A,D} & {\normalsize\ttfamily FAd} \\
+{\normalsize 22} & {\normalsize IV$\Delta$s\textsuperscript{2}} & {\normalsize vi} & {\normalsize\ttfamily 3-3-3} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily B,E,A,D} & {\normalsize\ttfamily Gbd} \\
+{\normalsize 23} & {\normalsize iii7s2\textsuperscript{3}} & {\normalsize ii\textsuperscript{1}} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily C,E,A,D} & {\normalsize\ttfamily EGc} \\
+{\normalsize 24} & {\normalsize vis\textsuperscript{2}} & {\normalsize Is+3} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily D,G,C} & {\normalsize\ttfamily DFbe} \\
+{\normalsize 25} & {\normalsize IV+8} & {\normalsize IV\textsuperscript{1}} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily E,G,BE} & {\normalsize\ttfamily Gbe} \\
+{\normalsize 26} & {\normalsize iii\textsuperscript{1}\kern-1.5pt +8} & {\normalsize iii\textsuperscript{2}} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily F,A,DF} & {\normalsize\ttfamily Adf} \\
+{\normalsize 27} & {\normalsize vi} & {\normalsize vii\o{}7\textsuperscript{3}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 3-2-3} & {\normalsize\ttfamily G,BD} & {\normalsize\ttfamily Gcea} \\
+{\normalsize 28} & {\normalsize V\textsuperscript{1}} & {\normalsize vi+2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily A,CF} & {\normalsize\ttfamily Adgb'} \\
+{\normalsize 29} & {\normalsize IV\textsuperscript{1}} & {\normalsize vi+8} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily G,BE} & {\normalsize\ttfamily Gbdg} \\
+{\normalsize 30} & {\normalsize ii\textsuperscript{1}\kern-1.5pt +8} & {\normalsize IV\textsuperscript{1}} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily E,G,CE} & {\normalsize\ttfamily Gbe} \\
+{\normalsize 31} & {\normalsize I+2} & {\normalsize vii\textdegree{}} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily C,F,BD} & {\normalsize\ttfamily Ace} \\
+{\normalsize 32} & {\normalsize vii\textdegree{}} & {\normalsize V\textsuperscript{1}\kern-1.5pt +8} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily A,CE} & {\normalsize\ttfamily Acfa} \\
+{\normalsize 33} & {\normalsize iii\textsuperscript{2}} & {\normalsize I} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily A,DF} & {\normalsize\ttfamily bdf} \\
+{\normalsize 34} & {\normalsize V} & {\normalsize iii\textsuperscript{1}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily F,A,C} & {\normalsize\ttfamily FAd} \\
+{\normalsize 35} & {\normalsize IV\textsuperscript{1}} & {\normalsize vi7} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily G,BE} & {\normalsize\ttfamily Gbdf} \\
+{\normalsize 36} & {\normalsize iii7} & {\normalsize vis\textsuperscript{2}} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily D,F,A,C} & {\normalsize\ttfamily DGc} \\
+{\normalsize 37} & {\normalsize iiis\textsuperscript{2}} & {\normalsize vii\textdegree{}+8} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily A,DG} & {\normalsize\ttfamily Acea} \\
+\end{tabular}
+\end{center}
+
+
+\newpage
+\begin{center}
+{\Large\bfseries Trefoil Inventory --- F\#}
+\end{center}
+\vspace{0.1in}
+\renewcommand{\arraystretch}{1.1}
+\begin{center}
+\begin{tabular}{c l l c c l l}
+{\normalsize\bfseries \#} & {\normalsize\bfseries LH} & {\normalsize\bfseries RH} &
+{\normalsize\bfseries LH Pat} & {\normalsize\bfseries RH Pat} &
+{\normalsize\bfseries LH ABC} & {\normalsize\bfseries RH ABC} \\\midrule
+{\normalsize 1} & {\normalsize IV$\Delta$s\textsuperscript{2}} & {\normalsize I\textsuperscript{2}} & {\normalsize\ttfamily 3-3-3} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily F,B,E,A} & {\normalsize\ttfamily Cfa} \\
+{\normalsize 2} & {\normalsize IV$\Delta$} & {\normalsize vii\textdegree{}\textsuperscript{2}\kern-1.5pt +8} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily B,D,FA} & {\normalsize\ttfamily BEgb} \\
+{\normalsize 3} & {\normalsize V\textsuperscript{1}} & {\normalsize I$\Delta$s2\textsuperscript{3}} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily E,GC} & {\normalsize\ttfamily Egcf'} \\
+{\normalsize 4} & {\normalsize vis\textsuperscript{2}} & {\normalsize IV$\Delta$\textsuperscript{3}} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 3-2-3} & {\normalsize\ttfamily A,D,G} & {\normalsize\ttfamily ADfb} \\
+{\normalsize 5} & {\normalsize vi7} & {\normalsize V+2} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily D,FAC} & {\normalsize\ttfamily Dgce} \\
+{\normalsize 6} & {\normalsize iii7s2\textsuperscript{3}} & {\normalsize ii\textsuperscript{2}} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily G,B,E,A} & {\normalsize\ttfamily Dgb} \\
+{\normalsize 7} & {\normalsize V+8} & {\normalsize V\textsuperscript{1}} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily C,E,GC} & {\normalsize\ttfamily Egc} \\
+{\normalsize 8} & {\normalsize ii7\textsuperscript{3}} & {\normalsize I\textsuperscript{2}} & {\normalsize\ttfamily 3-2-3} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily F,B,D,G} & {\normalsize\ttfamily Cfa} \\
+{\normalsize 9} & {\normalsize I\textsuperscript{1}\kern-1.5pt +8} & {\normalsize iii\textsuperscript{1}} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily A,C,FA} & {\normalsize\ttfamily CEa} \\
+{\normalsize 10} & {\normalsize I\textsuperscript{2}\kern-1.5pt +8} & {\normalsize iii\textsuperscript{2}} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily C,FAC} & {\normalsize\ttfamily Eac} \\
+{\normalsize 11} & {\normalsize vi+2} & {\normalsize V} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily E,ADf} & {\normalsize\ttfamily ceg'} \\
+{\normalsize 12} & {\normalsize vii\textdegree{}} & {\normalsize ii\textsuperscript{2}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily E,GB} & {\normalsize\ttfamily Dgb} \\
+{\normalsize 13} & {\normalsize ii\textsuperscript{1}} & {\normalsize ii\textsuperscript{2}\kern-1.5pt +8} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily B,D,G} & {\normalsize\ttfamily Dgbd} \\
+{\normalsize 14} & {\normalsize vi7} & {\normalsize ii\textsuperscript{2}\kern-1.5pt +8} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily D,FAC} & {\normalsize\ttfamily Dgbd} \\
+{\normalsize 15} & {\normalsize I\textsuperscript{2}} & {\normalsize vi} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily C,FA} & {\normalsize\ttfamily Dfa} \\
+{\normalsize 16} & {\normalsize I$\Delta$9s-5} & {\normalsize vi} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily F,B,E,G} & {\normalsize\ttfamily Dfa} \\
+{\normalsize 17} & {\normalsize vii\textdegree{}} & {\normalsize iii7s\textsuperscript{2}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 3-3-3} & {\normalsize\ttfamily E,GB} & {\normalsize\ttfamily Eadg'} \\
+{\normalsize 18} & {\normalsize vi7} & {\normalsize Vs2\textsuperscript{1}} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily D,FAC} & {\normalsize\ttfamily Dgc} \\
+{\normalsize 19} & {\normalsize I\textsuperscript{2}\kern-1.5pt +8} & {\normalsize V\textsuperscript{1}} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily C,FAC} & {\normalsize\ttfamily Egc} \\
+{\normalsize 20} & {\normalsize iiis2\textsuperscript{1}} & {\normalsize IV$\Delta$} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily B,E,A} & {\normalsize\ttfamily BDfa} \\
+{\normalsize 21} & {\normalsize iii+8} & {\normalsize iii\textsuperscript{1}} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily A,C,E,A} & {\normalsize\ttfamily CEa} \\
+{\normalsize 22} & {\normalsize IV$\Delta$s\textsuperscript{2}} & {\normalsize vi} & {\normalsize\ttfamily 3-3-3} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily F,B,E,A} & {\normalsize\ttfamily Dfa} \\
+{\normalsize 23} & {\normalsize iii7s2\textsuperscript{3}} & {\normalsize ii\textsuperscript{1}} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily G,B,E,A} & {\normalsize\ttfamily BDg} \\
+{\normalsize 24} & {\normalsize vis\textsuperscript{2}} & {\normalsize Is+3} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily A,D,G} & {\normalsize\ttfamily ACfb} \\
+{\normalsize 25} & {\normalsize IV+8} & {\normalsize IV\textsuperscript{1}} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily B,D,FB} & {\normalsize\ttfamily Dfb} \\
+{\normalsize 26} & {\normalsize iii\textsuperscript{1}\kern-1.5pt +8} & {\normalsize iii\textsuperscript{2}} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily C,E,AC} & {\normalsize\ttfamily Eac} \\
+{\normalsize 27} & {\normalsize vi} & {\normalsize vii\o{}7\textsuperscript{3}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 3-2-3} & {\normalsize\ttfamily D,FA} & {\normalsize\ttfamily Dgbe} \\
+{\normalsize 28} & {\normalsize V\textsuperscript{1}} & {\normalsize vi+2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily E,GC} & {\normalsize\ttfamily Eadf'} \\
+{\normalsize 29} & {\normalsize IV\textsuperscript{1}} & {\normalsize vi+8} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily D,FB} & {\normalsize\ttfamily Dfad} \\
+{\normalsize 30} & {\normalsize ii\textsuperscript{1}\kern-1.5pt +8} & {\normalsize IV\textsuperscript{1}} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily B,D,GB} & {\normalsize\ttfamily Dfb} \\
+{\normalsize 31} & {\normalsize I+2} & {\normalsize vii\textdegree{}} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily G,C,FA} & {\normalsize\ttfamily Egb} \\
+{\normalsize 32} & {\normalsize vii\textdegree{}} & {\normalsize V\textsuperscript{1}\kern-1.5pt +8} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily E,GB} & {\normalsize\ttfamily Egce} \\
+{\normalsize 33} & {\normalsize iii\textsuperscript{2}} & {\normalsize I} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily E,AC} & {\normalsize\ttfamily fac} \\
+{\normalsize 34} & {\normalsize V} & {\normalsize iii\textsuperscript{1}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily C,E,G} & {\normalsize\ttfamily CEa} \\
+{\normalsize 35} & {\normalsize IV\textsuperscript{1}} & {\normalsize vi7} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily D,FB} & {\normalsize\ttfamily Dfac} \\
+{\normalsize 36} & {\normalsize iii7} & {\normalsize vis\textsuperscript{2}} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily A,C,E,G} & {\normalsize\ttfamily ADg} \\
+{\normalsize 37} & {\normalsize iiis\textsuperscript{2}} & {\normalsize vii\textdegree{}+8} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily E,AD} & {\normalsize\ttfamily Egbe} \\
+\end{tabular}
+\end{center}
+
+
+\newpage
+\begin{center}
+{\Large\bfseries Trefoil Inventory --- C\#}
+\end{center}
+\vspace{0.1in}
+\renewcommand{\arraystretch}{1.1}
+\begin{center}
+\begin{tabular}{c l l c c l l}
+{\normalsize\bfseries \#} & {\normalsize\bfseries LH} & {\normalsize\bfseries RH} &
+{\normalsize\bfseries LH Pat} & {\normalsize\bfseries RH Pat} &
+{\normalsize\bfseries LH ABC} & {\normalsize\bfseries RH ABC} \\\midrule
+{\normalsize 1} & {\normalsize IV$\Delta$s\textsuperscript{2}} & {\normalsize I\textsuperscript{2}} & {\normalsize\ttfamily 3-3-3} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily C,F,B,E} & {\normalsize\ttfamily Gce} \\
+{\normalsize 2} & {\normalsize IV$\Delta$} & {\normalsize vii\textdegree{}\textsuperscript{2}\kern-1.5pt +8} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily F,A,CE} & {\normalsize\ttfamily FBdf} \\
+{\normalsize 3} & {\normalsize V\textsuperscript{1}} & {\normalsize I$\Delta$s2\textsuperscript{3}} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily B,DG} & {\normalsize\ttfamily Bdgc'} \\
+{\normalsize 4} & {\normalsize vis\textsuperscript{2}} & {\normalsize IV$\Delta$\textsuperscript{3}} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 3-2-3} & {\normalsize\ttfamily E,A,D} & {\normalsize\ttfamily EAcf} \\
+{\normalsize 5} & {\normalsize vi7} & {\normalsize V+2} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily A,CEG} & {\normalsize\ttfamily Adgb} \\
+{\normalsize 6} & {\normalsize iii7s2\textsuperscript{3}} & {\normalsize ii\textsuperscript{2}} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily D,F,B,E} & {\normalsize\ttfamily Adf} \\
+{\normalsize 7} & {\normalsize V+8} & {\normalsize V\textsuperscript{1}} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily G,B,DG} & {\normalsize\ttfamily Bdg} \\
+{\normalsize 8} & {\normalsize ii7\textsuperscript{3}} & {\normalsize I\textsuperscript{2}} & {\normalsize\ttfamily 3-2-3} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily C,F,A,D} & {\normalsize\ttfamily Gce} \\
+{\normalsize 9} & {\normalsize I\textsuperscript{1}\kern-1.5pt +8} & {\normalsize iii\textsuperscript{1}} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily E,G,CE} & {\normalsize\ttfamily GBe} \\
+{\normalsize 10} & {\normalsize I\textsuperscript{2}\kern-1.5pt +8} & {\normalsize iii\textsuperscript{2}} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily G,CEG} & {\normalsize\ttfamily Beg} \\
+{\normalsize 11} & {\normalsize vi+2} & {\normalsize V} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily B,EAc} & {\normalsize\ttfamily gbd'} \\
+{\normalsize 12} & {\normalsize vii\textdegree{}} & {\normalsize ii\textsuperscript{2}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily B,DF} & {\normalsize\ttfamily Adf} \\
+{\normalsize 13} & {\normalsize ii\textsuperscript{1}} & {\normalsize ii\textsuperscript{2}\kern-1.5pt +8} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily F,A,D} & {\normalsize\ttfamily Adfa} \\
+{\normalsize 14} & {\normalsize vi7} & {\normalsize ii\textsuperscript{2}\kern-1.5pt +8} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily A,CEG} & {\normalsize\ttfamily Adfa} \\
+{\normalsize 15} & {\normalsize I\textsuperscript{2}} & {\normalsize vi} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily G,CE} & {\normalsize\ttfamily Ace} \\
+{\normalsize 16} & {\normalsize I$\Delta$9s-5} & {\normalsize vi} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily C,F,B,D} & {\normalsize\ttfamily Ace} \\
+{\normalsize 17} & {\normalsize vii\textdegree{}} & {\normalsize iii7s\textsuperscript{2}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 3-3-3} & {\normalsize\ttfamily B,DF} & {\normalsize\ttfamily Bead'} \\
+{\normalsize 18} & {\normalsize vi7} & {\normalsize Vs2\textsuperscript{1}} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily A,CEG} & {\normalsize\ttfamily Adg} \\
+{\normalsize 19} & {\normalsize I\textsuperscript{2}\kern-1.5pt +8} & {\normalsize V\textsuperscript{1}} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily G,CEG} & {\normalsize\ttfamily Bdg} \\
+{\normalsize 20} & {\normalsize iiis2\textsuperscript{1}} & {\normalsize IV$\Delta$} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily F,B,E} & {\normalsize\ttfamily FAce} \\
+{\normalsize 21} & {\normalsize iii+8} & {\normalsize iii\textsuperscript{1}} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily E,G,B,E} & {\normalsize\ttfamily GBe} \\
+{\normalsize 22} & {\normalsize IV$\Delta$s\textsuperscript{2}} & {\normalsize vi} & {\normalsize\ttfamily 3-3-3} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily C,F,B,E} & {\normalsize\ttfamily Ace} \\
+{\normalsize 23} & {\normalsize iii7s2\textsuperscript{3}} & {\normalsize ii\textsuperscript{1}} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily D,F,B,E} & {\normalsize\ttfamily FAd} \\
+{\normalsize 24} & {\normalsize vis\textsuperscript{2}} & {\normalsize Is+3} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily E,A,D} & {\normalsize\ttfamily EGcf} \\
+{\normalsize 25} & {\normalsize IV+8} & {\normalsize IV\textsuperscript{1}} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily F,A,CF} & {\normalsize\ttfamily Acf} \\
+{\normalsize 26} & {\normalsize iii\textsuperscript{1}\kern-1.5pt +8} & {\normalsize iii\textsuperscript{2}} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily G,B,EG} & {\normalsize\ttfamily Beg} \\
+{\normalsize 27} & {\normalsize vi} & {\normalsize vii\o{}7\textsuperscript{3}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 3-2-3} & {\normalsize\ttfamily A,CE} & {\normalsize\ttfamily Adfb} \\
+{\normalsize 28} & {\normalsize V\textsuperscript{1}} & {\normalsize vi+2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily B,DG} & {\normalsize\ttfamily Beac'} \\
+{\normalsize 29} & {\normalsize IV\textsuperscript{1}} & {\normalsize vi+8} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily A,CF} & {\normalsize\ttfamily Acea} \\
+{\normalsize 30} & {\normalsize ii\textsuperscript{1}\kern-1.5pt +8} & {\normalsize IV\textsuperscript{1}} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily F,A,DF} & {\normalsize\ttfamily Acf} \\
+{\normalsize 31} & {\normalsize I+2} & {\normalsize vii\textdegree{}} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily D,G,CE} & {\normalsize\ttfamily Bdf} \\
+{\normalsize 32} & {\normalsize vii\textdegree{}} & {\normalsize V\textsuperscript{1}\kern-1.5pt +8} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily B,DF} & {\normalsize\ttfamily Bdgb} \\
+{\normalsize 33} & {\normalsize iii\textsuperscript{2}} & {\normalsize I} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily B,EG} & {\normalsize\ttfamily ceg} \\
+{\normalsize 34} & {\normalsize V} & {\normalsize iii\textsuperscript{1}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily G,B,D} & {\normalsize\ttfamily GBe} \\
+{\normalsize 35} & {\normalsize IV\textsuperscript{1}} & {\normalsize vi7} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily A,CF} & {\normalsize\ttfamily Aceg} \\
+{\normalsize 36} & {\normalsize iii7} & {\normalsize vis\textsuperscript{2}} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily E,G,B,D} & {\normalsize\ttfamily EAd} \\
+{\normalsize 37} & {\normalsize iiis\textsuperscript{2}} & {\normalsize vii\textdegree{}+8} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily B,EA} & {\normalsize\ttfamily Bdfb} \\
+\end{tabular}
+\end{center}
+
+
+\newpage
+\begin{center}
+{\Large\bfseries Trefoil Inventory --- F}
+\end{center}
+\vspace{0.1in}
+\renewcommand{\arraystretch}{1.1}
+\begin{center}
+\begin{tabular}{c l l c c l l}
+{\normalsize\bfseries \#} & {\normalsize\bfseries LH} & {\normalsize\bfseries RH} &
+{\normalsize\bfseries LH Pat} & {\normalsize\bfseries RH Pat} &
+{\normalsize\bfseries LH ABC} & {\normalsize\bfseries RH ABC} \\\midrule
+{\normalsize 1} & {\normalsize IV$\Delta$s\textsuperscript{2}} & {\normalsize I\textsuperscript{2}} & {\normalsize\ttfamily 3-3-3} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily F,B,E,A} & {\normalsize\ttfamily Cfa} \\
+{\normalsize 2} & {\normalsize IV$\Delta$} & {\normalsize vii\textdegree{}\textsuperscript{2}\kern-1.5pt +8} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily B,D,FA} & {\normalsize\ttfamily BEgb} \\
+{\normalsize 3} & {\normalsize V\textsuperscript{1}} & {\normalsize I$\Delta$s2\textsuperscript{3}} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily E,GC} & {\normalsize\ttfamily Egcf'} \\
+{\normalsize 4} & {\normalsize vis\textsuperscript{2}} & {\normalsize IV$\Delta$\textsuperscript{3}} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 3-2-3} & {\normalsize\ttfamily A,D,G} & {\normalsize\ttfamily ADfb} \\
+{\normalsize 5} & {\normalsize vi7} & {\normalsize V+2} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily D,FAC} & {\normalsize\ttfamily Dgce} \\
+{\normalsize 6} & {\normalsize iii7s2\textsuperscript{3}} & {\normalsize ii\textsuperscript{2}} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily G,B,E,A} & {\normalsize\ttfamily Dgb} \\
+{\normalsize 7} & {\normalsize V+8} & {\normalsize V\textsuperscript{1}} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily C,E,GC} & {\normalsize\ttfamily Egc} \\
+{\normalsize 8} & {\normalsize ii7\textsuperscript{3}} & {\normalsize I\textsuperscript{2}} & {\normalsize\ttfamily 3-2-3} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily F,B,D,G} & {\normalsize\ttfamily Cfa} \\
+{\normalsize 9} & {\normalsize I\textsuperscript{1}\kern-1.5pt +8} & {\normalsize iii\textsuperscript{1}} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily A,C,FA} & {\normalsize\ttfamily CEa} \\
+{\normalsize 10} & {\normalsize I\textsuperscript{2}\kern-1.5pt +8} & {\normalsize iii\textsuperscript{2}} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily C,FAC} & {\normalsize\ttfamily Eac} \\
+{\normalsize 11} & {\normalsize vi+2} & {\normalsize V} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily E,ADf} & {\normalsize\ttfamily ceg'} \\
+{\normalsize 12} & {\normalsize vii\textdegree{}} & {\normalsize ii\textsuperscript{2}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily E,GB} & {\normalsize\ttfamily Dgb} \\
+{\normalsize 13} & {\normalsize ii\textsuperscript{1}} & {\normalsize ii\textsuperscript{2}\kern-1.5pt +8} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily B,D,G} & {\normalsize\ttfamily Dgbd} \\
+{\normalsize 14} & {\normalsize vi7} & {\normalsize ii\textsuperscript{2}\kern-1.5pt +8} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily D,FAC} & {\normalsize\ttfamily Dgbd} \\
+{\normalsize 15} & {\normalsize I\textsuperscript{2}} & {\normalsize vi} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily C,FA} & {\normalsize\ttfamily Dfa} \\
+{\normalsize 16} & {\normalsize I$\Delta$9s-5} & {\normalsize vi} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily F,B,E,G} & {\normalsize\ttfamily Dfa} \\
+{\normalsize 17} & {\normalsize vii\textdegree{}} & {\normalsize iii7s\textsuperscript{2}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 3-3-3} & {\normalsize\ttfamily E,GB} & {\normalsize\ttfamily Eadg'} \\
+{\normalsize 18} & {\normalsize vi7} & {\normalsize Vs2\textsuperscript{1}} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily D,FAC} & {\normalsize\ttfamily Dgc} \\
+{\normalsize 19} & {\normalsize I\textsuperscript{2}\kern-1.5pt +8} & {\normalsize V\textsuperscript{1}} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily C,FAC} & {\normalsize\ttfamily Egc} \\
+{\normalsize 20} & {\normalsize iiis2\textsuperscript{1}} & {\normalsize IV$\Delta$} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily B,E,A} & {\normalsize\ttfamily BDfa} \\
+{\normalsize 21} & {\normalsize iii+8} & {\normalsize iii\textsuperscript{1}} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily A,C,E,A} & {\normalsize\ttfamily CEa} \\
+{\normalsize 22} & {\normalsize IV$\Delta$s\textsuperscript{2}} & {\normalsize vi} & {\normalsize\ttfamily 3-3-3} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily F,B,E,A} & {\normalsize\ttfamily Dfa} \\
+{\normalsize 23} & {\normalsize iii7s2\textsuperscript{3}} & {\normalsize ii\textsuperscript{1}} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily G,B,E,A} & {\normalsize\ttfamily BDg} \\
+{\normalsize 24} & {\normalsize vis\textsuperscript{2}} & {\normalsize Is+3} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily A,D,G} & {\normalsize\ttfamily ACfb} \\
+{\normalsize 25} & {\normalsize IV+8} & {\normalsize IV\textsuperscript{1}} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily B,D,FB} & {\normalsize\ttfamily Dfb} \\
+{\normalsize 26} & {\normalsize iii\textsuperscript{1}\kern-1.5pt +8} & {\normalsize iii\textsuperscript{2}} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily C,E,AC} & {\normalsize\ttfamily Eac} \\
+{\normalsize 27} & {\normalsize vi} & {\normalsize vii\o{}7\textsuperscript{3}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 3-2-3} & {\normalsize\ttfamily D,FA} & {\normalsize\ttfamily Dgbe} \\
+{\normalsize 28} & {\normalsize V\textsuperscript{1}} & {\normalsize vi+2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily E,GC} & {\normalsize\ttfamily Eadf'} \\
+{\normalsize 29} & {\normalsize IV\textsuperscript{1}} & {\normalsize vi+8} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily D,FB} & {\normalsize\ttfamily Dfad} \\
+{\normalsize 30} & {\normalsize ii\textsuperscript{1}\kern-1.5pt +8} & {\normalsize IV\textsuperscript{1}} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily B,D,GB} & {\normalsize\ttfamily Dfb} \\
+{\normalsize 31} & {\normalsize I+2} & {\normalsize vii\textdegree{}} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily G,C,FA} & {\normalsize\ttfamily Egb} \\
+{\normalsize 32} & {\normalsize vii\textdegree{}} & {\normalsize V\textsuperscript{1}\kern-1.5pt +8} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily E,GB} & {\normalsize\ttfamily Egce} \\
+{\normalsize 33} & {\normalsize iii\textsuperscript{2}} & {\normalsize I} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily E,AC} & {\normalsize\ttfamily fac} \\
+{\normalsize 34} & {\normalsize V} & {\normalsize iii\textsuperscript{1}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily C,E,G} & {\normalsize\ttfamily CEa} \\
+{\normalsize 35} & {\normalsize IV\textsuperscript{1}} & {\normalsize vi7} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily D,FB} & {\normalsize\ttfamily Dfac} \\
+{\normalsize 36} & {\normalsize iii7} & {\normalsize vis\textsuperscript{2}} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily A,C,E,G} & {\normalsize\ttfamily ADg} \\
+{\normalsize 37} & {\normalsize iiis\textsuperscript{2}} & {\normalsize vii\textdegree{}+8} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily E,AD} & {\normalsize\ttfamily Egbe} \\
+\end{tabular}
+\end{center}
+
+
+\newpage
+\begin{center}
+{\Large\bfseries Trefoil Inventory --- B\fl{}}
+\end{center}
+\vspace{0.1in}
+\renewcommand{\arraystretch}{1.1}
+\begin{center}
+\begin{tabular}{c l l c c l l}
+{\normalsize\bfseries \#} & {\normalsize\bfseries LH} & {\normalsize\bfseries RH} &
+{\normalsize\bfseries LH Pat} & {\normalsize\bfseries RH Pat} &
+{\normalsize\bfseries LH ABC} & {\normalsize\bfseries RH ABC} \\\midrule
+{\normalsize 1} & {\normalsize IV$\Delta$s\textsuperscript{2}} & {\normalsize I\textsuperscript{2}} & {\normalsize\ttfamily 3-3-3} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily B,E,A,D} & {\normalsize\ttfamily Fbd} \\
+{\normalsize 2} & {\normalsize IV$\Delta$} & {\normalsize vii\textdegree{}\textsuperscript{2}\kern-1.5pt +8} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily E,G,BD} & {\normalsize\ttfamily EAce} \\
+{\normalsize 3} & {\normalsize V\textsuperscript{1}} & {\normalsize I$\Delta$s2\textsuperscript{3}} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily A,CF} & {\normalsize\ttfamily Acfb'} \\
+{\normalsize 4} & {\normalsize vis\textsuperscript{2}} & {\normalsize IV$\Delta$\textsuperscript{3}} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 3-2-3} & {\normalsize\ttfamily D,G,C} & {\normalsize\ttfamily DGbe} \\
+{\normalsize 5} & {\normalsize vi7} & {\normalsize V+2} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily G,BDF} & {\normalsize\ttfamily Gcfa} \\
+{\normalsize 6} & {\normalsize iii7s2\textsuperscript{3}} & {\normalsize ii\textsuperscript{2}} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily C,E,A,D} & {\normalsize\ttfamily Gce} \\
+{\normalsize 7} & {\normalsize V+8} & {\normalsize V\textsuperscript{1}} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily F,A,CF} & {\normalsize\ttfamily Acf} \\
+{\normalsize 8} & {\normalsize ii7\textsuperscript{3}} & {\normalsize I\textsuperscript{2}} & {\normalsize\ttfamily 3-2-3} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily B,E,G,C} & {\normalsize\ttfamily Fbd} \\
+{\normalsize 9} & {\normalsize I\textsuperscript{1}\kern-1.5pt +8} & {\normalsize iii\textsuperscript{1}} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily D,F,BD} & {\normalsize\ttfamily FAd} \\
+{\normalsize 10} & {\normalsize I\textsuperscript{2}\kern-1.5pt +8} & {\normalsize iii\textsuperscript{2}} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily F,BDF} & {\normalsize\ttfamily Adf} \\
+{\normalsize 11} & {\normalsize vi+2} & {\normalsize V} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily A,DGb} & {\normalsize\ttfamily fac'} \\
+{\normalsize 12} & {\normalsize vii\textdegree{}} & {\normalsize ii\textsuperscript{2}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily A,CE} & {\normalsize\ttfamily Gce} \\
+{\normalsize 13} & {\normalsize ii\textsuperscript{1}} & {\normalsize ii\textsuperscript{2}\kern-1.5pt +8} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily E,G,C} & {\normalsize\ttfamily Gceg} \\
+{\normalsize 14} & {\normalsize vi7} & {\normalsize ii\textsuperscript{2}\kern-1.5pt +8} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily G,BDF} & {\normalsize\ttfamily Gceg} \\
+{\normalsize 15} & {\normalsize I\textsuperscript{2}} & {\normalsize vi} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily F,BD} & {\normalsize\ttfamily Gbd} \\
+{\normalsize 16} & {\normalsize I$\Delta$9s-5} & {\normalsize vi} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily B,E,A,C} & {\normalsize\ttfamily Gbd} \\
+{\normalsize 17} & {\normalsize vii\textdegree{}} & {\normalsize iii7s\textsuperscript{2}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 3-3-3} & {\normalsize\ttfamily A,CE} & {\normalsize\ttfamily Adgc'} \\
+{\normalsize 18} & {\normalsize vi7} & {\normalsize Vs2\textsuperscript{1}} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily G,BDF} & {\normalsize\ttfamily Gcf} \\
+{\normalsize 19} & {\normalsize I\textsuperscript{2}\kern-1.5pt +8} & {\normalsize V\textsuperscript{1}} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily F,BDF} & {\normalsize\ttfamily Acf} \\
+{\normalsize 20} & {\normalsize iiis2\textsuperscript{1}} & {\normalsize IV$\Delta$} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily E,A,D} & {\normalsize\ttfamily EGbd} \\
+{\normalsize 21} & {\normalsize iii+8} & {\normalsize iii\textsuperscript{1}} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily D,F,A,D} & {\normalsize\ttfamily FAd} \\
+{\normalsize 22} & {\normalsize IV$\Delta$s\textsuperscript{2}} & {\normalsize vi} & {\normalsize\ttfamily 3-3-3} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily B,E,A,D} & {\normalsize\ttfamily Gbd} \\
+{\normalsize 23} & {\normalsize iii7s2\textsuperscript{3}} & {\normalsize ii\textsuperscript{1}} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily C,E,A,D} & {\normalsize\ttfamily EGc} \\
+{\normalsize 24} & {\normalsize vis\textsuperscript{2}} & {\normalsize Is+3} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily D,G,C} & {\normalsize\ttfamily DFbe} \\
+{\normalsize 25} & {\normalsize IV+8} & {\normalsize IV\textsuperscript{1}} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily E,G,BE} & {\normalsize\ttfamily Gbe} \\
+{\normalsize 26} & {\normalsize iii\textsuperscript{1}\kern-1.5pt +8} & {\normalsize iii\textsuperscript{2}} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily F,A,DF} & {\normalsize\ttfamily Adf} \\
+{\normalsize 27} & {\normalsize vi} & {\normalsize vii\o{}7\textsuperscript{3}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 3-2-3} & {\normalsize\ttfamily G,BD} & {\normalsize\ttfamily Gcea} \\
+{\normalsize 28} & {\normalsize V\textsuperscript{1}} & {\normalsize vi+2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily A,CF} & {\normalsize\ttfamily Adgb'} \\
+{\normalsize 29} & {\normalsize IV\textsuperscript{1}} & {\normalsize vi+8} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily G,BE} & {\normalsize\ttfamily Gbdg} \\
+{\normalsize 30} & {\normalsize ii\textsuperscript{1}\kern-1.5pt +8} & {\normalsize IV\textsuperscript{1}} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily E,G,CE} & {\normalsize\ttfamily Gbe} \\
+{\normalsize 31} & {\normalsize I+2} & {\normalsize vii\textdegree{}} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily C,F,BD} & {\normalsize\ttfamily Ace} \\
+{\normalsize 32} & {\normalsize vii\textdegree{}} & {\normalsize V\textsuperscript{1}\kern-1.5pt +8} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily A,CE} & {\normalsize\ttfamily Acfa} \\
+{\normalsize 33} & {\normalsize iii\textsuperscript{2}} & {\normalsize I} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily A,DF} & {\normalsize\ttfamily bdf} \\
+{\normalsize 34} & {\normalsize V} & {\normalsize iii\textsuperscript{1}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily F,A,C} & {\normalsize\ttfamily FAd} \\
+{\normalsize 35} & {\normalsize IV\textsuperscript{1}} & {\normalsize vi7} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily G,BE} & {\normalsize\ttfamily Gbdf} \\
+{\normalsize 36} & {\normalsize iii7} & {\normalsize vis\textsuperscript{2}} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily D,F,A,C} & {\normalsize\ttfamily DGc} \\
+{\normalsize 37} & {\normalsize iiis\textsuperscript{2}} & {\normalsize vii\textdegree{}+8} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily A,DG} & {\normalsize\ttfamily Acea} \\
+\end{tabular}
+\end{center}
+
+
+\newpage
+\begin{center}
+{\Large\bfseries Trefoil Inventory --- E\fl{}}
+\end{center}
+\vspace{0.1in}
+\renewcommand{\arraystretch}{1.1}
+\begin{center}
+\begin{tabular}{c l l c c l l}
+{\normalsize\bfseries \#} & {\normalsize\bfseries LH} & {\normalsize\bfseries RH} &
+{\normalsize\bfseries LH Pat} & {\normalsize\bfseries RH Pat} &
+{\normalsize\bfseries LH ABC} & {\normalsize\bfseries RH ABC} \\\midrule
+{\normalsize 1} & {\normalsize IV$\Delta$s\textsuperscript{2}} & {\normalsize I\textsuperscript{2}} & {\normalsize\ttfamily 3-3-3} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily E,A,D,G} & {\normalsize\ttfamily Beg} \\
+{\normalsize 2} & {\normalsize IV$\Delta$} & {\normalsize vii\textdegree{}\textsuperscript{2}\kern-1.5pt +8} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily A,C,EG} & {\normalsize\ttfamily ADfa} \\
+{\normalsize 3} & {\normalsize V\textsuperscript{1}} & {\normalsize I$\Delta$s2\textsuperscript{3}} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily D,FB} & {\normalsize\ttfamily Dfbe'} \\
+{\normalsize 4} & {\normalsize vis\textsuperscript{2}} & {\normalsize IV$\Delta$\textsuperscript{3}} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 3-2-3} & {\normalsize\ttfamily G,C,F} & {\normalsize\ttfamily GCea} \\
+{\normalsize 5} & {\normalsize vi7} & {\normalsize V+2} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily C,EGB} & {\normalsize\ttfamily Cfbd} \\
+{\normalsize 6} & {\normalsize iii7s2\textsuperscript{3}} & {\normalsize ii\textsuperscript{2}} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily F,A,D,G} & {\normalsize\ttfamily Cfa} \\
+{\normalsize 7} & {\normalsize V+8} & {\normalsize V\textsuperscript{1}} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily B,D,FB} & {\normalsize\ttfamily Dfb} \\
+{\normalsize 8} & {\normalsize ii7\textsuperscript{3}} & {\normalsize I\textsuperscript{2}} & {\normalsize\ttfamily 3-2-3} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily E,A,C,F} & {\normalsize\ttfamily Beg} \\
+{\normalsize 9} & {\normalsize I\textsuperscript{1}\kern-1.5pt +8} & {\normalsize iii\textsuperscript{1}} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily G,B,EG} & {\normalsize\ttfamily BDg} \\
+{\normalsize 10} & {\normalsize I\textsuperscript{2}\kern-1.5pt +8} & {\normalsize iii\textsuperscript{2}} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily B,EGB} & {\normalsize\ttfamily Dgb} \\
+{\normalsize 11} & {\normalsize vi+2} & {\normalsize V} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily D,GCe} & {\normalsize\ttfamily bdf'} \\
+{\normalsize 12} & {\normalsize vii\textdegree{}} & {\normalsize ii\textsuperscript{2}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily D,FA} & {\normalsize\ttfamily Cfa} \\
+{\normalsize 13} & {\normalsize ii\textsuperscript{1}} & {\normalsize ii\textsuperscript{2}\kern-1.5pt +8} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily A,C,F} & {\normalsize\ttfamily Cfac} \\
+{\normalsize 14} & {\normalsize vi7} & {\normalsize ii\textsuperscript{2}\kern-1.5pt +8} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily C,EGB} & {\normalsize\ttfamily Cfac} \\
+{\normalsize 15} & {\normalsize I\textsuperscript{2}} & {\normalsize vi} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily B,EG} & {\normalsize\ttfamily Ceg} \\
+{\normalsize 16} & {\normalsize I$\Delta$9s-5} & {\normalsize vi} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily E,A,D,F} & {\normalsize\ttfamily Ceg} \\
+{\normalsize 17} & {\normalsize vii\textdegree{}} & {\normalsize iii7s\textsuperscript{2}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 3-3-3} & {\normalsize\ttfamily D,FA} & {\normalsize\ttfamily Dgcf'} \\
+{\normalsize 18} & {\normalsize vi7} & {\normalsize Vs2\textsuperscript{1}} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily C,EGB} & {\normalsize\ttfamily Cfb} \\
+{\normalsize 19} & {\normalsize I\textsuperscript{2}\kern-1.5pt +8} & {\normalsize V\textsuperscript{1}} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily B,EGB} & {\normalsize\ttfamily Dfb} \\
+{\normalsize 20} & {\normalsize iiis2\textsuperscript{1}} & {\normalsize IV$\Delta$} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily A,D,G} & {\normalsize\ttfamily ACeg} \\
+{\normalsize 21} & {\normalsize iii+8} & {\normalsize iii\textsuperscript{1}} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily G,B,D,G} & {\normalsize\ttfamily BDg} \\
+{\normalsize 22} & {\normalsize IV$\Delta$s\textsuperscript{2}} & {\normalsize vi} & {\normalsize\ttfamily 3-3-3} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily E,A,D,G} & {\normalsize\ttfamily Ceg} \\
+{\normalsize 23} & {\normalsize iii7s2\textsuperscript{3}} & {\normalsize ii\textsuperscript{1}} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily F,A,D,G} & {\normalsize\ttfamily ACf} \\
+{\normalsize 24} & {\normalsize vis\textsuperscript{2}} & {\normalsize Is+3} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily G,C,F} & {\normalsize\ttfamily GBea} \\
+{\normalsize 25} & {\normalsize IV+8} & {\normalsize IV\textsuperscript{1}} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily A,C,EA} & {\normalsize\ttfamily Cea} \\
+{\normalsize 26} & {\normalsize iii\textsuperscript{1}\kern-1.5pt +8} & {\normalsize iii\textsuperscript{2}} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily B,D,GB} & {\normalsize\ttfamily Dgb} \\
+{\normalsize 27} & {\normalsize vi} & {\normalsize vii\o{}7\textsuperscript{3}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 3-2-3} & {\normalsize\ttfamily C,EG} & {\normalsize\ttfamily Cfad} \\
+{\normalsize 28} & {\normalsize V\textsuperscript{1}} & {\normalsize vi+2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily D,FB} & {\normalsize\ttfamily Dgce'} \\
+{\normalsize 29} & {\normalsize IV\textsuperscript{1}} & {\normalsize vi+8} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily C,EA} & {\normalsize\ttfamily Cegc} \\
+{\normalsize 30} & {\normalsize ii\textsuperscript{1}\kern-1.5pt +8} & {\normalsize IV\textsuperscript{1}} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily A,C,FA} & {\normalsize\ttfamily Cea} \\
+{\normalsize 31} & {\normalsize I+2} & {\normalsize vii\textdegree{}} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily F,B,EG} & {\normalsize\ttfamily Dfa} \\
+{\normalsize 32} & {\normalsize vii\textdegree{}} & {\normalsize V\textsuperscript{1}\kern-1.5pt +8} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily D,FA} & {\normalsize\ttfamily Dfbd} \\
+{\normalsize 33} & {\normalsize iii\textsuperscript{2}} & {\normalsize I} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily D,GB} & {\normalsize\ttfamily egb} \\
+{\normalsize 34} & {\normalsize V} & {\normalsize iii\textsuperscript{1}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily B,D,F} & {\normalsize\ttfamily BDg} \\
+{\normalsize 35} & {\normalsize IV\textsuperscript{1}} & {\normalsize vi7} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily C,EA} & {\normalsize\ttfamily Cegb} \\
+{\normalsize 36} & {\normalsize iii7} & {\normalsize vis\textsuperscript{2}} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily G,B,D,F} & {\normalsize\ttfamily GCf} \\
+{\normalsize 37} & {\normalsize iiis\textsuperscript{2}} & {\normalsize vii\textdegree{}+8} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily D,GC} & {\normalsize\ttfamily Dfad} \\
+\end{tabular}
+\end{center}
+
+
+\newpage
+\begin{center}
+{\Large\bfseries Trefoil Inventory --- A\fl{}}
+\end{center}
+\vspace{0.1in}
+\renewcommand{\arraystretch}{1.1}
+\begin{center}
+\begin{tabular}{c l l c c l l}
+{\normalsize\bfseries \#} & {\normalsize\bfseries LH} & {\normalsize\bfseries RH} &
+{\normalsize\bfseries LH Pat} & {\normalsize\bfseries RH Pat} &
+{\normalsize\bfseries LH ABC} & {\normalsize\bfseries RH ABC} \\\midrule
+{\normalsize 1} & {\normalsize IV$\Delta$s\textsuperscript{2}} & {\normalsize I\textsuperscript{2}} & {\normalsize\ttfamily 3-3-3} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily A,D,G,C} & {\normalsize\ttfamily Eac} \\
+{\normalsize 2} & {\normalsize IV$\Delta$} & {\normalsize vii\textdegree{}\textsuperscript{2}\kern-1.5pt +8} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily D,F,AC} & {\normalsize\ttfamily DGbd} \\
+{\normalsize 3} & {\normalsize V\textsuperscript{1}} & {\normalsize I$\Delta$s2\textsuperscript{3}} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily G,BE} & {\normalsize\ttfamily Gbea'} \\
+{\normalsize 4} & {\normalsize vis\textsuperscript{2}} & {\normalsize IV$\Delta$\textsuperscript{3}} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 3-2-3} & {\normalsize\ttfamily C,F,B} & {\normalsize\ttfamily CFad} \\
+{\normalsize 5} & {\normalsize vi7} & {\normalsize V+2} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily F,ACE} & {\normalsize\ttfamily Fbeg} \\
+{\normalsize 6} & {\normalsize iii7s2\textsuperscript{3}} & {\normalsize ii\textsuperscript{2}} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily B,D,G,C} & {\normalsize\ttfamily Fbd} \\
+{\normalsize 7} & {\normalsize V+8} & {\normalsize V\textsuperscript{1}} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily E,G,BE} & {\normalsize\ttfamily Gbe} \\
+{\normalsize 8} & {\normalsize ii7\textsuperscript{3}} & {\normalsize I\textsuperscript{2}} & {\normalsize\ttfamily 3-2-3} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily A,D,F,B} & {\normalsize\ttfamily Eac} \\
+{\normalsize 9} & {\normalsize I\textsuperscript{1}\kern-1.5pt +8} & {\normalsize iii\textsuperscript{1}} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily C,E,AC} & {\normalsize\ttfamily EGc} \\
+{\normalsize 10} & {\normalsize I\textsuperscript{2}\kern-1.5pt +8} & {\normalsize iii\textsuperscript{2}} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily E,ACE} & {\normalsize\ttfamily Gce} \\
+{\normalsize 11} & {\normalsize vi+2} & {\normalsize V} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily G,CFa} & {\normalsize\ttfamily egb'} \\
+{\normalsize 12} & {\normalsize vii\textdegree{}} & {\normalsize ii\textsuperscript{2}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily G,BD} & {\normalsize\ttfamily Fbd} \\
+{\normalsize 13} & {\normalsize ii\textsuperscript{1}} & {\normalsize ii\textsuperscript{2}\kern-1.5pt +8} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily D,F,B} & {\normalsize\ttfamily Fbdf} \\
+{\normalsize 14} & {\normalsize vi7} & {\normalsize ii\textsuperscript{2}\kern-1.5pt +8} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily F,ACE} & {\normalsize\ttfamily Fbdf} \\
+{\normalsize 15} & {\normalsize I\textsuperscript{2}} & {\normalsize vi} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily E,AC} & {\normalsize\ttfamily Fac} \\
+{\normalsize 16} & {\normalsize I$\Delta$9s-5} & {\normalsize vi} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily A,D,G,B} & {\normalsize\ttfamily Fac} \\
+{\normalsize 17} & {\normalsize vii\textdegree{}} & {\normalsize iii7s\textsuperscript{2}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 3-3-3} & {\normalsize\ttfamily G,BD} & {\normalsize\ttfamily Gcfb'} \\
+{\normalsize 18} & {\normalsize vi7} & {\normalsize Vs2\textsuperscript{1}} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily F,ACE} & {\normalsize\ttfamily Fbe} \\
+{\normalsize 19} & {\normalsize I\textsuperscript{2}\kern-1.5pt +8} & {\normalsize V\textsuperscript{1}} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily E,ACE} & {\normalsize\ttfamily Gbe} \\
+{\normalsize 20} & {\normalsize iiis2\textsuperscript{1}} & {\normalsize IV$\Delta$} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily D,G,C} & {\normalsize\ttfamily DFac} \\
+{\normalsize 21} & {\normalsize iii+8} & {\normalsize iii\textsuperscript{1}} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily C,E,G,C} & {\normalsize\ttfamily EGc} \\
+{\normalsize 22} & {\normalsize IV$\Delta$s\textsuperscript{2}} & {\normalsize vi} & {\normalsize\ttfamily 3-3-3} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily A,D,G,C} & {\normalsize\ttfamily Fac} \\
+{\normalsize 23} & {\normalsize iii7s2\textsuperscript{3}} & {\normalsize ii\textsuperscript{1}} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily B,D,G,C} & {\normalsize\ttfamily DFb} \\
+{\normalsize 24} & {\normalsize vis\textsuperscript{2}} & {\normalsize Is+3} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily C,F,B} & {\normalsize\ttfamily CEad} \\
+{\normalsize 25} & {\normalsize IV+8} & {\normalsize IV\textsuperscript{1}} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily D,F,AD} & {\normalsize\ttfamily Fad} \\
+{\normalsize 26} & {\normalsize iii\textsuperscript{1}\kern-1.5pt +8} & {\normalsize iii\textsuperscript{2}} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily E,G,CE} & {\normalsize\ttfamily Gce} \\
+{\normalsize 27} & {\normalsize vi} & {\normalsize vii\o{}7\textsuperscript{3}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 3-2-3} & {\normalsize\ttfamily F,AC} & {\normalsize\ttfamily Fbdg} \\
+{\normalsize 28} & {\normalsize V\textsuperscript{1}} & {\normalsize vi+2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily G,BE} & {\normalsize\ttfamily Gcfa'} \\
+{\normalsize 29} & {\normalsize IV\textsuperscript{1}} & {\normalsize vi+8} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily F,AD} & {\normalsize\ttfamily Facf} \\
+{\normalsize 30} & {\normalsize ii\textsuperscript{1}\kern-1.5pt +8} & {\normalsize IV\textsuperscript{1}} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily D,F,BD} & {\normalsize\ttfamily Fad} \\
+{\normalsize 31} & {\normalsize I+2} & {\normalsize vii\textdegree{}} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily B,E,AC} & {\normalsize\ttfamily Gbd} \\
+{\normalsize 32} & {\normalsize vii\textdegree{}} & {\normalsize V\textsuperscript{1}\kern-1.5pt +8} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily G,BD} & {\normalsize\ttfamily Gbeg} \\
+{\normalsize 33} & {\normalsize iii\textsuperscript{2}} & {\normalsize I} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily G,CE} & {\normalsize\ttfamily ace} \\
+{\normalsize 34} & {\normalsize V} & {\normalsize iii\textsuperscript{1}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily E,G,B} & {\normalsize\ttfamily EGc} \\
+{\normalsize 35} & {\normalsize IV\textsuperscript{1}} & {\normalsize vi7} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily F,AD} & {\normalsize\ttfamily Face} \\
+{\normalsize 36} & {\normalsize iii7} & {\normalsize vis\textsuperscript{2}} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily C,E,G,B} & {\normalsize\ttfamily CFb} \\
+{\normalsize 37} & {\normalsize iiis\textsuperscript{2}} & {\normalsize vii\textdegree{}+8} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily G,CF} & {\normalsize\ttfamily Gbdg} \\
+\end{tabular}
+\end{center}
+
+
+\newpage
+\begin{center}
+{\Large\bfseries Trefoil Inventory --- D\fl{}}
+\end{center}
+\vspace{0.1in}
+\renewcommand{\arraystretch}{1.1}
+\begin{center}
+\begin{tabular}{c l l c c l l}
+{\normalsize\bfseries \#} & {\normalsize\bfseries LH} & {\normalsize\bfseries RH} &
+{\normalsize\bfseries LH Pat} & {\normalsize\bfseries RH Pat} &
+{\normalsize\bfseries LH ABC} & {\normalsize\bfseries RH ABC} \\\midrule
+{\normalsize 1} & {\normalsize IV$\Delta$s\textsuperscript{2}} & {\normalsize I\textsuperscript{2}} & {\normalsize\ttfamily 3-3-3} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily D,G,C,F} & {\normalsize\ttfamily Adf} \\
+{\normalsize 2} & {\normalsize IV$\Delta$} & {\normalsize vii\textdegree{}\textsuperscript{2}\kern-1.5pt +8} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily G,B,DF} & {\normalsize\ttfamily GCeg} \\
+{\normalsize 3} & {\normalsize V\textsuperscript{1}} & {\normalsize I$\Delta$s2\textsuperscript{3}} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily C,EA} & {\normalsize\ttfamily Cead'} \\
+{\normalsize 4} & {\normalsize vis\textsuperscript{2}} & {\normalsize IV$\Delta$\textsuperscript{3}} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 3-2-3} & {\normalsize\ttfamily F,B,E} & {\normalsize\ttfamily FBdg} \\
+{\normalsize 5} & {\normalsize vi7} & {\normalsize V+2} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily B,DFA} & {\normalsize\ttfamily Beac} \\
+{\normalsize 6} & {\normalsize iii7s2\textsuperscript{3}} & {\normalsize ii\textsuperscript{2}} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily E,G,C,F} & {\normalsize\ttfamily Beg} \\
+{\normalsize 7} & {\normalsize V+8} & {\normalsize V\textsuperscript{1}} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily A,C,EA} & {\normalsize\ttfamily Cea} \\
+{\normalsize 8} & {\normalsize ii7\textsuperscript{3}} & {\normalsize I\textsuperscript{2}} & {\normalsize\ttfamily 3-2-3} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily D,G,B,E} & {\normalsize\ttfamily Adf} \\
+{\normalsize 9} & {\normalsize I\textsuperscript{1}\kern-1.5pt +8} & {\normalsize iii\textsuperscript{1}} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily F,A,DF} & {\normalsize\ttfamily ACf} \\
+{\normalsize 10} & {\normalsize I\textsuperscript{2}\kern-1.5pt +8} & {\normalsize iii\textsuperscript{2}} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily A,DFA} & {\normalsize\ttfamily Cfa} \\
+{\normalsize 11} & {\normalsize vi+2} & {\normalsize V} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily C,FBd} & {\normalsize\ttfamily ace'} \\
+{\normalsize 12} & {\normalsize vii\textdegree{}} & {\normalsize ii\textsuperscript{2}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily C,EG} & {\normalsize\ttfamily Beg} \\
+{\normalsize 13} & {\normalsize ii\textsuperscript{1}} & {\normalsize ii\textsuperscript{2}\kern-1.5pt +8} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily G,B,E} & {\normalsize\ttfamily Begb} \\
+{\normalsize 14} & {\normalsize vi7} & {\normalsize ii\textsuperscript{2}\kern-1.5pt +8} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily B,DFA} & {\normalsize\ttfamily Begb} \\
+{\normalsize 15} & {\normalsize I\textsuperscript{2}} & {\normalsize vi} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily A,DF} & {\normalsize\ttfamily Bdf} \\
+{\normalsize 16} & {\normalsize I$\Delta$9s-5} & {\normalsize vi} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily D,G,C,E} & {\normalsize\ttfamily Bdf} \\
+{\normalsize 17} & {\normalsize vii\textdegree{}} & {\normalsize iii7s\textsuperscript{2}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 3-3-3} & {\normalsize\ttfamily C,EG} & {\normalsize\ttfamily Cfbe'} \\
+{\normalsize 18} & {\normalsize vi7} & {\normalsize Vs2\textsuperscript{1}} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily B,DFA} & {\normalsize\ttfamily Bea} \\
+{\normalsize 19} & {\normalsize I\textsuperscript{2}\kern-1.5pt +8} & {\normalsize V\textsuperscript{1}} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily A,DFA} & {\normalsize\ttfamily Cea} \\
+{\normalsize 20} & {\normalsize iiis2\textsuperscript{1}} & {\normalsize IV$\Delta$} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily G,C,F} & {\normalsize\ttfamily GBdf} \\
+{\normalsize 21} & {\normalsize iii+8} & {\normalsize iii\textsuperscript{1}} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily F,A,C,F} & {\normalsize\ttfamily ACf} \\
+{\normalsize 22} & {\normalsize IV$\Delta$s\textsuperscript{2}} & {\normalsize vi} & {\normalsize\ttfamily 3-3-3} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily D,G,C,F} & {\normalsize\ttfamily Bdf} \\
+{\normalsize 23} & {\normalsize iii7s2\textsuperscript{3}} & {\normalsize ii\textsuperscript{1}} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily E,G,C,F} & {\normalsize\ttfamily GBe} \\
+{\normalsize 24} & {\normalsize vis\textsuperscript{2}} & {\normalsize Is+3} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily F,B,E} & {\normalsize\ttfamily FAdg} \\
+{\normalsize 25} & {\normalsize IV+8} & {\normalsize IV\textsuperscript{1}} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily G,B,DG} & {\normalsize\ttfamily Bdg} \\
+{\normalsize 26} & {\normalsize iii\textsuperscript{1}\kern-1.5pt +8} & {\normalsize iii\textsuperscript{2}} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily A,C,FA} & {\normalsize\ttfamily Cfa} \\
+{\normalsize 27} & {\normalsize vi} & {\normalsize vii\o{}7\textsuperscript{3}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 3-2-3} & {\normalsize\ttfamily B,DF} & {\normalsize\ttfamily Begc} \\
+{\normalsize 28} & {\normalsize V\textsuperscript{1}} & {\normalsize vi+2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily C,EA} & {\normalsize\ttfamily Cfbd'} \\
+{\normalsize 29} & {\normalsize IV\textsuperscript{1}} & {\normalsize vi+8} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily B,DG} & {\normalsize\ttfamily Bdfb} \\
+{\normalsize 30} & {\normalsize ii\textsuperscript{1}\kern-1.5pt +8} & {\normalsize IV\textsuperscript{1}} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily G,B,EG} & {\normalsize\ttfamily Bdg} \\
+{\normalsize 31} & {\normalsize I+2} & {\normalsize vii\textdegree{}} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily E,A,DF} & {\normalsize\ttfamily Ceg} \\
+{\normalsize 32} & {\normalsize vii\textdegree{}} & {\normalsize V\textsuperscript{1}\kern-1.5pt +8} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily C,EG} & {\normalsize\ttfamily Ceac} \\
+{\normalsize 33} & {\normalsize iii\textsuperscript{2}} & {\normalsize I} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily C,FA} & {\normalsize\ttfamily dfa} \\
+{\normalsize 34} & {\normalsize V} & {\normalsize iii\textsuperscript{1}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily A,C,E} & {\normalsize\ttfamily ACf} \\
+{\normalsize 35} & {\normalsize IV\textsuperscript{1}} & {\normalsize vi7} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily B,DG} & {\normalsize\ttfamily Bdfa} \\
+{\normalsize 36} & {\normalsize iii7} & {\normalsize vis\textsuperscript{2}} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily F,A,C,E} & {\normalsize\ttfamily FBe} \\
+{\normalsize 37} & {\normalsize iiis\textsuperscript{2}} & {\normalsize vii\textdegree{}+8} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily C,FB} & {\normalsize\ttfamily Cegc} \\
+\end{tabular}
+\end{center}
+
+
+\newpage
+\begin{center}
+{\Large\bfseries Trefoil Inventory --- G\fl{}}
+\end{center}
+\vspace{0.1in}
+\renewcommand{\arraystretch}{1.1}
+\begin{center}
+\begin{tabular}{c l l c c l l}
+{\normalsize\bfseries \#} & {\normalsize\bfseries LH} & {\normalsize\bfseries RH} &
+{\normalsize\bfseries LH Pat} & {\normalsize\bfseries RH Pat} &
+{\normalsize\bfseries LH ABC} & {\normalsize\bfseries RH ABC} \\\midrule
+{\normalsize 1} & {\normalsize IV$\Delta$s\textsuperscript{2}} & {\normalsize I\textsuperscript{2}} & {\normalsize\ttfamily 3-3-3} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily G,C,F,B} & {\normalsize\ttfamily Dgb} \\
+{\normalsize 2} & {\normalsize IV$\Delta$} & {\normalsize vii\textdegree{}\textsuperscript{2}\kern-1.5pt +8} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily C,E,GB} & {\normalsize\ttfamily CFac} \\
+{\normalsize 3} & {\normalsize V\textsuperscript{1}} & {\normalsize I$\Delta$s2\textsuperscript{3}} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily F,AD} & {\normalsize\ttfamily Fadg'} \\
+{\normalsize 4} & {\normalsize vis\textsuperscript{2}} & {\normalsize IV$\Delta$\textsuperscript{3}} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 3-2-3} & {\normalsize\ttfamily B,E,A} & {\normalsize\ttfamily BEgc} \\
+{\normalsize 5} & {\normalsize vi7} & {\normalsize V+2} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily E,GBD} & {\normalsize\ttfamily Eadf} \\
+{\normalsize 6} & {\normalsize iii7s2\textsuperscript{3}} & {\normalsize ii\textsuperscript{2}} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily A,C,F,B} & {\normalsize\ttfamily Eac} \\
+{\normalsize 7} & {\normalsize V+8} & {\normalsize V\textsuperscript{1}} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily D,F,AD} & {\normalsize\ttfamily Fad} \\
+{\normalsize 8} & {\normalsize ii7\textsuperscript{3}} & {\normalsize I\textsuperscript{2}} & {\normalsize\ttfamily 3-2-3} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily G,C,E,A} & {\normalsize\ttfamily Dgb} \\
+{\normalsize 9} & {\normalsize I\textsuperscript{1}\kern-1.5pt +8} & {\normalsize iii\textsuperscript{1}} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily B,D,GB} & {\normalsize\ttfamily DFb} \\
+{\normalsize 10} & {\normalsize I\textsuperscript{2}\kern-1.5pt +8} & {\normalsize iii\textsuperscript{2}} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily D,GBD} & {\normalsize\ttfamily Fbd} \\
+{\normalsize 11} & {\normalsize vi+2} & {\normalsize V} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily F,BEg} & {\normalsize\ttfamily dfa'} \\
+{\normalsize 12} & {\normalsize vii\textdegree{}} & {\normalsize ii\textsuperscript{2}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily F,AC} & {\normalsize\ttfamily Eac} \\
+{\normalsize 13} & {\normalsize ii\textsuperscript{1}} & {\normalsize ii\textsuperscript{2}\kern-1.5pt +8} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily C,E,A} & {\normalsize\ttfamily Eace} \\
+{\normalsize 14} & {\normalsize vi7} & {\normalsize ii\textsuperscript{2}\kern-1.5pt +8} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily E,GBD} & {\normalsize\ttfamily Eace} \\
+{\normalsize 15} & {\normalsize I\textsuperscript{2}} & {\normalsize vi} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily D,GB} & {\normalsize\ttfamily Egb} \\
+{\normalsize 16} & {\normalsize I$\Delta$9s-5} & {\normalsize vi} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily G,C,F,A} & {\normalsize\ttfamily Egb} \\
+{\normalsize 17} & {\normalsize vii\textdegree{}} & {\normalsize iii7s\textsuperscript{2}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 3-3-3} & {\normalsize\ttfamily F,AC} & {\normalsize\ttfamily Fbea'} \\
+{\normalsize 18} & {\normalsize vi7} & {\normalsize Vs2\textsuperscript{1}} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily E,GBD} & {\normalsize\ttfamily Ead} \\
+{\normalsize 19} & {\normalsize I\textsuperscript{2}\kern-1.5pt +8} & {\normalsize V\textsuperscript{1}} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily D,GBD} & {\normalsize\ttfamily Fad} \\
+{\normalsize 20} & {\normalsize iiis2\textsuperscript{1}} & {\normalsize IV$\Delta$} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily C,F,B} & {\normalsize\ttfamily CEgb} \\
+{\normalsize 21} & {\normalsize iii+8} & {\normalsize iii\textsuperscript{1}} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily B,D,F,B} & {\normalsize\ttfamily DFb} \\
+{\normalsize 22} & {\normalsize IV$\Delta$s\textsuperscript{2}} & {\normalsize vi} & {\normalsize\ttfamily 3-3-3} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily G,C,F,B} & {\normalsize\ttfamily Egb} \\
+{\normalsize 23} & {\normalsize iii7s2\textsuperscript{3}} & {\normalsize ii\textsuperscript{1}} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily A,C,F,B} & {\normalsize\ttfamily CEa} \\
+{\normalsize 24} & {\normalsize vis\textsuperscript{2}} & {\normalsize Is+3} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily B,E,A} & {\normalsize\ttfamily BDgc} \\
+{\normalsize 25} & {\normalsize IV+8} & {\normalsize IV\textsuperscript{1}} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily C,E,GC} & {\normalsize\ttfamily Egc} \\
+{\normalsize 26} & {\normalsize iii\textsuperscript{1}\kern-1.5pt +8} & {\normalsize iii\textsuperscript{2}} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily D,F,BD} & {\normalsize\ttfamily Fbd} \\
+{\normalsize 27} & {\normalsize vi} & {\normalsize vii\o{}7\textsuperscript{3}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 3-2-3} & {\normalsize\ttfamily E,GB} & {\normalsize\ttfamily Eacf} \\
+{\normalsize 28} & {\normalsize V\textsuperscript{1}} & {\normalsize vi+2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily F,AD} & {\normalsize\ttfamily Fbeg'} \\
+{\normalsize 29} & {\normalsize IV\textsuperscript{1}} & {\normalsize vi+8} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily E,GC} & {\normalsize\ttfamily Egbe} \\
+{\normalsize 30} & {\normalsize ii\textsuperscript{1}\kern-1.5pt +8} & {\normalsize IV\textsuperscript{1}} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily C,E,AC} & {\normalsize\ttfamily Egc} \\
+{\normalsize 31} & {\normalsize I+2} & {\normalsize vii\textdegree{}} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily A,D,GB} & {\normalsize\ttfamily Fac} \\
+{\normalsize 32} & {\normalsize vii\textdegree{}} & {\normalsize V\textsuperscript{1}\kern-1.5pt +8} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily F,AC} & {\normalsize\ttfamily Fadf} \\
+{\normalsize 33} & {\normalsize iii\textsuperscript{2}} & {\normalsize I} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily F,BD} & {\normalsize\ttfamily gbd} \\
+{\normalsize 34} & {\normalsize V} & {\normalsize iii\textsuperscript{1}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily D,F,A} & {\normalsize\ttfamily DFb} \\
+{\normalsize 35} & {\normalsize IV\textsuperscript{1}} & {\normalsize vi7} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily E,GC} & {\normalsize\ttfamily Egbd} \\
+{\normalsize 36} & {\normalsize iii7} & {\normalsize vis\textsuperscript{2}} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily B,D,F,A} & {\normalsize\ttfamily BEa} \\
+{\normalsize 37} & {\normalsize iiis\textsuperscript{2}} & {\normalsize vii\textdegree{}+8} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily F,BE} & {\normalsize\ttfamily Facf} \\
+\end{tabular}
+\end{center}
+
+
+\newpage
+\begin{center}
+{\Large\bfseries Trefoil Inventory --- C\fl{}}
+\end{center}
+\vspace{0.1in}
+\renewcommand{\arraystretch}{1.1}
+\begin{center}
+\begin{tabular}{c l l c c l l}
+{\normalsize\bfseries \#} & {\normalsize\bfseries LH} & {\normalsize\bfseries RH} &
+{\normalsize\bfseries LH Pat} & {\normalsize\bfseries RH Pat} &
+{\normalsize\bfseries LH ABC} & {\normalsize\bfseries RH ABC} \\\midrule
+{\normalsize 1} & {\normalsize IV$\Delta$s\textsuperscript{2}} & {\normalsize I\textsuperscript{2}} & {\normalsize\ttfamily 3-3-3} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily C,F,B,E} & {\normalsize\ttfamily Gce} \\
+{\normalsize 2} & {\normalsize IV$\Delta$} & {\normalsize vii\textdegree{}\textsuperscript{2}\kern-1.5pt +8} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily F,A,CE} & {\normalsize\ttfamily FBdf} \\
+{\normalsize 3} & {\normalsize V\textsuperscript{1}} & {\normalsize I$\Delta$s2\textsuperscript{3}} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily B,DG} & {\normalsize\ttfamily Bdgc'} \\
+{\normalsize 4} & {\normalsize vis\textsuperscript{2}} & {\normalsize IV$\Delta$\textsuperscript{3}} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 3-2-3} & {\normalsize\ttfamily E,A,D} & {\normalsize\ttfamily EAcf} \\
+{\normalsize 5} & {\normalsize vi7} & {\normalsize V+2} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily A,CEG} & {\normalsize\ttfamily Adgb} \\
+{\normalsize 6} & {\normalsize iii7s2\textsuperscript{3}} & {\normalsize ii\textsuperscript{2}} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily D,F,B,E} & {\normalsize\ttfamily Adf} \\
+{\normalsize 7} & {\normalsize V+8} & {\normalsize V\textsuperscript{1}} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily G,B,DG} & {\normalsize\ttfamily Bdg} \\
+{\normalsize 8} & {\normalsize ii7\textsuperscript{3}} & {\normalsize I\textsuperscript{2}} & {\normalsize\ttfamily 3-2-3} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily C,F,A,D} & {\normalsize\ttfamily Gce} \\
+{\normalsize 9} & {\normalsize I\textsuperscript{1}\kern-1.5pt +8} & {\normalsize iii\textsuperscript{1}} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily E,G,CE} & {\normalsize\ttfamily GBe} \\
+{\normalsize 10} & {\normalsize I\textsuperscript{2}\kern-1.5pt +8} & {\normalsize iii\textsuperscript{2}} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily G,CEG} & {\normalsize\ttfamily Beg} \\
+{\normalsize 11} & {\normalsize vi+2} & {\normalsize V} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily B,EAc} & {\normalsize\ttfamily gbd'} \\
+{\normalsize 12} & {\normalsize vii\textdegree{}} & {\normalsize ii\textsuperscript{2}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily B,DF} & {\normalsize\ttfamily Adf} \\
+{\normalsize 13} & {\normalsize ii\textsuperscript{1}} & {\normalsize ii\textsuperscript{2}\kern-1.5pt +8} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily F,A,D} & {\normalsize\ttfamily Adfa} \\
+{\normalsize 14} & {\normalsize vi7} & {\normalsize ii\textsuperscript{2}\kern-1.5pt +8} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily A,CEG} & {\normalsize\ttfamily Adfa} \\
+{\normalsize 15} & {\normalsize I\textsuperscript{2}} & {\normalsize vi} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily G,CE} & {\normalsize\ttfamily Ace} \\
+{\normalsize 16} & {\normalsize I$\Delta$9s-5} & {\normalsize vi} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily C,F,B,D} & {\normalsize\ttfamily Ace} \\
+{\normalsize 17} & {\normalsize vii\textdegree{}} & {\normalsize iii7s\textsuperscript{2}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 3-3-3} & {\normalsize\ttfamily B,DF} & {\normalsize\ttfamily Bead'} \\
+{\normalsize 18} & {\normalsize vi7} & {\normalsize Vs2\textsuperscript{1}} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily A,CEG} & {\normalsize\ttfamily Adg} \\
+{\normalsize 19} & {\normalsize I\textsuperscript{2}\kern-1.5pt +8} & {\normalsize V\textsuperscript{1}} & {\normalsize\ttfamily 3-2-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily G,CEG} & {\normalsize\ttfamily Bdg} \\
+{\normalsize 20} & {\normalsize iiis2\textsuperscript{1}} & {\normalsize IV$\Delta$} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily F,B,E} & {\normalsize\ttfamily FAce} \\
+{\normalsize 21} & {\normalsize iii+8} & {\normalsize iii\textsuperscript{1}} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily E,G,B,E} & {\normalsize\ttfamily GBe} \\
+{\normalsize 22} & {\normalsize IV$\Delta$s\textsuperscript{2}} & {\normalsize vi} & {\normalsize\ttfamily 3-3-3} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily C,F,B,E} & {\normalsize\ttfamily Ace} \\
+{\normalsize 23} & {\normalsize iii7s2\textsuperscript{3}} & {\normalsize ii\textsuperscript{1}} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily D,F,B,E} & {\normalsize\ttfamily FAd} \\
+{\normalsize 24} & {\normalsize vis\textsuperscript{2}} & {\normalsize Is+3} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 2-3-3} & {\normalsize\ttfamily E,A,D} & {\normalsize\ttfamily EGcf} \\
+{\normalsize 25} & {\normalsize IV+8} & {\normalsize IV\textsuperscript{1}} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily F,A,CF} & {\normalsize\ttfamily Acf} \\
+{\normalsize 26} & {\normalsize iii\textsuperscript{1}\kern-1.5pt +8} & {\normalsize iii\textsuperscript{2}} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily G,B,EG} & {\normalsize\ttfamily Beg} \\
+{\normalsize 27} & {\normalsize vi} & {\normalsize vii\o{}7\textsuperscript{3}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 3-2-3} & {\normalsize\ttfamily A,CE} & {\normalsize\ttfamily Adfb} \\
+{\normalsize 28} & {\normalsize V\textsuperscript{1}} & {\normalsize vi+2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily B,DG} & {\normalsize\ttfamily Beac'} \\
+{\normalsize 29} & {\normalsize IV\textsuperscript{1}} & {\normalsize vi+8} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily A,CF} & {\normalsize\ttfamily Acea} \\
+{\normalsize 30} & {\normalsize ii\textsuperscript{1}\kern-1.5pt +8} & {\normalsize IV\textsuperscript{1}} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily F,A,DF} & {\normalsize\ttfamily Acf} \\
+{\normalsize 31} & {\normalsize I+2} & {\normalsize vii\textdegree{}} & {\normalsize\ttfamily 3-3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily D,G,CE} & {\normalsize\ttfamily Bdf} \\
+{\normalsize 32} & {\normalsize vii\textdegree{}} & {\normalsize V\textsuperscript{1}\kern-1.5pt +8} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 2-3-2} & {\normalsize\ttfamily B,DF} & {\normalsize\ttfamily Bdgb} \\
+{\normalsize 33} & {\normalsize iii\textsuperscript{2}} & {\normalsize I} & {\normalsize\ttfamily 3-2} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily B,EG} & {\normalsize\ttfamily ceg} \\
+{\normalsize 34} & {\normalsize V} & {\normalsize iii\textsuperscript{1}} & {\normalsize\ttfamily 2-2} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily G,B,D} & {\normalsize\ttfamily GBe} \\
+{\normalsize 35} & {\normalsize IV\textsuperscript{1}} & {\normalsize vi7} & {\normalsize\ttfamily 2-3} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily A,CF} & {\normalsize\ttfamily Aceg} \\
+{\normalsize 36} & {\normalsize iii7} & {\normalsize vis\textsuperscript{2}} & {\normalsize\ttfamily 2-2-2} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily E,G,B,D} & {\normalsize\ttfamily EAd} \\
+{\normalsize 37} & {\normalsize iiis\textsuperscript{2}} & {\normalsize vii\textdegree{}+8} & {\normalsize\ttfamily 3-3} & {\normalsize\ttfamily 2-2-3} & {\normalsize\ttfamily B,EA} & {\normalsize\ttfamily Bdfb} \\
+\end{tabular}
+\end{center}

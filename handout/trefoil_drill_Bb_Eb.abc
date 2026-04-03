@@ -1,5 +1,5 @@
 %%encoding utf-8
-%%staffsep 25
+%%staffsep 40
 %%sysstaffsep 0
 %%leftmargin 0.5cm
 %%rightmargin 0.5cm
@@ -19,29 +19,30 @@ M:8/4
 L:1/4
 %%staves {RH LH}
 %%writefields Q 0
+%%vocalfont Helvetica 8
 V:RH clef=treble stem=up
 V:LH clef=bass stem=down
 K:Bb
 [V:RH]
-[FBd] [EACe] [A,CFb] [D,GBe] [G,CFa] [GCe] [ACf] [FBd] | [FBd] [FAd] [ADf] [FAc] [GCE] [GCEg] [GCEg] [GBD] | [GBd] [A,DGc] [GCf] [ACf] [EGBd] [FAd] [GCe] [GBd] |
-[GBd] [EGc] [D,FBe] [GBe] [ADf] [G,CEa] [A,DGb] [FBd] | [FBd] [GBDg] [GBe] [ACe] [ACFa] [ACf] [BDF] [GBD] | [GBD] [FAD] [GCe] [GBDf] [DGc] [ACEa] [GBe] [GBd] |]
+"^I"[FBd] "^IV"[EACe] "^vii~"[A,CFb] "^iii"[D,GBe] "^vi"[G,CFa] "^ii"[GCe] "^V"[ACf] "^I"[FBd] | "^I"[FBd] "^iii"[FAd] "^V"[ADf] "^vii~"[FAc] "^ii"[GCE] "^IV"[GCEg] "^vi"[GCEg] "^I"[GBD] | "^I"[GBd] "^vii~"[A,DGc] "^vi"[GCf] "^V"[ACf] "^IV"[EGBd] "^iii"[FAd] "^ii"[GCe] "^I"[GBd] |
+"^I"[GBd] "^ii"[EGc] "^iii"[D,FBe] "^IV"[GBe] "^V"[ADf] "^vi"[G,CEa] "^vii~"[A,DGb] "^I"[FBd] | "^I"[FBd] "^vi"[GBDg] "^IV"[GBe] "^ii"[ACe] "^vii~"[ACFa] "^V"[ACf] "^iii"[BDF] "^I"[GBD] | "^I"[GBD] "^V"[FAD] "^ii"[GCe] "^vi"[GBDf] "^iii"[DGc] "^vii~"[ACEa] "^IV"[GBe] "^I"[GBd] |]
 [V:LH]
 [B,,E,A,D] [E,G,B,D,] [A,,C,F,] [D,,G,C,] [G,,B,D,F,] [C,,E,A,D] [F,A,C,F] [B,,E,G,C] | [B,,E,G,C] [D,F,B,D] [F,B,D,F] [A,,D,G,B] [A,C,E,] [E,G,C,] [G,B,D,F,] [F,B,D,] | [B,,E,A,C] [A,,C,E,] [G,B,D,F] [F,B,D,F] [E,A,D] [D,F,A,D] [C,,E,A,D] [B,,E,A,D] |
 [B,,E,A,D] [C,E,A,D] [D,,G,C,] [E,G,B,E] [F,A,D,F] [G,,B,D,] [A,,C,F,] [B,,E,G,C] | [B,,E,G,C] [G,B,E,] [E,G,C,E] [C,,F,B,D] [A,C,E,] [F,B,D,F] [A,D,F,] [F,B,D,] | [F,B,D,] [F,A,C,] [C,,E,A,D] [G,B,E,] [D,F,A,C] [A,D,G,] [E,G,B,E] [B,,E,A,D] |]
 
-%%vskip 36
 X:1
 T:Trefoil in Eb
 M:8/4
 L:1/4
 %%staves {RH LH}
 %%writefields Q 0
+%%vocalfont Helvetica 8
 V:RH clef=treble stem=up
 V:LH clef=bass stem=down
 K:Eb
 [V:RH]
-[BEg] [ADFa] [D,FBe] [G,CEa] [C,FBd] [CFa] [DFb] [BEg] | [BEg] [BDg] [DGb] [BDf] [CFA] [CFAc] [CFAc] [CEG] | [CEg] [D,GCf] [CFb] [DFb] [ACEg] [BDg] [CFa] [CEg] |
-[CEg] [ACf] [G,BEa] [CEa] [DGb] [C,FAd] [D,GCe] [BEg] | [BEg] [CEGc] [CEa] [DFa] [DFBd] [DFb] [EGB] [CEG] | [CEG] [BDG] [CFa] [CEGb] [GCf] [DFAd] [CEa] [CEg] |]
+"^I"[BEg] "^IV"[ADFa] "^vii~"[D,FBe] "^iii"[G,CEa] "^vi"[C,FBd] "^ii"[CFa] "^V"[DFb] "^I"[BEg] | "^I"[BEg] "^iii"[BDg] "^V"[DGb] "^vii~"[BDf] "^ii"[CFA] "^IV"[CFAc] "^vi"[CFAc] "^I"[CEG] | "^I"[CEg] "^vii~"[D,GCf] "^vi"[CFb] "^V"[DFb] "^IV"[ACEg] "^iii"[BDg] "^ii"[CFa] "^I"[CEg] |
+"^I"[CEg] "^ii"[ACf] "^iii"[G,BEa] "^IV"[CEa] "^V"[DGb] "^vi"[C,FAd] "^vii~"[D,GCe] "^I"[BEg] | "^I"[BEg] "^vi"[CEGc] "^IV"[CEa] "^ii"[DFa] "^vii~"[DFBd] "^V"[DFb] "^iii"[EGB] "^I"[CEG] | "^I"[CEG] "^V"[BDG] "^ii"[CFa] "^vi"[CEGb] "^iii"[GCf] "^vii~"[DFAd] "^IV"[CEa] "^I"[CEg] |]
 [V:LH]
 [E,,A,D,G] [A,C,E,G,] [D,,F,B,] [G,,C,F,] [C,,E,G,B,] [F,,A,D,G] [B,D,F,B] [E,,A,C,F] | [E,,A,C,F] [G,B,E,G] [B,E,G,B] [D,,G,C,E] [D,F,A,] [A,C,F,] [C,E,G,B,] [B,E,G,] | [E,,A,D,F] [D,,F,A,] [C,E,G,B] [B,E,G,B] [A,D,G] [G,B,D,G] [F,,A,D,G] [E,,A,D,G] |
 [E,,A,D,G] [F,A,D,G] [G,,C,F,] [A,C,E,A] [B,D,G,B] [C,,E,G,] [D,,F,B,] [E,,A,C,F] | [E,,A,C,F] [C,E,A,] [A,C,F,A] [F,,B,E,G] [D,F,A,] [B,E,G,B] [D,G,B,] [B,E,G,] | [B,E,G,] [B,D,F,] [F,,A,D,G] [C,E,A,] [G,B,D,F] [D,G,C,] [A,C,E,A] [E,,A,D,G] |]
