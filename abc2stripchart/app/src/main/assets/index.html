@@ -165,6 +165,7 @@ label { font-size: 13px; color: #888; }
 <div id="controls">
   <div class="row">
     <span id="title">Select a drill or hymn</span>
+    <button id="btn-guide" onclick="window.open('trefoil_guide.pdf')" style="background:#28B4BE;color:white;border-color:#28B4BE;font-size:12px;padding:4px 10px;">Guide</button>
     <button id="btn-play">Play</button>
     <label>BPM:</label>
     <input type="range" id="bpm-slider" min="20" max="240" value="80" style="width:100px;vertical-align:middle;"/>
@@ -684,7 +685,7 @@ document.getElementById('lib-search').addEventListener('input', function() {
 positionPlayhead();
 
 // Load advanced drills and hymnal data, then build library
-var loaded = 0, toLoad = 4;
+var loaded = 0, toLoad = 5;
 function onDataLoaded() {
   loaded++;
   if (loaded >= toLoad) {
@@ -737,6 +738,20 @@ xhr3.onload = function() {
 };
 xhr3.onerror = function() { onDataLoaded(); };
 xhr3.send();
+
+// Load trefoil drills
+var xhr5 = new XMLHttpRequest();
+xhr5.open('GET', 'trefoil_drills.json', true);
+xhr5.onload = function() {
+  if (xhr5.status === 200) {
+    var data = JSON.parse(xhr5.responseText);
+    for (var i = 0; i < data.length; i++) DRILLS.push(data[i]);
+    console.log('Loaded ' + data.length + ' trefoil drills');
+  }
+  onDataLoaded();
+};
+xhr5.onerror = function() { onDataLoaded(); };
+xhr5.send();
 
 // Load hymnal
 var xhr2 = new XMLHttpRequest();
