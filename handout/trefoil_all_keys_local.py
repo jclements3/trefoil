@@ -151,7 +151,7 @@ def note_midi(note, octave):
     semi = NOTE_BASE[base] + (1 if '#' in acc else -1 if 'b' in acc else 0)
     return (octave+1)*12 + semi
 
-def assign_octaves(notes, base_octave=3):
+def assign_octaves(notes, base_octave=1):
     octaves=[]; octave=base_octave; prev_idx=-1
     for note in notes:
         idx = SCALE.index(note[0])
@@ -163,7 +163,7 @@ def assign_octaves(notes, base_octave=3):
 def chord_midi_notes(lh_notes, rh_notes, trans):
     lh = [trans[n] for n in lh_notes]
     rh = [trans[n] for n in rh_notes]
-    lh_oct = assign_octaves(lh, 3)
+    lh_oct = assign_octaves(lh, 1)
     last_note, last_oct = lh_oct[-1]
     first_rh_idx = SCALE.index(rh[0][0])
     last_lh_idx  = SCALE.index(last_note[0])

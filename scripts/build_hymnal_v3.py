@@ -140,17 +140,34 @@ def voicing_to_abc(voicing, key, melody_midi):
     return la, ra
 
 def con_score(vpcs, mpcs):
+    """Score consonance between voicing pitch classes and melody pitch classes.
+    Higher = more consonant."""
     total = 0
     for mpc in mpcs:
         for vpc in vpcs:
             iv = (mpc - vpc) % 12
-            if iv == 0: total += 3
-            elif iv in (3,4): total += 2
-            elif iv in (5,7): total += 2
-            elif iv in (8,9): total += 1
-            elif iv in (1,11): total -= 3
-            elif iv == 6: total -= 1
+            if iv == 0: total += 3      # unison
+            elif iv in (3,4): total += 2  # major/minor 3rd
+            elif iv in (5,7): total += 2  # 4th/5th
+            elif iv in (8,9): total += 1  # 6th
+            elif iv in (1,11): total -= 3 # semitone clash
+            elif iv == 6: total -= 1      # tritone
     return total / len(mpcs) if mpcs else 0
+
+def acc_score(vpcs, mpcs, acc_pcs):
+    """Score for accidental measures: favor voicings that compensate for
+    the chromatic note by being consonant with the non-accidental melody
+    notes and adding color that supports the accidental's tension."""
+    base = con_score(vpcs, mpcs)
+    # Bonus for voicings that contain the accidental pitch class
+    # (supports the chromatic note rather than clashing)
+    for apc in acc_pcs:
+        for vpc in vpcs:
+            iv = (apc - vpc) % 12
+            if iv == 0: base += 2      # voicing contains the accidental
+            elif iv in (3,4,5,7): base += 1  # consonant with accidental
+            elif iv in (1,11): base -= 1     # semitone against accidental
+    return base
 
 # ── Parse OpenHymnal ──
 print("Parsing OpenHymnal voices...", file=sys.stderr)
@@ -224,13 +241,17 @@ for ti, (tnum, chunk) in enumerate(sorted(tune_chunks.items())):
         m_notes = []
         m_midis = []
         has_acc = False
+        acc_pcs = []  # pitch classes of accidental notes
         total_ql = 0
         for n in m_obj.recurse().getElementsByClass(['Note', 'Rest']):
             if isinstance(n, music21.note.Note):
                 m_midis.append(n.pitch.midi)
                 m_notes.append(pitch_to_abc(n.pitch, n.duration.quarterLength))
                 if n.pitch.accidental and n.pitch.accidental.alter != 0:
-                    has_acc = True
+                    key_acc = _current_key_accidentals.get(n.pitch.step, 0)
+                    if n.pitch.accidental.alter != key_acc:
+                        has_acc = True
+                        acc_pcs.append(n.pitch.midi % 12)
                 total_ql += n.duration.quarterLength
             elif isinstance(n, music21.note.Rest):
                 m_notes.append(f'z{dur_to_abc(n.duration.quarterLength)}')
@@ -238,7 +259,7 @@ for ti, (tnum, chunk) in enumerate(sorted(tune_chunks.items())):
         if m_notes:
             measures.append({
                 'notes': m_notes, 'midis': m_midis if m_midis else [67],
-                'has_acc': has_acc, 'beats': total_ql,
+                'has_acc': has_acc, 'acc_pcs': acc_pcs, 'beats': total_ql,
             })
 
     if not measures:
@@ -267,7 +288,11 @@ scores = []
 for hi, mi, m, key in all_measures:
     ko = KEY_OFF.get(key, 0)
     mpcs = [n % 12 for n in m['midis']]
-    row = [con_score(set((pc+ko)%12 for pc in v['pcs']), mpcs) for v in voicings]
+    if m['has_acc'] and m['acc_pcs']:
+        # Use accidental-aware scoring that compensates for chromatic notes
+        row = [acc_score(set((pc+ko)%12 for pc in v['pcs']), mpcs, m['acc_pcs']) for v in voicings]
+    else:
+        row = [con_score(set((pc+ko)%12 for pc in v['pcs']), mpcs) for v in voicings]
     scores.append(row)
 
 measure_assigned = [None] * total_m
