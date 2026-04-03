@@ -17,11 +17,15 @@ from pathlib import Path
 
 import music21
 
+# Add handout to path for chord_name
+sys.path.insert(0, str(Path(__file__).parent.parent / 'handout'))
+from chord_name import best_name
+
 SCRIPT_DIR = Path(__file__).parent
 PROJECT_DIR = SCRIPT_DIR.parent
 
 # ── Load trefoil voicing table ──
-with open(PROJECT_DIR / 'trefoil/trefoil_C.json') as f:
+with open(PROJECT_DIR / 'handout/trefoil_C.json') as f:
     trefoil = json.load(f)
 
 voicings = []
@@ -105,31 +109,34 @@ def transpose_voicing_notes(notes_str, key):
     return ''.join(NOTE_NAMES[(NOTE_NAMES.index(ch) + offset) % 7] for ch in notes_str if ch in NOTE_NAMES)
 
 def voicing_to_abc(voicing, key, melody_midi):
-    lh_notes = transpose_voicing_notes(voicing['lhNotes'], key)
-    rh_notes = transpose_voicing_notes(voicing['rhNotes'], key)
-    lh_pat = [int(x) for x in voicing['lhPat'].split('-')]
-    rh_pat = [int(x) for x in voicing['rhPat'].split('-')]
-    gap = voicing['gap']
-    rh_span = sum(rh_pat)
-    lh_span = sum(lh_pat)
-    melody_oct = melody_midi // 12 - 1
-    diatonic_in_oct = [0,0,1,1,2,3,3,4,4,5,5,6]
-    melody_deg = diatonic_in_oct[melody_midi % 12]
-    melody_abs = melody_oct * 7 + melody_deg
-    rh_top_abs = melody_abs - 2
-    rh_bottom_abs = rh_top_abs - rh_span
-    lh_bottom_abs = rh_bottom_abs - gap - 1 - lh_span
-    def abs_to_abc(a):
-        o = a // 7; d = a % 7; n = NOTE_NAMES[d]
-        if o >= 5: return n.lower() + "'" * (o-5)
-        elif o == 4: return n
-        else: return n + ',' * (4-o)
-    lh_pos = [0]
-    for p in lh_pat: lh_pos.append(lh_pos[-1]+p)
-    rh_pos = [0]
-    for p in rh_pat: rh_pos.append(rh_pos[-1]+p)
-    la = ''.join(abs_to_abc(lh_bottom_abs+p) for p in lh_pos)
-    ra = ''.join(abs_to_abc(rh_bottom_abs+p) for p in rh_pos)
+    """Fixed-register voicing using handout octave assignment.
+    LH starts at octave 3, RH placed above LH top."""
+    lh_notes = list(transpose_voicing_notes(voicing['lhNotes'], key))
+    rh_notes = list(transpose_voicing_notes(voicing['rhNotes'], key))
+
+    # Assign octaves: LH from octave 1 (ABC), RH above LH
+    def assign_oct(notes, base):
+        result = []; prev = -1; o = base
+        for n in notes:
+            idx = NOTE_NAMES.index(n)
+            if prev != -1 and idx <= prev: o += 1
+            result.append((n, o)); prev = idx
+        return result
+
+    lh_oct = assign_oct(lh_notes, 1)
+    last_n, last_o = lh_oct[-1]
+    first_rh_idx = NOTE_NAMES.index(rh_notes[0])
+    last_lh_idx = NOTE_NAMES.index(last_n)
+    rh_base = last_o if first_rh_idx > last_lh_idx else last_o + 1
+    rh_oct = assign_oct(rh_notes, rh_base)
+
+    def to_abc(name, octave):
+        if octave >= 5: return name.lower() + "'" * (octave - 5)
+        elif octave == 4: return name
+        else: return name + ',' * (4 - octave)
+
+    la = ''.join(to_abc(n, o) for n, o in lh_oct)
+    ra = ''.join(to_abc(n, o) for n, o in rh_oct)
     return la, ra
 
 def con_score(vpcs, mpcs):
@@ -312,9 +319,13 @@ for hi, h in enumerate(hymns):
         rh_parts.append(f'[{rh_abc}]{d}')
         lh_parts.append(f'[{lh_abc}]{d}')
 
+        # Note letters for display (top-to-bottom order)
         rh_letters = ''.join(c.upper() for c in reversed(re.findall(r'[A-Ga-g]', rh_abc)))
         lh_letters = ''.join(c.upper() for c in reversed(re.findall(r'[A-Ga-g]', lh_abc)))
-        chords.append({'beat':note_idx,'name':v['lh'],'rhn':v['rh'],'lhn':v['lh'],'rh':rh_letters,'lh':lh_letters})
+        # Best terse chord names (tries all roots, picks shortest)
+        lh_name = best_name(list(v['lhNotes']))
+        rh_name = best_name(list(v['rhNotes']))
+        chords.append({'beat':note_idx,'name':lh_name,'rhn':rh_name,'lhn':lh_name,'rh':rh_letters,'lh':lh_letters})
         note_idx += len(m['notes'])
 
     mel_line = ' | '.join(mel_parts) + ' |]'
