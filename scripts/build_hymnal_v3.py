@@ -109,12 +109,11 @@ def transpose_voicing_notes(notes_str, key):
     return ''.join(NOTE_NAMES[(NOTE_NAMES.index(ch) + offset) % 7] for ch in notes_str if ch in NOTE_NAMES)
 
 def voicing_to_abc(voicing, key, melody_midi):
-    """Fixed-register voicing using handout octave assignment.
-    LH starts at octave 3, RH placed above LH top."""
+    """Fixed-register voicing: LH in octave 2-3 range, RH above LH.
+    Clamped to C, (octave 1) through c' (octave 4) range."""
     lh_notes = list(transpose_voicing_notes(voicing['lhNotes'], key))
     rh_notes = list(transpose_voicing_notes(voicing['rhNotes'], key))
 
-    # Assign octaves: LH from octave 1 (ABC), RH above LH
     def assign_oct(notes, base):
         result = []; prev = -1; o = base
         for n in notes:
@@ -123,6 +122,8 @@ def voicing_to_abc(voicing, key, melody_midi):
             result.append((n, o)); prev = idx
         return result
 
+    # Use handout's octave system: octave 1=C, 2=C 3=c 4=c'
+    # Start LH at octave 1 (ABC: C,) — same as handout
     lh_oct = assign_oct(lh_notes, 1)
     last_n, last_o = lh_oct[-1]
     first_rh_idx = NOTE_NAMES.index(rh_notes[0])
@@ -130,10 +131,14 @@ def voicing_to_abc(voicing, key, melody_midi):
     rh_base = last_o if first_rh_idx > last_lh_idx else last_o + 1
     rh_oct = assign_oct(rh_notes, rh_base)
 
+    # Handout octave-to-ABC mapping (matches trefoil_all_keys_local.py):
+    # octave 0 = C,,  octave 1 = C,  octave 2 = C  octave 3 = c  octave 4 = c'
     def to_abc(name, octave):
-        if octave >= 5: return name.lower() + "'" * (octave - 5)
-        elif octave == 4: return name
-        else: return name + ',' * (4 - octave)
+        if octave <= 0: return name + ',,' + ','*(-octave)
+        elif octave == 1: return name + ','
+        elif octave == 2: return name
+        elif octave == 3: return name.lower()
+        else: return name.lower() + "'" * (octave - 3)
 
     la = ''.join(to_abc(n, o) for n, o in lh_oct)
     ra = ''.join(to_abc(n, o) for n, o in rh_oct)

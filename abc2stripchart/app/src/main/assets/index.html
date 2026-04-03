@@ -165,8 +165,10 @@ label { font-size: 13px; color: #888; }
 <div id="controls">
   <div class="row">
     <span id="title">Select a drill or hymn</span>
-    <button id="btn-guide" onclick="window.open('trefoil_guide.pdf')" style="background:#28B4BE;color:white;border-color:#28B4BE;font-size:12px;padding:4px 10px;">Guide</button>
+    <button id="btn-restart" onclick="restartDrill()" style="font-size:16px;padding:4px 8px;">|&#9668;</button>
     <button id="btn-play">Play</button>
+    <button id="btn-next" onclick="nextDrill()" style="font-size:16px;padding:4px 8px;">&#9658;|</button>
+    <button id="btn-guide" onclick="window.open('trefoil_guide.pdf')" style="background:#28B4BE;color:white;border-color:#28B4BE;font-size:12px;padding:4px 10px;">Guide</button>
     <label>BPM:</label>
     <input type="range" id="bpm-slider" min="20" max="240" value="80" style="width:100px;vertical-align:middle;"/>
     <span id="bpm-val" style="font-size:14px;font-weight:bold;min-width:28px;text-align:center;">80</span>
@@ -551,6 +553,19 @@ function selectDrill(drillIdx) {
   var el = document.querySelector('.lib-item[data-idx="' + drillIdx + '"]');
   if (el) el.classList.add('active');
   renderDrill(drillIdx);
+}
+
+function restartDrill() {
+  if (playing) stopPlayback();
+  renderDrill(currentDrill);
+}
+
+function nextDrill() {
+  if (playing) stopPlayback();
+  var next = currentDrill + 1;
+  if (next >= DRILLS.length) next = 0;
+  currentDrill = next;
+  selectDrill(next);
 }
 
 function buildLibrary() {
