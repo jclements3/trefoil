@@ -1,0 +1,60 @@
+X: 63
+T: O Wondrous Type, O Vision Fair
+C: Words: From the "Sarum Breviary", 1495.  Translated by John Mason Neale, 1851.
+C: Music: 'Deo Gracias' or 'Agincourt' traditional English, circa 1415.
+C: Setting: Charles Winfred Douglas, 1918, alt.
+C: SSAATTBB arrangement for 8-voice ensemble with lever harp.
+C: copyright: public domain.  Open Hymnal Project, 2011 Revision.
+M: 3/4
+L: 1/4
+Q: 1/4=140
+%%staves [(V:1 V:2) (V:3 V:4) (V:5 V:6) (V:7 V:8)]
+V:1 name="Soprano I"   clef=treble
+V:2 name="Soprano II"  clef=treble
+V:3 name="Alto I"      clef=treble
+V:4 name="Alto II"     clef=treble
+V:5 name="Tenor I"     clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"    clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"    clef=bass
+V:8 name="Bass I"      clef=bass
+K: E
+%
+% ---- Soprano I: original soprano, accidentals permitted ----
+[V:1] [Q:1/4=140] c | c2 B | c2 B | B A2 | G2 c | (c B) G |
+ (F G) F/C/ | E D2 | C2 G | B2 B | (c B) A |
+ G F2 | E2 !sintro!E | G2 G | F2 E | E D2 | C2 !eintro!|]
+%
+% ---- Soprano II: diatonic third below S1, no accidentals ----
+[V:2] A | A2 G | A2 G | G F2 | E2 A | (A G) E |
+ (D E) D/A,/ | C B,2 | A,2 E | G2 G | (A G) F |
+ E D2 | C2 C | E2 E | D2 C | C B,2 | A,2 |]
+%
+% ---- Alto I: independent diatonic melodic line, implies alto harmony ----
+[V:3] E | E2 F | E2 D | D2 E | D2 E | F D2 |
+ B, C2 | D2 C | C2 D | E2 F | F E2 |
+ C2 C | B,2 E | D2 C | A, B,2 | E2 D | E2 |]
+%
+% ---- Alto II: contrary motion to A1, diatonic, no accidentals ----
+[V:4] C | B,2 C | C2 B, | B,2 A, | B,2 C | A,2 B, |
+ A, B,2 | A,2 G, | G,2 A, | G,2 G, | A,2 F, |
+ G,2 F, | G,2 A, | G, A,2 | F, G,2 | A,2 G, | G,2 |]
+%
+% ---- Tenor I: independent diatonic line on tenor harmony (written 8va, sounds -12) ----
+[V:5] G | G2 G | A2 G | G A2 | A2 G | (A B) B |
+ (A G) A | G2 F | G2 A | G2 G | (A B) A |
+ G A2 | G2 A | (B G) A | A G2 | G A2 | G2 |]
+%
+% ---- Tenor II: diatonic third below T1, contrary motion where possible (written 8va, sounds -12) ----
+[V:6] E | E2 E | F2 E | E F2 | F2 E | (F G) G |
+ (F E) F | E2 D | E2 F | E2 E | (F G) F |
+ E F2 | E2 F | (G E) F | F E2 | E F2 | E2 |]
+%
+% ---- Baritone: diatonic third above Bass I, no accidentals ----
+[V:7] E, | E,2 G, | C,2 B,, | B,,2 D, | G,2 C, | B,2 G, |
+ (A, G,) A, | (G, A,) B, | E,2 G, | B,2 G, | (B, A,) A, |
+ B,2 G, | G,2 A, | G,2 E, | F,2 G, | (A, B,) G, | E,2 |]
+%
+% ---- Bass I: original bass, diatonic only ----
+[V:8] C, | C,2 E, | A,,2 G,, | (G,, A,,3/2) B,,/ | E,2 A,, | (A, G,) E, |
+ (F, E,) A, | (E,/F,/ G,) G,, | C,2 C, | G,2 E, | (A, G,) F, |
+ (G,/A,/ B,) B,, | E,2 E, | E,2 C, | D,2 E, | (F,/G,/ F,) G, | C,2 |]

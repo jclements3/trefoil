@@ -1,0 +1,56 @@
+X: 8
+T: In Peace and Joy I Now Depart
+T: (also known as The Song of Simeon: Nunc Dimittis)
+C: Words: Martin Luther, 1524. Translated by Leonard Woolsey Bacon, 1884, alt.
+C: Music: 'Mit Fried und Freud ich Far Dahin' from Walter's Geistliche Gesangbüchlein, 1524.
+C: Setting: arr. for SSAATTBB from Michael Praetorius, 1610.
+C: copyright: public domain.
+M: 4/4
+L: 1/4
+%%staves [(V1 V2) (V3 V4) (V5 V6) (V7 V8)]
+V:1 name="Soprano I"   clef=treble
+V:2 name="Soprano II"  clef=treble
+V:3 name="Alto I"      clef=treble
+V:4 name="Alto II"     clef=treble
+V:5 name="Tenor I"     clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"    clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"    clef=bass
+V:8 name="Bass I"      clef=bass
+K: C
+%%MIDI program 52
+%
+% Bars 1-2: SSAA only (TTBB rest) — reduced opening texture
+% Bar 3 onward: full 8 voices
+%
+% ------- Phrase 1 (bars 1-4) + anacrusis of bar 5 -------
+%
+[V:1] [Q:1/4=120] D2 A A | G d c B | A2 c2 | A c (B/ A/ B) | A
+[V:2]              B,2 F F | E B A G | F2 A2 | F A (G/ F/ G) | F
+[V:3]              A,2 A, D | B, B, E E | C2 E2 | F G (F/ G/ A) | A
+[V:4]              F,2 E, F, | G, E, C C | A,2 C2 | C E (D/ C/ B,) | C
+[V:5]              z4     | z4     | A2 c2 | c e (d B)     | c
+[V:6]              z4     | z4     | E2 C2 | A, G, (G, F,) | G,
+[V:7]              z4     | z4     | A,2 c2 | A, E, (F,/ G,/ G,) | A,
+[V:8]              z4     | z4     | A,,2 A,2 | F, C, (D,/ E,/ E,) | A,
+%
+% ------- Phrase 2 (bar 5 cont. through bar 8) -------
+%
+[V:1]  z/ A/ c3/2 B/ | c A/ (G F/) E | D2 A3/2 G/ | (F D) C2 |
+[V:2]  z/ F/ A3/2 G/ | A F/ (E D/) C | B,2 F3/2 E/ | (D B,) A,2 |
+[V:3]  z/ F/ G G     | G F/ D3/2 C   | D2 F3/2 E/ | (D/ C/ B,) C2 |
+[V:4]  z/ D/ E, F,   | E D/ C3/2 A,  | B,2 A,3/2 G,/ | F, G, A,2 |
+[V:5]  z/ d/ e3/2 d/ | c3/2 B A A/  | A2 A2     | A G E z   |
+[V:6]  z/ A,/ G,3/2 A,/ | G, A, B, C | C B, A,2  | B, C D G  |
+[V:7]  z/ F,/ E,3/2 A,/ | G, A,/ (B, F,/ C/) C,/ | F,2 F,3/2 G,/ | A, B, E, z |
+[V:8]  z/ D,/ C,3/2 G,/ | E, F,/ (G, D,/ A,,/) A,,/ | D,2 D,3/2 E,/ | F, G, C, z |
+%
+% ------- Phrase 3 (bar 9 anacrusis through bar 13) -------
+%
+[V:1]  (A3/2 G/) F c- | c/ _B/ A G/ F/ G | A z/ !sintro!G/ F D | C F (E/ D/ E) | D4 !eintro!|]
+[V:2]  (F3/2 E/) D A- | A/ G/ F E/ D/ E  | F z/ E/ D B, | A, D (C/ B,/ C) | B,4 |]
+[V:3]  C2 D C         | D2 D D           | C z/ B,/ (D/ C) B,/ | A,/ G,/ D (C/ D C/) | A,4 |]
+[V:4]  A,2 B, A,      | G,2 F, G,        | E, F, G, F, | E, A, G,2 | F,4 |]
+[V:5]  F/ G/ A2 A     | D F G D          | E z/ G/ A G  | E A A,2   | D2 z2 |]
+[V:6]  D/ C/ B,2 G,   | B, A, G, A,      | C B, A, G,   | C D G,2   | A,2 z2 |]
+[V:7]  A,3/2 G,/ (F, C,) | B,, F, D, D, | E, z/ G,/ A, G, | C, D, (A,,/ B,,/ A,,) | D,4 |]
+[V:8]  (F,3/2 E,/) (D, A,,) | G,, D, B,, B,, | A,, z/ E,/ F, G, | C, D, (A,,/ B,,/ A,,) | D,4 |]

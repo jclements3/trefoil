@@ -1,0 +1,143 @@
+X: 233
+T: Praise God From Whom All Blessings Flow
+T: (Doxology — SSAATTBB arrangement)
+C: Words: Thomas Ken, 1674.  Music: 'Old 100th' Genevan Psalter, attr. Louis Bourgeois, c. 1551.
+C: Setting: Sternhold and Hopkins' Psalter, 1561.
+C: SSAATTBB arrangement for double choir and lever harp.
+C: copyright: public domain.
+M: none
+L: 1/4
+Q: 1/4=100
+%%staves [(1 2) (3 4) (5 6) (7 8)]
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+K: G
+%
+% ============================================================
+% Phrase 1  (bars 1–4)
+% ============================================================
+%
+% Bar 1  (6 beats: half+q+q+q+q)
+% Harmony: I — I — V — vi — iii/V
+% Texture: full 8-voice homophony, moderate dynamic (mf)
+% S1 = original soprano throughout
+% S2 harmonizes in 2nds/3rds above A1, staying below S1
+% A1 = original alto with last-beat passing tone C4 (original D4→B3 step smoothed)
+% A2 = diatonic 3rd below A1
+% T1 = original tenor (written 8va; transpose=-12)
+% T2 = diatonic 3rd below T1 (written 8va)
+% Bar = independent stepwise line above B1
+% B1 = original bass
+%
+[V:1] G2 G F E D |
+[V:2] E2 E E D C |
+[V:3] D2 D D C B, |
+[V:4] B,2 B, B, A, G, |
+[V:5] B2 B A G F |
+[V:6] G2 G F E D |
+[V:7] A,2 A, B, A, G, |
+[V:8] G,2 G, D, E, B,, |
+%
+% Bar 2  (7 beats: half+half+dotted-half)
+% Harmony: I — V — I
+%
+[V:1] G2 A2 B3 |
+[V:2] E2 F2 G3 |
+[V:3] B,2 D2 D3 |
+[V:4] G,2 B,2 B,3 |
+[V:5] G2 F2 G3 |
+[V:6] E2 D2 E3 |
+[V:7] A,2 A,2 F,3 |
+[V:8] E,2 D,2 G,,3 |
+%
+% Bar 3  (6 beats: half+q+q+q+q)
+% Harmony: I — I — IV — IV — V — V
+% A1 last beat moved to E4 (from original G4) to keep S2 above A1
+% Bar uses sustained A3 with neighbor motion
+%
+[V:1] B2 B B A G |
+[V:2] G2 G A G F |
+[V:3] D2 D G F E |
+[V:4] B,2 B, E D C |
+[V:5] G2 B D' c B |
+[V:6] E2 G B A G |
+[V:7] A,2 A, A, G, A, |
+[V:8] G,2 G, G, D, E, |
+%
+% Bar 4  (7 beats: half+half+dotted-half)
+% Harmony: IV — I — V
+%
+[V:1] c2 B2 A3 |
+[V:2] A2 A2 G3 |
+[V:3] G2 G2 F3 |
+[V:4] E2 E2 D3 |
+[V:5] e2 d2 d3 |
+[V:6] c2 B2 B3 |
+[V:7] G,2 F,2 G,3 |
+[V:8] C,2 G,,2 D,3 |
+%
+% ============================================================
+% Phrase 2  (bars 5–8)
+% ============================================================
+%
+% Bar 5  (6 beats: half+q+q+q+q)
+% Harmony: I — V — I — V — I
+% A1 first beat moved to E4 (from original G4) to keep S2 above A1
+%
+[V:1] G2 A B A G |
+[V:2] F2 G A G E |
+[V:3] E2 F G F D |
+[V:4] C2 D E D B, |
+[V:5] B2 d d d d |
+[V:6] G2 B B B B |
+[V:7] A,2 A, A, A, G, |
+[V:8] E,2 D, G, D, B,, |
+%
+% Bar 6  (7 beats: half+half+dotted-half)
+% Harmony: vi — V — I
+% Original A1=E4 on beat 1-2 equals S1=E4; A1 lowered to C4 to give S2 room.
+% S2 ascends D4-E4-F#4 (stepwise), A1 ascends C4-D4-D4, A2 ascends A3-B3-B3.
+%
+[V:1] E2 F2 G3 |
+[V:2] D2 E2 F3 |
+[V:3] C2 D2 D3 |
+[V:4] A,2 B,2 B,3 |
+[V:5] (c B) A2 B3 |
+[V:6] A G F2 G3 |
+[V:7] G, A, G,2 D,3 |
+[V:8] C,2 D,2 G,,3 |
+%
+% Bar 7  (6 beats: half+q+q+q+q)
+% Harmony: I — vi — I — ii — V
+% Climax: S1 touches D5, T1 spans B3–E4 (sounding)
+% Bar leaps P5 (D3→A3) — noted in rule compromises
+% A1 beat 4 lowered from G4 to E4 (avoids S1=A1 unison; smoother step line)
+% S2 and A2 revised accordingly
+%
+[V:1] d2 B G A c |
+[V:2] B2 G F G A |
+[V:3] D2 D E F E |
+[V:4] B,2 B, C D C |
+[V:5] B2 G B d e |
+[V:6] G2 E G B c |
+[V:7] A,2 A, A, G, G, |
+[V:8] G,2 G, E, D, A,, |
+%
+% Bar 8  (7 beats: half+half+dotted-half)
+% Harmony: I — V — I
+% Final cadence: Bar descends to D3; B1 closes on G2 (root)
+%
+[V:1] B2 A2 G3 |]
+[V:2] A2 G2 E3 |]
+[V:3] G2 F2 D3 |]
+[V:4] E2 D2 B,3 |]
+[V:5] d2 (d c) B3 |]
+[V:6] B2 B A G3 |]
+[V:7] G, A, G,2 D,3 |]
+[V:8] (B,, C,) D,2 G,,3 |]

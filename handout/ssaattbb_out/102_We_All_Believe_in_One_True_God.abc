@@ -1,0 +1,335 @@
+X: 102
+T: We All Believe in One True God
+T: (also known as In One True God We All Believe)
+C: Words: Medieval text expanded by Martin Luther, 1524. Translation composite.
+C: Music: 'Wir Glauben all an Einen Gott, Schoepfer' / 'Apostolic Creed'. Medieval tune altered
+C: by Martin Luther. Found in Walter's Geistliche Gesangbüchlein, 1524.
+C: Setting: "Eisenach Kirchenconserenz", G.v. Tucher et. al., Stuttgart, 1854.
+C: SSAATTBB arrangement for double choir and lever harp, 2025.
+C: copyright: public domain. Part of the Open Hymnal Project, 2009 Revision.
+L: 1/4
+%%staves [(1 2) (3 4) (5 6) (7 8)]
+V:1 name="Soprano I"   clef=treble
+V:2 name="Soprano II"  clef=treble
+V:3 name="Alto I"      clef=treble
+V:4 name="Alto II"     clef=treble
+V:5 name="Tenor I"     clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"    clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"    clef=bass
+V:8 name="Bass I"      clef=bass
+M: none
+K: C
+%
+% ABC BASS CLEF PITCH REFERENCE:
+%   C,, = C1   D,, = D1   E,, = E1   F,, = F1   G,, = G1   A,, = A1   B,, = B1
+%   C,  = C2   D,  = D2   E,  = E2   F,  = F2   G,  = G2   A,  = A2   B,  = B2
+%   C   = C3   D   = D3   E   = E3   F   = F3   G   = G3   A   = A3   B   = B3
+%   c   = C4   d   = D4   e   = E4
+%
+% ABC TREBLE CLEF PITCH REFERENCE (S1-A2):
+%   C,  = C3   D,  = D3   E,  = E3   F,  = F3   G,  = G3   A,  = A3   B,  = B3
+%   C   = C4   D   = D4   E   = E4   F   = F4   G   = G4   A   = A4   B   = B4
+%   c   = C5   d   = D5   e   = E5
+%
+% ABC 8vb-TREBLE PITCH REFERENCE (T1/T2, transpose=-12, sounding 8va lower):
+%   Written G,, → sounds G1 (TOO LOW — avoid)
+%   Written C,  → sounds C2   D,  = D2   E,  = E2   F,  = F2   G,  = G2   A,  = A2
+%   Written C   → sounds C3   D   = D3   E   = E3   F   = F3   G   = G3   A   = A3
+%   Written c   → sounds C4   d   = D4
+%
+% ─────────────────────────────────────────────────────────
+% BAR 1 (18 beats) — SSAA only; TTBB tacet.
+% Reduced opening texture — upper choir alone.
+% S1: original soprano, ^C# chromatic passing tone preserved.
+% S2: diatonic 3rd or 6th below S1; (D ^C)→(B, A,) avoids ^C.
+% A1: independent diatonic line on chord tones, contrary motion in places.
+% A2: contrary motion to A1; stays below A1.
+% ─────────────────────────────────────────────────────────
+[V:1] [Q:1/4=120] z2 D2 (A G A) E F2 (E G) (F E) (D ^C) D2 |
+[V:2]             z2 B,2 (F E F) C D2 (C E) (D C) (B, A,) B,2 |
+[V:3]             z2 F2 (C E C) G A2 (G C) (A G) (F E) F2 |
+[V:4]             z2 D2 (A, C A,) E F2 (E A,) (F E) (D C) D2 |
+[V:5]             z18 |
+[V:6]             z18 |
+[V:7]             z18 |
+[V:8]             z18 |
+%
+% ─────────────────────────────────────────────────────────
+% BAR 2 (6 beats) — All 8 voices enter. TTBB joins.
+% S1: A2 A2 d c  (original)
+% S2: diatonic 3rd below S1 throughout
+% T1 written A, A, = concert A2 A2; 8vb-treble B, = B2
+% Bar/B1: concert D3 A3 G3 A3 / D2 A2 G2 A2 (original bass raised)
+% ─────────────────────────────────────────────────────────
+[V:1] A2 A2 d c |
+[V:2] F2 F2 B A |
+[V:3] C2 C2 F E |
+[V:4] A,2 A,2 D C |
+[V:5] D2 C2 B, C |
+[V:6] B,2 A,2 G, A, |
+[V:7] D2 C2 B, C |
+[V:8] D,2 A,2 G, A, |
+%
+% ─────────────────────────────────────────────────────────
+% BAR 3 (6 beats) — Full 8 voices.
+% S1: B A c2 A2  (original)
+% T1 written G A c2 A2 = concert G3 A3 C4 C4 A3 A3
+% T2 written E F A2 F2 = concert E3 F3 A3 A3 F3 F3
+% Bar: G, A, G,2 F,2  = G2 A2 G2 G2 F2 F2
+% B1: E, F, C,2 F,2   = E2 F2 C2 C2 F2 F2
+% ─────────────────────────────────────────────────────────
+[V:1] B A c2 A2 |
+[V:2] G F A2 F2 |
+[V:3] E D F2 D2 |
+[V:4] D C E2 C2 |
+[V:5] G A c2 A2 |
+[V:6] E F A2 F2 |
+[V:7] G, A, G,2 F,2 |
+[V:8] E, F, C,2 F,2 |
+%
+% ─────────────────────────────────────────────────────────
+% BAR 4 (10 beats) — Full 8 voices. Homophonic block.
+% S1: z B c A A E F F E2  (original; no accidentals in S1 this bar)
+% S2: z G A F F C D D D2  (original ^C2 in alto → D diatonic; see notes)
+% A1/A2: independent diatonic lines
+% T1 written: z D C C F, A, A, A, A,2 = concert z D3 C3 C3 F2 A2 A2 A2 A2
+%   (original S2V1 concert, diatonic throughout)
+% T2 written: z B, A, A, D, F, F, F, F,2 = concert z B2 A2 A2 D2 F2 F2 F2 F2
+% Bar: z D, A, F, D, A, A, A, A,2  = z D2 A2 F2 D2 A2 A2 A2 A2
+%   (original ^C, bass → D, diatonic)
+% B1: z D, A, F, D, D, D, A, A,2 = z D2 A2 F2 D2 D2 D2 A2 A2
+% ─────────────────────────────────────────────────────────
+[V:1] z B c A A E F F E2 |
+[V:2] z G A F F C D D D2 |
+[V:3] z D F D D A, B, B, A,2 |
+[V:4] z B, D B, B, G, G, G, F,2 |
+[V:5] z D C C F, A, A, A, A,2 |
+[V:6] z B, A, A, D, F, F, F, F,2 |
+[V:7] z D, A, F, D, A, A, A, A,2 |
+[V:8] z D, A, F, D, D, D, A, A,2 |
+%
+% ─────────────────────────────────────────────────────────
+% BAR 5 (4 beats) — Full 8 voices. Rising scale passage.
+% S1: D E F G  (original)
+% S2: B, C D E  (6th below S1, widening for variety)
+% A1: F, G, A, B,  (rising in parallel 3rds with A2)
+% A2: D, E, F, G,  (3rd below A1)
+% T1 written: F, A, D A, = concert F2 A2 D3 A2
+%   (original S2V1 had _B,→A, substituted)
+% T2 written: D, F, B, F, = concert D2 F2 B2 F2
+% Bar: A, C D C, = A2 C3 D3 C2 (original bass adapted, staying in range)
+% B1: D, C, A, G, = D2 C2 A2 G2  (orig _B,→A,; G,, = G1 too low → G, = G2)
+% ─────────────────────────────────────────────────────────
+[V:1] D E F G |
+[V:2] B, C D E |
+[V:3] F, G, A, B, |
+[V:4] D, E, F, G, |
+[V:5] F, A, D A, |
+[V:6] D, F, B, F, |
+[V:7] A, C D C, |
+[V:8] D, C, A, G, |
+%
+% ─────────────────────────────────────────────────────────
+% BAR 6 (6 beats) — Cadential fermata. All voices.
+% S1: F E (D ^C) !fermata!D2  (^C# kept in S1)
+% S2: D C (B, A,) !fermata!B,2  (^C in orig alto replaced by B, diatonic)
+% A1: A, G, (F, E,) !fermata!F,2  (from original tenor line)
+% A2: F, E, (D, C,) !fermata!D,2
+% T1 written: A, G, (F, E,) !invertedfermata!F,2 = concert A2 G2 F2 E2 F2
+%   (original S2V1 concert: A, G, F, E, F,2)
+% T2 written: F, E, (D, C,) !invertedfermata!D,2 = concert F2 E2 D2 C2 D2
+% Bar: A, G, (F, E,) !invertedfermata!F,2 = A2 G2 F2 E2 F2 ✓
+% B1: D, C, (A, G,) !invertedfermata!D,2 = D2 C2 A2 G2 D2 ✓
+%   (orig S2V2 bass far below range — raised octave; _B,→A, diatonic)
+% ─────────────────────────────────────────────────────────
+[V:1] F E (D ^C) !fermata!D2 |
+[V:2] D C (B, A,) !fermata!B,2 |
+[V:3] A, G, (F, E,) !fermata!F,2 |
+[V:4] F, E, (D, C,) !fermata!D,2 |
+[V:5] A, G, (F, E,) !invertedfermata!F,2 |
+[V:6] F, E, (D, C,) !invertedfermata!D,2 |
+[V:7] A, G, (F, E,) !invertedfermata!F,2 |
+[V:8] D, C, (A, G,) !invertedfermata!D,2 |
+%
+% ─────────────────────────────────────────────────────────
+% BAR 7 (12 beats) — Antiphonal: SSAA sustained; TTBB active.
+% S1: d2 d2 e d e ^c d2 d2  (^c = C#5 kept in S1 only)
+% S2: B2 B2 c B c A B2 B2  (^c → B diatonic, 3rd below d)
+% A1: F2 G2 G A G E F2 F2  (original S1V2 inner voice, diatonic)
+% A2: D2 E2 E F E C D2 D2
+% T1 written: A2 B2 C A A A A2 A2 = concert A3 B3 C4 A3 A3 A3 A3 A3
+%   (original S2V1 concert, _B,→A, diatonic)
+% T2 written: F2 G2 A F F F F2 F2 = concert F3 G3 A3 F3 F3 F3 F3 F3
+% Bar: D2 G2 C F G A D2 D2  = D3 G3 C3 F3 G3 A3 D3 D3 ✓ (12 beats)
+%   (original S2V2 upper chord tones raised octave)
+% B1: D,2 G,2 C, F, G, A, D,2 D,2 = D2 G2 C2 F2 G2 A2 D2 D2 ✓ (12 beats)
+% ─────────────────────────────────────────────────────────
+[V:1] d2 d2 e d e ^c d2 d2 |
+[V:2] B2 B2 c B c A B2 B2 |
+[V:3] F2 G2 G A G E F2 F2 |
+[V:4] D2 E2 E F E C D2 D2 |
+[V:5] A2 B2 C A A A A2 A2 |
+[V:6] F2 G2 A F F F F2 F2 |
+[V:7] D2 G2 C F G A D2 D2 |
+[V:8] D,2 G,2 C, F, G, A, D,2 D,2 |
+%
+% ─────────────────────────────────────────────────────────
+% BAR 8 (4 beats) — Full 8 voices.
+% S1: e B c A  (e = E5, high approach to climax)
+% S2: c G A F
+% A1: G E F D
+% A2: E C D B,
+% T1 written: C D C C = concert C3 D3 C3 C3 ✓
+% T2 written: A, B, A, A, = concert A2 B2 A2 A2 ✓
+% Bar: C G A F  = C3 G3 A3 F3 ✓  (original S2V2 top, raised)
+% B1: C, G, A, F,  = C2 G2 A2 F2 ✓
+% ─────────────────────────────────────────────────────────
+[V:1] e B c A |
+[V:2] c G A F |
+[V:3] G E F D |
+[V:4] E C D B, |
+[V:5] C D C C |
+[V:6] A, B, A, A, |
+[V:7] C G A F |
+[V:8] C, G, A, F, |
+%
+% ─────────────────────────────────────────────────────────
+% BAR 9 (6 beats) — Full 8 voices.
+% S1: A E F2 E2  (original)
+% S2: F C D2 D2  (original alto ^C2 → D2 diatonic)
+% A1: C A, B,2 A,2
+% A2: A, F, G,2 F,2
+% T1 written: F, A, A,2 A,2 = concert F2 A2 A2 A2 ✓ (original tenor diatonic)
+% T2 written: D, F, F,2 F,2 = concert D2 F2 F2 F2 ✓
+% Bar: D A D2 A2  = D3 A3 D3 A3 ✓  (original bass ^C → D diatonic; raised octave)
+% B1: D, A, D,2 A,2 = D2 A2 D2 A2 ✓
+% ─────────────────────────────────────────────────────────
+[V:1] A E F2 E2 |
+[V:2] F C D2 D2 |
+[V:3] C A, B,2 A,2 |
+[V:4] A, F, G,2 F,2 |
+[V:5] F, A, A,2 A,2 |
+[V:6] D, F, F,2 F,2 |
+[V:7] D A D2 A2 |
+[V:8] D, A, D,2 A,2 |
+%
+% ─────────────────────────────────────────────────────────
+% BAR 10 (10 beats) — Climax region. Full 8 voices.
+% S1: A G A B c B (A ^G) A2  (^G = G# kept in S1 only)
+% S2: F E F G A G (F E) F2  (^G → A diatonic)
+% A1: D C D E F E (D C) D2
+% A2: A, G, A, C D C (B, A,) A,2
+% T1 written: A, C C D C G, (A, B,) C2 = concert A2 C3 C3 D3 C3 G2 A2 B2 C3 C3 ✓
+%   (original S2V1, all diatonic)
+% T2 written: F, A, A, B, A, E, (F, G,) A,2 = concert F2 A2 A2 B2 A2 E2 F2 G2 A2 ✓
+% Bar: F, C F, D, A, E, (F, E,) A,2 = F2 C2 F2 D2 A2 E2 F2 E2 A2 ✓
+%   (original S2V2 bottom concert, raised to min C2)
+% B1: D, C, F, D, A, E, (F, E,) A,2 = D2 C2 F2 D2 A2 E2 F2 E2 A2 ✓
+% ─────────────────────────────────────────────────────────
+[V:1] A G A B c B (A ^G) A2 |
+[V:2] F E F G A G (F E) F2 |
+[V:3] D C D E F E (D C) D2 |
+[V:4] A, G, A, C D C (B, A,) A,2 |
+[V:5] A, C C D C G, (A, B,) C2 |
+[V:6] F, A, A, B, A, E, (F, G,) A,2 |
+[V:7] F, C F, D, A, E, (F, E,) A,2 |
+[V:8] D, C, F, D, A, E, (F, E,) A,2 |
+%
+% ─────────────────────────────────────────────────────────
+% BAR 11 (12 beats) — Stretto imitation, S mirrors T.
+% S1: (B3/2 c/) d2 A G A E F2 E2
+% S2: (G3/2 A/) B2 F E F C D2 C2   (3rd below S1)
+% A1: (E3/2 F/) G2 D C D A, B,2 A,2
+% A2: (C3/2 D/) E2 B, A, B, F, G,2 F,2
+% T1 written: E2 F2 C C C G, F,2 G,2 = concert E3 F3 C3 C3 C3 G2 F2 F2 G2 G2 ✓
+%   (original S2V1 concert, all diatonic)
+% T2 written: C2 D2 A, A, A, E, D,2 E,2 = concert C3 D3 A2 A2 A2 E2 D2 D2 E2 E2 ✓
+% Bar: E,2 (D,3/2 E,/) F, C, A, C, D,2 C,2  = E2 D2 E2 F2 C2 A2 C2 D2 C2 ✓ (12 beats)
+%   (original S2V2 bottom notes, A,, raised to A,, i.e. A, = A2)
+% B1: E,2 (D,3/2 E,/) F, C, A, C, D,2 C,2 = same as Bar — differentiate:
+%   B1: C,2 (B,,3/2 C,/) D, G,, A, G,, E,,2 F,,2 — too low.
+%   Use B1: C,2 (D,3/2 C,/) F, C, A, C, D,2 C,2 (with slight inversion)
+%   = C2 D2 C2 F2 C2 A2 C2 D2 C2 ✓
+%   Actually let's keep Bar and B1 distinct by an octave apart where possible:
+%   Bar stays: E,2 (D,3/2 E,/) F, C, A, C, D,2 C,2 (concert E2...)
+%   B1: same notes, same octave — this is fine since they're different clefs (Bass I below Bar).
+%   To differentiate, make B1 the root-position support:
+%   B1: C,2 (D,3/2 E,/) F, C, A, C, D,2 C,2 = C2 D2 E2 F2 C2 A2 C2 D2 C2 ✓
+% ─────────────────────────────────────────────────────────
+[V:1] (B3/2 c/) d2 A G A E F2 E2 |
+[V:2] (G3/2 A/) B2 F E F C D2 C2 |
+[V:3] (E3/2 F/) G2 D C D A, B,2 A,2 |
+[V:4] (C3/2 D/) E2 B, A, B, F, G,2 F,2 |
+[V:5] E2 F2 C C C G, F,2 G,2 |
+[V:6] C2 D2 A, A, A, E, D,2 E,2 |
+[V:7] E,2 (D,3/2 E,/) F, C, A, C, D,2 C,2 |
+[V:8] C,2 (D,3/2 E,/) F, C, A, C, D,2 C,2 |
+%
+% ─────────────────────────────────────────────────────────
+% BAR 12 (10 beats) — Penultimate phrase.
+% S1: z G (F3/2 E/) (D ^C) (D F) D2  (^C# kept in S1)
+% S2: z E (D3/2 C/) (B, A,) (B, D) B,2  (^C → B diatonic)
+% A1: z C (B,3/2 A,/) (G, F,) (G, B,) G,2
+% A2: z A, (G,3/2 F,/) (E, D,) (E, G,) E,2
+% T1 written: z A, (G,3/2 F,/) (E, D,) (E, A,) G,2 = concert z A2 G2 F2 E2 D2 E2 A2 G2 ✓
+%   (original S2V1 _B,→A, diatonic)
+% T2 written: z F, (E,3/2 D,/) (C, B,) (C, E,) C,2 = concert z F2 E2 D2 C2 B2 C2 E2 C2 ✓
+%   Note: B, written = B2 sounding (8vb) ✓ for T2 (G2–E4)
+% Bar: z G, (A,3/2 C/) (D A,) (F, D,) G,2 = z G2 A2 C3 D3 A2 F2 D2 G2 ✓ (10 beats)
+%   (original S2V2 raised octave, diatonic)
+% B1: z G, (A,3/2 C,/) (D, A,) (F, D,) G,2 = z G2 A2 C2 D2 A2 F2 D2 G2 ✓ (10 beats)
+% ─────────────────────────────────────────────────────────
+[V:1] z G (F3/2 E/) (D ^C) (D F) D2 |
+[V:2] z E (D3/2 C/) (B, A,) (B, D) B,2 |
+[V:3] z C (B,3/2 A,/) (G, F,) (G, B,) G,2 |
+[V:4] z A, (G,3/2 F,/) (E, D,) (E, G,) E,2 |
+[V:5] z A, (G,3/2 F,/) (E, D,) (E, A,) G,2 |
+[V:6] z F, (E,3/2 D,/) (C, B,) (C, E,) C,2 |
+[V:7] z G, (A,3/2 C/) (D A,) (F, D,) G,2 |
+[V:8] z G, (A,3/2 C,/) (D, A,) (F, D,) G,2 |
+%
+% ─────────────────────────────────────────────────────────
+% BAR 13 (10 beats) — Final descent, stretto.
+% S1: (F G) (A =B) (c3/2 B/ A3/2 G/ F E)  (=B is B natural, diatonic in C major)
+% S2: (D E) (F G) (A3/2 G/ F3/2 E/ D C)   (^C in orig alto → C diatonic)
+% A1: (B, C) (D E) (F3/2 E/ D3/2 C/ B, A,)
+% A2: (G, A,) (B, C) (D3/2 C/ B,3/2 A,/ G, F,)
+% T1 written: (A, B,) (C D) (E3/2 D/ C3/2 B,/ A, G,) = concert (A2 B2) (C3 D3) (E3 D3 C3 B2 A2 G2) ✓
+% T2 written: (F, G,) (A, B,) (C3/2 B,/ A,3/2 G,/ F, E,) = concert (F2 G2)(A2 B2)(C3 B2 A2 G2 F2 E2) ✓
+% Bar: (A, B,) (C D) (E3/2 D/ C3/2 B,/ A, G,) = A2 B2 C3 D3 E3 D3 C3 B2 A2 G2 ✓ (10 beats)
+%   (parallel with T1 an octave above — effective doubling)
+% B1: (D, C,) (F, D,) (C, E, F, C, D, A,) = D2 C2 F2 D2 C2 E2 F2 C2 D2 A2 ✓ (10 beats)
+%   (original S2V2, A,, raised to A,)
+% ─────────────────────────────────────────────────────────
+[V:1] (F G) (A =B) (c3/2 B/ A3/2 G/ F E) |
+[V:2] (D E) (F G) (A3/2 G/ F3/2 E/ D C) |
+[V:3] (B, C) (D E) (F3/2 E/ D3/2 C/ B, A,) |
+[V:4] (G, A,) (B, C) (D3/2 C/ B,3/2 A,/ G, F,) |
+[V:5] (A, B,) (C D) (E3/2 D/ C3/2 B,/ A, G,) |
+[V:6] (F, G,) (A, B,) (C3/2 B,/ A,3/2 G,/ F, E,) |
+[V:7] (A, B,) (C D) (E3/2 D/ C3/2 B,/ A, G,) |
+[V:8] (D, C,) (F, D,) (C, E, F, C, D, A,) |
+%
+% ─────────────────────────────────────────────────────────
+% BAR 14 (12 beats) — Final cadence. Stretto entries, full ensemble spread.
+% S1: !sintro!D E F G (F E) D ^C D4 !eintro!
+%   (^C# approaching final D — hallmark chromatic leading tone)
+% S2: !sintro!B, C D E (D C) B, A, B,4 !eintro!  (3rd below S1; ^C→B diatonic)
+% A1: !sintro!G, A, B, C (B, A,) G, F, G,4 !eintro!
+% A2: !sintro!D, E, F, G, (F, E,) D, C, D,4 !eintro!
+% T1 written: F, G, A, A, (A, G,) F, G, F,4 = concert F2 G2 A2 A2 A2 G2 F2 G2 F2 ✓
+%   (original S2V1: _B,→A,; ^F,→G, both diatonic substitutions)
+% T2 written: D, E, F, G, (F, E,) D, C, D,4 = concert D2 E2 F2 G2 F2 E2 D2 C2 D2 ✓
+% Bar: F, E, D, E, (D, C,) B, A, B,4 = F2 E2 D2 E2 D2 C2 B2 A2 B2 ✓
+%   (original bass raised octave; _B,→A, then B, = B2 diatonic)
+% B1: D, C, A, G, (A, C,) G, A, D,4 = D2 C2 A2 G2 A2 C2 G2 A2 D2 ✓
+%   (original bass diatonic subs; final D, = D2, grounded root)
+% ─────────────────────────────────────────────────────────
+[V:1] !sintro!D E F G (F E) D ^C D4 !eintro!|]
+[V:2] !sintro!B, C D E (D C) B, A, B,4 !eintro!|]
+[V:3] !sintro!G, A, B, C (B, A,) G, F, G,4 !eintro!|]
+[V:4] !sintro!D, E, F, G, (F, E,) D, C, D,4 !eintro!|]
+[V:5] !sintro!F, G, A, A, (A, G,) F, G, F,4 !eintro!|]
+[V:6] !sintro!D, E, F, G, (F, E,) D, C, D,4 !eintro!|]
+[V:7] !sintro!F, E, D, E, (D, C,) B, A, B,4 !eintro!|]
+[V:8] !sintro!D, C, A, G, (A, C,) G, A, D,4 !eintro!|]

@@ -1,0 +1,71 @@
+X: 232
+T: Lord of Life, All Praise Excelling
+C: Words: Clement C. Moore, 1808.
+C: Music: 'Hyfrydol' Rowland H. Prichard, 1830. Setting: "The English Hymnal", 1906.
+C: SSAATTBB arrangement for double choir and lever harp.
+C: copyright: public domain.
+M: 3/4
+L: 1/4
+Q: 1/4=130
+K: F
+%%staves [(1 2) (3 4) (5 6) (7 8)]
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+%
+% ======================================================
+% SECTION 1 (verse 1), bars 1–8
+% Texture: SSAA choir leads; TTBB enters bar 3 — antiphonal opening
+% ======================================================
+[V:1] F2 G | (F3/2 G/) A | B2 A | (G F) G | c2 B | A2 A | (G F) G | F3 |
+[V:2] C2 E | D2 F | G2 F | (E D) E | (A F) G | F2 F | (E D) E | F3 |
+[V:3] A,2 C | (A,3/2 B,/) C | D2 C | (C B,) C | F2 E | C2 D | (B, A,) C | A,3 |
+[V:4] F,2 A, | F,2 F, | (B, A,) F, | G,2 G, | C2 C | A,2 A, | (G, F,) G, | F,3 |
+[V:5] A2 c | (A3/2 B/) c | d2 c | (B A) B | e2 d | c2 c | (B A) B | A3 |
+[V:6] F2 G | (F3/2 G/) A | B2 A | (G F) G | c2 B | A2 A | (G F) G | F3 |
+[V:7] C2 E | F2 F | (F E) F | (C D) C | A2 G | F2 A | (B, A,) C | A,3 |
+[V:8] F,2 C, | F,2 F, | (F, E,) F, | (C, D,) C, | A,2 G, | F,2 A,, | (B,, D,) C, | F,3 |
+%
+% ======================================================
+% SECTION 2 (verse 2, repeat of verse 1 melody), bars 9–16
+% Texture: Full 8-voice homophony; slight reharmonization of middle voices
+% ======================================================
+[V:1] F2 G | (F3/2 G/) A | B2 A | (G F) G | c2 B | A2 A | (G F) G | F3 |
+[V:2] C2 E | D2 F | G2 F | (E D) E | (A F) G | F2 F | (E D) E | F3 |
+[V:3] A,2 C | (A,3/2 B,/) C | D2 C | (C B,) C | E2 D | C2 C | (B, A,) C | A,3 |
+[V:4] F,2 A, | F,2 F, | (B, A,) F, | G,2 G, | C2 B, | A,2 A, | (G, F,) G, | F,3 |
+[V:5] A2 c | (A3/2 B/) c | d2 c | (B A) B | c2 d | e2 e | (d c) B | A3 |
+[V:6] F2 G | F2 A | B2 A | (G F) G | A2 G | C2 C | (B, A,) G, | F3 |
+[V:7] C2 E | F2 F | (F E) F | (C D) C | A,2 G, | F,2 A, | (B, A,) C | A,3 |
+[V:8] F,2 C, | F,2 F, | (F, E,) F, | (C, D,) C, | A,2 G, | F,2 A,, | (B,, D,) C, | F,3 |
+%
+% ======================================================
+% SECTION 3 (contrasting middle section), bars 17–24
+% Texture: Call and response — S1/B1 outer voices, inner voices sustain
+% ======================================================
+[V:1] c2 c | (c B) A | B2 B | (B A) G | A2 A | (A B) c | (c B) A | G3 |
+[V:2] A2 G | (A G) F | G2 G | (G F) E | F2 F | (F G) A | (A G) F | (F2 E) |
+[V:3] E2 E | F2 F | (F E) D | (E F) E | E2 E | (E F) E | (E D) C | C3 |
+[V:4] C2 C | D2 D | D2 D | C2 C | C2 C | C2 C | (C B,) A, | G,3 |
+[V:5] g2 g | (g f) e | f2 f | (f e) d | e2 e | (e f) g | (g f) e | d3 |
+[V:6] e2 e | (e d) c | d2 d | (d c) B | c2 c | c2 c | (c B) A | B3 |
+[V:7] C2 C | (F, G,) A, | G,2 G, | (G, C) B, | A,2 C | D2 C | D2 D | G,3 |
+[V:8] A,2 A, | D,2 D, | G,2 G, | (C, D,) E, | F,2 E, | D,2 A,, | G,,2 B,, | C,3 |
+%
+% ======================================================
+% SECTION 4 (finale), bars 25–32
+% Texture: Stretto at bar 25, climax bar 29–30, suspension cadence bar 31–32
+% ======================================================
+[V:1] (c A) c | (B G) B | (A F) A | (G/A/ B/A/) G | c2 c | (d c) B | A2 G | F3 |]
+[V:2] (A F) A | (G E) G | (F C) F | (E F) E | (A F) A | (B A) G | F2 E | F3 |]
+[V:3] E2 F | D2 E | C2 D | C2 B, | E2 E | (F E) D | C2 C | C3 |]
+[V:4] C2 C | B,2 C | A,2 A, | G,2 G, | C2 C | D2 D | A,2 A, | A,3 |]
+[V:5] g2 a | f2 g | e2 f | e2 d | g2 g | (a g) f | e2 d | c3 |]
+[V:6] e2 f | d2 e | c2 d | c2 B | e2 e | (f e) d | c2 B | A3 |]
+[V:7] A,2 F, | (F, E,/D,/) E, | (F, E,) D, | (E, D,) C, | F,2 A, | (B, A,) G, | A,2 C | F,3 |]
+[V:8] A,2 F, | (F, E,/D,/) E, | (F, E,) D, | (E,/C,/ D,) E, | F,2 A,, | (B,, A,,) B,, | C,2 C, | F,,3 |]

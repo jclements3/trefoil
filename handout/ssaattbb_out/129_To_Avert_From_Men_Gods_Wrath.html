@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>To Avert From Men God's Wrath — SSAATTBB</title>
+<style>
+body { font-family: sans-serif; margin: 20px; background: #fff; }
+h1 { font-size: 18px; }
+</style>
+</head>
+<body>
+<h1>To Avert From Men God's Wrath — SSAATTBB</h1>
+<div id="music"></div>
+<script src="../../abc2stripchart/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X:1\nT: To Avert From Men God's Wrath\nC: Words: Latin c. 1400, sometimes attr. John Hus. Translated Christian Ignatius Latrobe, 1789.\nC: Music: 'Gethsemane' or 'Petra' Richard Redhead, 1853.\nC: Setting: \"The Church Hymnal, Revised and Enlarged\" (Episcopal), 1896.\nC: Arr. for SSAATTBB and lever harp (Eb storage tuning), 2026.\nC: copyright: public domain.\nM: 4/4\nL: 1/4\nQ: 1/4=90\n%%staves [(V1 V2) (V3 V4) (V5 V6) (V7 V8)]\nV:1 name=\"Soprano I\"  clef=treble\nV:2 name=\"Soprano II\" clef=treble\nV:3 name=\"Alto I\"     clef=treble\nV:4 name=\"Alto II\"    clef=treble\nV:5 name=\"Tenor I\"    clef=treble middle=B3 transpose=-12\nV:6 name=\"Tenor II\"   clef=treble middle=B3 transpose=-12\nV:7 name=\"Baritone\"   clef=bass\nV:8 name=\"Bass I\"     clef=bass\nK: Eb\n%%\n% Bars 1-4: SSAA + B1 (5 voices); T1 T2 enter bar 3; Bar enters bar 5\n%%\n% --- Bar 1-4: Soprano I (original soprano) ---\n[V:1] [Q:1/4=90] E E F G | A3/2 A/ G2 | E E F G | F F E2 |\n% --- Bar 5-8 ---\n[V:1] E G B B | c c B2 | E G B B | c c B2 |\n% --- Bar 9-12 ---\n[V:1] E E F G | A3/2 A/ G2 | !sintro!E F G F | E D E2 !eintro!|]\n%%\n% --- Soprano II: diatonic 3rd below S1 ---\n[V:2] C C D E | F3/2 F/ E2 | C C D E | D D C2 |\n[V:2] C E G G | A A G2 | C E G G | A A G2 |\n[V:2] C C D E | F3/2 F/ E2 | C D E D | C B, C2 |]\n%%\n% --- Alto I: independent melodic line, diatonic ---\n[V:3] B, B, B, c | d3/2 d/ c2 | A, B, c c | A, B, G,2 |\n[V:3] G, B, d d | E F G2 | G, B, d d | c B, A,2 |\n[V:3] G, A, B, c | d3/2 d/ c2 | A, B, c B, | G, F, G,2 |]\n%%\n% --- Alto II: diatonic, mostly contrary motion to A1 ---\n[V:4] G, G, G, A, | A,3/2 A,/ G,2 | E, E, G, G, | F, G, E,2 |\n[V:4] E, G, B, B, | G, F, E,2 | E, G, B, B, | E, D, E,2 |\n[V:4] E, F, G, A, | A,3/2 A,/ G,2 | E, F, G, F, | E, D, E,2 |]\n%%\n% --- Tenor I: original tenor line, diatonic (written at 8vb treble); enters bar 3 ---\n[V:5] z4 | z4 | G G B B | c B G2 |\n[V:5] G c d e | c d e2 | B B B B | B A B2 |\n[V:5] B B A B | c3/2 c/ B2 | B A B A | G F G2 |]\n%%\n% --- Tenor II: diatonic 3rd below T1 (written at 8vb treble); enters bar 3 ---\n[V:6] z4 | z4 | E E G G | A G E2 |\n[V:6] E A B c | A B c2 | G G G G | G F G2 |\n[V:6] G G F G | A3/2 A/ G2 | G F G F | E D E2 |]\n%%\n% --- Baritone: diatonic 3rd above B1; enters bar 5 ---\n[V:7] z4 | z4 | z4 | z4 |\n[V:7] G, E, D, G, | C C G,2 | B, G, F, B, | B, A, D,2 |\n[V:7] B, B, A, G, | C,3/2 C,/ G,2 | B, A, G, C, | D, D, G,2 |]\n%%\n% --- Bass I: original bass, diatonic ---\n[V:8] E, E, B,, E, | A,,3/2 A,,/ E,2 | E, C, B,, E, | A,, B,, E,2 |\n[V:8] E, C, B,, E, | A, A, E,2 | G, E, D, G, | E, F, B,,2 |\n[V:8] G, G, F, E, | A,,3/2 A,,/ E,2 | G, F, E, A,, | B,, B,, E,2 |]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ""; }
+};
+var abc = new abc2svg.Abc(user);
+abc.tosvg("score", abc_src);
+</script>
+</body>
+</html>

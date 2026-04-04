@@ -1,0 +1,64 @@
+X: 1
+T: Lamp of Our Feet
+T: SSAATTBB Arrangement
+C: Words: Bernard Barton, 1826. Music: 'St. Agnes' John B. Dykes, 1866.
+C: Setting: "Hymnal and Canticles of the Protestant Episcopal Church", 1875.
+C: SSAATTBB arrangement for double choir and lever harp, 2026.
+C: copyright: public domain (original). Arrangement public domain.
+M: 3/4
+L: 1/4
+Q: 1/4=140
+%%staves [(1 2) (3 4) (5 6) (7 8)]
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+K: G
+%%
+%% --- PHRASE 1 (bars 1-4): Full 8-voice homophony ---
+%%
+[V:1] B  B  B  | A2 B  | c2 F  | G3      |
+[V:2] G  G  G  | F2 G  | A2 D  | E3      |
+[V:3] D  D  E  | E2 D  | E  D  D | D  E  D |
+[V:4] B, B, A, | A,2 B,| C  B, B,| B, A, B,|
+[V:5] B  B  G  | E2 B  | B  A  G | G  A  B |
+[V:6] G  A  G  | G2 c  | E  F  G | B  A  G |
+[V:7] B, B, E, | E,2 E,| C2 F, | B,3     |
+[V:8] G, G, C, | C,2 C,| A,2 D,| G,3     |
+%%
+%% --- PHRASE 2 (bars 5-7): SSAA + Bass; Tenors & Bar in contrary motion ---
+%%
+[V:1] D  D  D  | B2 A  | A3      |
+[V:2] B, B, B, | G2 F  | F3      |
+[V:3] F  D  C  | D  E  D | D  C  B,|
+[V:4] B, A, G, | B, A, G,| A, G, F,|
+[V:5] A  B  c  | G  A  B | F  G  A |
+[V:6] G  F  E  | E  D  C | D  C  B |
+[V:7] C  B, A, | B, B, G,| F,3     |
+[V:8] A, G, F, | G,2 E, | D,3     |
+%%
+%% --- PHRASE 3 (bars 8-11): Antiphonal — bars 8-9 SSAA, bars 10-11 TTBB ---
+%%
+[V:1] c  c  B  | A2 G  | z3      | z3      |
+[V:2] A  A  G  | F2 E  | z3      | z3      |
+[V:3] C  E  E  | E  D  C| z3      | z3      |
+[V:4] A, G, E, | A, B, C| z3      | z3      |
+[V:5] z3       | z3     | E  F  G | F  E  D |
+[V:6] z3       | z3     | B  A  G | D  E  F |
+[V:7] z3       | z3     | F,2 F, | F,2 E, |
+[V:8] z3       | z3     | D,2 D, | D,2 C, |
+%%
+%% --- PHRASE 4 (bars 12-14): Full 8-voice climax and cadence ---
+%%
+[V:1] D  E  G  | B2 A  | G3      |]
+[V:2] B, C  E  | G2 F  | E3      |]
+[V:3] B, D  D  | G  E  D| E  D  D |]
+[V:4] G, A, B, | C  B, A,| G, A, B,|]
+[V:5] D  E  G  | G  A  B | B  A  G |]
+[V:6] B  A  F  | E  D  C | D  E  G |]
+[V:7] E, E, G, | F,2 F, | B,3     |]
+[V:8] C, C, E, | D,2 D, | G,3     |]

@@ -1,0 +1,333 @@
+X:22
+T:O Lord, How Shall I Meet Thee
+C:Words: Paul Gerhardt, 1653. Translator unknown.
+C:Music: 'Wie Soll ich Dich Empfangen' Johann Crüger, 1653.
+C:Setting: "Evangelical Lutheran Hymn-Book", 1931.
+C:SSAATTBB arrangement: 2026.
+C:copyright: public domain.
+M:4/4
+L:1/4
+Q:1/4=140
+K:Eb
+%%staves [(1 2) (3 4) (5 6) (7 8)]
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+%
+% Tenor written pitches sound one octave lower (transpose=-12).
+% Written G, = sounds G2 (T2 minimum); written B = sounds Bb3; written E = sounds Eb3.
+% Bass clef: E, = Eb2, B, = Bb2, G, = G2, C = C3, E = Eb3.
+%
+% ================================================================
+% PHRASE A — first time: SSAA only (4-voice opening, reduced texture)
+% ================================================================
+%
+% Pickup bar (2 beats), I = Eb major
+[V:1] [Q:1/4=140] E2 |
+[V:2]              B,2 |
+[V:3]              G,2 |
+[V:4]              E,2 |
+[V:5]              z2 |
+[V:6]              z2 |
+[V:7]              z2 |
+[V:8]              z2 |
+%
+% Bar 1  Eb/G | Ab | Bb | Bb
+[V:1] G A B B |
+[V:2] E E D E |
+[V:3] B, C F, G, |
+[V:4] G, A, B, G, |
+[V:5] z4 |
+[V:6] z4 |
+[V:7] z4 |
+[V:8] z4 |
+%
+% Bar 2  Ab | Fm | Eb | Ab
+[V:1] A2 G A |
+[V:2] (C D) E E |
+[V:3] A,2 C C |
+[V:4] F,2 G, F, |
+[V:5] z4 |
+[V:6] z4 |
+[V:7] z4 |
+[V:8] z4 |
+%
+% Bar 3  Eb/G | Eb | Bb/F | Bb/F
+[V:1] G E F F |
+[V:2] E B, C D |
+[V:3] B, B, A, F, |
+[V:4] G, G, F, D, |
+[V:5] z4 |
+[V:6] z4 |
+[V:7] z4 |
+[V:8] z4 |
+%
+% Phrase-end, 2 beats  I = Eb
+[V:1] E2 |
+[V:2] B,2 |
+[V:3] G,2 |
+[V:4] E,2 |
+[V:5] z2 |
+[V:6] z2 |
+[V:7] z2 |
+[V:8] z2 |
+%
+% ================================================================
+% PHRASE A — repeat: full 8 voices, homophonic
+% ================================================================
+%
+% Pickup bar (2 beats), I = Eb major
+[V:1] E2 |
+[V:2] B,2 |
+[V:3] G,2 |
+[V:4] E,2 |
+[V:5] G2 |
+[V:6] E2 |
+[V:7] G,2 |
+[V:8] E,2 |
+%
+% Bar 5  Eb/G | Ab | Bb | Bb
+% T1 written: E F G F (sounds Eb3 F3 G3 F3) — inner tenor line
+% T2 written: C D E D (sounds C3 D3 Eb3 D3) — stepwise tenor
+% Bar: G, A, B, G,  (G2 Ab2 Bb2 G2)
+% B1: E, F, G, E,  (Eb2 F2 G2 Eb2)
+[V:1] G A B B |
+[V:2] E E D E |
+[V:3] B, C F, G, |
+[V:4] G, A, B, G, |
+[V:5] E F G F |
+[V:6] C D E D |
+[V:7] G, A, B, G, |
+[V:8] E, F, G, E, |
+%
+% Bar 6  Ab | Fm | Eb | Ab
+% T1 written: A G F A (sounds Ab3 G3 F3 Ab3)
+% T2 written: F E D F (sounds F3 Eb3 D3 F3)
+% Bar: A, G, E, A,  (Ab2 G2 Eb2 Ab2)
+% B1: F, E, C, F,  (F2 Eb2 C2 F2)
+[V:1] A2 G A |
+[V:2] (C D) E E |
+[V:3] A,2 C C |
+[V:4] F,2 G, F, |
+[V:5] A G F A |
+[V:6] F E D F |
+[V:7] A, G, E, A, |
+[V:8] F, E, C, F, |
+%
+% Bar 7  Eb/G | Eb | Bb/F | Bb/F
+% T1 written: G E F F (sounds G3 Eb3 F3 F3)
+% T2 written: E B, C D (sounds Eb3 Bb2 C3 D3)
+% Bar: B, G, F, F,  (Bb2 G2 F2 F2)
+% B1: G, E, F, F,  (G2 Eb2 F2 F2) — parallel with Bar on beats 3-4 (unison 5th apart—ok)
+%   Better B1: G, E, D, B,,  → B,, = Bb1 too low. Use: G, E, F, D,  (G2 Eb2 F2 D2)
+%   D2 in B1 range (C2-A3) ✓
+[V:1] G E F F |
+[V:2] E B, C D |
+[V:3] B, B, A, F, |
+[V:4] G, G, F, D, |
+[V:5] G E F F |
+[V:6] E B, C D |
+[V:7] B, G, F, F, |
+[V:8] G, E, F, D, |
+%
+% Phrase-end, 2 beats  I = Eb
+[V:1] E2 |
+[V:2] B,2 |
+[V:3] G,2 |
+[V:4] E,2 |
+[V:5] G2 |
+[V:6] E2 |
+[V:7] G,2 |
+[V:8] E,2 |
+%
+% ================================================================
+% PHRASE B — melody climbs higher; SSAA vs TTBB antiphonal texture
+% Pickup (2 beats), I = Eb, S1 rises to Bb4
+% ================================================================
+%
+% Pickup bar (2 beats)
+[V:1] B2 |
+[V:2] G2 |
+[V:3] E2 |
+[V:4] C2 |
+[V:5] B2 |
+[V:6] G2 |
+[V:7] E2 |
+[V:8] E,2 |
+%
+% Bar 9  Cm | Bb/D | Eb | Bb/D
+% S1: c d e d  (C5 D5 Eb5 D5)
+% S2: G A B B  (G4 Ab4 Bb4 Bb4) — SSAA choir active
+% A1: E F G F  (Eb4 F4 G4 F4)
+% A2: C D E D  (C4 D4 Eb4 D4)
+% T1 written: G A B B (sounds G3 Ab3 Bb3 Bb3)
+% T2 written: E F G G (sounds Eb3 F3 G3 G3)
+% Bar: A, B, B, B,  (Ab2 Bb2 Bb2 Bb2)
+% B1: A,, B,, E, B,,  → fix: A, B, G, B,
+[V:1] c d e d |
+[V:2] G A B B |
+[V:3] E F G F |
+[V:4] C D E D |
+[V:5] G A B B |
+[V:6] E F G G |
+[V:7] A, B, B, B, |
+[V:8] A, G, E, G, |
+%
+% Bar 10  Cm | Cm | Bb | Eb
+% S1: c2 B G
+% S2: G2 F E
+% A1: E2 D B,
+% A2: C2 B, G,
+% T1 written: G2 F E (sounds G3 G3 F3 Eb3)
+% T2 written: E2 D B, (sounds Eb3 Eb3 D3 Bb2)
+% Bar: A,2 G, E,
+% B1: A,2 B, E,
+[V:1] c2 B G |
+[V:2] G2 F E |
+[V:3] E2 D B, |
+[V:4] C2 B, G, |
+[V:5] G2 F E |
+[V:6] E2 D B, |
+[V:7] A,2 G, E, |
+[V:8] A,2 B, E, |
+%
+% Bar 11  Fm | Bb | Ab | Eb/G
+% S1: c B A G
+% S2: G F E E  (Ab4 move: E=Eb4 diatonic OK)
+% A1: E D C B,
+% A2: C B, A, G,
+% T1 written: E D C B (sounds Eb3 D3 C3 Bb2... Bb2 OK for T1 minimum B2)
+%   Actually T1 min is B2; Bb2 is fine.
+% T2 written: C B, A, G (sounds C3 Bb2 Ab2 G2 — G2 is T2 minimum, fine)
+% Bar: A, G, F, E,
+% B1: A, B, C E,  (Ab2 Bb2 C3 Eb2 — good range)
+[V:1] c B A G |
+[V:2] G F E E |
+[V:3] E D C B, |
+[V:4] C B, A, G, |
+[V:5] E D C B, |
+[V:6] C B, A, G, |
+[V:7] A, G, F, E, |
+[V:8] A, B, C E, |
+%
+% Phrase-end, 2 beats  V = Bb
+[V:1] F2 |
+[V:2] D2 |
+[V:3] B,2 |
+[V:4] F,2 |
+[V:5] D2 |
+[V:6] B,2 |
+[V:7] F,2 |
+[V:8] B,2 |
+%
+% ================================================================
+% PHRASE C — full 8 voices, climax and stretto cadence
+% Pickup (2 beats), I = Eb
+% ================================================================
+%
+% Pickup bar (2 beats)
+[V:1] !sintro!G2 |
+[V:2] E2 |
+[V:3] B,2 |
+[V:4] G,2 |
+[V:5] G2 |
+[V:6] E2 |
+[V:7] G,2 |
+[V:8] E,2 |
+%
+% Bar 13  Eb | Fm | Eb/G | Bb
+% S1: E F G B  (Eb4 F4 G4 Bb4)
+% S2: C D E G  (C4 D4 Eb4 G4)
+% A1: G, A, B, E  (G3 Ab3 Bb3 Eb4)
+% A2: E, F, G, B,  (Eb3 F3 G3 Bb3)
+% T1 written: G A B E (sounds G3 Ab3 Bb3 Eb3)  — wait E written = Eb4 → sounds Eb3. OK.
+%   Actually: G written=G4 8vb=G3✓, A=Ab4→Ab3✓, B=Bb4→Bb3✓, E=Eb4→Eb3✓
+% T2 written: E F G B, (Eb4→Eb3, F4→F3, G4→G3, Bb3→Bb2)
+% Bar: C, D, E, G,  (C2 D2 Eb2... wait C, = C2 in bass; E, = Eb2)
+%   Bar range min Eb2 = E,. C, = C2 which is below Bar minimum E2 (Eb2).
+%   So use E, D, E, G,  or just adjust: C, would be C2 which is too low for Bar.
+%   Bar minimum is E2 (Eb2). Use: E, F, G, B,  (Eb2 F2 G2 Bb2) — works!
+% B1: C, B,, E, G,,  → C, = C2 fine, B,, = Bb1 too low!
+%   Fix B1: use C, B, E, G,  (C2 Bb2 Eb2... wait B, = Bb2, G, = G2)
+%   Better: E, F, G, B,  but then Bar and B1 parallel octaves...
+%   B1: E, D, E, G,  would double Bar too much.
+%   Let's use B1: C, D, E, G,  — C2 D2 Eb2 G2 — all within B1 range C2-A3 ✓
+%   And Bar: E, F, G, B,  (Eb2 F2 G2 Bb2) — Bar range E2-C4 ✓
+%   No parallel issues? Bar Eb2-F2-G2-Bb2, B1 C2-D2-Eb2-G2 — contrary motion mostly.
+[V:1] E F G B |
+[V:2] C D E G |
+[V:3] G, A, B, E |
+[V:4] E, F, G, B, |
+[V:5] G A B E |
+[V:6] E F G G |
+[V:7] E, F, G, B, |
+[V:8] C, D, E, G, |
+%
+% Bar 14  Ab | Ab | Eb/G | Bb  — climax approach, S1 reaches Bb4
+% S1: A2 G B  (Ab4 Ab4 G4 Bb4)
+% S2: F2 E G  (F4 F4 Eb4 G4)
+% A1: C2 B, E  (C4 C4 Bb3 Eb4)
+% A2: A,2 G, B,  (Ab3 Ab3 G3 Bb3)
+% T1 written: C2 B E (C4→C3, B4→Bb3, E4→Eb3)
+% T2 written: A,2 G B, (Ab3→Ab2, G4→G3... wait A, written = Ab3 → sounds Ab2. G written = G4 → sounds G3. B, written = Bb3 → sounds Bb2)
+%   T2: Ab2, Ab2, G3, Bb2 — big leap G3 to Bb2. Better: A,2 G, B, (sounds Ab2 Ab2 G2 Bb2)
+% Bar: F,2 E, G,  (F2 F2 Eb2 G2)
+% B1: F,2 E, G,  — same as Bar, parallel octaves problem. Use:
+%   B1: F,2 B, G,  (F2 F2 Bb2 G2) — better contrary motion in beat 3
+%   Actually: B1 should be bass-register. Use: F,2 E, G,  with Bar differently.
+%   Bar: A,2 G, B,  (Ab2 Ab2 G2 Bb2) — keeps Bar above B1
+%   B1: F,2 E, G,  (F2 F2 Eb2 G2)
+[V:1] A2 G B |
+[V:2] F2 E G |
+[V:3] C2 B, E |
+[V:4] A,2 G, B, |
+[V:5] C2 B E |
+[V:6] F2 E B, |
+[V:7] A,2 G, B, |
+[V:8] F,2 E, G, |
+%
+% Bar 15  Ab | Eb/G | Bb7 | Bb7  — suspension builds to cadence
+% S1: A G F F  (Ab4 G4 F4 F4)
+% S2: F E D D  (F4 Eb4 D4 D4)
+% A1: C B, B, A,  (C4 Bb3 Bb3 Ab3) — 4-3 suspension over Bb7
+% A2: A, G, F, F,  (Ab3 G3 F3 F3)
+% T1 written: C B B A (C4→C3, B4→Bb3, B4→Bb3, A4→Ab3)  — 4-3 suspension
+% T2 written: A, G, F, F, (Ab3→Ab2, G3→G2... wait G, written = G3 → G2)
+%   T2 min = G2; G, written = G3 → sounds G2 ✓. F, written = F3 → sounds F2 — BELOW T2 min G2!
+%   Fix T2 bar 15: use A, G, G, G (Ab3→Ab2, G3→G2, G3→G2, G3→G2)? But then 3 repeated notes.
+%   Or: A, G, B, B, (Ab2, G2, Bb2, Bb2) — more musical. Written: A, G, B, B,
+% Bar: F, E, D, D,  (F2 Eb2 D2 D2) — D2: is D2 in Bar range? Bar min=Eb2. D2 is below!
+%   Fix Bar: F, E, F, F,  (F2 Eb2 F2 F2) or F, E, B, B,  (F2 Eb2 Bb2 Bb2)
+%   Better: A, G, F, F,  (Ab2 G2 F2 F2) — all within Bar range Eb2-C4 ✓
+% B1: F, E, B,, B,,  — B,, = Bb1, too low! Fix: F, E, B, B,  (F2 Eb2 Bb2 Bb2) ✓
+[V:1] A G F F |
+[V:2] F E D D |
+[V:3] C B, B, A, |
+[V:4] A, G, F, F, |
+[V:5] A B B A |
+[V:6] A, G, B, B, |
+[V:7] A, G, B, B, |
+[V:8] F, E, F, F, |
+%
+% Final bar, 2 beats + fermata, I = Eb  (stretto: all voices unison Eb)
+% S1: Eb4; S2: Bb3; A1: G3; A2: Eb3; T1: Bb3(written B); T2: G3(written G); Bar: Eb3(E); B1: Eb2(E,)
+% For a rich final chord rather than unison: spread Eb major chord
+% S1: E (Eb4); S2: B, (Bb3); A1: G, (G3); A2: E, (Eb3)
+% T1 written: G (G4 → sounds G3); T2 written: E (Eb4 → sounds Eb3)
+% Bar: G, (G2); B1: E, (Eb2)
+% Check: SSAA = Eb4 Bb3 G3 Eb3 — nice Eb major chord in close position ✓
+% TTBB: G3 Eb3 G2 Eb2 — Eb chord ✓
+% Final note: let's give full chord Eb G Bb Eb in each pair
+[V:1] !fermata!E2 !eintro!|]
+[V:2] B,2 |]
+[V:3] G,2 |]
+[V:4] E,2 |]
+[V:5] G2 |]
+[V:6] E2 |]
+[V:7] G,2 |]
+[V:8] E,2 |]

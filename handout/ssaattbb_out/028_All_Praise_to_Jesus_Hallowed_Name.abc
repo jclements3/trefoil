@@ -1,0 +1,190 @@
+X: 28
+T: All Praise to Jesus' Hallowed Name
+T: (Gelobet Seist Du)
+C: Words: verse 1, ancient German. Verses 2-7, Martin Luther, 1524. Tr. Richard Massie, 1854, alt.
+C: Music: 'Gelobet Seist Du', Walter's Geistliche Gesangbüchlein, 1524.
+C: Setting: Karl August Haupt, 1869. SSAATTBB arr. 2026, public domain.
+M: 4/4
+L: 1/4
+Q: 1/4=108
+%%staves [(1 2) (3 4) (5 6) (7 8)]
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+K: C
+%
+% Concert-pitch register guide
+%   Treble (V1-V4): C=C4  G=G4  c=C5  d=D5  e=E5
+%   Tenor  (V5-V6): written an 8va up; written B = sounds B3
+%                   written G = sounds G3  written c = sounds C4  written e = sounds E4
+%   Bass   (V7-V8): C,,=C2  D,,=D2  G,,=G2  B,,=B2
+%                   C,=C3   D,=D3   E,=E3   G,=G3   B,=B3
+%
+% ─────────────────────────────────────────────
+% PICKUP  beat 4 only — 4 voices (S1 A1 T1 B1)
+% Opens spare; S2 A2 T2 Bar silent
+% ─────────────────────────────────────────────
+[V:1] G |
+[V:2] z |
+[V:3] C |
+[V:4] z |
+[V:5] B |
+[V:6] z |
+[V:7] z |
+[V:8] G, |
+%
+% ─────────────────────────────────────────────
+% BAR 1   S1: G G A G
+% Beats 1-2: SSAA only (6-voice opening)
+% Beats 3-4: TTBB enters — antiphonal texture
+% ─────────────────────────────────────────────
+% Pitches concert: S1=G4 G4 A4 G4  S2=E4 E4 F4 E4
+%  A1=C4 E4 D4 C4  A2=G3 B3 A3 G3
+%  T1=B3 B3 A3 B3  T2=G3 G3 F3 G3
+%  Bar=D3 D3 F3 E3  B1=E3 C3 F3 E3
+% Check parallel 5ths S1/A1: G↓C (5th)→G↓E (3rd) OK
+%                  S1/B1 : z z A/F(3) G/E(3) OK
+[V:1] G  G  A  G  |
+[V:2] E  E  F  E  |
+[V:3] C  D  D  C  |
+[V:4] G, B, A, G, |
+[V:5] z  z  A  B  |
+[V:6] z  z  F  G  |
+[V:7] z  z  A, G, |
+[V:8] z  z  F, E, |
+%
+% ─────────────────────────────────────────────
+% BAR 2   S1: c d c2
+% Full 8 voices, homophonic
+% SSAA: S1=C5 S2=E4 A1=G4 A2=C4 — 4 distinct pitches
+% TTBB: T1=C4 T2=G3 Bar=E3 B1=C3 — 4 distinct pitches
+% Bar a M3 above B1: E3/C3 = minor 3rd (acceptable)
+% ─────────────────────────────────────────────
+[V:1] c  d  c2 |
+[V:2] E  G  E2 |
+[V:3] G  B  G2 |
+[V:4] C  D  C2 |
+[V:5] c  d  c2 |
+[V:6] G  A  G2 |
+[V:7] E, F, E,2 |
+[V:8] C, D, C,2 |
+%
+% ─────────────────────────────────────────────
+% BAR 3   S1: B d e d
+% Full 8 voices; alto contrary motion; tenor in parallel thirds
+% SSAA: S1=B4 D5 E5 D5  S2=G4 B4 C5 B4  A1=D4 G4 G4 F4  A2=B3 D4 E4 D4
+%  No S-voice/A-voice unisons; all distinct
+% TTBB: T1=G3 B3 C4 B3  T2=D3 F3 G3 F3  Bar=G3 B3 C4 B3  B1=G3 G3 C3 D3
+%  Bar and T1 share G3/B3/C4/B3 — cross-choir unison permitted
+%  Bar/B1: beat1 G3/G3 — BAR=B1 unison on beat 1.  Fix: Bar beat 1 → B,=B3
+% ─────────────────────────────────────────────
+[V:1] B  d  e  d  |
+[V:2] G  B  c  B  |
+[V:3] D  G  G  F  |
+[V:4] B, D  E  D  |
+[V:5] G  B  c  B  |
+[V:6] D  F  G  F  |
+[V:7] B, A, E, F, |
+[V:8] G, G, C, D, |
+%
+% ─────────────────────────────────────────────
+% BAR 4   S1: B A G(fermata) G
+% 4-3 suspensions at fermata; Bar third above B1
+% B1=G3 D3 G3 C3; Bar=B3 F3 B3 E3 (thirds above)
+% beat3 fermata: S1=G4 S2=E4 A1=D4 A2=B3 T1=B3 T2=G3 Bar=B3 B1=G3
+%   B3 appears in A2, T1, Bar — cross-choir unisons A2/T1 permitted;
+%   Bar/B1=B3/G3 OK; T1/Bar unison B3 — T1 in tenor choir, Bar in bass choir: cross-choir, permitted
+% ─────────────────────────────────────────────
+[V:1] B  A  !fermata!G  G  |
+[V:2] G  F  !fermata!E  E  |
+[V:3] D  D  !fermata!D  C  |
+[V:4] G, C  !fermata!B, B, |
+[V:5] D  D  !invertedfermata!B  B  |
+[V:6] G, A, !invertedfermata!G  G  |
+[V:7] B,  F, !invertedfermata!A,  E, |
+[V:8] G,  D, !invertedfermata!G,  C, |
+%
+% ─────────────────────────────────────────────
+% BAR 5   S1: c B d A
+% Call-and-response: S1/B1 carry outer melody; inner voices independent
+% B1 follows original bass: E3 G3 B2 D3
+% Bar third above B1: G3 B3 D3 F3
+% ─────────────────────────────────────────────
+[V:1] c  B  d  A  |
+[V:2] G  G  A  F  |
+[V:3] E  D  F  E  |
+[V:4] C  B, D  C  |
+[V:5] e  d  f  e  |
+[V:6] c  B  d  c  |
+[V:7] G,  A,  D,  F, |
+[V:8] E,  G,  B,, D, |
+%
+% ─────────────────────────────────────────────
+% BAR 6   S1: G E D(fermata) D
+% Cadence on C; diatonic reharmonization of original chromatic beats
+% Original A had ^C (C#4) on beat 3 → replaced with C4 (neighbor)
+% Original T had ^F (F#3) on beats 3-4 → replaced with F3 / E3
+% B1 follows original bass: E3 A2 D3 D3
+% Bar third above B1: G3 C3 F3 F3
+% ─────────────────────────────────────────────
+[V:1] G  E  !fermata!D  D  |
+[V:2] E  C  !fermata!D  C  |
+[V:3] C  A, !fermata!A, G, |
+[V:4] G, E, !fermata!F, E, |
+[V:5] B  c  !invertedfermata!A  A  |
+[V:6] G  G  !invertedfermata!F  E  |
+[V:7] A,  C,  !invertedfermata!E,  F, |
+[V:8] E,  A,, !invertedfermata!D,  D, |
+%
+% ─────────────────────────────────────────────
+% BAR 7   S1: A A A d — climax approach
+% Canonic imitation: T1 echoes S1's ascending line a 10th below
+% A voices in contrary motion: A1 descends E-C-D-D; A2 ascends A-G-F-G
+% Accidental substitution: original A had ^C → C; original T had ^F → E
+% B1 follows original bass: A2 C3 D3 B2
+% Bar third above B1: C3 E3 F3 D3
+% ─────────────────────────────────────────────
+[V:1] A  A  A  d  |
+[V:2] C  E  D  F  |
+[V:3] E  C  D  D  |
+[V:4] A, G, F, G, |
+[V:5] e  e  e  f  |
+[V:6] c  c  c  d  |
+[V:7] C,  E,  F,  D, |
+[V:8] A,,  C,  D,  B,, |
+%
+% ─────────────────────────────────────────────
+% BARS 8-9   S1: c A (G/A/ B | A) G G G
+% Climax at bar 8 beat 1: S1=C5 spans above rest; T1 soars to e(E4)
+% Tied phrase bridges bars; stretto cadence
+% Original T had ^F → F,/E, (diatonic); original B had ^C, → C, (diatonic)
+% B1: C3 D3 (E3 B2/C3 | D3) E3 B2 C3  [close to original bass]
+% Bar: E3 F3 (G3 D3/E3 | F3) G3 D3 E3  [third above B1]
+% ─────────────────────────────────────────────
+[V:1] c  A  (G/A/ B  | !fermata!A)  G  G  G  |
+[V:2] E  D  (D/ E/ D  | D)  E  E  E  |
+[V:3] G  F  (E/ F/ G  | F)  C  D  E  |
+[V:4] C  C  (B,/ C/ D | C)  C  B, C  |
+[V:5] e  c  (B/ c/ d  | c)  B  c  d  |
+[V:6] c  A  (G/ A/ B  | A)  G  G  A  |
+[V:7] E,  F,  (A, D,/ E,/ | F,)  A,  D,  E, |
+[V:8] C,  D,  (E, B,,/ C,/ | D,)  E,  B,, C, |
+%
+% ─────────────────────────────────────────────
+% BAR 10   S1: G z2 — final fermata, full C major chord
+% B1 on C2 per instruction (low register final cadence)
+% Full 8-voice block chord
+% ─────────────────────────────────────────────
+[V:1] !fermata!G  z2 |]
+[V:2] !fermata!E  z2 |]
+[V:3] !fermata!C  z2 |]
+[V:4] !fermata!G, z2 |]
+[V:5] !invertedfermata!c  z2 |]
+[V:6] !invertedfermata!G  z2 |]
+[V:7] !invertedfermata!E, z2 |]
+[V:8] !invertedfermata!C,, z2 |]

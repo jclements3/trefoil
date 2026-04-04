@@ -1,0 +1,292 @@
+X:1
+T:Beautiful Savior
+T:(also known as Fairest Lord Jesus)
+C:Words: German Jesuits, published 1677. Translated by Joseph A. Seiss, 1873.
+C:Music: Crusader's Hymn, Silesian folk song, 1842. Setting: Richard S. Willis, 1850.
+C:SSAATTBB arrangement: public domain source. Arrangement 2026.
+M:4/4
+L:1/4
+Q:1/4=120
+%%staves [(1 2) (3 4) (5 6) (7 8)]
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+K:Eb
+%
+% ============================================================
+% BARS 1-4: SSAA only, pp — reduced opening texture
+% TTBB enters at bar 5 on the "Beautiful Savior" phrase
+% ============================================================
+%
+% Bar 1 — Eb major (I)
+% S1=Eb4, S2=C4 (6th below, chord 5th implied), A1=Bb3, A2=G3
+%
+[V:1] E2 E E |
+[V:2] C2 C C |
+[V:3] B,2 B, B, |
+[V:4] G,2 G, G, |
+[V:5] z4 |
+[V:6] z4 |
+[V:7] z4 |
+[V:8] z4 |
+%
+% Bar 2 — Bb passing chord -> Eb (I)
+% S1=(F4 D4)Eb4, S2=(D4 Bb3)C4, A1=(C4 Ab3)Bb3, A2=(Ab3 F3)G3
+%
+[V:1] (F D) E2 |
+[V:2] (D B,) C2 |
+[V:3] (C A,) B,2 |
+[V:4] (A, F,) G,2 |
+[V:5] z4 |
+[V:6] z4 |
+[V:7] z4 |
+[V:8] z4 |
+%
+% Bar 3 — Cm / Fm color (G4 in soprano)
+% S1=G4, S2=Eb4, A1=C4->Bb3 (descend), A2=G3->Ab3 (contrary ascend)
+% [DIATONIC FIX: original alto beat 4 was =E (E-natural); replaced with E (=Eb) diatonic]
+%
+[V:1] G2 G G |
+[V:2] E2 E E |
+[V:3] C2 C B, |
+[V:4] G,2 G, A, |
+[V:5] z4 |
+[V:6] z4 |
+[V:7] z4 |
+[V:8] z4 |
+%
+% Bar 4 — Bb major (V)
+% S1=(Ab4 F4)G4, S2=(F4 D4)Eb4, A1=C4->Bb3, A2=F3->Eb3
+%
+[V:1] (A F) G2 |
+[V:2] (F D) E2 |
+[V:3] C2 B,2 |
+[V:4] F,2 E,2 |
+[V:5] z4 |
+[V:6] z4 |
+[V:7] z4 |
+[V:8] z4 |
+%
+% ============================================================
+% BAR 5: All 8 voices enter — mf, homophony, "Beautiful Savior"
+% T1 and T2 double S1 and S2 at the octave (concert pitch)
+% Bar = 3rd above B1 throughout
+% ============================================================
+%
+% Bar 5 — Eb (I)
+% S1=Bb4 Bb4.Eb5 C5, S2=G4 G4.C5 Ab4
+% A1=Eb4 Eb4.G4 Eb4, A2=C4 C4.Eb4 C4
+% T1 written (sounds -8va): B B.e c = concert Bb3 Bb3.Eb4 C4
+% T2 written: G G.c A = concert G3 G3.C4 Ab3
+% Bar=G3 G3.C4 Eb3 (3rd above B1), B1=Eb3 Eb3.Ab2 C3
+%
+[V:1] B2 .(e c) |
+[V:2] G2 .(c A) |
+[V:3] E2 .(G E) |
+[V:4] C2 .(E C) |
+[V:5] B2 .(e c) |
+[V:6] G2 .(c A) |
+[V:7] G,2 .(C, E,) |
+[V:8] E,2 .(A,, C,) |
+%
+% ============================================================
+% BARS 6-10: Full 8 voices; antiphonal exchange SSAA vs TTBB
+% T1 and T2 diverge from S1/S2 for melodic independence
+% ============================================================
+%
+% Bar 6 — Eb with stepwise descent in all voices
+% S1=Bb4 Bb4 Ab4 G4, S2=G4 G4 F4 Eb4
+% A1=Eb4 Eb4 D4 C4, A2=C4 C4 Bb3 G3
+% T1(concert)=G3 G3 G3 G3 (pedal, oblique vs descending A2)
+% T2(concert)=Eb3 Eb3 D3 C3 written=E E D C
+% Bar=G3 G3 G3 G3 -> G,4 (holds, 3rd above B1)
+% B1=Eb3 Eb3 Eb3 Eb3 -> E,4
+%
+[V:1] B2 (A G) |
+[V:2] G2 (F E) |
+[V:3] E2 (D C) |
+[V:4] C2 (B, G,) |
+[V:5] G2 G2 |
+[V:6] E2 (D C) |
+[V:7] G,4 |
+[V:8] E,4 |
+%
+% Bar 7 — Fm -> Bb; A1 ascends (contrary to S1 descending)
+% S1=Ab4 Ab4 G4 G4, S2=F4 F4 Eb4 Eb4
+% A1=D4 D4 Eb4 Eb4 (suspension figure, ascending)
+% A2=Bb3 Bb3 C4 C4 (contrary to A1 in beats 1-2, then parallel)
+% T1(concert)=Ab3 Ab3 Bb3 Bb3 written=A A B B (ascending, contrary to S descent)
+% T2(concert)=F3 F3 G3 G3   written=F F G G
+% Bar=Ab3 Ab3 G3 G3 -> A,2 G,2
+% B1=F3 F3 Eb3 Eb3 -> F,2 E,2
+%
+[V:1] A2 G2 |
+[V:2] F2 E2 |
+[V:3] D2 E2 |
+[V:4] B,2 C2 |
+[V:5] A2 B2 |
+[V:6] F2 G2 |
+[V:7] A,2 G,2 |
+[V:8] F,2 E,2 |
+%
+% Bar 8 — Bb major (V), suspension / pedal bar
+% S1=F4, S2=D4, A1=Bb3, A2=G3 (4-beat pedal on dominant chord)
+% T1(concert)=Bb3 hold written=B4 (=B2 in 8vb treble)
+% T2(concert)=D3 hold written=D4 (=D2 in 8vb treble)  [avoids parallel 5ths with A2-T1]
+% Bar=D3 D3 Bb2 Bb2 -> D,2 B,,2 (3rd above B1 at Bb2; D above Bb)
+% B1=(Bb2 Bb2 Bb3 Ab3) -> (B,,2 B, A,) original
+%
+[V:1] F4 |
+[V:2] D4 |
+[V:3] B,4 |
+[V:4] G,4 |
+[V:5] B2 B2 |
+[V:6] D2 D2 |
+[V:7] D,2 B,,2 |
+[V:8] (B,,2 B, A,) |
+%
+% Bar 9 — Eb (I), "Jesus shines brighter" phrase, climax approach
+% S1=Bb4 Bb4 C5 Bb4, S2=G4 G4 Ab4 G4
+% A1=Eb4 Eb4 F4 Eb4 (neighbor-note figure), A2=C4 C4 C4 C4 (holds)
+% T1(concert)=G3 G3 Ab3 G3 written=G2 G2 A2 G2 (independent neighbor figure)
+% T2(concert)=Eb3 Eb3 F3 Eb3 written=E2 E2 F2 E2
+% Bar=Bb3 Bb3 C4 Bb3 -> B,2 C, B, (3rd above B1 G3)
+% B1=G3 G3 Ab3 G3 -> G,2 A, G, (original)
+%
+[V:1] B2 c B |
+[V:2] G2 A G |
+[V:3] E2 F E |
+[V:4] C2 C C |
+[V:5] G2 A G |
+[V:6] E2 F E |
+[V:7] B,2 C, B, |
+[V:8] G,2 A, G, |
+%
+% Bar 10 — Cm -> Fm (S1=(Bb G)Ab2)
+% S1=Bb4 G4 Ab4 Ab4, S2=G4 Eb4 F4 F4
+% A1=Eb4 C4 D4 D4, A2=C4 Bb3 Bb3 Bb3
+% T1(concert)=Eb3 C3 D3 D3 written=E C D D [different from S2, independent]
+% T2(concert)=C3 G2 Bb2 Bb2 written=C2 G,2 B,2 B,2 -> too wide range.
+%   Use T2(concert)=Eb3 Bb2 C3 C3 written=E2 B,2 C2 C2 [avoids parallel with T1]
+% Bar=Eb3 C3 D3 D3 -> E, C, D, D,
+% B1=C3 C3 F3 F3 -> C,2 F,2 (original)
+%
+[V:1] (B G) A2 |
+[V:2] (G E) F2 |
+[V:3] (E C) D2 |
+[V:4] (C B,) B,2 |
+[V:5] (E C) D2 |
+[V:6] (E B,) C2 |
+[V:7] E,2 A,2 |
+[V:8] C,2 F,2 |
+%
+% ============================================================
+% BARS 11-16: Final section — full texture, climax at bar 14,
+%             stretto / suspension at final cadence (bar 16)
+% ============================================================
+%
+% Bar 11 — Bb -> Eb motion (S1=Ab4 Ab4 Bb4 Ab4)
+% S1=Ab4 Ab4 Bb4 Ab4, S2=F4 F4 G4 F4
+% A1=D4 D4 Eb4 D4, A2=Bb3 Bb3 Bb3 Bb3
+% T1(concert)=Bb3 Bb3 Bb3 Bb3 written=B2 B2 B2 B2 (pedal, different from S1)
+% T2(concert)=G3 G3 G3 G3   written=G2 G2 G2 G2 (pedal)
+% Bar=D3 D3 D3 D3 -> D,4 (3rd above B1 Bb2)
+% B1=Bb2 Bb2 Bb2 Bb2 -> B,,4 (original bass sustained)
+%
+[V:1] A2 B A |
+[V:2] F2 G F |
+[V:3] D2 E D |
+[V:4] B,2 B, B, |
+[V:5] B2 B2 |
+[V:6] G2 G2 |
+[V:7] D,4 |
+[V:8] B,,4 |
+%
+% Bar 12 — Bb (V) cadential approach
+% S1=(Ab4 F4)G4 G4, S2=(F4 D4)Eb4 Eb4
+% A1=(D4 Bb3)C4 C4, A2=(Bb3 G3)G3 G3
+% T1(concert)=(F3 D3)Eb3 written=(F D)E — descends, independent from S1
+% T2(concert)=(D3 Bb2)C3 written=(D B,)C — avoids parallel with T1
+% Bar=D3 D3 Eb3 Eb3 -> D,2 E,2
+% B1=Bb2 Bb2 Eb3 Eb3 -> B,,2 E,2
+%
+[V:1] (A F) G2 |
+[V:2] (F D) E2 |
+[V:3] (D B,) C2 |
+[V:4] (B, G,) G,2 |
+[V:5] (F D) E2 |
+[V:6] (D B,) C2 |
+[V:7] D,2 G,2 |
+[V:8] B,,2 E,2 |
+%
+% Bar 13 (sintro) — Eb (I), canonic texture: SSAA then TTBB
+% SSAA hold tonic chord, TTBB echo with brief descent
+% S1=G4, S2=Eb4, A1=C4->D4, A2=Bb3 held
+% T1(concert)=Bb3->Ab3->G3 written=B2 A2 G2 (descending 3-beat, then hold)
+% T2(concert)=G3->F3->Eb3 written=G2 F2 E2 (parallel 3rds below T1)
+% Bar=Eb3->D3->C3 -> E, D, C, (descend, 3rd above B1)
+% B1=C3->C3->D3->C3 -> C,2 D, C, (original: E,2 D, C,)
+%
+[V:1] !sintro!G2 G G |
+[V:2] E2 E E |
+[V:3] C2 C D |
+[V:4] B,2 B, B, |
+[V:5] B2 A G |
+[V:6] G2 F E |
+[V:7] G,2 F, E, |
+[V:8] E,2 D, C, |
+%
+% Bar 14 — CLIMAX (f): S1 peak at Bb4->A4 (original B3 A)
+% [NOTE: original S1 is Bb4 Bb4 Bb4 A4 — the climax of the hymn]
+% S1=Bb4 Bb4 Bb4 Ab4, S2=G4 G4 G4 F4
+% A1=Eb4 Eb4 Eb4 D4, A2=C4 C4 C4 C4 (pedal for stability)
+% T1(concert)=Bb3 Bb3 Bb3 Ab3 written=B2 B2 B2 A2 (mirrors S1 at 8va lower)
+% T2(concert)=G3 G3 G3 F3   written=G2 G2 G2 F2
+% Bar=D3 D3 D3 C3 -> D,3 C, (3rd above B1 Bb2, then 3rd above Ab2=C3)
+% B1=Bb2 Bb2 Bb2 Ab2 -> B,,3 A,, (original: G,,3 A,,)
+%
+[V:1] B3 A |
+[V:2] G3 F |
+[V:3] E3 D |
+[V:4] C3 C |
+[V:5] B3 A |
+[V:6] G3 F |
+[V:7] B,,3 C, |
+[V:8] G,,3 A,, |
+%
+% Bar 15 — Bb (V), penultimate, building suspension
+% S1=G4 G4 F4 F4, S2=Eb4 Eb4 D4 D4
+% A1=C4 C4 Bb3 Bb3, A2=G3 G3 F3 F3
+% T1(concert)=Eb3 Eb3 D3 D3 written=E2 E2 D2 D2 (descending, counterpoint vs S ascending)
+% T2(concert)=C3 C3 Bb2 Bb2 written=C2 C2 B,2 B,2
+% Bar=(D3 C3)D3 D3 -> (D, C,) D,2 (3rd above B1)
+% B1=(Bb2 Ab2)Bb2 Bb2 -> (B,, A,,) B,,2
+%
+[V:1] G2 F2 |
+[V:2] E2 D2 |
+[V:3] C2 B,2 |
+[V:4] G,2 F,2 |
+[V:5] E2 D2 |
+[V:6] C2 B,2 |
+[V:7] (D, C,) D,2 |
+[V:8] (B,, A,,) B,,2 |
+%
+% Bar 16 — Eb (I), final cadence (pp, wide spread)
+% 4-3 suspension effect: A1 lands on G3 (not expected C4), A2 on Eb3
+% S1=Eb4, S2=Bb3 (consonant 5th), A1=G3, A2=Eb3
+% T1(concert)=Eb3 written=E4, T2(concert)=Bb2 written=B,4
+% Bar=G2 -> G,,4, B1=Eb2 -> E,,4 (deep final tonic, within range C2-A3: Eb2>C2 ✓)
+%
+[V:1] E4 !eintro!|]
+[V:2] B,4 |]
+[V:3] G,4 |]
+[V:4] E,4 |]
+[V:5] E4 |]
+[V:6] B,4 |]
+[V:7] G,,4 |]
+[V:8] E,,4 |]

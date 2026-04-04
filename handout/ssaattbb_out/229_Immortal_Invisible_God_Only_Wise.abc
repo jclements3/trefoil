@@ -1,0 +1,98 @@
+X:229
+T:Immortal, Invisible, God Only Wise
+C:Words: Walter Chalmers Smith, 1876.
+C:Music: 'St. Denio', traditional Welsh, 1839.
+C:Setting: SSAATTBB arr. from Open Hymnal Project (public domain).
+M:3/4
+L:1/4
+Q:1/4=120
+%%staves [(1 2) (3 4) (5 6) (7 8)]
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+K:G
+%
+% ─────────────────────────────────────────────────────────────────
+% PITCH REFERENCE (concert)
+%   G major diatonic: G A B C D E F#
+%   S1 treble:  C4=C  D4=D  E4=E  G4=G  A4=A  B4=B  d=D5  e=E5
+%   S2 treble:  same octave conventions
+%   A1 treble:  same (sits below S2)
+%   A2 treble:  same (sits below A1)
+%   T1 8vb:     written X sounds X-octave; B,=B2 G=G3 B=B3 d=D4 g=G4
+%   T2 8vb:     same conventions as T1
+%   Bar bass:   G,=G2 B,=B2 D=D3 G=G3 B=B3
+%   B1 bass:    G,,=G1 C,=C2 G,=G2 D=D3
+% ─────────────────────────────────────────────────────────────────
+%
+% ══ Phrase 1 ══ pickup + bars 1–4
+% Texture: SSAA choir (stems lead) + sustained TTBB beneath
+% Harmonic outline: i – VI – IV – V7 – I  (G major)
+%
+% Bar 0 (pickup, beat 3):
+% Chord: G major  S1=G4 S2=D4 A1=B3 A2=G3  T1=G3 T2=D3 Bar=B2 B1=G2
+[V:1] G  | E  C  A  | F  D  G  | B  B  A  | G2       |
+[V:2] D  | C  A,  E | D  B,  D | G  G  F  | D2       |
+[V:3] B, | G, E  C  | A, F  B, | D  D  C  | B,2      |
+[V:4] G, | E, C  A, | F, D  G, | B, G,  F, | G,2     |
+% T1 T2 written in 8vb treble (sounds octave lower):
+% concert: T1: G3 G3 E3 C4  A3 F3 G3  G3 G3 F3  G3
+%          T2: D3 E3 C3 A3  F3 D3 E3  D3 D3 D3  D3
+[V:5] G  | G  E  c  | A  F  G  | G  G  F  | G2       |
+[V:6] D  | E  C  A  | F  D  E  | D  D  D  | D2       |
+% Bar bass (concert): B2 C3 G2 E3  D3 B2 B2  D3 D3 C3  B2
+% B1 bass (concert):  G1 C2 C2 A1  D2 D2 E2  D2 B1 D2  G1
+[V:7] B, | C  G,  E | D  B,  B, | D  D  C  | B,2     |
+[V:8] G,  | C, C, A,  | D, D, E,  | D, B,  D, | G,2   |
+%
+% ══ Phrase 2 ══ pickup + bars 5–8
+% Texture: Full 8-voice homophony — all voices enter together
+% Same melody as phrase 1; pickup varies (S1=G, S2=D, rest redistribute)
+%
+[V:1] G  | E  C  A  | F  D  G  | B  B  A  | G2       |
+[V:2] D  | C  A,  E | D  B,  D | G  G  F  | D2       |
+[V:3] B, | G, E  C  | A, F  B, | D  D  C  | B,2      |
+[V:4] G, | E, C  A, | F, D  G, | B, G,  F, | G,2     |
+% T1 T2 slightly more active inner line
+[V:5] B  | G  E  c  | A  F  G  | G  G  F  | G2       |
+[V:6] G  | E  C  A  | F  D  E  | D  D  D  | D2       |
+[V:7] G, | C  G,  E | D  B,  B, | D  D  C  | B,2     |
+[V:8] B,  | C, C, A,  | D, D, E,  | D, B,  D, | G,2   |
+%
+% ══ Phrase 3 ══ pickup + bars 9–12
+% Texture: antiphonal — SSAA bars 9–10, TTBB echoes bars 11–12
+% Climactic arch: melody rises to d (D5)
+%
+[V:1] G  | B  B  d  | B  G  G  | B  B  d  | A2       |
+[V:2] D  | G  G  B  | G  D  E  | G  G  B  | F2       |
+[V:3] B, | D  E  G  | E  B,  D | D  E  G  | E2       |
+[V:4] G, | B, C  E  | C  G,  B, | B, C  E  | C2      |
+% T1 concert: D3 G3 G3 B3  G3 E3 G3  G3 G3 B3  A3
+% T2 concert: B2 E3 E3 G3  E3 C3 E3  E3 E3 G3  F3
+[V:5] D  | G  G  B  | G  E  G  | G  G  B  | A2       |
+[V:6] B, | E  E  G  | E  C  E  | E  E  G  | F2       |
+% Bar concert: D3 E3 C3 G2  E3 B2 B2  E3 C3 G2  F2? → use F2=F, in bass
+% B1 concert:  G1 E2 C2 G1  C2 C2 C2  E2 C2 G1  D2
+[V:7] D  | E  C  G, | E  B,  B, | E  C  G, | (F, E,) |
+[V:8] G,  | E, C, G,  | C, C, C, | E, C, G,  | D,2   |
+%
+% ══ Phrase 4 / Final ══ pickup + bars 13–16
+% Texture: Full 8-voice, climax bar 15, stretto cadence
+% B1 final: G,,=G1 (root, low register)
+%
+[V:1] !sintro!B | G  E  A  | F  D  G  | B  B  A  | G2 !eintro!|]
+[V:2] G  | E  C  E  | D  B,  D | G  G  F  | D2            |]
+[V:3] D  | C  G  C  | A, F  B, | D  D  C  | B,2           |]
+[V:4] B, | G, E  A, | F, D  G, | B, G,  F, | G,2          |]
+% T1 concert pickup B3 written B; T2 concert G3 written G
+[V:5] B  | G  E  c  | A  F  G  | B  B  A  | G2            |]
+[V:6] G  | E  C  A  | F  D  E  | G  G  F  | D2            |]
+% Bar concert: G2(=G,) E3 C3 A2(=A,)  D3 B2 D3  D3 D3 C3  D3 B2
+[V:7] G, | E  C  A, | D  B,  D | D  D  C  | B,2           |]
+% B1 concert: G1 C2 C2 A1  D2 D2 E2  D2 B1 D2  G1
+[V:8] G,  | C, C, A,  | D, D, E,  | D, B,  D, | G,2        |]

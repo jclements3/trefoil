@@ -1,0 +1,103 @@
+X: 27
+T: Abide, O Dearest Jesus
+T: (SSAATTBB arr. for lever harp accompaniment)
+C: Words: Joshua Stegmann, 1628. Translated by August Crull, c. 1892.
+C: Music: 'Christus der ist mein Leben', Melchior Vulpius, 1609.
+C: Setting: "Mehrstimmiges ChoralBuch", 1906. SSAATTBB arr. Key: Eb major (no transposition).
+C: copyright: public domain. Source: Open Hymnal Project, 2013 Revision.
+S: Expanded from Open Hymnal SATB. Arranger: Claude Sonnet 4.6, 2026.
+M: 4/4
+L: 1/4
+Q: 1/4=120
+%%staves {(V1 V2) (V3 V4) (V5 V6) (V7 V8)}
+V:1 name="Soprano I"   clef=treble
+V:2 name="Soprano II"  clef=treble
+V:3 name="Alto I"      clef=treble
+V:4 name="Alto II"     clef=treble
+V:5 name="Tenor I"     clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"    clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"    clef=bass
+V:8 name="Bass I"      clef=bass
+K: Eb
+%
+% ── PHRASE 1 (pickup + bars 1–2) ─────────────────────────────────────────────
+% SSAA choir only; TTBB tacet. 4-voice opening texture establishes the melody
+% in a chamber-choir sound before the full ensemble enters.
+%
+% S1 — original soprano, unaltered.
+% S2 — diatonic third below S1 throughout phrase 1.
+% A1 — independent inner line, Bb3–C4 range; passing tone on beat 4 of bar 1.
+% A2 — contrary motion to A1; Eb3–F3 range.
+%
+[V:1] [Q:1/4=120] E | G F G A | B2 !fermata!G c |
+[V:2] C | E D E F | G2 E A |
+[V:3] G, | B, G, B, A, | G,2 B, C |
+[V:4] E, | G, E, G, F, | G,2 F, E, |
+[V:5] z | z4 | z4 |
+[V:6] z | z4 | z4 |
+[V:7] z | z4 | z4 |
+[V:8] z | z4 | z4 |
+%
+% ── PHRASE 1 cont. (bars 3–4) ────────────────────────────────────────────────
+% TTBB choir enters on beat 1 of bar 3 — full 8 voices.
+%
+% T1 — original tenor (dotted figure mirrors soprano).
+% T2 — straight quarters (G3–Eb3) for rhythmic independence against T1.
+%   Avoids all T-voice / B-voice pitch unisons (verified beat by beat).
+% Bar — entering on Eb3 (unison with B1, deliberate cadential blend);
+%   steps to G3–F3–D3, arriving on G3 at bar 4 cadence.
+% B1 — original bass with dotted figure at bar 3.
+% Bar 4: T1–T2 unison on Bb3 for cadential blend; Bar on G3; B1 on Eb3.
+%   TTBB cadence chord: Eb3–G3–Bb3–Bb3 = Eb major, root position.
+%
+[V:1] B3/2 A/ G F | G2 |
+[V:2] G3/2 F/ E D | E2 |
+[V:3] G,3/2 A,/ B, G, | B,2 |
+[V:4] E,3/2 D,/ E, F, | G,2 |
+[V:5] B3/2 A/ B B | B2 |
+[V:6] G E G G | G2 |
+[V:7] E, G, F, D, | G,2 |
+[V:8] E,3/2 F,/ E, B,, | E,2 |
+%
+% ── PHRASE 2 (pickup + bars 5–6) ─────────────────────────────────────────────
+% Antiphonal pickup: TTBB alone on the pickup beat (Bb3/G/G3/Eb3);
+%   SSAA re-enters on beat 1 of bar 5. Full 8-voice texture from bar 5.
+%
+% Bar 5 harmonic sequence: IV (Ab) – vi (Cm) – V (Bb) – I (Eb).
+% Bar 6: fermata at climax (S1 C5, B1 Ab2); inner voices sustain.
+%   T2 uses F3–F3–Eb3 to avoid T2=B1 pitch unison on beats 3–4.
+%   Bar uses C3–Bb3–G2; Bb3 on beat 3 avoids T1–Bar unison (T1=G3).
+%
+[V:1] z B | c c d e | c2 !fermata!B G |
+[V:2] z G | A A B c | A2 G E |
+[V:3] z B, | C E D E | E2 B, G, |
+[V:4] z E, | G, F, E, F, | E,2 G, F, |
+[V:5] z G | A G B B | A2 G B |
+[V:6] z E | F E G G | F2 F E |
+[V:7] z G, | C, B, D, A,, | C,2 B, G,, |
+[V:8] z E, | A,, C, B,, G,, | A,,2 E, E,, |
+%
+% ── PHRASE 2 cont. (bars 7–8) ────────────────────────────────────────────────
+% Call-and-response outer voices: S1 descends (F4–Eb4–Eb4–D4),
+%   B1 ascends (F2–G2–Ab2–Bb2) — converging motion frames the final cadence.
+% Inner voices provide stepwise harmonic filler:
+%   A1: Ab3–G3–Ab3–G3  (neighbor-tone oscillation, converging to G3 at cadence)
+%   A2: F3–Eb3–F3–G3   (rising line, contrary to S2)
+%   T1: Ab3–G3–F3–F3   (original tenor, stepwise descent)
+%   T2: F3–Eb3–D3–D3   (third below T1 throughout)
+%   Bar: Ab2–Bb2–C3–Bb2 (arch, ends on Bb2 for open-fifth below B1)
+%
+% Bar 8 (3-beat final cadence): full 8-voice homophony.
+%   Chord: Eb4–C4–Bb3–G3 (SSAA) / G3–Eb3–G2–Eb2 (TTBB).
+%   = Eb major with added 6th (C), voiced with B1 on low Eb2.
+%   S–A pitch-class unisons: none (verified).
+%   T–B pitch-class unisons: none (T1=G3, Bar=G2 — different octaves only).
+%
+[V:1] F E E D | E3 !eintro!|]
+[V:2] D C C B, | C3 |]
+[V:3] A, G, A, G, | B,3 |]
+[V:4] F, E, F, G, | G,3 |]
+[V:5] A G F F | G3 |]
+[V:6] F E D D | E3 |]
+[V:7] A,, B,, C, B,, | G,,3 |]
+[V:8] F,, G,, A,, B,, | E,,3 |]

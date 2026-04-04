@@ -1,0 +1,60 @@
+X: 86
+T: Jesus Christ Who Came to Save
+T: (also known as Jesus Christ Today is Risen or Jesus Christ Our Savior True
+T: or Jesus Christ, Our Blessed Savior)
+C: Words: Martin Luther, 1524. Translated by Leonard Woolsey Bacon, 1883.
+C: Music: 'Jesus Christus Unser Heiland, Der Den Tod (Klug)' from Klug's Geistliche Lieder, Wittenberg, 1533.
+C: Setting: Johann Sebastian Bach, arr. for SSAATTBB.
+C: copyright: public domain.
+M: 4/4
+L: 1/4
+Q: 1/4=120
+%%staves [(1 2) (3 4) (5 6) (7 8)]
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+K: C
+%
+% ============================================================
+%  SECTION 1  (bars 1-4)
+% ============================================================
+%
+% V:1  Soprano I  – original soprano; ^F and ^G retained as S1 chromaticisms
+% V:2  Soprano II – diatonic 3rd below S1; occasional 6th for line variety
+% V:3  Alto I     – independent diatonic melodic line, alto tessitura
+% V:4  Alto II    – mostly contrary motion to A1; diatonic
+% V:5  Tenor I    – original tenor line; diatonic (all original ^F/^G removed)
+% V:6  Tenor II   – diatonic 3rd below T1
+% V:7  Baritone   – diatonic 3rd above B1; bass staff
+% V:8  Bass I     – original bass; ^F replaced by F
+%
+[V:1] A A G A | B A (G ^F | !fermata!E) G A B | A ^G !fermata!A |
+[V:2] F E E F | G F (E D | C) E F G | F E !fermata!E |
+[V:3] E C C B, | D D (C B, | C) C D D | C B, !fermata!C |
+[V:4] C A, A, G, | B, B, (G, G, | G,) A, A, B, | A, G, !fermata!A, |
+[V:5] E A B A | G C (B B | G) C A D | C B !fermata!C |
+[V:6] C F G F | E A, (G G | E) A, F B, | A, G !fermata!A, |
+[V:7] C, E, G, A, | B, C, D, D, | G, E, A, B, | C, G, !fermata!C, |
+[V:8] A,, C, E, F, | G, A, B, B,, | E, C, F, G, | A, E, !fermata!A,, |
+%
+% ============================================================
+%  SECTION 2  (pickup bar + bars 5-10)
+% ============================================================
+%
+% Pickup beat = beat 4 of the anacrusis bar
+% Bar numbers here count from the pickup: bars 5-10 correspond to
+% the six full bars of the repeat section.
+%
+[V:1] d | A/B/ c (B A) | !fermata!B A A A | B A (G ^F) | !fermata!E G A B | (A ^G) !fermata!A2 |]
+[V:2] F | E G (G F) | !fermata!B D D D | G F (E D) | E E F G | (F E) !fermata!E2 |]
+[V:3] A | A A (A G) | !fermata!G E F E | D E (E D) | C C D E | (E D) !fermata!C2 |]
+[V:4] F | E E (D D) | !fermata!G C D C | B, C (C B,) | C C B, C | (C B,) !fermata!A,2 |]
+[V:5] A | A A (A B | !fermata!G) G F G | G C (B B | !fermata!G) G F G | (C B) !fermata!A2 |]
+[V:6] F | F F (F G | !fermata!E) E D E | E A, (G G | !fermata!E) E D E | (A, G) !fermata!F2 |]
+[V:7] D, | E, C, (F, A,) | !fermata!G, C, F, F, | B,, C, D,2 | !fermata!G, E, C, B,, | (C, G,) !fermata!C,2 |]
+[V:8] B,, | C, A, (D, F,) | !fermata!E, A,, D, D, | G,, A,, B,,2 | !fermata!E, C, A,, G,, | (A,, E,) !fermata!A,,2 |]

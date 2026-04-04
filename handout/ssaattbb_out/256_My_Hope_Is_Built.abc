@@ -1,0 +1,262 @@
+X: 256
+T: My Hope Is Built
+T: (also known as The Solid Rock)
+C: Words: Edward Mote, circa 1834.
+C: Music: William B. Bradbury, 1863.
+C: SSAATTBB arrangement 2026. Public domain.
+M: 4/4
+L: 1/4
+Q: 1/4=100
+K: C
+%%staves [(1 2) (3 4) (5 6) (7 8)]
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+%
+% ABC pitch: C,,=C2 B,,=B2 C,=C3 G,=G3 C=C4 G=G4 c=C5 (absolute, clef-independent)
+% V:5-6 8vb treble: written octave above concert (written G sounds G3; written c sounds C4)
+%
+% ─── Pickup (beat 4) — 6 voices, reduced opening ───────────
+% S1=C4  S2=A3  A1=G3  T1=G3(concert)  Bar=E3  B1=C3
+% A2 tacet, T2 tacet
+[V:1] C |
+[V:2] A, |
+[V:3] G, |
+[V:4] z |
+[V:5] G |
+[V:6] z |
+[V:7] E, |
+[V:8] C, |
+%
+% ─── Measure 2 — Full 8 homophony ─────────────────────────
+% Harmony: I (beats 1-2) → V (beats 3-4)
+% S1:  E4  E4  G4  G4
+% S2:  C4  C4  E4  E4  (3rd below S1; diatonic)
+% A1:  A3  A3  B3  B3  (avoids P5 with S1 on beats 3-4; stepwise to B3)
+% A2:  F3  F3  G3  G3  (3rd below A1; diatonic)
+% T1:  G3  G3  B3  B3  concert (written G G B B; avoids P5/P8 with S1)
+% T2:  E3  E3  G3  G3  concert (written E E G G; 3rd below T1)
+% Bar: E3  E3  E3  E3  (3rd above B1=C3; cross-choir unison w/ T2 beats 1-2 ✓)
+% B1:  C3  C3  C3  C3  (original bass; diatonic)
+[V:1] E3/2 E/ G G |
+[V:2] C3/2 C/ E E |
+[V:3] A,3/2 A,/ B, B, |
+[V:4] F,3/2 F,/ G, G, |
+[V:5] G3/2 G/ B B |
+[V:6] E3/2 E/ G G |
+[V:7] E,3/2 E,/ E, E, |
+[V:8] C,3/2 C,/ C, C, |
+%
+% ─── Measure 3 — Full 8 homophony ─────────────────────────
+% Harmony: IV (beats 1-2) → V (beats 3-4)
+% S1:  A4  A4  G4  G4
+% S2:  F4  F4  E4  E4  (3rd below S1; diatonic)
+% A1:  C4  C4  B3  B3  (3rd below S2; P6 from S1 throughout — smooth parallel 6ths)
+% A2:  A3  A3  G3  G3  (3rd below A1; IV root → V root; diatonic)
+% T1:  A3  A3  B3  B3  concert (written A A B B; IV root → V 3rd; diatonic)
+% T2:  F3  F3  G3  G3  concert (written F F G G; 3rd below T1; diatonic)
+% Bar: A3  B3  C4  B3  (3rd above B1: F3→A3, G3→B3, A3→C4, G3→B3)
+% B1:  F3  G3  A3  G3  (original bass simplified, within A3 max range)
+[V:1] A A G G |
+[V:2] F F E E |
+[V:3] C C B, B, |
+[V:4] A, A, G, G, |
+[V:5] A A B B |
+[V:6] F F G G |
+[V:7] A, B, C B, |
+[V:8] F, G, A, G, |
+%
+% ─── Measure 4 — Phrase 1 high point (S1 to C5) ──────────
+% Harmony: I → passing → V → I
+% S1:  C5  D5  B4  G4
+% S2:  A4  B4  G4  E4  (3rd below S1; A4 B4 comfortable for S2; diatonic)
+% A1:  E4  F4  E4  C4  (inner melody, stepwise; diatonic; below S2 ✓)
+% A2:  C4  D4  B3  A3  (stepwise contrary to A1 descent on beats 3-4; diatonic)
+% T1:  E4  A3  B3  G3  concert (written e A B G; E4 avoids P8 parallel with S1 on beat1)
+% T2:  C4  F3  G3  E3  concert (written C F G E; 3rd below T1 E4=C4; diatonic)
+% Bar: C4  F3  B3  E3  (3rd above B1: A3→C4, D3→F3, G3→B3, C3→E3; range ✓)
+% B1:  A3  D3  G3  C3  (original bass, B2 grace omitted; diatonic; max A3 ✓)
+[V:1] c d B G |
+[V:2] A B G E |
+[V:3] E F E C |
+[V:4] C D B, A, |
+[V:5] e A B G |
+[V:6] C F G E |
+[V:7] C F, B, E, |
+[V:8] A, D, G, C, |
+%
+% ─── Measure 5 — Antiphonal: TTBB leads, SSAA complete ───
+% S1:  G4  F#4 G4  D4  (S1 accidental F# free)
+% S2:  D4  D4  D4  B3  (from original alto; all diatonic ✓)
+% A1:  B3  A3  B3  G3  (diatonic inner melody, 3rd to 6th below S2)
+% A2:  G3  F3  G3  E3  (3rd below A1; contrary motion; diatonic)
+% T1:  A3  A3  B3  G3  concert (written A A B G; from orig tenor; diatonic)
+% T2:  F3  F3  G3  E3  concert (written F F G E; 3rd below T1; diatonic)
+% Bar: F3  F3  B3  B3  (3rd above B1: D3→F3, G3→B3; diatonic)
+% B1:  D3  D3  G3  G3  (original bass; diatonic ✓)
+[V:1] G ^F G D |
+[V:2] D D D B, |
+[V:3] B, A, B, G, |
+[V:4] G, F, G, E, |
+[V:5] A A B G |
+[V:6] F F G E |
+[V:7] F, F, B, B, |
+[V:8] D, D, G, G, |
+%
+% ─── Measure 6 — Full 8 homophony ─────────────────────────
+% Harmony: V7 (beats 1-2) → I (beats 3-4)
+% S1:  F4  F4  E4  E4
+% S2:  D4  D4  C4  C4  (3rd below S1; diatonic)
+% A1:  A3  A3  G3  G3  (3rd below S2; V7 9th/A → I 5th/G; diatonic)
+% A2:  F3  F3  E3  E3  (3rd below A1; V7 7th/F → I 3rd/E; diatonic)
+% T1:  G3  G3  G3  G3  concert (written G G G G; pedal V root; diatonic)
+% T2:  E3  E3  E3  E3  concert (written E E E E; V 3rd pedal; diatonic)
+% Bar: D3  D3  E3  E3  (3rd above B1: B2→D3, C3→E3; diatonic)
+% B1:  B2  B2  C3  C3  (original bass; diatonic ✓)
+[V:1] F3/2 F/ E E |
+[V:2] D3/2 D/ C C |
+[V:3] A,3/2 A,/ G, G, |
+[V:4] F,3/2 F,/ E, E, |
+[V:5] G3/2 G/ G G |
+[V:6] E3/2 E/ E E |
+[V:7] D,3/2 D,/ E, E, |
+[V:8] B,,3/2 B,,/ C, C, |
+%
+% ─── Measure 7 — Building tension, S1 F# chromatic ────────
+% Harmony: V (beats 1-2) → V-of-I area (beats 3-4)
+% S1:  G4  G4  F#4 B4  (S1 accidental F# free)
+% S2:  E4  E4  D4  G4  (diatonic 3rd below S1; F# → D diatonic; diatonic ✓)
+% A1:  C4  C4  B3  E4  (stepwise; diatonic; below S2 ✓)
+% A2:  A3  A3  G3  C4  (3rd below A1; diatonic; contrary motion upward on beat 4)
+% T1:  A3  A3  A3  B3  concert (written A A A B; original tenor; diatonic)
+% T2:  C3  C3  E3  G3  concert (written C C E G; redesigned to avoid T2=Bar; diatonic)
+% Bar: E3  E3  F3  F3  (3rd above B1: C3→E3, D3→F3; diatonic)
+% B1:  C3  C3  D3  D3  (original bass m7 C#→C, D#→D diatonic substitution)
+[V:1] G3/2 G/ ^F B |
+[V:2] E3/2 E/ D G |
+[V:3] C3/2 C/ B, E |
+[V:4] A,3/2 A,/ G, C |
+[V:5] A3/2 A/ A B |
+[V:6] C3/2 C/ E G |
+[V:7] E,3/2 E,/ F, F, |
+[V:8] C,3/2 C,/ D, D, |
+%
+% ─── Measure 8 — Call/response S1+B1 with inner voices ────
+% Harmony: V → vi → ? (chromatic area; inner voices diatonic only)
+% S1:  G4  F#4 E4  A4  (S1 accidental F# free)
+% S2:  E4  D4  C4  F4  (diatonic 3rd below; D below F# diatonic; diatonic ✓)
+% A1:  C4  B3  A3  C4  (independent stepwise melody; diatonic; below S2 ✓)
+% A2:  A3  G3  F3  A3  (3rd below A1; diatonic; contrary/parallel motion)
+% T1:  B3  A3  B3  C4  concert (written B A B c; orig tenor; diatonic ✓)
+% T2:  G3  F3  G3  A3  concert (written G F G A; 3rd below T1; diatonic)
+% Bar: G3  A3  B3  C4  (3rd above B1; ascending line; range E2-C4 ✓)
+% B1:  E3  F3  G3  A3  (orig bass, F#→F diatonic substitution; range ✓)
+[V:1] G ^F E A |
+[V:2] E D C F |
+[V:3] C B, A, C |
+[V:4] A, G, F, A, |
+[V:5] B A B c |
+[V:6] G F G A |
+[V:7] G, A, B, C |
+[V:8] E, F, G, A, |
+%
+% ─── Measure 9 — Resolution V → I ─────────────────────────
+% S1:  G4  F#4 E4  E4  (S1 accidental F# free)
+% S2:  E4  D4  C4  C4  (diatonic; orig alto D#→D substitution ✓)
+% A1:  B3  A3  G3  G3  (stepwise descent; diatonic; below S2 ✓)
+% A2:  G3  F3  E3  E3  (3rd below A1; diatonic; concurrent descent)
+% T1:  B3  B3  G3  G3  concert (written B B G G; orig tenor; diatonic ✓)
+% T2:  G3  G3  E3  E3  concert (written G G E E; 3rd below T1; diatonic)
+% Bar: D3  D3  G3  G3  (3rd above B1: B2→D3, E3→G3; diatonic)
+% B1:  B2  B2  E3  E3  (orig bass, B3 substituted to B2 — within C2-A3 range ✓)
+[V:1] G ^F E E |
+[V:2] E D C C |
+[V:3] B, A, G, G, |
+[V:4] G, F, E, E, |
+[V:5] B B G G |
+[V:6] G G E E |
+[V:7] D, D, G, G, |
+[V:8] B,, B,, E, E, |
+%
+% ─── Measure 10 — Building to final phrase ─────────────────
+% Harmony: I (beats 1-2) → IV (beats 3-4)
+% S1:  E4  E4  F4  F4
+% S2:  C4  C4  D4  D4  (3rd below; diatonic; orig alto Bb→B substitution)
+% A1:  G3  G3  A3  A3  (3rd below S2; ascending with harmony; diatonic)
+% A2:  E3  E3  F3  F3  (3rd below A1; I3rd→IV root; diatonic)
+% T1:  G3  G3  F3  A3  concert (written G G F A; orig tenor; diatonic ✓)
+% T2:  E3  E3  D3  F3  concert (written E E D F; 3rd below T1; diatonic)
+% Bar: E3  E3  A3  A3  (3rd above B1: C3→E3, F3→A3; diatonic)
+% B1:  C3  C3  F3  F3  (orig bass; diatonic ✓)
+[V:1] E3/2 E/ F F |
+[V:2] C3/2 C/ D D |
+[V:3] G,3/2 G,/ A, A, |
+[V:4] E,3/2 E,/ F, F, |
+[V:5] G3/2 G/ F A |
+[V:6] E3/2 E/ D F |
+[V:7] E,3/2 E,/ A, A, |
+[V:8] C,3/2 C,/ F, F, |
+%
+% ─── Measure 11 — Approach to final cadence ───────────────
+% Harmony: #IV°/V area → V (S1 uses F# as chromatic color)
+% S1:  F#4 F4  G4  G4  (S1 accidental; sintro)
+% S2:  D4  D4  E4  E4  (diatonic 3rd below; F# 3rd = D4; G4 3rd = E4; diatonic ✓)
+% A1:  A3  A3  B3  C4  (ascending toward cadence; diatonic; below S2 ✓)
+% A2:  F3  F3  G3  A3  (3rd below A1 → parallel 3rds ascending; diatonic)
+% T1:  A3  A3  G3  D4  concert (written A A G d; orig tenor; diatonic ✓)
+% T2:  F3  F3  E3  B3  concert (written F F E B; 3rd below T1; diatonic)
+% Bar: F3  F3  B3  D3  (3rd above B1: D3→F3, G3→B3, B2→D3; diatonic)
+% B1:  D3  D3  G3  B2  (orig bass; diatonic ✓)
+[V:1] ^F3/2 F/ G !sintro!G |
+[V:2] D3/2 D/ E E |
+[V:3] A,3/2 A,/ B, C |
+[V:4] F,3/2 F,/ G, A, |
+[V:5] A3/2 A/ G d |
+[V:6] F3/2 F/ E B |
+[V:7] F,3/2 F,/ B, D, |
+[V:8] D,3/2 D,/ G, B,, |
+%
+% ─── Measure 12 — Full 8, pre-final antiphonal ────────────
+% Harmony: I → IV → V → I (G A G E in soprano = I-IV motion)
+% S1:  G4  A4  G4  E4
+% S2:  E4  F4  E4  C4  (3rd below S1; diatonic ✓)
+% A1:  C4  D4  B3  A3  (stepwise descent; diatonic; below S2 ✓)
+% A2:  A3  A3  G3  F3  (diatonic; contrary descent from A3; below A1 ✓)
+% T1:  C4  C4  C4  G3  concert (written c c c G; orig tenor; diatonic ✓)
+% T2:  A3  A3  G3  E3  concert (written A A G E; 3rd below T1; diatonic)
+% Bar: E3  A2  B2  B2  (3rd above B1: C3→E3, F2→A2, G2→B2; range E2-C4 ✓)
+% B1:  C3  F2  G2  G2  (orig bass, F#2→F2 diatonic substitution; range ✓)
+[V:1] G A G E |
+[V:2] E F E C |
+[V:3] C D B, A, |
+[V:4] A, A, G, F, |
+[V:5] c c c G |
+[V:6] A A G E |
+[V:7] E, A,, B,, B,, |
+[V:8] C, F,, G,, G,, |
+%
+% ─── Measure 13 — Final I cadence ─────────────────────────
+% Full 8, B1 on C3 (root). S1+S2 meet on C4 (cadential unison).
+% S1:  D4  C4  C4
+% S2:  B3  C4  C4  (cadential unison with S1 on final C; intentional)
+% A1:  G3  G3  G3  (V-I resolution hold; 5th of I)
+% A2:  E3  E3  E3  (3rd of I chord; hold)
+% T1:  F3  E3  E3  concert (written F E E; from orig tenor; diatonic)
+% T2:  D3  C3  C3  concert (written D C C; 3rd below T1; diatonic)
+% Bar: B2  E3  E3  (3rd above B1: G2→B2, C3→E3; diatonic; range E2-C4 ✓)
+% B1:  G2  C3  C3  (orig bass; root on C3; diatonic ✓)
+% Final chord: C4(S1=S2), G3(A1), E3(A2), E3(T1 concert), C3(T2 concert), E3(Bar), C3(B1)
+%   = C-E-G-C-E-G chord, well spaced and balanced.
+[V:1] D3/2 C/ C !eintro!|]
+[V:2] B,3/2 C/ C |]
+[V:3] G,3/2 G,/ G, |]
+[V:4] E,3/2 E,/ E, |]
+[V:5] F3/2 E/ E |]
+[V:6] D3/2 C/ C |]
+[V:7] B,,3/2 E,/ E, |]
+[V:8] G,,3/2 C,/ C, |]

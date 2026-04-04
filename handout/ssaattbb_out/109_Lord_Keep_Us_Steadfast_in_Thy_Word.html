@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Lord, Keep Us Steadfast in Thy Word — SSAATTBB</title>
+<style>
+body { font-family: sans-serif; margin: 20px; background: #fff; }
+h1 { font-size: 18px; }
+</style>
+</head>
+<body>
+<h1>Lord, Keep Us Steadfast in Thy Word — SSAATTBB</h1>
+<div id="music"></div>
+<script src="../../abc2stripchart/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 109\nT: Lord, Keep Us Steadfast in Thy Word\nC: Words: Martin Luther, 1541.  Translated by Catherine Winkworth, 1863.\nC: Music: 'Erhalt Uns, Herr, bei deinem Wort' from Klug's \"Geistliche Lieder auffs new gebessert\", 1543.\nC: Setting: Hans Leo Hassler, unknown date. SSAATTBB arr. 2026.\nC: copyright: public domain.  This score is a part of the Open Hymnal Project, 2008 Revision.\nS: Music source: Evangelical Lutheran Hymn Book (LCMS), Edition of 1931 Hymn 274.\nM: none\nL: 1/4\n%%staves (V1 V2) | (V3 V4) | (V5 V6) | (V7 V8)\nV:1 name=\"Soprano I\"   clef=treble\nV:2 name=\"Soprano II\"  clef=treble\nV:3 name=\"Alto I\"      clef=treble\nV:4 name=\"Alto II\"     clef=treble\nV:5 name=\"Tenor I\"     clef=treble middle=B3 transpose=-12\nV:6 name=\"Tenor II\"    clef=treble middle=B3 transpose=-12\nV:7 name=\"Baritone\"    clef=bass\nV:8 name=\"Bass I\"      clef=bass\nK: G\n%\n% PICKUP (2 beats) \u2014 SSAA only; TTBB tacet\n%\n[V:1] [Q:1/4=150] E2 |\n[V:2]              C2 |\n[V:3]              G,2 |\n[V:4]              E,2 |\n[V:5]              z2 |\n[V:6]              z2 |\n[V:7]              z2 |\n[V:8]              z2 |\n%\n% BAR 1 (6 beats) \u2014 SSAA only; TTBB tacet\n%\n[V:1] G E D E G F |\n[V:2] E C B, C E D |\n[V:3] D C B, C D C |\n[V:4] B, A, G, A, B, A, |\n[V:5] z6 |\n[V:6] z6 |\n[V:7] z6 |\n[V:8] z6 |\n%\n% BAR 2 (4 beats) \u2014 TTBB enters; full ensemble\n%\n[V:1] E2 G2 |\n[V:2] C2 E2 |\n[V:3] A,2 B,2 |\n[V:4] F,2 G,2 |\n[V:5] E2 G2 |\n[V:6] C2 E2 |\n[V:7] G,,2 E,2 |\n[V:8] E,,2 C,2 |\n%\n% BAR 3 (6 beats) \u2014 full 8 voices, homophonic\n%\n[V:1] A A B G A A |\n[V:2] F F G E F F |\n[V:3] D E D C D E |\n[V:4] B, C B, A, B, C |\n[V:5] c d d c c d |\n[V:6] A B B A A B |\n[V:7] C, F, B,, E, C, F, |\n[V:8] A,, D, G,, C, A,, D, |\n%\n% BAR 4 (2 beats) \u2014 half cadence on D\n%\n[V:1] B2 |\n[V:2] G2 |\n[V:3] E2 |\n[V:4] D2 |\n[V:5] d2 |\n[V:6] B2 |\n[V:7] G,,2 |\n[V:8] D,,2 |\n%\n% BAR 5 (6 beats) \u2014 antiphonal: SSAA leads, TTBB responds\n%\n[V:1] c B d B A A |\n[V:2] A G B G F F |\n[V:3] z2 C B, z2 |\n[V:4] z2 A, G, z2 |\n[V:5] G G A G c A |\n[V:6] E E F E A F |\n[V:7] E, B,, F, G, E, F, |\n[V:8] C, G,, D, E, C, D, |\n%\n% BAR 6 (4 beats) \u2014 with !sintro!\n%\n[V:1] G2 !sintro!B2 |\n[V:2] E2 G2 |\n[V:3] B,2 D2 |\n[V:4] G,2 B,2 |\n[V:5] B2 G2 |\n[V:6] G2 E2 |\n[V:7] D,2 G,,2 |\n[V:8] G,,2 G,,2 |\n%\n% BAR 7 (6 beats) \u2014 full 8 voices, building to final cadence with suspensions\n%\n[V:1] G A G F E ^D |\n[V:2] E F E D C C |\n[V:3] C D C B, A, A, |\n[V:4] G, G, F, E, F, E, |\n[V:5] G c B A G F |\n[V:6] E A G F E D |\n[V:7] E, C, D, F, G, D, |\n[V:8] C, A,, B,, D, E, B,, |\n%\n% BAR 8 (2 beats) \u2014 final cadence, Em\n%\n[V:1] E2 !eintro!|]\n[V:2] B,2 |]\n[V:3] G,2 |]\n[V:4] E,2 |]\n[V:5] G2 |]\n[V:6] B,2 |]\n[V:7] G,,2 |]\n[V:8] E,,2 |]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ""; }
+};
+var abc = new abc2svg.Abc(user);
+abc.tosvg("score", abc_src);
+</script>
+</body>
+</html>

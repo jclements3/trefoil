@@ -1,0 +1,110 @@
+X: 231
+T: My Soul, Now Praise Thy Maker
+T: (also known as My Soul, Now Bless Thy Maker)
+C: Words: Johann Graumann, 1525. Translated by Catherine Winkworth, 1863.
+C: Music: 'Nun Lob, Mein Seel' from Johannes Kugelmann's Concentus Novi, 1540
+C: Setting: "Mehrstimmiges ChoralBuch", 1906. SSAATTBB arr. 2026.
+C: copyright: public domain. This score is a part of the Open Hymnal Project, 2014 Revision.
+M: 3/4
+L: 1/4
+Q: 1/4=140
+%%staves {(V1 V2) (V3 V4) (V5 V6) (V7 V8)}
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+K: G
+%%
+%% ── STANZA 1a (first time through): Antiphonal — SSAA only, pickup + 8 bars ──
+%% TTBB enters at bar 2 adding harmonic depth, building the texture.
+%%
+%% Concert pitches reference (G major, all diatonic):
+%%   S1: Soprano I  — follows original soprano exactly
+%%   S2: Soprano II — third below S1 (diatonic)
+%%   A1: Alto I     — independent diatonic alto line, step-wise
+%%   A2: Alto II    — contrary motion to A1, diatonic
+%%   T1: Tenor I    — written an octave above concert (transpose=-12); concert D3-B3
+%%   T2: Tenor II   — written an octave above concert; concert B2-G3
+%%   Bar: Baritone  — third above B1, diatonic bass clef
+%%   B1: Bass I     — follows original bass closely, diatonic
+%%
+%% Harmony bars (pickup=E, then 8 full bars of 3/4):
+%%  Bar 1: G  (I)      Bar 2: e  (vi)    Bar 3: G-Am (I-ii)
+%%  Bar 4: G-Am (I-ii) Bar 5: Bm (iii)   Bar 6: Bm  (iii)
+%%  Bar 7: Bm-C (iii-IV) Bar 8: G (I) fermata
+%%
+[V:1] [Q:1/4=140] E | G2 F | E2 D | (G2 A) | B2 B | B2 B | B2 A | G2 F | !fermata!G2 |
+[V:2] E | D2 D | C2 B, | (E2 E) | G2 G | G2 G | G2 E | E2 D | D2 |
+[V:3] C | B,2 B, | A,2 G, | (B,2 C) | E2 E | E2 E | E2 C | D2 C | B,2 |
+[V:4] A, | G,2 G, | F,2 E, | (D,2 E,) | B,2 B, | D2 D | B,2 C | B,2 A, | G,2 |
+[V:5] D | D2 D | B,2 B, | (B,2 D) | D2 D | D2 D | D2 E | D2 D | D2 |
+[V:6] B, | B,2 B, | G,2 G, | (G,2 B,) | B,2 B, | B,2 B, | B,2 C | B,2 B, | B,2 |
+[V:7] E, | E,2 G, | C,2 D, | (E,2 C,) | B,,2 E, | E,2 B,, | E,2 A,, | D,2 B,, | E,2 |
+[V:8] E, | E,2 B,, | C,2 D, | (E,2 C,) | B,,2 E, | E,2 B,, | E,2 A,, | (B,, C,) D, | !invertedfermata!G,,2 |
+%%
+%% ── STANZA 1b (repeat): Full 8-voice homophony — build to forte ──
+%%
+[V:1] E | G2 F | E2 D | (G2 A) | B2 B | B2 B | B2 A | G2 F | !fermata!G2 |
+[V:2] E | D2 D | C2 B, | (E2 E) | G2 G | G2 G | G2 E | E2 D | D2 |
+[V:3] C | B,2 B, | A,2 G, | (B,2 C) | E2 E | E2 E | E2 C | D2 C | B,2 |
+[V:4] A, | G,2 G, | F,2 E, | (D,2 E,) | B,2 B, | D2 D | B,2 C | B,2 A, | G,2 |
+[V:5] D | D2 D | B,2 B, | (B,2 D) | D2 D | D2 D | D2 E | D2 D | D2 |
+[V:6] B, | B,2 B, | G,2 G, | (G,2 B,) | B,2 B, | B,2 B, | B,2 C | B,2 B, | B,2 |
+[V:7] E, | E,2 G, | C,2 D, | (E,2 C,) | B,,2 E, | E,2 B,, | E,2 A,, | D,2 B,, | E,2 |
+[V:8] E, | E,2 B,, | C,2 D, | (E,2 C,) | B,,2 E, | E,2 B,, | E,2 A,, | (B,, C,) D, | !invertedfermata!G,,2 |
+%%
+%% ── STANZA 2 (lines 25-28): Antiphonal — SSAA vs TTBB, alternating phrases ──
+%% Harmony: C(IV) - D(V) - G(I) - Em(vi) - A(V/iii->iii subst) - Bm - G - D
+%% ^G, in original tenor (S2V1) -> replace with G (diatonic neighbor)
+%%
+[V:1] G | G2 B | A2 B | (G F2) | E2 E | A2 A | (F G) E | !fermata!D2 |
+[V:2] D | E2 G | F2 F | (E2 D) | C2 C | E2 E | (D E) C | B,2 |
+[V:3] B, | C2 D | D2 D | (B,2 A,) | G,2 A, | C2 C | (B, A,) G, | A,2 |
+[V:4] G, | A,2 G, | D2 B, | (G,2 G,) | E,2 E, | A,2 A, | A,2 G, | F,2 |
+[V:5] D | E2 G | F2 F | (E2 D) | B,2 C | E2 E | (D E) C | B,2 |
+[V:6] B, | C2 E | D2 D | (B,2 B,) | G,2 A, | C2 C | (B, C) A, | G,2 |
+[V:7] G, | G,2 E, | A,2 F, | (G,2 D,) | E,2 C, | C,2 E, | (D, E,) C, | A,,2 |
+[V:8] G, | C,2 G,, | D,2 B,, | (E, B,,2) | E,,2 E, | C,2 C, | (D, G,,) A,, | !invertedfermata!D,2 |
+%%
+%% ── STANZA 3 (lines 29-32): Call and response — outer voices (S1+B1) frame inner held tones ──
+%% Harmony: G(I) - Am(ii) - D(V) - G(I) - C(IV) - G(I) - A(V/ii->ii subst D) - D
+%%
+[V:1] D | G2 G | A2 A | B3 | G2 G | c2 c | B2 B | !fermata!A2 |
+[V:2] D | E2 E | F2 F | G3 | E2 D | A2 A | G2 G | E2 |
+[V:3] B, | D2 D | D2 C | D3 | B,2 C | E2 E | D2 D | C2 |
+[V:4] G, | B,2 B, | C2 A, | B,3 | G,2 A, | C2 C | B,2 B, | A,2 |
+[V:5] G | G2 G | G2 F | G3 | G2 G | G2 G | G2 G | E2 |
+[V:6] D | D2 E | E2 D | D3 | E2 D | E2 E | D2 E | C2 |
+[V:7] D, | D,2 B,, | E,2 D, | B,,3 | C,2 B,, | A,,2 A, | E,2 E,, | A,,2 |
+[V:8] D, | B,,2 E, | C,2 D, | G,,3 | C,2 B,, | A,,2 A, | E,2 E,, | !invertedfermata!A,,2 |
+%%
+%% ── STANZA 4 (lines 33-36): Canonic imitation S1/S2 lead by one beat, T1/T2 echo ──
+%% Climax: S1 reaches d (D5) — high point of arrangement
+%% Harmony: G(I) - Bm(iii) - G(I) - D(V) - G - D - G/B - D
+%%
+[V:1] A | B2 B | c2 c | d3 | G2 B | A2 D | F E2 | !fermata!D2 |
+[V:2] F | G2 G | A2 A | B3 | E2 G | F2 B, | D C2 | B,2 |
+[V:3] D | E2 E | E2 E | G3 | B,2 D | D2 D | D2 E | D2 |
+[V:4] D | D2 D | C2 C | D3 | G,2 B, | B,2 B, | A,2 A, | A,2 |
+[V:5] F | G2 G | A2 A | B3 | E2 G | F2 B, | D C2 | B,2 |
+[V:6] D | E2 E | F2 E | G3 | B,2 E | D2 D | B,2 A, | G,2 |
+[V:7] D, | G,,2 B,, | C,2 E, | D,3 | C,2 G,, | D,2 A,, | F,,2 A,, | A,,2 |
+[V:8] D, | G,,2 G, | C,2 E, | D,3 | C,2 G,, | D,2 B,, | F,, A,,2 | !invertedfermata!D,2 |
+%%
+%% ── STANZA 5 (lines 37-40): Full 8-voice climax — stretto entries at final cadence ──
+%% S1 peaks at B (B4); all voices in motion for final measures.
+%% ^C in original alto (S1V2 bar 9) -> D (diatonic)
+%% ^C, in original bass (S2V2 bar 9) -> D, (diatonic, B1 must be diatonic)
+%%
+[V:1] D | G2 G | F2 E | A3 | A2 !sintro!B | c2 B | (G B) A | !fermata!G2 !eintro!|]
+[V:2] B, | D2 E | D2 C | E3 | F2 G | A2 G | (E G) F | E2 |]
+[V:3] G, | B,2 C | A,2 G, | C3 | D2 E | E2 D | (C D) C | B,2 |]
+[V:4] G, | G,2 A, | F,2 E, | A,3 | A,2 C | C2 B, | (A, B,) A, | G,2 |]
+[V:5] B, | B,2 C | B,2 A, | C3 | D2 E | E2 D | (B, D) C | B,2 |]
+[V:6] G, | G,2 A, | G,2 E, | A,3 | A,2 B, | C2 B, | (G, B,) A, | G,2 |]
+[V:7] B,, | E,2 E, | D,2 C, | (D,2 A,,) | D,2 G,, | (C, A,,) B,, | (E, B,,) D, | E,2 |]
+[V:8] B,, | E,2 E, | D,2 C, | (D,2 A,,) | D,2 G,, | (C, A,,) B,, | (E, B,,) D, | !invertedfermata!G,,2 |]

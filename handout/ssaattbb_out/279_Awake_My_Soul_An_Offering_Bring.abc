@@ -1,0 +1,82 @@
+X: 279
+T: Awake My Soul, An Offering Bring
+C: Words: Brian L. Penney, 2009.
+C: Music: 'Melismata 22' Thomas Ravenscroft, 1611. Setting: Brian L. Penney, 2009.
+C: SSAATTBB arr. for 8-voice ensemble and lever harp.
+S: Arranged from OpenHymnal source #279.
+M: 4/4
+L: 1/4
+Q: 1/4=120
+%%staves {(V1 V2) (V3 V4) (V5 V6) (V7 V8)}
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+K: F
+%
+% Key: F major (1 flat). Valid for lever harp (Eb storage, raise Bb lever only).
+% Diatonic notes: F G A Bb C D E
+% S1 accidentals: ^F (F#) in m2, m8, m12 — melody, freely permitted.
+% Diatonic violation fixed: S2V1 ^F, → F, in m2, m6, m10.
+% Bass lowest notes: B,,/G,, (Bb1/G1) raised to B,/G, (Bb2/G2) for vocal range.
+%
+% ── SOPRANO I (original soprano; accidentals freely permitted) ────────────
+[V:1]
+G | B c d3/2 B/ | A G ^F A | B3/2 c/ d B |
+B A B2 | B3/2 B/ A c | B B A A |
+d3/2 B/ A G | G ^F G2 | B3/2 B/ A c |
+B B A !sintro!A | d B A G | G ^F G2 !eintro!|]
+%
+% ── SOPRANO II (diatonic; 3rd below S1; moves to 6th for variety) ────────
+[V:2]
+E | G A B3/2 G/ | F E D F | G3/2 A/ B G |
+G F G2 | G3/2 G/ F A | G G F E |
+B3/2 G/ F E | E D E2 | G3/2 G/ F A |
+G G F !sintro!F | B3/2 G/ F E | E D E2 !eintro!|]
+%
+% ── ALTO I (independent diatonic melodic line; genuine inner voice) ───────
+[V:3]
+C | D F F3/2 D/ | C D C A, | D3/2 E/ F D |
+F F F2 | F3/2 F/ F F | F E C C |
+F3/2 D/ C B, | C A, C2 | F3/2 F/ F F |
+F E C !sintro!C | F3/2 D/ C B, | C A, C2 !eintro!|]
+%
+% ── ALTO II (contrary motion to A1 where possible; diatonic) ─────────────
+[V:4]
+B, | B, C D3/2 B,/ | A, G, A, F, | B,3/2 C/ D B, |
+D C D2 | D3/2 D/ C C | D B, A, A, |
+D3/2 B,/ A, G, | A, F, A,2 | D3/2 D/ C C |
+D B, A, !sintro!A, | D3/2 B,/ A, G, | A, F, A,2 !eintro!|]
+%
+% ── TENOR I (original tenor, diatonic; ^F,→F,; written 8va for 8vb clef) ─
+% Concert G3=written G4, Bb3=written B4 (=B in F major key sig), etc.
+[V:5]
+G | G A B d | c B A3/2 F/ | G3/2 A/ B d |
+c c d2 | d3/2 d/ c A | B G A A |
+d3/2 B/ c G | B A B2 | d3/2 d/ c A |
+B G A !sintro!A | d3/2 B/ c G | B A B2 !eintro!|]
+%
+% ── TENOR II (contrary motion to T1; diatonic) ────────────────────────────
+[V:6]
+E | E F G3/2 G/ | A G F F | G3/2 G/ G G |
+A A G2 | G3/2 G/ F F | G G F F |
+B3/2 G/ F E | F E F2 | G3/2 G/ F F |
+G G F !sintro!F | B3/2 G/ F E | F E F2 !eintro!|]
+%
+% ── BARITONE (3rd above B1; range E2–C4; diatonic) ──────────────────────
+[V:7]
+B, | B, B, B,3/2 F,/ | A, B, F,3/2 F,/ | B,3/2 B,/ B, C |
+A, A, C2 | C C A, A, | B, B, F,3/2 F,/ |
+C3/2 C/ A, B, | F, F, B,2 | C C A, A, |
+B, B, F,3/2 !sintro!F,/ | C3/2 C/ A, B, | F, F, B,2 !eintro!|]
+%
+% ── BASS I (follows original bass; Bb1/G1 → Bb2/G2 for vocal range) ───────
+[V:8]
+G, | G, G, G,3/2 D,/ | F, G, D,3/2 D,/ | G, G, G, B, |
+F, F, B,2 | B, B, F, F, | G, G, D,3/2 D,/ |
+B,3/2 B,/ F, G, | D, D, G,2 | B, B, F, F, |
+G, G, D,3/2 !sintro!D,/ | B,3/2 B,/ F, G, | D, D, G,2 !eintro!|]

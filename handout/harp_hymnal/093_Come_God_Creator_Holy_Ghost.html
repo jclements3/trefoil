@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Come, God Creator, Holy Ghost — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }
+p.legend { font-size: 12px; color: #555; }</style>
+</head><body>
+<h1>Come, God Creator, Holy Ghost</h1>
+<p class="legend">Above melody: Abstract / RH voicing / LH voicing.
+RH = upper notes, LH = lower notes (no hand crossing).</p>
+<div id="music"></div>
+<script src="../../abc2stripchart/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 1\nT: Come, God Creator, Holy Ghost\nM: 4/4\nL: 1/4\nQ: 1/4=130\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: C\n[V: M] \"^I\"G2 A G | \"^ii\"\"^Dm\"F G c d | \"^I\"\"^C\u00b9\"c2 z c | \"^IV\u0394\u00b3\"\"^Am\u00b2\"G A c d | \"^I\u00b2\"\"^C\u00b2\"\"^C\u00b2\"e e d2 | z d e c | \"^V7\u00b3\"\"^B\u00b0\u00b2\"A G B c | \"^I\u00b2\"\"^C\u00b2\"d2 z G | \"^IV\u0394\"\"^F\u0394\u00b3-5\"\"^F\"c A F ( A | \"^iii7\u00b3\"\"^C-1+2\"\"^G\u00b2\"A G ) G2 | G2 G2 |]\n[V: RH] [EG]2 [FA] [EG] | [DF] [CEG] [Ac] [GBd] | [EGc]2 z [EG] | [FA] [EAc] [GBd] [Gce] | [Gce] [GBd]2 [Bd] | z [GAc] [FA] [EG] | [GB] [GAc] [GBd]2 [DEG] | [Gc] z [DF] | [EFA] [EFA] [DEG] ( [DEG]2 | [DEG]2 [EG]2 ) G2 | G2 G2 |]\n[V: LH] [C,G,C]2 [F,A,C] [C,G,B,] | [D,F,A,] [C,E,G,] [A,,CE] [G,,B,DF] | [C,G,C]2 z [F,G,C] | [E,A,C] [D,G,C] [C,F,DF] [C,CE] | [G,CE] [B,DF]2 [B,DG] | z [G,CF] [A,C] [G,B,] | [F,B,D] [E,CE] [B,DF]2 [G,B,C] | [G,CE] z [F,A,C] | [F,A,C] [F,A,C] [E,G,B,] ( [D,G,B,]2 | [D,G,B,]2 [E,G,C]2 ) G2 | G2 G2 |]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ""; }
+};
+var abc = new abc2svg.Abc(user);
+abc.tosvg("score", abc_src);
+</script></body></html>

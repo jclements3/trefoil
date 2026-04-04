@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>All Depends On Our Possessing — SSAATTBB</title>
+<style>
+body { font-family: sans-serif; margin: 20px; background: #fff; }
+h1 { font-size: 18px; }
+</style>
+</head>
+<body>
+<h1>All Depends On Our Possessing — SSAATTBB</h1>
+<div id="music"></div>
+<script src="../../abc2stripchart/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 1\nT: All Depends On Our Possessing\nT: (SSAATTBB arrangement)\nC: Words: unknown circa 1673. Translated by Catherine Winkworth, 1858.\nC: Music: 'Alles ist an Gottes Segen' Johann Balthasar K\u00f6nig, 1738.\nC: Setting: \"Chorale Book for England\", 1863, alt.\nC: SSAATTBB arrangement for double choir and lever harp.\nC: copyright: public domain.\nS: Music source: \"Chorale Book for England\", 1863 Hymn 130.\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%staves [(1 2) (3 4) (5 6) (7 8)]\nV:1 name=\"Soprano I\"  clef=treble\nV:2 name=\"Soprano II\" clef=treble\nV:3 name=\"Alto I\"     clef=treble\nV:4 name=\"Alto II\"    clef=treble\nV:5 name=\"Tenor I\"    clef=treble middle=B3 transpose=-12\nV:6 name=\"Tenor II\"   clef=treble middle=B3 transpose=-12\nV:7 name=\"Baritone\"   clef=bass\nV:8 name=\"Bass I\"     clef=bass\nK: F\n%%\n%% Phrase 1 (bars 1-4)\n%%\n[V:1] F F c c | B c A F | A A G G | F G E C |\n[V:2] D D A A | G A F D | F F E E | D E C A, |\n[V:3] C C E E | F E D C | C D C B, | A, B, C D |\n[V:4] A, A, G, G, | C A, G, A, | A, G, A, G, | F, G, A, G, |\n[V:5] A A G A | F G A A | c c c c | A G G E |\n[V:6] F F E F | D C B, B, | A A G A | A G F E |\n[V:7] A, A, G, A, | F, G, A, A, | A, A, E, C, | F, D, E, E, |\n[V:8] F, F, E, F, | D, E, F, F, | F, F, C, A,, | D, B,, C, C, |\n%%\n%% Phrase 2 (bars 5-8)\n%%\n[V:1] G G F E | D D C2 | G G c A | B c A F |\n[V:2] E E D C | B, B, A,2 | E E A F | G A F D |\n[V:3] B, B, A, G, | F E D2 | C D E E | F E C A, |\n[V:4] G, F, F, E, | D, D, C,2 | G, A, C A, | D, E, F, F, |\n[V:5] G G A G | A A G2 | c c G A | G G A A |\n[V:6] E E F E | F F E2 | G G E F | E D F F |\n[V:7] B, F, A, E, | A, A, G,2 | E, E, G, A, | B, G, A, A, |\n[V:8] G, D, F, C, | F, F, E,2 | C, C, E, F, | G, E, F, F, |\n%%\n%% Phrase 3 (bars 9-12)\n%%\n[V:1] A A G G | F G E C | !sintro!F F B A | G G F2 !eintro!|]\n[V:2] F F E E | D E C A, | D D G F | E E D2 |]\n[V:3] C D C B, | A, B, C D | C D F E | D C B,2 |]\n[V:4] A, G, A, G, | F, G, A, G, | A, B, D C | G, G, F,2 |]\n[V:5] c c c c | A G G E | A A d c | c c A2 |]\n[V:6] F G F G | A G F E | F F B A | G G F2 |]\n[V:7] A, A, G, G, | F, D, E, E, | C C, F, A, | E, E, A,2 |]\n[V:8] F, F, E, E, | D, B,, C, C, | A, A, D, F, | C, C, F,2 |]\nW: 6.If on earth my days He lengthen,\nW: He my weary soul will strengthen;\nW: All my trust in Him I place.\nW: Earthly wealth is not abiding,\nW: Like a stream away is gliding;\nW: Safe I anchor in His grace.\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ""; }
+};
+var abc = new abc2svg.Abc(user);
+abc.tosvg("score", abc_src);
+</script>
+</body>
+</html>

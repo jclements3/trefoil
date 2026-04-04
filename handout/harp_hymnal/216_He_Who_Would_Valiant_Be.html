@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>He Who Would Valiant Be — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }
+p.legend { font-size: 12px; color: #555; }</style>
+</head><body>
+<h1>He Who Would Valiant Be</h1>
+<p class="legend">Above melody: Abstract / RH voicing / LH voicing.
+RH = upper notes, LH = lower notes (no hand crossing).</p>
+<div id="music"></div>
+<script src="../../abc2stripchart/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 1\nT: He Who Would Valiant Be\nM: 4/4\nL: 1/4\nQ: 1/4=120\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: D\n[V: M] ( \"^vi\u00b9\"\"^Am\"D3/2 E/ ) | \"^I\u00b2\"F D F/ G/ A | \"^IV\"B2 A2 | \"^I\u00b2\"A D C D | \"^I\u00b2\"\"^C\u00b2\"D2 | ( \"^vi\u00b9\"\"^Am\u00b9\"D3/2 E/ ) | \"^I\u00b2\"\"^C\"F D F/ G/ A | \"^ii7\u00b9\"\"^Dm\"\"^F\"B2 A2 | \"^I\"A D C D | \"^I\u00b2\"D2 | \"^I\"A2 | \"^vi\"d B c d/ c/ | \"^IV\"B3 A | \"^I\"\"^C\"\"^C\"F/ E/ D F G | \"^V\"A3 | \"^IV\u0394\u00b9\"\"^F\u0394\u00b9-5\"d | \"^I\"A3/2 A/ B/ A/ G/ F/ | \"^V\u00b2\"\"^G\u00b2\"E B A D | \"^V\"C D2 |]\n[V: RH] ( [B,DF]3/2 [G]/ ) | [DF] [B,D] [DF]/ z/ [CA] | [GB]2 [EA]2 | [FA] [A,D] [A,C] [A,D] | [A,D]2 | ( [DF]3/2 [EG]/ ) | [DFA] [B,DF] [B,DF]/ z/ [EA] | [EGB]2 [FA]2 | [FA] [A,D] [EG] [DF] | [FA]2 | [FA]2 | [Bd] [GB] [Bc] [ABd]/ [Ac]/ | [GB]3 [EA] | [DFA]/ z/ [DF] [DFA] [GB] | [EA]3 | [Bd] | [FA]3/2 [A]/ [GB]/ [A]/ [EG]/ [F]/ | [EA] [GB] [EA] [DF] | [CE] [DF]2 |]\n[V: LH] ( [D,,D,F,]3/2 [E]/ ) | [A,,D,A,] [A,,D,F,] [G,,B,,D,]/ [G]/ [A,,E,] | [G,,G,D]2 [A,,A,C]2 | [A,,D,D] [F,,D,] [C,E,] [D,F,] | [A,,D,F,]2 | ( [D,F,B,]3/2 [G,C]/ ) | [A,,F,A,] [F,,D,F,] [D,F,A,]/ [G]/ [E,G,C] | [G,B,D]2 [A,CE]2 | [D,A,D] [D,F,] [C,A,C] [A,,D,A,] | [A,D]2 | [D,F,D]2 | [B,F] [D,DF] [E,EG] [F,DF]/ [CEG]/ | [G,D]3 [A,C] | [D,F,A,]/ [E]/ [D,F,A,] [D,F,A,] [G,B,D] | [A,C]3 | [B,FG] | [D,A,D]3/2 [F]/ [E,B,E]/ [F]/ [D,G,D]/ [CD]/ | [E,A,C] [B,DF] [A,C] [F,A,B,] | [A,,A,] [D,A,]2 |]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ""; }
+};
+var abc = new abc2svg.Abc(user);
+abc.tosvg("score", abc_src);
+</script></body></html>

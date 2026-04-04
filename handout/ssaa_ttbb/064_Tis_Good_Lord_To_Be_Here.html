@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>'Tis Good, Lord, To Be Here — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }
+p.legend { font-size: 12px; color: #555; }</style>
+</head><body>
+<h1>'Tis Good, Lord, To Be Here</h1>
+<p class="legend">Above melody: Abstract chord / RH voicing / LH voicing</p>
+<div id="music"></div>
+<script src="../../abc2stripchart/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 1\nT: 'Tis Good, Lord, To Be Here\nM: 2/4\nL: 1/4\nQ: 1/4=100\n%%staves M | {(RH1 RH2 RH3 RH4) (LH1 LH2 LH3 LH4)}\nV: M clef=treble name=\"Melody\"\nV: RH1 clef=treble name=\"RH\"\nV: RH2 clef=treble\nV: RH3 clef=treble\nV: RH4 clef=treble\nV: LH1 clef=bass name=\"LH\"\nV: LH2 clef=bass\nV: LH3 clef=bass\nV: LH4 clef=bass\nK: E\n[V: M] \"^vi\u00b9\"E | F A | G F | \"^vi\u00b9\"E B | \"^IV\u0394\u00b2\"\"^F\u0394\u00b3\"\"^Am\u00b9\"c e | \"^iii7\u00b2\"\"^G\u00b9\"\"^Em\u00b2\"d c | \"^V+6\"\"^Em\u00b9\"B G | \"^ii7\u00b3\"\"^F-3+6\"\"^F\u00b2\"A c | \"^iii7\u00b2\"\"^Em7\u00b2\"\"^Em7\u00b2\"B A | \"^vi7\u00b9\"\"^Am\"\"^C\"G ^A | \"^iii\u00b9\"\"^Em\u00b9\"B E | \"^vii\u00f87\u00b2\"\"^B\u00f87\u00b2\"F A | \"^I\u00b9\"\"^C\u00b9\"G F | \"^vi\u00b9\"\"^Am\u00b2\"E |] a d a c d b e a c c d e a\n[V: RH1] [Q:1/4=100] E | F A | G F | E B | c e | d c | B \\ G | A c | B A | G ^A | B E | F A | G F | E |] % % ---- Soprano II: diatonic third below S1, no accidentals ----\n[V: RH2] C | D F | E D | C G | A c | B A | G \\ E | F A | G F | E F | G C | D F | E D | C |] % % ---- Alto I: enters bar 3; original alto line, diatonic ----\n[V: RH3] z | z z | z z | E F | E G | F F/E/ | D \\ E | E E | F D | E C | D E | C C/D/ | E D | E |] % % ---- Alto II: enters bar 3; diatonic, contrary motion to Alto I ----\n[V: RH4] z | z z | z z | C B, | G, B, | D C | B, \\ G, | A, C | D B, | C A, | B, G, | A, B, | G, B, | G, |] % % ---- Tenor I: diatonic recomposition, sounds an octave below written (8vb) ----\n[V: LH1] g | f e | g b | g f | e g | b a | b \\ b | c' a | b b | b a | b b | a a | g b | g |] % % ---- Tenor II: diatonic third below Tenor I, sounds an octave below written ----\n[V: LH2] e | d c | e f | e d | c e | g f | f \\ e | a f | g g | g f | g e | f f | e f | e |] % % ---- Baritone: original tenor at concert pitch, A# replaced by A ----\n[V: LH3] G, | F, E,/F,/ | G,/A,/ B,/A,/ | G, F, | G, G,/A,/ | B, A, | B, \\ B, | C A,/G,/ | F, B, | B,/C/ C | B, B, | A, A, | B, B, | G, |] % % ---- Bass I: original bass; notes below C2 raised an octave in section 2 ----\n[V: LH4] E, | D, C, | E, E, | E, D, | E, C, | D,/E,/ F, | B,, \\ E, | E, E, | D, B,, | E,/C,/ F, | B,, G, | A, F, | G,/A,/ B, | E, |]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ""; }
+};
+var abc = new abc2svg.Abc(user);
+abc.tosvg("score", abc_src);
+</script></body></html>

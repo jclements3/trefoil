@@ -1,0 +1,100 @@
+X: 238
+T: Rejoice, O Pilgrim Throng
+T: (also known as Rejoice Ye Pure in Heart)
+C: Words: Edward H. Plumptre, 1865, alt.  Music: 'Marion' Arthur H. Messiter, 1883.
+C: Setting: SSAATTBB arrangement for double choir and lever harp.
+C: Original SATB: "The Church Hymnal, Revised and Enlarged", 1893.
+C: copyright: public domain.  Arranged from the Open Hymnal Project, 2013 Revision.
+M: 4/4
+L: 1/4
+Q: 1/4=130
+%%staves [(1 2) (3 4) (5 6) (7 8)]
+V:1 name="Soprano I"   clef=treble
+V:2 name="Soprano II"  clef=treble
+V:3 name="Alto I"      clef=treble
+V:4 name="Alto II"     clef=treble
+V:5 name="Tenor I"     clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"    clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"    clef=bass
+V:8 name="Bass I"      clef=bass
+K: F
+%
+% Lever harp — F major: raise Bb lever only (one lever from Eb storage).
+% Diatonic set: F G A Bb C D E.  In K:F ABC notation, plain B = Bb.
+%
+% ABC pitch reference:
+%  Treble (no transpose): C,=C3 D,=D3 ... A,=A3 B,=Bb3 C=C4 D=D4 E=E4 F=F4
+%    G=G4 A=A4 B=Bb4 c=C5 d=D5 e=E5
+%  Treble (transpose=-12, Tenor staves): written note sounds 8vb.
+%    Written A,=A3 sounds A2; written B,=Bb3 sounds Bb2; written C=C4 sounds C3.
+%    Written G,=G3 sounds G2 (T2 minimum). Written B,=Bb3 sounds Bb2 (T1 minimum).
+%  Bass clef: C,=C2 D,=D2 E,=E2 F,=F2 G,=G2 A,=A2 B,=Bb2
+%    C=C3 D=D3 E=E3 F=F3 G=G3 A=A3 B=Bb3 c=C4
+%
+% Voice ranges (concert pitch):
+%  S1 C4-A5  S2 A3-F5  A1 F3-D5  A2 D3-B4
+%  T1 B2-G4  T2 G2-E4  Bar E2-C4  B1 C2-A3
+%
+% ===================================================================
+% PHRASE 1 (pickup + mm.1-4)
+% Texture: SSAA choir alone on pickup; TTBB joins at m.1.
+%          Opening texture: 4+4 voices, call-and-response.
+% Harmony: I — vi — IV — V — I (m.1-2); I — IV — V — I (m.3-4)
+% ===================================================================
+%
+[V:1] [Q:1/4=130] F | c A/G/ F G | A3 A | A F/G/ A =B | c3 |
+[V:2]              D | A F/E/ D E | F3 F | F D/E/ F F | E3 |
+[V:3]              C | F D/C/ B, C | C3 E | E C/D/ C C | C3 |
+[V:4]              A, | C A,/G,/ F, A, | A,3 A, | A, F,/G,/ A, G, | G,3 |
+[V:5]              z | C E/D/ C C | C3 E | C D/C/ C D | E3 |
+[V:6]              z | A, G,/A,/ G, A, | A,3 A, | A, G,/A,/ A, G, | G,3 |
+[V:7]              z | E, E,/F,/ E, G, | F,3 E, | F, F,/E,/ F, F, | E,3 |
+[V:8]              z | C, C, D, C, | F,3 C, | D, D,/C,/ D, D, | C,3 |
+%
+% ===================================================================
+% PHRASE 2 (pickup + mm.5-8)
+% Texture: Full 8 voices. SSAA antiphonal against TTBB (mm.5-6).
+%          Full homophony at cadence (mm.7-8).
+% DIATONIC FIX: Original alto pickup was Eb4 (modal mixture b7).
+%   Replaced with E natural (E4) in S2, A1, A2 (all diatonic).
+%   S1 keeps original =B in m.3 (S1 unrestricted; no other voice doubles it).
+% RANGE FIX: Original bass had G1/Bb1/A1 — raised to G2/Bb2/A2.
+%   Original bass in m.8 had sub-bass passing tones — replaced with
+%   diatonic passing motion in C2-A3 range.
+% ===================================================================
+%
+[V:1] !sintro!c | d c/B/ A A | A/G/ F/G/ A D | G A B A | G3 |
+[V:2]            E | F F/E/ D D | D C/D/ C F | E F G F | E3 |
+[V:3]            C | D C/B,/ A, A, | C B,/C/ A, D | C D E D | C3 |
+[V:4]            A, | B, A,/G,/ F, F, | F, E,/F,/ D, B, | G, A, B, A, | G,3 |
+[V:5]            A | B A/G/ F F | F E/F/ F D | E F G E | E3 |
+[V:6]            F | G F/E/ D D | D C/D/ C A, | B, C D C | C3 |
+[V:7]            F, | G, F,/E,/ D, D, | D, E,/F,/ E, F, | E, F, G, F, | E,3 |
+[V:8]            F, | G, B, D, D, | E, A, D, C, | B, A, G, A,/B,/ | C,3 |
+%
+% ===================================================================
+% PHRASE 3 / INTRO REFRAIN (pickup + mm.9-12)
+% Texture: Full 8-voice sustained homophony. S1 climax on C5 (mm.9-10).
+%          Stretto bass ascent: B1 enters one beat late in m.9,
+%          ascends C-D-E-F beneath sustained upper voices in mm.9-10.
+%          4-3 suspension in S2 (G4-F4) and A1 (F4-E4) at final cadence.
+%          B1 closes on F2, lowest note of the arrangement.
+% ===================================================================
+%
+[V:1] !sintro!c | c3 c | c3 c | B A/G/ A G | F3 !eintro!|]
+[V:2]            A | A3 A | A3 A | G F/E/ F E | F3 |]
+[V:3]            F | F3 F | F3 F | F E/D/ E D | C3 |]
+[V:4]            C | C3 C | C3 D | D C/B,/ C B, | A,3 |]
+[V:5]            A | A3 A | A3 A | G F/E/ G F | F3 |]
+[V:6]            F | F3 F | F3 F | G F/E/ F E | C3 |]
+[V:7]            E, | F,3 E, | F,3 F, | G, F,/E,/ F, E, | F,3 |]
+[V:8]            z | z C,/D,/ E,2 | z D,/E,/ F,2 | G, F,/E,/ C, C, | F,3 |]
+%
+W: 6.Yes onward, onward still With hymn, and chant and song,
+W: Through gate, and porch and columned aisle, The hallowed pathways throng.
+W:
+W: 7.At last the march shall end; The wearied ones shall rest;
+W: The pilgrims find their Father's house, Jerusalem the bless'd.
+W:
+W: 8.Then on, ye pure in heart! Rejoice, give thanks and sing!
+W: Your festal banner wave on high, The cross of Christ your King.

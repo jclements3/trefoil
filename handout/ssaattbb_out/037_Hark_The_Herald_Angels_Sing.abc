@@ -1,0 +1,116 @@
+X:1
+T:Hark! The Herald Angels Sing
+T:(SSAATTBB arr.)
+C:Words: Charles Wesley, 1739, alt.
+C:Music: 'Mendelssohn', Felix Mendelssohn, 1840. Setting: William H. Cummings, 1857.
+C:SSAATTBB arrangement for double choir and lever harp.
+C:Copyright: public domain.
+M:4/4
+L:1/4
+Q:1/4=100
+K:F
+%%staves [(1 2) (3 4) (5 6) (7 8)]
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+%
+% -------------------------------------------------------
+% BARS 1-4  (SSAA only — reduced opening texture)
+% Soprano I carries melody; S2 harmonizes a third below.
+% Altos enter at bar 3 as Bb major arrives (bars 3-4).
+% -------------------------------------------------------
+%
+% Concert ranges reminder (treble-clef voices):
+%   S1 C4-A5: C to A (written)
+%   S2 A3-F5: A, to F
+%   A1 F3-D5: F, to D  (but in treble that is low; F3 = F, is fine)
+%   A2 D3-B4: D, to B  (watch low limit; D3 = D,)
+%
+[V:1] C F F3/2 E/ | F A (A G) | c c c3/2 B/ | A G A2 |
+[V:2] C C C3/2 C/ | C F (F E) | F G F3/2 G/ | F E F2 |
+[V:3] z4 | z4 | A A G3/2 A/ | C C C2 |
+[V:4] z4 | z4 | F E D3/2 E/ | A, B, A,2 |
+[V:5] z4 | z4 | z4 | z4 |
+[V:6] z4 | z4 | z4 | z4 |
+[V:7] z4 | z4 | z4 | z4 |
+[V:8] z4 | z4 | z4 | z4 |
+%
+% -------------------------------------------------------
+% BARS 5-8  (Full 8 voices — TTBB enter with SSAA)
+% S1/S2 repeat opening phrase; A1/A2 extend from bar 3.
+% T1/T2/Bar/B1 enter together for the first full texture.
+% Bar 8 resolves to F; original tenor =B, replaced by Bb (B,).
+% -------------------------------------------------------
+%
+% Tenor clef note: written pitch sounds an octave lower (transpose=-12).
+%   Sounding T1 range B2-G4: write B3-G5 in treble = B to g
+%   Sounding T2 range G2-E4: write G3-E5 in treble = G to e
+%
+[V:1] C F F3/2 E/ | F A (A G) | c G G3/2 E/ | E D C2 |
+[V:2] C C C3/2 C/ | C F (F E) | F E E3/2 C/ | C B, A,2 |
+[V:3] A A A3/2 G/ | A C C2 | C C C3/2 G/ | G F E2 |
+[V:4] F F E3/2 F/ | F A (A G) | A G G3/2 E/ | E D C2 |
+[V:5] c c c3/2 d/ | c c c2 | c B B3/2 g/ | g f e2 |
+[V:6] A A G3/2 A/ | A A A2 | A G G3/2 e/ | e d c2 |
+[V:7] F, F, G,3/2 A,/ | A, C C2 | C C D3/2 E/ | E C C2 |
+[V:8] F, F, F, C, | A, F, C,2 | A, B, C C | C C, F,2 |
+%
+% Note: original S2V2 (bass) bars 6-7 had =B,, (B natural) chromatic passing
+% tones. In my B1 (V:8) bars 5-8 I stay diatonic: bar 6 A,-F,-C,2 retains
+% the original bass outline but bar 7 uses diatonic A,-B,-C C (Bb natural).
+%
+% -------------------------------------------------------
+% BARS 9-12  (Antiphonal: SSAA choir vs TTBB choir)
+% SSAA carry the "Glory to the newborn King" refrain in odd bars;
+% TTBB echo on even bars while SSAA sustain.  Both choirs join
+% only at the cadential beat of bars 10 and 12.
+% -------------------------------------------------------
+%
+[V:1] c c c F | B A (A G) | c c c F | B A (A G) |
+[V:2] A A A F | G F (F E) | A A A F | G F (F E) |
+[V:3] F E F3/2 E/ | E D E2 | F E F3/2 E/ | E D E2 |
+[V:4] C D C3/2 D/ | C C C2 | C D C3/2 D/ | C C C2 |
+[V:5] z4 | c c c3/2 g/ | z4 | c c c3/2 g/ |
+[V:6] z4 | A G (G F) | z4 | A G (G F) |
+[V:7] z4 | E E E C | z4 | E E E C |
+[V:8] z4 | C C C A, | z4 | C C C A, |
+%
+% -------------------------------------------------------
+% BARS 13-16  (Full 8, building toward climax)
+% All voices active; outer voices push toward extremes.
+% Original bass bar 18 had =B,, chromatic passing tones;
+% replaced with diatonic B, (Bb) throughout.
+% Original alto bar 14 had ^F (F#); replaced with G.
+% S1 reaches d (D5) — climax approach.
+% -------------------------------------------------------
+%
+[V:1] d d d c | B A B2 | G A/B/ c3/2 F/ | F G A2 |
+[V:2] B B B A | G G G2 | E E F3/2 C/ | C E F2 |
+[V:3] F G F3/2 E/ | D D D2 | C C C3/2 A/ | A B A2 |
+[V:4] D E D3/2 C/ | B, A, B,2 | A, A, A,3/2 F/ | F G F2 |
+[V:5] d d d d | d d d2 | B c d3/2 A/ | A B c2 |
+[V:6] B B B A | G F G2 | G A B3/2 F/ | F G A2 |
+[V:7] F F F F | D F B2 | G G A3/2 F/ | F E F2 |
+[V:8] B, B, B, B, | B, D, G,2 | E, E, F, D, | C, C, F,2 |
+%
+% -------------------------------------------------------
+% BARS 17-20  (Final section with stretto at cadence)
+% Bars 17-18 mirror bars 13-14; TTBB choir leads stretto
+% in bar 19 with soprano pair entering a beat later.
+% Final bar: all voices converge on F major block chord.
+% B1 lands on low F, (F2) for a grounded tonic close.
+% -------------------------------------------------------
+%
+[V:1] d3/2 d/ d c | B A B2 | !sintro!G A/B/ c3/2 F/ | F G F2 !eintro!|]
+[V:2] B B B A | G G G2 | E E F3/2 C/ | C D C2 |]
+[V:3] F G F3/2 E/ | D D D2 | C C C3/2 A/ | A B A2 |]
+[V:4] D E D3/2 C/ | B, B, B,2 | A, A, A,3/2 F/ | F G F2 |]
+[V:5] d3/2 d/ d c | d d d2 | B c d3/2 A/ | A B c2 |]
+[V:6] B B B A | G F G2 | G A B3/2 F/ | F G A2 |]
+[V:7] F F F E | D D D2 | G D C A | C E F2 |]
+[V:8] B, B, B, A, | G, G, G,2 | E, B, A, F, | C, C, F,2 |]

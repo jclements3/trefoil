@@ -1,0 +1,30 @@
+X: 58
+T: I Heard The Bells On Christmas Day
+C: Words: Henry Wadsworth Longfellow, 1864. 
+C: Music: 'Waltham (Calkin)' John B. Calkin, 1872.  Setting: "The Book of Common Praise", 1885.
+C: copyright: public domain.  This score is a part of the Open Hymnal Project, 2006 Revision.
+S: Music source: "The Book of Common Praise", 1885 Hymn 466.
+M: 4/4 % time signature
+L: 1/4 % default length
+%%staves (S1V1 S1V2) | (S2V1 S2V2) 
+V: S1V1 clef=treble 
+V: S1V2 
+V: S2V1 clef=bass 
+V: S2V2 
+K: Eb % key signature
+[V: S1V1] [Q:1/4=100] E  | G3/2 ^F/ G G | A3/2 G/ A =A |
+[V: S1V2] E | E3/2 E/ E _D | =D3/2 D/ D E |
+[V: S2V1]  G, | B,3/2 B,/ B, B, | B,3/2 B,/ B, C |
+[V: S2V2]  E, | E, B,, E, =E, | F, B,, F, ^F, |
+[V: S1V1]  B e d c | c3/2 B/ B B | B3/2 A/ G 
+[V: S1V2]  E G G E | F3/2 F/ F E | E3/2 E/ E 
+[V: S2V1]  B, B, B, E | D3/2 D/ D E | C3/2 C/ B, 
+[V: S2V2]  G, B,, E, G, | A,3/2 A,/ A, G, | A,3/2 A,/ E, 
+[V: S1V1] A | G3/2 F/ E !sintro!F | G A B c | D3/2 F/ !fermata!E !eintro!|]
+[V: S1V2] B | =B,3/2 B,/ C E | E E E E | D3/2 D/ E |]
+[V: S2V1]  E, | G,3/2 G,/ G, A, | B, C B, F, | F,3/2 A,/ !invertedfermata!G, |]
+[V: S2V2]  E, | D,3/2 D,/ C, F,, | B,, A,, G,, A,, | B,,3/2 B,,/ E, |]
+/opnot{		% usage: x y opnot
+	M -11 -3 RM /Times-Roman 36 selectfont(\( \))show}!
+/opchnot{	% usage: x y opchnot
+	M -10.5 -3 RM /Times-Roman 24 selectfont(\(   \))show}!

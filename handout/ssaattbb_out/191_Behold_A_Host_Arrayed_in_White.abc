@@ -1,0 +1,347 @@
+X:191
+T:Behold, A Host, Arrayed in White
+C:Words: Hans Adolf Brorson, circa 1760. Translation composite.
+C:Music: 'Den Store Hvide Flok' traditional Norwegian, 17th cent. Setting: Edvard Grieg, 1907.
+C:SSAATTBB arrangement by arrangement algorithm.
+C:copyright: public domain.
+M:6/4
+L:1/4
+Q:1/4=120
+K:Eb
+%%staves [(1 2) (3 4) (5 6) (7 8)]
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+%
+% ====== VERSE 1 ======
+% Bar 1 (pickup): S1 has E/G/ (Eb4/G4)
+[V:1] [Q:1/4=120] E/G/ |
+[V:2]             G,/B,/ |
+[V:3]             G,/B,/ |
+[V:4]             E,/G,/ |
+[V:5]             G,/B,/ |
+[V:6]             E,/G,/ |
+[V:7]             G,,/B,,/ |
+[V:8]             E,,/G,,/ |
+%
+% Bar 2: S1: B2 B c2 B  (Bb4 Bb4 Bb4 C5 C5 Bb4)
+% Harmony: Eb major, with passing motion — Bb chord, then C=vi or IV/6
+% S2: a 3rd below S1 diatonic: G4 G4 G4 Ab4 Ab4 G4  (but original had B, G ^F G = Bb G F# G — F# replaced with G)
+% A1: Eb4 Eb4 D4 Eb4 D4 Eb4 — inner melodic line
+% A2: C4 C4 Bb3 C4 Bb3 C4
+% T1 (written 8va): Bb3 Bb3 Bb3 G3 G3 Bb3
+% T2 (written 8va): G3 G3 G3 Eb3 Eb3 G3
+% Bar: Bb2 Bb2 Bb2 Ab2 Ab2 Bb2
+% B1: Eb2 Eb2 Eb2 Eb2 Eb2 Eb2
+[V:1] B2 B c2 B |
+[V:2] G2 G A2 G |
+[V:3] E2 E F2 E |
+[V:4] C2 C C2 C |
+[V:5] B,2 B, C2 B, |
+[V:6] G,2 G, A,2 G, |
+[V:7] G,2 G, F,2 G, |
+[V:8] E,2 E, E,2 E, |
+%
+% Bar 3: S1: (G3/2 E/) G/B/ F2 F/G/
+% G4 Eb4 G4 Bb4 F4 F4 F4 G4
+% Harmony: Eb, Bb7
+% S2: E4 C4 E4 G4 D4 D4 D4 E4 (3rds below diatonic)
+% A1: C4 C4 C4 Eb4 Bb3 Bb3 C4 (holds and steps)
+% A2: Bb3 G3 Bb3 Bb3 G3 G3 Bb3
+% T1: Eb3 Eb3 Eb3 Eb3 D3 D3 Eb3 (tenor, written 8va)
+% T2: Bb2 Bb2 Bb2 Bb2 Bb2 Bb2
+% Bar: Bb2 G2 Bb2 D3 C3 C3 Bb2
+% B1: Eb2 C2 Eb2 Bb2 Bb2 Bb2
+[V:1] (G3/2 E/) G/B/ F2 F/G/ |
+[V:2] (E3/2 C/) E/G/ D2 D/E/ |
+[V:3] C2 C E2 C |
+[V:4] (B,3/2 G,/) B,/B,/ B,2 B,/C/ |
+[V:5] (B,3/2 G,/) B,/B,/ B,2 B,/C/ |
+[V:6] G,2 G, G,2 G, |
+[V:7] B,,2 B,, B,,2 B,, |
+[V:8] _D,2 _D, C,2 C, |
+%
+% Bar 4: S1: A2 F (E3/2 F/) G/A/
+% Ab4 Ab4 F4 Eb4 F4 G4 Ab4
+% Harmony: Ab-F minor-Bb
+% S2: F4 F4 D4 C4 D4 E4 F4 (3rds below)
+% A1: C4 C4 Bb3 Bb3 Bb3 Bb3 C4
+% A2: Ab3 Ab3 F3 G3 F3 Eb3 F3
+% T1: F3 F3 F3 Eb3 F3 Eb3 F3
+% T2: Eb3 Eb3 D3 C3 D3 C3 Eb3
+% Bar: Ab2 Ab2 F2 Eb2 F2 Eb2
+% B1: F2 F2 Bb2 C3 Bb2 C3
+[V:1] _A2 F (E3/2 F/) G/_A/ |
+[V:2] F2 D (C3/2 D/) E/F/ |
+[V:3] C2 B, (B,3/2 C/) B,/C/ |
+[V:4] _A,2 _A, (G,3/2 _A,/) G,/_A,/ |
+[V:5] F,2 F, (F,3/2 G,/) F,/G,/ |
+[V:6] C,2 C, C,2 C, |
+[V:7] _A,,2 _A,, G,,2 C, |
+[V:8] B,,2 _A, G,2 C, |
+%
+% Bar 5: S1: B2 D E2 G/A/
+% Bb4 Bb4 D4 Eb4 Eb4 G4 Ab4
+% Harmony: Bb - Eb
+% S2: G4 G4 Bb3 C4 C4 E4 F4
+% A1: Eb4 Eb4 F4 Eb4 Eb4 Eb4 (sustained inner)
+% A2: Bb3 Bb3 Bb3 C4 C4 C4
+% T1: G3 G3 F3 G3 G3 Bb3
+% T2: Eb3 Eb3 Bb2 Eb3 Eb3 G3
+% Bar: Bb2 Bb2 Bb2 C3 C3 Eb3
+% B1: F2 F2 Bb2 Eb2 Eb2 C2
+[V:1] B2 D E2 G/_A/ |
+[V:2] G2 B, C2 E/F/ |
+[V:3] E2 F E2 E |
+[V:4] C2 _A, C2 C |
+[V:5] G,2 F, G,2 B, |
+[V:6] E,2 B,, E,2 G, |
+[V:7] B,,2 B,, C,2 E, |
+[V:8] F,,2 B,, E,2 C, |
+%
+% Bar 6: S1: (B3/2 G/) c/B/ B2 c
+% Bb4(3/2) G4(1/2) C5(1/2) Bb4(1/2) Bb4 Bb4 C5
+% Harmony: Eb - Ab
+% S2: (G3/2 E/) A/G/ G2 A (diatonic, 3rds below)
+% A1: Eb4(.) Eb4 Eb4 Eb4 Eb4 Eb4 F4
+% A2: C4 C4 C4 C4 C4 D4
+% T1: Bb3 Bb3 Ab3 Bb3 Bb3 C4
+% T2: G3 G3 F3 G3 G3 Ab3
+% Bar: Eb3 Eb3 F3 Eb3 Eb3 F3
+% B1: Bb2 Bb2 Ab2 Bb2 Bb2 Ab2
+[V:1] (B3/2 G/) c/B/ B2 c |
+[V:2] (G3/2 E/) _A/G/ G2 _A |
+[V:3] E2 F E2 F |
+[V:4] C2 C C2 D |
+[V:5] B,2 _A, B,2 C |
+[V:6] G,2 F, G,2 _A, |
+[V:7] E,2 F, E,2 F, |
+[V:8] B,,2 _A,, B,,2 _A,, |
+%
+% Bar 7: S1: (B3/2 F/) A G2 E/F/
+% Bb4(3/2) F4(1/2) Ab4 G4 G4 Eb4 F4
+% Harmony: Bb7 - Eb
+% S2: (G3/2 D/) F E2 C/D/
+% A1: D4 D4 D4 D4 Bb3 C4
+% A2: Bb3 Bb3 Bb3 Bb3 G3 Bb3
+% T1: F3 F3 F3 Eb3 Eb3 G3
+% T2: D3 D3 D3 C3 C3 Eb3
+% Bar: F3 F3 F3 Eb3 Eb3 G3
+% B1: Bb2 Bb2 F2 G2 C3
+[V:1] (B3/2 F/) _A G2 E/F/ |
+[V:2] (G3/2 D/) F E2 C/D/ |
+[V:3] F2 F D2 E |
+[V:4] B,2 B, B,2 B, |
+[V:5] F,2 F, E,2 G, |
+[V:6] D,2 D, C,2 E, |
+[V:7] (E, D,) C, =B,,2 G,, |
+[V:8] (B,, B,) F, G,2 C, |
+%
+% Bar 8: S1: (G3/2 A/) G (F3/2 G/) F
+% G4(3/2) Ab4(1/2) G4 F4(3/2) G4(1/2) F4
+% Harmony: Eb - Bb
+% S2: (E3/2 F/) E (D3/2 E/) D
+% A1: C4 C4 C4 D4 C4 D4
+% A2: Bb3 Bb3 Bb3 Bb3 Bb3 Bb3
+% T1: Eb3 Eb3 Eb3 F3 Eb3 F3
+% T2: C3 C3 C3 D3 C3 D3
+% Bar: G3 Ab3 G3 F3 G3 F3
+% B1: Eb3 C3 Eb3 Bb2 Bb2 Bb2
+[V:1] (G3/2 _A/) G (F3/2 G/) F |
+[V:2] (E3/2 F/) E (D3/2 E/) D |
+[V:3] C2 C D2 C |
+[V:4] (B,3/2 C/) B, (B,3/2 C/) B, |
+[V:5] (E,3/2 F,/) E, (D,3/2 E,/) D, |
+[V:6] C,2 C, C,2 C, |
+[V:7] B,,2 =A,, _A,,2 _A,, |
+[V:8] B,,2 B,, B,,2 B,, |
+%
+% ====== VERSE 2 (bars 9–16) ======
+% Bar 9: S1: E3- E2 E/G/  (long Eb4, then Eb4 G4 pickup)
+% Texture: antiphonal — SSAA hold, TTBB add inner motion
+[V:1] E3- E2 E/G/ |
+[V:2] B,3- B,2 B,/B,/ |
+[V:3] G,3- G,2 G,/B,/ |
+[V:4] E,3- E,2 E,/G,/ |
+[V:5] B,,3- B,,2 B,,/E,/ |
+[V:6] G,,3- G,,2 G,,/B,,/ |
+[V:7] E,,3- E,,2 E,,/G,,/ |
+[V:8] E,,3- E,,2 E,,/E,,/ |
+%
+% Bar 10: same as bar 2
+[V:1] B2 B c2 B |
+[V:2] G2 G _A2 G |
+[V:3] E2 E F2 E |
+[V:4] C2 C C2 C |
+[V:5] B,2 B, C2 B, |
+[V:6] G,2 G, _A,2 G, |
+[V:7] G,2 G, F,2 G, |
+[V:8] E,2 E, E,2 E, |
+%
+% Bar 11: same as bar 3
+[V:1] (G3/2 E/) G/B/ F2 F/G/ |
+[V:2] (E3/2 C/) E/G/ D2 D/E/ |
+[V:3] C2 C E2 C |
+[V:4] (B,3/2 G,/) B,/B,/ B,2 B,/C/ |
+[V:5] (B,3/2 G,/) B,/B,/ B,2 B,/C/ |
+[V:6] G,2 G, G,2 G, |
+[V:7] B,,2 B,, B,,2 B,, |
+[V:8] _D,2 _D, C,2 C, |
+%
+% Bar 12: same as bar 4
+[V:1] _A2 F (E3/2 F/) G/_A/ |
+[V:2] F2 D (C3/2 D/) E/F/ |
+[V:3] C2 B, (B,3/2 C/) B,/C/ |
+[V:4] _A,2 _A, (G,3/2 _A,/) G,/_A,/ |
+[V:5] F,2 F, (F,3/2 G,/) F,/G,/ |
+[V:6] C,2 C, C,2 C, |
+[V:7] _A,,2 _A,, G,,2 C, |
+[V:8] B,,2 _A, G,2 C, |
+%
+% Bar 13: same as bar 5
+[V:1] B2 D E2 G/_A/ |
+[V:2] G2 B, C2 E/F/ |
+[V:3] E2 F E2 E |
+[V:4] C2 _A, C2 C |
+[V:5] G,2 F, G,2 B, |
+[V:6] E,2 B,, E,2 G, |
+[V:7] B,,2 B,, C,2 E, |
+[V:8] F,,2 B,, E,2 C, |
+%
+% Bar 14: same as bar 6
+[V:1] (B3/2 G/) c/B/ B2 c |
+[V:2] (G3/2 E/) _A/G/ G2 _A |
+[V:3] E2 F E2 F |
+[V:4] C2 C C2 D |
+[V:5] B,2 _A, B,2 C |
+[V:6] G,2 F, G,2 _A, |
+[V:7] E,2 F, E,2 F, |
+[V:8] B,,2 _A,, B,,2 _A,, |
+%
+% Bar 15: same as bar 7
+[V:1] (B3/2 F/) _A G2 E/F/ |
+[V:2] (G3/2 D/) F E2 C/D/ |
+[V:3] F2 F D2 E |
+[V:4] B,2 B, B,2 B, |
+[V:5] F,2 F, E,2 G, |
+[V:6] D,2 D, C,2 E, |
+[V:7] (E, D,) C, =B,,2 G,, |
+[V:8] (B,, B,) F, G,2 C, |
+%
+% Bar 16: same as bar 8
+[V:1] (G3/2 _A/) G (F3/2 G/) F |
+[V:2] (E3/2 F/) E (D3/2 E/) D |
+[V:3] C2 C D2 C |
+[V:4] (B,3/2 C/) B, (B,3/2 C/) B, |
+[V:5] (E,3/2 F,/) E, (D,3/2 E,/) D, |
+[V:6] C,2 C, C,2 C, |
+[V:7] B,,2 =A,, _A,,2 _A,, |
+[V:8] B,,2 B,, B,,2 B,, |
+%
+% ====== VERSE 3 (bars 17–24) — varied, fuller texture ======
+% Bar 17: S1: E3- E2 E/G/  (with fuller harmony building)
+[V:1] E3- E2 E/G/ |
+[V:2] B,3- B,2 B,/E/ |
+[V:3] G,3- G,2 G,/B,/ |
+[V:4] E,3- E,2 E,/G,/ |
+[V:5] B,,3- B,,2 B,,/G,,/ |
+[V:6] G,,3- G,,2 G,,/E,,/ |
+[V:7] E,,3- E,,2 E,,/G,,/ |
+[V:8] E,,3- E,,2 E,,/E,,/ |
+%
+% Bar 18: S1: c2 c c2 B  — verse 3 variation (C5 C5 C5 Bb4)
+% Harmony: Ab major, to Bb
+% S2: Ab4 Ab4 Ab4 G4
+% A1: F4 F4 F4 Eb4  — fuller in high alt
+% A2: C4 C4 C4 C4
+% T1: Ab3 Ab3 Ab3 G3
+% T2: F3 F3 F3 Eb3
+% Bar: Ab2 Ab2 Ab2 G2
+% B1: Eb2 Eb2 Eb2 Eb2 — root
+[V:1] c2 c c2 B |
+[V:2] _A2 _A _A2 G |
+[V:3] F2 F F2 E |
+[V:4] C2 C C2 C |
+[V:5] _A,2 _A, _A,2 B, |
+[V:6] F,2 F, F,2 G, |
+[V:7] _A,,2 _A,, _A,,2 G,, |
+[V:8] E,2 E, E,2 E, |
+%
+% Bar 19: S1: (G3/2 E/) G/B/ F2 F/G/ — same as bar 3
+[V:1] (G3/2 E/) G/B/ F2 F/G/ |
+[V:2] (E3/2 C/) E/G/ D2 D/E/ |
+[V:3] C2 C E2 C |
+[V:4] (B,3/2 G,/) B,/B,/ B,2 B,/C/ |
+[V:5] (B,3/2 G,/) B,/B,/ B,2 B,/C/ |
+[V:6] G,2 G, G,2 G, |
+[V:7] B,,2 B,, B,,2 B,, |
+[V:8] _D,2 _D, C,2 C, |
+%
+% Bar 20: S1: A2 F (E3/2 F/) G/A/ — same as bar 4 (with =D in S1V2 replaced by D diatonic)
+[V:1] _A2 F (E3/2 F/) G/_A/ |
+[V:2] F2 D (C3/2 D/) E/F/ |
+[V:3] C2 B, (B,3/2 C/) B,/C/ |
+[V:4] _A,2 _A, (G,3/2 _A,/) G,/_A,/ |
+[V:5] F,2 F, (F,3/2 G,/) F,/G,/ |
+[V:6] C,2 C, C,2 C, |
+[V:7] _A,,2 _A,, G,,2 C, |
+[V:8] B,,2 _A, G,2 C, |
+%
+% Bar 21: S1: B2 D E2 G/A/ — same as bar 5
+[V:1] B2 D E2 G/_A/ |
+[V:2] G2 B, C2 E/F/ |
+[V:3] E2 F E2 E |
+[V:4] C2 _A, C2 C |
+[V:5] G,2 F, G,2 B, |
+[V:6] E,2 B,, E,2 G, |
+[V:7] B,,2 B,, C,2 E, |
+[V:8] F,,2 B,, E,2 C, |
+%
+% Bar 22: S1: (B3/2 G/) c B2 c — slight variation (no /B/ pickup in middle)
+% S1: Bb4(3/2) G4(1/2) C5 Bb4 Bb4 C5 — full 8-voice climax build
+[V:1] (B3/2 G/) c B2 c |
+[V:2] (G3/2 E/) _A G2 _A |
+[V:3] E2 F E2 F |
+[V:4] C2 C C2 D |
+[V:5] B,2 _A, B,2 C |
+[V:6] G,2 F, G,2 _A, |
+[V:7] E,2 F, E,2 F, |
+[V:8] B,,2 _A,, B,,2 _A,, |
+%
+% Bar 23: S1: (B3/2 F/) A G2 !sintro!E/F/
+% intro marking - approach to final cadence
+[V:1] (B3/2 F/) _A G2 !sintro!E/F/ |
+[V:2] (G3/2 D/) F E2 C/D/ |
+[V:3] F2 F D2 E |
+[V:4] B,2 B, B,2 B, |
+[V:5] F,2 F, E,2 G, |
+[V:6] D,2 D, C,2 E, |
+[V:7] (E, D,) C, =B,,2 G,, |
+[V:8] (B,, B,) F, G,2 C, |
+%
+% Bar 24: S1: (G3/2 A/) G (F3/2 G/) F — penultimate bar
+% Full 8-voice homophony building to final cadence
+[V:1] (G3/2 _A/) G (F3/2 G/) F |
+[V:2] (E3/2 F/) E (D3/2 E/) D |
+[V:3] C2 C D2 C |
+[V:4] (B,3/2 C/) B, (B,3/2 C/) B, |
+[V:5] (E,3/2 F,/) E, (D,3/2 E,/) D, |
+[V:6] C,2 C, C,2 C, |
+[V:7] B,,2 =A,, _A,,2 _A,, |
+[V:8] B,,2 B,, B,,2 B,, |
+%
+% Bar 25: S1: E3- E2 !eintro!|]  — final cadence, full 8-voice
+% Suspension resolution: 4-3 in S2, A1 resolves down
+[V:1] E3- E2 !eintro!|]
+[V:2] B,3- B,2 |]
+[V:3] G,3- G,2 |]
+[V:4] E,3- E,2 |]
+[V:5] B,,3- B,,2 |]
+[V:6] G,,3- G,,2 |]
+[V:7] E,,3- E,,2 |]
+[V:8] E,,3- E,,2 |]

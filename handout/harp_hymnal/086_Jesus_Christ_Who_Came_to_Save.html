@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Jesus Christ Who Came to Save — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }
+p.legend { font-size: 12px; color: #555; }</style>
+</head><body>
+<h1>Jesus Christ Who Came to Save</h1>
+<p class="legend">Above melody: Abstract / RH voicing / LH voicing.
+RH = upper notes, LH = lower notes (no hand crossing).</p>
+<div id="music"></div>
+<script src="../../abc2stripchart/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 1\nT: Jesus Christ Who Came to Save\nM: 4/4\nL: 1/4\nQ: 1/4=120\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: C\n[V: M] \"^IV\u0394\u00b9\"\"^F\u0394\u00b3-5\"A A G A | \"^V+6\"\"^Em\"\"^G\"B A ( G ^F | \"^I\u00b9\"\"^C\u00b9\"E ) G A B | \"^IV\u00b2\"A ^G A | \"^ii\"d | \"^IV\u0394\u00b3-5\"A/ B/ c ( B A ) | \"^iii\u00b9\"B A A A | \"^iii7\u00b2\"\"^Em\"B A ( G ^F ) | \"^I\u00b2\"E G A B | ( \"^IV\u0394\u00b2\"\"^F\u0394\u00b3-5\"A ^G ) A2 |]\n[V: RH] [EFA] [EFA] [EGB] [B,FA] | [EGB] [DFA] ( [EGB] [D^FGB] | [EG] ) [CEG] [FA] [GB] | [FA] [G^GB] [CEA] | [Ad] | [FA]/ z/ [GAc] ( [GAB] [GAB] ) | [GB] [EGA] [FA] [EGA] | [EGB] [EFA] ( [GB] [GB] ) | [EG] [EG] [FA] [GB] | ( [EFA] [G^GB] ) [EFA]2 |]\n[V: LH] [A,,C,C] [C,E,A,C] [E,G,A,C] [F,G,A,] | [G,B,D] [C,A,B,C] ( [D,G,B,C] [B,,D,G,B,] | [E,G,C] ) [C,E,A,] [F,A,D] [G,B,D] | [C,A,C] [E,G,B,E] [A,,C,A,] | [D,F] | [E,E]/ [B]/ [C,EF] ( [F,DF] [A,DF] ) | [G,E] [C,CD] [F,D] [F,CD] | [B,,B,D] [C,A,C] ( [D,CE] [B,D^F] ) | [G,C] [E,C] [C,B,D] [B,,CE] | ( [C,A,C] [G,B,DE] ) [C,A,C]2 |]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ""; }
+};
+var abc = new abc2svg.Abc(user);
+abc.tosvg("score", abc_src);
+</script></body></html>

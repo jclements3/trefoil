@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>All Praise To Thee, My God, This Night — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }
+p.legend { font-size: 12px; color: #555; }</style>
+</head><body>
+<h1>All Praise To Thee, My God, This Night</h1>
+<p class="legend">Above melody: Abstract chord / RH voicing / LH voicing</p>
+<div id="music"></div>
+<script src="../../abc2stripchart/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 1\nT: All Praise To Thee, My God, This Night\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%staves M | {(RH1 RH2 RH3 RH4) (LH1 LH2 LH3 LH4)}\nV: M clef=treble name=\"Melody\"\nV: RH1 clef=treble name=\"RH\"\nV: RH2 clef=treble\nV: RH3 clef=treble\nV: RH4 clef=treble\nV: LH1 clef=bass name=\"LH\"\nV: LH2 clef=bass\nV: LH3 clef=bass\nV: LH4 clef=bass\nK: G\n[V: M] \"^vi7\u00b9\"\"^Am7\u00b2\"G | \"^vi9\u00b3\"\"^Am7\u00b2\"\"^C\u0394\u00b2\"G F G G | \"^vii\u00f89\u00b2\"\"^B\u00f87\u00b2\"\"^F\"A A B G | \"^ii+6\"\"^Dm\u00b9\"\"^B\u00b0\u00b9\"c c B B | \"^vii\u00b011\u2074\"\"^B\u00f87\u00b2\"\"^Dm9\u00b3-5\"A A G | \"^vi7\u00b2\"\"^Am7\"d | \"^vii\u00f87\u00b2\"\"^Dm\u00b9\"\"^B\u00b0\u00b2\"c A B B | \"^vii\u00f87\u00b3\"\"^B\u00f87\u00b2\"\"^Dm\u00b2\"A A G D | \"^vii\u00f87\u00b3\"\"^G-1+2\"E F G B | \"^vii\u00f87\u00b3\"\"^B\u00b0\u00b9\"A A G |]\n[V: RH1] [Q:1/4=100] G | G F G G | A A B G | c c B B | A A G | d | c A B B | A A G D | E F G B | A A G |]\n[V: RH2] E | E E E D | F F G E | A A G G | F F E | B | A F G G | F F E B, | C E E G | F F E |]\n[V: RH3] D | D C B, B, | E D D D | E F E D | E D D | G | E D D D | E D G G, | E D B, D | C A, B, |]\n[V: RH4] B, | B, A, G, G, | C B, B, B, | C D C B, | C B, A, | E | C B, B, B, | C B, E E, | C B, G, B, | A, F, G, |]\n[V: LH1] B | B B B A | G F G G | A A B G | c c B | B | A A G d | c A B B | A A G D | E F G |]\n[V: LH2] G | G G G F | E D E E | F F G E | A A G | G | F F E B | A F G G | F F E B, | C D E |]\n[V: LH3] B, | F, F, G, D, | E, F, B,, D, | C, C, B,, B, | B, A, B, | B, | C A, B, B,, | E, F, B,, D, | E, F, G, D, | E, F, B,, |]\n[V: LH4] G, | D, D, E, B,, | C, D, G,, B,, | A,, A,, G,, G, | G, F, G, | % % --- SECOND HALF --- % G, | A, F, G, G,, | C, D, G,, B,, | C, D, E, B,, | C, D, G,, |] W: 6.O when shall I, in endless day, W: For ever chase dark sleep away, W: And hymns divine with angels sing, W: All praise to thee, eternal King? W: W: 7.Praise God, from Whom all blessings flow; W: Praise Him, all creatures here below; W: Praise Him above, ye heavenly host; W: Praise Father, Son, and Holy Ghost.\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ""; }
+};
+var abc = new abc2svg.Abc(user);
+abc.tosvg("score", abc_src);
+</script></body></html>

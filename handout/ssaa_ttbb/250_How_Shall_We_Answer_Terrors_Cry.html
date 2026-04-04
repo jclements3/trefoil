@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>How Shall We Answer Terror's Cry? — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }
+p.legend { font-size: 12px; color: #555; }</style>
+</head><body>
+<h1>How Shall We Answer Terror's Cry?</h1>
+<p class="legend">Above melody: Abstract chord / RH voicing / LH voicing</p>
+<div id="music"></div>
+<script src="../../abc2stripchart/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 1\nT: How Shall We Answer Terror's Cry?\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%staves M | {(RH1 RH2 RH3 RH4) (LH1 LH2 LH3 LH4)}\nV: M clef=treble name=\"Melody\"\nV: RH1 clef=treble name=\"RH\"\nV: RH2 clef=treble\nV: RH3 clef=treble\nV: RH4 clef=treble\nV: LH1 clef=bass name=\"LH\"\nV: LH2 clef=bass\nV: LH3 clef=bass\nV: LH4 clef=bass\nK: C\n[V: M] \"^vi\"\"^Am\"C | \"^I\u00b9\"\"^C\u00b9\"E3/2 E/ G G | \"^IV\"\"^F\"A A G G | \"^vi7\u00b3\"\"^Am\u00b9\"\"^F-1+2\"c d B G | \"^vi7s+6\"\"^Am7s\"\"^F-5+2\"G ^F G D | \"^V7\"\"^G7\"F3/2 F/ E E | \"^iii7\"\"^Em\u00b9\"\"^Em7-3\"G3/2 G/ ^F B | \"^V+6\"\"^Em7\u00b2\"G ^F E A | \"^vi11\u00b3\"\"^Am7\"\"^G\"G ^F E E | \"^vi7\u00b2\"\"^Am7\u00b3\"E3/2 E/ F F | \"^Dm\u00b9\"\"^B\u00b0\u00b2\"^F3/2 F/ G G | \"^V+6\"\"^Em7\u00b2\"G A G E | \"^iii9s\"\"^Em7s\"\"^B\u00b0\"D3/2 C/ C |]\n[V: RH1] C | E3/2 E/ G G | A A G G | c d B G | G ^F G D | F3/2 F/ E E | G3/2 G/ ^F B | G ^F E A | G ^F E E | E3/2 E/ F F | ^F3/2 F/ G G | G A G E | D3/2 C/ C |]\n[V: RH2] A, | C3/2 C/ E E | F F E E | A B G E | E E E B, | D3/2 D/ C C | E3/2 E/ E G | E E C F | E E C C | C3/2 C/ D D | D3/2 D/ E E | E F E C | B,3/2 A,/ A, |]\n[V: RH3] E | G,3/2 G,/ C C | C A, G, G, | E D D C | D A, B, A, | B,3/2 B,/ B, A, | B, B, C D | D C B, A, | C B, A, G, | A, B, A, G, | A, B, C C | D E D B, | A,3/2 G,/ G, |]\n[V: RH4] C | E,3/2 E,/ G, G, | F, F, E, E, | C B, B, A, | A, F, G, F, | G,3/2 G,/ A, G, | G, G, A, B, | B, A, G, F, | A, G, F, E, | G, G, F, E, | F, G, A, A, | B, C B, G, | E,3/2 D,/ D, |]\n[V: LH1] z | G3/2 G/ E E | C C B, B, | A, F D E | A, A, D B, | D3/2 D/ E E | D D C D | B, A, B, C | B, B, G, G, | G, G, C C | D D B, D | G G E C | F3/2 E/ E |]\n[V: LH2] z | E3/2 E/ C C | A, A, G, G, | G, D B, C | G, G, G, G, | B,3/2 B,/ C C | B, B, G, B, | G, G, G, A, | G, G, E, E, | E, E, A, A, | B, B, G, B, | E E C A, | D3/2 C/ C |]\n[V: LH3] z | E,3/2 E,/ E, E, | A,/B,/ C/D/ E D | C F, B, E, | F, F, B, B, | D3/2 D/ B, C | E,3/2 E,/ F, G, | G, A, B, C | D G, B, G, | E,3/2 E,/ A, A, | F,3/2 F,/ B, D | G, G, B, B, | B,3/2 C/ C |]\n[V: LH4] z | % % --- BAR 1 --- % C,3/2 C,/ C, C, | % % --- BAR 2 --- % F,/G,/ A,/B,/ C B, | % % --- BAR 3 --- % A, D, G, C, | % % --- BAR 4 --- % D, D, G, G, | % % --- BAR 5 --- % B,3/2 B,/ C, C, | % % --- BAR 6 --- % C,3/2 C,/ D, E, | % % --- BAR 7 --- % E, F, G, A, | % % --- BAR 8 --- % E, E, E, E, | % % --- BAR 9 --- % C,3/2 C,/ F, F, | % % --- BAR 10 --- % D,3/2 D,/ G, B, | % % --- BAR 11 (climax) --- % C,3/2 C,/ G, G, | % % --- BAR 12 (final cadence, 3 beats) --- % G,3/2 C,/ C, |]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ""; }
+};
+var abc = new abc2svg.Abc(user);
+abc.tosvg("score", abc_src);
+</script></body></html>

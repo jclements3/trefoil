@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>O Lord, My God, I Thirst For You — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }
+p.legend { font-size: 12px; color: #555; }</style>
+</head><body>
+<h1>O Lord, My God, I Thirst For You</h1>
+<p class="legend">Above melody: Abstract / RH voicing / LH voicing.
+RH = upper notes, LH = lower notes (no hand crossing).</p>
+<div id="music"></div>
+<script src="../../abc2stripchart/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 1\nT: O Lord, My God, I Thirst For You\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: G\n[V: M] \"^ii9\u00b2\"\"^Am\"\"^Dm7\u00b2\"G/ F/ | \"^IV\u0394\u00b9\"\"^F\u0394\u00b9\"E E E D | \"^vi7\u00b3\"\"^Am7\u00b3\"G G A G/ A/ | \"^IV\u0394\u00b9\"\"^F\u00b9\"B B A/ G/ E | \"^iii7\"\"^Em7\"D3 | \"^vi7\u00b2\"\"^Am7\u00b2-3\"G/ F/ | \"^IV\u03949\"\"^C-1+4\"E E E D | \"^vi7\u00b2\"\"^Am7\u00b2-3\"G G A G/ A/ | \"^I\"\"^C\u00b9\"B B A/ G/ E | \"^IV\u03949\u00b9\"\"^Am7-5\"\"^F\u0394\u00b9\"E3 | \"^vi7\u00b9\"\"^Am\u00b2\"\"^C-3+6\"B/ c/ | \"^I\u0394\u00b9\"\"^C\u00b2\"\"^Em\"d B B/ A/ G | \"^V7\u00b2\"\"^G\u00b2\"\"^B\u00b0\u00b9\"A A B2 | \"^I\u00b9\"\"^C\u00b9\"B B/ A/ G E | \"^I\u03949\u00b3\"\"^C\u00b2\"\"^C\u03949\u00b3-5\"D3 | \"^vi7\u00b9\"\"^Am7\u00b9\"G/ F/ | \"^IV\u03949\u00b2\"\"^C+4\"E E E/ D/ E/ F/ | \"^vi7\u00b2\"\"^Am7\u00b2-3\"G G A G/ A/ | \"^vi7\u00b9\"\"^C\u00b9\"B B A/ G/ E | \"^IV\u00b2\"\"^F\u00b2\"E3 |]\n[V: RH] [EGeb]/ [da]/ | [Eeg] [Eeg] [CEeg] [Ddf] | [Geg] [EGdg] [FAdf] [Geg]/ [Ada]/ | [GBgb] [GBfb] [Aea]/ [g]/ [CEde] | [B,Dd]3 | [Ggb]/ [fa]/ | [Eeg] [Eeg] [Eeg] [Ddf] | [Geg] [Gdg] [Adf] [Geg]/ [Adf]/ | [Bdg] [GBg] [Ace]/ [G]/ [Ee] | [Edg]3 | [Beg]/ [cfa]/ | [dgb] [Beg] [Beg]/ [Adf]/ [Gce] | [Adf] [Acf] [GBg]2 | [Bg] [Bdg]/ [Af]/ [Gce] [Egc'] | [Dgb]3 | [Geg]/ [df]/ | [Ece] [Ece] [ea]/ [dg]/ [fa]/ [gb]/ | [Geg] [Gdg] [Adf] [Geg]/ [df]/ | [Bdg] [GBf] [Ace]/ [G]/ [Ee] | [eg]3 |]\n[V: LH] [E,G,A,C]/ [F,DF]/ | [E,G,B,C] [E,G,A,C] [C,E,G,B,] [C,E,G,B,] | [D,G,B,E] [E,G,B,D] [D,F,B,D] [D,B,CE]/ [C,A,F]/ | [E,G,CE] [D,G,B,D] [C,A,CF]/ [EG]/ [A,,C,G,B,] | [B,,D,F,A,]3 | [B,,B,DE]/ [DF]/ | [C,B,CD] [C,A,C] [A,,A,C] [D,G,B,] | [B,,B,DE] [E,A,CE] [D,B,DF] [A,B,DE]/ [A,CF]/ | [G,B,G] [B,,B,D] [C,A,CF]/ [E]/ [A,,G,C] | [E,G,B,C]3 | [G,DEG]/ [A,EFA]/ | [B,DFB] [B,DG] [B,DG]/ [A,CF]/ [G,B,E] | [A,CF] [G,A,CF] [G,B,D]2 | [B,DG] [B,DG]/ [A,CF]/ [G,B,E] [E,G,C] | [F,G,A,B,]3 | [G,B,DE]/ [F,DF]/ | [G,B,CD] [G,A,CD] [A,CE]/ [B,D]/ [G,CE]/ [DF]/ | [B,DE] [G,A,DE] [F,B,DF] [G,B,DE]/ [F,FA]/ | [G,EG] [F,DF] [E,CEF]/ [E]/ [E,C] | [G,CE]3 |]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ""; }
+};
+var abc = new abc2svg.Abc(user);
+abc.tosvg("score", abc_src);
+</script></body></html>

@@ -1,0 +1,89 @@
+X: 222
+T: Our Father Thou in Heaven Above
+T: (also known as Our Father, Who from Heaven Above or Our Father in the Heaven Who Art)
+C: Words: Martin Luther, 1539. Translation composite.
+C: Music: 'Vater Unser im Himmelreich' attr. Martin Luther, found in Valentin Schumann's Geistliche Lieder, Leipzig, 1539.
+C: Setting: SSAATTBB arr. from "Evangelical Lutheran Hymn-Book", 1931.
+C: copyright: public domain.
+M: 4/4
+L: 1/4
+Q: 1/4=140
+%%staves [(1 2) (3 4) (5 6) (7 8)]
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+K: Bb
+%
+% === PHRASE 1 (bars 1-5) ===
+%
+% S1: follows original soprano exactly
+% S2: a 3rd below S1, diatonic; shares unison with S1 at cadence (bar 5 beat 4)
+% A1: independent melodic line, mid-register, diatonic
+% A2: a 3rd-6th below A1, contrary motion where possible, diatonic
+% T1: follows original tenor line (diatonic-corrected), written at sounding+8va
+% T2: a 3rd below T1 diatonic, within written G3-E5 (concert G2-E4)
+% Bar: a 3rd-6th above B1, diatonic, within E2-C4
+% B1: original bass adapted to C2-A3 range, diatonic-corrected
+%
+[V:1] G2 G E | F G E D | C2 G2 | G F B G | E F G2 |
+[V:2] E2 E C | D D C B, | A,2 E2 | E D G E | C D E2 |
+[V:3] C2 C A, | B, B, G G | G2 C2 | B, A, D B, | A, B, C2 |
+[V:4] G,2 A, F, | G, G, E E | E2 C2 | G, F, B, G, | F, G, A,2 |
+[V:5] C2 C A, | B, B, G, G, | E2 C2 | B, A, D B, | G, C B,2 |
+[V:6] G,,2 G,, F, | G, G, E, E, | C2 A,2 | G, F, B, G, | E, G, G,2 |
+[V:7] E,2 G, E, | F, D, C, B,, | C,2 E,2 | D, C, F, D, | C, D, E,2 |
+[V:8] C,2 C, C, | B,, B,, C, E, | C,2 C,2 | G,, D, B,, E, | A,, A,, G,,2 |
+%
+% === PHRASE 2 (bars 6-10) ===
+%
+[V:1] G2 B c | e d c =B | c2 c2 | d c B A | G ^F G2 |
+[V:2] E2 G F | G F E D | E2 F2 | F E D C | D D D2 |
+[V:3] C2 D E | C B, G A | G2 A2 | B, C D C | B, C B,2 |
+[V:4] G,2 G, A, | E D C F | E2 F2 | G, A, B, A, | G, A, G,2 |
+[V:5] C2 D E | C B, G G, | G,2 A,2 | B, C D C | B, A, B,2 |
+[V:6] G,,2 B,, C | A,, G,, E, E, | C2 F,2 | G, A, B, A, | G, F, G,2 |
+[V:7] E,2 G, F, | E, D, E, D, | C,2 F,2 | D, E, F, E, | D, C, D,2 |
+[V:8] C,2 G, F, | E, B,, C, A,, | C,2 F,2 | B,, A,, B,, F,, | G,, D, G,,2 |
+%
+% === PHRASE 3 (bars 11-15) ===
+%
+[V:1] c2 B A | B G G F | E2 !sintro!G2 | _A G E F | E D !fermata!C2 !eintro!|]
+[V:2] F2 F E | D E E D | C2 E2 | F E C D | C B, C2 |]
+[V:3] A2 D C | B, C C B, | G2 C2 | C B, G A | G F E2 |]
+[V:4] F2 B, A, | G, A, G, F, | E2 G,2 | A, G, E E | E D C2 |]
+[V:5] A,2 D C | B, B, B, B, | G,2 E2 | F E C D | C B, C2 |]
+[V:6] F,2 B,, A,, | G, G, G, G, | E,2 C2 | D C A, B, | A, G, G,2 |]
+[V:7] F,2 F, E, | D, E, E, D, | C,2 E,2 | F, E, C, D, | C, B,, C,2 |]
+[V:8] F,,2 B,, F, | G, E, G,, B,, | E,2 C,2 | F,, G,, A,, F,, | C, G,, C,2 |]
+W:6. Forgive our sins, Lord, we implore,
+W:Remove from us their burden sore,
+W:As we their trespasses forgive
+W:Who by offenses us do grieve.
+W:Thus let us dwell in charity
+W:And serve our brother willingly.
+W:
+W:7. Into temptation lead us not.
+W:When evil foes against us plot
+W:And vex our souls on every hand,
+W:Oh, give us strength that we may stand
+W:Firm in the faith, a well-armed host,
+W:Through comfort of the Holy Ghost!
+W:
+W:8. From evil, Lord, deliver us;
+W:The times and days are perilous.
+W:Redeem us from eternal death,
+W:And when we yield our dying breath,
+W:Console us, grant us calm release,
+W:And take our souls to Thee in peace.
+W:
+W:9. Amen, that is, So shall it be.
+W:Confirm our faith and hope in Thee
+W:That we may doubt not, but believe
+W:What here we ask we shall receive.
+W:Thus in Thy name and at Thy word
+W:We say: Amen. Oh, hear us, Lord! Amen.

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>We Give Thee But Thine Own — SSAATTBB</title>
+<style>
+body { font-family: sans-serif; margin: 20px; background: #fff; }
+h1 { font-size: 18px; }
+</style>
+</head>
+<body>
+<h1>We Give Thee But Thine Own — SSAATTBB</h1>
+<div id="music"></div>
+<script src="../../abc2stripchart/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 272\nT: We Give Thee But Thine Own\nC: Words: William W. How, 1864.\nC: Music: 'Energy' William H. Monk (1823-1889). Setting: \"Evangelical Lutheran Hymn-Book\", 1931.\nC: SSAATTBB arrangement for double choir and lever harp.\nC: copyright: public domain.\nM: 4/4\nL: 1/4\nQ: 1/4=104\n%%staves [(V1 V2) (V3 V4) (V5 V6) (V7 V8)]\nV:1 name=\"Soprano I\"   clef=treble\nV:2 name=\"Soprano II\"  clef=treble\nV:3 name=\"Alto I\"      clef=treble\nV:4 name=\"Alto II\"     clef=treble\nV:5 name=\"Tenor I\"     clef=treble middle=B3 transpose=-12\nV:6 name=\"Tenor II\"    clef=treble middle=B3 transpose=-12\nV:7 name=\"Baritone\"    clef=bass\nV:8 name=\"Bass I\"      clef=bass\nK: G\n%\n% ---------------------------------------------------------------\n% PHRASE 1 (one-beat pickup + bars 1\u20134)\n% Texture: SSAA enters on pickup; TTBB joins at bar 2\n% ---------------------------------------------------------------\n%\n[V:1] [Q:1/4=104] d | c B A B/c/ | B3 B | A D E E | D3 |\n[V:2]              B | A G F G/A/ | G3 G | F B, C C | B,3 |\n[V:3]              G | E D E D | E D C B, | D A, B, A, | A,3 |\n[V:4]              E | C A, B, B, | B, C B, A, | F, F, A, F, | F,3 |\n[V:5]              z | z4 | B c B G | E F B A | F3 |\n[V:6]              z | z4 | G A F D | D C D C | D3 |\n[V:7]              z | z4 | B, B, B, B,, | F, D, B,, C, | F,3 |\n[V:8]              z | z4 | G,3 G,, | D, B,, G,, A,, | D,3 |\n%\n% ---------------------------------------------------------------\n% PHRASE 2 (one-beat pickup + bars 5\u20138)\n% Texture: Full 8 voices; climax at bar 7; stretto at final cadence\n% ---------------------------------------------------------------\n%\n[V:1]  D | E F G B | A A B !sintro!B | c B A A | G3 !eintro!|]\n[V:2]  B, | C D E G | F F G G | G G F F | E3 |]\n[V:3]  A, | B, C D F | E E F E | E D E D | D3 |]\n[V:4]  F, | G, G, G, D | C D C D | C A, B, B, | B,3 |]\n[V:5]  F | G A G G | G F E F | D D G E | B3 |]\n[V:6]  D | D D B, B, | B, C D B, | A, B, E C | G,3 |]\n[V:7]  F, | E, C, E, B,, | E, E, D, B,, | D, D, D, F, | B,,3 |]\n[V:8]  D, | C, A,, B,, G,, | C, C, B,, G,, | A,, B,, C, D, | G,,3 |]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ""; }
+};
+var abc = new abc2svg.Abc(user);
+abc.tosvg("score", abc_src);
+</script>
+</body>
+</html>

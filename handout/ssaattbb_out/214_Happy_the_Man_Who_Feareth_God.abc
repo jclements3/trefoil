@@ -1,0 +1,59 @@
+X: 214
+T: Happy the Man Who Feareth God
+T: (also known as Happy Who in God's Fear Doth Stay)
+C: Words: Martin Luther, 1524. Translated by Richard Massie, 1854.
+C: Music: 'Wo Gott Zum Haus (Walter)' from Walter's Gesangbüchlein, 1524.
+C: Setting: Bartolomäus Gesius, 1605; arr. for SSAATTBB, 2025.
+C: copyright: public domain. Original from the Open Hymnal Project, 2009 Revision.
+M: 4/4
+L: 1/4
+Q: 1/4=100
+%%staves {(1 2) (3 4) (5 6) (7 8)}
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+K: D
+%
+% ---------------------------------------------------------------
+% PHRASE 1 (Bars 1-4)
+% Bar 1: SSAA enters; TTBB rests for open, building texture
+% ---------------------------------------------------------------
+[V:1] [Q:1/4=100] D2 A A    | F A (B/ d) c/     | d2 z d           | B A B A          |
+[V:2]             B,2 F F    | D F G/ B A/        | B2 z B           | G F G F          |
+[V:3]             F2 E E     | A, D E/ G F/       | F2 z F           | D D D C          |
+[V:4]             D2 C C     | F, A, C/ E D/      | D2 z D           | B, A, B, A,      |
+[V:5]             z4         | F D D3/2 E/        | A2 z A           | G F G E          |
+[V:6]             z4         | D B, B,3/2 C/      | F2 z F           | E D E C          |
+[V:7]             z4         | A, F, G, A,        | F,2 z F,         | G, D, G, E,      |
+[V:8]             D,2 A, D,  | D, D, G,/B,/ A,   | D,2 z D,         | G, D, G, A,,     |
+%
+% ---------------------------------------------------------------
+% PHRASE 2 (Bars 5-7)
+% Bar 5: SSAA only (antiphonal); Bar 6: TTBB only (antiphonal answer); Bar 7: full 8-voice
+% ---------------------------------------------------------------
+[V:1] G/F/ E D2            | z4                 | (F E/) B A/ G     |
+[V:2] E/D/ B, B,2          | z4                 | (D C/) G F/ E     |
+[V:3] B,/A,/ G, F,2        | z4                 | D C B, E          |
+[V:4] G,/F,/ E, D,2        | z4                 | B, A, G, A,       |
+[V:5] z4                   | z A A G            | B, A, B, C        |
+[V:6] z4                   | z F F E            | G, F, E, G,       |
+[V:7] z4                   | z F, F, G,         | D, G, B,/ A,/ G,  |
+[V:8] z4                   | z D, D, E,         | C, E, G,/F,/ E,   |
+%
+% ---------------------------------------------------------------
+% PHRASE 3 / INTRO SECTION (Bars 8-10)
+% Full 8-voice; climax in bar 9 (S1 reaches E5); final suspension bar 10
+% ---------------------------------------------------------------
+[V:1] F2 z/ !sintro!B/ d-  | d/ c/ B e (d/e/-   | e/d//c//B/) B/ A2 !eintro! |]
+[V:2] D2 z/ G/ B-          | B/ A/ G c (B/c/-   | c/ B// A// G/) G/ F2        |]
+[V:3] A,2 z/ E/ F-         | F/ E/ D A (G/A/-   | A/ G// F// E/) E/ D2        |]
+[V:4] F,2 z/ D/ D-         | D/ D/ B, F (E/F/-  | F/ E// D// C/) C/ A,2       |]
+[V:5] D2 z/ D/ F-          | F/ E/ D A (G/A/-   | A/ G// F// E/) E/ D2        |]
+[V:6] A,2 z/ B,/ D-        | D/ D/ B, F (E/F/-  | F/ E// D// C/) C/ A,2       |]
+[V:7] A,2 z/ G,/ A,-       | A,/ A,/ G, C B,-   | B,/ A,/ G, E,2              |]
+[V:8] D,2 z/ G,/ D,-       | A,, E,/F,/G,/A,/ B,,/ (E,/ | C,/D,/E,/) E,/ A,,2 |]

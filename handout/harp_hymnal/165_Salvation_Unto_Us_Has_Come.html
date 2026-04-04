@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Salvation Unto Us Has Come — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }
+p.legend { font-size: 12px; color: #555; }</style>
+</head><body>
+<h1>Salvation Unto Us Has Come</h1>
+<p class="legend">Above melody: Abstract / RH voicing / LH voicing.
+RH = upper notes, LH = lower notes (no hand crossing).</p>
+<div id="music"></div>
+<script src="../../abc2stripchart/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 1\nT: Salvation Unto Us Has Come\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: Eb\n[V: M] \"^vi7\"B/ | \"^vi7\u00b2\"\"^Am\u00b2\"B B B _d | \"^ii7\u00b2\"\"^Dm\"c B A3/2 B/ | \"^I\u00b9\"G E G A | ( \"^I\u03949\"\"^Em\u00b2\"\"^C+2\"B c ) B3/2 B/ | \"^vi7\u00b2\"\"^Am\u00b2\"B B B _d | \"^ii7\u00b2\"\"^Dm\"c B A3/2 B/ | \"^I\u00b9\"G E G A | ( \"^I\u03949\"\"^Em\u00b2\"\"^C+2\"B c ) B3/2 B/ | \"^vi\u00b9\"\"^Am\u00b2\"e3/2 _d/ c B | \"^ii9\u00b3\"\"^F\u0394\u00b3-3\"\"^Dm7\u00b3-3\"e c B3/2 B/ | \"^vi\"e3/2 B/ B E | \"^vi7\u00b2\"\"^Am7\u00b2-3\"G B G3/2 E/ | \"^V7\u00b2\"\"^G7\u00b2-3\"F A G F | ( \"^I\"E F ) E3/2 |]\n[V: RH] [GB]/ | [GB] [GB] [GB] [GB_d] | [FAc] [GB] [FA]3/2 [GB]/ | [EG] [CE] [EG] [EFA] | ( [DGB] [EAc] ) [EGB]3/2 [EGB]/ | [GB] [GB] [GB] [GB_d] | [FAc] [GB] [FA]3/2 [GB]/ | [EG] [CE] [EG] [EFA] | ( [DGB] [EAc] ) [EGB]3/2 [EGB]/ | [Gce]3/2 [GB_d]/ [EGc] [EGB] | [GAe] [Gc] [GB]3/2 [GB]/ | [Ge]3/2 [GB]/ [DGB] [CE] | [EG] [B,GB] [EG]3/2 [CE]/ | [DF] [EFA] [EG] [CDF] | ( [B,E] [DF] ) [B,E]3/2 |]\n[V: LH] [CE]/ | [G,CE] [F,DF] [G,CE] [F,DF] | [C,CE] [G,CE] [E,A,C]3/2 [G,CE]/ | [G,B,] [C,F,A,] [G,B,C] [E,A,C] | ( [E,F,G,B,] [F,G,A,C] ) [E,F,G,C]3/2 [E,G,C]/ | [G,CE] [F,DF] [G,CE] [F,DF] | [C,CE] [B,,CE] [A,,A,C]3/2 [B,,CE]/ | [G,B,] [C,F,A,] [G,B,C] [E,A,C] | ( [E,F,G,B,] [F,G,A,C] ) [E,F,G,C]3/2 [E,G,C]/ | [E,CE]3/2 [C,DF]/ [C,F,A,C] [E,G,C] | [E,CEF] [E,CE] [E,CE]3/2 [D,DF]/ | [C,CE]3/2 [CE]/ [D,F,B,] [C,F,A,] | [G,B,C] [D,F,G,] [G,B,C]3/2 [C,F,A,]/ | [F,A,B,] [D,F,A,C] [G,B,C] [C,F,A,] | ( [E,G,] [F,A,C] ) [G,,E,G,]3/2 |]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ""; }
+};
+var abc = new abc2svg.Abc(user);
+abc.tosvg("score", abc_src);
+</script></body></html>

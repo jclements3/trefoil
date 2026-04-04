@@ -1,0 +1,170 @@
+X: 1
+T: Christ Returneth
+C: Words: H. L. Turner, 1878. Music: James McGranahan, 1891.
+C: SSAATTBB arrangement. From Open Hymnal Project SATB. Public domain.
+M: none
+L: 1/4
+Q: 1/4=120
+K: D
+%%staves {(V:1 V:2) (V:3 V:4)} | {(V:5 V:6) (V:7 V:8)}
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+%
+% OCTAVE REFERENCE (concert pitch):
+%   ABC letter (no comma/apostrophe) = 4th octave: C=C4, D=D4 ... B=B4
+%   One comma lower: C,=C3, D,=D3 ... B,=B3
+%   Two commas:      C,,=C2 etc.
+%   One apostrophe:  c=C5, d=D5 ... (or use lowercase for 5th octave)
+%   In ABC: uppercase = octave 4, lowercase = octave 5
+%
+%   TENOR VOICES (transpose=-12): written pitch sounds one octave lower.
+%   To sound concert X, write X one octave higher.
+%     Written B  (B4)  = sounds B3   Written d  (D5)  = sounds D4
+%     Written A  (A4)  = sounds A3   Written e  (E5)  = sounds E4
+%     Written G  (G4)  = sounds G3   Written f  (F5)  = sounds F4
+%     Written F  (F4)  = sounds F3   Written g  (G5)  = sounds G4
+%     Written E  (E4)  = sounds E3
+%     Written D  (D4)  = sounds D3   (lowest practical for T1 range B2)
+%     Written C  (C4)  = sounds C3
+%
+%   BARITONE (bass clef, concert pitch):
+%     E,,=E2  A,,=A2  C,=C3  D,=D3  F,=F3  A,=A3  C=C4
+%
+%   BASS I (bass clef, concert pitch):
+%     D,,=D2  A,,=A2  B,,=B2  D,=D3  A,=A3
+%
+% =====================================================================
+% SECTION A  (Verse — first strain)
+% =====================================================================
+%
+% — Pickup and bars 1-4 (bars counted from first full measure) —
+% TEXTURE: S1+S2+A1+A2 only (TTBB tacet) — reduced opening
+%
+% Original Sop:  D4 | F4 E4 D4 | A4-A4 B4¾ A4¼ | F4 E4 D4 | F4 E4 (rest) E4
+% S1 = Sop exactly
+% S2 = thirds below Sop, diatonic: D4→B3, F4→D4, E4→C4(=C#4 in D maj key → use C#? No — C in D major = C#)
+%   Wait: D major scale = D E F# G A B C# D. So "C" in K:D = C#4, "D" = D4, etc.
+%   The original S1V2 (alto) had: D4 | D4 D4 D4 | D4-D4 D4¾ D4¼ | D4 D4 D4 | D4 C#4 (rest) C4
+%   Note: !accent!C in original alto = C4 natural? No — in K:D, C without accidental = C#4.
+%   The original uses explicit accidentals for naturals. "C" in the key of D = C# unless marked =C.
+%   So original S1V2 has C# on that accented beat. Fine — that's diatonic.
+%   The ^G (G#) in bar 7 of the second line is the only non-diatonic inner voice note.
+%
+% S2: third below S1 in D major (diatonic thirds):
+%   D4 → B3 (third below); F#4 → D4; E4 → C#4; A4 → F#4; B4 → G4; G4 → E4; C#5 → A4; d5→B4
+%
+% A1: follows original alto (S1V2), which is diatonic except bar 7 (^G)
+% A2: third below A1, diatonic
+%
+[V:1] [Q:1/4=120] D | F E D | A2 B3/4 A/4 | F E D | !accent!F !accent!E z E |
+[V:2]              B, | D D B, | F2 G3/4 F/4 | D D B, | !accent!D !accent!C z C |
+[V:3]              A, | A, G, F, | D2 D3/4 D/4 | A, G, F, | !accent!A, !accent!A, z A, |
+[V:4]              F, | F, E, D, | A,2 B,3/4 A,/4 | F, E, D, | !accent!F, !accent!E, z E, |
+[V:5]              z | z z z | z2 z3/4 z/4 | z z z | z z z z |
+[V:6]              z | z z z | z2 z3/4 z/4 | z z z | z z z z |
+[V:7]              z | z z z | z2 z3/4 z/4 | z z z | z z z z |
+[V:8]              z | z z z | z2 z3/4 z/4 | z z z | z z z z |
+%
+% — Bars 5-10 (second phrase, first strain) — TTBB enters forthrightly —
+% Original: Sop F4 F4 A4 | d5 e5 d5 | c5 d5 B4 | B4 A4(rest)A4 | A4 B4 c5 | d5-d5 c5¾ d5¼
+%           Alt D4 D4 E4 | F4 G4 F4 | E4 ^G4 G4 | A4 A4(rest)G4 | F4 G4 G4 | F4-F4 E4¾ F4¼
+%           Ten A3 A3 A3 | B3 A3 A3 | A3 B3 D4 | D4 C#4(rest)C#4 | D4 D4 A3 | A3-A3 A3¾ A3¼
+%           Bas D3 D3 C3 | B2 C3 D3 | E3 E3 E3 | A2 A2(rest)A2 | A3 G3 E3 | D3-D3 E3¾ D3¼
+%
+% Bar 7 alto: E4 ^G4(=G#4) G4 — G# is non-diatonic in D major
+%   Harmonic context: E3 E3 E3 in tenor + A2 A2 A2 in bass = E minor chord (ii of D)
+%   G# makes it E major = secondary dominant V/vi (tonicizing B minor)
+%   Rule: V/vi → III or v (diatonic substitution)
+%   Replace G# with G natural: E4 G4 G4 → implies Em chord (ii minor) — diatonic, fine
+%   Voice leading: E4→G4 is a minor third up, then G4 stays → good
+%
+% T1 (written one octave higher than concert): A3 sounds → write A; B3→B; D4→d; C#4→C (=C# in K:D)
+% T2 a third below T1: F3→write F; G3→write G; E3→write E; A3→write A; B3→write B
+% Baritone (bass clef concert): a 3rd above Bass I
+% Bass I follows original S2V2 closely
+%
+[V:1] F F A | d3/2 e/ d | c d B | !accent!B !accent!A z A | A B c | d2 c3/4 d/4 |
+[V:2] D D E | B3/2 c/ B | A B G | !accent!G !accent!F z F | F G A | B2 A3/4 B/4 |
+[V:3] A, A, C | F3/2 G/ F | E G G | !accent!E !accent!D z D | D E E | F2 E3/4 F/4 |
+[V:4] F, F, A, | D3/2 E/ D | C E E | !accent!C !accent!C z C | C D C | D2 C3/4 D/4 |
+[V:5] A A A | B3/2 A/ A | A B d | !accent!d !accent!C z C | d d A | A2 A3/4 A/4 |
+[V:6] F F F | G3/2 F/ F | F G B | !accent!B !accent!A z A | A B G | F2 G3/4 F/4 |
+[V:7] F, D, E, | D,3/2 E,/ F, | E, E, E, | !accent!A,, !accent!A,, z A,, | A, G, E, | D,2 E,3/4 D,/4 |
+[V:8] D, D, C, | B,,3/2 C,/ D, | E, E, E, | !accent!A,, !accent!A,, z A,, | A, G, E, | D,2 E,3/4 D,/4 |
+%
+% — Bars 11-15: First section cadence (||) —
+% Original: Sop e5¾d5¼e5 | f5 d5 d5¾-d5¼ | d5¾c5¼B4 | (A4 d5)c5 | d5-d5-d5
+%           Alt G4¾F4¼G4 | A4 F4 A4¾-A4¼ | B4¾A4¼G4 | F4-F4 G4 | F4-F4-F4
+%           Ten C4¾D4¼C4 | D4 D4 D4¾-D4¼ | D4¾D4¼D4 | (D4 A3) A3 | A3-A3-A3
+%           Bas A2¾A2¼A2 | D3 D3 F3¾-F3¼ | G3¾G3¼G3 | A3-A3 A2 | D3-D3-D3
+%
+% Cadence at bar 15: S1=D5 (d), S2=A4 (A), A1=F4 (F), A2=D4 (D), T1=A3(wr:A), T2=F3(wr:F), Bar=F3, B1=D3(D,)
+% Suspension setup: A2 suspends F4→E4 in bar 14-15; T2 suspends A3→G3(wr:A→G) — diatonic
+%
+[V:1] e3/2 d/ e | f d d3/4.- d/4 | d3/2 c/ B | (A d) c | d3 ||
+[V:2] c3/2 B/ c | d B B3/4.- B/4 | B3/2 A/ G | (F A) G | A3 ||
+[V:3] G3/2 F/ G | A F F3/4.- F/4 | G3/2 F/ E | (D F) E | F3 ||
+[V:4] E3/2 D/ E | F D D3/4.- D/4 | E3/2 D/ C | (A, D) C | D3 ||
+[V:5] C3/2 d/ C | d d d3/4.- d/4 | d3/2 C/ B | (d A) A | A3 ||
+[V:6] A3/2 B/ A | B A B3/4.- B,/4 | B3/2 A/ G | (A F) E | F3 ||
+[V:7] A,,3/2 B,,/ C, | D, D, F,,3/4.- F,,/4 | G,,3/2 G,,/ G,, | A,,2 A,,, | D,,3 ||
+[V:8] A,,3/2 A,,/ A,, | D, D, F,,3/4.- F,,/4 | G,,3/2 G,,/ G,, | A,,2 A,,, | D,,3 ||
+%
+% =====================================================================
+% SECTION B  (Chorus — "It may be at morn")
+% =====================================================================
+%
+% — Bars 16-21: Full 8-voice homophony, forte —
+% Original: Sop A4-A4 F4 | F4 G4 A4 | B4-B4 B4 | d5-d5 d5¾d5¼ | d5 c5 B4 | A4-A4 c5¾c5¼
+%           Alt F4-F4 D4 | D4 C4 D4  | D4-D4 D4 | G4-G4 G4¾G4¼ | B4 A4 G4 | F4-F4 E4¾E4¼
+%           Ten D4-D4 A3 | A3 A3 A3  | D4-D4 D4 | B3-B3 B3¾B3¼ | B3 C4 D4 | D4-D4 A3¾A3¼
+%           Bas D3-D3 D3 | D3 E3 F3  | G3-G3 G3 | G3-G3 G3¾G3¼ | G3 G3 G3 | D3-D3 A3¾A3¼
+%
+% S2: diatonic thirds below S1
+% A1: follows original alto
+% A2: thirds below A1
+% T1 (written 8va higher): D4→wr:d, A3→wr:A, B3→wr:B, C4→wr:c, D4→wr:d
+% T2: thirds below T1 (diatonic): B3→wr:B becomes G3→wr:G; D4→wr:d becomes B3→wr:B
+% Bar: thirds above Bass I (diatonic)
+% B1: follows original bass
+%
+[V:1] A2 F | F G A | B2 B | d2 d3/4 d/4 | d c B | A2 c3/4 c/4 |
+[V:2] F2 D | D E F | G2 G | B2 B3/4 B/4 | B A G | F2 A3/4 A/4 |
+[V:3] D2 A, | A, B, D | D2 D | G2 G3/4 G/4 | B A G | F2 E3/4 E/4 |
+[V:4] A,2 F, | F, G, F, | B,2 B, | E2 E3/4 E/4 | G F E | D2 C3/4 C/4 |
+[V:5] d2 A | A A A | d2 d | B2 B3/4 B/4 | B c d | d2 A3/4 A/4 |
+[V:6] A2 F | F G F | B,2 B | G2 G3/4 G/4 | G A B | A2 F3/4 F/4 |
+[V:7] F,2 F, | D, E, F, | G,2 G, | G,2 G,3/4 G,/4 | G, G, G, | F,2 A,3/4 A,/4 |
+[V:8] D,2 D, | D, E, F, | G,2 G, | G,2 G,3/4 G,/4 | G, G, G, | D,2 A,,3/4 A,,/4 |
+%
+% — Bars 22-27: Chorus continuation and final cadence —
+% Original: Sop d5 d5 c5¾c5¼ | d5 d5 e5¾e5¼ | f5 d5 c5 | d5-d5 F4¾F4¼ | A4 G4 E4 | D4-D4
+%           Alt F4 F4 G4¾G4¼ | F4 F4 A4¾A4¼  | A4 F4 G4 | F4-F4 D4¾D4¼ | D4 E4 C4 | D4-D4
+%           Ten A3 A3 A3¾A3¼ | A3 A3 C4¾C4¼  | D4 A3 A3 | A3-A3 A3¾A3¼ | F3 A3 G3 | F3-F3
+%           Bas D3 D3 A2¾A2¼ | D3 D3 A3¾A3¼  | D3 D3 A2 | D3-D3 D3¾D3¼ | A2 A2 A2 | D3-D3
+%
+% Bars 22-23: Antiphonal — SSAA sings bars 22-23, TTBB echoes same rhythm
+% Bar 24 (f5): S1 climax at F5 (written f) = top of comfortable range
+%   B1 = A2 (A,,) = very low, full spread achieved
+% Bars 25-26: stretto — SSAA enters on F4, TTBB on F3, converging on D
+% Final bar: S1=D4(D), S2=A3(A), A1=F3(F,)...
+%   Wait: A1 is alto, treble clef, range F3-D5. F3=F, in ABC. D4=D.
+%   A2 range D3-B4: D3=D,. T1 sounds D3→writes d(D5 wr = D4 snd). T2 sounds A2→writes A(A4wr=A3snd)?
+%   No: T2 sounds A2 → write A (A4) with transpose=-12 → sounds A3. That's not A2.
+%   For T2 to sound A2: write A, (A3) → sounds A2. T2 range floor G2 → write G,(G3)→sounds G2. OK.
+%   But G2 is quite low. Let's have B1 = D3 (D,) for the final, Bar = F3 (F,).
+%
+[V:1] d d c3/4 c/4 | d d e3/4 e/4 | f d c | d2 !sintro!F3/4 F/4 | A G E | D2 !eintro!|]
+[V:2] B B A3/4 A/4 | B B c3/4 c/4 | d B A | A2 D3/4 D/4 | F E C | D2 |]
+[V:3] F F E3/4 E/4 | F F G3/4 G/4 | A F E | F2 A,3/4 A,/4 | D B, A, | F,2 |]
+[V:4] D D C3/4 C/4 | D D E3/4 E/4 | F D C | D2 F,3/4 F,/4 | A, G, E, | D,2 |]
+[V:5] A A A3/4 A/4 | A A c3/4 c/4 | d A A | A2 A3/4 A/4 | F A G | F2 |]
+[V:6] F F E3/4 E/4 | F F G3/4 G/4 | A F E | F2 F3/4 F/4 | D E C | D2 |]
+[V:7] F, F, E,3/4 E,/4 | F, F, A,3/4 A,/4 | D, A,, A,, | D,2 D,3/4 D,/4 | A,, A,, A,, | D,2 |]
+[V:8] D, D, A,,3/4 A,,/4 | D, D, A,,3/4 A,,/4 | D, D, A,,, | D,2 D,,3/4 D,,/4 | A,,, A,,, A,,, | D,,2 |]

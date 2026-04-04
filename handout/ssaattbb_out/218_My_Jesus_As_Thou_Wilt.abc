@@ -1,0 +1,89 @@
+X: 218
+T: My Jesus, As Thou Wilt
+C: Words: Benjamin Schmolck, circa 1704. Translated by Jane L. Borthwick, 1854.
+C: Music: 'Jewett' or 'Weber' Carl M. von Weber, 1821. Setting: "Evangelical Lutheran Hymn-Book", 1931.
+C: SSAATTBB arr. for 8-voice ensemble with lever harp
+C: copyright: public domain. Open Hymnal Project, 2010 Revision.
+M: 4/4
+L: 1/4
+Q: 1/4=100
+%%staves [(1 2) (3 4) (5 6) (7 8)]
+V:1 name="Soprano I"   clef=treble
+V:2 name="Soprano II"  clef=treble
+V:3 name="Alto I"      clef=treble
+V:4 name="Alto II"     clef=treble
+V:5 name="Tenor I"     clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"    clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"    clef=bass
+V:8 name="Bass I"      clef=bass
+K: Eb
+%%
+% ============================================================
+% SECTION A  (bars 1–4) — SSAA choir introduces; TTBB enters bar 2
+% Texture: antiphonal — SSAA sings bars 1-2, TTBB joins bar 2 onward
+% ============================================================
+%
+% Bar 1: Eb major — Bb G Bb Eb (S=Bb4, A=G4, T=Bb3, B=Eb3)
+% Bar 2: Bb major — F D Bb Bb (S=F4, A=D4, T=Bb3, B=Bb2)
+% Bar 3: Eb/G (passing) — G Eb Bb Eb
+% Bar 4: Eb major — Bb G Eb Bb
+%
+[V:1] B2 G E/G/ | F3/2 A//G// F2 | G2 E G/B/ | B3/2 A/ G2 |
+[V:2] G2 E C | D3/2 F//E// D2 | E2 C E | G3/2 F/ E2 |
+[V:3] E2 B, G, | B,3/2 D//C// B,2 | B,2 G, B, | E3/2 D/ C2 |
+[V:4] C2 G, E, | G,3/2 B,//A,// G,2 | G,2 E, G, | B,3/2 A,/ G,2 |
+[V:5] B,2 E/B,/ G,/B,/ | B,3/2 B,/ B,2 | B,2 G, B, | E3/2 B,/ B,2 |
+[V:6] G,2 C/G,/ E,/G,/ | G,3/2 G,/ G,2 | G,2 E, G, | B,3/2 G,/ G,2 |
+[V:7] E,2 B,/E,/ C,/E,/ | B,,3/2 B,,/ B,,2 | E,2 B,, E, | G,3/2 F,/ E,2 |
+[V:8] E,2 E, E, | B,,3/2 B,,/ B,,2 | E,2 E, E, | B,,3/2 B,,/ E,2 |
+%
+% ============================================================
+% SECTION B  (bars 5–8) — Full 8-voice; first climax build
+% Bar 5: Ab major — Eb Ab C Eb
+% Bar 6: Eb major with passing motion — Bb G Eb/Bb mixed
+% Bar 7: Bb7 approach — Bb F Bb Bb (with passing tones)
+% Bar 8: Bb → Eb half/full cadence — F Bb Bb
+% ============================================================
+%
+[V:1] e2 c A/c/ | B3/2 B/ G E/G/ | B/A/ F A/G/ E | (F2 B) z |
+[V:2] c2 A F/A/ | G3/2 G/ E C | G/F/ D F/E/ C | (D2 G) z |
+[V:3] A2 F D | E3/2 E/ C A, | E/D/ B, D/C/ A, | (B,2 E) z |
+[V:4] F2 D B, | C3/2 C/ A, F, | C/B,/ G, B,/A,/ F, | (G,2 B,) z |
+[V:5] c2 A, c | G3/2 B,/ B, G,/B,/ | B, B, B, B, | B,3 z |
+[V:6] A,2 F, A, | E3/2 G,/ G, E,/G,/ | G, G, G, G, | G,3 z |
+[V:7] F,2 F, F, | E,3/2 E,/ E, E, | B,, B,, E, G, | (B,2 B,,) z |
+[V:8] E,2 E, E, | E,3/2 E,/ E, E, | B,, B,, E, G, | (B,2 B,,) z |
+%
+% ============================================================
+% SECTION A' (bars 9–12) — varied repeat; T1 canonic echo of S1
+% Bar 9:  Eb major — same as bar 1
+% Bar 10: Bb major — same as bar 2
+% Bar 11: Eb/G — same as bar 3
+% Bar 12: Eb→C half cadence — Bb B♮ C (S1 chromatic, others diatonic)
+% ============================================================
+%
+[V:1] B2 G E/G/ | F3/2 A//G// F2 | G2 E G/B/ | B3/2 =B/ c2 |
+[V:2] G2 E C | D3/2 F//E// D2 | E2 C E | G3/2 G/ G2 |
+[V:3] E2 B, G, | B,3/2 D//C// B,2 | B,2 G, B, | E3/2 E/ E2 |
+[V:4] C2 G, E, | G,3/2 B,//A,// G,2 | G,2 E, G, | C3/2 C/ C2 |
+[V:5] B,2 E/B,/ G,/B,/ | B,3/2 B,/ B,2 | B,2 G, B,/D/ | D3/2 C/ C2 |
+[V:6] G,2 C/G,/ E,/G,/ | G,3/2 G,/ G,2 | G,2 E, G, | B,3/2 A,/ A,2 |
+[V:7] E,2 B,/E,/ C,/E,/ | B,,3/2 B,,/ B,,2 | E,2 E, E, | G,3/2 G,/ A,2 |
+[V:8] E,2 E, E, | B,,3/2 B,,/ B,,2 | E,2 E, E, | G,3/2 G,/ A,2 |
+%
+% ============================================================
+% SECTION B' (bars 13–16) — Climax and final cadence
+% Bar 13: Ab major — Eb Ab C Eb (S1 high Eb5/c5)
+% Bar 14: Eb major — passing motion with !sintro!
+% Bar 15: Bb7 → Eb cadential 6/4 — stretto entries
+% Bar 16: Eb final cadence — full spread, B1 low Eb2
+% ============================================================
+%
+[V:1] e2 c A/c/ | B3/2 B/ G !sintro!E/G/ | B3/4 E// G2 F | E4 !eintro!|]
+[V:2] c2 A F/A/ | G3/2 G/ E C | G3/4 E// E2 D | E4 |]
+[V:3] A2 F D | E3/2 E/ C A, | E3/4 C// C2 B, | C4 |]
+[V:4] F2 D B, | C3/2 C/ A, F, | C3/4 A,// A,2 G, | G,4 |]
+[V:5] c2 A, c/E/ | E3/2 B,/ B, G,/B,/ | E3/4 G,// B,2 A, | G,4 |]
+[V:6] A,2 F, A,/C/ | C3/2 G,/ G, E,/G,/ | C3/4 E,// G,2 F, | E,4 |]
+[V:7] F,2 F, F, | E,3/2 E,/ E, E, | B,,3/4 B,,// B,,2 B,, | E,4 |]
+[V:8] A,,2 A,, A, | E,3/2 E,/ E, E, | B,,3/4 B,,// B,,2 B,, | E,4 |]

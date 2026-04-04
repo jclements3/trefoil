@@ -1,0 +1,206 @@
+X:29
+T: Angels From the Realms of Glory
+C: Words: James Montgomery, 1816.
+C: Music: 'Regent Square' Henry Smart, 1867.  Setting: "Psalms and Hymns for Divine Worship", 1867.
+C: SSAATTBB arr. for lever harp accompaniment. Key: C major (unchanged).
+C: copyright: public domain.
+S: Expanded from Open Hymnal Project SATB, 2007 Revision.
+M: 4/4
+L: 1/4
+Q: 1/4=100
+%%staves {(V1 V2) (V3 V4) (V5 V6) (V7 V8)}
+V:1 name="Soprano I"   clef=treble
+V:2 name="Soprano II"  clef=treble
+V:3 name="Alto I"      clef=treble
+V:4 name="Alto II"     clef=treble
+V:5 name="Tenor I"     clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"    clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"    clef=bass
+V:8 name="Bass I"      clef=bass
+K: C
+%%MIDI program 52
+%
+% ================================================================
+% PHRASE 1 — Pickup + bars 1–4
+% Texture: SSAA alone (reduced opening, mp); Bar+B1 enter at bar 2;
+%           T1+T2 silent through bar 4
+% S1 sings soprano melody one octave above original notation
+%   so that it sits in the C4–F5 professional soprano register.
+% ================================================================
+%
+% Pickup (anacrusis, 2 beats) — C major; SSAA only
+[V:1] [Q:1/4=100] g e |
+[V:2]              e c |
+[V:3]              c A |
+[V:4]              G E |
+[V:5]              z2 |
+[V:6]              z2 |
+[V:7]              z2 |
+[V:8]              z2 |
+%
+% Bar 1: C/E — C — C — G7; SSAA alone
+[V:1]  c' g e'3/2 d'/ |
+[V:2]  a e c'3/2 b/ |
+[V:3]  e c g f |
+[V:4]  c A e d |
+[V:5]  z4 |
+[V:6]  z4 |
+[V:7]  z4 |
+[V:8]  z4 |
+%
+% Bar 2: C — C — F — F; Bar+B1 enter quietly
+[V:1]  c' g a a |
+[V:2]  a e f f |
+[V:3]  e e f e |
+[V:4]  c c c c |
+[V:5]  z4 |
+[V:6]  z4 |
+[V:7]  G, G, A, A, |
+[V:8]  E, E, F, F, |
+%
+% Bar 3: C/G — C — G — G/F (passing); T1+T2 still silent
+[V:1]  g c' g f |
+[V:2]  e a e d |
+[V:3]  c e d c |
+[V:4]  A c B G |
+[V:5]  z4 |
+[V:6]  z4 |
+[V:7]  G, C D B, |
+[V:8]  E, A, B, G, |
+%
+% Bar 4: C — half-bar cadence on C major; T1+T2 still silent
+[V:1]  e2 |
+[V:2]  c2 |
+[V:3]  A2 |
+[V:4]  E2 |
+[V:5]  z2 |
+[V:6]  z2 |
+[V:7]  G,2 |
+[V:8]  C,2 |
+%
+% ================================================================
+% PHRASE 2 — Pickup2 + bars 5–8
+% Texture: Full 8 voices enter (mf); antiphonal: SSAA pickup,
+%   TTBB+SSAA bar 5; homophony bars 6–8; half-close on G major
+% ================================================================
+%
+% Pickup2 (2 beats) — C major; all 8 enter
+[V:1]  g e |
+[V:2]  e c |
+[V:3]  e c |
+[V:4]  c A |
+[V:5]  c c |
+[V:6]  A A |
+[V:7]  A, E, |
+[V:8]  C, G, |
+%
+% Bar 5: C — G — C — G7; full 8, T voices shadow S voices at concert 8vb
+[V:1]  c' g e'3/2 d'/ |
+[V:2]  a e c'3/2 b/ |
+[V:3]  g G/F/ G3/2 F/ |
+[V:4]  e E D E |
+[V:5]  g g c'3/2 b/ |
+[V:6]  e e a g |
+[V:7]  G, G, E, F, |
+[V:8]  E, E, C, D, |
+%
+% Bar 6: C — Am — C — Am; all 8 voices, stepwise inner motion
+[V:1]  c' b c' b |
+[V:2]  a g a g |
+[V:3]  e e e e |
+[V:4]  c c c B |
+[V:5]  a g a g |
+[V:6]  f e f e |
+[V:7]  E, E, E, E, |
+[V:8]  E, E, A, E, |
+%
+% Bar 7: Am — G — G — G7; approach to half cadence
+%   Original alto beat 4 had ^F# → replaced with F natural (diatonic)
+%   Original tenor beat 2 had ^G# → replaced with G natural (diatonic)
+[V:1]  a b/c'/ b a |
+[V:2]  f g/a/ g f |
+[V:3]  e e g f |
+[V:4]  c d e d |
+[V:5]  e d/c/ d c |
+[V:6]  c B B A |
+[V:7]  E, C F, F, |
+[V:8]  C, A, D, D, |
+%
+% Bar 8: G major — half cadence; all voices sustain
+[V:1]  g2 |
+[V:2]  e2 |
+[V:3]  B2 |
+[V:4]  G2 |
+[V:5]  b2 |
+[V:6]  g2 |
+[V:7]  B,2 |
+[V:8]  G,2 |
+%
+% ================================================================
+% PHRASE 3 — Pickup3 + bars 9–12
+% Texture: Full 8 voices (f); spread widens bars 9–10 (climax);
+%   stretto motion in inner pairs bar 11; 4–3 suspension in A1,
+%   final C major bar 12 (ff); B1 on C2 (low tonic)
+% ================================================================
+%
+% Pickup3 (d3/2 d/ = 2 beats) — G major
+[V:1]  d'3/2 d'/ |
+[V:2]  b3/2 b/ |
+[V:3]  G3/2 G/ |
+[V:4]  D3/2 D/ |
+[V:5]  b3/2 b/ |
+[V:6]  g3/2 g/ |
+[V:7]  G,3/2 G,/ |
+[V:8]  G,3/2 G,/ |
+%
+% Bar 9: G — G — C — C; voices spread wide toward climax
+%   Original tenor had _Bb on pickup to bar 9 → replaced with B natural (diatonic)
+[V:1]  b g e'3/2 d'/ |
+[V:2]  g e c'3/2 b/ |
+[V:3]  G G G3/2 G/ |
+[V:4]  D E E D |
+[V:5]  d b c'3/2 b/ |
+[V:6]  B g a g |
+[V:7]  B, G, A, A, |
+[V:8]  G, G, C, C, |
+%
+% Bar 10: F — F — Dm — C/E; climax — S1 reaches f' (F5)
+[V:1]  c' a f' e' |
+[V:2]  a f d' c' |
+[V:3]  f f a g |
+[V:4]  c d f e |
+[V:5]  a c' d' b |
+[V:6]  f a b g |
+[V:7]  A, A, F, G, |
+[V:8]  F, F, D, E, |
+%
+% Bar 11: Dm — F — Gsus–G — G7; stretto motion; convergence
+[V:1]  d' c' c' b |
+[V:2]  b a a g |
+[V:3]  f e/f/ g3/2 f/ |
+[V:4]  d c e d |
+[V:5]  a/b/ c' d' d' |
+[V:6]  f/g/ a b b |
+[V:7]  A, A, B, B, |
+[V:8]  F, A, G, G, |
+%
+% Bar 12: C major — final cadence (2 beats)
+%   A1: 4–3 suspension F→E over final C major
+%   B1 on C2 (tonic, lowest sustainable register)
+[V:1]  !sintro!c'2 !eintro!|]
+[V:2]  e2 |]
+[V:3]  f e |]
+[V:4]  c2 |]
+[V:5]  c'2 |]
+[V:6]  a2 |]
+[V:7]  G,2 |]
+[V:8]  C,2 |]
+W:6.Though an Infant now we view Him,
+W:He shall fill His Father's throne,
+W:Gather all the nations to Him;
+W:Every knee shall then bow down:
+W:
+W:7.All creation, join in praising
+W:God, the Father, Spirit, Son,
+W:Evermore your voices raising
+W:To th'eternal Three in One.

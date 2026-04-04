@@ -1,0 +1,260 @@
+X:172
+T:Blind Bartimaeus
+T:(SSAATTBB arrangement)
+C:Words: Henry Wadsworth Longfellow, alt, 1842.
+C:Music: 'Fillmore' Jeremiah Ingalls (1764-1828). Setting: "The Methodist Hymnal", 1905.
+C:SSAATTBB arrangement by Claude Sonnet 4.6, 2026.
+C:copyright: public domain. This score is a part of the Open Hymnal Project, 2012 Revision.
+M:3/4
+L:1/4
+Q:1/4=100
+%%staves {(V:1 V:2) (V:3 V:4) (V:5 V:6) (V:7 V:8)}
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+K:F
+%
+% -----------------------------------------------------------------------
+% PICKUP + BARS 1–6
+% Texture: S1 S2 A1 T1 Bar B1 (6 voices; A2 and T2 enter at bar 4)
+% Harmony:  Pickup=I  Bar1=I  Bar2=V  Bar3=V  Bar4=V  Bar5=I  Bar6=I
+% -----------------------------------------------------------------------
+%
+% S1 (soprano, original melody, F major — all diatonic, no accidentals needed)
+[V:1] F | (A3/2 G/) F | G2 A | G2 F | G2 A | c2 c | (c d) c |
+%
+% S2 (diatonic 3rd below S1: F→D, A→F, G→E, D→Bb, A→F, C→A, D→Bb)
+[V:2] D | (F3/2 E/) D | E2 F | E2 D | E2 F | A2 A | (A B) A |
+%
+% A1 (melodic alto line, diatonic, F3–D5 range; enters bar 1)
+% Bar1: C4 Bb3 A3 (inner voice descent, F major)
+% Bar2: G3 A3 G3 (V chord — C E G, A1 takes G)
+% Bar3: E4 E4 D4 (V motion, resolution)
+% Bar4: E4 E4 F4 (V to I motion)
+% Bar5: C5 C5 Bb4 (I — C5 is A1 max, used for climax)
+% Bar6: C5 Bb4 A4 (I, descending)
+[V:3] z | C2 B, | B,2 A, | B,2 C | C2 C | c2 B | c2 A |
+%
+% A2 (contrary motion to A1, diatonic, D3–Bb4; rests bars 1–3, enters bar 4)
+% Bar4: A3 G3 F3 (filling out I/V harmony below A1)
+% Bar5: F4 F4 G4 (I chord inner voice)
+% Bar6: F4 E4 F4
+[V:4] z | z3 | z3 | z3 | A,2 G, | F2 G | F2 F |
+%
+% T1 (tenor, 8vb treble, concert B2–G4; written note sounds 8vb lower)
+% Written notes: concert pitch + 12st = one octave up
+% Pickup C4→write c; Bar1: C4 Bb3 A3 → c B A
+% Bar2: G3 G3 A3 → G G A
+% Bar3: G3 G3 F3 → G G F
+% Bar4: G3 G3 A3 → G G A
+% Bar5: C4 C4 C4 → c c c  (climax, top of comfortable range)
+% Bar6: C4 Bb3 C4 → c B c
+[V:5] c | (c3/2 B/) A | G2 A | G2 F | G2 A | c2 c | (c B) c |
+%
+% T2 (tenor 2, 8vb treble, concert G2–E4; written one octave up)
+% Rests bars 1–3; enters bar 4
+% Bar4: E3 E3 F3 → E E F (written, sounds E3 E3 F3)
+% Bar5: A3 A3 A3 → A A A (concert, 3rd of F chord)
+% Bar6: A3 G3 A3 → A G A
+[V:6] z | z3 | z3 | z3 | E2 F | A2 A | (A G) A |
+%
+% Baritone (bass clef, concert E2–C4)
+% Harmonizes 3rd above B1 or moves independently
+% Pickup: A3 (3rd above F3)
+% Bar1: A3 G3 F3 (I, inner voice descent)
+% Bar2: E3 E3 E3 (V — C major, Bar takes 3rd = E)
+% Bar3: E3 G3 E3 (V)
+% Bar4: E3 E3 A3 (V to I)
+% Bar5: A3 A3 A3 (I)
+% Bar6: A3 Bb3 A3
+[V:7] A, | A,2 F, | E,2 E, | E,2 E, | E,2 A, | A,2 A, | A, B, A, |
+%
+% B1 (bass, original bass line transposed to range C2–A3)
+% Original: F, F,2 F, | C,2 C, | C,2 D, | C,2 F, | F,2 F, | F,2 F,
+[V:8] F, | F,2 F, | C,2 C, | C,2 D, | C,2 F, | F,2 F, | F,2 F, |
+%
+% -----------------------------------------------------------------------
+% BARS 7–12
+% Full 8 voices throughout
+% Harmony: Bar7=I  Bar8=I  Bar9=IV(Bb)  Bar10=IV  Bar11=I  Bar12=I(pickup)
+% -----------------------------------------------------------------------
+%
+% S1 (original melody)
+[V:1]  A2 G | F2 c | d2 d | (d3/2 e/) f | c2 c | A2
+%
+% S2 (diatonic 3rd below S1)
+% A4→F4, G4→E4, F4→D4, C5→A4, D5→Bb4, E5→C5, F5→D5, C5→A4, A4→F4
+[V:2]  F2 E | D2 A | B2 B | (B3/2 c/) d | A2 A | F2
+%
+% A1 (melodic inner voice, diatonic)
+% Bar7: A4 G4 E4 (I)
+% Bar8: F4 F4 E4 (I)
+% Bar9: F4 F4 F4 (IV — Bb major: Bb D F, A1 takes F)
+% Bar10: D4 E4 F4 (IV ascending line)
+% Bar11: C4 C4 C4 (I — 5th)
+% Bar12 partial: A4 A4
+[V:3]  A2 E | F2 E | F2 F | D2 E | C2 C | A2
+%
+% A2 (contrary motion to A1, diatonic, D3–Bb4)
+% Bar7: F4 E4 C4 (contrary: while A1 descends, A2 can stay or move differently)
+% Bar8: C4 C4 C4 (I — root doubling)
+% Bar9: D4 D4 D4 (IV — Bb major: D = 3rd)
+% Bar10: Bb3 C4 D4 (IV ascending with S2/T line)
+% Bar11: A4 G4 G4 (I)
+% Bar12: F4 F4
+[V:4]  F2 C | C2 C | D2 D | B,2 C | A2 G | F2
+%
+% T1 (tenor 1, 8vb treble, concert B2–G4, written octave up)
+% Bar7: C4 C4 Bb3 → c c B
+% Bar8: A3 A3 A3 → A A A
+% Bar9: Bb3 Bb3 Bb3 → B B B  (concert Bb3, written B4 in 8vb)
+% Bar10: Bb3 C4 D4 → B c d  (original tenor line)
+% Bar11: F4 F4 F4 → f f f  (concert F4, within G4 max)
+% Bar12: C4 C4 → c c
+[V:5]  c2 B | A2 A | B2 B | (B3/2 c/) d | f2 f | c2
+%
+% T2 (tenor 2, 8vb treble, concert G2–E4, written octave up)
+% Bar7: A3 A3 G3 → A A G
+% Bar8: F3 F3 E3 → F F E  (stepwise descent, contrary to some motion)
+% Bar9: G3 G3 G3 → G G G  (IV chord — Bb: Bb D F G=6th, passing/pedal)
+% Bar10: G3 A3 Bb3 → G A B  (ascending, diatonic)
+% Bar11: D4 D4 D4 → d d d  (concert D4, within E4 max)
+% Bar12: A3 A3 → A A
+[V:6]  A2 G | F2 E | G2 G | (G3/2 A/) B | d2 d | A2
+%
+% Baritone (E2–C4)
+% Bar7: E3 E3 F3
+% Bar8: F3 F3 C3
+% Bar9: Bb2 Bb2 Bb2 (IV bass, 3rd above B1's Bb2... B1=Bb2 also? check)
+% Actually B1 in bar 9 = B,,2 B,, = Bb2 Bb2 Bb2
+% Bar = D3 (3rd above Bb2) → D,
+% Bar9: D3 D3 D3
+% Bar10: D3 D3 D3
+% Bar11: C3 C3 C3
+% Bar12: C3 C3
+[V:7]  E,2 F, | F,2 C, | D,2 D, | D,2 D, | C,2 C, | C,2
+%
+% B1 (original bass)
+[V:8]  C,2 C, | F,2 F, | B,,2 B,, | B,,2 B,, | F,2 F, | F,2
+%
+% -----------------------------------------------------------------------
+% BAR 12 PICKUP + BARS 13–18
+% Harmony: Bar13=IV  Bar14=IV  Bar15=I  Bar16=V–I (fermata cadence)
+%          Bar17=I   Bar18=V
+% -----------------------------------------------------------------------
+%
+% S1 (original melody continued)
+[V:1]  c | d2 d | (d3/2 e/) f | c2 c | (A !fermata!G) F | (A3/2 G/) F | G2
+%
+% S2 (diatonic 3rd below S1)
+% C5→A4, D5→Bb4, E5→C5, F5→D5, C5→A4, A4→F4, G4→E4, F4→D4
+[V:2]  A | B2 B | (B3/2 c/) d | A2 A | (F E) D | (F3/2 E/) D | E2
+%
+% A1 (melodic, diatonic)
+% Bar12pu=F4, Bar13: F4 F4 F4 (IV), Bar14: D4 E4 F4 (ascending IV)
+% Bar15: E4 E4 E4 (I — 7th, B7 neighbor to pass to F chord)
+%   [E is diatonic in F major ✓, implies C7 V chord resolving to I]
+% Bar16 cadence: C4 Bb3 A3 (V–I, suspension: C4 holds then resolves)
+% Bar17: C4 Bb3 A3
+% Bar18: D4 D4
+[V:3]  F | F2 F | D2 E | E2 E | (C B,) A, | C2 B, | D2
+%
+% A2 (contrary motion, diatonic)
+% Bar12pu=C4, Bar13: D4 D4 D4 (IV — 3rd of Bb), Bar14: Bb3 C4 D4
+% Bar15: C4 C4 C4 (I)
+% Bar16: A3 G3 F3 (I cadence, descent)
+% Bar17: F3 E3 F3
+% Bar18: B3 B3 (=Bb3)
+[V:4]  C | D2 D | B,2 C | C2 C | (A, G,) F, | F, E, F, | B,2
+%
+% T1 (8vb treble, concert B2–G4)
+% Bar12pu: G4→g, Bar13: Bb3→B, Bar14: (Bb3 C4) D4→B c d
+% Bar15: A3→A, Bar16: (E4 D4) C4 → (e d) c (concert: E4 D4 C4, strong line)
+%   E4 is within T1 range (B2–G4) ✓
+% Bar17: C4 Bb3 A3 → c B A
+% Bar18: G3 G3 → G G
+[V:5]  g | B2 B | (B3/2 c/) d | A2 A | (e d) c | (c3/2 B/) A | G2
+%
+% T2 (8vb treble, concert G2–E4)
+% Bar12pu: E4→e (concert E4, top of T2 range, climax pickup)
+% Bar13: G3→G, Bar14: (G3 A3) Bb3 → G A B
+% Bar15: F3→F, Bar16: C4 Bb3 A3 → c B A (same as T1 — stretto/parallel thirds ok here for cadence weight)
+%   Actually better to differentiate: T2 Bar16: A3 G3 F3 → A G F
+% Bar17: A3 G3 F3 → A G F
+% Bar18: E3 E3 → E E
+[V:6]  e | G2 G | (G3/2 A/) B | F2 F | (A G) F | (A3/2 G/) F | E2
+%
+% Baritone (E2–C4)
+% Bar12pu: C3 (= C, in bass clef)
+% Bar13: Bb2 Bb2 Bb2 (= B,,) — IV harmony, 3rd above B1... B1=Bb2, so Bar=D3
+%   Wait: third above Bb2 = D3 (D, in bass clef)
+% Bar13: D3 D3 D3 → D,
+% Bar14: D3 D3 D3 → D,
+% Bar15: C3 A2 C3 → C, A,, C, — A,, = A2
+% Bar16: F3 C3 F3 (V–I cadence, Bar takes C3 on weak = V, then F3 = I)
+%   Fermata chord: (F3 C3) F3 → F, C, F,
+% Bar17: F3 F3 F3 → F,
+% Bar18: C3 C3 → C,
+[V:7]  C, | D,2 D, | D,2 D, | C, A,, C, | (F, C,) F, | F,2 F, | C,2
+%
+% B1 (original bass)
+% Bar12pu: F,, Bar13: B,,, Bar14: B,,, Bar15: F,, Bar16: (F, C,) F,, Bar17: F,, Bar18: C,
+[V:8]  F, | B,,2 B,, | B,,2 B,, | F,2 F, | (F, C,) F, | F,2 F, | C,2
+%
+% -----------------------------------------------------------------------
+% BAR 18 PICKUP + BARS 19–24 (REFRAIN, sintro–eintro)
+% Full 8 voices building to climax then final cadence
+% Harmony: Bar19=V–I  Bar20=V  Bar21=I  Bar22=I  Bar23=I–V  Bar24=I
+% -----------------------------------------------------------------------
+%
+% S1 (original melody, climax at bars 21–22 on C5)
+[V:1]  A | G2 F | G2 !sintro!A | c2 c | (c d) c | A2 G | F2 !eintro!|]
+%
+% S2 (diatonic 3rd below S1; climax: A4 A4, Bb4)
+[V:2]  F | E2 D | E2 F | A2 A | (A B) A | F2 E | D2 |]
+%
+% A1 (melodic, diatonic; builds with S voices, inner voice interest)
+% Pickup: C4; Bar19: D4 C4 Bb3 (stepwise descent, contrary to soprano ascent)
+% Bar20: C4 C4 C4; Bar21: F4 F4 E4 (climax moment, high A1)
+% Bar22: F4 E4 F4; Bar23: C4 C4 Bb3; Bar24: A3 A3
+[V:3]  C | D2 C | C2 C | F2 E | F2 F | C2 B, | A2 |]
+%
+% A2 (contrary motion; Pickup: A3)
+% Bar19: Bb3 A3 G3; Bar20: A3 A3 Bb3; Bar21: C4 C4 C4
+% Bar22: C4 D4 C4; Bar23: A3 A3 G3; Bar24: F3 F3
+[V:4]  A, | B,2 A, | A,2 B, | C2 C | C2 D | A,2 G, | F,2 |]
+%
+% T1 (8vb treble; Pickup: E4→e; concert B2–G4)
+% Bar19: D4 C4 Bb3 → d c B (stepwise, contrary motion to S1)
+% Bar20: C4 C4 D4 → c c d
+% Bar21: F4 F4 F4 → f f f (climax, 5th of I)
+% Bar22: F4 E4 F4 → f e f
+% Bar23: E4 D4 C4 → e d c (descending line leading to cadence)
+% Bar24: A3 A3 → A A
+[V:5]  e | d2 c | c2 d | f2 f | (f e) f | e2 d | c2 |]
+%
+% T2 (8vb treble; Pickup: C4→c; concert G2–E4)
+% Bar19: Bb3 A3 G3 → B A G
+% Bar20: A3 A3 Bb3 → A A B
+% Bar21: C4 C4 C4 → c c c (climax, root of I)
+% Bar22: C4 Bb3 A3 → c B A
+% Bar23: C4 Bb3 G3 → c B G
+% Bar24: F3 F3 → F F
+[V:6]  c | B2 A | A2 B | c2 c | (c B) A | c2 B | A2 |]
+%
+% Baritone (E2–C4; Pickup: A3 = A,)
+% Bar19: E3 F3 D3 → E, F, D,
+% Bar20: E3 E3 F3 → E, E, F,
+% Bar21: A3 A3 A3 → A, A, A, (climax inner voice on 3rd of I)
+% Bar22: A3 Bb3 A3 → A, B, A,
+% Bar23: A3 G3 A3 → A, G, A,
+% Bar24: F3 F3 → F, F,
+[V:7]  A, | E,2 F, | E,2 F, | A,2 A, | A, B, A, | A,2 A, | F,2 |]
+%
+% B1 (original bass)
+[V:8]  C, | C,2 D, | C,2 F, | F,2 F, | F,2 F, | C,2 C, | F,2 |]

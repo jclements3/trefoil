@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Blessed Jesus at Thy Word — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }
+p.legend { font-size: 12px; color: #555; }</style>
+</head><body>
+<h1>Blessed Jesus at Thy Word</h1>
+<p class="legend">Above melody: Abstract / RH voicing / LH voicing.
+RH = upper notes, LH = lower notes (no hand crossing).</p>
+<div id="music"></div>
+<script src="../../abc2stripchart/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 1\nT: Blessed Jesus at Thy Word\nM: 4/4\nL: 1/4\nQ: 1/4=120\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: G\n[V: M] \"^vi\u00b2\"B G A d | \"^I\"B G A2 | \"^vi\u00b9\"G G G G | \"^vii\u00b0\u00b9\"A B A2 | \"^I-3+6\"G4 | \"^vi\u00b2\"B G A d | \"^vi7\u00b2\"\"^Am7\u00b2-3\"B G A2 | \"^vi7\u00b3\"G G G G | \"^IVs+6\"\"^B\u00b0\u00b2\"\"^F-3+6\"A B A2 | \"^IV\u03949\u2074\"\"^Am\"\"^Cs\u00b2\"G4 | \"^I\u00b9+4\"\"^C\u00b9-1+4\"D D E F | \"^IV\u03949\u2074\"\"^Am\"G A F D | \"^ii7s\u00b9\"G G A B | \"^ii7\u00b2\"\"^Dm7\u00b3-5\"c B A2 | \"^vi7\u00b2\"G4 |]\n[V: RH] [GB] [EG] [FA] [Bd] | [GB] [EG] [FA]2 | [EG] [EG] [EG] [EG] | [FA] [GB] [A]2 | [EG]4 | [GB] [GB] [FA] [ABd] | [GB] [EGB] [DFA]2 | [EG] [EGB] [EG] [EG] | [CFA] [DGB] [DFA]2 | [EGB]4 | [GB] [EFA] [EG] [FA] | [EGB] [FA] [FA] [DF] | [EG] [EG] [FA] [EGB] | [GAc] [EGB] [DFA]2 | [EG]4 |]\n[V: LH] [B,E] [B,D] [A,D] [A,F] | [G,D] [A,C] [F,D]2 | [G,B,] [G,B,] [E,C] [G,B,] | [A,C] [G,D] [F,F]2 | [G,D]4 | [B,E] [B,DE] [A,D] [F,A,F] | [B,DE] [G,B,C] [F,A,B,]2 | [D,B,D] [B,,CD] [E,A,C] [D,G,D] | [C,G,A,] [B,,A,B,] [F,G,B,]2 | [D,G,CD]4 | [B,CD] [A,B,D] [G,A,C] [G,B,D] | [D,CD] [E,B,C] [F,B,D] [F,G,B,] | [D,A,] [G,B,D] [F,A,D] [B,,G,B,] | [E,A,E] [B,,B,D] [F,A,C]2 | [B,,B,D]4 |]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ""; }
+};
+var abc = new abc2svg.Abc(user);
+abc.tosvg("score", abc_src);
+</script></body></html>

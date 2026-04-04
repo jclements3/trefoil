@@ -1,0 +1,243 @@
+X: 81
+T: Christ Jesus Lay In Death's Strong Bands
+T: (also known as In Death's Strong Bands)
+C: Words: Martin Luther, 1524. Translated by Richard Massie, 1854.
+C: Music: 'Christ lag in Todes Banden' from Walter's Geistliche Gesangbüchlein, 1524.
+C: SSAATTBB arr. from "Evangelical Lutheran Hymn-Book", 1931, alt.
+C: copyright: public domain.
+M: 4/4
+L: 1/4
+Q: 1/4=110
+K: C
+%%staves {(V1 V2) (V3 V4) (V5 V6) (V7 V8)}
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+%
+% ── PHRASE 1 (pickup + bars 1–4) ──────────────────────────────────────
+% Texture: SSAA choir only; TTBB enter on bar 1 beat 1 at reduced dynamic
+% S1 = original soprano (unrestricted).
+% S2 = diatonic third below S1 (or sixth for variety).
+% A1 = independent diatonic alto line derived from original alto.
+% A2 = contrary-motion alto; diatonic; no accidentals.
+% T1/T2 = original tenor line, diatonic (^G, → G,).
+% Bar/B1 = original bass, diatonic (_B,, → B,,).
+%
+%  Pickup: S1=A A; S2=F F; A1=C C; A2=A, A,; T1=D D; T2=B, B,; Bar=D, D,; B1=D, D,
+[V:1] [Q:1/4=110] A2 |
+[V:2]              F2 |
+[V:3]              C2 |
+[V:4]              A,2 |
+[V:5]              D2 |
+[V:6]              B,2 |
+[V:7]              D,2 |
+[V:8]              D,2 |
+%
+% bar 1: S1 G A c d | S2 E F A B | A1 C C E G | A2 A, A, C E
+%        T1 B, C E G | T2 G, A, C E | Bar E, A, F, D, | B1 E, A, F, D,
+[V:1]  G A c d |
+[V:2]  E F A B |
+[V:3]  C C E G |
+[V:4]  A, A, C E |
+[V:5]  B, C E G |
+[V:6]  G, A, C E |
+[V:7]  E, A, F, D, |
+[V:8]  E, A, F, D, |
+%
+% bar 2: S1 c B A3/2 A/ | S2 A G F3/2 F/ | A1 E D C3/2 C/ | A2 C B, A,3/2 A,/
+%        T1 A, G, A,3/2 A,/ (orig ^G,→G, diatonic) | T2 F, E, F,3/2 F,/
+%        Bar E, E, A,,3/2 F,/ | B1 E, E, A,,3/2 F,/
+[V:1]  c B A3/2 A/ |
+[V:2]  A G F3/2 F/ |
+[V:3]  E D C3/2 C/ |
+[V:4]  C B, A,3/2 A,/ |
+[V:5]  A, G, A,3/2 A,/ |
+[V:6]  F, E, F,3/2 F,/ |
+[V:7]  E, E, A,,3/2 F,/ |
+[V:8]  E, E, A,,3/2 F,/ |
+%
+% bar 3: S1 F G A G/F/ | S2 D E F E | A1 A, B, C B, | A2 F, G, A, G,
+%        T1 A, C C B,/A,/ (orig _B,→B, diatonic) | T2 F, A, A, G,/F,/
+%        Bar D, C, F,, G,,/D,/ | B1 D, C, F,, G,,/D,/
+[V:1]  F G A G/F/ |
+[V:2]  D E F E |
+[V:3]  A, B, C B, |
+[V:4]  F, G, A, G, |
+[V:5]  A, C C B,/A,/ |
+[V:6]  F, A, A, G,/F,/ |
+[V:7]  D, C, F,, G,,/D,/ |
+[V:8]  D, C, F,, G,,/D,/ |
+%
+% ── PHRASE 2 (pickup bar 4-end + bars 5–8) ────────────────────────────
+% Texture: full 8-voice homophony; Bar and B1 differentiate.
+% Pickup: S1=E D (fermata on D); S2=D D; A1=B, B,; A2=G, G,
+%         T1=A, F, (fermata); T2=F, D,; Bar=A,, F,,; B1=A,, D,,
+[V:1]  E !fermata!D |
+[V:2]  D D |
+[V:3]  B, B, |
+[V:4]  G, G, |
+[V:5]  A, !invertedfermata!F, |
+[V:6]  F, D, |
+[V:7]  A,, !invertedfermata!F,, |
+[V:8]  A,, D,, |
+%
+% bar 5: repeat of bar 1
+[V:1]  A2 |
+[V:2]  F2 |
+[V:3]  C2 |
+[V:4]  A,2 |
+[V:5]  D2 |
+[V:6]  B,2 |
+[V:7]  D,2 |
+[V:8]  D,2 |
+%
+[V:1]  G A c d |
+[V:2]  E F A B |
+[V:3]  C C E G |
+[V:4]  A, A, C E |
+[V:5]  B, C E G |
+[V:6]  G, A, C E |
+[V:7]  E, A, F, D, |
+[V:8]  E, A, F, D, |
+%
+% bar 6: repeat of bar 2
+[V:1]  c B A3/2 A/ |
+[V:2]  A G F3/2 F/ |
+[V:3]  E D C3/2 C/ |
+[V:4]  C B, A,3/2 A,/ |
+[V:5]  A, G, A,3/2 A,/ |
+[V:6]  F, E, F,3/2 F,/ |
+[V:7]  E, E, A,,3/2 F,/ |
+[V:8]  E, E, A,,3/2 F,/ |
+%
+% bar 7: repeat of bar 3
+[V:1]  F G A G/F/ |
+[V:2]  D E F E |
+[V:3]  A, B, C B, |
+[V:4]  F, G, A, G, |
+[V:5]  A, C C B,/A,/ |
+[V:6]  F, A, A, G,/F,/ |
+[V:7]  D, C, F,, G,,/D,/ |
+[V:8]  D, C, F,, G,,/D,/ |
+%
+% ── PHRASE 3 (pickup bar 8-end + bars 9–12) ───────────────────────────
+% New melodic material; antiphonal texture (SSAA vs TTBB in alternation).
+% S1 climbs to e (E5) at bar 11.
+% Pickup: fermata half-bar → S1=E D; S2=C B,; A1=A, G,; A2=F, E,
+%         T1=A, F, (fermata); T2=F, D,; Bar=A,, F,,; B1=A,, D,,
+[V:1]  E !fermata!D |
+[V:2]  C B, |
+[V:3]  A, G, |
+[V:4]  F, E, |
+[V:5]  A, !invertedfermata!F, |
+[V:6]  F, D, |
+[V:7]  A,, !invertedfermata!F,, |
+[V:8]  A,, D,, |
+%
+% bar 9: S1 D F | S2 B, D | A1 G, A, | A2 E, F,
+%        T1 F, A, | T2 D, F, | Bar F,, A,, | B1 D,, D,,
+[V:1]  D F |
+[V:2]  B, D |
+[V:3]  G, A, |
+[V:4]  E, F, |
+[V:5]  F, A, |
+[V:6]  D, F, |
+[V:7]  F,, A,, |
+[V:8]  D,, D,, |
+%
+% bar 10: S1 G D F G | S2 E B, D E | A1 B, G, A, B, | A2 G, E, F, G,
+%         T1 B, F, A, B, (orig _B,→B, diatonic) | T2 G, D, F, G, | Bar G,, B,,, A,,, G,,, | B1 G,, B,,, A,,, G,,,
+[V:1]  G D F G |
+[V:2]  E B, D E |
+[V:3]  B, G, A, B, |
+[V:4]  G, E, F, G, |
+[V:5]  B, F, A, B, |
+[V:6]  G, D, F, G, |
+[V:7]  G,, B,,, A,,, G,,, |
+[V:8]  G,, B,,, A,,, G,,, |
+%
+% bar 11: S1 A3/2 A/ d c | S2 F3/2 F/ B A | A1 C3/2 A,/ F E | A2 A,3/2 F,/ D C
+%         T1 C3/2 A,/ A, C (orig _B,→B, diatonic) | T2 A,3/2 F,/ F, A, | Bar F,,3/2 F,/ D, A, | B1 F,,3/2 F,/ D, A,
+[V:1]  A3/2 A/ d c |
+[V:2]  F3/2 F/ B A |
+[V:3]  C3/2 A,/ F E |
+[V:4]  A,3/2 F,/ D C |
+[V:5]  C3/2 A,/ A, C |
+[V:6]  A,3/2 F,/ F, A, |
+[V:7]  F,,3/2 F,/ D, A, |
+[V:8]  F,,3/2 F,/ D, A, |
+%
+% bar 12: S1 d e | S2 B c | A1 G G | A2 E E
+%         T1 B, B, | T2 G, E, | Bar G, E, | B1 G, E,
+[V:1]  d e |
+[V:2]  B c |
+[V:3]  G G |
+[V:4]  E E |
+[V:5]  B, B, |
+[V:6]  G, E, |
+[V:7]  G, E, |
+[V:8]  G, E, |
+%
+% ── PHRASE 4 (bars 13–17) — Full homophony + cadence ──────────────────
+% S1 follows original soprano. Stretto between S1 and T1 at bar 15.
+% Final cadence bar 17: B1 on D, (tonic of final chord, open fifth).
+%
+% bar 13: S1 c B | S2 A G | A1 E D | A2 C B,
+%         T1 A, G, | T2 F, E, | Bar A, A, | B1 A, E,
+[V:1]  c B |
+[V:2]  A G |
+[V:3]  E D |
+[V:4]  C B, |
+[V:5]  A, G, |
+[V:6]  F, E, |
+[V:7]  A, A, |
+[V:8]  A, E, |
+%
+% bar 14: S1 A3/2 A/ c A | S2 F3/2 F/ A F | A1 C3/2 C/ E C | A2 A,3/2 A,/ C A,
+%         T1 A,3/2 C/ C C | T2 F,3/2 A,/ A, A, | Bar A,,3/2 F,/ E, F, | B1 A,,3/2 F,/ E, F,
+[V:1]  A3/2 !sintro!A/ c A |
+[V:2]  F3/2 F/ A F |
+[V:3]  C3/2 C/ E C |
+[V:4]  A,3/2 A,/ C A, |
+[V:5]  A,3/2 C/ C C |
+[V:6]  F,3/2 A,/ A, A, |
+[V:7]  A,,3/2 F,/ E, F, |
+[V:8]  A,,3/2 F,/ E, F, |
+%
+% bar 15: S1 c G (F/D/ E) | S2 A E (D/B, C) | A1 E C (A,/G, A,) | A2 C A, (F,/E, F,)
+%         T1 E C (A,/G, A,) | T2 C A, (F,/E, F,) | Bar A,, C, (F,,/G,, A,,) | B1 A,, C, (F,,/G,, A,,)
+[V:1]  c G (F/D/ E) |
+[V:2]  A E (D/B, C) |
+[V:3]  E C (A,/G, A,) |
+[V:4]  C A, (F,/E, F,) |
+[V:5]  E C (A,/G, A,) |
+[V:6]  C A, (F,/E, F,) |
+[V:7]  A,, C, (F,,/G,, A,,) |
+[V:8]  A,, C, (F,,/G,, A,,) |
+%
+% bar 16: S1 D2 A G/F/ | S2 B2 F E | A1 F2 C B, | A2 D2 A, G,
+%         T1 G2 C B, | T2 E2 A, G, | Bar B,,2 F,, G,, | B1 B,,2 F,, G,,
+[V:1]  D2 A G/F/ |
+[V:2]  B2 F E |
+[V:3]  F2 C B, |
+[V:4]  D2 A, G, |
+[V:5]  G2 C B, |
+[V:6]  E2 A, G, |
+[V:7]  B,,2 F,, G,, |
+[V:8]  B,,2 F,, G,, |
+%
+% bar 17 (final, half-bar pickup close): S1 E D (fermata) | S2 D D | A1 B, B, | A2 G, G,
+%         T1 B, B, | T2 G, G, | Bar A,, D, | B1 A,, D,
+[V:1]  E !fermata!D !eintro!|]
+[V:2]  D D |]
+[V:3]  B, B, |]
+[V:4]  G, G, |]
+[V:5]  B, B, |]
+[V:6]  G, G, |]
+[V:7]  A,, D, |]
+[V:8]  A,, D, |]

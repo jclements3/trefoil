@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Blind Bartimaeus — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }
+p.legend { font-size: 12px; color: #555; }</style>
+</head><body>
+<h1>Blind Bartimaeus</h1>
+<p class="legend">Above melody: Abstract / RH voicing / LH voicing.
+RH = upper notes, LH = lower notes (no hand crossing).</p>
+<div id="music"></div>
+<script src="../../abc2stripchart/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 1\nT: Blind Bartimaeus\nM: 3/4\nL: 1/4\nQ: 1/4=100\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: F\n[V: M] \"^vi7\u00b9\"\"^Am\u00b9\"F | ( \"^I\"\"^C\"\"^C\"A3/2 G/ ) F | \"^V7\"\"^G7-5\"G2 A | \"^V7\"\"^G7-5\"G2 F | \"^V+6\"\"^G\"\"^Em\u00b9\"G2 A | \"^I\"c2 c | ( \"^I\"c d ) c | ( d a c d b e F D, A F, G E, D B b, A F, C A, D B b ) A2 G | F2 c | d2 d | ( d3/2 e/ ) f | c2 c | A2 ( d a c d b e ) A4 F4 G4 E4 F4 D4 C5 A4 D5 B b4 E5 C5 F5 D5 C5 A4 A4 F4 c | d2 d | ( d3/2 e/ ) f | c2 c | ( A G ) F | ( A3/2 G/ ) F | G2 ( d a c d b e ) C5 A4 D5 B b4 E5 C5 F5 D5 C5 A4 A4 F4 G4 E4 F4 D4 A | G2 F | G2 A | c2 c | ( c d ) c | A2 G | F2 |] ( d a c d b e c a A4 A4 B b4 )\n[V: RH] [Fc] | ( [FAc]3/2 [B]/ ) [FA] | [EG]2 [FA] | [EG]2 [DF] | [CEG]2 [CFA] | [Ac]2 [ABc] | ( [Ac] [Bd] ) [Ac] | ( d a c d b e F D, A F, G E, D B b, A F, C A, D B b ) A2 G | F2 c | d2 d | ( d3/2 e/ ) f | c2 c | A2 ( d a c d b e ) A4 F4 G4 E4 F4 D4 C5 A4 D5 B b4 E5 C5 F5 D5 C5 A4 A4 F4 c | d2 d | ( d3/2 e/ ) f | c2 c | ( A G ) F | ( A3/2 G/ ) F | G2 ( d a c d b e ) C5 A4 D5 B b4 E5 C5 F5 D5 C5 A4 A4 F4 G4 E4 F4 D4 A | G2 F | G2 A | c2 c | ( c d ) c | A2 G | F2 |] ( d a c d b e c a A4 A4 B b4 )\n[V: LH] [F,A,D] | ( [F,A,C]3/2 [EG]/ ) [F,B,D] | [C,E,B,]2 [C,E,A,] | [C,E,B,]2 [D,E,C] | [C,E,A,]2 [F,G,A,] | [F,A,F]2 [F,A,G] | ( [F,A,F] [B,G] ) [F,A,F] | ( d a c d b e F D, A F, G E, D B b, A F, C A, D B b ) A2 G | F2 c | d2 d | ( d3/2 e/ ) f | c2 c | A2 ( d a c d b e ) A4 F4 G4 E4 F4 D4 C5 A4 D5 B b4 E5 C5 F5 D5 C5 A4 A4 F4 c | d2 d | ( d3/2 e/ ) f | c2 c | ( A G ) F | ( A3/2 G/ ) F | G2 ( d a c d b e ) C5 A4 D5 B b4 E5 C5 F5 D5 C5 A4 A4 F4 G4 E4 F4 D4 A | G2 F | G2 A | c2 c | ( c d ) c | A2 G | F2 |] ( d a c d b e c a A4 A4 B b4 )\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ""; }
+};
+var abc = new abc2svg.Abc(user);
+abc.tosvg("score", abc_src);
+</script></body></html>

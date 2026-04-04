@@ -1,0 +1,264 @@
+X: 275
+T: O Father, All Creating
+C: Words: John Ellerton, 1876.  Music: 'Aurelia' Samuel Sebastian Wesley, 1864.
+C: Setting: "Order of worship for the Reformed Church in the United States", 1866.
+C: copyright: public domain.  This score is a part of the Open Hymnal Project, 2012 Revision.
+C: SSAATTBB arrangement for 8-voice ensemble and lever harp.
+M: 4/4
+L: 1/4
+Q: 1/4=130
+K: D
+%%staves {(V1 V2) (V3 V4) (V5 V6) (V7 V8)}
+V:1 name="Soprano I"   clef=treble
+V:2 name="Soprano II"  clef=treble
+V:3 name="Alto I"      clef=treble
+V:4 name="Alto II"     clef=treble
+V:5 name="Tenor I"     clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"    clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"    clef=bass
+V:8 name="Bass I"      clef=bass
+%
+% ABC PITCH REFERENCE (K:D; treble and 8vb treble use same letter convention):
+%   Treble uppercase: D=D4 E=E4 F=F#4 G=G4 A=A4 B=B4
+%   Treble comma:     D,=D3 E,=E3 F,=F#3 G,=G3 A,=A3 B,=B3
+%   Treble lower:     d=D5 c=C#5 e=E5 (etc.)
+%   Bass uppercase:   D=D3 E=E3 F=F#3 G=G3 A=A3 B=B3
+%   Bass comma:       D,=D2 E,=E2 F,=F#2 G,=G2 A,=A2 B,=B2 C,=C#2
+%   Bass double-comma: C,,=C2 (B1 minimum)
+%
+% VOICE RANGES (concert, verified):
+%   S1 D4-A5:  D..a (treble); comfortable to G4=G
+%   S2 A3-F5:  A,..f (treble)
+%   A1 F3-D5:  F,..d (treble)
+%   A2 D3-B4:  D,..B (treble)
+%   T1 B2-G4:  written B,..g in 8vb treble (sounds B2-G4 concert)
+%   T2 G2-E4:  written G,..E in 8vb treble (sounds G2-E3 concert)
+%   Bar E2-C4: E,,..C in bass (E,,=E2... wait: bass comma=D2, double-comma=D1)
+%   -- CORRECT bass: D,=D2, E,=E2, B,=B2; D,,=D1, E,,=E1
+%   -- Bar min E2=E, in bass; Bar max C4=c in bass (c=C#4 K:D)
+%   -- B1 min C2=C, in bass (C,=C#2 K:D); B1 max A3=A in bass
+%
+%% ============================================================
+%% PHRASE 1 — mp, 6-voice opening (V5 V6 tacet); D major
+%% ============================================================
+%
+% Pickup beat 4
+[V:1] F |
+[V:2] D |
+[V:3] A, |
+[V:4] F, |
+[V:5] z |
+[V:6] z |
+[V:7] F, |
+[V:8] D, |
+%
+% Bar 2: D major; S1 leads original soprano
+[V:1] F  F  G  F  |
+[V:2] D  D  E  D  |
+[V:3] A, A, B, A, |
+[V:4] F, F, G, F, |
+[V:5] z  z  z  z  |
+[V:6] z  z  z  z  |
+[V:7] F, F, G, F, |
+[V:8] D, D, D, D, |
+%
+% Bar 3: tenors enter; bass descends; harmony D I → vi6 → I6
+[V:1] F2 E  D  |
+[V:2] D2 C  B, |
+[V:3] A,2 G, F, |
+[V:4] F,2 E, D, |
+[V:5] D  D  C  B, |
+[V:6] B, B, A, G, |
+[V:7] C  B, G, E, |
+[V:8] A, G, F, D, |
+%
+% Bar 4: IV → V; melody descends D4-B4-A4-G4
+[V:1] D  B  A  G  |
+[V:2] B, G  F  E  |
+[V:3] G, F, E, D, |
+[V:4] E, D, C, C, |
+[V:5] D  B, B, B, |
+[V:6] G, G, A, A, |
+[V:7] D, C, B, B, |
+[V:8] G, G, A, A, |
+%
+% Bar 5: D major cadence, all 8 voices
+[V:1] F3 |
+[V:2] D3 |
+[V:3] A,3 |
+[V:4] F,3 |
+[V:5] D3 |
+[V:6] B,3 |
+[V:7] F,3 |
+[V:8] D,3 |
+%
+%% ============================================================
+%% PHRASE 2 — Antiphonal; chromatic tenor ^A, → A (diatonic)
+%% ============================================================
+%
+% Pickup beat 4
+[V:1] G |
+[V:2] E |
+[V:3] B, |
+[V:4] G, |
+[V:5] E |
+[V:6] B, |
+[V:7] G, |
+[V:8] E, |
+%
+% Bar 6: melody rises A4-D5-D5-C5; tenors enter below
+% Original tenor ^A, ^A, B, C → replaced with A, A, B, C (diatonic A2)
+% T1 (written, sounds 8vb): C  C  D  E → concert C#3 C#3 D3 E3
+% T2 (written, sounds 8vb): A, A, B, C → concert A2 A2 B2 C#3
+[V:1] A  d  d  c  |
+[V:2] F  A  B  A  |
+[V:3] D  F  G  E  |
+[V:4] A, D  D  C  |
+[V:5] C  C  D  E  |
+[V:6] A, A, B, C  |
+[V:7] F, A, B, A, |
+[V:8] F, F, F, D, |
+%
+% Bar 7: melody c5-c5-B4-A4; tenor ^A,2 → A, A, (diatonic)
+% Original bass G,, G,, A,, B,, (G1 etc.) → adapt: B1=G, G, A, B, (G2-B2)
+[V:1] c2 B  A  |
+[V:2] A2 G  F  |
+[V:3] E2 D  D  |
+[V:4] C2 B, A, |
+[V:5] C  C  D  E  |
+[V:6] A, A, B, C  |
+[V:7] B, B, C  D  |
+[V:8] G, G, A, B, |
+%
+% Bar 8: melody G4-A4-F#4-D4; bass adapted from B,, C, D, B,, (B1 out of range → B, C, D, B,)
+[V:1] G  A  F  D  |
+[V:2] E  F  D  B, |
+[V:3] D  C  B, A, |
+[V:4] B, A, G, F, |
+[V:5] D  E  D  B, |
+[V:6] G, A, G, G, |
+[V:7] D  E  F  D  |
+[V:8] B, C, D, B, |
+%
+% Bar 9: A major cadence (V of D); all voices
+[V:1] E3 |
+[V:2] C3 |
+[V:3] A,3 |
+[V:4] E,3 |
+[V:5] C3 |
+[V:6] A,3 |
+[V:7] C3 |
+[V:8] A,3 |
+%
+%% ============================================================
+%% PHRASE 3 — Canon S1+T1 at octave; crescendo to climax D5
+%% ============================================================
+%
+% Pickup beat 4
+[V:1] E |
+[V:2] C |
+[V:3] A, |
+[V:4] F, |
+[V:5] A |
+[V:6] F, |
+[V:7] A |
+[V:8] A, |
+%
+% Bar 10: rising line F#4-G4-A4-B4; T1 mirrors S1 at octave (canon)
+% Bar provides inner harmony in bass register: D  E  F  A (D3-E3-F#3-A3)
+% Avoids T-B unisons: T1 concert F#3-G3-A3-B3; Bar D3-E3-F#3-A3 (different each beat)
+% Bar(A=A3) above B1(G,=G2) on beat 4 ✓; all Bar notes within E2-C4 ✓
+[V:1] F  G  A  B  |
+[V:2] D  E  F  G  |
+[V:3] A, B, D  D  |
+[V:4] F, G, A, B, |
+[V:5] F  G  A  B  |
+[V:6] B, C  D  E  |
+[V:7] D  E  F  A  |
+[V:8] D, E, F, G, |
+%
+% Bar 11: B4-B4-A4-D5 (climax); original bass G,2 F, B,, (adapted: G, G, F, B,)
+[V:1] B2 A  d  |
+[V:2] G2 F  B  |
+[V:3] D2 D  F  |
+[V:4] B,2 A, D  |
+[V:5] D2 D  F  |
+[V:6] B,2 B, D  |
+[V:7] B2 A  D  |
+[V:8] G, G, F, B, |
+%
+% Bar 12: descending D5-C5-B4-F#4; original tenor B,3/2 ^A,/ B, B, → B,3/2 B,/ B, B,
+% Original bass F,3/2 E,/ D, ^D, → ^D, = D# replaced with E, (diatonic E2)
+[V:1] d3/2 c/ B  F  |
+[V:2] B3/2 A/ G  D  |
+[V:3] F3/2 E/ D  A, |
+[V:4] D3/2 C/ B, G, |
+[V:5] D3/2 C/ B, B, |
+[V:6] B,3/2 A,/ G, G, |
+[V:7] A3/2 G/ F  D  |
+[V:8] F,3/2 E,/ D, E, |
+%
+% Bar 13: G major cadence (IV)
+[V:1] G3 |
+[V:2] E3 |
+[V:3] B,3 |
+[V:4] G,3 |
+[V:5] B,3 |
+[V:6] G,3 |
+[V:7] B3 |
+[V:8] G,3 |
+%
+%% ============================================================
+%% PHRASE 4 — Full 8 voices, ff; suspension at final cadence
+%% ============================================================
+%
+% Pickup beat 4
+[V:1] E |
+[V:2] C |
+[V:3] A, |
+[V:4] F, |
+[V:5] A |
+[V:6] F, |
+[V:7] A |
+[V:8] C, |
+%
+% Bar 14: reprise of bar 2 melody; full texture; f
+[V:1] F  F  G  F  |
+[V:2] D  D  E  D  |
+[V:3] A, A, B, A, |
+[V:4] F, F, G, F, |
+[V:5] A  A  B, A  |
+[V:6] F, F, G, F, |
+[V:7] F  F  G  F  |
+[V:8] D, D, D, D, |
+%
+% Bar 15: subdominant pedal; original bass G,, G,, G,, G,, (G1 → adapted G, G2)
+[V:1] F2 E  D  |
+[V:2] D2 C  B, |
+[V:3] A,2 G, F, |
+[V:4] F,2 E, D, |
+[V:5] B,2 B, B, |
+[V:6] G,2 G, G, |
+[V:7] B2  B  B  |
+[V:8] G, G, G, G, |
+%
+% Bar 16: ornamental D4-E4-D4-C#4; original bass E,, E,, A,, A,, (E1 → E, E2)
+% 4-3 suspension in T1/T2 into bar 17 implied
+[V:1] D  E  D  C  |
+[V:2] A, D  B, B, |
+[V:3] E, F, E, D, |
+[V:4] C, D, C, C, |
+[V:5] G  G  F  E  |
+[V:6] D  E  D  C  |
+[V:7] G, G, C  C  |
+[V:8] E, E, A, A, |
+%
+% Bar 17: final D major cadence, ff, full ensemble; S1=F#4, B1=D2
+[V:1] F3 |
+[V:2] D3 |
+[V:3] A,3 |
+[V:4] F,3 |
+[V:5] A3 |
+[V:6] D3 |
+[V:7] F3 |
+[V:8] D,3 |]

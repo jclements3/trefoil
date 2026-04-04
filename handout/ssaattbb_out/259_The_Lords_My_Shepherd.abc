@@ -1,0 +1,135 @@
+X:259
+T:The Lord's My Shepherd
+C:Words: Psalm 23 from the Scottish Psalter, 1650 alt. by James Leith Macbeth Bain, 1915.
+C:Music: 'Marosa' or 'Brother James' Air', James Leith Macbeth Bain, 1915.
+C:SSAATTBB arrangement expanded from Open Hymnal Project SATB source.
+C:Copyright: public domain.
+M:3/2
+L:1/4
+Q:1/2=70
+%%staves [(1 2) (3 4) (5 6) (7 8)]
+V:1 name="Soprano I"   clef=treble
+V:2 name="Soprano II"  clef=treble
+V:3 name="Alto I"      clef=treble
+V:4 name="Alto II"     clef=treble
+V:5 name="Tenor I"     clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"    clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"    clef=bass
+V:8 name="Bass I"      clef=bass
+K:D
+%
+% ════════════════════════════════════════════════════════
+% SECTION 1a  —  First time: SSAA only  (pp, reduced texture)
+% Tenor I, Tenor II, Baritone, Bass I rest
+% ════════════════════════════════════════════════════════
+%
+[V:1] [Q:1/2=70] D2 | F A d2 A2 | B d A2 G2 | F D D2 C2 | D4 ||
+[V:2]            B,2 | D F B2 F2 | G B F2 E2 | D B, A,2 A,2 | B,4 ||
+[V:3]            G,2 | A, D F2 D2 | E G D2 C2 | A, G, F,2 E2 | D4 ||
+[V:4]            F,2 | F, A, D2 A,2 | C E A,2 G,2 | F, E, D,2 D,2 | D,4 ||
+[V:5]            z2 | z6 | z6 | z6 | z4 ||
+[V:6]            z2 | z6 | z6 | z6 | z4 ||
+[V:7]            z2 | z6 | z6 | z6 | z4 ||
+[V:8]            z2 | z6 | z6 | z6 | z4 ||
+%
+% Voice-leading notes (concert pitches, D major):
+%   S1: D4 | F#4 A4 D5 A4 | B4 D5 A4 G4 | F#4 D4 D4 C#4 | D4
+%   S2: B3 | D4 F#4 B4 F#4 | G4 B4 F#4 E4 | D4 B3 A3 A3 | B3
+%       S1-S2 all diatonic thirds ✓  S2 min A3: lowest=A3 ✓
+%   A1: G3 | A3 D4 F#4 D4 | E4 G4 D4 C#4 | A3 G3 F#3 E4 | D4
+%       bar3 beat2: G3 avoids S2=B3 unison ✓
+%   A2: F#3 | F#3 A3 D4 A3 | C#4 E4 A3 G3 | F#3 E3 D3 D3 | D3
+%       A1>A2 throughout (no crossing) ✓  A2 min D3: lowest=D3 ✓
+%
+% ════════════════════════════════════════════════════════
+% SECTION 1b  —  Second time: full 8 voices  (mp)
+% TTBB enters — homophonic texture, choirs a registral 10th apart
+% ════════════════════════════════════════════════════════
+%
+[V:1] D2 | F A d2 A2 | B d A2 G2 | F D D2 C2 | D4 ||
+[V:2] B,2 | D F B2 F2 | G B F2 E2 | D B, A,2 A,2 | B,4 ||
+[V:3] G,2 | A, D F2 D2 | E G D2 C2 | A, G, F,2 E2 | D4 ||
+[V:4] F,2 | F, A, D2 A,2 | C E A,2 G,2 | F, E, D,2 D,2 | D,4 ||
+%
+% T1 written in 8vb treble (concert = written - P8):
+%   concert F3 A3 D4 D4 | D4 D4 D4 A3 | A3 B3 F#3 G3 | F3
+%   written F4 A4 D5 D5  | D5 D5 D5 A4 | A4 B4 F#4 G4 | F4
+[V:5] F2 | A d d2 d2 | d d d2 A2 | A B F2 G2 | F4 ||
+%
+% T2 written 8vb:
+%   concert D3 F#3 B3 B3 | B3 B3 B3 F#3 | F#3 G3 D3 E3 | D3
+%   written D4 F4  B4 B4  | B4 B4 B4 F4  | F4  G4 D4 E4 | D4
+[V:6] D2 | F B B2 B2 | B B B2 F2 | F G D2 E2 | D4 ||
+% T1-T2: parallel thirds throughout ✓
+%
+% Bar concert (a 3rd or 5th above B1; avoids T2-Bar unisons):
+%   F#3 | A3 F#3 F#3 F#3 | B2 D3 F#3 A3 | A3 B2 C#3 C#3 | F#3
+%   bass-clef: F,2 | A, F, F,2 F,2 | B,, D, F,2 A,2 | A, B,, C,2 C,2 | F,4
+[V:7] F,2 | A, F, F,2 F,2 | B,, D, F,2 A,2 | A, B,, C,2 C,2 | F,4 ||
+% Bar range E2-C4: all notes B2-A3 ✓
+% T2-Bar no unisons: beat1 T2=F#3/Bar=A3 ✓, beats2+ T2=B3/Bar=F#3 ✓
+%
+% B1 concert: D3 | D3 D3 D3 D3 | G2 B2 D3 E3 | D3 G2 A2 A2 | D3
+%   bass-clef: D,2 | D, D, D,2 D,2 | G,, B,, D,2 E,2 | D, G,, A,,2 A,,2 | D,4
+[V:8] D,2 | D, D, D,2 D,2 | G,, B,, D,2 E,2 | D, G,, A,,2 A,,2 | D,4 ||
+% B1 range C2-A3: lowest G2 > C2 ✓
+%
+% ════════════════════════════════════════════════════════
+% SECTION 2  —  Fermata verse  (mf → f)
+% Bars 9-10 (fermata bars): full 8 voices with fermatas
+% Bar 11: surge to climactic D5 in S1, all voices expand
+% Bar 12: full 8-voice D major cadence
+% ════════════════════════════════════════════════════════
+%
+% S1: E4 | F#4 D4[ferm] D4 E4 | same | F#4 A4 D5 D5 | D5
+[V:1] E2 | F D !fermata!D2 E2 | F D !fermata!D2 E2 | F A d2 d2 | d4 ||
+%
+% S2: C#4 | D4 B3[ferm] A3 C#4 | same | D4 F#4 B4 B4 | B4
+[V:2] C2 | D B, !fermata!A,2 C2 | D B, !fermata!A,2 C2 | D F B2 B2 | B4 ||
+%
+% A1: A3 | F#4 E4 D4 A3 | same | A3 D4 F#4 G4 | F#4
+[V:3] A,2 | F E D2 A,2 | F E D2 A,2 | A, D F2 G2 | F4 ||
+% A1 stepwise descent F#4-E4-D4, return via A3; reaches G4 at bar11 climax ✓
+%
+% A2: G3 | D4 G3 F#3 E3 | same | F#3 A3 D4 C#4 | D4
+%   treble: G,2 | D G, F,2 E,2 | same | F, A, D2 C2 | D4
+[V:4] G,2 | D G, F,2 E,2 | D G, F,2 E,2 | F, A, D2 C2 | D4 ||
+% Contrary motion to A1 ✓  A2 min D3: lowest E3 > D3 ✓
+% A1-A2 bar9: F#4-D4=3rd ✓, E4-G3=6th ✓, D4-F#3=3rd ✓, A3-E3=4th ✓
+%
+% T1: A3 | A3 B3 F#3 A3 | same | A3 A3 A3 B3 | A3
+%   written: A2 | A B F2 A2 | same | A A A2 B2 | A4
+[V:5] A2 | A B F2 A2 | A B F2 A2 | A A A2 B2 | A4 ||
+%
+% T2: F#3 | F#3 G3 D3 F#3 | same | F#3 F#3 F#3 G3 | F#3
+%   written: F2 | F G D2 F2 | same | F F F2 G2 | F4
+[V:6] F2 | F G D2 F2 | F G D2 F2 | F F F2 G2 | F4 ||
+% T1-T2: A3-F#3=3rd ✓, B3-G3=3rd ✓, F#3-D3=3rd ✓, A3-F#3=3rd ✓
+%
+% Bar: A3 | A3 B2 F#3 C#3 | same | A3 B2 A2 B2 | A3
+%   bass: A,2 | A, B,, F,2 C,2 | same | A, B,, A,,2 B,,2 | A,4
+[V:7] A,2 | A, B,, F,2 C,2 | A, B,, F,2 C,2 | A, B,, A,,2 B,,2 | A,4 ||
+% T2-Bar: F#3-A3=3rd ✓, G3-B2=6th ✓, D3-F#3=3rd ✓, F#3-C#3=4th ✓  No unisons ✓
+% Bar-B1: A3-A2=7th, B2-G2=3rd, F#3-D3=3rd, C#3-A2=3rd  No unisons ✓
+%
+% B1: A2 | D3 G2 D3 A2 | same | D3 G2 F#2 G2 | D3
+%   bass: A,,2 | D, G,, D,2 A,,2 | same | D, G,, F,,2 G,,2 | D,4
+[V:8] A,,2 | D, G,, D,2 A,,2 | D, G,, D,2 A,,2 | D, G,, F,,2 G,,2 | D,4 ||
+% B1 range C2-A3: F#2 > C2 ✓
+%
+% ════════════════════════════════════════════════════════
+% SECTION 3  —  Final verse: full 8 voices  (f → ff)
+% Climax: S1 holds D5; B1 descends to D2 on final note
+% Total spread: S1=D5 to B1=D2 (3 octaves)
+% ════════════════════════════════════════════════════════
+%
+[V:1] D2 | F A d2 A2 | B d A2 !sintro!G2 | F D D2 C2 | D6 !eintro!|]
+[V:2] B,2 | D F B2 F2 | G B F2 E2 | D B, A,2 A,2 | B,6 |]
+[V:3] G,2 | A, D F2 D2 | E G D2 C2 | A, G, F,2 E2 | D6 |]
+[V:4] F,2 | F, A, D2 A,2 | C E A,2 G,2 | F, E, D,2 D,2 | D,6 |]
+[V:5] F2 | A d d2 d2 | d d d2 A2 | A B F2 G2 | F6 |]
+[V:6] D2 | F B B2 B2 | B B B2 F2 | F G D2 E2 | D6 |]
+[V:7] F,2 | A, F, F,2 F,2 | B,, D, F,2 A,2 | A, B,, C,2 C,2 | F,6 |]
+[V:8] D,2 | D, D, D,2 D,2 | G,, B,, D,2 E,2 | D, G,, A,,2 A,,2 | D,,6 |]
+% B1 final D2 (D,,) — low bass climax ✓
+% Bar final D3 (D,) — 8ve above B1 ✓

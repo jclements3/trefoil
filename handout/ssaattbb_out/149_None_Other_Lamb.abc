@@ -1,0 +1,128 @@
+X:149
+T:None Other Lamb
+C:Words: Christina Rossetti, 1892. Music: 'Rossetti' William Jeater, 1907.
+C:Setting: "The Hymnal" (Presbyterian), 1911.
+C:copyright: public domain. This score is a part of the Open Hymnal Project, 2014 Revision.
+C:SSAATTBB arrangement for eight voices and lever harp. Key unchanged: D major.
+S:Music source: "The Hymnal" (Presbyterian), 1911 Hymn 478. Words: same source.
+M:3/2
+L:1/4
+%%staves [(1 2) (3 4) (5 6) (7 8)]
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+K:D
+%%MIDI program 52
+%
+% Bar 1: pickup (3 beats). SSAA only; TTBB tacet.
+% Harmony: I (A4/D) -> IV (G4) -> V7 (G4/C#4)
+%
+[V:1] [Q:1/4=110] A G G |
+[V:2] F E E |
+[V:3] D D E |
+[V:4] A, B, C |
+[V:5] z3 |
+[V:6] z3 |
+[V:7] z3 |
+[V:8] z3 |
+%
+% Bar 2: 6 beats. SSAA + T1 T2 enter (6 voices). TTBB bass tacet.
+% Harmony: I (D) sustained 3 beats, then I -> IV -> V
+%
+[V:1] F3 A G G |
+[V:2] D3 F E E |
+[V:3] (E2 D) D D E |
+[V:4] (C2 B,) B, A, C |
+[V:5] A,3 A, B, c |
+[V:6] F3 F G A |
+[V:7] z6 |
+[V:8] z6 |
+%
+% Bar 3: 6 beats. All 8 voices enter.
+% Harmony: I (D) 3 beats, then I -> V/V -> V
+%
+[V:1] F3 F F A |
+[V:2] D3 D D F |
+[V:3] (E2 D) D D E |
+[V:4] (C2 B,) B, A, C |
+[V:5] A,3 A, A, B, |
+[V:6] F3 F E D |
+[V:7] F,3 F, F, E, |
+[V:8] D,3 D, D, C, |
+%
+% Bar 4: 6 beats. Full 8, climax approach. Descending soprano line; ^G# kept in S1.
+% T inner voice: original ^G#3 replaced with G3 (diatonic neighbor).
+% B inner voice: original B2 (diatonic) retained.
+%
+[V:1] d3/2 c/ B A F ^G |
+[V:2] B3/2 A/ G F D E |
+[V:3] F3/2 E/ D C C D |
+[V:4] D3/2 C/ B, A, B, C |
+[V:5] A3/2 A/ G A B d |
+[V:6] F3/2 E/ E F G B |
+[V:7] D,3/2 D,/ G, G, G, G, |
+[V:8] B,,3/2 B,,/ E, E, E, E, |
+%
+% Bar 5: 6 beats. Full 8. SSAA carries melody; TTBB provides harmonic foundation.
+% Harmony: vi (A minor) 3 beats -> I (D) 3 beats
+%
+[V:1] A3 c B A |
+[V:2] F3 A G F |
+[V:3] E3 E C C |
+[V:4] C3 C A, A, |
+[V:5] d2 c A A A |
+[V:6] B2 A F F F |
+[V:7] F,3 E, D, C, |
+[V:8] A,,3 A, G, G, |
+%
+% Bar 6: 6 beats. Full 8-voice homophony.
+% Harmony: IV (G/D) -> I (D) -> ii -> V
+%
+[V:1] B3/2 A/ A B A G |
+[V:2] G3/2 F/ F G F E |
+[V:3] E3/2 D/ D E D C |
+[V:4] C3/2 B,/ A, B, A, G, |
+[V:5] A3/2 A/ A d c c |
+[V:6] F3/2 F/ F B A A |
+[V:7] A,3/2 A,/ A, B, A, A, |
+[V:8] F,3/2 F,/ F, G, A, A, |
+%
+% Bar 7: 6 beats. Sustained. Dominant pedal in B1; harmonic substitution in bass.
+% Original B had ^A#2 -> replaced with A2 throughout (diatonic; see notes).
+% Soprano long note F4; inner voices provide gentle motion.
+%
+[V:1] F6 |
+[V:2] D2 C2 D2 |
+[V:3] (E2 D4) |
+[V:4] (C2 B,4) |
+[V:5] c2 B4 |
+[V:6] A2 G4 |
+[V:7] D,2 C,2 D,2 |
+[V:8] A,,6 |
+%
+% Bar 8: 6 beats, sintro. Canonic effect: S1+A1 vs T1+B1 in mild imitation.
+%
+[V:1] !sintro!E2 F2 G2 |
+[V:2] C2 D2 E2 |
+[V:3] D2 D2 C2 |
+[V:4] B,2 A,2 A,2 |
+[V:5] B2 A2 A2 |
+[V:6] G2 F2 F2 |
+[V:7] G,2 A,2 A,2 |
+[V:8] G,2 A,2 A,,2 |
+%
+% Bar 9: 3 beats (eintro), final cadence. Full 8, D major root position.
+%
+[V:1] F3 !eintro!|]
+[V:2] D3 |]
+[V:3] A,3 |]
+[V:4] F,3 |]
+[V:5] A3 |]
+[V:6] F3 |]
+[V:7] F,3 |]
+[V:8] D,3 |]

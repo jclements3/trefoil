@@ -1,0 +1,52 @@
+X: 38
+T: I Heard The Bells On Christmas Day
+C: Words: Henry Wadsworth Longfellow, 1864.
+C: Music: 'Waltham (Calkin)' John B. Calkin, 1872.  Setting: "The Book of Common Praise", 1885.
+C: SSAATTBB arr. for 8-voice ensemble and lever harp.
+C: copyright: public domain.
+S: Music source: "The Book of Common Praise", 1885 Hymn 466.
+M: 4/4
+L: 1/4
+Q: 1/4=100
+%%staves {(V1 V2) (V3 V4) (V5 V6) (V7 V8)}
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+K: Eb
+%
+% --- Soprano I: original soprano line, accidentals permitted ---
+[V:1] E  | G3/2 ^F/ G G | A3/2 G/ A =A | B e d c | c3/2 B/ B B | B3/2 A/ G \
+  !sintro!A | G3/2 F/ E F | G A B c | d3/2 F/ !fermata!E !eintro!|]
+%
+% --- Soprano II: diatonic third below S1, no accidentals ---
+[V:2] C  | E3/2 E/ E E | F3/2 E/ F F | G c B A | A3/2 G/ G G | G3/2 F/ E \
+  F | E3/2 D/ C D | E F G A | B3/2 D/ C |]
+%
+% --- Alto I: independent diatonic melodic line ---
+[V:3] B,  | C3/2 C/ C D | C3/2 C/ C C | E F D C | E3/2 E/ F E | D3/2 C/ B, \
+  C | C3/2 B,/ A, B, | B, C D E | F3/2 E/ E |]
+%
+% --- Alto II: diatonic, contrary motion to A1 ---
+[V:4] G,  | G,3/2 A,/ B, B, | A,3/2 A,/ G, G, | G, G, G, A, | A,3/2 B,/ A, G, | G,3/2 A,/ G, \
+  F, | G,3/2 G,/ A, G, | G, A, B, A, | G,3/2 F,/ E, |]
+%
+% --- Tenor I: written at concert pitch +8va (transpose=-12); follows original tenor ---
+[V:5] G  | B3/2 B/ B B | B3/2 B/ B c | B B B e | d3/2 d/ d e | c3/2 c/ B \
+  G | G3/2 G/ G A | B c B F | F3/2 A/ !invertedfermata!G |]
+%
+% --- Tenor II: written at concert pitch +8va (transpose=-12); contrary motion to T1 ---
+[V:6] G  | G3/2 G/ G G | G3/2 G/ G A | G G G c | B3/2 A/ G G | A3/2 G/ E \
+  E | F3/2 E/ E F | G F G D | E3/2 E/ E |]
+%
+% --- Baritone: independent diatonic line, third above B1 ---
+[V:7] G,  | E,3/2 F,/ G, G, | A,3/2 A,/ A, B, | G,3/2 F,/ E, G, | C3/2 C/ B, A, | B,3/2 A,/ G, \
+  G, | F,3/2 E,/ E, F, | G, F, E, G, | E,3/2 G,/ E, |]
+%
+% --- Bass I: original bass, chromatic notes replaced diatonically ---
+[V:8] E,  | E,3/2 B,,/ E, F, | F,3/2 B,,/ F, G, | G, B,, E, G, | A,3/2 A,/ A, G, | A,3/2 A,/ E, \
+  E, | D,3/2 D,/ C, F,, | B,, A,, G,, A,, | B,,3/2 B,,/ E, |]

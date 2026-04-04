@@ -1,0 +1,303 @@
+X:168
+T:Amazing Grace
+C:Words: John Newton, 1779. Last verse author unknown, before 1829.
+C:Music: 'New Britain' James P. Carrell and David L. Clayton, 1831. Setting: Edwin Othello Excell, 1900.
+C:SSAATTBB arr. for 8-voice ensemble with lever harp.
+C:Copyright: public domain.
+M:3/4
+L:1/4
+Q:1/4=100
+%%staves {(1 2)(3 4)(5 6)(7 8)}
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble transpose=-12
+V:6 name="Tenor II"   clef=treble transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+K:G
+%
+% SSAATTBB arrangement of Amazing Grace (New Britain) in G major.
+% Lever harp key G (1 sharp, F#): no transposition required.
+% All voices diatonic (F# in key signature counts as diatonic).
+%
+% REGISTER STRATEGY:
+%   B1  = original bass (G2-G3)
+%   Bar = 3rd above B1, range B2-B3
+%   T2-snd = G3-B3 (kept ABOVE Bar to ensure T-B separation)
+%   T1-snd = B3-D4 (always above T2)
+%   This keeps a clear octave+ gap between T2 and B1.
+%
+% TEXTURE PLAN:
+%   Pickup + bar1: 4 voices (S1,A1,T1,B1) - open, unaccompanied-feel
+%   Bars 2-4: 6 voices (add S2, A2) - SSAA choir with bass pair
+%   Bars 5-8: Full 8 voices, building to D5 climax at bar 7
+%   Bars 9-11: Antiphonal SSAA vs TTBB, call-and-response
+%   Bars 12-16: Full 8, ff, final section with suspension at bar 15 cadence
+%
+% NOTE ON T VOICES: T1 and T2 are written at sounding pitch + octave
+%   (transpose=-12 shifts written pitch down one octave to concert).
+%   Written G = sounds G3. Written B = sounds B3. Written d = sounds D4.
+%
+% ---- Pickup: S1, A1, T1, B1 only ----
+[V:1] [Q:1/4=100] D |
+[V:2] z |
+[V:3] G, |
+[V:4] z |
+[V:5] D |
+[V:6] z |
+[V:7] z |
+[V:8] G,, |
+%
+% ---- Bar 1: G major ----
+% S1=G4 (h) B4(e) G4(e), S2=E4(h) G4(e) E4(e)
+% A1=B3(h) D4(q), A2=G3(h) B3(q)
+% T1snd=B3(h) D4(q), T2snd=G3(h) B3(q)  [T2 kept at G3, not B2]
+% Bar=B2(h) D3(q), B1=G2(h) B2(q)
+% Check: T2=G3,B3 vs Bar=B2,D3 vs B1=G2,B2 -- no unisons among them
+[V:1] G2 B/G/ |
+[V:2] E2 G/E/ |
+[V:3] B,2 D |
+[V:4] G,2 B, |
+[V:5] B2 d |
+[V:6] G2 B |
+[V:7] B,,2 D, |
+[V:8] G,,2 B,, |
+%
+% ---- Bar 2: G/D then D7 ----
+% S1=B4(h) A4(q), S2=G4(h) F4(q)
+% A1=D4(h) C4(q), A2=B3(h) A3(q)
+% T1snd=B3(h) A3(q) [orig tenor G3 F3, raised to avoid Bar=F3]
+% T2snd=G3(h) F3... avoid F3=Bar. T2=G3(h) E3(q)
+% Bar=D3(h) F3(q) [3rd above B1=D3], B1=D3(h) D3(q)
+% Check: T2=G3,E3 vs Bar=D3,F3 vs B1=D3 -- T2 E3 != D3,F3 ok; T2 G3 != D3,F3 ok
+[V:1] B2 A |
+[V:2] G2 F |
+[V:3] D2 C |
+[V:4] B,2 A, |
+[V:5] B2 A, |
+[V:6] G2 E |
+[V:7] D,2 F, |
+[V:8] D,2 D, |
+%
+% ---- Bar 3: Em then C ----
+% S1=G4(h) E4(q), S2=E4(h) A3(q) [avoids C4 unison with A1]
+% A1=B3(h) C4(q), A2=G3(h) A3(q)
+% T1snd=D4(h) C4(q) [raised above G3/E3 register to clear Bar]
+% T2snd=B3(h) A3(q) [3rd below T1; A3 diatonic passing]
+%   Bar=G3(h) E3(q) [3rd above B1=E3,C3]
+%   Check: T1=D4,C4 vs Bar=G3,E3: ok. T2=B3,A3 vs Bar=G3,E3: ok.
+%   T1=D4,C4 vs B1=E3,C3: ok. T2=B3,A3 vs B1=E3,C3: ok. CLEAR.
+[V:1] G2 E |
+[V:2] E2 A, |
+[V:3] B,2 C |
+[V:4] G,2 A, |
+[V:5] d2 c |
+[V:6] B2 A, |
+[V:7] G,2 E, |
+[V:8] E,2 C, |
+%
+% ---- Bar 4: G major ----
+% S1=D4(h) D4(q), S2=B3(h) B3(q) -- S2=B3; A1=B3(h) -- S2 unison with A1!
+% Fix: S2=D4(h) C4(q) [stays close to S1, avoids A1=B3]
+% A1=B3(h) B3(q), A2=G3(h) G3(q)
+% T1snd=B3(h) B3(q), T2snd=G3(h) G3(q)
+% Bar=B2(h) B2(q) [3rd above G2], B1=G2(h) G2(q)
+% Check: T2=G3 vs Bar=B2 vs B1=G2 -- no unisons. T1=B3 vs Bar=B2 vs B1=G2 -- ok.
+[V:1] D2 D |
+[V:2] D2 C |
+[V:3] B,2 B, |
+[V:4] G,2 G, |
+[V:5] B2 B |
+[V:6] G2 G |
+[V:7] B,,2 B,, |
+[V:8] G,,2 G,, |
+%
+% ---- Bar 5: G major (phrase repeat of bars 1-4) ----
+% Texture: SSAA and Bar enter first; T enter beat 2 as echo
+% Same voicing as bar 1 for consistency
+[V:1] G2 B/G/ |
+[V:2] E2 G/E/ |
+[V:3] D2 B, |
+[V:4] B,2 G, |
+[V:5] B2 d |
+[V:6] G2 B |
+[V:7] B,,2 D, |
+[V:8] G,,2 G,,/B,,/ |
+%
+% ---- Bar 6: G then D7 ----
+% Same as bar 2
+[V:1] B2 A |
+[V:2] G2 F |
+[V:3] E2 D |
+[V:4] B,2 G, |
+[V:5] B2 A, |
+[V:6] G2 E |
+[V:7] D,2 F, |
+[V:8] D,2 C, |
+%
+% ---- Bar 7: Sustained D5 -- climax, full 8, all tied ----
+% S1=D5, B1=B2. Spread: D5-B4-E4-B3-D4-B3-D3-B2
+% A1=E4 (suspended 4th/9th over bass, resolves bar 8->D4)
+% T1snd=D4, T2snd=B3
+% Bar=D3, B1=B2
+% Check: T1=D4 vs Bar=D3: different. T2=B3 vs B1=B2: different. T2=B3 vs Bar=D3: ok.
+[V:1] d3- |
+[V:2] B3- |
+[V:3] E3 |
+[V:4] B,3- |
+[V:5] d3- |
+[V:6] B3- |
+[V:7] D,3- |
+[V:8] B,,3- |
+%
+% ---- Bar 8: G major ----
+% S1=D5(h) B4(q), S2=B4(h) G4(q)
+% A1=D4(h, resolves from E4) D4(q), A2=B3(h) B3(q)
+% T1snd=D4(h) B3(q), T2snd=B3(h) G3(q)
+% Bar=D3(h) B2(q) [3rd above B2, then 3rd above G2=B2]
+% B1=B2(h) G2(q)
+% Check: T2=B3,G3 vs Bar=D3,B2 vs B1=B2,G2 -- T2 B3!=D3,B2 ok; T2 G3!=D3,B2 ok. Clear.
+[V:1] d2 B |
+[V:2] B2 G |
+[V:3] D2 D |
+[V:4] B,2 B, |
+[V:5] d2 B |
+[V:6] B2 G |
+[V:7] D,2 B,, |
+[V:8] B,,2 G,, |
+%
+% ---- Bar 9: Running figure, antiphonal ----
+% S1=(D5 dq B4 e) D5 e B4 e, S2=(B4 dq G4 e) B4 e G4 e
+% A1=D4(h) C4(q) passing motion, A2=G3(h) B3(q)
+% TTBB: T1snd=B3(h) D4(q), T2snd=G3(h) B3(q)
+% Bar=B2(h) B2(q), B1=G2(h) G2(q)
+% Check: T2=G3,B3 vs Bar=B2 vs B1=G2 -- ok. T1=B3,D4 vs Bar=B2 vs B1=G2 -- ok.
+[V:1] (d3/2 B/) d/B/ |
+[V:2] (B3/2 G/) B/G/ |
+[V:3] D2 C |
+[V:4] G,2 B, |
+[V:5] B2 d |
+[V:6] G2 B |
+[V:7] B,,2 B,, |
+[V:8] G,,2 G,, |
+%
+% ---- Bar 10: G major ----
+% S1=G4(h) D4(q), S2=E4(h) B3(q) [S2 B3: A1=D4 so S2!=A1 ok]
+% A1=D4(h) D4(q), A2=B3(h) A3(q)
+% T1snd=B3(h) D4(q), T2snd=G3(h) B3(q)
+% Bar=D3(h) D3(q) [3rd above B2], B1=B2(h) B2(q)
+% Check: T2=G3,B3 vs Bar=D3 vs B1=B2 -- all clear.
+[V:1] G2 D |
+[V:2] E2 B, |
+[V:3] D2 D |
+[V:4] B,2 A, |
+[V:5] B2 d |
+[V:6] G2 B |
+[V:7] D,2 D, |
+[V:8] B,,2 B,, |
+%
+% ---- Bar 11: C major (IV) ----
+% S1=(E4 dq G4 e) G4 e E4 e
+% S2=(C4 dq E4 e) E4 e C4 e [S2 C4: A1=G3 ok; S2 E4: A1=B3 ok]
+% A1=(G3 dq B3 e) B3 e G3 e, A2=(E3 dq G3 e) G3 e E3 e
+% T1snd=(B3 dq G3 e) B3 e G3 e, T2snd=(G3 dq E3 e) G3 e E3 e
+%   But T2=G3 and T1=G3 at same beats -> T pair unison allowed here
+% Bar=(E3 dq D3 e) E3 q, B1=(C3 dq B2 e) C3 q
+% Check: T2=G3,E3 vs Bar=E3,D3 vs B1=C3,B2
+%   T2=E3 and Bar=E3 -- CONFLICT!
+% Fix: T2 for bar11: keep at G3 throughout, only dip to B3 not E3
+%   T2snd=(G3 dq B3 e) G3 e B3... wait that goes UP which means T1 has to be even higher.
+%   Simpler fix: T1=(B3 dq G3 e) B3 e G3 e; T2=(G3 dq E3 e)... still T2=E3=Bar.
+% Best fix: Bar avoids E3 in bar11.
+%   Bar uses 5th above B1: C3->G3, B2->F3, C3->G3. Bar=(G3 dq F3 e) G3 q
+%   But T1=G3 and Bar=G3 -> T-B unison again.
+% Key insight: in bar11, C major harmony, Bar and T voices will share chord tones.
+%   Only solution: separate by register more aggressively.
+%   T1snd=D4(h) C4(q) [a 3rd above original tenor G3, implied by C chord: C-E-G-D works]
+%   T2snd=B3(h) A3(q) [a 3rd below T1=D4->B3, C4->A3]
+%   Bar=E3(h) E3(q) [3rd above C3 sustained], but check: T2=B3,A3 vs Bar=E3 ok. T1=D4,C4 vs Bar=E3 ok.
+%   B1=C3(h) B2(q), Bar=E3(h)... wait: E3 > C3 and E3 > B2. Bar > B1 always. ok.
+%   Check T1=D4,C4 vs B1=C3,B2: ok. T2=B3,A3 vs B1=C3,B2: ok.
+[V:1] (E3/2 G/) G/E/ |
+[V:2] (C3/2 E/) E/C/ |
+[V:3] (G,3/2 B,/) B,/G,/ |
+[V:4] (E,3/2 G,/) G,/E,/ |
+[V:5] (d3/2 c/) B/A/ |
+[V:6] (B3/2 A,/) G/F/ |
+[V:7] E,2 E, |
+[V:8] (C,3/2 B,,/) C, |
+%
+% ---- Bar 12: G major (sintro section) ----
+% S1=D4(h) D4(q), S2=B3(h) B3(q) [S2 stays B3; A1 avoids B3]
+% A1=G3 whole bar (dotted half) -- no D4 so no S2/A1 clash
+% A2=E3(h) G3(q)
+% T1snd=B3(h) G3(q), T2snd=G3(h) E3(q)
+% Bar=B2(h) D3(q) [3rd above G2/B2], B1=G2(h) B2(q)
+% Check: T2=G3,E3 vs Bar=B2,D3: ok. T1=B3,G3 vs Bar=B2,D3: ok.
+%   T1,T2 vs B1=G2,B2: ok. S2=B3 vs A1=G3: no unison ok.
+[V:1] D2 D |
+[V:2] B,2 B, |
+[V:3] G,3 |
+[V:4] E,2 G, |
+[V:5] B2 G |
+[V:6] G2 E |
+[V:7] B,,2 D, |
+[V:8] G,,2 B,, |
+%
+% ---- Bar 13: G major ----
+% S1=G4(h) B4(e) G4(e), S2=E4(h) G4(e) E4(e)
+% A1=D4(h) B3(e) D4(e), A2=B3(h) G3(q)
+% T1snd=D4(h) B3(q) [written: d2 B], T2snd=G3 whole bar [written: G2 G]
+% B1=E3(h) D3(q), Bar=A3(h) F3(q)
+%   Check: T1=D4,B3 vs Bar=A3,F3: ok. T2=G3,G3 vs Bar=A3,F3: ok.
+%   T1=D4,B3 vs B1=E3,D3: ok. T2=G3 vs B1=E3,D3: ok. CLEAR.
+[V:1] G2 B/G/ |
+[V:2] E2 G/E/ |
+[V:3] D2 B,/D/ |
+[V:4] B,2 G, |
+[V:5] d2 B |
+[V:6] G2 G |
+[V:7] A,2 F, |
+[V:8] E,2 D, |
+%
+% ---- Bar 14: D major ----
+% S1=B4(h) A4(q), S2=G4(h) F4(q)
+% A1=E4(h) D4(q) [avoids G4=S2 unison; E is diatonic passing]
+% A2=B3(h) A3(q) [3rd below A1]
+% T1snd=D4(h) C4(q) [orig tenor D4 C4: tenor climax]
+% T2snd=B3(h) A3(q) [3rd below T1]
+% Bar=F3(h) F3(q) [3rd above D3], B1=D3(h) D3(q)
+% Check: T1=D4,C4 vs Bar=F3 vs B1=D3: T1=D4!=F3 ok, T1=C4!=F3 ok, T1=D4!=D3 ok, T1=C4!=D3 ok.
+%   T2=B3,A3 vs Bar=F3 vs B1=D3: all clear.
+[V:1] B2 A |
+[V:2] G2 F |
+[V:3] E2 D |
+[V:4] B,2 A, |
+[V:5] d2 c |
+[V:6] B2 A, |
+[V:7] F,2 F, |
+[V:8] D,2 D, |
+%
+% ---- Bar 15: G major sustained -- final cadence, all 8 ----
+% Full spread: D4-B3-B3-G3-B3-G3-B2-G2 (G major chord, complete)
+% S1=G4 (comes from A4 in bar14 stepwise), B1=G2 (final root)
+[V:1] G3- |
+[V:2] D3- |
+[V:3] B,3- |
+[V:4] G,3- |
+[V:5] B3- |
+[V:6] G3- |
+[V:7] B,,3- |
+[V:8] G,,3- |
+%
+% ---- Bar 16: final 2-beat cadence ----
+[V:1] G2 |]
+[V:2] D2 |]
+[V:3] B,2 |]
+[V:4] G,2 |]
+[V:5] B2 |]
+[V:6] G2 |]
+[V:7] B,,2 |]
+[V:8] G,,2 |]

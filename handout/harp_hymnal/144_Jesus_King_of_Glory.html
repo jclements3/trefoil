@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Jesus, King of Glory — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }
+p.legend { font-size: 12px; color: #555; }</style>
+</head><body>
+<h1>Jesus, King of Glory</h1>
+<p class="legend">Above melody: Abstract / RH voicing / LH voicing.
+RH = upper notes, LH = lower notes (no hand crossing).</p>
+<div id="music"></div>
+<script src="../../abc2stripchart/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 1\nT: Jesus, King of Glory\nM: 4/4\nL: 1/4\nQ: 1/4=120\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: G\n[V: M] \"^vi7\u00b9\"\"^C\"\"^Am\u00b9\"b b a a | \"^vi7\u00b2\"\"^Am\"g2 d2 | \"^vi7\"d' d' e' e' | a4 | \"^ii7\u00b3\"\"^F\u00b2\"c' c' b b | \"^vii\u00f87\u00b3\"\"^Dm\"\"^B\u00f87\u00b3-3\"a2 e2 | \"^vi9\u2074\"\"^Am\"\"^Em\u00b2\"g g a a | \"^vi7\u00b2\"\"^C\"\"^Am\u00b2\"g4 | \"^vi7\u00b3\"\"^F-1+2\"d' d' c' c' | \"^I\u0394\u00b9\"\"^Em\"b2 e2 | \"^ii\u00b9\"c' c' e' e' | ( \"^vi9\u2074\"\"^C\"\"^Am7s2\u00b9\"g2 f2 ) | \"^ii\u00b9\"\"^Dm\"c' c' a a | \"^iii\u00b2\"\"^Em\u00b2\"d'2 b2 | \"^vii\u00f87\u00b3\"\"^Dm\"\"^B\u00f87\u00b3-3\"a a f f | \"^vi7\u00b2\"\"^C\"\"^Am7\u00b2-3\"g4 | \"^vi7\"\"^C\"\"^Am7-3\"b b a a | \"^vi7\u00b2\"\"^C\"\"^Am7\u00b2\"g2 d2 | \"^vi7\u00b2\"\"^Am\u00b2\"d' d' e' e' | a4 | \"^ii7\u00b3\"\"^F\u00b2\"c' c' b b | \"^vii\u00f87\u00b3\"\"^Dm\"\"^B\u00f87\u00b3\"a2 e2 | \"^vi9\u2074\"\"^C\"\"^Am+2\"g g a a | \"^vi7\u00b9\"\"^C\"g4 |]\n[V: RH] [gbd'] [gbd'] [fac'] [fga] | [egb]2 [deg]2 | [dbd'] [dbd'] [ec'e'] [bc'e'] | [fa]4 | [ac'] [abc'] [gab] [gb] | [ac'e']2 [eac']2 | [egb] [eg] [fac'] [fac'] | [gbd']4 | [bd'] [bd'] [ac'] [abc'] | [gb]2 [eg]2 | [ac'] [ac'] [c'e'] [c'd'e'] | ( [gbd']2 [ac']2 ) | [ac'e'] [ac'e'] [abd'] [fac'] | [bd']2 [gb]2 | [ac'e'] [ac'e'] [fbd'] [fac'] | [gbd']4 | [gbd'] [gbd'] [fac'] [gab] | [gbd']2 [dgb]2 | [bd'] [bd'] [c'e'] [c'e'] | [fa]4 | [ac'] [abc'] [gab] [gb] | [ac'e']2 [eac']2 | [gbd'] [gbd'] [ac'e'] [ad'f'] | [eg]4 |]\n[V: LH] [G,B,e] [G,B,e] [D,F,d] [D,F,Be] | [B,Bd]2 [B,GB]2 | [E,EG] [E,EG] [E,FA] [E,FAd] | [F,FA]4 | [G,ce] [A,Bdg] [B,Bdf] [B,ce] | [E,cef]2 [E,Ac]2 | [F,Bd] [G,c] [E,Bd] [F,Bd] | [B,GBe]4 | [DEG] [DEG] [CEG] [CEGg] | [B,Fd]2 [G,c]2 | [Cce] [Cce] [E,ce] [F,Beb] | ( [F,Bde]2 [Adf]2 ) | [Cce] [Cce] [E,Bdf] [E,Bd] | [F,Bd]2 [F,EG]2 | [E,cef] [E,cef] [E,Bd] [E,Bd] | [B,Bde]4 | [E,Bd] [E,Bd] [F,ce] [A,Bdf] | [B,Gde]2 [G,EB]2 | [B,EG] [B,EG] [E,FA] [E,FA] | [F,FA]4 | [G,ce] [A,Bdg] [B,Bdf] [B,ce] | [E,Acf]2 [E,Bcd]2 | [F,GBe] [F,GBe] [F,Acf] [F,Bdf] | [G,Bd]4 |]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ""; }
+};
+var abc = new abc2svg.Abc(user);
+abc.tosvg("score", abc_src);
+</script></body></html>

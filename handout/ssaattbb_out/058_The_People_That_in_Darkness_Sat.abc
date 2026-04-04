@@ -1,0 +1,194 @@
+X: 1
+T: The People That in Darkness Sat
+T: (SSAATTBB Arrangement)
+C: Words: John Morison, 1781. Music: 'Lobt Gott, ihr Christen Allzugleich' Nikolaus Hermann, 1554.
+C: Setting: "Kern des Deutschen Kirchengesangs", 1855, alt.
+C: SSAATTBB arrangement for double choir and lever harp.
+C: copyright: public domain source. Arrangement this edition.
+M: 4/4
+L: 1/4
+Q: 1/4=120
+%%staves {(V1 V2) (V3 V4) (V5 V6) (V7 V8)}
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+K: F
+%
+% ══════════════════════════════════════════════════════════════
+% Pickup (1 beat) — F major
+% Texture: SSAA only; TTBB rests
+% SSAA spread (sounding): S1=F4, S2=D4, A1=A3, A2=F3
+% ══════════════════════════════════════════════════════════════
+[V:1] F |
+[V:2] D |
+[V:3] A, |
+[V:4] F, |
+[V:5] z |
+[V:6] z |
+[V:7] z |
+[V:8] z |
+%
+% ══════════════════════════════════════════════════════════════
+% Bar 1 — F major throughout
+% Texture: SSAA alone (reduced opening, 4 voices)
+% S1: C5 sustained; S2: thirds below with passing G4; A1: original alto;
+% A2: diatonic contrary motion below A1
+% TTBB rests
+% ══════════════════════════════════════════════════════════════
+[V:1] c  c  c  c  |
+[V:2] A  G  A  A  |
+[V:3] F  F  F  F  |
+[V:4] C  E  D  C  |
+[V:5] z  z  z  z  |
+[V:6] z  z  z  z  |
+[V:7] z  z  z  z  |
+[V:8] z  z  z  z  |
+%
+% ══════════════════════════════════════════════════════════════
+% Bar 2 — Bb / F
+% Texture: All 8 voices (TTBB enters); 8-voice texture established
+% S1 passing Bb4 eighth (diatonic in K:F, S1 only — not doubled in S2)
+% S2 mirrors S1 in parallel thirds with diatonic passing eighths
+% Bar: wide leap D3→A3 resolved stepwise A3→G3→G3
+% B1: follows original bass exactly (Bb2 G3 F3 F3)
+% ══════════════════════════════════════════════════════════════
+[V:1] d  c/B/ A  A  |
+[V:2] B  A/G/ F  F  |
+[V:3] F  E    E  E  |
+[V:4] D  C    D  C  |
+[V:5] B  B    c  c  |
+[V:6] G  G    A  A  |
+[V:7] D, A,   G, G,  |
+[V:8] B,, G,  F, F,  |
+%
+% ══════════════════════════════════════════════════════════════
+% Bar 3 — Gm / C / Dm / Gm
+% Texture: Full 8 voices, homophonic block
+% DIATONIC FIX: Original S2V1 (tenor) beat 4 = B natural (=Bnat3) —
+%   chromatic in K:F; replaced with Bb3 in T1 and T2
+% B1: follows original bass (D3 E3 F3 G3)
+% Bar avoids unisons with any T voice; stays above B1
+% ══════════════════════════════════════════════════════════════
+[V:1] B  c  d  d  |
+[V:2] G  A  B  B  |
+[V:3] D  E  F  G  |
+[V:4] B, C  D  D  |
+[V:5] d  c  A  B  |
+[V:6] B  A  F  G  |
+[V:7] G, G, G, A,  |
+[V:8] D, E, F, G,  |
+%
+% ══════════════════════════════════════════════════════════════
+% Bar 4 — C major (dominant half-cadence)
+% Texture: Full 8 voices
+% Bar has arched line: F3–A3–F3–E3 (upper-neighbor passing motion)
+% Inner SSAA voices hold chord tones with minimal passing motion
+% ══════════════════════════════════════════════════════════════
+[V:1] c  c  c  c  |
+[V:2] A  G  A  G  |
+[V:3] G  F  E  E  |
+[V:4] C  C  C  C  |
+[V:5] c  B  c  B  |
+[V:6] G  G  G  G  |
+[V:7] F, A, F, E,  |
+[V:8] C, C, C, C,  |
+%
+% ══════════════════════════════════════════════════════════════
+% Bar 5 — Dm / F / Dm / F
+% Texture: Full 8 voices; antiphonal feel (SSAA lead, TTBB respond)
+% B1: follows original bass (F3 E3 F3 F2)
+% Bar: sustained G3 over beats 1-3 for stability; steps to E3 on beat 4
+% ══════════════════════════════════════════════════════════════
+[V:1] c  c  c  A  |
+[V:2] A  A  A  F  |
+[V:3] F  G  F  C  |
+[V:4] D  E  D  A, |
+[V:5] A  c  A  A  |
+[V:6] F  A  F  F  |
+[V:7] G, G, G, E,  |
+[V:8] F, E, F, F,, |
+%
+% ══════════════════════════════════════════════════════════════
+% Bar 6 — F / Dm / C / F
+% Texture: Full 8 voices, richest homophony
+% S1 eighth-pair Bb/A (diatonic); S2 mirrors in thirds (G/F)
+% Bar: C3–A3–G3–Bb3 — independent bass-tenor counterpoint
+% B1: follows original bass (A2 Bb2 C3 C3)
+% ══════════════════════════════════════════════════════════════
+[V:1] c  B/A/ G  c  |
+[V:2] A  G/F/ E  A  |
+[V:3] F  D    C  F  |
+[V:4] C  B,   B, C  |
+[V:5] A  F    E  A  |
+[V:6] F  D    C  F  |
+[V:7] C, A,   G, B,  |
+[V:8] A,, B,, C, C,  |
+%
+% ══════════════════════════════════════════════════════════════
+% Bar 7 — F / F / C / C
+% Texture: Outer-voice call (S1+B1 carry original soprano+bass);
+%   inner voices move in stepwise contrary motion
+% A2 below A1; A1 below S2 throughout
+% B1: follows original bass (F3 A2 Bb2 C3)
+% Bar: G3–G3–E3–E3 (sustained thirds above B1)
+% ══════════════════════════════════════════════════════════════
+[V:1] A  F  G  G  |
+[V:2] F  D  E  E  |
+[V:3] C  B, C  C  |
+[V:4] A, G, A, A, |
+[V:5] c  A  B  B  |
+[V:6] A  F  G  G  |
+[V:7] G, G, E, E,  |
+[V:8] F, A,, B,, C,  |
+%
+% ══════════════════════════════════════════════════════════════
+% Bar 8 — F / F / C / C  (sintro)
+% Texture: Full 8 voices, strong block homophony; half-note motion
+% Bar: A2 (half) → G3 (half) — stepwise motion above B1
+% ══════════════════════════════════════════════════════════════
+[V:1] F2  !sintro!A2  |
+[V:2] D2  F2   |
+[V:3] A,2 C2   |
+[V:4] F,2 A,2  |
+[V:5] A2  c2   |
+[V:6] F2  A2   |
+[V:7] A,,2 G,2 |
+[V:8] F,,2 F,2 |
+%
+% ══════════════════════════════════════════════════════════════
+% Bar 9 — F / F / Gm/Bb / C
+% Texture: Stretto-like contrary motion in all voice pairs;
+%   voices converge toward cadence
+% B1: follows original bass (E3 D3 Bb2 C3)
+% Bar: F3–E3–E3–F3 — stepwise, stays above B1, avoids T-voice unisons
+% ══════════════════════════════════════════════════════════════
+[V:1] c  F  G  G  |
+[V:2] A  D  E  E  |
+[V:3] E  C  D  D  |
+[V:4] C  A, B, C  |
+[V:5] G  A  B  G  |
+[V:6] E  F  G  E  |
+[V:7] F, E, E, F,  |
+[V:8] E, D, B,, C, |
+%
+% ══════════════════════════════════════════════════════════════
+% Bar 10 — F major final cadence (eintro)
+% Texture: Full 8 voices, maximum spread
+% Sounding: S1=F4, S2=C4, A1=A3, A2=A3 (unison in pair, cadential),
+%   T1snd=C4, T2snd=A3, Bar=C3, B1=F2
+% A2+T2 share A3 at cross-choir register break (permitted freely)
+% B1 anchors bass on low F2 for maximum depth
+% ══════════════════════════════════════════════════════════════
+[V:1] F3  !eintro!|]
+[V:2] C3  |]
+[V:3] A,3 |]
+[V:4] A,3 |]
+[V:5] c3  |]
+[V:6] A3  |]
+[V:7] C,3 |]
+[V:8] F,,3 |]

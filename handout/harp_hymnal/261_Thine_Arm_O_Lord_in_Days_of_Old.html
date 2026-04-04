@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Thine Arm, O Lord, in Days of Old — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }
+p.legend { font-size: 12px; color: #555; }</style>
+</head><body>
+<h1>Thine Arm, O Lord, in Days of Old</h1>
+<p class="legend">Above melody: Abstract / RH voicing / LH voicing.
+RH = upper notes, LH = lower notes (no hand crossing).</p>
+<div id="music"></div>
+<script src="../../abc2stripchart/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 1\nT: Thine Arm, O Lord, in Days of Old\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: G\n[V: M] \"^vi\u00b9\"G/ F/ | \"^IV\u0394\u00b2\"E E E D | \"^vi\u00b9\"G G A G/ A/ | \"^I\"B B A/ G/ E | \"^V\"D3 | a d a c d b e b e a b a c a d e c e G/ F/ E d b e E/ D/ C c a e f F D a d e D ( b e F A, ) c G E, F D ( d a c ) B a E C, E C, E C, D B, B a G E, G E, A F, G/ A/ E/ F/ B a B G, B G, A F, G E, E C B a D A, ( a b e f c a d e c e b e a d ) G/ F/ | E E E D | G G A G/ A/ | B B A/ G/ E | E3 | a d a c d b e B, B, a b a c a d e c e ( e a ) B/ c/ | d B B/ A/ G | A A B G/ A/ | B B/ A/ G E | D3 | a d a c d b e B/ c/ G/ A/ d B, B/ A/ G/ F, G E A F, A F, B G, G/ A/ E/ F/ B G, B/ A/ G/ F, G E, E C D A, G/ F/ | E E E/ D/ E/ F/ | G G A G/ A/ | B B A/ G/ E | E3 |] a d a c d b e c a d e c e C ( d b e E )\n[V: RH] [EG]/ z/ | [CE] [E] [CE] [B,D] | [EG] [EG] [FA] [EG]/ [A]/ | [GB] [GB] [FA]/ z/ [E] | [A,D]3 | a d a c d b e b e a b a c a d e c e G/ F/ E d b e E/ D/ C c a e f F D a d e D ( b e F A, ) c G E, F D ( d a c ) B a E C, E C, E C, D B, B a G E, G E, A F, G/ A/ E/ F/ B a B G, B G, A F, G E, E C B a D A, ( a b e f c a d e c e b e a d ) G/ F/ | E E E D | G G A G/ A/ | B B A/ G/ E | E3 | a d a c d b e B, B, a b a c a d e c e ( e a ) B/ c/ | d B B/ A/ G | A A B G/ A/ | B B/ A/ G E | D3 | a d a c d b e B/ c/ G/ A/ d B, B/ A/ G/ F, G E A F, A F, B G, G/ A/ E/ F/ B G, B/ A/ G/ F, G E, E C D A, G/ F/ | E E E/ D/ E/ F/ | G G A G/ A/ | B B A/ G/ E | E3 |] a d a c d b e c a d e c e C ( d b e E )\n[V: LH] [G,B,]/ [F]/ | [G,B,] [G,C] [G,B,] [F,A,] | [G,B,] [B,D] [A,C] [G,B,]/ [F]/ | [G,D] [B,D] [A,C]/ [G]/ [G,A,] | [D,F,]3 | a d a c d b e b e a b a c a d e c e G/ F/ E d b e E/ D/ C c a e f F D a d e D ( b e F A, ) c G E, F D ( d a c ) B a E C, E C, E C, D B, B a G E, G E, A F, G/ A/ E/ F/ B a B G, B G, A F, G E, E C B a D A, ( a b e f c a d e c e b e a d ) G/ F/ | E E E D | G G A G/ A/ | B B A/ G/ E | E3 | a d a c d b e B, B, a b a c a d e c e ( e a ) B/ c/ | d B B/ A/ G | A A B G/ A/ | B B/ A/ G E | D3 | a d a c d b e B/ c/ G/ A/ d B, B/ A/ G/ F, G E A F, A F, B G, G/ A/ E/ F/ B G, B/ A/ G/ F, G E, E C D A, G/ F/ | E E E/ D/ E/ F/ | G G A G/ A/ | B B A/ G/ E | E3 |] a d a c d b e c a d e c e C ( d b e E )\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ""; }
+};
+var abc = new abc2svg.Abc(user);
+abc.tosvg("score", abc_src);
+</script></body></html>

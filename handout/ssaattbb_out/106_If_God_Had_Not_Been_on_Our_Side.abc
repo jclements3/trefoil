@@ -1,0 +1,68 @@
+X: 1
+T: If God Had Not Been on Our Side
+T: (SSAATTBB)
+C: Words: Martin Luther, 1524. Translation composite.
+C: Music: Wär Gott nicht mit uns diese Zeit (1537), Walter's Hymnal, 1537.
+C: Setting: Evangelical Lutheran Hymn-Book, 1931. SSAATTBB arr. 2026.
+C: copyright: public domain. Open Hymnal Project, 2009 Revision.
+M: 4/4
+L: 1/4
+Q: 1/4=120
+%%staves [(1 2) (3 4) (5 6) (7 8)]
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+K: C
+%
+% ════════════════════════════════════════════════════════════
+% STANZA 1 — full 8-voice homophony, moderate spread
+% Harmony: Dm | C G Dm Am | Dm Dm/F Dm G | C F G | Am
+% ════════════════════════════════════════════════════════════
+%
+% Bar 1: Dm (D-F-A)
+% S1: D4(h) A4 A4   S2: B3(h) F4 F4   A1: F3(h) C4 A3   A2: D3(h) A3 F3
+% T1 snd: A3(h) F3 A3  T2 snd: F3(h) D3 F3  Bar: F3(h) F3 A3  B1: D3(h) D3 F3
+%
+[V:1] D2 A A | E G F E | D z/ D/ A B | c d (c B) | A4 |
+[V:2] B,2 F F | C E D C | B, z/ B,/ F G | A B (A G) | F4 |
+[V:3] F,2 C A, | G, B, A, G, | F, z/ F,/ D E | E G G E | C4 |
+[V:4] D,2 A, F, | E, G, F, E, | D, z/ D,/ B, A, | C E (E C) | A,4 |
+[V:5] A2 F A | G B A E | A z/ A/ F G | A B c B | A4 |
+[V:6] F2 D F | E G F C | F z/ F/ D E | F G (G E) | E4 |
+[V:7] F,2 F, A, | E, B,, F, C, | F, F, F, B,, | E, A, G,2 | C,4 |
+[V:8] D,2 D, F, | C, G,, D, A,, | D, D, D, G,, | C, F, E,2 | A,,4 |
+%
+% ════════════════════════════════════════════════════════════
+% STANZA 2 — antiphonal: SSAA leads bars 6-8, TTBB responds
+% (identical notes in this strophic hymn; texture varied by dynamics)
+% ════════════════════════════════════════════════════════════
+%
+[V:1] D2 A A | E G F E | D z/ D/ A B | c d (c B) | A2
+[V:2] B,2 F F | C E D C | B, z/ B,/ F G | A B (A G) | F2
+[V:3] F,2 C A, | G, B, A, G, | F, z/ F,/ D E | E G G E | C2
+[V:4] D,2 A, F, | E, G, F, E, | D, z/ D,/ B, A, | C E (E C) | A,2
+[V:5] A2 F A | G B A E | A z/ A/ F G | A B c B | A2
+[V:6] F2 D F | E G F C | F z/ F/ D E | F G (G E) | E2
+[V:7] F,2 F, A, | E, B,, F, C, | F, F, F, B,, | E, A, G,2 | C,2
+[V:8] D,2 D, F, | C, G,, D, A,, | D, D, D, G,, | C, F, E,2 | A,,2
+%
+% ════════════════════════════════════════════════════════════
+% REFRAIN — build to climax, stretto at cadence
+% S1 melody: (pk:A) d d | c B c A | G (pk:G) c B | A G A F | E (pk:D) F G | A F E2 | D4
+% ════════════════════════════════════════════════════════════
+%
+% Pickup beat: S1=A4  S2=F4  A1=C4  A2=A3  T1=E4(wr)snd=E3  T2=C4(wr)snd=C3  Bar=C3  B1=A2
+%
+[V:1] z/ A/ d d | c B c A | G z/ G/ c B | A G A F | E z/ D/ F G | A F E2 | D4 |]
+[V:2] z/ F/ B B | A G A F | E z/ E/ A G | F E F D | C z/ D/ D E | F D C2 | D4 |]
+[V:3] z/ C/ G G | E G E C | B, z/ B,/ E E | C B A A | G z/ A/ A B | c A G2 | F4 |]
+[V:4] z/ A,/ D D | C E C A, | G, z/ G,/ C B, | A, G, A, F, | E, z/ F,/ D E | F D C2 | D4 |]
+[V:5] z/ E/ B B | G E G E | B, z/ B,/ E E | E D E c | G z/ A/ A B | E c B2 | A4 |]
+[V:6] z/ C/ G G | E C E C | G, z/ G,/ C C | C B, C A, | G, z/ A,/ A, B, | C A, G,2 | F4 |]
+[V:7] z/ C,/ G,, G,, | A,, E, C, A,, | G,, z/ G,,/ C, G,, | A,, G,, A,, F,, | E,, z/ G,,/ G,, B, | F,, F,, G,,2 | D,4 |]
+[V:8] z/ A,,/ C,, G,, | A,, E, C, A,, | G,, z/ G,,/ E, G,, | A,, E,, F,, D,, | A,, z/ D,,/ C,, G,, | F,, D,, A,,2 | D,4 |]

@@ -1,0 +1,78 @@
+X: 107
+T: Look Down, O Lord, From Heaven Behold
+T: (also known as O God, from Heaven Look Down)
+C: Words: Martin Luther, 1524. Tr. Frances Elizabeth Cox, 1864.
+C: Music: Ach Gott vom Himmel, Erfurt Enchiridion, 1524. Setting: K. A. Haupt, 1869.
+C: SSAATTBB arrangement: public domain source.
+M: 4/4
+L: 1/4
+Q: 1/4=100
+K: F
+%%staves [(1 2) (3 4) (5 6) (7 8)]
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+%
+% ============================================================
+% VERSE 1 (mm. 1–4 + pickup)
+% TEXTURE: Antiphonal — SSAA enter first, TTBB echo each phrase
+% ============================================================
+%
+[V:1] [Q:1/4=100] A | B A G d | d B !fermata!A c | B A G c | (B A) !fermata!G |
+[V:2]              F | G F E B | B G       F A | G F E A | (G F)       E |
+[V:3]              C | D C C F | F D       C E | D C C E | (D C)       C |
+[V:4]              A, | B, A, G, D | D B,     A, C | B, A, G, C | (B, A,)   G, |
+[V:5]              A | B A G d | d B !fermata!A c | B A G c | (B A) !fermata!G |
+[V:6]              F | G F E B | B G       F A | G F E A | (G F)       E |
+[V:7]              F, | G, F, E, B, | B, G,     F, A, | G, F, E, A, | (G, F,)   E, |
+[V:8]              D, | G, D, C, B,, | G,, G,,   D, C, | G, D, C, C, | D,2      G,, |
+%
+% ============================================================
+% VERSE 1 REPEAT (mm. 5–8)
+% TEXTURE: Full 8-voice homophony — voices join together
+% ============================================================
+%
+[V:1]  G | B A G d | d B !fermata!A c | B A G c | (B A) !fermata!G |
+[V:2]  E | G F E B | B G       F A | G F E A | (G F)       E |
+[V:3]  C | D C C F | F D       C E | D C C E | (D C)       C |
+[V:4]  G, | B, A, G, D | D B,     A, C | B, A, G, C | (B, A,)   G, |
+[V:5]  C | D C B, F | F D !fermata!C E | D C B, E | (D C) !fermata!B, |
+[V:6]  G, | G, F, E, D | D B,,     A, C | B, A, G, C | (G, F,)   E, |
+[V:7]  C, | G, F, E, B, | B, G,     F, A, | G, F, E, A, | (G, F,)   E, |
+[V:8]  G,, | G, D, C, B,, | G,, G,,   D, C, | G, D, C, C, | D,2      G,, |
+%
+% ============================================================
+% MIDDLE SECTION (mm. 9–12 + pickup)
+% TEXTURE: Call and response — S1+B1 lead, inner voices answer
+% ============================================================
+%
+[V:1]  G | A F E D | F G !fermata!A F | G B A B |
+[V:2]  E | F D C B, | D E       F D | E G F G |
+[V:3]  C | C A, G, F, | A, B,     C A, | C D C D |
+[V:4]  G, | F, D, C, B,, | D, E,     F, D, | E, F, F, F, |
+[V:5]  C | C A, G, F, | A, B, !fermata!C A, | C D C D |
+[V:6]  G, | A, F, E, D, | F, G,     A, F, | G, B, A, B, |
+[V:7]  E, | F, D, C, B,, | D, E,     F, D, | E, G, F, G, |
+[V:8]  C, | F, D, A,, B,, | D, B,,    A,, D, | C, B,, F,, B,, |
+%
+% ============================================================
+% FINAL SECTION (mm. 13–15)
+% TEXTURE: Stretto/imitation into full cadence; climax at m.14
+% ============================================================
+%
+[V:1]  G ^F !fermata!G !sintro!G | d B c d | (c B) !fermata!A !eintro!|]
+[V:2]  E D       E       E | B G A B | (A G)       F |]
+[V:3]  C A,      B,      C | F D E F | (E D)       C |]
+[V:4]  G, D,     E,      G, | D B, C D | (C B,)     A, |]
+[V:5]  C A,      B,      C | F D E F | (E D) !fermata!C |]
+[V:6]  G, F,     G,      G, | D B, C D | (C B,)     A, |]
+[V:7]  E, D,     E,      E, | B, G, A, B, | (A, G,)   F, |]
+[V:8]  C, D,     G,,     G, | B,, G,,   F, B,, | (F, G,)    D, |]
+W: 6. Thy truth thou wilt preserve, O Lord, From this vile generation;
+W: Make us to lean upon thy word, With calm anticipation.
+W: The wicked walk on every side When, 'mid thy flock, the vile abide In pow'r and exaltation.

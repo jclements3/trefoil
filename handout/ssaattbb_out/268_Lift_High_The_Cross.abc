@@ -1,0 +1,98 @@
+X: 268
+T: Lift High The Cross
+C: Words: George W. Kitchin (1827-1912). Modified by Michael R. Newbolt, 1916.
+C: Music: 'Crucifer' Sydney H. Nicholson, 1916. Setting: "Hymns Ancient and Modern", 1922.
+C: copyright: public domain. SSAATTBB arrangement by Claude (2026).
+S: Music source: Open Hymnal Project, 2006 Revision.
+M: 4/4
+L: 1/4
+Q: 1/4=120
+%%staves {(V1 V2) (V3 V4) (V5 V6) (V7 V8)}
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+K: C
+
+%% =========================================================
+%% REFRAIN (Bars R1-R4, then intro bars I5-I8)
+%% Bars R1-R2: SSAA + B1 (5 voices, open texture)
+%% Bar R3 downbeat: T1 T2 Bar enter — full 8 voices
+%% =========================================================
+
+%% S1 — original soprano, accidentals freely permitted
+[V:1] "^Refrain" G2 c3/2G/ | F3 G | E3/2F/ G A | D3 \
+      !sintro!D | E G c2- | c A G2- | G A F/E/ D | C4 !eintro!|]
+
+%% S2 — diatonic, ~3rd below S1; sixth below at phrase peak (bar I6 A4)
+[V:2] E2 A3/2E/ | D3 E | C3/2D/ E F | B,3 \
+      B, | C E A2- | A F E2- | E F D/C/ B, | A,4 |]
+
+%% A1 — original alto recomposed as independent melodic line, diatonic
+[V:3] C2 F3/2D/ | C B, C D | C3/2B,/ A, B, | C B, A, \
+      G, | G, B, C2- | C D C B,- | B, A, B, G, | E4 |]
+
+%% A2 — contrary motion to A1, diatonic, fills lower alto register
+[V:4] A,2 C3/2C/ | G, A, G, F, | G,3/2F,/ E, D, | F, E, D, \
+      z | E, G, F,2- | F, D, E,2- | E, D, G, E, | C,4 |]
+
+%% T1 — original tenor (sounding), diatoniized; written 8va (8vb treble)
+%% Rests R1-R2 (open texture); enters R3
+[V:5] z4 | z4 | (EF)G2 | G3 \
+      F | EF(GA | B)c(dc | B)A A/G/F | (FDE2) |]
+
+%% T2 — harmonizes a 3rd below T1 (sounding), diatonic, contrary motion
+[V:6] z4 | z4 | (CD)E2 | E3 \
+      D | CD(EF | G)A(BA | G)F E/D/C | C4 |]
+
+%% Baritone — above B1 at all times, independent line, diatonic
+%% Rests R1-R2; enters R3
+[V:7] z4 | z4 | E, D, C, D, | E, D, C, \
+      D, | E, F, G, A, | B, C C B, | A, G,/F,/ D, B,, | E,4 |]
+
+%% B1 — original bass, diatoniized (^F,, in R3 → F,,)
+[V:8] C,,3 E,, | (D,,G,,A,,)B,, | C, A,, G,, F,, | (G,,2 A,,) \
+      B,, | C, D,(E, F, | G,) A,(B, A, | G,) F,/E,/ D, G,, | C,4 |]
+
+%% =========================================================
+%% VERSE (Bars V1-V8)
+%% Bars V1-V2: SSAA only (antiphonal, call and response texture)
+%% Bar V3 downbeat: T1 T2 Bar B1 enter — full 8 voices
+%% Bars V5-V8: full 8-voice homophony to climax (d5 in S1 bar V6)
+%% =========================================================
+
+%% S1 — original soprano with accidentals (^F, ^D chromatic colour)
+[V:1] "^Verse" G2 ^F3/2E/ | ^F2 D2 | E3/2^F/ G A | B2 \
+      G2 | c2 (B A) | d2 D2 | E3/2G/ G ^F | G4 ||
+
+%% S2 — diatonic 3rds below S1; replaces ^F→E, ^D not in S2
+[V:2] E2 C3/2C/ | D2 B,2 | C3/2D/ E F | G2 \
+      E2 | A2 (G F) | B2 B2 | C3/2E/ E E | D4 ||
+
+%% A1 — diatonic melodic line, alto register
+[V:3] C2 A,3/2A,/ | B,2 A,2 | G,3/2B,/ B, E | D2 \
+      C2 | E2 D2 | D2 D2 | A,3/2B,/ D D | C4 ||
+
+%% A2 — diatonic, contrary motion to A1, fills lower alto register
+[V:4] A,2 E,3/2F,/ | G,2 F,2 | E,3/2D,/ E, G, | B,2 \
+      A,2 | C2 B,2 | B,2 G,2 | G,3/2B,/ A, G, | B,4 ||
+
+%% T1 — diatoniized tenor (^F,→F,, ^D,→D,); written 8va; enters V3
+[V:5] z4 | z4 | B2 A3/2A/ | F2 \
+      G2 | (AG)F2 | (GA)(GF) | E3/2c/A A | B4 ||
+
+%% T2 — diatonic, 3rd below T1 (sounding), contrary motion; enters V3
+[V:6] z4 | z4 | G2 F3/2F/ | D2 \
+      E2 | (FE)D2 | (EF)(ED) | C3/2A/F F | G4 ||
+
+%% Baritone — diatonic, above B1 at all times, enters V3
+[V:7] z4 | z4 | E,2 G,3/2E,/ | D,2 \
+      F,2 | C,2 (F, E,) | D,2 F,2 | E,3/2G,/ F, F, | D,4 ||
+
+%% B1 — original bass, diatoniized; enters V1 (bass anchors from start)
+[V:8] E,2 A,,3/2A,,/ | (D,C,) B,,2 | C,3/2B,,/ E, C, | B,,2 \
+      E,2 | A,,2 (D, C,) | B,,2 B,,2 | C,3/2C,/ D, D, | G,,4 ||

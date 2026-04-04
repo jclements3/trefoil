@@ -1,0 +1,25 @@
+X: 1
+T: 'Tis Good, Lord, To Be Here
+M: 2/4
+L: 1/4
+Q: 1/4=100
+%%staves M | {(RH1 RH2 RH3 RH4) (LH1 LH2 LH3 LH4)}
+V: M clef=treble name="Melody"
+V: RH1 clef=treble name="RH"
+V: RH2 clef=treble
+V: RH3 clef=treble
+V: RH4 clef=treble
+V: LH1 clef=bass name="LH"
+V: LH2 clef=bass
+V: LH3 clef=bass
+V: LH4 clef=bass
+K: E
+[V: M] "^vi¹"E | F A | G F | "^vi¹"E B | "^IVΔ²""^FΔ³""^Am¹"c e | "^iii7²""^G¹""^Em²"d c | "^V+6""^Em¹"B G | "^ii7³""^F-3+6""^F²"A c | "^iii7²""^Em7²""^Em7²"B A | "^vi7¹""^Am""^C"G ^A | "^iii¹""^Em¹"B E | "^viiø7²""^Bø7²"F A | "^I¹""^C¹"G F | "^vi¹""^Am²"E |] a d a c d b e a c c d e a
+[V: RH1] [Q:1/4=100] E | F A | G F | E B | c e | d c | B \ G | A c | B A | G ^A | B E | F A | G F | E |] % % ---- Soprano II: diatonic third below S1, no accidentals ----
+[V: RH2] C | D F | E D | C G | A c | B A | G \ E | F A | G F | E F | G C | D F | E D | C |] % % ---- Alto I: enters bar 3; original alto line, diatonic ----
+[V: RH3] z | z z | z z | E F | E G | F F/E/ | D \ E | E E | F D | E C | D E | C C/D/ | E D | E |] % % ---- Alto II: enters bar 3; diatonic, contrary motion to Alto I ----
+[V: RH4] z | z z | z z | C B, | G, B, | D C | B, \ G, | A, C | D B, | C A, | B, G, | A, B, | G, B, | G, |] % % ---- Tenor I: diatonic recomposition, sounds an octave below written (8vb) ----
+[V: LH1] g | f e | g b | g f | e g | b a | b \ b | c' a | b b | b a | b b | a a | g b | g |] % % ---- Tenor II: diatonic third below Tenor I, sounds an octave below written ----
+[V: LH2] e | d c | e f | e d | c e | g f | f \ e | a f | g g | g f | g e | f f | e f | e |] % % ---- Baritone: original tenor at concert pitch, A# replaced by A ----
+[V: LH3] G, | F, E,/F,/ | G,/A,/ B,/A,/ | G, F, | G, G,/A,/ | B, A, | B, \ B, | C A,/G,/ | F, B, | B,/C/ C | B, B, | A, A, | B, B, | G, |] % % ---- Bass I: original bass; notes below C2 raised an octave in section 2 ----
+[V: LH4] E, | D, C, | E, E, | E, D, | E, C, | D,/E,/ F, | B,, \ E, | E, E, | D, B,, | E,/C,/ F, | B,, G, | A, F, | G,/A,/ B, | E, |]

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>I Come, O Savior, To Thy Table — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }
+p.legend { font-size: 12px; color: #555; }</style>
+</head><body>
+<h1>I Come, O Savior, To Thy Table</h1>
+<p class="legend">Above melody: Abstract / RH voicing / LH voicing.
+RH = upper notes, LH = lower notes (no hand crossing).</p>
+<div id="music"></div>
+<script src="../../abc2stripchart/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 1\nT: I Come, O Savior, To Thy Table\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: C\n[V: M] z c B A | \"^IV\u00b2+11\"\"^Am-5+2\"\"^F\u00b2\"G A F G | \"^V7\u00b3\"\"^B\u00b0\u00b9\"\"^G7\u00b3-5\"E/ D/ C2 E | \"^iii\u00b9\"\"^Em\u00b9\"\"^Em\u00b9\"D G ^F c | \"^ii7\u00b3\"\"^Dm\u00b2\"\"^Dm7\u00b3-5\"B A G2 | z c B A | G A F G | z4 | \"^vi\u00b9\"\"^Am\u00b9\"D G ^F c | \"^V+6\"\"^G\"\"^Em\u00b9\"B A G2 | z G c c | \"^V\u00b9\"\"^G\u00b9\"\"^G\u00b9\"A A d d | \"^V13\u00b3\"\"^C-5+2\"\"^G9\u00b3-5\"B3 c | \"^I\u00b2\"\"^C\u00b2\"F E D c | c B c2 |]\n[V: RH] z [GB] [FA] [Gce] | [ABc] [FGA] [GB] [EGc]/ | [DFB]/ [CEA]2 [EGc] [dg] | [GBe] [^Fcd] [ce] [Bdg] | [Adf] [de]2 [Ac] | z [FA] [EG] [FA] | [DF] [EG] [dg] [GBe] | z4 | [ce] [Bdg] [Adf] [de]2 | [GBd] [ce] [cf] | z [Ace] [Bdf] [Bdf] | [Bdg]3 [ceg] [Feg] [Edf] | [Dce] [Bcd] | [ce] [DBd] [ce]2 c | c B c2 |]\n[V: LH] z [B,D] [CD] [G,CE] | [C,A,CF] [D,F,A,D] [G,DE] [G,A,C]/ | [F,G,B,]/ [E,F,A,]2 [G,A,C] [G,B,D] | [G,B,E] [A,CD] [CEA] [B,DG] | [CDF] [B,EG]2 [CE] | z [CD] [G,C] [C,A,] | [D,F,] [G,D] [G,B,D] [G,B,E] | z4 | [CEA] [B,DG] [CDF] [B,EG]2 | [G,B,E] [CEA] [CFA] | z [G,A,CF] [F,DG] [A,DG] | [B,DG]3 [G,B,CA] [A,CD] [G,A,C] | [F,G,A,B,] [G,CE] | [G,CE] [G,A,B,] [G,CE]2 c | c B c2 |]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ""; }
+};
+var abc = new abc2svg.Abc(user);
+abc.tosvg("score", abc_src);
+</script></body></html>

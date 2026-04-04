@@ -1,0 +1,117 @@
+X: 98
+T: God the Father Be Our Stay
+T: (also known as God the Father With Us Stay or God the Father With Us Be)
+C: Words: 15th Century Litany, adapted by Martin Luther, 1524. Translated by Richard Massie, 1854, alt.
+C: Music: 'Gott Der Vater, Wohn Uns Bei' from Walter's Geistliche Gesangbüchlein, 1524.
+C: Setting: composite from Landgraf Moritz, 1612 and "Evangelical Lutheran Hymn-Book", 1931.
+C: SSAATTBB arrangement for double choir and lever harp.
+C: copyright: public domain. Source from the Open Hymnal Project, 2009 Revision.
+L: 1/4
+M: none
+Q: 1/4=100
+K: D
+%%staves [(1 2) (3 4) (5 6) (7 8)]
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+%
+% ================================================================
+% BARS 1–4  SSAA choir alone (open texture — reduced entry)
+%   Harmony: I | (G – A/C#) | (D – Bm/D – G) | (A sus4 – D)
+%   TTBB tacet
+% ================================================================
+%
+[V:1] A  A  B  c  | d  d  c  B  | d  A  F  G  | (F  E) D2  |
+[V:2] F  F  G  A  | B  B  A  G  | B  F  D  E  | (D  C) A,2 |
+[V:3] D  E  F  F  | G  G  F  E  | F  D  B, D  | (B, A,) F,2 |
+[V:4] D  D  D  D  | D  D  D  D  | D  B, G, B, | (G, F,) D,2 |
+[V:5] z4 | z4 | z4 | z4 |
+[V:6] z4 | z4 | z4 | z4 |
+[V:7] z4 | z4 | z4 | z4 |
+[V:8] z4 | z4 | z4 | z4 |
+%
+% ================================================================
+% BARS 5–9  Full 8 voices (homophonic texture — tutti entry)
+%   Bars 5–8 = repeat of bars 1–4 harmonic material
+%   Bar 9 = bridge phrase (4 beats)
+% ================================================================
+%
+[V:1] A  A  B  c  | d  d  c  B  | d  A  F  G  | (F  E) D2  | D  E  F  F  |
+[V:2] F  F  G  A  | B  B  A  G  | B  F  D  E  | (D  C) A,2 | A, B, D  D  |
+[V:3] D  E  F  F  | G  G  F  E  | F  D  B, D  | (B, A,) F,2 | F, G, A, B, |
+[V:4] D  D  D  D  | D  D  D  D  | D  B, G, B, | (G, F,) D,2 | D, E, F, G, |
+[V:5] F  F  G  A  | B  B  A  G  | A  F  D  E  | (D  C) A2  | F  E  D  D  |
+[V:6] D  D  D  D  | G  G  F  E  | F  D  B, D  | (G, F,) F2  | D  C  B, B, |
+[V:7] F,  F,  D,  C,  | E,  D,  C,  B,,  | D,  D,  F,  G,  | (F, E,) D,2 | F,  G,  A,  F,  |
+[V:8] D,  D,  B,, A,, | G,, B,, A,, E,  | B,, D,  D,  G,, | A,,2  D,2   | D,  C,  D,  B,, |
+%
+% ================================================================
+% BARS 10–15  B-SECTION first statement  (TTBB antiphonal alone)
+%   Bar 10 = 6 beats; Bar 11 = 6 beats; Bar 12 = 4 beats;
+%   Bar 13 = 6 beats; Bar 14 = 4 beats; Bar 15 = 3 beats
+%   SSAA tacet throughout
+% ================================================================
+%
+[V:1] z6 | z6 | z4 | z6 | z4 | z3 |
+[V:2] x6 | x6 | x4 | x6 | x4 | x3 |
+[V:3] z6 | z6 | z4 | z6 | z4 | z3 |
+[V:4] x6 | x6 | x4 | x6 | x4 | x3 |
+% T1: original S2V1 tenor line; ^G, (G#) replaced by G, (diatonic)
+[V:5] F, A, A,3/2 D/ E  F  | B, B, (A, G,) A,3/2 F,/ | F, B, A, F, | B,2 B,3/2 G,/ A, B, | E,3/2 G,/ (B, E,) | F,2 z |
+% T2: countermelody, contrary motion to T1, diatonic
+[V:6] D, F, F,3/2 B,,/ A, D, | G, G, (F, E,) F,3/2 D,/ | D, G, F, D, | G,2 G,3/2 E,/ F, G, | C,3/2 E,/ (G, C,) | D,2 x |
+% Baritone: 3rd above Bass, diatonic
+[V:7] D,  A,, A,,3/2 F,/ C, A,, | C,3/2 D,/ (E,  G,) E,3/2 B,,/ | B,, D,  B,, B,, | G,,2 D,3/2 G,,/ D,  E,  | C,3/2 E,/ (D,  G,,) | B,,2 z |
+% B1: original bass (S2V2)
+[V:8] B,, A,, D,3/2 D,/ A, F, | E,3/2 B,,/ (C, E,) A,,3/2 D,/ | D, B,, F, F, | E,2 B,,3/2 E,/ B,, C, | A,,3/2 E,/ (B,, C,) | D,2 x |
+%
+% ================================================================
+% BARS 16–22  B-SECTION second statement  (full 8 voices)
+%   SSAA re-enter; TTBB continue with same material
+%   Bar 22 = 3 beats (rest bar between sections)
+% ================================================================
+%
+% S1: original soprano bars 16–22
+[V:1] D  E  F  F  | D  E  F3/2 d/ c  d  | e3/2 d/ (c  B) A3/2 D/ | A  d  c  A  | (B3/4A// G) F3/2 E/ F  F  | A3/2 G/ (F  E) | D2 z |
+% S2: diatonic 3rd below S1
+[V:2] B, C  D  D  | B, C  D3/2 F/ A  B  | C3/2 B/ (A  G) F3/2 B,/ | F  B  A  F  | (G3/4F// E) D3/2 C/ D  D  | F3/2 E/ (D  C) | A,2 x |
+% A1: independent alto melodic line
+[V:3] F, G, A, B, | F, G, A,3/2 D/ E  F  | G3/2 F/ (E  D) C3/2 F,/ | D  F  E  D  | (E  D) D3/2 C/ B, B, | E3/2 D/ (C  B,) | A,2 z |
+% A2: contrary motion to A1
+[V:4] D, E, F, G, | D, E, F,3/2 A,/ A, F  | B,3/2 A,/ (G, F,) A,3/2 D,/ | D  B, A, D  | (D  C) B,3/2 A,/ G, G, | C3/2 B,/ (A, G,) | F,2 x |
+% T1: same tenor material as bars 10–15
+[V:5] F, G, A, B, | F, G, A,3/2 D/ E  F  | G3/2 A/ (A  G) E3/2 A,/ | F  B  A  F  | (G  F) E  D  | E3/2 D/ (C  B,) | A,2 z |
+% T2: contrary motion to T1
+[V:6] D, E, F, G, | D, E, F,3/2 B,,/ A, D  | E,3/2 F,/ (G, A,) C3/2 F,/ | D  F  E  D  | (E  D) C  B, | C3/2 B,/ (A, G,) | F,2 x |
+% Baritone: follow original S2V1 bass outline, 3rd above B1
+[V:7] F,  G,  A,  F,  | F,  A,  A,3/2 D/ E  F  | B, B, (A,  G,) A,3/2 F,/ | F,  B,  A,  F,  | (B,  G,) A,  B,  | E,3/2 G,/ (B,, C,) | D,2 z |
+% B1: original bass
+[V:8] B,, A,, D,3/2 D,/ A, F, | E,3/2 B,,/ (C, E,) A,,3/2 D,/ | D, B,, F, F, | E,2 B,,3/2 E,/ B,, C, | A,,3/2 E,/ (B,, C,) | D,2 x |
+%
+% ================================================================
+% BARS 23–26  FINAL SECTION  (stretto — full 8 voices, climax)
+%   Bar 23 = 4 beats; Bar 24 = 6 beats; Bar 25 = 4 beats; Bar 26 = 4 beats
+%   S1 rises to A5 at bar 24 peak; B1 roots on D2 at bar 26
+% ================================================================
+%
+% S1: original soprano final phrase with intro markers
+[V:1] D  E  F  F  | D  E  F3/2 !sintro!G/ A3/2 G/ | F  G  (F  E) | D4 !eintro!|]
+% S2: 3rd below, cadence suspension 4-3 at bar 25
+[V:2] A, B, D  D  | B, C  D3/2 E/ F3/2 E/ | D  E  (D  C) | A,4 |]
+% A1: rising line to climax
+[V:3] F, A, A, B, | F, G, A,3/2 B,/ C3/2 B,/ | A, B, (A, G,) | F,4 |]
+% A2: contrary motion, grounding the alto pair
+[V:4] D, F, F, G, | D, E, F,3/2 G,/ A,3/2 G,/ | F, G, (F, E,) | D,4 |]
+% T1: tenor builds in imitation of soprano
+[V:5] F  E  D  D  | F, G, A,3/2 B,/ C3/2 B,/ | A, B, (A, G,) | F,4 |]
+% T2: support below T1, contrary motion
+[V:6] D  C  B, A, | D, E, F,3/2 G,/ A,3/2 G,/ | F, G, (F, E,) | D,4 |]
+% Baritone: 3rd above B1 throughout
+[V:7] F,  E,  D,  B,, | B,, C,  D,3/2 E,/ F,3/2 E,/ | D,  E,  (D,  A,,) | D,4 |]
+% B1: bass root position to low D for final spread
+[V:8] D,  C,  B,, A,, | B,, A,, D,3/2 E,/ F,3/2 E,/ | D,  G,,  (D,  A,,) | D,4 |]

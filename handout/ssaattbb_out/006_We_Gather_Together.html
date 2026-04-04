@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>We Gather Together — SSAATTBB</title>
+<style>
+body { font-family: sans-serif; margin: 20px; background: #fff; }
+h1 { font-size: 18px; }
+</style>
+</head>
+<body>
+<h1>We Gather Together — SSAATTBB</h1>
+<div id="music"></div>
+<script src="../../abc2stripchart/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 1\nT: We Gather Together\nC: Words: Anonymous circa 1597. Translated Theodore Baker, 1894.\nC: Music: 'Kremser' Traditional Dutch circa 1597. Setting: Eduard Kremser, 1877.\nC: Arrangement: SSAATTBB arr. for lever harp accompaniment (D major, 2#)\nC: copyright: public domain arrangement.\nM: 3/4\nL: 1/4\nQ: 1/4=100\n%%staves [(1 2) (3 4) (5 6) (7 8)]\nV:1 name=\"Soprano I\"   clef=treble\nV:2 name=\"Soprano II\"  clef=treble\nV:3 name=\"Alto I\"      clef=treble\nV:4 name=\"Alto II\"     clef=treble\nV:5 name=\"Tenor I\"     clef=treble middle=B3 transpose=-12\nV:6 name=\"Tenor II\"    clef=treble middle=B3 transpose=-12\nV:7 name=\"Baritone\"    clef=bass\nV:8 name=\"Bass I\"      clef=bass\nK: D\n%%\n% ---- PHRASE 1 ----\n% Pickup\n[V:1] A | A3/2 B/ A | F G A | G3/2 F/ E | F D |\n[V:2] F | F3/2 G/ F | D E F | E3/2 D/ C | D B, |\n[V:3] D | D C B, | C B, A, | B, C B, | A, A, |\n[V:4] B, | B, A, G, | A, G, F, | G, A, G, | F, F, |\n[V:5] F | F3/2 G/ F | A A A | B3/2 B/ c | A F |\n[V:6] D | D3/2 E/ D | F F F | G G A | F D |\n[V:7] F, | F,3/2 F,/ F, | F, G, A, | A, A, B, | F, F, |\n[V:8] D, | D,3/2 D,/ D, | D, E, F, | E,3/2 E,/ A, | D, D, |\n%%\n% ---- PHRASE 2 ----\n% Pickup\n[V:1] A | A3/2 B/ c | d3/2 e/ c | B3/2 A/ B | A2 |\n[V:2] F | F3/2 G/ A | B3/2 c/ A | G3/2 F/ G | F2 |\n[V:3] F | D E F | E F G | E D E | C2 |\n[V:4] D | B, C D | C D E | C B, C | A,2 |\n[V:5] A | A A A | A G A | A3/2 d/ d | c2 |\n[V:6] F | F F F | F E F | F B B | A2 |\n[V:7] F, | E, E, E, | D, G, C, | F, D, G, | C,2 |\n[V:8] D, | C,3/2 C,/ C, | B,, E, A,, | D,3/2 B,,/ E, | A,,2 |\n%%\n% ---- PHRASE 3 ----\n% Pickup\n[V:1] A | A3/2 B/ c | d A A | (A3/2 B/) G/A/ | F D |\n[V:2] F | F3/2 G/ A | B F F | (F3/2 G/) E/F/ | D B, |\n[V:3] E | D3/2 E/ F | E D C | (D3/2 E/) C/D/ | B, A, |\n[V:4] C | B,3/2 C/ D | C B, A, | (B,3/2 C/) A,/B,/ | G, F, |\n[V:5] c | c3/2 B/ A | A A A | B2 A/A/ | A F |\n[V:6] A | A3/2 G/ F | F F F | G2 F/F/ | F D |\n[V:7] B, | B,3/2 B,/ B, | A, A, A, | G,2 B,/B,/ | F, F, |\n[V:8] A, | G,3/2 G,/ G, | F, F, F, | E,2 A,/A,/ | D, D, |\n%%\n% ---- PHRASE 4 ----\n% Pickup\n[V:1] D | G3/2 A/ B/G/ | (A3/2 G/) !sintro!F/F/ | G E3/2 D/ | D2 !eintro!|]\n[V:2] B, | E3/2 F/ G/E/ | (F3/2 E/) !sintro!D/D/ | E C3/2 B,/ | B,2 !eintro!|]\n[V:3] A, | C3/2 D/ E/C/ | (D3/2 C/) B,/A,/ | C A,3/2 G,/ | A,2 |]\n[V:4] F, | A,3/2 B,/ C/A,/ | (B,3/2 A,/) G,/F,/ | A, F,3/2 E,/ | F,2 |]\n[V:5] F | G3/2 F/ G/G/ | (E A) A/A/ | G G3/2 F/ | F2 |]\n[V:6] D | E3/2 D/ E/E/ | (C F) F/F/ | E E3/2 D/ | D2 |]\n[V:7] F, | D,3/2 C,/ B,,/D,/ | E,2 F,/F,/ | G, C,3/2 F,/ | F,2 |]\n[V:8] D, | B,,3/2 A,,/ G,,/B,,/ | C,2 D,/D,/ | E, A,,3/2 D,/ | D,2 |]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ""; }
+};
+var abc = new abc2svg.Abc(user);
+abc.tosvg("score", abc_src);
+</script>
+</body>
+</html>

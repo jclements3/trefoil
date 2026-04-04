@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Blest Be The Tie That Binds — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }
+p.legend { font-size: 12px; color: #555; }</style>
+</head><body>
+<h1>Blest Be The Tie That Binds</h1>
+<p class="legend">Above melody: Abstract / RH voicing / LH voicing.
+RH = upper notes, LH = lower notes (no hand crossing).</p>
+<div id="music"></div>
+<script src="../../abc2stripchart/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 1\nT: Blest Be The Tie That Binds\nM: 3/4\nL: 1/4\nQ: 1/4=90\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: C\n[V: M] \"^vi7\u00b9\"\"^C\"\"^Am\u00b9\"G | \"^vi7\u00b9\"\"^C\"\"^Am7\u00b9\"E/ F/ G A | \"^vi7\u00b9\"\"^C\u00b9\"\"^Am\u00b9\"G2 c | \"^ii7s\u00b2\"\"^Dm7-3\"\"^Am7-5\"c/ B/ A A | \"^V+6\"\"^Em\"\"^G\"G2 | \"^I\u00b9\"\"^C\u00b9\"\"^C\u00b9\"G | \"^IV\u03949\u00b3\"\"^C\"\"^F\u0394\u00b3-5\"E/ F/ G G | \"^ii9\u00b2\"\"^F\"\"^Ams\"A/ B/ c B | \"^ii11\u2075\"\"^F-1+2\"\"^Em9\u00b9-5\"c/ A/ G G | \"^I\u00b9\"\"^C\u00b9\"\"^C\u00b9\"G2 |]\n[V: RH] [CEG] | [CEG]/ [DFG]/ [CEG] [FAc] | [EGc]2 [EAc] | [DAc]/ [EGBd]/ [DFAe] [EFAd] | [EGB]2 | [EGc] | [CEG]/ [DFG]/ [CEG] [EGc] | [FAc]/ [FGB]/ [GAc] [GB] | [GAc]/ [FA]/ [GB] [EGd] | [EGc]2 |]\n[V: LH] [C,E,A,] | [C,E,G,A,]/ [C,D,G,B,]/ [C,E,G,] [F,A,D] | [C,E,A,C]2 [C,E,G,B,] | [A,,C,G,A,]/ [B,,D,G,A,]/ [C,E,F,G,] [D,E,F,A,] | [G,,B,,G,D]2 | [E,G,C] | [E,F,A,]/ [E,F,G,]/ [D,F,G,] [D,E,A,] | [A,DE]/ [F,B,E]/ [E,CF] [F,B,E] | [G,DEF]/ [A,CD]/ [B,CE] [B,,A,C] | [E,G,C]2 |]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ""; }
+};
+var abc = new abc2svg.Abc(user);
+abc.tosvg("score", abc_src);
+</script></body></html>

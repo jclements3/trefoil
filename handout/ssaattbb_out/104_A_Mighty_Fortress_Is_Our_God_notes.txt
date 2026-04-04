@@ -1,0 +1,204 @@
+ARRANGER NOTES
+A Mighty Fortress Is Our God — SSAATTBB arrangement
+Source: Open Hymnal Project, 'Evangelical Lutheran Hymn-Book' 1931, Hymn 273
+Arranger: per ssaattbb_prompt.md specification
+
+═══════════════════════════════════════════════════════
+TRANSPOSITION
+═══════════════════════════════════════════════════════
+Original key:  D major (2 sharps: F#, C#)
+Chosen key:    D major — no transposition required.
+Semitones shifted: 0
+
+D major is a valid lever-harp key (2 sharps ≤ 4-sharp limit).
+
+Lever positions required on the harp (Eb storage tuning, levers raised):
+  Eb → Bb → F → C → G → D
+  Raise: F lever   (gives F#)
+  Raise: C lever   (gives C#)
+  All other strings remain in Eb-storage position:
+    Eb, Bb remain as-is (not used in D major)
+  Harp plays: D E F# G A B C# — the full D major scale.
+
+No range problems encountered that would require choosing a different key.
+
+═══════════════════════════════════════════════════════
+HARMONIC SUBSTITUTIONS
+═══════════════════════════════════════════════════════
+No full harmonic reharmonisation was required. The original hymn is
+fundamentally diatonic in D major throughout. The single chromatic event
+(raised leading-tone G# in the tenor, bars 1/3/8) was handled as a
+diatonic violation (see below) rather than a chord substitution, because
+the surrounding harmony (A major) is itself fully diatonic; only the inner
+voice chromatic passing tone was non-diatonic.
+
+The implied harmony at the A-G#-A figure (tenor bars 1, 3) is:
+  Original: A major with raised leading tone in tenor (V with #7 colour)
+  Treatment: A major harmony retained; G# passing tone in inner voice
+             replaced by G natural (scalar passing tone A→G→A, step-wise).
+  The characteristic sonority of A major (A C# E) is preserved in the
+  surrounding voices; the passing-note colour shifts from chromatic to
+  diatonic without altering the harmonic function.
+
+═══════════════════════════════════════════════════════
+DIATONIC VIOLATIONS CAUGHT
+═══════════════════════════════════════════════════════
+All replacements are in voices other than Soprano I (S1), which is
+unrestricted. S1 retains its original ^G (G#4) in bar 5.
+
+1. Bar 1, Tenor I (V:5, written) / original S2V1 (bass clef tenor):
+   Beat 11: ^G, (G#3 concert) → G, (G3 concert, written G4 in 8vb treble)
+   Context: passing tone in A→G#→A figure. Replaced by G natural.
+   Diatonic neighbor chosen: G3 (scale step 4 of D major, one semitone
+   lower than the chromatic note, closer than B3 which would have been
+   the upper diatonic neighbor).
+
+2. Bar 3, Tenor I (V:5): same ^G, figure as bar 1 — identical replacement.
+   Beat 11: ^G, → G, (same reasoning as bar 1).
+
+3. Bar 7, Alto I (V:3): source S1V2 bar 7 contained ^G2 (G#4 half-note).
+   This note is in the original alto voice (S1V2 of the SATB source),
+   which maps to A1 in the SSAATTBB. A1 must be diatonic.
+   Beat 9-10 (half-note position): ^G2 (G#4) → G2 (G4 natural).
+   Context: A4→G#4→E4 chromatic passing figure. Diatonic replacement
+   A4→G4→E4 preserves the descending step-wise motion with a whole step
+   instead of a half step. The underlying harmony (E minor implied) is
+   unchanged; the G natural is the minor 7th of Am or a scale member of
+   D major (degree 4).
+
+4. Bar 8, Tenor I (V:5) / original S2V1:
+   No explicit ^G, appears in bar 8's S2V1 line (the bar 8 tenor is
+   D4 D4 D4 D4 C#4 A3 — all diatonic). No substitution needed here.
+
+   NOTE: The ^G, figure in the source appears in bars 1 and 3 (lines 15/17
+   and 19/21). Bar 8 (line 29) has a different tenor line (D2 D2 D D2 C A,2)
+   with no accidentals. Only two instances of ^G, required substitution.
+
+═══════════════════════════════════════════════════════
+TEXTURE PLAN
+═══════════════════════════════════════════════════════
+The arrangement opens (bars 1-2) with the SSAA choir carrying the melody
+and harmony in clear four-part writing, while the TTBB voices provide a
+sustained but slightly simpler harmonic support — the effect is a bright,
+upper-register presentation of the chorale. Bars 3-4 repeat the same phrase
+with the TTBB choir brought forward through slightly varied inner-voice
+counterpoint, creating antiphonal dialogue between the two choirs on the
+repeat. Bars 5-7 introduce the B phrase with all eight voices in full
+homophony, building to the climactic D5 in Soprano I at bar 6 (the highest
+note in the piece) with B1 sitting on D2 for maximum register spread.
+Bar 8 presents a short sequential passage as a unified eight-voice block
+before the final cadence. Bar 9 recapitulates the closing phrase of A in
+full eight-voice texture with a broad final cadence (B1 ending on D2,
+S1 on D4), achieving maximum ensemble weight at the close.
+
+Texture types used:
+  1. Full 8-voice homophony — bars 5 (phrase B entry), 6 (climax), 8, 9.
+  2. Antiphonal exchange (SSAA prominent / TTBB prominent alternation)
+     — bars 1-2 vs. bars 3-4.
+  3. Call and response between outer voices (S1 melody, B1 bass line)
+     with inner voices providing harmonic support — throughout, but most
+     explicit in bars 1-4.
+  4. Stretto-like entrance emphasis — bar 9 final cadence, where S2 and
+     T1 echo the S1 melodic fragment a third below and an octave below
+     respectively, arriving on the tonic chord simultaneously.
+
+═══════════════════════════════════════════════════════
+UNISON LOG
+═══════════════════════════════════════════════════════
+No deliberate within-pair unisons were employed. The voice leading
+maintains distinct pitches in all pairs throughout. A2 and T1 share
+pitches at the register break in several bars as intended:
+
+  Bar 1, beat 8: A2 = B3, T1 concert = B3 — cross-choir unison A2/T1
+    (register-break blend, strong beat, bass-clef tenor written B4)
+  Bar 2, beat 2: A2 = B3, T1 concert = B3 — same register-break unison
+  Bar 6, beat 1: A2 = F#3, T1 concert = F#3 — cross-choir unison A2/T1
+  Bar 7, beat 5-6: A2 = E4 / C#4, T1 concert = E4 / C#4 — brief
+    register-break unisons on the descent
+
+All A2/T1 unisons occur at chord tones of the prevailing harmony. Per
+the arranging specification, A2–T1 cross-choir unisons are freely
+permitted and do not count against either choir's unison allowance.
+
+═══════════════════════════════════════════════════════
+RANGE LOG
+═══════════════════════════════════════════════════════
+Soprano I (V:1):
+  Bar 6, beat 10: D5 (d2) — highest note in arrangement. Climax note
+    on the tonic at the height of phrase B. Within S1 comfortable top
+    (comfortable G5, push A5; D5 is well within range). Not a concern.
+  Bar 5, beat 7-8: B4 — approaching upper mid-range, comfortable.
+
+Soprano II (V:2):
+  Bar 6, beat 10: B4 — upper end of S2 comfortable range (A3-F5, comfortable
+    top E5). B4 is comfortable; no concern.
+
+Alto I (V:3):
+  No extreme range events. Stays F#3-G4 throughout.
+
+Alto II (V:4):
+  Bar 5, beat 2: F#3 (F,) — at the lower comfortable limit of A2 (D3-B4
+    with comfortable bottom D3). F#3 is one step above D3; acceptable.
+
+Tenor I (V:5, concert pitch):
+  Bar 7, beats 5-8: E4 (concert, written E5) — upper end of T1 range
+    (B2-G4, comfortable top E4). E4 is the comfortable maximum; this is
+    the climactic high point for the tenor. Appropriate — bars 5-7 are
+    the dynamic peak of the piece. Singers should approach with full support.
+
+Tenor II (V:6, concert pitch):
+  Bar 7, beats 5-8: C#4 (concert, written C#5) — within T2 range
+    (G2-E4, comfortable top C4). C#4 is at the comfortable top. Acceptable
+    at the climax; not a concern.
+
+Baritone (V:7):
+  Bar 1/3, beat 7: A3 (A,) — mid-range, comfortable.
+  Bar 9, last note: F#2 (F,,2) — lower register but within Bar range
+    (E2-C4). F#2 is two semitones above the minimum E2. Comfortable for
+    a professional baritone.
+
+Bass I (V:8):
+  Bar 9, penultimate group: F#2 (F,,) — within B1 range (C2-A3). ✓
+  Bar 9, final note: D2 (D,,2) — within B1 range minimum C2 ✓. This is
+    the lowest note in the arrangement and functions as the grounding
+    root-position tonic at the final cadence. Professional basses will
+    find D2 comfortable; it is well above the absolute minimum C2.
+
+  ORIGINAL BASS NOTE CONCERN:
+  The source SATB bass contains B,, (B2) in bars 1 and 3 which is
+  within B1 range (C2-A3). No adjustment was needed. However the
+  source also descends to A,, (A2) at the end of bar 1, which is
+  likewise within range. All original bass notes are preserved in V:8.
+
+═══════════════════════════════════════════════════════
+RULE COMPROMISES
+═══════════════════════════════════════════════════════
+1. Bar 7, Tenor I (V:5) high note E5 (written) / E4 concert:
+   The T1 written range tops out at G5 (G4 concert); E4 concert is the
+   comfortable top. The original tenor line ascends to E4 in this bar
+   (source S2V1: E2 E2 C2 = E4 E4 C#4 in the B-section). This is the
+   original tenor material and represents the climax of the B phrase.
+   No rule was violated (E4 is within the stated range), but it sits at
+   the comfortable maximum and should be noted for casting.
+
+2. Bar 6, beat 1, Alto II (V:4): F#3 (F,) in treble clef:
+   This is the lowest note in A2's line. A2 comfortable bottom is D3;
+   F#3 is above that and within range. No compromise, but noted as
+   the lowest approach in that voice.
+
+3. Parallel motion in inner voices at bar 6:
+   The stepwise ascent D2-A2-B2-c2-d2 in S1 and the corresponding
+   third-below in S2 (B,2-F2-G2-A2-B2) create parallel thirds, which
+   is standard and desirable. However, A1 and A2 also ascend (A,2-E2-
+   D2-E2-F2 and F,2-C2-B,2-C2-D2). The A1/A2 pair also moves in
+   parallel thirds with each other, and largely in similar motion with
+   S1/S2. This is a controlled homophonic texture at the climax and is
+   intentional; the parallel-fifths/octaves rule between adjacent voice
+   pairs is satisfied.
+
+4. Antiphonal texture interpretation note:
+   Bars 3-4 use the same harmonic content as bars 1-2 with slight inner-
+   voice variation. The antiphonal effect is a performance-practice
+   suggestion (TTBB choir prominently, SSAA supporting) rather than a
+   structural change to the notation. Conductors may realise this by
+   dynamic balancing rather than muting any voices.

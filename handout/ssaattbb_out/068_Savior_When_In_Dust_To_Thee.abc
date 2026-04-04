@@ -1,0 +1,82 @@
+X:68
+T:Savior, When In Dust To Thee
+C:Words: Robert Grant, 1815, alt.
+C:Music: 'Aberystwyth (Parry)' Joseph Parry, 1879. Setting: The English Hymnal, 1906.
+C:SSAATTBB arr. for lever harp ensemble. Key: F major (1 flat).
+C:copyright: public domain.
+S:Music source: The English Hymnal, 1906, Hymn 87
+M:4/4
+L:1/4
+Q:1/4=100
+%%staves {(V1 V2) (V3 V4) (V5 V6) (V7 V8)}
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+K:F
+%
+% ---------------------------------------------------------------
+% PHRASE 1 (bars 1-4) — SSAA leads; TTBB enters at bar 1 beat 1
+% Harmony: Dm | F Dm | Dm Am Dm Gm | Dm Am Dm
+% Texture: 8-voice homophony, moderate spread
+% ---------------------------------------------------------------
+%
+[V:1] D D/E/ F/G/ A | F E D2      | F E D ^C    | D/E/ F E2      |
+[V:2] B, D  D  F   | D C  A,2    | D C  D A,   | A,  D  C2      |
+[V:3] F  F  A  A   | A G  F2     | A G  F  E   | F   A  G2      |
+[V:4] D  D  F  F   | F E  D2     | F E  D  C   | D   F  E2      |
+[V:5] A  A  A  C   | A  G  F2   | A   A  A  G  | A   A  A2      |
+[V:6] F  F  F  A   | F  E  D2   | F   F  F  E  | F   F  F2      |
+[V:7] F, A,, F, A,,/B,,/ | C, C, F,2 | F, G, A, B, | A,/G,/ F, C,2  |
+[V:8] D, F,, D, F,,/G,,/ | A,, A,, D,2 | D, E, F, G, | F,/E,/ D, A,,2 |
+%
+% ---------------------------------------------------------------
+% PHRASE 2 (bars 5-8) — Full 8-voice homophony; melody repeated
+% Harmony: Dm | F Dm | Am Dm F Gm | F C7 Dm
+% Texture: full homophony, inner voices gain independence
+% ---------------------------------------------------------------
+%
+[V:1] D D/E/ F/G/ A | F E  D2    | E F/G/ A  G  | F  E  D2    |
+[V:2] B, B, D  F   | D C  A,2   | C D/E/ F  E  | D  C  A,2   |
+[V:3] F  F  F  F   | A G  F2    | G A  A  G    | A  G  F2    |
+[V:4] D  D  D  D   | F E  D2    | E F  F  E    | F  E  D2    |
+[V:5] A  A  A  A   | A  A  A2  | G  A  C  B   | A  A  A2    |
+[V:6] F  F  F  F   | F  E  D2  | E  F  A  G   | F  E  D2    |
+[V:7] F,/G,/ A,/G,/ F, A,, | C, C, F,2 | C, F, A, B, | C  C, F,2   |
+[V:8] D,/E,/ F,/E,/ D, F,, | A,, A,, D,2 | A,, D, F, G, | A, A,, D,2 |
+%
+% ---------------------------------------------------------------
+% PHRASE 3 (bars 9-12) — Antiphonal SSAA vs TTBB
+% SSAA active bars 9-10; TTBB active bars 11-12; layers overlap
+% Harmony: Dm Gm | Bb F | Am Dm Bb Gm | F C Dm
+% ---------------------------------------------------------------
+%
+[V:1] D C  D  E   | F  A/G/ F2  | F  E  F  G   | A  c/=B/ A2  |
+[V:2] B, A, B, G, | C  E   C2   | D  D  D  E   | F  E    F2   |
+[V:3] F  F  F  G  | A  G   A2   | A  A  A  B   | c  B    A2   |
+[V:4] D  D  D  E  | F  E   F2   | F  G  F  E   | F  G    F2   |
+[V:5] B  A  B  B  | c  B   A2   | A  A  A  B   | c  e    c2   |
+[V:6] G  F  G  G  | A  G   F2   | F  F  F  G   | A  c    A2   |
+[V:7] D, A,, D,/C,/ B,, | A,, E, A,,2 | F, C, F, E,/G,/ | A, G, C,2  |
+[V:8] B,, F,, B,,/A,,/ G,, | F,, C, F,,2 | D, A,, D, C,/E,/ | F, E, A,,2 |
+%
+% ---------------------------------------------------------------
+% PHRASE 4 (bars 13-16) — Climax (S1 to d=D5, T1 to e=E4 concert)
+% then stretto restatement of opening with suspension at final cadence
+% Harmony: Dm Bb F | Gm Dm Am | Dm F Dm | F C Dm
+% Texture: full 8-voice climax, call and response outer voices (13-14),
+%          stretto coda with 4-3 suspension B1 bar 16
+% ---------------------------------------------------------------
+%
+[V:1] d  d  c  A  | F  G  A2   | D  D/E/ F/G/ A | F  E  D2    |
+[V:2] F  F  F  F  | D  D  E2   | A, B,  D  F    | D  C  A,2   |
+[V:3] A  A  A  A  | A  B  c2   | F  F   F  A    | A  G  F2    |
+[V:4] F  F  F  F  | F  G  A2   | D  D   D  F    | F  E  D2    |
+[V:5] d  d  c  A  | F  G  A2   | A  A   A  c    | A  G  F2    |
+[V:6] B  B  A  F  | D  E  F2   | F  F   F  A    | F  E  D2    |
+[V:7] D, D  C  A, | F, D, C,2  | A,/B,/ A,/G,/ F, A,,/B,,/ | C, C, F,2  |
+[V:8] B,, B, A, F, | D, B,, A,,2 | D,/E,/ F,/E,/ D, F,,/G,,/ | A,, A,, D,,2 |

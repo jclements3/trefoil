@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>In The Bleak Midwinter — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }
+p.legend { font-size: 12px; color: #555; }</style>
+</head><body>
+<h1>In The Bleak Midwinter</h1>
+<p class="legend">Above melody: Abstract / RH voicing / LH voicing.
+RH = upper notes, LH = lower notes (no hand crossing).</p>
+<div id="music"></div>
+<script src="../../abc2stripchart/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 1\nT: In The Bleak Midwinter\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: F\n[V: M] A | ( A3/2 B/ ) c A | \"^vii\u00f87\u00b2\"G G F2 | ( \"^iii7s2\"\"^B\u00b0-1+4\"G3/2 A/ ) G D | \"^vii\u00f89\u00b2\"\"^B\u00b0-5+2\"G4 | ( \"^vi7\u00b2\"\"^Am7\u00b2-3\"A3/2 B/ ) c A | \"^V11\u2075\"\"^G-1+2\"\"^Cs\"G G F2 | ( ( \"^iii11\u2075\"\"^B\u00b0\"\"^Am7-3\"G A ) G3/2 ) F/ | \"^vi7\u00b9\"\"^Am\"\"^C\"F3 F | z4 | z4 | \"^vii\u00f87\u00b3\"c A G F | \"^ii7\u00b9\"\"^F\"E4 | \"^V+6\"\"^C-1+2\"A3/2 B/ c A | \"^vi9s\"\"^Am7-3\"G2 F2 | ( ( \"^iii7\u00b2\"\"^Em\u00b2\"G A ) G3/2 ) F/ | F3 |]\n[V: RH] z | ( [A]3/2 [B]/ ) [Ac] [FA] | [EG] [EG] [DF]2 | ( [EG]3/2 [FAB]/ ) [DEG] [CD] | [EFG]4 | ( [FA]3/2 [EGB]/ ) [EAc] [FA] | [DEG] [DEG] [CDF]2 | ( ( [EGB] [FAc] ) [EGB]3/2 ) [DFA]/ | [DFA]3 [F] | z4 | z4 | [EG] [DF] [CEG]4 [FA]3/2 | [GB]/ | [GAc] [FA] [DEG]2 [CDF]2 | [EG] [FA] | ( ( [EG]3/2 [DF]/ ) [DFA]3 ) F/ | F3 |]\n[V: LH] [A] | ( [F]3/2 [G]/ ) [CE] [A,C] | [B,D] [B,D] [A,C]2 | ( [A,,G,B,]3/2 [A,,G,CE]/ ) [B,,A,B,C] [E,,G,A,] | [B,,B,D]4 | ( [A,CD]3/2 [B,CD]/ ) [C,B,CD] [A,C] | [F,B,C] [F,B,C] [E,A,B,]2 | ( ( [D,A,C] [D,B,D] ) [E,A,C]3/2 ) [A,,F,A,]/ | [F,A,C]3 [D] | z4 | z4 | [D,B,D] [D,A,C] [G,,G,A,]4 [A,CE]3/2 | [B,DF]/ | [C,CE] [A,CE] [F,A,B,C]2 [E,A,B,]2 | [D,A,C] [B,D] | ( ( [E,A,C]3/2 [F,A,]/ ) [E,,A,C]3 ) F/ | F3 |]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ""; }
+};
+var abc = new abc2svg.Abc(user);
+abc.tosvg("score", abc_src);
+</script></body></html>

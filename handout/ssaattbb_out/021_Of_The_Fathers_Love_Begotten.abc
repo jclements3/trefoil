@@ -1,0 +1,164 @@
+X: 21
+T: Of The Father's Love Begotten
+T: (SSAATTBB arrangement)
+C: Words: Aurelius Prudentius Clemens, 5th Century.
+C: Verses 1, 4-8 translated by John Mason Neale, 1854. Verses 2-3, 9 translated by Henry Williams Baker, 1859.
+C: Music: 'Divinum Mysterium' or 'Corde Natus' Latin Plainsong, 13th Century.
+C: Setting: "The Church Hymnal, Revised and Enlarged" (Episcopal), 1892, alt.
+C: SSAATTBB arrangement: public domain source.
+M: none
+L: 1/4
+Q: 1/4=108
+%%staves [(1 2) (3 4) (5 6) (7 8)]
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+K: F
+%
+% Key: F major (1 flat = Bb). No transposition from original — valid for lever harp.
+% ABC pitch reference (K:F, standard ABC octave notation):
+%   Treble clef: C=C4 D=D4 E=E4 F=F4 G=G4 A=A4 B=Bb4 c=C5 d=D5 e=E5 f=F5
+%   Bass clef:   C,,=C2 D,,=D2 ... B,,=Bb2 C,=C3 D,=D3 E,=E3 F,=F3 G,=G3 A,=A3 B,=Bb3
+%   Tenor (V5,V6 transpose=-12, 8vb treble): written note sounds 8va lower.
+%     Written C=C4->sounds C3; D->D3; E->E3; F->F3; G->G3; A->A3; B->Bb3
+%     Written c=C5->sounds C4; d->D4; e->E4; f->F4; g->G4 (T1 push max)
+%
+% Voice ranges used (sounding pitch):
+%   S1: F4-C5 (original soprano)
+%   S2: D4-A4 (third below S1, diatonic)
+%   A1: C4-F4 (original alto range, melodic)
+%   A2: A3-D4 (independent contra-melody, diatonic)
+%   T1: C4-G4 (written c-g in 8vb treble) — comfortable to E4, push to G4 at climax
+%   T2: A3-E4 (written A-e in 8vb treble) — comfortable to C4
+%   Bar: E3-D4 (a third above B1, diatonic)
+%   B1: F2-F3 (original bass)
+%
+% No accidentals in original soprano — entirely diatonic to F major.
+% No chromatic harmonies requiring substitution.
+% All 8 voices diatonic to F major throughout.
+%
+% ================================================================
+% SECTION A — "Of the Father's love begotten"  (mm. 1-7)
+% ================================================================
+%
+% mm. 1-3: Opening phrase
+% Texture: S1+S2 carry melody; A1+A2 independent inner lines;
+%          T1+T2 sustained fifths; Bar+B1 bass foundation.
+% (4-6 voice texture at opening; builds to full 8 by m.5)
+%
+[V:1] [Q:1/4=108] F3/2 G/ A B A G | (A3/2 G/) F4 | A B c d (c A3/2)
+[V:2]              D3/2 E/ F G F E | (F3/2 E/) D4 | F G A B (A F3/2)
+[V:3]              C3/2 C/ F F F E | F2 F4        | C D F F (E C3/2)
+[V:4]              A,3/2 B,/ C C C B, | C2 A,4   | A, B, C D (C A,3/2)
+[V:5]              e3/2 d/ c d e e   | d2 c4      | e d c d (e c3/2)
+[V:6]              c3/2 B/ A B c c   | B2 A4      | c B A B (c A3/2)
+[V:7]              A,3/2 A,/ F, G, F, G, | (F,3/2 E,/) F,4 | F, G, A, B, (A, F,3/2)
+[V:8]              F,3/2 F,/ F, B,, C, C, | F,2 F,4 | F, D, C, B,, (C, F,3/2)
+%
+% mm. 4-7: "ere the worlds began to be"
+% Texture: full 8-voice homophony (gradual full texture arrival)
+%
+[V:1] B/ | c4 | d3/2 e/ f c c B | (A3/2 G/) F4 |
+[V:2] G/ | A4 | B3/2 c/ d A A G | (F3/2 E/) D4 |
+[V:3] F/ | E4 | G3/2 G/ F F F F | (F3/2 E/) F4 |
+[V:4] D/ | C4 | G,3/2 G,/ A, A, B, B, | C2 A,4 |
+[V:5] d/ | e4 | g3/2 g/ f e e d | (e3/2 d/) c4 |
+[V:6] B/ | c4 | d3/2 d/ c c c B | (c3/2 B/) A4 |
+[V:7] D,/ | C,4 | G,3/2 G,/ A, A, B, B, | C,2 C,4 |
+[V:8] D,/ | C,4 | G,3/2 G,/ A, A, B, B, | C,2 F,4 |
+%
+% ================================================================
+% SECTION B — "He is Alpha and Omega, He the source, the ending He"  (mm. 8-13)
+% ================================================================
+%
+% mm. 8-9: "He is Alpha and Omega"
+% Texture: antiphonal — SSAA leads alone, TTBB echoes
+%
+[V:1] D3/2 E/ F G | (F D3/2) E/ |
+[V:2] B,3/2 C/ D E | (D B,3/2) C/ |
+[V:3] A,3/2 A,/ D D | (C A,3/2) C/ |
+[V:4] F,3/2 G,/ A, B, | (A, F,3/2) G,/ |
+[V:5] f3/2 g/ f e | (f d3/2) e/ |
+[V:6] d3/2 e/ d c | (d B3/2) c/ |
+[V:7] D,3/2 E,/ F, G, | (F, D,3/2) E,/ |
+[V:8] D,3/2 D,/ D, G, | (D, D,3/2) C,/ |
+%
+% mm. 10-13: "He the source, the ending He"
+% Texture: full 8 voices, sustained momentum
+%
+[V:1] F4 | F3/2 G/ A B A G | c2 d4 | (c A) B |
+[V:2] A,4 | D3/2 E/ F G F E | A2 B4 | (A F) G |
+[V:3] C4 | C3/2 C/ F F F E | F2 F4 | F2 D |
+[V:4] F,4 | A,3/2 A,/ C C C B, | C2 B,4 | (C A,) B, |
+[V:5] f4 | e3/2 e/ c d c c | c2 d4 | (e c) d |
+[V:6] d4 | c3/2 c/ A B A A | A2 B4 | (c A) B |
+[V:7] C,4 | A,3/2 A,/ F, G, F, E, | F,2 G,4 | (A, F,) G, |
+[V:8] F,4 | F,3/2 F,/ F, B,, C, C, | A,,2 B,,4 | F,2 F, |
+%
+% Range check: V8 (B1) m.12: A,,=A2, B,,=Bb2 — both within B1 range C2-A3. OK.
+%
+% ================================================================
+% SECTION C — "Of the things that are, that have been, and that future years shall see"  (mm. 14-17)
+% ================================================================
+%
+% mm. 14-15: "Of the things that are, that have been"
+% Texture: S1+B1 outer voice dialogue; inner voices provide support
+%
+[V:1] (c F3/2) E/ D E | (F3/2 D/ C2) z2 |
+[V:2] (A C3/2) C/ B, C | (D3/2 B,/ A,2) z2 |
+[V:3] (E C3/2) D/ E D | (E3/2 C/ C2) z2 |
+[V:4] (C F,3/2) C/ D C | (D3/2 B,/ F,2) z2 |
+[V:5] (e c3/2) B/ A B | (c3/2 A/ G2) z2 |
+[V:6] (c A3/2) G/ F G | (A3/2 F/ E2) z2 |
+[V:7] (C, A,3/2) G,/ B, C, | (D,3/2 B,/ A,2) z2 |
+[V:8] (F, D,3/2) C,/ B,, C, | (D,3/2 B,,/ F,2) z2 |
+%
+% Range checks:
+%   V4 m.15: B, = Bb3 — within A2 range D3-B4. OK.
+%   V8 m.14: B,, = Bb2 — within B1 range C2-A3. OK.
+%   V8 m.15: B,, = Bb2 — same. OK. D, = D3. OK.
+%   V7 m.15: B, = Bb3 — within Bar range E2-C4. OK. D, = D3. OK.
+%
+% mm. 16-17: "And that future years shall see" — climax + final cadence
+% Texture: full 8-voice homophony. S1 reaches c (C5). B1 on F2 at cadence.
+% A1 (V3) 4-3 suspension: E4 delays to F4 on final chord.
+%
+[V:1] F3/2 G/ A c A F | (G2 F4) |]
+[V:2] D3/2 E/ F A F D | (E2 D4) |]
+[V:3] C3/2 E/ F F F F | (E2 F4) |]
+[V:4] A,3/2 C/ C C C B, | (C2 A,4) |]
+[V:5] f3/2 g/ f e f f | (g2 f4) |]
+[V:6] d3/2 e/ d c d d | (e2 d4) |]
+[V:7] A,3/2 C/ A, A, A, D, | (C,2 A,4) |]
+[V:8] F,3/2 C,/ F, A, F, D, | (C,2 F,4) |]
+%
+% Final cadence analysis (m.17, sustained G2→F major chord):
+%   S1=F4, S2=D4, A1=F4 (resolved from E4), A2=A3(written A,),
+%   T1=F4(sounding, written f), T2=D4(sounding, written d),
+%   Bar=A3(written A,), B1=F2(written F,)
+%   Full F major tonic chord with octave doubling. Root F in all octaves.
+%
+W:6.He is here, Whom seers in old time Chanted of, while ages ran;
+W:Whom the writings of the prophets Promised since the world began:
+W:Then foretold, now manifested, to receive the praise of man,
+W:Evermore and evermore!
+W:
+W:7.Righteous Judge of souls departed, Righteous King of them that live,
+W:On the Father's throne exalted None in might with Thee may strive;
+W:Who at last in vengeance coming Sinners from Thy face shalt drive,
+W:Evermore and evermore!
+W:
+W:8.Thee let old men, Thee let young men, Thee let choirs of infants sing;
+W:Thee the matrons and the virgins, And the children answering:
+W:Let their guileless songs re-echo, And the heart its music bring,
+W:Evermore and evermore!
+W:
+W:9.Christ, to Thee with God the Father, And, O Holy Ghost, to Thee,
+W:Hymn and chant with high thanksgiving, And unwearied praises be:
+W:Honor, glory, and dominion, And eternal victory,
+W:Evermore and evermore!

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Now the Light Has Gone Away — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }
+p.legend { font-size: 12px; color: #555; }</style>
+</head><body>
+<h1>Now the Light Has Gone Away</h1>
+<p class="legend">Above melody: Abstract chord / RH voicing / LH voicing</p>
+<div id="music"></div>
+<script src="../../abc2stripchart/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 1\nT: Now the Light Has Gone Away\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%staves M | {(RH1 RH2 RH3 RH4) (LH1 LH2 LH3 LH4)}\nV: M clef=treble name=\"Melody\"\nV: RH1 clef=treble name=\"RH\"\nV: RH2 clef=treble\nV: RH3 clef=treble\nV: RH4 clef=treble\nV: LH1 clef=bass name=\"LH\"\nV: LH2 clef=bass\nV: LH3 clef=bass\nV: LH4 clef=bass\nK: F\n[V: M] \"^I\u039413\"\"^Dm7\"\"^C\u0394\"F3/2 F/ F F | \"^I\u039413\"\"^C\u0394\"\"^Dm7\"E F G2 | \"^iii9\u00b9\"\"^Em7\"\"^G7\"G G G G | \"^V13\u00b2\"\"^Dm7\"\"^Em+2\"F G A2 | \"^IV\u039411\u00b3\"\"^F\u0394\"\"^Em\"A3/2 A/ A A | \"^iii7\"\"^Em7\"\"^Em\"G F d2 | \"^V13\u00b9\"\"^Am7\"\"^B\u00b0\"c A c _B | \"^vii\u00f87\"\"^B\u00f87\"\"^B\u00b0\"D E F2 |]\n[V: RH1] [Q:1/4=100] F3/2 F/ F F | E F G2     | G G G G     | F G A2     | A3/2 A/ A A  | G F d2     | c A c _B | D E F2  |]\n[V: RH2] D3/2 D/ D D  | C D E2     | E E E E     | D E F2     | F3/2 F/ F F  | E D _B2    | A F A G          | _B, C D2       |]\n[V: RH3] _B,3/2 _B,/ _B, _B, | A, _B, C2 | C C C C | _B, C D2  | D3/2 D/ D D  | C _B, G2   | F D F E          | G, A, _B,2     |]\n[V: RH4] G,3/2 G,/ G, G, | F, G, A,2 | A, A, A, A, | G, A, _B,2 | _B,3/2 _B,/ _B, _B, | A, G, E2 | D _B, D C   | E, F, G,2      |]\n[V: LH1] e3/2 e/ e e  | f e _B2    | _B _B _B A  | e f e2     | e3/2 e/ e e  | e e A2     | _B _B _B _B      | _B _B E2       |]\n[V: LH2] c3/2 c/ c c  | d c G2     | G G G F     | c d c2     | c3/2 c/ c c  | c c F2     | G G G G          | G G C2         |]\n[V: LH3] A,3/2 A,/ A, A, | _B, A, E,2 | E, E, E, D, | _B, _B, A,2 | A,3/2 A,/ A, A, | A, A, D,2 | E, E, E, E,   | E, E, A,,2     |]\n[V: LH4] F,3/2 F,/ F, F, | G, F, C,2 | C, C, C, _B,, | A, G, F,2  | % % ===================== BARS 5-8 ===================== % F,3/2 F,/ F, F, | F, F, _B,,2 | C, C, C, C, | C, C, F,,2     |]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ""; }
+};
+var abc = new abc2svg.Abc(user);
+abc.tosvg("score", abc_src);
+</script></body></html>

@@ -1,0 +1,67 @@
+X: 245
+T: O Lord, My God, I Thirst For You
+T: (SSAATTBB Arrangement)
+C: Text: Anthony Robertson, 2010. Music: 'Kingsfold' traditional English. Setting: Ralph Vaughan Williams, 1906.
+C: SSAATTBB arrangement for 8-voice ensemble with lever harp.
+C: Words copyright 2010, Anthony Robertson. Music and setting public domain.
+S: Music source: The English Hymnal, 1906, Hymn 574.
+M: 4/4
+L: 1/4
+Q: 1/4=100
+%%staves [(1 2) (3 4) (5 6) (7 8)]
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+K: G
+%
+% SECTION 1 — Phrase 1 (reduced opening: all 8 voices, softer dynamic)
+% Harmony: G–Em–Am–G / G–D–G / G–Em–D–C / G–D7–G
+%
+[V:1] G/F/ | E E E D | G G A G/A/ | B B A/G/ E | D3 |
+[V:2] E/D/ | C C C B, | E E F E/F/ | G G F/E/ C | B,3 |
+[V:3] C | B, C B, G, | B, D D E | E D C B, | A,3 |
+[V:4] A, | G, A, G, E, | G, B, B, C | C B, A, G, | F,3 |
+[V:5] b/a/ | g g g f | g g f g/a/ | b b a/g/ e | d3 |
+[V:6] e/d/ | e e e d | e d d e/d/ | g f e d | (d2 c) |
+[V:7] G,/F,/ | G, G,/F,/ E, E, | D, G, F, D,/C,/ | E, D, C, A,, | (B,,2 A,,) |
+[V:8] E, | E, E,/D,/ C, C, | B, E, D, B,/A,/ | G, G, A, C, | D,3 |
+%
+% SECTION 2 — Phrase 2 (full 8-voice homophony, build to mf)
+% Harmony: G–C–D–G / G–A7/diatonic→Am–D / G–D–G / G–D7–G
+%
+[V:1] G/F/ | E E E D | G G A G/A/ | B B A/G/ E | E3 |
+[V:2] E/D/ | C C C B, | E E F E/F/ | G G F/E/ C | C3 |
+[V:3] D | D C C B, | D C D D/C/ | B, D C C | B,3 |
+[V:4] B, | B, A, A, G, | B, A, B, A, | G, B, A, G, | G,3 |
+[V:5] b/a/ | g g g f | g g f g/f/ | g g e e/f/ | g3 |
+[V:6] g/f/ | e e e d | e d d e/d/ | d B c e | d3 |
+[V:7] B,, | C, C,/B,,/ A,, D, | B,, E, D, B,/A,/ | G, B,, C, A,, | E,3 |
+[V:8] B, | C, C,/B,/ A, D, | B, E, D, B,/A,/ | G, G, A, C, | E,3 |
+%
+% SECTION 3 — Phrase 3 (climax; SSAA antiphonal against TTBB then full texture)
+% Soprano reaches B4; broad dynamic
+%
+[V:1] B/c/ | d B B/A/ G | A A B2 | B B/A/ G E | D3 |
+[V:2] G/A/ | B G G/F/ E | F F G2 | G G/F/ E C | B,3 |
+[V:3] E/F/ | F D D/C/ B, | C C D2 | D D/C/ B, G, | A,3 |
+[V:4] D/E/ | D B, B,/A,/ G, | A, A, B,2 | B, B,/A,/ G, E, | F,3 |
+[V:5] g/a/ | b g g/f/ e | f f g2 | g g/f/ e c' | (b2 a) |
+[V:6] e/f/ | g e e/d/ c | d c B2 | B d c g | (g2 f) |
+[V:7] G,/A,/ | B, D D/C/ B, | A, G, G,2 | D D/C/ B, G, | (G,2 F,) |
+[V:8] E, | B, B, E,/F,/ G, | C, D, G,2 | G, G,/A,/ B, C, | D,3 |
+%
+% SECTION 4 — Phrase 4 (final; stretto figure in alto+tenor; B1 roots cadence)
+%
+[V:1] !sintro!G/F/ | E E E/D/ E/F/ | G G A G/A/ | B B A/G/ E | E3 !eintro!|]
+[V:2] !sintro!E/D/ | C C C/B,/ C/D/ | E E F E/F/ | G G F/E/ C | C3 !eintro!|]
+[V:3] !sintro!D | D D C C | D D/C/ D D | G F E E | E3 !eintro!|]
+[V:4] !sintro!B, | B, A, A, G, | B, A, B, B, | E D C C | C3 !eintro!|]
+[V:5] !sintro!g/f/ | e e a/g/ a/b/ | g g f g/f/ | g f e e/f/ | g3 !eintro!|]
+[V:6] !sintro!e/d/ | c c e/d/ f/g/ | e d d e/d/ | d B c e | (e2 d) !eintro!|]
+[V:7] !sintro!G,/F,/ | G, G,/F,/ A, C | B,/A,/ G, F, G,/F,/ | G, F, E, E,/F,/ | G,3 !eintro!|]
+[V:8] !sintro!G, | C, C,/B,/ A, A, | G,/F,/ E, D, B,/A,/ | G, B, C, A, | E,3 !eintro!|]

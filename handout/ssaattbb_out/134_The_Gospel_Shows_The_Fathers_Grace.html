@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>The Gospel Shows The Father's Grace — SSAATTBB</title>
+<style>
+body { font-family: sans-serif; margin: 20px; background: #fff; }
+h1 { font-size: 18px; }
+</style>
+</head>
+<body>
+<h1>The Gospel Shows The Father's Grace — SSAATTBB</h1>
+<div id="music"></div>
+<script src="../../abc2stripchart/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X:134\nT:The Gospel Shows The Father's Grace\nT:(SSAATTBB arrangement)\nC:Words: Matthias Loy, 1863.\nC:Music: 'Herr Jesu Christ, Dict Zu Uns Wend' from Cantionale Germanicum, Dresden, 1628.\nC:Setting: \"Mehrstimmiges ChoralBuch\", 1906, alt.\nC:SSAATTBB arrangement: professional choral expansion, 2024.\nC:copyright: public domain.\nS:Music source: \"Mehrstimmiges ChoralBuch\", 1906 Hymn #74, page 57 Ed. Karl Brauer.\nM:6/4\nL:1/4\nQ:1/4=140\n%%staves [(1 2) (3 4) (5 6) (7 8)]\nV:1 name=\"Soprano I\"  clef=treble\nV:2 name=\"Soprano II\" clef=treble\nV:3 name=\"Alto I\"     clef=treble\nV:4 name=\"Alto II\"    clef=treble\nV:5 name=\"Tenor I\"    clef=treble middle=B3 transpose=-12\nV:6 name=\"Tenor II\"   clef=treble middle=B3 transpose=-12\nV:7 name=\"Baritone\"   clef=bass\nV:8 name=\"Bass I\"     clef=bass\nK:F\n%\n% ================================================================\n% PHRASE 1 \u2014 2-beat pickup + bars 1\u20133 + combined bar 4/pickup (6 beats)\n%\n% Texture:\n%   Pickup: SSAA only \u2014 antiphonal opening (4 voices)\n%   Bar 1:  All 8 voices \u2014 full texture from first downbeat\n%   Bars 2\u20133: Full 8-voice homophony\n%   Bar 4+pickup: Cadential + pickup, all voices\n%\n% Voice conventions (V:5/V:6 tenor clef):\n%   These voices use clef=treble middle=B3 transpose=-12.\n%   Written pitch sounds one octave lower (concert = written - 8va).\n%   Written c = concert C4; written A = concert A3; written B = concert Bb3.\n% ================================================================\n%\n%           pickup(2b)\n[V:1]       F2          | A2 c A2 G         | A =B c2 d2        | c2 A G2 F         | F E F2 G2         |\n[V:2]       D2          | F2 A F2 E         | F G A2 B2         | A2 F E2 D         | D C C2 E2         |\n[V:3]       C2          | C2 E C2 C         | C D E2 F2         | E2 D C2 A,        | B, A, A,2 C2      |\n[V:4]       A,2         | A,2 C A,2 G,      | A, B, C2 D2       | C2 A, G,2 F,      | G, F, F,2 A,2     |\n[V:5]       z2          | c2 c c2 d         | c c c2 B2         | A2 c c2 A         | B G A2 c2         |\n[V:6]       z2          | A2 G A2 G         | A2 A G2 G         | F2 A G2 F         | G E F2 A2         |\n[V:7]       z2          | A,2 G, A,2 E,     | A, F, E,2 D,2     | A,2 A, E,2 C,     | D, E, A,,2 E,2    |\n[V:8]       z2          | F,2 E, F,2 C,     | F, D, C,2 B,,2    | F,2 F, C,2 A,,    | B,, C, F,,2 C,2   |\n%\n% ================================================================\n% PHRASE 2 \u2014 bars 5\u20137 + 4-beat final bar\n%   (2-beat pickup to phrase 2 embedded in end of combined bar above)\n%\n% Texture:\n%   Bar 5: Full 8-voice homophony, rhythmically unified\n%   Bar 6: Full 8 voices, richer harmony (=B in S1 against diatonic inner voices)\n%   Bar 7: Full 8 voices, descending motion to cadence\n%   Final: 4-beat completion; A1 suspension D4->A3 over dominant-tonic; stretto approach\n% ================================================================\n%\n[V:1]       A2 A G2 c         | c =B c2 A2        | B2 A G2 F         | F E F2             |]\n[V:2]       F2 F E2 A         | G G A2 F2         | G2 F E2 D         | D C C2             |]\n[V:3]       C2 D C2 E         | E E E2 C2         | D2 D C2 A,        | D D A,2            |]\n[V:4]       A,2 A, G,2 C      | C D C2 F,2        | F,2 A, G,2 F,     | G, F, F,2          |]\n[V:5]       c2 c c2 G         | G G G2 F2         | F2 c c2 A         | B G A2             |]\n[V:6]       A2 G A2 E         | E D E2 D2         | D2 A G2 F         | G E F2             |]\n[V:7]       A,2 A, E,2 E,     | B, B,, E,2 A,2    | G,2 F, E,2 F,     | D, E, A,,2         |]\n[V:8]       F,2 F, C,2 C,     | G, G,, C,2 F,2    | B,,2 F,, C,2 D,   | B,, C, F,,2        |]\nW: 6.May we in faith its tidings learn\nW: Nor thanklessly its blessings spurn;\nW: May we in faith its truth confess\nW: And praise the Lord our Righteousness!\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ""; }
+};
+var abc = new abc2svg.Abc(user);
+abc.tosvg("score", abc_src);
+</script>
+</body>
+</html>

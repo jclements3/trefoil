@@ -1,0 +1,64 @@
+X: 41
+T: Joy to the World
+C: Words: Isaac Watts, 1719.
+C: Music: 'Antioch' arr. Lowell Mason, 1836. SSAATTBB arr. for lever harp accompaniment.
+C: Original SATB: Open Hymnal Project. SSAATTBB arrangement.
+M: 2/4
+L: 1/4
+Q: 1/4=80
+K: D
+%%staves {(V1 V2) (V3 V4) (V5 V6) (V7 V8)}
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+%
+%% SOPRANO I — original SATB soprano, unchanged
+[V:1] d c3/4B// | A3/2 G/ | F E | D3/2 A/ | B3/2 B/ | c3/2 c/ | d3/2 \
+d/ | d/c/ B/A/ | A3/4G//F/ d/ | d/c/ B/A/ | A3/4G//F/ F/ | F/F/ F/F//G// | A3/2 \
+G//F// | E/E/ E/E//F// | G3/2 F//E// | (D/ d) B/ | !sintro!A3/4G//F/ G/ | F E | D2 !eintro!|]
+%
+%% SOPRANO II — diatonic third below S1; unisons at bar 4 beat 1 and bar 19 (cadence)
+[V:2] B A3/4G// | F3/2 E/ | D D | D3/2 F/ | G3/2 G/ | A3/2 A/ | B3/2 \
+B/ | B/A/ G/F/ | F3/4E//D/ B/ | B/A/ G/F/ | F3/4E//D/ D/ | D/D/ D/D//E// | F3/2 \
+E//D// | C/C/ C/C//D// | E3/2 D//C// | (D/ F) G/ | F3/4E//D/ E/ | D D | D2 |]
+%
+%% ALTO I — independent diatonic melodic line; range F3-D5
+[V:3] F A3/4G// | F3/2 E/ | D C | D3/2 E/ | G3/2 G/ | E3/2 E/ | F3/2 \
+F/ | F/E/ D/E/ | F3/4E//D/ F/ | F/E/ D/E/ | F3/4E//D/ D/ | D/D/ D/D//E// | F3/2 \
+E//D// | C/C/ C/C//D// | E3/2 D//C// | (D/ F) G/ | A3/4G//F/ E/ | D C | D2 |]
+%
+%% ALTO II — contrary motion to A1; diatonic; range D3-B4
+[V:4] D F3/4E// | D3/2 C/ | B, A, | B,3/2 D/ | E3/2 E/ | E3/2 E/ | D3/2 \
+D/ | D/C/ B,/A,/ | B,3/4A,//G,/ D/ | D/C/ B,/A,/ | B,3/4A,//G,/ G,/ | G,/G,/ G,/G,//A,// | B,3/2 \
+A,//G,// | G,/G,/ G,/G,//A,// | A,3/2 G,//F,// | B,3/2 E/ | D3/4E//F/ G,/ | A, A, | D2 |]
+%
+%% TENOR I — 8vb treble (sounding = written - 8va); independent melodic line; range B2-G4
+%% Sounding: A3 A3 A3 | A3 E3 | D3 D3 | D3 A3 | D4 D4 | E4 E4 | D4 D4
+%% | D4 C4 B3 A3 | F3 E3 D3 D4 | D4 C4 B3 A3 | F3 E3 D3 A3 | A3 A3 A3 B3
+%% | C4 B3 A3 | G3 G3 G3 A3 | B3 A3 G3 | F3 A3 B3 | A3 G3 F3 G3 | F3 E3 | D3
+[V:5] A A3/4A// | A3/2 E/ | D D | D3/2 A/ | d3/2 d/ | e3/2 e/ | d3/2 \
+d/ | d/c/ B/A/ | F3/4E//D/ d/ | d/c/ B/A/ | F3/4E//D/ A/ | A/A/ A/A//B// | c3/2 \
+B//A// | G/G/ G/G//A// | B3/2 A//G// | (F/ A) B/ | A3/4G//F/ G/ | F E | D2 |]
+%
+%% TENOR II — 8vb treble; third below T1; contrary motion where possible; range G2-E4
+%% Sounding: F3 F3 F3 | F3 D3 | B2 B2 | B2 F3 | B3 B3 | C4 C4 | B3 B3
+%% | B3 A3 G3 F3 | D3 C3 B2 B3 | B3 A3 G3 F3 | D3 C3 B2 D3 | D3 D3 D3 E3
+%% | F3 E3 D3 | C3 C3 C3 D3 | E3 D3 C3 | D3 F3 E3 | D3 C3 B2 C3 | B2 A2 | B2
+[V:6] F F3/4F// | F3/2 D/ | B, B, | B,3/2 F/ | B3/2 B/ | c3/2 c/ | B3/2 \
+B/ | B/A/ G/F/ | D3/4C//B,/ B/ | B/A/ G/F/ | D3/4C//B,/ D/ | D/D/ D/D//E// | F3/2 \
+E//D// | C/C/ C/C//D// | E3/2 D//C// | (D/ F) E/ | D3/4C//B,/ C/ | B, A, | B,2 |]
+%
+%% BARITONE — bass clef; original SATB tenor (S2V1); range E2-C4
+[V:7] D D3/4D// | D3/2 B,/ | A,3/2 G,/ | F,3/2 D/ | D3/2 D/ | A,3/2 A,/ | A,3/2 \
+A,/ | A, D | D3/2 A,/ | A, D | D3/2 A,/ | A,3/2 A,/ | A,/A,/A,/ \
+A,/ | A,2 | A,3/2 A,//G,// | (F,/ A,) D/ | D3/2 B,/ | A, A,/G,/ | F,2 |]
+%
+%% BASS I — bass clef; original SATB bass (S2V2) with sub-bass G1/A1 raised to G2/A2
+[V:8] D, D,3/4D,// | D,3/2 G,/ | A, A, | D,3/2 F,/ | G,3/2 G,/ | A,3/2 A,/ | D,3/2 \
+D,/ | D, D, | D,3/2 D,/ | D, D, | D,3/2 D,/ | D,3/2 D,/ | D,/D,/D,/ \
+D,/ | A,3/2 A,/ | A,/A,/ A,/A,/ | D,3/2 D,/ | D,3/2 G,/ | A, A, | D,2 |]

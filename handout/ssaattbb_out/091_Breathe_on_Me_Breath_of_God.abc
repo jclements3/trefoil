@@ -1,0 +1,51 @@
+X:91
+T:Breathe on Me, Breath of God
+C:Words: Edwin Hatch, 1878.
+C:Music: 'Aylesbury', John Chetham's Psalmody, 1718.
+C:Setting: Hymns Ancient and Modern, 1904.
+C:SSAATTBB arr. for lever harp in Eb storage tuning.
+C:Transposed from Ab/Fm to A major (F# natural minor) — up 1 semitone.
+M:4/4
+L:1/4
+Q:1/4=110
+%%staves [(1 2) (3 4) (5 6) (7 8)]
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+K:A
+%%MIDI program 52
+%
+% ─── BARS 1–4 ───────────────────────────────────────────────────────────────
+%
+% S1: original soprano transposed (F# minor / A major key)
+[V:1] f2 c' B | A g f2 | c'2 e' d' | c' B c'2 |
+% S2: diatonic third below S1
+[V:2] d2 a g | f e d2 | a2 c' b | a g a2 |
+% A1: independent alto I line (chord-tone passing motion)
+[V:3] c2 f e | f e f2 | e2 g f | e d e2 |
+% A2: independent alto II, contrary motion to A1
+[V:4] A2 A B | d c A2 | c2 e d | c B c2 |
+% T1: adapted from original tenor, written 8va (sounds 8vb)
+[V:5] a2 c' d' | c'2 a2 | a2 c' d' | a g a2 |
+% T2: diatonic third below T1, written 8va (sounds 8vb)
+[V:6] f2 a b | a2 f2 | f2 a b | f e f2 |
+% Baritone: diatonic third above Bass I
+[V:7] A2 C D | E2 A2 | A,2 C D | G G C2 |
+% Bass I: original bass transposed
+[V:8] F2 A, B, | C2 F2 | A,2 C D | E E A,2 |
+%
+% ─── BARS 5–9 ───────────────────────────────────────────────────────────────
+%
+[V:1] z a g f | c' a B a | !fermata!g f c' B | A2 g2 | f4 |]
+[V:2] z f e d | a f g f | !fermata!e d a g | f2 e2 | c4 |]
+[V:3] z e d c | e c' d c | !fermata!c B a f | d2 c2 | a4 |]
+[V:4] z c B A | A c B A | !fermata!A G f e | c2 A2 | A4 |]
+[V:5] z c' c' a | a2 d' c' | !fermata!c' a c' d' | c'2 c'2 | a4 |]
+[V:6] z a a f | f2 b a | !fermata!a f a b | a2 g2 | f4 |]
+[V:7] z A E F | C F D A | !fermata!E F C D | E2 E2 | A,4 |]
+[V:8] z F C D | A, D B, F | !fermata!C D A, B, | C2 C2 | F,4 |]

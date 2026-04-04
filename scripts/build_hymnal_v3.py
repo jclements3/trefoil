@@ -19,7 +19,7 @@ import music21
 
 # Add handout to path for chord_name
 sys.path.insert(0, str(Path(__file__).parent.parent / 'handout'))
-from chord_name import best_name
+from chord_name import best_name, roman_name
 
 SCRIPT_DIR = Path(__file__).parent
 PROJECT_DIR = SCRIPT_DIR.parent
@@ -281,9 +281,49 @@ for ti, (tnum, chunk) in enumerate(sorted(tune_chunks.items())):
     if not measures:
         continue
 
+    # Parse all 4 SATB voices for abstract chord extraction
+    satb_parts = {}
+    for vname in ['S1V1', 'S1V2', 'S2V1', 'S2V2']:
+        if voice_music[vname]:
+            vabc = header + '\n' + ' '.join(voice_music[vname])
+            try:
+                vsc = music21.converter.parse(vabc, format='abc')
+                satb_parts[vname] = (vsc.parts[0] if vsc.parts else vsc)
+            except:
+                pass
+    has_satb = len(satb_parts) == 4
+
+    # Extract abstract chords per measure from SATB
+    abstract_chords = []  # one roman_name per measure
+    if has_satb:
+        PC_TO_C = {0:'C', 2:'D', 4:'E', 5:'F', 7:'G', 9:'A', 11:'B'}
+        ko = KEY_OFF.get(key_clean, 0)
+        satb_measures = {v: list(satb_parts[v].getElementsByClass('Measure')) for v in satb_parts}
+        n_satb = min(len(satb_measures[v]) for v in satb_measures)
+        for smi in range(n_satb):
+            # Get pitch classes from all 4 voices at the first beat
+            pitches_midi = []
+            for v in ['S2V2', 'S2V1', 'S1V2', 'S1V1']:
+                notes = list(satb_measures[v][smi].recurse().getElementsByClass('Note'))
+                if notes:
+                    pitches_midi.append(notes[0].pitch.midi)
+            pcs = []; seen = set()
+            for midi in sorted(pitches_midi):
+                pc = (midi - ko) % 12
+                if pc not in seen: seen.add(pc); pcs.append(pc)
+            note_names = [PC_TO_C[pc] for pc in pcs if pc in PC_TO_C]
+            if len(note_names) >= 3:
+                try:
+                    abstract_chords.append(roman_name(note_names))
+                except:
+                    abstract_chords.append('')
+            else:
+                abstract_chords.append('')
+
     hymns.append({
         'title': title, 'xnum': tnum, 'key': key_clean,
         'meter': meter, 'tempo': tempo, 'measures': measures,
+        'abstract_chords': abstract_chords,
     })
 
     if (ti+1) % 50 == 0:
@@ -360,13 +400,12 @@ for hi, h in enumerate(hymns):
         rh_parts.append(f'[{rh_abc}]{d}')
         lh_parts.append(f'[{lh_abc}]{d}')
 
-        # Note letters for display (top-to-bottom order)
-        rh_letters = ''.join(c.upper() for c in reversed(re.findall(r'[A-Ga-g]', rh_abc)))
-        lh_letters = ''.join(c.upper() for c in reversed(re.findall(r'[A-Ga-g]', lh_abc)))
-        # Best terse chord names (tries all roots, picks shortest)
+        # Trefoil voicing names for LH and RH
         lh_name = best_name(list(v['lhNotes']))
         rh_name = best_name(list(v['rhNotes']))
-        chords.append({'beat':note_idx,'name':lh_name,'rhn':rh_name,'lhn':lh_name,'rh':rh_letters,'lh':lh_letters})
+        # Abstract chord from SATB (composer's chord)
+        abs_chord = h['abstract_chords'][mi] if mi < len(h.get('abstract_chords', [])) else ''
+        chords.append({'beat':note_idx,'abs':abs_chord,'rhn':rh_name,'lhn':lh_name})
         note_idx += len(m['notes'])
 
     mel_line = ' | '.join(mel_parts) + ' |]'

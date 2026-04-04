@@ -1,0 +1,67 @@
+X:1
+T:What A Friend We Have In Jesus
+T:(SSAATTBB arrangement)
+C:Words: Joseph M. Scriven, 1855.
+C:Music: Charles C. Converse, 1868. Arr. for 8-voice double choir.
+C:Original setting: "Book of hymns and tunes", 1874. Arrangement: 2026.
+C:copyright: public domain.
+M:4/4
+L:1/4
+Q:1/4=100
+%%staves [(1 2) (3 4) (5 6) (7 8)]
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+K:F
+%%MIDI program 52
+%
+% ── PHRASE 1 (bars 1–4): Full 8-voice homophony, modest dynamic ──
+%
+[V:1] c3/2 c/ d/c/ A/F/ | F2 D2 | C3/2 F/ A/F/ c/A/ | G3 z |
+[V:2] A3/2 A/ B/A/ F/D/ | D2 B,2 | A,3/2 D/ F/D/ A/F/ | E3 z |
+[V:3] F3/2 F/ G/F/ C/A,/ | D2 B,2 | C3/2 C/ D/C/ F/F/ | E3 z |
+[V:4] D3/2 C/ D/E/ A,/F,/ | B,2 G,2 | A,,3/2 A,/ B,/A,/ F/D/ | C3 z |
+[V:5] A,3/2 A,/ B,/A,/ C/A,/ | B,2 F,2 | A,3/2 A,/ A,/A,/ A,/C/ | C3 z |
+[V:6] F,3/2 F,/ G,/F,/ A,/F,/ | G,2 D,2 | F,3/2 F,/ F,/F,/ F,/A,/ | A,3 z |
+[V:7] A,3/2 A,/ A,/A,/ A,/A,/ | D,2 D,2 | A,3/2 A,/ A,/A,/ A,/A,/ | E,3 z |
+[V:8] F,3/2 F,/ F,/F,/ F,/F,/ | B,,2 B,,2 | F,3/2 F,/ F,/F,/ F,/F,/ | C,3 z |
+%
+% ── PHRASE 2 (bars 5–8): Antiphonal — SSAA leads, TTBB echoes ──
+%
+[V:1] c3/2 c/ d/c/ A/F/ | F2 D2 | C3/2 F/ A/G/ F/E/ | F3 z |
+[V:2] A3/2 A/ B/A/ F/D/ | D2 B,2 | A,3/2 D/ F/E/ D/C/ | D3 z |
+[V:3] F3/2 F/ G/F/ C/A,/ | D2 B,2 | A,3/2 C/ F/E/ D/C/ | C3 z |
+[V:4] D3/2 C/ D/C/ A,/F,/ | B,2 G,2 | F,3/2 A,/ C/B,/ A,/G,/ | A,3 z |
+[V:5] A,3/2 A,/ B,/A,/ C/A,/ | B,2 F,2 | F,3/2 A,/ C/B,/ A,/G,/ | A,3 z |
+[V:6] F,3/2 F,/ G,/F,/ A,/F,/ | G,2 D,2 | D,3/2 F,/ A,/G,/ F,/E,/ | F,3 z |
+[V:7] A,3/2 A,/ A,/A,/ A,/A,/ | D,2 D,2 | E,3/2 E,/ E,/E,/ E,/E,/ | A,3 z |
+[V:8] F,3/2 F,/ F,/F,/ F,/F,/ | B,,2 B,,2 | C,3/2 C,/ C,/C,/ C,/C,/ | F,3 z |
+%
+% ── PHRASE 3 (bars 9–12): Call and response, S1 & B1 outer voices ──
+%  Chromatic bar: S1 keeps ^F (diatonic constraint note),
+%  all other voices diatonic only.
+%
+[V:1] G3/2 ^F/ G/A/ B/G/ | A2 c2 | d3/2 d/ c/A/ B/A/ | G3 z |
+[V:2] E3/2 D/ E/F/ G/E/ | F2 A2 | B3/2 B/ A/F/ G/F/ | E3 z |
+[V:3] E3/2 D/ E/F/ G/E/ | F2 F2 | F3/2 G/ F/F/ G/F/ | E3 z |
+[V:4] C3/2 B,/ C/D/ E/C/ | D2 D2 | D3/2 D/ E/D/ E/D/ | C3 z |
+[V:5] C3/2 C/ C/C/ C/C/ | C2 A,2 | B,3/2 B,/ C/C/ C/C/ | C3 z |
+[V:6] A,3/2 A,/ A,/A,/ A,/A,/ | A,2 F,2 | G,3/2 G,/ A,/A,/ A,/A,/ | A,3 z |
+[V:7] E,3/2 E,/ E,/E,/ E,/E,/ | A,2 A,2 | D,3/2 D,/ C/A,/ G,/A,/ | E,3 z |
+[V:8] C,3/2 C,/ C,/C,/ C,/C,/ | F,2 F,2 | B,,3/2 B,,/ A,,/F,,/ E,,/F,,/ | C,3 z |
+%
+% ── PHRASE 4 (bars 13–16): Full 8-voice climax, suspension at cadence ──
+%
+[V:1] c3/2 c/ d/c/ A/F/ | F2 D2 | !sintro!C3/2 F/ A/G/ F/E/ | F3 z !eintro!|]
+[V:2] A3/2 A/ B/A/ F/D/ | D2 B,2 | A,3/2 D/ F/E/ D/C/ | D3 z |]
+[V:3] F3/2 F/ G/F/ C/A,/ | D2 B,2 | A,3/2 C/ F/E/ D/C/ | C3 z |]
+[V:4] D3/2 C/ D/C/ A,/F,/ | B,2 G,2 | F,3/2 A,/ C/B,/ A,/G,/ | A,3 z |]
+[V:5] A,3/2 A,/ B,/A,/ C/A,/ | B,2 F,2 | F,3/2 A,/ C/B,/ A,/G,/ | A,3 z |]
+[V:6] F,3/2 F,/ G,/F,/ A,/F,/ | G,2 D,2 | D,3/2 F,/ A,/G,/ F,/E,/ | F,3 z |]
+[V:7] A,3/2 A,/ A,/A,/ A,/A,/ | D,2 D,2 | E,3/2 E,/ E,/E,/ E,/E,/ | A,3 z |]
+[V:8] F,3/2 F,/ F,/F,/ F,/F,/ | B,,2 B,,2 | C,3/2 C,/ C,/C,/ C,/C,/ | F,3 z |]

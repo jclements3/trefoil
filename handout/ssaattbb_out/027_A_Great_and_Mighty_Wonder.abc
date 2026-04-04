@@ -1,0 +1,76 @@
+X: 27
+T: A Great and Mighty Wonder
+C: Words: Germanus of Constantinople (634-734). Translated by John Mason Neale, 1862.
+C: Music: 'Es Ist Ein Ros Entsprungen (Rhythmic)' German from Koeln, 1599. Setting: Michael Praetorius, 1609.
+C: SSAATTBB arr. for lever harp accompaniment. Key: F major (no transposition).
+C: copyright: public domain. Open Hymnal Project, 2010 Revision.
+S: Expanded from Open Hymnal Project SATB source.
+M: none
+L: 1/4
+Q: 1/4=100
+%%staves [(1 2) (3 4) (5 6) (7 8)]
+V:1 name="Soprano I"   clef=treble
+V:2 name="Soprano II"  clef=treble
+V:3 name="Alto I"      clef=treble
+V:4 name="Alto II"     clef=treble
+V:5 name="Tenor I"     clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"    clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"    clef=bass
+V:8 name="Bass I"      clef=bass
+K: F
+%
+% ---- STROPHE 1 (mm. 1-5): SSAA only; TTBB tacet ----
+% Reduced opening texture — soprano and alto pairs carry the melody.
+% S1 follows original soprano exactly; S2 harmonises a diatonic third below.
+% A1 provides independent stepwise line; A2 moves in contrary motion.
+%
+[V:1] c2 | c c d c | c2 A2 B2 | A G2 F2 E | F3 |
+[V:2] A2 | A A B A | A2 F2 G2 | F E2 D2 C | D3 |
+[V:3] F2 | F G G F | F2 F2 G2 | E D2 C2 B, | A,3 |
+[V:4] D2 | D E D D | D2 D2 E2 | C B,2 A,2 G, | F,3 |
+[V:5] z2 | z4 | z6 | z6 | z3 |
+[V:6] z2 | z4 | z6 | z6 | z3 |
+[V:7] z2 | z4 | z6 | z6 | z3 |
+[V:8] z2 | z4 | z6 | z6 | z3 |
+%
+% ---- STROPHE 2 (mm. 6-10): Full 8 voices, homophonic ----
+% All voices enter together. T1 doubles original tenor (8vb treble notation).
+% T2 a diatonic third below T1. Baritone a diatonic third above Bass I.
+% A1/A2 recomposed with more harmonic variety and stepwise contrary motion.
+%
+[V:1] c2 | c c d c | c2 A2 B2 | A G2 F2 E | F3 |
+[V:2] A2 | A A B A | A2 F2 G2 | F E2 D2 C | D3 |
+[V:3] F2 | F G G F | E2 D2 F2 | D C2 B,2 A, | C3 |
+[V:4] D2 | C E C D | C2 A,2 D2 | A, B,2 A,2 F, | F,3 |
+[V:5] c2 | c A B A | G2 F2 F2 | A c (B A2) G | A3 |
+[V:6] A2 | A F G F | E2 D2 D2 | F A (G F2) E | F3 |
+[V:7] A,2 | A, A, D A, | E,2 F,2 D,2 | A, G, F,2 E,2 | A,3 |
+[V:8] F,2 | F, F, B, F, | C,2 D,2 B,,2 | F, E, D,2 C,2 | F,3 |
+%
+% ---- STROPHE 3, PHRASE B (mm. 11-12): Antiphonal — SSAA leads, TTBB joins at cadence ----
+% SSAA sings the contrasting phrase; TTBB enters on the sustained cadence chord
+% and the sintro pickup, creating a textural swell into the doxology.
+%
+[V:1] A | G E F D | C3 !sintro!c |
+[V:2] F | E C D B, | C3 A |
+[V:3] D | D B, C A, | D3 C |
+[V:4] A, | F, G, A, A, | A,3 A, |
+[V:5] z | z4 | G3 G |
+[V:6] z | z4 | E3 E |
+[V:7] z | z4 | G,3 E, |
+[V:8] z | z4 | C,3 C, |
+%
+% ---- STROPHE 3, SINTRO / DOXOLOGY (mm. 13-17): Full 8 voices, climax ----
+% All voices at full texture for the doxology repeat of phrase A.
+% S1 follows the original doxology soprano; accidentals in S1 only (none here).
+% Inner voices use the original doxology harmonisation with diatonic-only inner parts.
+% Final cadence: B1 on F2 (tonic), Bar on A2, spread upward to S1 on F3.
+%
+[V:1] c c d c | c2 A2 B2 | A G2 F2 E | F3 !eintro! |]
+[V:2] A A B A | A2 F2 G2 | F E2 D2 C | D3 |]
+[V:3] G F F F | E2 D2 D2 | E D2 C2 B, | A,3 |]
+[V:4] E D D D | C2 B,2 B,2 | A, B,2 A,2 G, | F,3 |]
+[V:5] G A B A | G2 F2 G2 | c B A2 G2 | A3 |]
+[V:6] E F G F | E2 D2 E2 | A G F2 E2 | F3 |]
+[V:7] G, A, D, A, | E,2 F,2 G,2 | E, F, G,2 G,2 | A,3 |]
+[V:8] E, F, B,, F, | C,2 D,2 G,,2 | F, E, D,2 C,2 | F,3 |]

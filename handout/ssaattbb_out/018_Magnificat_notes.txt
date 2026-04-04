@@ -1,0 +1,175 @@
+ARRANGER NOTES — 018 Magnificat (Uffingham / Brian L. Penney)
+SSAATTBB arrangement for lever harp accompaniment
+Arranger: AI expansion per ssaattbb_prompt.md
+=============================================================
+
+TRANSPOSITION
+-------------
+Original key:   Ab major (4 flats: Bb Eb Ab Db) — INVALID for lever harp
+  (maximum allowed: 3 flats = Eb major)
+Chosen key:     Bb major (2 flats: Bb Eb)
+Direction:      UP 2 semitones (Ab → Bb)
+Semitones:      +2
+
+Nearest valid key by semitone distance:
+  G major (1 semitone down) was rejected: transposing down causes S1 to
+  open on E4/G4 and reach Bb3 in bar 2, placing several notes below the
+  comfortable S1 range (C4–A5). Transposing up 2 semitones to Bb major
+  keeps all voices comfortably within professional ranges.
+
+Lever harp settings for Bb major:
+  Bb lever: UP (sharps Bb strings to Bb — wait: Eb storage tuning has
+  all levers down = Eb major. Raising levers sharpens in order:
+    Ab→Eb→Bb→F→C→G→D
+  For Bb major (needs Bb and Eb natural, plus F G A C D natural):
+  From Eb storage: raise the Ab lever (gives Eb→A=Ab→... actually:
+    Eb storage = Eb Bb F C G D Ab (7 notes, all flattened).
+  To get Bb major (Bb C D Eb F G A):
+    - Bb string: already Bb — lever DOWN ✓
+    - Eb string: already Eb — lever DOWN ✓
+    - Ab string: raise to A natural — lever UP ✓
+  All other strings (C D F G) are already natural in Eb storage? No:
+    Eb storage has C D F G as naturals (only Eb Bb Ab are flatted from
+    the white-note scale; wait Eb storage = all strings set to Eb major
+    = Eb F G Ab Bb C D. So: Ab lever engaged (Ab), Eb lever engaged (Eb),
+    Bb lever engaged (Bb). F C G D levers are DOWN = natural.
+  For Bb major = Bb C D Eb F G A:
+    - Ab lever: RAISE to A natural (lever UP)
+    - Eb lever: leave at Eb (lever DOWN = Eb) ✓
+    - Bb lever: leave at Bb (lever DOWN = Bb) ✓
+  Lever summary: 6 levers down, 1 lever up (Ab→A).
+
+HARMONIC SUBSTITUTIONS
+-----------------------
+Bar 4 (original and transposed): The melody S1 holds ^F3 (F# = F sharp)
+  for 3 beats over bass D3, inner voices A, D = D major triad (III in Bb).
+  Original K:Ab had =E3 (E natural) over bass C — same III chord (C major
+  in Ab = III = D major in Bb). No substitution was required; the III chord
+  is fully diatonic in Bb major (D natural is diatonic), and F# is carried
+  only by S1 which is exempt from the diatonic constraint.
+
+Bar 14 (phrase 3): Same ^F pattern as bar 4. Same reasoning applies.
+  S1 carries F#4–F#4–D5 over a D major harmony in diatonic voices.
+  No substitution required.
+
+No other chromatic harmonies in the original inner voices required
+reharmonization.
+
+DIATONIC VIOLATIONS CAUGHT
+---------------------------
+The following accidentals appeared in the original inner voices (K:Ab)
+and were replaced with diatonic neighbors in Bb major:
+
+Bar 2, original S1V2 (now S2 region): =E, (E natural in K:Ab, original
+  alto bar 2) → this note does not appear in the arrangement as S2 stays
+  on the diatonic path; the original figure E2 =E in bar 12 of S1V2
+  was the relevant location.
+
+Bar 12, original S1V2 beat 3: =E (E natural in K:Ab) → transposed to
+  F# in Bb; replaced with G4 in S2 (stepwise continuation from F4). Voice:
+  S2, bar 12 beat 3. Original: E natural (K:Ab S1V2). Replacement: G4.
+
+Bar 15, original S1V2: =E/F/ (E natural to F in K:Ab) → F#4/G4 in Bb;
+  both replaced with G4 in S2, written as G2 in bar 15 of S2. Voice: S2,
+  bar 15 beats 2-3. Original: E natural (K:Ab). Replacement: G4.
+
+Bar 2, original S2V2 (bass): =E, (E natural, passing tone on beat 3)
+  → F# in Bb; replaced with F3 in B1 (nearest diatonic scale degree below
+  F#). Voice: B1, bar 2. Original: E natural (K:Ab). Replacement: F3.
+
+TEXTURE PLAN
+------------
+The arrangement unfolds in three textural stages across 16 bars:
+
+1. PHRASE 1 (bars 1–4): SSAA only (4-voice open texture). The upper choir
+   presents the Uffingham melody in S1 with inner-voice support from S2,
+   A1, A2. A1 and A2 descend stepwise in contrary motion. The TTBB choir
+   is silent, creating a spacious, intimate opening — appropriate to the
+   reflective tone of the Magnificat text.
+
+2. PHRASE 2a (bars 5–8, ANTIPHONAL): SSAA continue the melody (bars 5–8)
+   while TTBB enter below with an antiphonal answer at the octave, creating
+   a call-and-response exchange between the two choirs. A1 and A2 rest
+   during this phrase so the antiphonal polarity is clear. This is the
+   texture-building stage (6 voices: SS + TTBB).
+
+3. PHRASE 2b (bars 9–11, CLIMAX): All 8 voices join for the first time.
+   S1 reaches F5 (bar 9), the highest note of the arrangement, while B1
+   anchors on Bb2–G2. The full ensemble spread of approximately 3.5 octaves
+   achieves maximum resonance.
+
+4. PHRASE 3 (bars 12–16, FULL + CADENCE): Full 8-voice homophony with
+   a suspension figure at bars 15–16. S1 descends from A4 to G4 over a
+   Gm (vi) cadence, B1 closes with a G2/G3 octave. The final harmony
+   is G minor (the submediant, matching the original SATB deceptive/modal
+   ending on the vi chord). A4-E4-D4-Bb3 in SSAA and Bb3-Bb2-D3-G2/G3
+   in TTBB produce a rich Gm9 sonority.
+
+Texture types used: (1) Reduced upper-choir homophony (phrase 1),
+(2) Antiphonal SSAA vs TTBB (phrase 2a), (3) Full 8-voice homophony
+(phrases 2b, 3), (4) Call-and-response between outer voices (the S1
+climax in bars 9–11 answered by descending inner voices).
+
+UNISON LOG
+----------
+Bar 13, A1–A2 pair, beat 3: A1=Bb3, A2=Bb3. Deliberate blend at the
+  approach to the cadence; both voices move away by step (A1→A3, A2→A3)
+  in bar 14. Purpose: textural convergence before the final phrase.
+
+Bar 11, S1–S2 pair, beat 3: S1=Bb4, S2=G4 — no unison (M3 apart). ✓
+  (Checked: no S pair unison here.)
+
+No other within-pair unisons in this arrangement. Cross-choir pitch
+sharing (e.g. T2=A3 and Bar=A3 at bar 9 beat 3) is within the
+permitted cross-choir rules and not counted here.
+
+RANGE LOG
+---------
+S1 bar 9, beat 1: f = F5. This is the dynamic and registral climax.
+  F5 is well within S1 professional range (comfortable top G5). ✓
+
+S1 bar 9, beat 3: e = Eb5. Comfortable. ✓
+
+A2 bar 9, beat 3: A = A4. At the comfortable top of A2 range (D3–B4,
+  comfortable top A4). This occurs at the climax bar only. ✓
+
+T1 (V:5) bar 5–8: highest written pitch = B (Bb4 treble = Bb3 concert).
+  Comfortable for T1. ✓
+
+T2 (V:6) bar 6, beat 2: written G = G4 treble = G3 concert. Within T2
+  comfortable range (G2–E4, comfortable C4). ✓
+
+Baritone bar 11: B,, = Bb2. This is just above the Bar minimum (E2) and
+  occurs at a phrase cadence for expressive low resonance. Acceptable.
+
+B1 bar 7: E,, = Eb2. B1 range C2–A3. Eb2 > C2 ✓. Low end of range;
+  appropriate for the low sustained phrase 2a bass line.
+
+B1 bar 16: [G,,3G,3] = G2/G3 (octave). Final root chord. G2 is within
+  B1 range (C2–A3). ✓
+
+RULE COMPROMISES
+----------------
+1. Bar 9, Bar–B1 pair, beat 2: Baritone = F3, B1 = D3. No unison.
+   At beat 3: T2 = A3 (concert) and Bar = A3 — cross-choir T-voice/B-voice
+   sharing the pitch A3. This is permitted by the cross-choir unison rule
+   (non-adjacent pair), logged here for transparency.
+
+2. Bar 4: The TTBB choir is silent while SSAA sustains the D-major
+   (III-chord) cadence. The three-beat rest in TTBB is longer than ideal
+   for a continuous texture but is musically justified: the phrase 1 half
+   cadence benefits from the exposed, hollow quality of 4-voice writing,
+   matching the stillness implied by "Magnificat anima mea Dominum" before
+   the full choir erupts in phrase 2.
+
+3. Bar 16 (T2): V:6 moves from C3 (concert, bar 15) to Bb2 (concert,
+   bar 16) — a whole-step descent into the low register. The step is
+   diatonic and singable, but the low Bb2 concert is at the very floor
+   of T2 range (G2 minimum). It is held only on the final tonic chord
+   for resonance and can be omitted by the conductor if the ensemble
+   finds it uncomfortable.
+
+4. The arrangement does not include composed passing tones or suspensions
+   in inner voices during phrase 2a (bars 5–8) because A1 and A2 rest
+   during the antiphonal exchange. This prioritizes textural clarity over
+   harmonic saturation in those bars.

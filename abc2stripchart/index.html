@@ -133,7 +133,7 @@ label { font-size: 13px; color: #888; }
   z-index: 40;
   line-height: 1.1;
 }
-.chord-frac .cf-name {
+.chord-frac .cf-abs {
   font-size: 11px;
   font-weight: bold;
   color: #2563eb;
@@ -145,16 +145,13 @@ label { font-size: 13px; color: #888; }
 }
 .chord-frac .cf-rh {
   font-size: 9px;
-  color: #333;
-  white-space: nowrap;
-}
-.chord-frac .cf-rh .cf-chname, .chord-frac .cf-lh .cf-chname {
-  color: #16a34a;
   font-weight: bold;
-  margin-right: 2px;
+  color: #16a34a;
+  white-space: nowrap;
 }
 .chord-frac .cf-lh {
   font-size: 9px;
+  font-weight: bold;
   color: #666;
   white-space: nowrap;
 }
@@ -384,14 +381,16 @@ function renderDrill(idx) {
         var div = document.createElement('div');
         div.className = 'chord-frac';
         div.style.left = cx + 'px';
-        div.style.top = (topY - 38) + 'px';
-        var rhn = ch.rhn ? '<span class="cf-chname">' + ch.rhn + '</span>' : '';
-        var lhn = ch.lhn ? '<span class="cf-chname">' + ch.lhn + '</span>' : '';
+        div.style.top = (topY - 44) + 'px';
+        var abs = ch.abs || '';
+        var rhn = ch.rhn || '';
+        var lhn = ch.lhn || '';
         div.innerHTML =
-          '<div class="cf-name">' + ch.name + '</div>' +
-          '<div class="cf-rh">' + rhn + ch.rh.replace(/ /g,'') + '</div>' +
+          '<div class="cf-abs">' + abs + '</div>' +
           '<div class="cf-line"></div>' +
-          '<div class="cf-lh">' + lhn + ch.lh.replace(/ /g,'') + '</div>';
+          '<div class="cf-rh">' + rhn + '</div>' +
+          '<div class="cf-line"></div>' +
+          '<div class="cf-lh">' + lhn + '</div>';
         fracContainer.appendChild(div);
       }
       console.log('Placed ' + drill.chords.length + ' fractions, topY=' + topY.toFixed(1));

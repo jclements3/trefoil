@@ -1,0 +1,71 @@
+X:134
+T:The Gospel Shows The Father's Grace
+T:(SSAATTBB arrangement)
+C:Words: Matthias Loy, 1863.
+C:Music: 'Herr Jesu Christ, Dict Zu Uns Wend' from Cantionale Germanicum, Dresden, 1628.
+C:Setting: "Mehrstimmiges ChoralBuch", 1906, alt.
+C:SSAATTBB arrangement: professional choral expansion, 2024.
+C:copyright: public domain.
+S:Music source: "Mehrstimmiges ChoralBuch", 1906 Hymn #74, page 57 Ed. Karl Brauer.
+M:6/4
+L:1/4
+Q:1/4=140
+%%staves [(1 2) (3 4) (5 6) (7 8)]
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+K:F
+%
+% ================================================================
+% PHRASE 1 — 2-beat pickup + bars 1–3 + combined bar 4/pickup (6 beats)
+%
+% Texture:
+%   Pickup: SSAA only — antiphonal opening (4 voices)
+%   Bar 1:  All 8 voices — full texture from first downbeat
+%   Bars 2–3: Full 8-voice homophony
+%   Bar 4+pickup: Cadential + pickup, all voices
+%
+% Voice conventions (V:5/V:6 tenor clef):
+%   These voices use clef=treble middle=B3 transpose=-12.
+%   Written pitch sounds one octave lower (concert = written - 8va).
+%   Written c = concert C4; written A = concert A3; written B = concert Bb3.
+% ================================================================
+%
+%           pickup(2b)
+[V:1]       F2          | A2 c A2 G         | A =B c2 d2        | c2 A G2 F         | F E F2 G2         |
+[V:2]       D2          | F2 A F2 E         | F G A2 B2         | A2 F E2 D         | D C C2 E2         |
+[V:3]       C2          | C2 E C2 C         | C D E2 F2         | E2 D C2 A,        | B, A, A,2 C2      |
+[V:4]       A,2         | A,2 C A,2 G,      | A, B, C2 D2       | C2 A, G,2 F,      | G, F, F,2 A,2     |
+[V:5]       z2          | c2 c c2 d         | c c c2 B2         | A2 c c2 A         | B G A2 c2         |
+[V:6]       z2          | A2 G A2 G         | A2 A G2 G         | F2 A G2 F         | G E F2 A2         |
+[V:7]       z2          | A,2 G, A,2 E,     | A, F, E,2 D,2     | A,2 A, E,2 C,     | D, E, A,,2 E,2    |
+[V:8]       z2          | F,2 E, F,2 C,     | F, D, C,2 B,,2    | F,2 F, C,2 A,,    | B,, C, F,,2 C,2   |
+%
+% ================================================================
+% PHRASE 2 — bars 5–7 + 4-beat final bar
+%   (2-beat pickup to phrase 2 embedded in end of combined bar above)
+%
+% Texture:
+%   Bar 5: Full 8-voice homophony, rhythmically unified
+%   Bar 6: Full 8 voices, richer harmony (=B in S1 against diatonic inner voices)
+%   Bar 7: Full 8 voices, descending motion to cadence
+%   Final: 4-beat completion; A1 suspension D4->A3 over dominant-tonic; stretto approach
+% ================================================================
+%
+[V:1]       A2 A G2 c         | c =B c2 A2        | B2 A G2 F         | F E F2             |]
+[V:2]       F2 F E2 A         | G G A2 F2         | G2 F E2 D         | D C C2             |]
+[V:3]       C2 D C2 E         | E E E2 C2         | D2 D C2 A,        | D D A,2            |]
+[V:4]       A,2 A, G,2 C      | C D C2 F,2        | F,2 A, G,2 F,     | G, F, F,2          |]
+[V:5]       c2 c c2 G         | G G G2 F2         | F2 c c2 A         | B G A2             |]
+[V:6]       A2 G A2 E         | E D E2 D2         | D2 A G2 F         | G E F2             |]
+[V:7]       A,2 A, E,2 E,     | B, B,, E,2 A,2    | G,2 F, E,2 F,     | D, E, A,,2         |]
+[V:8]       F,2 F, C,2 C,     | G, G,, C,2 F,2    | B,,2 F,, C,2 D,   | B,, C, F,,2        |]
+W: 6.May we in faith its tidings learn
+W: Nor thanklessly its blessings spurn;
+W: May we in faith its truth confess
+W: And praise the Lord our Righteousness!

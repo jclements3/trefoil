@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Crown Him With Many Crowns — SSAATTBB</title>
+<style>
+body { font-family: sans-serif; margin: 20px; background: #fff; }
+h1 { font-size: 18px; }
+</style>
+</head>
+<body>
+<h1>Crown Him With Many Crowns — SSAATTBB</h1>
+<div id="music"></div>
+<script src="../../abc2stripchart/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 140\nT: Crown Him With Many Crowns\nT: (SSAATTBB arrangement)\nC: Words: Matthew Bridges (1852), Godfrey Thring (1874)\nC: Music: 'Diademata' George J. Elvey (1868)\nC: SSAATTBB arr. for lever harp accompaniment \u2014 public domain source\nS: Expanded from Open Hymnal Project SATB; arr. diatonic for lever harp in D major\nM: 4/4\nL: 1/4\nQ: 1/4=110\n%%staves [(1 2) (3 4) (5 6) (7 8)]\nV:1 name=\"Soprano I\"   clef=treble\nV:2 name=\"Soprano II\"  clef=treble\nV:3 name=\"Alto I\"      clef=treble\nV:4 name=\"Alto II\"     clef=treble\nV:5 name=\"Tenor I\"     clef=treble middle=B3 transpose=-12\nV:6 name=\"Tenor II\"    clef=treble middle=B3 transpose=-12\nV:7 name=\"Baritone\"    clef=bass\nV:8 name=\"Bass I\"      clef=bass\nK: D\n%%\n% \u2500\u2500\u2500 Phrase 1 (bars 1\u20134) \u2014 SSAA only, TTBB tacet \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n%\n[V:1] [Q:1/4=110] D D/D/ F F | B3 B | A D G F | E3\n[V:2]             B, B,/B,/ D D | G3 G | F B, E D | C3\n[V:3]             A, A,/A,/ D D | D3 D | D E C D | C3\n[V:4]             F, F,/F,/ B, B, | B,3 B, | B, C A, B, | A,3\n[V:5]             z4 | z4 | z4 | z3\n[V:6]             z4 | z4 | z4 | z3\n[V:7]             z4 | z4 | z4 | z3\n[V:8]             z4 | z4 | z4 | z3\n%%\n% \u2500\u2500\u2500 Phrase 2 (bars 4 pickup \u2013 8) \u2014 Full 8 voices \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n%\n[V:1]  E | F A B A | ^G F/E/ A d | c d B B | A3\n[V:2]  C | D F G F | E D F B | A B G G | F3\n[V:3]  C | D E D D | B, C D D | E F E E | C3\n[V:4]  A, | B, C B, B, | G, A, B, B, | C D C C | A,3\n[V:5]  A | A A F F | E G A G | A A A G | A3\n[V:6]  F | F F D D | C E F E | F F F E | F3\n[V:7]  C, | F, E, D, F, | G, F, E, D, | C, F, G, G, | C3\n[V:8]  A,, | D, C, B,, D, | E, D, C, B,, | A,, D, E, E, | A,3\n%%\n% \u2500\u2500\u2500 Phrase 3 (bars 8 pickup \u2013 12) \u2014 Antiphonal: SSAA leads, TTBB echoes \u2500\u2500\n%\n[V:1]  A | A F E D | B3 B | B ^G F E | c3\n[V:2]  F | F D C B, | G3 G | G E D C | A3\n[V:3]  C | D D C D | D3 E | E E D D | C3\n[V:4]  A, | B, B, A, B, | B,3 C | C C B, B, | A,3\n[V:5]  A | A A G A | B3 A | G B A B | A3\n[V:6]  F | F F E F | G3 F | E G F G | F3\n[V:7]  B, | A, F, G, A, | B,3 A, | G, G, A, B, | C,3\n[V:8]  G, | F, D, E, F, | G,3 F, | E, E, F, G, | A,3\n%%\n% \u2500\u2500\u2500 Phrase 4 (bars 12 pickup \u2013 16) \u2014 Full 8 voices, suspension at cadence \u2500\n%\n[V:1]  c | d3/2 c/ B A | G E F A | G F E E | D4 |]\n[V:2]  A | B3/2 A/ G F | E C D F | E D C C | D4 |]\n[V:3]  E | D D D D | D C D D | D D D C | D4 |]\n[V:4]  C | B, B, B, B, | B, A, B, B, | B, B, B, A, | A,4 |]\n[V:5]  A | A A G A | B A A A | B A A3/2 G/ | F4 |]\n[V:6]  F | F F E F | G F F F | G F F3/2 E/ | D4 |]\n[V:7]  B, | A, A, B, A, | G, C, F, A,, | B,, F, C, C, | F,4 |]\n[V:8]  G, | F, F, G, F, | E, A, D, F,, | G,, D, A,, A,, | D,4 |]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ""; }
+};
+var abc = new abc2svg.Abc(user);
+abc.tosvg("score", abc_src);
+</script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+X: 245
+T: O Lord of Heav'n and Earth and Sea
+C: Words: Christopher Wordsworth, 1863.
+C: Music: 'Es Ist Kein Tag' Johann D. Meyer, 1692. Setting: "The English Hymnal", 1906.
+C: SSAATTBB arr. for 8-voice choir and lever harp. Key: D major (original key retained).
+C: copyright: public domain. Open Hymnal Project, 2010 Revision.
+M: 4/4
+L: 1/4
+Q: 1/4=100
+%%staves {(V1 V2) (V3 V4) (V5 V6) (V7 V8)}
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+K: D
+%
+% ---- SECTION 1: bars 1-2 (pickup + bar 1) ----
+% Pickup: Sop A, Alto D/C, Ten F,/G, Bass D,/E,
+% Bar 1: d c/B/ A B/A/ | G/F/ E D(ferm) — S: d c/B/ A B/A/ | G/F/ E D
+%         Alto D G F/E/ D | D/B,/ C D
+%         Tenor A, C D/C/ B,/C/ | D A, F,(invferm)
+%         Bass F, E, F, G,/A, | B,/G, A, D,
+%
+% Texture: section 1 (pickup + bars 1-2) — SSAA choir leads,
+%          TTBB enters in bar 1 beat 2 for antiphonal color.
+%
+[V:1] A | d c/B/ A B/A/ | G/F/ E !fermata!D |
+[V:2] F | A G F E | D/E/ D !fermata!D |
+[V:3] D | F E D D | B, C !fermata!D |
+[V:4] D | D B, A, B, | G, A, !fermata!F, |
+[V:5] z | F E D G, | A, B, !invertedfermata!F, |
+[V:6] z | D C B, E, | F, E, !invertedfermata!D, |
+[V:7] z | A, G, F, B,, | G,, A, !invertedfermata!A,, |
+[V:8] z | D, E, F, G,, | B,, A,, !invertedfermata!D,, |
+%
+% ---- SECTION 2: bars 3-4 ----
+% Original: Sop F/G/ A A B c | d d/e/ c d/c/
+%           Alto D A/G/ F/E/ D G/A/ | F E E D
+%           Ten A, D/E/ D/C/ B, E | A, B, A, A,
+%           Bass D,/E, F, F, G,/F, E, | F, ^G, A, F,
+% ^G, in Bass bar 4 beat 2 = G# — replaced diatonically (see notes)
+%
+[V:1] F/G/ | A A B c | d d/e/ !fermata!c d/c/ |
+[V:2] D | F E D E | A A !fermata!A F |
+[V:3] D | D D D E | F F !fermata!E E |
+[V:4] B, | A, B, G, A, | D D !fermata!C B, |
+[V:5] A, | D E D B, | E E !invertedfermata!E D |
+[V:6] F, | A, G, A, G, | C B, !invertedfermata!A, A, |
+[V:7] D, | F, E, D, E, | F, E, !invertedfermata!E, D, |
+[V:8] D,/E,/ | F, F, G, E, | F, G, !invertedfermata!A,, F,, |
+%
+% ---- SECTION 3: bars 5-7 (final section, cadential) ----
+% Original: Sop B A G E | F3/2 G/ A D/E/ | F2 E2 | D3
+%           Alto D/E/ F B, E | D D D D | D3 C | D3
+%           Ten B,/C/ D B, A, | A, B, A, F,/G,/ | (A, B,) E,2 | F,3
+%           Bass G, F, E, C, | D,/C,/ B,, F,, B,, | (A,, G,,) A,,2 | D,3
+%
+% Climax build: bars 5-6 full 8-voice; bar 7 final cadence with suspensions.
+%
+[V:1] B A G E | F3/2 G/ A !sintro!D/E/ | F2 E2 | D3 !eintro!|]
+[V:2] G F E C | D3/2 E/ F A | D2 C2 | D3 |]
+[V:3] E D D B, | A, B, D F | A2 G2 | F3 |]
+[V:4] D B, B, A, | A, G, A, D | F2 E2 | D3 |]
+[V:5] G E D A, | A, G, A, B, | A,2 G,2 | F,3 |]
+[V:6] E D B, G, | F, G, F, G, | F,2 E,2 | D,3 |]
+[V:7] B,, G,, E,, C,, | D,, E,, F,, B,,, | (A,,, G,,,) A,,,2 | D,,3 |]
+[V:8] G,, F,, E,, C,, | D,,/C,,/ B,,, F,,, B,,, | (A,,, G,,,) A,,,2 | D,,3 |]
+W: 1.O Lord of Heav'n and Earth and Sea,
+W: To Thee all praise and glory be;
+W: How shall we show our love to Thee,
+W: Who givest all?
+W:
+W: 2.The golden sunshine, vernal air,
+W: Sweet flowers and fruit Thy love declare;
+W: When harvests ripen, Thou art there,
+W: Who givest all.
+W:
+W: 3.For peaceful homes and healthful days,
+W: For all the blessings earth displays,
+W: We owe Thee thankfulness and praise,
+W: Who givest all.
+W:
+W: 4.Thou didst not spare Thine only Son,
+W: But gav'st Him for a world undone,
+W: And freely with that Blessed One
+W: Thou givest all.
+W:
+W: 5.Thou giv'st the Spirit's blessed dower,
+W: Spirit of life and love and power,
+W: And dost His sevenfold gifts outpour,
+W: Who givest all.
+W:
+W: 6.For souls redeemed, for sins forgiv'n,
+W: For means of grace and hopes of Heav'n,
+W: Father, all praise to Thee be giv'n,
+W: Who givest all.
+W:
+W: 7.We lose what on ourselves we spend,
+W: We have as treasure without end
+W: Whatever, Lord, to Thee we lend,
+W: Who givest all.
+W:
+W: 8.To Thee, from Whom we all derive
+W: Our life, our gifts, our power to give:
+W: O may we ever with Thee live,
+W: Who givest all.

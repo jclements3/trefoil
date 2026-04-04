@@ -1,0 +1,367 @@
+X: 26
+T: A Great and Mighty Wonder
+C: Words: Germanus of Constantinople (634-734). Translated by John Mason Neale, 1862.
+C: Music: 'Es Ist Ein Ros Entsprungen (Rhythmic)' German from Köln, 1599. Setting: Michael Praetorius, 1609.
+C: copyright: public domain. This score is a part of the Open Hymnal Project, 2010 Revision.
+C: SSAATTBB arrangement for 8-voice ensemble and lever harp.
+S: Music source: The English Hymnal, 1906. Hymn 19
+M: none
+L: 1/4
+%%staves [(1 2) (3 4) (5 6) (7 8)]
+V:1 name="Soprano I"   clef=treble
+V:2 name="Soprano II"  clef=treble
+V:3 name="Alto I"      clef=treble
+V:4 name="Alto II"     clef=treble
+V:5 name="Tenor I"     clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"    clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"    clef=bass
+V:8 name="Bass I"      clef=bass
+K: F
+%
+% PITCH REFERENCE (8vb tenor clef, transpose=-12):
+%   Written c = C3 concert, a = A3, g = G3, f = F3, e = E3, d = D3
+%   Written A = A2, G = G2, B = Bb2, C = C2 (but C2 is sub-range — avoid)
+%   Written c' = C4 concert
+%
+% ---------------------------------------------------------------
+% SECTION A — first statement
+%   Pickup: SSAA only (4-voice, reduced texture at opening)
+%   M1 onward: all 8 voices
+% ---------------------------------------------------------------
+%
+% Pickup (2 beats): F major chord — SSAA only
+%   S1=C4  S2=A3  A1=G3  A2=D3
+%   (A1=G3 avoids S2=A3 unison and sits on the 5th of the chord)
+%
+[V:1] [Q:1/4=100] c2 |
+[V:2]              A2 |
+[V:3]              G2 |
+[V:4]              D2 |
+[V:5]              z2 |
+[V:6]              z2 |
+[V:7]              z2 |
+[V:8]              z2 |
+%
+% M1 (4 beats): F  F  Bb  F
+%   S1: C4  C4  D4  C4
+%   S2: A3  F3  Bb3 A3   (thirds below S1; sixth at beat2 for variety)
+%   A1: F3  G3  A3  G3   (≠S1,S2 at every beat; stepwise)
+%   A2: D3  E3  D3  E3   (below A1; contrary motion; ≠S1,S2)
+%   T1: A3  A3  F3  F3   (original alto; 8vb written: a a f f)
+%   T2: C3  A2  Bb2 A2   (original tenor; 8vb written: c A B A)
+%   Bar: A2  A2  D3  A2  (thirds above B1)
+%   B1: F2  F2  Bb2 F2   (original bass)
+%
+[V:1] c c d c |
+[V:2] A F B F |
+[V:3] F G A G |
+[V:4] D E D E |
+[V:5] a a f f |
+[V:6] c A B A |
+[V:7] A, A, D A, |
+[V:8] F, F, B, F, |
+%
+% M2 (6 beats): C(×2)  Dm(×2)  Bb(×2)
+%   S1: C4 C4  A3 A3  Bb3 Bb3
+%   S2: G3 G3  F3 F3  G3  G3   (sixths below S1)
+%   A1: E3 E3  D3 D3  D3  D3   (original alto; thirds below S2)
+%     [Check S/A unisons: S2=G3/A1=E3 ✓; S2=F3/A1=D3 ✓; S2=G3/A1=D3 ✓]
+%     [S1=C4/A1=E3 ✓; S1=A3/A1=D3 ✓; S1=Bb3/A1=D3 ✓]
+%   A2: C3 C3  C3 C3  G3 G3   (below A1 all beats; ≠S1,S2 at every beat)
+%     [S2=G3/A2=C3 ✓; S2=F3/A2=C3 ✓; S2=G3/A2=G3 — WAIT: unison S2/A2!]
+%     Fix A2 beats5-6: use F3 (Bb chord: F3=5th ✓; F3<G3=S2 ✓; F3>D3=A1 ✓... wait A1=D3, A2=F3: A2>A1! Crossing within A pair! Fix: A2 beats5-6 = D3? D3=A1=D3 — unison A pair!]
+%     Only option A2 beats5-6: A2 must be > A1=D3 (to avoid crossing) AND < S2=G3 (to avoid S2 unison if matching) AND ≠ S1=Bb3 AND ≠ S2=G3.
+%     Choices: E3 or F3 (between D3 and G3, ≠G3, ≠Bb3).
+%     E3: A1=D3, A2=E3 — A2>A1 (crossing)! Still crossing.
+%     F3: same issue.
+%     CONCLUSION: when A1=D3, A2 must be ≤D3. Only D3 itself, which is a unison.
+%     Therefore: allow one occasional A1/A2 unison on beats5-6 (Bb chord, phrase interior).
+%     Or: raise A1 beats5-6 to avoid the issue. A1 for Bb chord: F3 or Bb3 or D3.
+%     A1=F3 beats5-6: then A2 can use D3 (no crossing, no unison ✓).
+%     Revise A1 M2: E2 D2 F2  (E3×2, D3×2, F3×2)
+%     A2 M2: C2 C2 D2        (C3×2, C3×2, D3×2)
+%     Checks: S2=G3/A1=E3 ✓, S2=F3/A1=D3 ✓, S2=G3/A1=F3 ✓
+%             S1=C4/A1=E3 ✓, S1=A3/A1=D3 ✓, S1=Bb3/A1=F3 ✓
+%             S2=G3/A2=C3 ✓, S2=F3/A2=C3 ✓, S2=G3/A2=D3 ✓
+%             A1=E3>A2=C3 ✓, A1=D3>A2=C3 ✓, A1=F3>A2=D3 ✓ (no crossing, no unison) ✓
+%   T1: E3 E3  D3 D3  D3 D3  (8vb: e2 d2 d2) — same as original alto
+%   T2: G2 G2  A2 A2  A2 A2  (replacing F2 with A2 since F2<T2 min; 8vb: G2 A2 A2)
+%   Bar: E2 E2  F2 F2  D3 D3  (thirds above B1: C2→E2, D2→F2, Bb2→D3)
+%   B1: C2 C2  D2 D2  Bb2 Bb2 (Bb1 raised to Bb2; 8vb bass)
+%
+[V:1] c2 A2 B2 |
+[V:2] G2 F2 G2 |
+[V:3] E2 D2 F2 |
+[V:4] C2 C2 D2 |
+[V:5] e2 d2 d2 |
+[V:6] G2 A2 A2 |
+[V:7] E,2 F,2 D2 |
+[V:8] C,2 D,2 B,2 |
+%
+% M3 (6 beats): F  C/E  C/E  Gm  F/C  C
+%   S1: A3(1)  G3(2)  F3(2)  E3(1)
+%   S2: F3(1)  E3(2)  D3(2)  C3(1)
+%   A1: G3(1)  A3(2)  G3(2)  G3(1)  (≠S1,S2 at every beat; ≥F3 throughout)
+%     [beat1: A1=G3, S1=A3 ✓, S2=F3 ✓; beat2-3: A1=A3, S1=G3 ✓, S2=E3 ✓]
+%     [beat4-5: A1=G3, S1=F3 ✓, S2=D3 ✓; beat6: A1=G3, S1=E3 ✓, S2=C3 ✓]
+%   A2: D3(1)  D3(2)  E3(2)  F3(1)  (below A1; ≠S1,S2)
+%     [beat1: A2=D3, S1=A3 ✓, S2=F3 ✓; beat2-3: A2=D3, S1=G3 ✓, S2=E3 ✓]
+%     [beat4-5: A2=E3, S1=F3 ✓, S2=D3 ✓; beat6: A2=F3, S1=E3 ✓, S2=C3 ✓]
+%     [A1>A2: G3>D3 ✓, A3>D3 ✓, G3>E3 ✓, G3>F3 ✓ — no crossing, no unison ✓]
+%   T1 (orig alto 8vb): c2 d A c2 = C3(2) D3(1) A2(1) C3(2)
+%   T2 (orig tenor 8vb adj): A c B A2 G = A2 C3 Bb2 A2(2) G2
+%     [T1>T2: C3>A2 ✓, D3>C3 ✓, A2: T1=A2, T2=Bb2 — T2>T1! crossing!]
+%     Fix: T2 at beat3 (T1=A2 concert, T2=Bb2): T2 cannot be above T1 = A2.
+%     T2 beat3: replace Bb2(=B written) with A2(=A written) to match T1.
+%     But T1=A2 and T2=A2 — T pair unison. Allowable occasionally. Use it.
+%     Or T2 beat3 = G2 (below T1=A2 ✓, no unison ✓):
+%     T2: A c G A2 G  (A2 C3 G2 A2 A2 G2)
+%     T1=C3, T2=A2 ✓; T1=D3, T2=C3 ✓; T1=A2, T2=G2 ✓; T1=C3, T2=A2 ✓; T1=C3, T2=G2 ✓
+%   Bar: A,  G,  F,2  E,2  (A2 G2 F2×2 E2×2; thirds above B1)
+%   B1: F,  E,  D,2  C,2  (original bass: F2 E2 D2×2 C2×2)
+%
+[V:1] A G2 F2 E |
+[V:2] F E2 D2 C |
+[V:3] G A2 G2 G |
+[V:4] D D2 E2 F |
+[V:5] c2 d A c2 |
+[V:6] A c G A2 G |
+[V:7] A, G, F,2 E,2 |
+[V:8] F, E, D,2 C,2 |
+%
+% Cadence 1 (3 beats): F major
+%   S1=F3  S2=D3  A1=A3  A2=E3
+%   [S1=F3/A2=E3 ✓; S2=D3/A1=A3 ✓; S2=D3/A2=E3 ✓; A1=A3>A2=E3 ✓]
+%   T1=C3 (written c); T2=A2 (written A); Bar=A2; B1=F2
+%
+[V:1] F3 |
+[V:2] D3 |
+[V:3] A3 |
+[V:4] E3 |
+[V:5] c3 |
+[V:6] A3 |
+[V:7] A,3 |
+[V:8] F,3 |
+%
+% ---------------------------------------------------------------
+% SECTION A — repeat (all 8 voices, full homophony)
+% ---------------------------------------------------------------
+%
+[V:1] c2 |
+[V:2] A2 |
+[V:3] G2 |
+[V:4] D2 |
+[V:5] c2 |
+[V:6] A2 |
+[V:7] A,2 |
+[V:8] F,2 |
+%
+[V:1] c c d c |
+[V:2] A F B F |
+[V:3] F G A G |
+[V:4] D E D E |
+[V:5] a a f f |
+[V:6] c A B A |
+[V:7] A, A, D A, |
+[V:8] F, F, B, F, |
+%
+[V:1] c2 A2 B2 |
+[V:2] G2 F2 G2 |
+[V:3] E2 D2 F2 |
+[V:4] C2 C2 D2 |
+[V:5] e2 d2 d2 |
+[V:6] G2 A2 A2 |
+[V:7] E,2 F,2 D2 |
+[V:8] C,2 D,2 B,2 |
+%
+[V:1] A G2 F2 E |
+[V:2] F E2 D2 C |
+[V:3] G A2 G2 G |
+[V:4] D D2 E2 F |
+[V:5] c2 d A c2 |
+[V:6] A c G A2 G |
+[V:7] A, G, F,2 E,2 |
+[V:8] F, E, D,2 C,2 |
+%
+[V:1] F3 |
+[V:2] D3 |
+[V:3] A3 |
+[V:4] E3 |
+[V:5] c3 |
+[V:6] A3 |
+[V:7] A,3 |
+[V:8] F,3 |
+%
+% ---------------------------------------------------------------
+% SECTION B — antiphonal contrasting phrase
+%   Pickup + M5 (4 beats): SSAA alone; TTBB sustain F major chord
+%   M6 (3 beats): all 8 join on C major
+% ---------------------------------------------------------------
+%
+% Section B pickup (1 beat)
+%   SSAA: S1=A3 S2=F3 A1=C3? — wait A1 min=F3; C3<F3. Use A1=F3.
+%   But S2=F3 and A1=F3 — S/A unison! Use A1=G3.
+%   G3>S2=F3 (cross-pair ok, no unison ✓). A2=D3 (min range, ≠A1=G3 ✓).
+%   [S1=A3/A1=G3 ✓; S1=A3/A2=D3 ✓; S2=F3/A1=G3 ✓; S2=F3/A2=D3 ✓]
+%   TTBB: T1=A3(8vb: a); T2=C3(8vb: c); Bar=A2; B1=F2
+%   But TTBB will have z4 in M5. The TTBB pickup 1 beat: they sustain.
+%   Actually: TTBB holds 5 beats (1 pickup + 4 M5 beats) on F major chord.
+%
+[V:1] A |
+[V:2] F |
+[V:3] G |
+[V:4] D |
+[V:5] a |
+[V:6] f |
+[V:7] A, |
+[V:8] F, |
+%
+% M5 (4 beats): Gm  F  F  Gm
+%   SSAA sing melody; TTBB rests (antiphonal contrast)
+%   S1: G3  E3  F3  D3
+%   S2: E3  C3  C3  C3   (Bnat→C3 diatonic replacement)
+%   A1: F3  F3  G3  G3   (≥F3; ≠S1,S2 at every beat)
+%     [beat1: A1=F3, S1=G3 ✓, S2=E3 ✓]
+%     [beat2: A1=F3, S1=E3 ✓(A1>S1 ok), S2=C3 ✓]
+%     [beat3: A1=G3, S1=F3 ✓(A1>S1 ok), S2=C3 ✓]
+%     [beat4: A1=G3, S1=D3 ✓, S2=C3 ✓]
+%   A2: D3  D3  D3  E3   (≠S1,S2; beat4 S1=D3 so A2=E3)
+%     [A1>A2: F3>D3 ✓, F3>D3 ✓, G3>D3 ✓, G3>E3 ✓]
+%     [S1/A2: G3/D3 ✓, E3/D3 ✓, F3/D3 ✓, D3/E3 ✓]
+%     [S2/A2: E3/D3 ✓, C3/D3 ✓(A2>S2 crossing ok), C3/D3 ✓, C3/E3 ✓]
+%
+[V:1] G E F D |
+[V:2] E C C C |
+[V:3] F F G G |
+[V:4] D D D E |
+[V:5] z4 |
+[V:6] z4 |
+[V:7] z4 |
+[V:8] z4 |
+%
+% M6 (3 beats): C major — all 8 join
+%   S1=C4  S2=A3  A1=G3  A2=E3
+%   [S2=A3/A1=G3 ✓; A1=G3>A2=E3 ✓; S1=C4/A1=G3 ✓; S1=C4/A2=E3 ✓]
+%   [S2=A3/A2=E3 ✓]
+%   T1=G3 (8vb: g); T2=E3 (8vb: e); Bar=E2; B1=C2
+%
+[V:1] C3 |
+[V:2] A3 |
+[V:3] G3 |
+[V:4] E3 |
+[V:5] g3 |
+[V:6] e3 |
+[V:7] E,3 |
+[V:8] C,3 |
+%
+% ---------------------------------------------------------------
+% SECTION A' — final full statement, climax, suspension at close
+%   All 8 voices throughout; S1 raised to F4 at cadence
+%   T1 T2 in upper tenor register for richness
+% ---------------------------------------------------------------
+%
+% Pickup (1 beat) — !sintro! all 8
+%   S1=C4  S2=A3  A1=G3  A2=D3
+%   T1=C3(8vb:c); T2=A2(8vb:A); Bar=A2; B1=F2
+%
+[V:1] !sintro!c |
+[V:2] A |
+[V:3] G |
+[V:4] D |
+[V:5] c |
+[V:6] A |
+[V:7] A, |
+[V:8] F, |
+%
+% M7 (4 beats): C/E  F  Bb  F
+%   S1: C4  C4  D4  C4  (original soprano)
+%   S2: A3  F3  Bb3 A3
+%   A1: F3  G3  A3  G3  (imitation of M1-A1 pattern; independent arc)
+%   A2: D3  E3  D3  E3  (contrary to A1)
+%   T1: G3  F3  G3  F3  (8vb: g f g f; upper register; independent line)
+%     [T1>T2: G3>E3 ✓, F3>D3 ✓ throughout]
+%   T2: E3  D3  E3  D3  (8vb: e d e d; thirds below T1)
+%   Bar: G2  A2  D3  A2  (thirds above B1)
+%   B1: E2  F2  Bb2 F2   (E2 F2 Bb2 F2; Bb1 raised)
+%   [S/A unisons check M7:]
+%   [S1=C4/A1=F3 ✓; S1=C4/A1=G3 ✓; S1=D4/A1=A3 ✓; S1=C4/A1=G3 ✓]
+%   [S1=C4/A2=D3 ✓; S1=C4/A2=E3 ✓; S1=D4/A2=D3 — UNISON S1/A2 beat3!]
+%   Fix A2 beat3: use E3 (≠D4 ✓, ≠Bb3=S2 ✓, <A1=A3 ✓):
+%   A2 M7: D E E E = D3 E3 E3 E3
+%   [S1=D4/A2=E3 ✓; S2=Bb3/A2=E3 ✓; A1=A3>A2=E3 ✓]
+%   [S2=A3/A1=F3 ✓; S2=F3/A1=G3 ✓(crossing ok); S2=Bb3/A1=A3 ✓; S2=A3/A1=G3 ✓]
+%   [S2=A3/A2=D3 ✓; S2=F3/A2=E3 ✓; S2=Bb3/A2=E3 ✓; S2=A3/A2=E3 ✓]
+%
+[V:1] c c d c |
+[V:2] A F B F |
+[V:3] F G A G |
+[V:4] D E E E |
+[V:5] g f g f |
+[V:6] e d e d |
+[V:7] G, A, D A, |
+[V:8] E, F, B, F, |
+%
+% M8 (6 beats): C(×2)  Dm(×2)  Bb(×2)
+%   S1: C4(×2)  A3(×2)  Bb3(×2)
+%   S2: G3(×2)  F3(×2)  G3(×2)
+%   A1: E3(×2)  D3(×2)  F3(×2)  (same as M2)
+%   A2: C3(×2)  C3(×2)  D3(×2)  (same as M2)
+%   T1: E3(×2)  D3(×2)  D3(×2)  (8vb: e2 d2 d2; orig alto)
+%   T2: G2(×2)  A2(×2)  G2(×2)  (8vb: G2 A2 G2; F# replaced with diatonic A)
+%   Bar: E2(×2)  F2(×2)  Bb2(×2)  (8vb bass: E,2 F,2 B,2)
+%   B1: C2(×2)  D2(×2)  G2(×2)   (G1→G2 raised; bass: C,2 D,2 G,2)
+%   [S/A: same as M2, already verified ✓ for all S1,S2 vs A1,A2 combinations]
+%
+[V:1] c2 A2 B2 |
+[V:2] G2 F2 G2 |
+[V:3] E2 D2 F2 |
+[V:4] C2 C2 D2 |
+[V:5] e2 d2 d2 |
+[V:6] G2 A2 G2 |
+[V:7] E,2 F,2 B,2 |
+[V:8] C,2 D,2 G,2 |
+%
+% M9 (6 beats): F  C/E  C/E  Dm  F/C  C
+%   S1: A3(1) G3(2) F3(2) E3(1)
+%   S2: F3(1) E3(2) D3(2) C3(1)
+%   A1: G3(1) A3(2) G3(2) G3(1)  (same counterpoint solution as M3)
+%   A2: D3(1) D3(2) E3(2) F3(1)  (same as M3 A2)
+%   T1 (orig final alto 8vb): f d e f c2 = F3 D3 E3 F3 C3(×2)
+%   T2 (orig final tenor 8vb): c B A2 G2 = C3 Bb2 A2(×2) G2(×2)
+%     [T1: f(1) d(1) e(1) f(1) c(2) = 6 ✓]
+%     [T2: c(1) B(1) A(2) G(2) = 6 ✓]
+%     [T1>T2: F3>C3 ✓, D3>Bb2 ✓, E3>A2 ✓, F3>A2 ✓, C3>G2 ✓]
+%   Bar: C3 Bb2 A2(×2) G2(×2) = C B, A,2 G,2
+%   B1: A2 Bb2 C2(×2) C2(×2)  = A, B, C,2 C,2
+%   [S/A unisons M9 — same S1/S2 as M3, same A1/A2 — already verified ✓]
+%
+[V:1] A G2 F2 E |
+[V:2] F E2 D2 C |
+[V:3] G A2 G2 G |
+[V:4] D D2 E2 F |
+[V:5] f d e f c2 |
+[V:6] c B A2 G2 |
+[V:7] C B, A,2 G,2 |
+[V:8] A, B, C,2 C,2 |
+%
+% Final cadence (3 beats): F major with 4-3 suspension
+%   S1: F4 (f) — climax high note, one step above normal range
+%   S2: D4 (d) — third below S1 ✓
+%   A1: Bb3(2) A3(1) — 4-3 suspension (Bb→A above F root) ✓
+%   A2: G3(2)  F3(1) — parallel 4-3 suspension a third below A1 ✓
+%   [S1=F4/A1=Bb3 ✓; S1=F4/A1=A3 ✓; S1=F4/A2=G3 ✓; S1=F4/A2=F3 — octave apart ✓]
+%   [S2=D4/A1=Bb3 ✓; S2=D4/A1=A3 ✓; S2=D4/A2=G3 ✓; S2=D4/A2=F3 ✓]
+%   [A1>A2: Bb3>G3 ✓, A3>F3 ✓]
+%   T1: C3 (8vb: c3) — fifth of F chord
+%   T2: A2 (8vb: A3) — third of F chord
+%   Bar: A2 (A,3) — third of F chord
+%   B1: F2 (F,3) — root
+%
+[V:1] f3 !eintro!|]
+[V:2] d3 |]
+[V:3] B2 A |]
+[V:4] G2 F |]
+[V:5] c3 |]
+[V:6] A3 |]
+[V:7] A,3 |]
+[V:8] F,3 |]

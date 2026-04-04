@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>All Who Believe and Are Baptized — SSAATTBB</title>
+<style>
+body { font-family: sans-serif; margin: 20px; background: #fff; }
+h1 { font-size: 18px; }
+</style>
+</head>
+<body>
+<h1>All Who Believe and Are Baptized — SSAATTBB</h1>
+<div id="music"></div>
+<script src="../../abc2stripchart/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X:1\nT:All Who Believe and Are Baptized\nT:(also known as He That Believes and Is Baptized)\nC:Words: Thomas Hansen Kingo, 1689. Translation by George Alfred Taylor Rygh, 1909, alt.\nC:Music: 'Es ist das Heil uns Kommen Her' German circa 1400 from Etlich Christlich Lider, Wittenberg, 1524.\nC:Setting: SSAATTBB arrangement after \"Mehrstimmiges ChoralBuch\", 1906.\nC:copyright: public domain. Arrangement for 8-voice ensemble and lever harp.\nM:4/4\nL:1/4\nQ:1/4=100\n%%staves {(V1 V2) (V3 V4) (V5 V6) (V7 V8)}\nV:1 name=\"Soprano I\"  clef=treble\nV:2 name=\"Soprano II\" clef=treble\nV:3 name=\"Alto I\"     clef=treble\nV:4 name=\"Alto II\"    clef=treble\nV:5 name=\"Tenor I\"    clef=treble middle=B3 transpose=-12\nV:6 name=\"Tenor II\"   clef=treble middle=B3 transpose=-12\nV:7 name=\"Baritone\"   clef=bass\nV:8 name=\"Bass I\"     clef=bass\nK:Eb\n%\n% ---- SECTION A (first time) ----\n%\n[V:1] B/ | B B B _d | c B A3/2 B/ | G E G A | (B c) B3/2 :|\n[V:2] G/ | G G G B  | A G F3/2 G/ | E C E F  | (G A) G3/2 :|\n[V:3] E/ | E F E D  | E E C3/2 E/ | B, C E E | (D C) D3/2 :|\n[V:4] C/ | C D C B, | C C A,3/2 C/ | G, A, C C | (B, A,) B,3/2 :|\n[V:5] G/ | G B G F  | A G F3/2 G/ | B A B c  | (F B A) B3/2 :|\n[V:6] E/ | E G E D  | F E D3/2 E/ | G F G A  | (D G F) G3/2 :|\n[V:7] G,/ | G, E, G, D, | C G, C3/2 G,/ | G, C G, E, | (D C) D3/2 :|\n[V:8] E,/ | E, D, E, B, | A, E, A,3/2 E,/ | E, A, E, C, | (B, F,) B,3/2 :|\n%\n% ---- SECTION B ----\n%\n[V:1] B/ | e3/2 _d/ c B | e c B3/2 B/ | e3/2 B/ B E |\n[V:2] G/ | c3/2 B/ A G  | c A G3/2 G/ | c3/2 G/ G C |\n[V:3] E/ | E3/2 F/ E E  | E E E3/2 F/ | E3/2 E/ D C |\n[V:4] C/ | C3/2 D/ C C  | C C C3/2 D/ | C3/2 C/ B, A, |\n[V:5] G/ | G A A G      | A A G3/2 B/ | G3/2 G/ F A |\n[V:6] E/ | E F F E      | F F E3/2 G/ | E3/2 E/ D F |\n[V:7] G,/ | E,3/2 F,/ C G, | E, C G,3/2 F,/ | E,3/2 G,/ D C |\n[V:8] E,/ | C,3/2 D,/ A, E, | C, A, E,3/2 D,/ | C,3/2 E,/ B, A, |\n%\n% ---- ENDING ----\n%\n[V:1]  G B G3/2 !sintro!E/ | F A G F | (E F) !fermata!E3/2 !eintro!|]\n[V:2]  E G E3/2 C/ | D F E D | (C D) C3/2 |]\n[V:3]  E B, E3/2 C/ | D E E C | (B, D) E3/2 |]\n[V:4]  C G, C3/2 A,/ | B, C C A, | (G, B,) C3/2 |]\n[V:5]  B F B3/2 A/ | A A B A | (G F) !invertedfermata!G3/2 |]\n[V:6]  G D G3/2 F/ | F F G F | (E D) E3/2 |]\n[V:7]  G, F, G,3/2 C/ | F, E, G, C | (D, F,) G,3/2 |]\n[V:8]  E, D, E,3/2 A,/ | D, C, E, A, | B,2 E,3/2 |]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ""; }
+};
+var abc = new abc2svg.Abc(user);
+abc.tosvg("score", abc_src);
+</script>
+</body>
+</html>

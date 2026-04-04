@@ -1,0 +1,111 @@
+X: 181
+T: The Apostle Looked and Heard a Voice
+T: (SSAATTBB arrangement)
+C: Words: Anthony Robertson, 2005. Music: 'Addison's' or 'London (Addisons)' John Sheeles, 1720.
+C: Setting: composite from "A Hymnal" (Episcopal), 1916 and "Hymns Ancient and Modern", 1922.
+C: SSAATTBB arrangement for 8-voice choir and lever harp.
+C: copyright: music and setting public domain. Words Copyright 2005, Anthony Robertson.
+M: 4/4
+L: 1/4
+Q: 1/4=100
+K: G
+%%staves [(1 2) (3 4) (5 6) (7 8)]
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+%
+% ============================================================
+% SECTION 1 (pickup + bars 1–4)
+% Texture: 6 voices (T1 and T2 tacet); homophonic opening.
+% ============================================================
+%
+% S1 = original soprano exactly
+% S2 = diatonic thirds below S1 (or sixths for variety)
+% A1 = original alto (diatonic, ^C replaced with C)
+% A2 = inner voice, contrary motion to A1, diatonic
+% T1/T2 tacet in opening — written as rests
+% Bar = third above B1 (diatonic)
+% B1 = original bass exactly
+%
+[V:1] G | B B A d | c/B/ A/G/ A D | G/A/ B A G/F/ | G F/E/ F
+[V:2] E | G G F B | A/G/ F/E/ F B, | E/F/ G F D | D C D
+[V:3] D | D D D G | E D D G | D D D B | B A A
+[V:4] B, | G G C D | C C C G, | B, B, C G, | G, G, D
+[V:5] z | z z z z | z z z z | z z z z | z z z
+[V:6] z | z z z z | z z z z | z z z z | z z z
+[V:7] D | D D C G, | G, G, C G, | B, G, A, B, | E, C, D,
+[V:8] G, | G, G, F, D, | G, G,, D, C, | B,, G, F, D, | E, A,, D,
+%
+% ============================================================
+% SECTION 2 (pickup + bars 5–8)
+% Texture: Full 8 voices; antiphonal SSAA vs TTBB
+% ============================================================
+%
+% S1 = original soprano (keeps ^c in bar 7 beat 3)
+% S2 = diatonic thirds below S1; replaces ^C with C (bar 8 beat 3)
+% A1 = original alto (^C replaced with C in bars 6, 8)
+% A2 = contrary motion to A1, diatonic
+% T1 = original tenor line (concert pitch), diatonic
+% T2 = diatonic third below T1 (concert)
+% Bar = third above B1
+% B1 = original bass
+%
+% Note on tenor ABC: written one octave above concert (transpose=-12)
+% Written G(treble) = sounds G3 concert; written D(treble) = sounds D3
+% Written d(treble) = sounds D4; written g = sounds G4
+%
+[V:1] A | B e A d | G A/G/ F A | B ^c d G | F E D
+[V:2] F | G c F B | E E/D/ C F | G E B E | D C D
+[V:3] D | D G D G | C B, C D | D C B D | A A A
+[V:4] D | G E D D | A G, A, B, | G, A, G, B, | F, G, F,
+[V:5] d | d B d d | B A A A | G A B G | A G F
+[V:6] A | G G B G | G F G F | E F G E | F E D
+[V:7] D | G, C, D, G, | C, A,, D, D, | G, C, G, G, | D, A,, D,
+[V:8] F, | G, E, F, D, | E, A,, D, F, | G, E, F, G, | A, A,, D,
+%
+% ============================================================
+% SECTION 3 (pickup + bars 9–12)
+% Texture: Full 8, homophonic; building to climax
+% ============================================================
+%
+[V:1] D | A A F E/D/ | G A B B | d d c/B/ A/G/ | c d e
+[V:2] D | F E D C | E F G G | B B A E | G G G
+[V:3] B, | D C A, B, | C D D D | G G E C | E F G
+[V:4] G, | A, G, F, E, | G, B, G, B, | D D C A, | C B, C
+[V:5] g | f e d c | e d d d | f f e d | e f g
+[V:6] d | d B A A | B B G B | B B A B | A B c
+[V:7] G, | D, C, D, A,, | C, D, G, G, | G, G, A, B, | A, B, C,
+[V:8] G, | F, E, D, =C, | B,, D, G, G, | F, D, G, =F, | E, G, C,
+%
+% ============================================================
+% SECTION 4 (pickup + bars 13–15)
+% Texture: Call and response — S1/B1 as outer duo, inner voices sustained
+% ============================================================
+%
+[V:1] d | e d/c/ d G | c B/A/ B G | A G F
+[V:2] B | B A B E | G G G E | F E D
+[V:3] G | G G G D | E D D D | C D C
+[V:4] D | E D D B, | C B, G, B, | A, B, A,
+[V:5] g | g f g e | e d d e | d d c
+[V:6] G | E D E C | C C B, C | B, B, A,
+[V:7] G, | C B, G, G, | A, G, G, C, | D, D, A,,
+[V:8] G, | C A, B, E, | A, D, G, B, | C B, A,
+%
+% ============================================================
+% SECTION 5 (pickup + bars 16–18, final)
+% Texture: Full 8; stretto entries; climax bar 17; final cadence
+% ============================================================
+%
+[V:1]  G | c B !fermata!A !sintro!d | e d F G/A/ | B A/G/ !fermata!G !eintro!|]
+[V:2] E | G G F B | c B D E | D C B, |]
+[V:3] D | E D D G | G G D C | B, A, G, |]
+[V:4] B, | C B, A, D | E D B, A, | G, F, G, |]
+[V:5] d | e d d d | c d a g | g f g |]
+[V:6] B | C B, B, B, | A, B, F G | D D D |]
+[V:7] G, | A, G, D, G, | C, G, A, C, | G, D, G,, |]
+[V:8] G, | F, G, D, B,, | C, B,,/C,/ D, E, | D, D, G,, |]

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Break Forth, O Beauteous Heavenly Light — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }
+p.legend { font-size: 12px; color: #555; }</style>
+</head><body>
+<h1>Break Forth, O Beauteous Heavenly Light</h1>
+<p class="legend">Above melody: Abstract / RH voicing / LH voicing.
+RH = upper notes, LH = lower notes (no hand crossing).</p>
+<div id="music"></div>
+<script src="../../abc2stripchart/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 1\nT: Break Forth, O Beauteous Heavenly Light\nM: 4/4\nL: 1/4\nQ: 1/4=84\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: E\n[V: M] \"^I\"E | \"^V+6\"F G A G | \"^V\u00b9\"\"^G\u00b9\"F E D E | \"^I\"E2 z2 | \"^V+6\"E | \"^IV\u0394\u00b9\"F G A G | \"^IV\u0394\u00b9\"\"^F\u0394\u00b9-5\"F E D E | \"^I\u00b9\"\"^C\u00b9\"E2 z2 | \"^iii\"\"^Em\"B | \"^vii\u00b0\u00b9\"\"^B\u00b0\u00b9\"c B A G | \"^IV\"\"^F\"A B c B | \"^I\u00b9\"\"^C\u00b9\"A G2 z | \"^ii-5+9\"B | \"^I-5+9\"c B A G | \"^vi\"\"^Am\"F E D E | E4 |]\n[V: RH] [B,E] | [DF] [EG] [FA] [EG] | [DF] [CE] [B,D] [CE] | [B,E]2 z2 | [DF] | [EG] [FA] [EG] [Fdf] | [Ece] [DBd] [EBd] [EBe]2 | [GB] z2 | [GB] | [FA] [EG] [FA] [GB] | [Ac] [GB] [FA] [EG]2 | [GB] [Ac] z | [GA] | [FG] [Fdf] [Ece] [DBd] | [Ece] [EBe]4 D E | E4 |]\n[V: LH] [E,,E,G,] | [B,,G,B,] [C,A,C] [D,B,D] [C,A,C] | [D,F,B,] [C,E,A,] [B,,F,G,] [C,E,A,] | [E,G,]2 z2 | [B,,G,B,] | [C,A,C] [D,B,D] [C,A,C] [D,F,B,D] | [C,G,A,C] [B,,F,G,B,] [B,,E,G,B,] [E,G,B,]2 | [G,B,E] z2 | [G,B,D] | [F,A,D] [E,G,C] [F,A,C] [G,B,D] | [A,CE] [G,B,D] [D,B,D] [B,,A,C]2 | [G,B,E] [A,CE] z | [F,A,F] | [E,G,E] [D,F,A,D] [C,E,G,C] [B,,D,F,B,] | [C,E,G,C] [E,G,B,]4 D E | E4 |]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ""; }
+};
+var abc = new abc2svg.Abc(user);
+abc.tosvg("score", abc_src);
+</script></body></html>

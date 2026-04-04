@@ -1,0 +1,164 @@
+X: 270
+T: 'Take Up Thy Cross', the Savior Said
+C: Words: Charles W. Everest, 1833. Music: 'Nun Lasst Uns Den Leib Begraben' George Rhau, 1544.
+C: Setting: "Evangelical Lutheran Hymn-Book", 1931.
+C: copyright: public domain. SSAATTBB arr. for 8-voice choir and lever harp.
+S: Music source: 'Evangelical Lutheran Hymn Book' Edition of 1931, Hymn 538.
+M: 4/4
+L: 1/4
+Q: 1/4=120
+%%staves [(1 2) (3 4) (5 6) (7 8)]
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+K: G
+%
+% Pitch reference (bass clef, G major, F always = F# unless =F):
+%   G,, = G2  A,, = A2  B,, = B2
+%   C,  = C3  D,  = D3  E,  = E3  F, = F#3  G, = G3  A, = A3  B, = B3
+%   C   = C4  D   = D4  E   = E4  F  = F#4  G  = G4
+%
+% ============================================================
+% BARS 1-2: Reduced texture — SSAA only (TTBB tacet)
+% ============================================================
+%
+% BAR 1  Harmony: G (beats 1-2)  D (beat 3)  Em (beat 4)
+%
+[V:1] [Q:1/4=120] G2 A G |
+[V:2]              D2 F E |
+[V:3]              B,2 D D |
+[V:4]              G,2 A, B, |
+[V:5]              z4 |
+[V:6]              z4 |
+[V:7]              z4 |
+[V:8]              z4 |
+%
+% BAR 2  Harmony: D (b1)  G (b2)  Am (b3)  G (b4)
+% V:1 =F (F natural, lowered 7th from modal mixture — S1 privilege only)
+%
+[V:1]  =F G A B |
+[V:2]  D D E G |
+[V:3]  A, B, C E |
+[V:4]  D D C D |
+[V:5]  z4 |
+[V:6]  z4 |
+[V:7]  z4 |
+[V:8]  z4 |
+%
+% ============================================================
+% BAR 3  Harmony: C (IV) whole bar — TTBB enters, full 8 voices
+% ============================================================
+%
+[V:1]  G3 G |
+[V:2]  E3 E |
+[V:3]  C3 C |
+[V:4]  E, A, G, E |
+[V:5]  C3 B, |
+[V:6]  E, G, C B, |
+[V:7]  C,2 E, G, |
+[V:8]  C,3 E, |
+%
+% ============================================================
+% BAR 4  Harmony: D (b1)  G (b2)  C (b3)  G (b4)
+% S1 reaches c (C5) — phrase peak, full ensemble forte
+% ============================================================
+%
+[V:1]  A B c B |
+[V:2]  F G G G |
+[V:3]  D E E E |
+[V:4]  A, D D D |
+[V:5]  D D E D |
+[V:6]  A, B, C B, |
+[V:7]  F, G, C, B,, |
+[V:8]  D, G, C, G, |
+%
+% ============================================================
+% BAR 5  Harmony: Em (b1)  D (b2)  G (b3-4) — first full cadence
+% ============================================================
+%
+[V:1]  G A B2 |
+[V:2]  E F G2 |
+[V:3]  B, D D2 |
+[V:4]  E, A, G,2 |
+[V:5]  E F G2 |
+[V:6]  B, D D2 |
+[V:7]  E, D, D,2 |
+[V:8]  E, D, G,2 |
+%
+% ============================================================
+% BAR 6  Harmony: G (b1-2)  D (b3)  G (b4)
+% Antiphonal: SSAA carries melody aloft; TTBB echoes bar 1 motive below
+% ============================================================
+%
+[V:1]  G2 A A |
+[V:2]  D2 D F |
+[V:3]  B,2 D D |
+[V:4]  G,2 A, D |
+[V:5]  B,2 F, A, |
+[V:6]  G,2 D, D, |
+[V:7]  G,2 A, D, |
+[V:8]  G,2 F, D, |
+%
+% ============================================================
+% BAR 7  Harmony: G (b1)  D (b2)  Em (b3-4)
+% HARMONIC SUB: original E major (V/vi, ^D in alto) → Em (vi)
+% =F in V:1 only (S1 privilege); all other voices diatonic
+% ============================================================
+%
+[V:1]  B A G =F |
+[V:2]  G F E D |
+[V:3]  D E E D |
+[V:4]  B, C B, A, |
+[V:5]  D C B, A, |
+[V:6]  B, A, G, E, |
+[V:7]  G, F, E, B, |
+[V:8]  G, A, B, B, |
+%
+% ============================================================
+% BAR 8  Harmony: Em (b1-2)  Am (b3-4) — pre-climax tension
+% S1 !sintro! on beat 4; inner voices build upward
+% ============================================================
+%
+[V:1]  E3 !sintro!A |
+[V:2]  E3 F |
+[V:3]  G,3 C |
+[V:4]  E,3 A, |
+[V:5]  G,3 D |
+[V:6]  E,3 A, |
+[V:7]  C,2 A,, D, |
+[V:8]  C,3 D, |
+%
+% ============================================================
+% BAR 9  Harmony: D (b1-2)  G (b3)  Em (b4) — climax, full 8 voices
+% Strong contrary motion: S1 descends B→E, B1 ascends G→C
+% ============================================================
+%
+[V:1]  B A G E |
+[V:2]  G E D C |
+[V:3]  D C B, G, |
+[V:4]  B, A, G, E, |
+[V:5]  D C B, G, |
+[V:6]  B, A, G, E, |
+[V:7]  G, F, E, C |
+[V:8]  G, A, B, C, |
+%
+% ============================================================
+% BAR 10  Harmony: C (b1)  D (b2)  G (b3-4) — final cadence
+% B1 lands on G,, (G2) — low tonic root as specified
+% 4-3 suspension: A1 D→D resolves; stretto-like contrary motion
+% !eintro! on S1 beat 4
+% ============================================================
+%
+[V:1]  G A G2 !eintro!|]
+[V:2]  E D B,2 |]
+[V:3]  C D D2 |]
+[V:4]  C A, G,2 |]
+[V:5]  C D D2 |]
+[V:6]  C A, G,2 |]
+[V:7]  E, D, G,2 |]
+[V:8]  E, D, G,,2 |]

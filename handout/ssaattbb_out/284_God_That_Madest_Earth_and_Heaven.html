@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>God, That Madest Earth and Heaven — SSAATTBB</title>
+<style>
+body { font-family: sans-serif; margin: 20px; background: #fff; }
+h1 { font-size: 18px; }
+</style>
+</head>
+<body>
+<h1>God, That Madest Earth and Heaven — SSAATTBB</h1>
+<div id="music"></div>
+<script src="../../abc2stripchart/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 284\nT: God, That Madest Earth and Heaven\nT: SSAATTBB arrangement\nC: Words: verse 1, Reginald Heber, 1827. verse 2, William Mercer, 1864. verse 3, Richard Whately, 1838.\nC: Music: 'Ar Hyd Y Nos' traditional Welsh. Setting: \"The English Hymnal\", 1906.\nC: SSAATTBB arrangement by arranger, 2024. Original: public domain.\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%staves [(1 2) (3 4) (5 6) (7 8)]\nV:1 name=\"Soprano I\"   clef=treble\nV:2 name=\"Soprano II\"  clef=treble\nV:3 name=\"Alto I\"      clef=treble\nV:4 name=\"Alto II\"     clef=treble\nV:5 name=\"Tenor I\"     clef=treble middle=B3 transpose=-12\nV:6 name=\"Tenor II\"    clef=treble middle=B3 transpose=-12\nV:7 name=\"Baritone\"    clef=bass\nV:8 name=\"Bass I\"      clef=bass\nK: G\n%\n% --- Phrase 1 (bars 1-4): S1 + TTBB only (5 voices) ---\n%\n[V:1] G3/2 F/ E G | A3/2 G/ F D | E2 F3/2 F/ | G4 |\n[V:2] z4           | z4            | z4           | z4  |\n[V:3] z4           | z4            | z4           | z4  |\n[V:4] z4           | z4            | z4           | z4  |\n[V:5] G G G G | c3/2 B/ A d | (d c) B A | G4 |\n[V:6] D D E D | A3/2 G/ F B | (B A) G F | D4 |\n[V:7] B,, D, E, D, | C, E, F, D, | E,2 F,3/2 F,/ | B,,4 |\n[V:8] G,, B,, C, B,, | A,, C, D, B,, | C,2 D,3/2 D,/ | G,,4 |\n%\n% --- Phrase 2 (bars 5-8): All 8 voices enter ---\n%\n[V:1] G3/2 F/ E G | A3/2 G/ F D | E2 F3/2 F/ | G4 |\n[V:2] E3/2 D/ C E | F3/2 E/ D B, | C2 D3/2 D/ | E4 |\n[V:3] D E D B, | C D C A, | B,2 A, G, | G,4 |\n[V:4] B, A, B, G, | A, G, A, F, | G,2 F, E, | E,4 |\n[V:5] G G G G | c3/2 B/ A d | (d c) B A | G4 |\n[V:6] D D E D | A3/2 G/ F B | (B A) G F | D4 |\n[V:7] B,, D, E, D, | C, E, F, D, | E,2 F,3/2 F,/ | B,,4 |\n[V:8] G,, B,, C, B,, | A,, C, D, B,, | C,2 D,3/2 D,/ | G,,4 |\n%\n% --- Phrase 3 (bars 9-12): Contrasting, full 8 voices ---\n%\n[V:1] c B c d | e d c B | c B A G | B3/2 A/ G F |\n[V:2] A G A B | c B A G | A G F E | G3/2 F/ E D |\n[V:3] E F E D | E D C B, | A, B, C B, | D3/2 C/ B, A, |\n[V:4] C D C B, | A, B, G, G, | F, G, A, G, | B,3/2 A,/ G, F, |\n[V:5] G G A B | c A G B | A d c B | c3/2 B/ A G |\n[V:6] E E F G | A F E G | F B A G | A3/2 G/ F E |\n[V:7] G,, B,, G,, D, | E, F, G, B, | C, D, E, G, | C,3/2 E,/ F, F, |\n[V:8] E,, G,, E,, B,, | C, D, E, G, | A,, B,, C, E, | A,,3/2 C,/ D, D, |\n%\n% --- Phrase 4 (bars 13-16): Return, full 8 voices, climax and cadence ---\n%\n[V:1] G3/2 F/ E G | A3/2 G/ F D | E2 F3/2 F/ | G4 |]\n[V:2] E3/2 D/ C E | F3/2 E/ D B, | C2 D3/2 D/ | B,4 |]\n[V:3] B,3/2 A,/ G, B, | C B, A, F, | G,2 A, G, | G,4 |]\n[V:4] G,3/2 F,/ E, G, | A, G, F, D, | E,2 F, E, | E,4 |]\n[V:5] G3/2 G/ G G | c3/2 B/ A d | (d c) B A | G4 |]\n[V:6] E3/2 D/ D D | A3/2 G/ F B | (A G) G F | D4 |]\n[V:7] D,3/2 D,/ E, D, | C, E, F, D, | E,2 F,3/2 F,/ | B,,4 |]\n[V:8] B,,3/2 B,,/ C, B,, | A,, C, D, B,, | C,2 D,3/2 D,/ | G,,4 |]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ""; }
+};
+var abc = new abc2svg.Abc(user);
+abc.tosvg("score", abc_src);
+</script>
+</body>
+</html>

@@ -1,0 +1,172 @@
+X: 207
+T: O That The Lord Would Guide My Ways
+T: (SSAATTBB arrangement in G major)
+C: Words: Isaac Watts, 1719, alt.
+C: Music: 'Evan' / 'Eva', William H. Havergal, 1847. Setting: Lowell Mason, 1850.
+C: Arr. for SSAATTBB + lever harp. Transposed Ab major → G major (down 1 semitone).
+C: Harp: Eb storage tuning, levers raised on all 7 strings for G major.
+C: copyright: public domain.
+M: 3/2
+L: 1/4
+Q: 1/4=130
+%%staves [(1 2) (3 4) (5 6) (7 8)]
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+K: G
+%
+% ═══════════════════════════════════════════════════
+% PICKUP (2 beats) — SSAA only; TTBB tacet
+% Harmony: I (G major). Voices enter quietly.
+% Concert: S1=D4  S2=B3  A1=G4  A2=D3
+% ═══════════════════════════════════════════════════
+[V:1] D2              |
+[V:2] B,2             |
+[V:3] G2              |
+[V:4] D,2             |
+[V:5] z2              |
+[V:6] z2              |
+[V:7] z2              |
+[V:8] z2              |
+%
+% ═══════════════════════════════════════════════════
+% BAR 1 — I (beats 1–4), V (beats 5–6)
+% Full 8 voices enter. Homophony.
+% Concert: S1 D4 G4 B4 B4 A4 A4  |  S2 B3 E4 G4 G4 F#4 F#4
+%          A1 A3 A3 E4 E4 E4 E4  |  A2 G3 G3 A3 A3 A3  A3
+%          T1 G3 A3 B3 B3 B3 B3  |  T2 D3 E3 F#3 F#3 A3 A3
+%         Bar B2 B2 D3 D3 F#3 F#3 | B1 G2 G2 G2 G2 D3 D3
+% ═══════════════════════════════════════════════════
+[V:1] D G B2 A2       |
+[V:2] B, E G2 F2      |
+[V:3] A,2 E4          |
+[V:4] G,2 A,4         |
+[V:5] G A B4          |
+[V:6] D E F2 A2       |
+[V:7] B,,2 D,2 F,2    |
+[V:8] G,,4 D,2        |
+%
+% ═══════════════════════════════════════════════════
+% BAR 2 — vi (beats 1–2), IV (beats 3–4), I (beats 5–6)
+% Concert: S1 G4 E4 D4 D4 D4 D4  |  S2 E4 C4 B3 B3 B3 B3
+%          A1 B3 G3 A3 A3 A3 A3  |  A2 G3 F#3 F#3 F#3 G3 G3
+%          T1 B3 B3 A3 A3 D3 D3  |  T2 A3 A3 F#3 F#3 C3 C3
+%         Bar G3 G3 E3 E3 B2 B2  | B1 E3 E3 C3 C3 G2 G2
+% ═══════════════════════════════════════════════════
+[V:1] G E D4          |
+[V:2] E C B,4         |
+[V:3] B, G, A,4       |
+[V:4] G, F,3 G,2      |
+[V:5] B2 A2 D2        |
+[V:6] A2 F2 D2        |
+[V:7] G,2 E,2 B,,2    |
+[V:8] E,2 C,2 G,,2    |
+%
+% ═══════════════════════════════════════════════════
+% BAR 3 — I throughout (bass rises to inner G)
+% Antiphonal texture: SSAA beats 1–3, TTBB echoes b4–6
+% Concert: S1 D4 G4 B4 B4 G4 G4  |  S2 B3 E4 G4 G4 E4 E4
+%          A1 A3 G3 A3 A3 G3 G3  |  A2 G3 F#3 E3 E3 E3 E3
+%          T1 B3 D4 D4 B3 A3 A3  |  T2 D3 C4 A3 A3 A3 A3
+%         Bar B2 B3 G3 G3 G3 G3  | B1 G2 G3 E3 E3 E3 E3
+% ═══════════════════════════════════════════════════
+[V:1] D G B2 G2       |
+[V:2] B, E G2 E2      |
+[V:3] A, G, A,2 G,2   |
+[V:4] G, F, E,4       |
+[V:5] B d2 B A2       |
+[V:6] D c A4          |
+[V:7] B,, B, G,4      |
+[V:8] G,, G, E,4      |
+%
+% ═══════════════════════════════════════════════════
+% BAR 4 — V (D major) — half cadence
+% Beats 1–4: sustained V chord with 4–3 suspensions.
+% Beats 5–6: pickup into phrase 2 (V7 color, D–F#–A–C).
+% This bar completes the 6-beat measure: 4 beats cadence + 2 beats pickup.
+% Concert beats 1–4: S1=A4  S2=F#4  A1=D4  A2=A3  T1=B3  T2=G3  Bar=D3  B1=D3
+% Concert beats 5–6: S1=C5  S2=A4   A1=F#4 A2=D4  T1=A3  T2=F#3 Bar=E3  B1=D3
+% S2 suspension: F#4(4) → A4(2); A1 suspension: D4(4) → F#4(2)
+% T2 suspension: G3(4) → F#3(2); Bar+B1 root unison at cadence (beats 1–4)
+% Bar rises by step to E3 on beats 5–6, then leaps a P5 to B3 on bar 5 beat 1.
+% ═══════════════════════════════════════════════════
+[V:1] A4 c2           |
+[V:2] F4 A2           |
+[V:3] D4 F2           |
+[V:4] A,4 D2          |
+[V:5] B4 A2           |
+[V:6] G6              |
+[V:7] D,4 E,2         |
+[V:8] D,6             |
+%
+% ═══════════════════════════════════════════════════
+% BAR 5 — I (1–2), V (3–4), vi (5–6)
+% Full 8 voices. Inner voices have gentle passing motion.
+% Concert: S1 B4 A4 G4 G4 A4 A4  |  S2 G4 F#4 E4 E4 F#4 F#4
+%          A1 D4 D4 B3 B3 D4 D4  |  A2 G3 E3 G3 G3 G3 G3
+%          T1 D4 D4 D4 D4 C4 C4  |  T2 C4 G3 A3 A3 G3 G3
+%         Bar B3 F#3 G3 G3 F#3 F#3 | B1 G3 D3 E3 E3 D3 D3
+% ═══════════════════════════════════════════════════
+[V:1] B A G2 A2       |
+[V:2] G F E2 F2       |
+[V:3] D2 B,2 D2       |
+[V:4] G, E, G,4       |
+[V:5] d4 c2           |
+[V:6] c G A2 G2       |
+[V:7] B, F, G,2 F,2   |
+[V:8] G, D, E,2 D,2   |
+%
+% ═══════════════════════════════════════════════════
+% BAR 6 — I (1–2), IV (3–4), V (5–6)
+% Full 8 voices. A1 and T2 provide passing tone interest.
+% Concert: S1 B4 G4 E4 E4 D4 D4  |  S2 G4 E4 C4 C4 B3 B3
+%          A1 D4 B3 B3 B3 G3 G3  |  A2 G3 F#3 E3 E3 E3 E3
+%          T1 D4 C4 G3 A3 A3 A3  |  T2 C4 E3 F#3 F#3 G3 G3
+%         Bar B3 D3 E3 E3 F#3 F#3 | B1 G3 B2 C3 C3 D3 D3
+% ═══════════════════════════════════════════════════
+[V:1] B G E2 D2       |
+[V:2] G E C2 B,2      |
+[V:3] D B,3 G,2       |
+[V:4] G, F, E,4       |
+[V:5] d c G A3        |
+[V:6] c E F2 G2       |
+[V:7] B, D, E,2 F,2   |
+[V:8] G, B,, C,2 D,2  |
+%
+% ═══════════════════════════════════════════════════
+% BAR 7 — I (1–2), vi (3–4), V (5–6) — climax approach
+% S1 reaches B4; A1 and A2 rise in contrary motion.
+% T1 sustains B3 across the bar for richness.
+% Concert: S1 D4 G4 B4 B4 A4 A4  |  S2 B3 E4 G4 G4 F#4 F#4
+%          A1 A3 D4 E4 E4 E4 E4  |  A2 G3 B3 D4 D4 C4 C4
+%          T1 E3 B3 B3 B3 B3 B3  |  T2 C3 A3 G3 G3 G3 G3
+%         Bar B2 G3 F#3 F#3 F#3 F#3 | B1 G2 E3 D3 D3 D3 D3
+% ═══════════════════════════════════════════════════
+[V:1] D G B2 A2       |
+[V:2] B, E G2 F2      |
+[V:3] A, D E4         |
+[V:4] G, B, D2 C2     |
+[V:5] E B5            |
+[V:6] C A G4          |
+[V:7] B,, G, F,4      |
+[V:8] G,, E, D,4      |
+%
+% ═══════════════════════════════════════════════════
+% BAR 8 — I (final cadence, full 8 voices, held chord)
+% Open G major chord, full ensemble spread.
+% Concert: S1=G4  S2=E4  A1=D4  A2=B3
+%          T1=G3  T2=D3  Bar=B2  B1=G2
+% ═══════════════════════════════════════════════════
+[V:1] G6              |]
+[V:2] E6              |]
+[V:3] D6              |]
+[V:4] B,6             |]
+[V:5] G6              |]
+[V:6] D6              |]
+[V:7] B,,6            |]
+[V:8] G,,6            |]

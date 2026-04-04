@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Joyful, Joyful, We Adore Thee — SSAATTBB</title>
+<style>
+body { font-family: sans-serif; margin: 20px; background: #fff; }
+h1 { font-size: 18px; }
+</style>
+</head>
+<body>
+<h1>Joyful, Joyful, We Adore Thee — SSAATTBB</h1>
+<div id="music"></div>
+<script src="../../abc2stripchart/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 230\nT: Joyful, Joyful, We Adore Thee\nT: SSAATTBB arrangement\nC: Words: Henry J. van Dyke, 1907.\nC: Music: 'Ode to Joy' Ludwig van Beethoven; adapted by Edward Hodges, 1824.\nC: Setting: \"The Methodist Hymnal\", 1905.\nC: SSAATTBB arrangement for double choir and lever harp.\nC: copyright: public domain.\nM: 4/4\nL: 1/4\nQ: 1/4=115\nK: G\n%%staves [(1 2) (3 4) (5 6) (7 8)]\nV:1 name=\"Soprano I\"  clef=treble\nV:2 name=\"Soprano II\" clef=treble\nV:3 name=\"Alto I\"     clef=treble\nV:4 name=\"Alto II\"    clef=treble\nV:5 name=\"Tenor I\"    clef=treble middle=B3 transpose=-12\nV:6 name=\"Tenor II\"   clef=treble middle=B3 transpose=-12\nV:7 name=\"Baritone\"   clef=bass\nV:8 name=\"Bass I\"     clef=bass\n%\n% --- PHRASE 1 (bars 1-4): Reduced opening \u2014 S1, T1, T2, Bar, B1 ---\n% S2, A1, A2 enter at bar 3\n%\n[V:1] B B c d | d c B A | G G A B | B3/2 A/ A2 |\n[V:2] z4       | z4       | E D F G | G3/2 F/ F2 |\n[V:3] z4       | z4       | D D D D | D3/2 D/ D2 |\n[V:4] z4       | z4       | B, C D B,| B,3/2 B,/ B,2|\n[V:5] G G A B  | B A G F  | G B c d  | D3/2 D/ D2 |\n[V:6] D E D G  | G F D D  | E G A B  | B,3/2 B,/ B,2|\n[V:7] B, B, C D | D C B, A, | D D E D  | A,3/2 A,/ A,2|\n[V:8] G, G, G, G,| D, D, D, C,| B,, B,, A,, G,,| D,3/2 D,/ D,2|\n%\n% --- PHRASE 2 (bars 5-8): Full 8 voices ---\n%\n[V:1] B B c d    | d c B A    | G G A B    | A3/2 G/ G2 |\n[V:2] G G A B    | B A G F    | E D F G    | F3/2 E/ E2 |\n[V:3] D D E F    | F E D E    | D D D D    | D3/2 D/ D2 |\n[V:4] B, A, G, E | D D B, C   | B, C D B,  | A,3/2 B,/ B,2|\n[V:5] D D C B    | G A B c    | B B c d    | c3/2 B/ B2 |\n[V:6] B, B, A, G | E F G A    | G G A B    | A3/2 G/ G2 |\n[V:7] B, B, B, D | E F G E    | D D C B,   | E,3/2 D,/ D,2|\n[V:8] G, G, G, G,| C, C, C, C,| D, D, D, D,| D,3/2 G,/ G,2|\n%\n% --- PHRASE 3 (bars 9-12): Antiphonal \u2014 SSAA leads, TTBB responds ---\n%\n[V:1] A A B G    | A B/c/ B G  | A B/c/ B A  | G A D2    |\n[V:2] F F G E    | F G/A/ G E  | F G/A/ G F  | E F D2    |\n[V:3] D D D D    | D E D D     | D D D D     | D D D2    |\n[V:4] A, B, B, B,| A, B, B, B, | A, B, B, A, | B, A, B,2 |\n[V:5] D F G B    | c B/A/ G B  | c B/A/ B B  | B A/G/ F2 |\n[V:6] B, D E G   | A G/F/ E G  | A G/F/ G G  | G F/E/ D2 |\n[V:7] A, A, B, G,| A, B,/c/ B, G,| A, B,/c/ B, B,| G, A, D,2|\n[V:8] D, D, D, D,| D, D, D, D,| D, D, D, B,,| E, A,, D,2|\n%\n% --- PHRASE 4 (bars 13-16): Full 8, climax, final cadence with suspension ---\n%\n[V:1] B B c d    | d c B A    | !sintro!G G A B| A3/2 G/ G2 !eintro!|]\n[V:2] G G A B    | B A G F    | E D F G    | F3/2 E/ E2 |]\n[V:3] D D E F    | F E D E    | D D D D    | D3/2 D/ D2 |]\n[V:4] B, A, G, D | D D B, C   | B, C D B,  | B,3/2 B,/ B,2|]\n[V:5] G D C B    | G A B c    | B B c d    | c3/2 B/ B2 |]\n[V:6] E B, A, G  | E F G A    | G G A B    | A3/2 G/ G2 |]\n[V:7] B, B, A, G,| E, F, G, E,| D, D, C, D,| F,3/2 G,/ G,2|]\n[V:8] G, G, G, G,| C, C, C, C,| D, D, D, D,| D,3/2 G,/ G,2|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ""; }
+};
+var abc = new abc2svg.Abc(user);
+abc.tosvg("score", abc_src);
+</script>
+</body>
+</html>

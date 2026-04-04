@@ -1,0 +1,73 @@
+X: 44
+T: Now Praise We Christ, the Holy One
+T: (also known as Jesus We Now Must Laud and Sing or From East to West)
+C: Words: Coelius Sedulius, circa 450. Translated to German by Martin Luther, 1524.
+C: Translated from German to English by Richard Massie, 1854, alt.
+C: Music: 'Christum Wir Sollen Loben Schon' ancient Latin found in Erfurt Enchiridion, 1524.
+C: Setting: Michael Praetorius, 1609.
+C: SSAATTBB arrangement for professional 8-voice ensemble with lever harp.
+C: copyright: public domain.
+M: 4/4
+L: 1/4
+Q: 1/4=130
+%%staves [(1 2) (3 4) (5 6) (7 8)]
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+K: C
+%
+% Texture key:
+%   Bars 1-2  : SSAA choir (TTBB rests) — lighter opening
+%   Bar  3    : Full 8-voice enters together
+%   Bars 4-5  : Full 8-voice homophony
+%   Bar  6    : Antiphonal — TTBB leads beat 1, SSAA joins beat 2
+%   Bar  7    : Full 8-voice
+%   Bar  8    : Call-and-response — outer voices S1+B1 with inner harmony
+%   Bar  9    : Full 8-voice, climax approach
+%   Bar  10   : Full 8-voice, cadential suspensions
+%   Bar  11   : Full 8-voice, final Em chord
+%
+% ─────────────────────────────────────────────────────────────
+%  BARS 1–5
+% ─────────────────────────────────────────────────────────────
+%
+% V:1  S1  — original soprano; ^G in bar 7 is the only chromatic note in the piece
+% V:2  S2  — diatonic 3rd below S1 (or 6th where 3rd falls below A3)
+% V:3  A1  — independent melodic alto, diatonic
+% V:4  A2  — contrary-motion alto, diatonic; range D3–B4
+% V:5  T1  — written one octave above sounding (8vb treble, transpose=-12)
+% V:6  T2  — written one octave above sounding
+% V:7  Bar — baritone in bass clef, concert pitch; range E2–C4
+% V:8  B1  — bass in bass clef, concert pitch; range C2–A3 (C4 at extremity)
+%
+[V:1] [Q:1/4=130] D2 F G       | A D G F       | E2 z G        | A c c B       | A B c2        |
+[V:2]             B,2 D E      | F B, E D      | C2 z E        | F A A G       | F G A2        |
+[V:3]             A,2 D C      | D C B, A      | A,2 z B,      | D E E D       | D D E2        |
+[V:4]             F,2 B, A,    | B, A, G, F,   | F,2 z G,      | F, G, E, D,   | D, D, E,2     |
+[V:5]             z4           | z4            | E2 z B        | D E E D       | A D E2        |
+[V:6]             z4           | z4            | A,2 z G,      | B, A, C B,    | G, B, E2      |
+[V:7]             z4           | z4            | C2 z A,       | F, C G, B,    | F, B, G,2     |
+[V:8]             z4           | z4            | A,2 z E,      | D, A,, C G,   | D, G, C,2     |
+%
+% ─────────────────────────────────────────────────────────────
+%  BARS 6–11
+% ─────────────────────────────────────────────────────────────
+%
+% Bar 6: antiphonal — TTBB choir enters on beat 1 (S has rest), SSAA joins beat 2
+% Bar 7: ^G in S1 beat 4 is the leading tone to Am; all other voices hold E (Em color)
+% Bar 10: tenor diatonic substitution — original ^G3/^F3 replaced with G3/F3
+% Bar 11: final Em chord; B1 on E2 (low root), Bar on B3, T2 on G3, T1 on B3
+%
+[V:1] z G A c      | c B A ^G      | A2 z D        | A A c A       | (G/A/ F) E2   | E4            |]
+[V:2] z E F A      | A G F E       | E2 z B,       | F F A F       | (E/F/ D) C2   | C4            |]
+[V:3] z C D F      | E D C B,      | C2 z E        | C E D C       | D C B, A,     | G4            |]
+[V:4] z A, A, D    | A, G, F, E,   | A,2 z G,      | A, B, G, F,   | B, A, G, F,   | B,4           |]
+[V:5] z C E A      | E D E B,      | E2 z D        | C F E A,      | (B/c/ A2) G/F/ | B4           |]
+[V:6] z A, A, A,   | B, B, A, G,   | A,2 z B,      | A, B, G, G,   | (G,/A,/ F2) E/D/ | G4        |]
+[V:7] z E, C D,    | G, B, C G,    | C2 z B,       | A, A, G, A,   | (G,/E,/ F,) G,2 | C4         |]
+[V:8] z C A, F,    | C, G, A, E,   | A,2 z G,      | F, D, C, F,   | (E,/C,/ D,) E,2 | E,,4       |]

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Not Worthy, Lord, to Gather Up the Crumbs — SSAATTBB</title>
+<style>
+body { font-family: sans-serif; margin: 20px; background: #fff; }
+h1 { font-size: 18px; }
+</style>
+</head>
+<body>
+<h1>Not Worthy, Lord, to Gather Up the Crumbs — SSAATTBB</h1>
+<div id="music"></div>
+<script src="../../abc2stripchart/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X:206\nT:Not Worthy, Lord, to Gather Up the Crumbs\nT:(SSAATTBB arrangement)\nC:Words: Edward Henry Bickersteth, 1872. Music: 'Eventide' William H. Monk, 1861.\nC:SSAATTBB arrangement for double choir and lever harp\nC:copyright: public domain. Open Hymnal Project, 2012 Revision.\nM:4/4\nL:1/4\nQ:1/4=100\n%%staves [(1 2) (3 4) (5 6) (7 8)]\nV:1 name=\"Soprano I\"  clef=treble\nV:2 name=\"Soprano II\" clef=treble\nV:3 name=\"Alto I\"     clef=treble\nV:4 name=\"Alto II\"    clef=treble\nV:5 name=\"Tenor I\"    clef=treble middle=B3 transpose=-12\nV:6 name=\"Tenor II\"   clef=treble middle=B3 transpose=-12\nV:7 name=\"Baritone\"   clef=bass\nV:8 name=\"Bass I\"     clef=bass\nK:Eb\n%\n% Bars 1-4: SSAA choir and bass pair open; Tenor pair enters bar 5.\n% Bars 5-8: Full 8 voices; antiphonal SSAA vs TTBB in bars 5-6.\n% Bars 9-12: Call and response: S1/B1 outer frame, inner voices harmonic.\n% Bars 13-16: Full 8-voice homophony; climax bar 14; stretto cadence bar 15-16.\n%\n%\n% \u2500\u2500\u2500 SOPRANO I \u2500\u2500\u2500 (original soprano; accidentals freely permitted)\n[V:1]\n G2 G F | E2 B2 | c B B A | G4 |\n G2 A B | c2 B2 | A F G =A | B4 |\n G2 G F | E2 B2 | B A A G | F4 |\n F2 G A | G F E A | G2 F2 | E4 |]\n%\n% \u2500\u2500\u2500 SOPRANO II \u2500\u2500\u2500 (diatonic only; 3rd or 6th below S1; no accidentals)\n[V:2]\n E2 E D | C2 G2 | A G G F | E4 |\n E2 F G | A2 G2 | F D E F | G4 |\n E2 E D | C2 G2 | G F F E | D4 |\n D2 E F | E D C F | E2 D2 | C4 |]\n%\n% \u2500\u2500\u2500 ALTO I \u2500\u2500\u2500 (independent diatonic melodic line; treble clef)\n[V:3]\n G2 G A | B2 B B | A B c B | G4 |\n E2 F G | A2 B A | G F G A | B4 |\n G2 G A | B2 B B | c B B A | A2 G A |\n B2 c B | A B c A | B2 A2 | G4 |]\n%\n% \u2500\u2500\u2500 ALTO II \u2500\u2500\u2500 (contrary motion to A1; diatonic; treble clef)\n[V:4]\n E2 E D | G2 G G | F E D E | E4 |\n C2 B, A, | F2 E F | E D E D | G4 |\n E2 E D | G2 G G | E F G G | F4 |\n G2 F E | F E D F | G2 F2 | E4 |]\n%\n% \u2500\u2500\u2500 TENOR I \u2500\u2500\u2500 (diatonic; 8vb treble; rests bars 1-4)\n[V:5]\n z4 | z4 | z4 | z4 |\n B2 A G | A2 G A | c B B E | F4 |\n G A B A | G2 e d | c c c B | A4 |\n B2 B B | B A G c | B3 A | G4 |]\n%\n% \u2500\u2500\u2500 TENOR II \u2500\u2500\u2500 (contrary motion to T1; diatonic; 8vb treble; rests bars 1-4)\n[V:6]\n z4 | z4 | z4 | z4 |\n G,2 G, A, | F,2 E, F, | A, B, G, B, | B,4 |\n E, F, G, F, | E,2 G, A, | A, G, A, B, | F,4 |\n G, A, G, F, | G, F, E, A, | G,2 F,2 | E,4 |]\n%\n% \u2500\u2500\u2500 BARITONE \u2500\u2500\u2500 (3rd to 6th above B1; diatonic; bass clef)\n[V:7]\n G,2 G, G, | E,2 B,,2 | C, D, E, F, | G,4 |\n G, F, E, D, | C,2 G,2 | A, F, G, E, | D,4 |\n G, A, G, G, | E,2 B,,2 | C, D, E, E, | A,4 |\n B,2 B, A, | G, D, E, C, | D,2 D,2 | G,4 |]\n%\n% \u2500\u2500\u2500 BASS I \u2500\u2500\u2500 (original bass voice; diatonic throughout)\n[V:8]\n E,2 B,, B,, | C,2 G,,2 | A,, B,, C, D, | E,4 |\n (E, D,) C, B,, | A,,2 E,2 | F, D, E, C, | B,,4 |\n E,2 B,, B,, | C,2 G,,2 | A,,3/2 B,,/ C, C, | F,4 |\n A,2 G, F, | E, B,, C, A,, | B,,2 B,,2 | E,4 |]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ""; }
+};
+var abc = new abc2svg.Abc(user);
+abc.tosvg("score", abc_src);
+</script>
+</body>
+</html>

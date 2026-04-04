@@ -1,0 +1,95 @@
+X:49
+T:Sing, O Sing, This Blessed Morn
+C:Words: Christopher Wordsworth, 1865. Music: William Henry Monk, 1865.
+C:SSAATTBB arr. for lever harp accompaniment, key C (no transposition).
+C:Original: public domain / Open Hymnal Project, 2011 Revision.
+M:4/4
+L:1/4
+Q:1/4=120
+K:C
+%%staves {(V1 V2) (V3 V4) (V5 V6) (V7 V8)}
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+
+%%MIDI program 52
+
+% ─────────────────────────────────────────────────────────────────────
+% PHRASE 1 (bars 1–4)
+% Harmony: I  |  IV – I  |  IV – vi  |  V7 – I
+% Texture: SSAA only bar 1 (4 voices); SSAA + Bar + B1 bar 2 (6 voices);
+%          full 8 from bar 3.
+% ─────────────────────────────────────────────────────────────────────
+
+[V:1] [Q:1/4=120] c B c E | F A G2 | A A G A | G F E2 |
+[V:2]             A G A C  | C F E2  | F E E D | E D C2  |
+[V:3]             E D E C  | A, C B,2 | C C B, C | B, A, G,2 |
+[V:4]             C B, D A, | F, A, G,2 | A, G, E, F, | G, F, E,2 |
+[V:5]             z4        | z4        | c B A c  | d c B2  |
+[V:6]             z4        | z4        | A G F A  | B A G2  |
+[V:7]             z4        | A, C B,2  | A, C B, C | B, A, G,2 |
+[V:8]             z4        | F, F, C,2 | F, F, C, A, | G, G, C,2 |
+
+% ─────────────────────────────────────────────────────────────────────
+% PHRASE 2 (bars 5–8): Full 8 voices.
+%
+% Diatonic substitutions:
+%   Bars 5–6: original E-major (V/vi) replaced by Am – Dm diatonic.
+%             S1 retains ^G (G#) bar 6 (original soprano melody).
+%             All other voices: G-natural throughout.
+%   Bar 7:    original ^G/^F in inner voices → F-natural (diatonic G).
+%             S1 retains ^F chromatic passing tone (original melody).
+%   Bar 8:    original ^F in tenor → F-natural; dominant-to-tonic cadence.
+% ─────────────────────────────────────────────────────────────────────
+
+[V:1] c  c  B  A  | ^G B  A2  | A3/2 G/ ^F G | B  A  G2  |
+[V:2] A  A  G  F  | F  G  E2  | F  E  D  E   | G  F  E2  |
+[V:3] E  E  D  D  | D  D  C2  | D  B, A, B,  | D  C  B,2 |
+[V:4] C  C  B, B, | B, B, A,2 | B, G, F, G,  | B, A, G,2 |
+[V:5] e  e  d  c  | b  b  a2  | d  B  A  B   | d  c  B2  |
+[V:6] c  c  B  A  | G  G  F2  | B  G  F  G   | B  A  G2  |
+[V:7] C  C  B, A, | A, G, B,2 | E, G, F, G,  | B, A, G,2 |
+[V:8] A, A, E, F, | E, E, A,2 | D, C, D, E,  | G, G, C,2 |
+
+% ─────────────────────────────────────────────────────────────────────
+% PHRASE 3 (bars 9–12)
+% Bars 9–10: antiphonal texture — TTBB doubles SSAA (same material),
+%            creating call-and-response between register groups.
+% Bars 11–12: full 8-voice homophony; climax and final cadence.
+%   S1 reaches c (C4) as phrase-peak on bar 12 half note.
+%   B1 anchors final cadence on C, (C2).
+%   S2 suspends F→A over bar 12 (approach note F resolves by step).
+% ─────────────────────────────────────────────────────────────────────
+
+[V:1] A  A  c  E  | F  A  G2  | !sintro!E E G  G  | A  A  c2  !eintro!|]
+[V:2] F  E  A  C  | C  F  E2  | C  C  E  E   | F  F  A2  |]
+[V:3] C  C  E  A, | A, C  B,2 | G, A, B, C   | C  D  C2  |]
+[V:4] A, A, C  E, | F, A, G,2 | E, F, G, A,  | A, A, G,2 |]
+[V:5] c  c  e  g  | c  c  c2  | e  e  g  g   | e  f  e2  |]
+[V:6] A  A  c  E  | A  A  G2  | c  c  e  e   | c  d  c2  |]
+[V:7] A, C  E, G, | A, C  B,2 | C  C  B, C   | A, G, E,2 |]
+[V:8] F, F, C, C, | F, F, C,2 | C, A, G, E,  | F, F, C,2 |]
+
+W: 6.God comes down that man may rise, Lifted far above the skies
+W: He is Son of Man, that we Sons of God in Him may be;
+W:
+W: 7. Human flesh is now become Christ's abode, the Godhead's home;
+W: Royal Palace, sacred shrine For the Majesty Divine;
+W:
+W: 8. Now we rise, from prison free; On we march to victory,
+W: Joyful banners are unfurled; 'Tis the Birthday of the World;
+W:
+W: 9. Now behold the rising Sun Hath His glorious race begun;
+W: Now the Bridegroom from above Weds the Bride, with heavenly love;
+W:
+W: 10. O renew us, Lord, we pray, With Thy Spirit day by day;
+W: That we ever one may be With the Father, and with Thee;
+W:
+W: 11.Sing, O sing this blessed Morn, Jesus Christ to-day is born;
+W: Glory to the Father give, Praise the Son in whom we live;
+W: Glory to the Spirit be, Godhead One, and Persons Three.

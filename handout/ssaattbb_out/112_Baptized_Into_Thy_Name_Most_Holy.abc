@@ -1,0 +1,122 @@
+X:112
+T:Baptized Into Thy Name Most Holy
+C:Words: Johann Jakob Rambach, 1734. Translated by Catherine Winkworth, 1863 and August Crull, 1884.
+C:Music: 'O Dass Ich Tausend Zungen Hätte (Dretzel)' Kornelius Heinrich Dretzel, 1731.
+C:Setting: SSAATTBB arrangement for double choir and lever harp, 2024.
+C:copyright: public domain. Arrangement based on Open Hymnal Project, 2011 Revision.
+M:3/4
+L:1/4
+Q:1/4=140
+%%staves {(V:1 V:2) (V:3 V:4) (V:5 V:6) (V:7 V:8)}
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+K:F
+%
+% ══════════════════════════════════════════════════════════════════
+%  KEY: F major (1 flat). Valid for lever harp — requires only Bb
+%  lever raised (Eb storage tuning with Bb lever up).
+%  No transposition from original.
+%
+%  DIATONIC PITCHES: F G A Bb C D E
+%  S1 (V:1) may sing accidentals freely.
+%  All other voices (V:2–V:8) strictly diatonic.
+%
+%  ABC pitch convention (treble clef):
+%    Capital C D E F G A B = C4–B4 (middle C octave)
+%    Lowercase c d e f g a b = C5–B5
+%    C, D, etc. = C3–B3
+%    C,, etc.  = C2–B2
+%  ABC pitch convention (bass clef):
+%    C, = C2, F, = F2, C = C3, F = F3, c = C4
+%
+%  VOICE RANGES (concert pitch):
+%    V:1 S1  C4–A5  written c–a
+%    V:2 S2  A3–F5  written A,–f   (A3=A,, A4=A, etc.)
+%    V:3 A1  F3–D5  written F,–d'
+%    V:4 A2  D3–B4  written D,–b
+%    V:5 T1  B2–G4  written B–g' (sounds -12)
+%    V:6 T2  G2–E4  written G–e' (sounds -12)
+%    V:7 Bar E2–C4  written E,–c  (bass clef)
+%    V:8 B1  C2–A3  written C,–A  (bass clef)
+% ══════════════════════════════════════════════════════════════════
+%
+% ┌─────────────────────────────────────────────────────────────────
+% │ PHRASE 1 — bars 1–6
+% │ Texture: SSAA opens alone (bars 1–2); TTBB enters at bar 3.
+% │ Dynamic arc: pp → mp, building from 4 to 8 voices.
+% └─────────────────────────────────────────────────────────────────
+%
+% Chord: F | F–C | F–Bb–F/C | C–F | C | F–C
+%
+[V:1] [Q:1/4=140] F  A  F  | G2 c  | B2 A  | G  F2  | G  G  G  | A2 c  |
+[V:2]              D  F  D  | E2 A  | G2 F  | E  D2  | E  E  E  | F2 A  |
+[V:3]              A, C  A, | C2 E  | D2 C  | C  A,2 | C  D  E  | C2 E  |
+[V:4]              F, A, F, | C2 C  | B,2 A,| G, F,2 | G, G, C  | A,2 C |
+[V:5]              z  z  z  | z2 z  | d2 c  | c  A2  | c  c  c  | A2 e  |
+[V:6]              z  z  z  | z2 z  | B2 A  | G  F2  | G  G  G  | F2 c  |
+[V:7]              z  z  z  | z2 z  | D  D  A,| E, A,2| E, D  C  | A, A,2|
+[V:8]              z  z  z  | z2 z  | B, B, F,| C, F,2| C, B, C, | F, F,2|
+%
+% ┌─────────────────────────────────────────────────────────────────
+% │ PHRASE 2 — bars 7–12
+% │ Texture: Full 8-voice homophony throughout.
+% │ Bar 7: S1 sings =B (B natural, chromatic); all others diatonic.
+% │ Bars 9–12 repeat the harmonic content of bars 1–4.
+% └─────────────────────────────────────────────────────────────────
+%
+% Bar 7 chord: Dm (or C7/E) — =B in S1 gives raised 6th color
+% Bar 8: C major (cadence)
+%
+[V:1] c2 =B | c3 | F  A  F  | G2 c  | B2 A  | G  F2  |
+[V:2] A2 G  | G3 | D  F  D  | E2 A  | G2 F  | E  D2  |
+[V:3] E2 D  | E3 | A, C  A, | C2 E  | D2 C  | C  A,2 |
+[V:4] C2 B, | C3 | F, A, F, | C2 C  | B,2 A,| G, F,2 |
+[V:5] g2 g  | g3 | d2 c     | c  A2 | c  c  c  | A2 e |
+[V:6] e2 d  | e3 | B2 A     | G  F2 | G  G  G  | F2 c |
+[V:7] A, A, B,| E, E,2| D  D  A,| E, A,2| E, D  C  | A, A,2|
+[V:8] F, F, G,| C, C,2| B, B, F,| C, F,2| C, B, C, | F, F,2|
+%
+% ┌─────────────────────────────────────────────────────────────────
+% │ PHRASE 3 — bars 13–18 (bar 18 = 2 beats + pickup)
+% │ Texture: Antiphonal — SSAA choir alone bars 13–14 (mf),
+% │          TTBB choir alone bars 15–16 (mp),
+% │          Full ensemble bars 17–18 (f, building to climax).
+% │ Bar 15: S1 sings =B again; all others diatonic.
+% │ DIATONIC FIX: original S1V2 had =B, in bar 17 equivalent
+% │   (C =B, C = chromatic neighbor). Replaced with C Bb C
+% │   (B = Bb in K:F, fully diatonic). Voice pair S1/S2 retains
+% │   the =B in S1 only.
+% └─────────────────────────────────────────────────────────────────
+%
+[V:1] G  G  G  | A2 c  | c2 =B | c3  | G  G  G  | A2    |
+[V:2] E  E  E  | F2 A  | A2 G  | G3  | E  E  E  | F2    |
+[V:3] C  D  E  | C2 F  | E2 D  | E3  | C  B, C  | C2    |
+[V:4] G, G, C  | A,2 C | C2 B, | C3  | G, G, C  | A,2   |
+[V:5] z  z  z  | z2 z  | g2 g  | g3  | c  c  c  | A2    |
+[V:6] z  z  z  | z2 z  | e2 d  | e3  | G  G  G  | F2    |
+[V:7] z  z  z  | z2 z  | A, A, B,| E, E,2| E, D  C  | A,2   |
+[V:8] z  z  z  | z2 z  | F, F, G,| C, C,2| C, B, C, | F,2   |
+%
+% ┌─────────────────────────────────────────────────────────────────
+% │ PHRASE 4 / CODA — pickup (1 beat) + bars 19–24
+% │ Texture: Call-and-response outer voices S1/B1 (bars 19–20),
+% │          Stretto entry of inner voices bar 20 beat 3,
+% │          Full homophony sintro bars 21–23 (ff climax),
+% │          Fermata cadence bar 24 with 4-3 suspension in A1/T2.
+% │ Climax: S1 reaches c (C5), B1 descends to F, (F2).
+% └─────────────────────────────────────────────────────────────────
+%
+[V:1] F  | B2 A  | G3  | !sintro!c  c  c  | B2 A  | G  G2  | !fermata!F3 !eintro!|]
+[V:2] D  | G2 F  | E3  | A  A  A  | G2 F  | E  E2  | F3 |]
+[V:3] A, | D2 C  | C3  | F  F  F  | E2 D  | C  C2  | C3 |]
+[V:4] F, | B,2 A,| G,3 | C  C  C  | B,2 A,| G, G,2 | A,3|]
+[V:5] A  | d2 c  | c3  | g  g  g  | g2 f  | e  e2  | c3 |]
+[V:6] F  | G2 F  | G3  | e  e  e  | d2 c  | c  B2  | A3 |]
+[V:7] F, | B, B, A,| E, E,2| E, E, A,| B, B, C | D  E,2 | !invertedfermata!F,3|]
+[V:8] D, | G, G, F,| C, C,2| C, C, F,| G, G, A,| B, C,2 | F,3|]

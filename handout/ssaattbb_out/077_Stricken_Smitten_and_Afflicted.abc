@@ -1,0 +1,130 @@
+X: 77
+T: Stricken, Smitten, and Afflicted
+C: Words: Thomas Kelly, 1804.
+C: Music: 'O Mein Jesu, Ich Muss Sterben' from Geistliches Volkslied, 1850.
+C: Setting: "Evangelical Lutheran Hymn-Book", 1931.
+C: SSAATTBB arrangement for double choir and lever harp.
+C: copyright: public domain.
+M: 6/4
+L: 1/4
+Q: 1/4=180
+%%staves {(V1 V2) (V3 V4) (V5 V6) (V7 V8)}
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+K: Bb
+%
+% -----------------------------------------------------------------------
+% PITCH REFERENCE (concert pitch, ABC):
+%   C,,=C2  D,,=D2  E,,=E2  F,,=F2  G,,=G2  A,,=A2  B,,=B2
+%   C,=C3   D,=D3   E,=E3   F,=F3   G,=G3   A,=A3   B,=B3
+%   C=C4    D=D4    E=E4    F=F4    G=G4    A=A4    B=B4
+%   c=C5    d=D5    e=E5
+%
+% V5 V6 (Tenor): clef=treble middle=B3 transpose=-12
+%   Written pitch sounds one octave LOWER.
+%   T1 sounding B2-G4: written B,-g (B3-G5 on staff)
+%   T2 sounding G2-E4: written G,-e (G3-E5 on staff)
+%
+% V7 Bar: bass clef concert pitch E,,-C (E2-C4)
+% V8 B1:  bass clef concert pitch C,,-A, (C2-A3)
+%
+% Bb major diatonic: Bb(B) C D Eb(E) F G A
+% ^F appears ONLY in V1 (Soprano I).
+%
+% HARMONY SKETCH (Bb major, all four verses share same chords):
+%  Pickup:   I (Bb)
+%  Bar 1:    Gm  |  Eb–I6  |  (sustained chord tones)
+%  Bar 2:    I–F7–Eb–I     |
+%  Bar 3:    Gm–IV–I–V     | leading to cadence
+%  Bar 4:    I (tonic close)
+% -----------------------------------------------------------------------
+%
+% ═══════════════════════════════════════════════════════════════════════
+% VERSE 1
+% Texture: Antiphonal — SSAA choir enters on pickup alone;
+%          T1 T2 and B1 enter on bar 1 beat 1; Bar on pickup.
+%          Opens with 5 voices to gradually build texture.
+% ═══════════════════════════════════════════════════════════════════════
+%
+% Voice-leading notes for verse 1:
+%  S1: original soprano; ^F retained.
+%  S2: third below S1 (E below G; D below Bb; G below Bb; G below C; D below Bb);
+%      moves to sixth below at bar 2 beat 5-6 for variety.
+%  A1: independent stepwise line implying Gm-Eb-I harmony; stays D3-D4.
+%  A2: contrary motion to A1; stays G3-C4.
+%  T1: written one octave above; follows original tenor S2V1 (F# → F diatonic).
+%  T2: written one octave above; third below T1 or independent step motion.
+%  Bar: stepwise line a third/sixth above B1; no parallel octaves with B1.
+%  B1:  original bass S2V2 (F# → F diatonic); range C2-A3.
+%
+[V:1]  G A  | B2 B2 c B  | A2 A2 B A  | G2 A2 G ^F | G4          |
+[V:2]  E D  | D2 G2 G D  | F2 F2 G F  | E2 F2 E D  | D4          |
+[V:3]  B, D | D2 D2 E D  | D2 C2 D D  | B,2 C2 B, A,| B,4        |
+[V:4]  G, B,| B,2 B,2 C B,| C2 A,2 B, A,| G,2 A,2 G, F,| G,4    |
+[V:5]  z2   | G2 G2 G G  | F2 F2 G F  | E2 F2 E D  | D4          |
+[V:6]  z2   | E2 C2 C E  | D2 B,2 B, D | C2 C2 C B, | B,4        |
+[V:7]  G, F,| B,2 G,2 E, B,,| F,2 D,2 B,, D,| E,2 E,2 F, F,| G,4|
+[V:8]  z2   | G,,2 E,,2 C,, G,,| D,,2 D,,2 G,, D,,| E,,2 C,,2 D,, D,,| G,,4|
+%
+% ═══════════════════════════════════════════════════════════════════════
+% VERSE 2
+% Texture: Full 8-voice homophony from pickup.
+%          All voices present with good contrary motion in inner parts.
+% ═══════════════════════════════════════════════════════════════════════
+%
+[V:1]  G A  | B2 B2 c B  | A2 A2 B A  | G2 A2 G ^F | G4          |
+[V:2]  E D  | D2 G2 G D  | F2 F2 G F  | E2 F2 E D  | D4          |
+[V:3]  B, D | D2 D2 E D  | D2 C2 D D  | B,2 C2 B, A,| B,4        |
+[V:4]  G, B,| B,2 B,2 C B,| C2 A,2 B, A,| G,2 A,2 G, F,| G,4    |
+[V:5]  D B  | G2 G2 G G  | F2 F2 G F  | E2 F2 E D  | D4          |
+[V:6]  B, G | E2 C2 C E  | D2 B,2 B, D | C2 C2 C B, | B,4        |
+[V:7]  B,, D,| B,2 G,2 E, B,,| F,2 D,2 B,, D,| E,2 E,2 F, F,| G,4|
+[V:8]  G,, D,,| G,,2 E,,2 C,, G,,| D,,2 D,,2 G,, D,,| E,,2 C,,2 D,, D,,| G,,4|
+%
+% ═══════════════════════════════════════════════════════════════════════
+% VERSE 3 — CLIMAX
+% S1 reaches e (E5); all 8 voices; maximum dynamic.
+% Higher melody: Bb4-E5 range. B1 stays G2-D2.
+% S2 rises to match S1 in parallel thirds at peak.
+% Bar independent from B1: stepwise upper-voice motion.
+% ═══════════════════════════════════════════════════════════════════════
+%
+% Bar 1 harm: Bb-F (I-V region), with G in bass → Gm-I6
+% Bar 2 harm: F7 → Eb → Bb (strong harmonic motion)
+% Bar 3 harm: Gm → Eb → Bb → moving to A4 cadence
+%
+[V:1]  B c  | d2 d2 e d  | c2 c2 d c  | B2 B2 c B  | A4          |
+[V:2]  G A  | B2 B2 B B  | A2 A2 B A  | G2 G2 G F  | F4          |
+[V:3]  D F  | F2 G2 G F  | F2 F2 G F  | D2 E2 E D  | D4          |
+[V:4]  B, D | D2 D2 E D  | D2 D2 D D  | B,2 C2 C B,| A,4         |
+[V:5]  G B  | B2 B2 B B  | A2 A2 B A  | G2 G2 G G  | F4          |
+[V:6]  E G  | G2 E2 G G  | F2 F2 G F  | E2 E2 E D  | D4          |
+[V:7]  G, A,| B,2 G,2 E, G,| F,2 F,2 B, F,| G,2 G,2 E, D,| F,4  |
+[V:8]  G,, F,,| B,,2 G,,2 E,, C,,| F,,2 F,,2 B,, F,,| G,,2 E,,2 C,, G,,| D,,4|
+%
+% ═══════════════════════════════════════════════════════════════════════
+% VERSE 4 — Final verse
+% Texture: Call and response; S1 solo with inner sustained harmony bars 1-2;
+%          full texture rejoins bar 3; stretto motion at cadence bar 3-4.
+%          B1 on tonic G,,=G2 at final cadence. S1 retains ^F.
+% ═══════════════════════════════════════════════════════════════════════
+%
+% S2 in contrary motion to S1 in bar 3 (S1 falls G→^F, S2 rises E→F).
+% A1 passing tone motion at bar 3 for suspension effect.
+% T1 written at octave transposition; follows original tenor.
+% Bar: independent from B1; varied rhythm in bar 2.
+%
+[V:1]  G ^F | G2 B2 A G  | A2 A2 !sintro!B A | G2 A2 G ^F | G4 !eintro!|]
+[V:2]  E D  | D2 G2 F E  | F2 F2 G F  | E2 F2 E D  | D4          |]
+[V:3]  B, D | D2 D2 D B, | D2 C2 D D  | B,2 C2 B, A,| B,4        |]
+[V:4]  G, B,| B,2 G,2 A, G,| C2 A,2 B, A,| G,2 A,2 G, F,| G,4   |]
+[V:5]  D B  | G2 G2 F G  | F2 F2 G F  | E2 F2 E D  | D4          |]
+[V:6]  B, G | E2 C2 D E  | D2 B,2 B, D | C2 D2 C B, | B,4        |]
+[V:7]  B,, D,| G,2 E,2 D, E,| D,2 D,2 G, F,| E,2 E,2 F, D,| G,4 |]
+[V:8]  G,, D,,| G,,2 G,,2 D,, E,,| D,,2 D,,2 G,, F,,| E,,2 C,,2 D,, D,,| G,,4|]

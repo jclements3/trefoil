@@ -1,0 +1,208 @@
+X:39
+T:In The Bleak Midwinter
+C:Words: Christina Georgina Rossetti, 1872
+C:Music: Gustav Theodore Holst, 1906 ('Cranham')
+C:SSAATTBB arrangement for double choir and lever harp
+C:copyright: public domain
+M:4/4
+L:1/4
+Q:1/4=100
+K:F
+%%staves [(1 2) (3 4) (5 6) (7 8)]
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+%
+% Key: F major (1b). Lever harp: raise only Bb lever.
+% Diatonic: F G A Bb C D E
+% Texture plan:
+%   Pickup + bar 1-2: SSAA only (soprano duo opens; altos enter bar 1 beat 3)
+%   Bar 3-4:  Full 8 — first tutti, quiet
+%   Bar 5-8:  Full 8 homophony — richer, building
+%   Bar 9-10: TTBB antiphony (SSAA rests) — tenors carry soprano melody at octave
+%   Bar 11:   SSAA re-enters; TTBB joins — full choir descent
+%   Bar 12:   Full 8 half-cadence
+%   Bar 13-14: Full 8, mounting intensity
+%   Bar 15:   Climax — full 8 with complex rhythmic cadential gesture
+%   Bar 16:   Final F major chord, wide spacing (S1 F4, B1 C2)
+%
+% Diatonic violation: original Alto bar 9 beat 4 = Eb4 (_E, non-diatonic).
+% In this arrangement that beat falls within SSAA rest; the underlying harmony
+% is treated as Bb major (diatonic). No inner-voice chromatic notes anywhere.
+%
+% ─── PICKUP ───
+[V:1] [Q:1/4=100] A  |
+[V:2]             z  |
+[V:3]             z  |
+[V:4]             z  |
+[V:5]             z  |
+[V:6]             z  |
+[V:7]             z  |
+[V:8]             z  |
+%
+% ─── BAR 1 (F major — Bb/C passing — F/C — F) ───
+% SSAA only: S1+S2 duo bars 1–2; A1+A2 enter beat 3 of bar 1
+[V:1] .(A3/2 B/) c A          |
+[V:2] .(F3/2 G/) A F          |
+[V:3] z2 E C                  |
+[V:4] z2 C A,                 |
+[V:5] z4                      |
+[V:6] z4                      |
+[V:7] z4                      |
+[V:8] z4                      |
+%
+% ─── BAR 2 (Dm — F) ───
+[V:1] G.- G F2                |
+[V:2] E.- E D2                |
+[V:3] D.- D C2                |
+[V:4] B,.- B, A,2             |
+[V:5] z4                      |
+[V:6] z4                      |
+[V:7] z4                      |
+[V:8] z4                      |
+%
+% ─── BAR 3 (Gm — C) — first tutti ───
+[V:1] .(G3/2 A/) G D          |
+[V:2] .(E3/2 F/) E C          |
+[V:3] .(B,3/2 B/) C C         |
+[V:4] .(G,3/2 G,/) A, G,      |
+[V:5] .(G3/2 E/) D C          |
+[V:6] .(E3/2 C/) B, A,        |
+[V:7] .(A,,3/2 A,,/) B,, E,,  |
+[V:8] .(F,,3/2 F,,/) G,, C,,  |
+%
+% ─── BAR 4 (Gm — C) ───
+[V:1] G4                      |
+[V:2] E4                      |
+[V:3] D2 C2                   |
+[V:4] B,4                     |
+[V:5] F2 E2                   |
+[V:6] D2 C2                   |
+[V:7] B,,2 E,2                |
+[V:8] G,,2 C,,2               |
+%
+% ─── BAR 5 (F — passing — F/C — F) — full 8, forte ───
+[V:1] .(A3/2 B/) c A          |
+[V:2] .(F3/2 G/) A F          |
+[V:3] .(C3/2 D/) E C          |
+[V:4] .(A,3/2 B,/) C A,       |
+[V:5] .(F3/2 E/) D C          |
+[V:6] .(D3/2 C/) B, A,        |
+[V:7] .(A,3/2 B,/) C, A,      |
+[V:8] .(F,3/2 G,/) A, F,      |
+%
+% ─── BAR 6 (Dm — F) ───
+[V:1] G.- G F2                |
+[V:2] E.- E D2                |
+[V:3] D.- D C2                |
+[V:4] B,.- B, A,2             |
+[V:5] E.- E D2                |
+[V:6] C.- C B,2               |
+[V:7] F,.- F, E,2             |
+[V:8] D,.- D, D,2             |
+%
+% ─── BAR 7 (Gm — C — cadential) ───
+[V:1] .(.(G A) G3/2) F/       |
+[V:2] .(.(E F) E3/2) D/       |
+[V:3] .(.(C D) C3/2) A,/      |
+[V:4] .(.(A, B,) A,3/2) F,/   |
+[V:5] .(.(B c) B3/2) A/        |
+[V:6] .(.(G A) G3/2) F/       |
+[V:7] .(.(D, D,) E,3/2) A,,/  |
+[V:8] .(.(B,, B,,) C,3/2) F,/ |
+%
+% ─── BAR 8 (F — PAC) ───
+[V:1] F3.- F                  |
+[V:2] D3.- D                  |
+[V:3] C4                      |
+[V:4] F,4                     |
+[V:5] A4                      |
+[V:6] F4                      |
+[V:7] A,4                     |
+[V:8] F,4                     |
+%
+% ─── BAR 9 — ANTIPHONAL: TTBB alone; SSAA rests ───
+% T1 carries soprano melody at octave below; T2 harmonizes a 3rd below
+[V:1] z4                      |
+[V:2] z4                      |
+[V:3] z4                      |
+[V:4] z4                      |
+[V:5] .(B3/2 A/) B c          |
+[V:6] .(G3/2 F/) G A          |
+[V:7] .(F,3/2 A,/) F, E,      |
+[V:8] .(D,3/2 F,/) D, C,      |
+%
+% ─── BAR 10 — TTBB continues ───
+[V:1] z4                      |
+[V:2] z4                      |
+[V:3] z4                      |
+[V:4] z4                      |
+[V:5] d.- d A.- A             |
+[V:6] B.- B F.- F             |
+[V:7] D,.- D, F,.- F,         |
+[V:8] B,,.- B,, D,.- D,       |
+%
+% ─── BAR 11 — SSAA re-enters; TTBB echoes same descending figure ───
+[V:1] c A G F                 |
+[V:2] A F E D                 |
+[V:3] F E D C                 |
+[V:4] D C B, A,               |
+[V:5] c A G F                 |
+[V:6] G F E D                 |
+[V:7] C,.- C, D, D,           |
+[V:8] A,,.- A,, B,, B,,       |
+%
+% ─── BAR 12 (C major — dominant of F) — full 8 half-cadence ───
+[V:1] E4                      |
+[V:2] C4                      |
+[V:3] A,4                     |
+[V:4] G,4                     |
+[V:5] G4                      |
+[V:6] E4                      |
+[V:7] G,,4                    |
+[V:8] C,,4                    |
+%
+% ─── BAR 13 — Phrase 4, full 8, building to climax ───
+[V:1] A3/2 B/ c A             |
+[V:2] F3/2 G/ A F             |
+[V:3] C3/2 D/ E C             |
+[V:4] A,3/2 B,/ C A,          |
+[V:5] E3/2 F/ G E             |
+[V:6] C3/2 D/ E C             |
+[V:7] A,3/2 B,/ C, A,         |
+[V:8] F,3/2 G,/ A, F,         |
+%
+% ─── BAR 14 (Dm — F) ───
+[V:1] G2 F2                   |
+[V:2] E2 D2                   |
+[V:3] D2 C2                   |
+[V:4] B,2 A,2                 |
+[V:5] C2 D2                   |
+[V:6] A,2 B,2                 |
+[V:7] F,2 E,2                 |
+[V:8] D,2 D,2                 |
+%
+% ─── BAR 15 — Climax; full cadential gesture with intro markers ───
+[V:1] !sintro!.(.(G A) G3/2) F/ |
+[V:2] .(.(E F) E3/2) D/        |
+[V:3] .(.(C D) C3/2) A,/       |
+[V:4] .(.(A, B,) A,3/2) F,/    |
+[V:5] .(.(G A) G3/2) F/        |
+[V:6] .(.(E F) E3/2) D/        |
+[V:7] D,2 (E,3/2 A,/)          |
+[V:8] B,,2 (C,3/2 F,/)         |
+%
+% ─── BAR 16 — Final F major; wide-spaced resolution (S1=F4, B1=C2) ───
+[V:1] F3 !eintro!|]
+[V:2] D3|]
+[V:3] C3|]
+[V:4] A,3|]
+[V:5] A3|]
+[V:6] F3|]
+[V:7] E,,3|]
+[V:8] C,,3|]

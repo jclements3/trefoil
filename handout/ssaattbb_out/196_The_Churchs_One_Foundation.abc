@@ -1,0 +1,129 @@
+X: 196
+T: The Church's One Foundation
+T: (SSAATTBB arrangement)
+C: Words: Samuel John Stone, 1866. Music: 'Aurelia' Samuel Sebastian Wesley, 1864.
+C: SSAATTBB arrangement for double choir and lever harp.
+C: Original SATB: "Order of Worship for the Reformed Church in the United States", 1866.
+C: copyright: public domain.
+M: 4/4
+L: 1/4
+Q: 1/4=130
+%%staves [(1 2) (3 4) (5 6) (7 8)]
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+K: D
+%
+% ── PHRASE 1 ─────────────────────────────────────────────────────────────────
+% Texture: SSAA choir only (4 voices). Bar+B1 enter at bar 3 to ground cadence.
+% T1 T2 tacet throughout phrase 1.
+% Harmony: I  |  I  I  IV  I  |  I  V  I  |  I  V/IV  IV  V7/V  |  I   ||
+%
+[V:1] F | F F G F | F2 E D | D B A G | F3 |
+[V:2] D | D D E D | D2 C B, | B, G F E | D3 |
+[V:3] A, | A, A, B, A, | A, G, F, E, | A, D D C | A,3 |
+[V:4] F, | F, D, G, D, | F, E, D, C, | F, B, A, A, | F,3 |
+[V:5] z | z z z z | z z z z | z z z z | z3 |
+[V:6] z | z z z z | z z z z | z z z z | z3 |
+[V:7] z | z z z z | z z z z | B,, B,, C, C, | A,,3 |
+[V:8] z | z z z z | z z z z | G,, G,, A,, A,, | D,3 |
+%
+% ── PHRASE 2 ─────────────────────────────────────────────────────────────────
+% Texture: Full 8-voice homophony.
+% Diatonic replacements: original tenor ^A, (bars 6–7) → A,; ^G, (bar 8) → G,.
+% Reharmonization: original B-minor-dominant beat → v minor (B minor) diatonic.
+% T1 T2 written one octave higher than sounding pitch (transpose=-12).
+%
+[V:1] G | A d d c | c2 B A | G A F D | E3 |
+[V:2] E | F A B G | A2 G F | E F D B, | C3 |
+[V:3] C | D F G E | F2 D D | D D A, B, | A,3 |
+[V:4] A, | A, D D C | C2 B, A, | B, A, F, G, | A,3 |
+[V:5] D | D D B C | C2 D D | E F D D | E3 |
+[V:6] A, | A, A, G, A, | A,2 B, B, | B, B, B, B, | A,3 |
+[V:7] E, | A, A, B, A, | A,2 F, F, | D, F, D, D, | A,,3 |
+[V:8] C, | F, F, F, F,, | F,,2 G,, A,, | B,, C, D, B,, | A,,3 |
+%
+% ── PHRASE 3 ─────────────────────────────────────────────────────────────────
+% Texture: Antiphonal (SSAA answers TTBB in bars 10–11); full 8 at climax bar 12.
+% S1 reaches d' (D5) — climax. B1 touches D,, (D2) at phrase close.
+% Original bass ^D, (bar 12) → D, (diatonic neighbor, passing tone to E,).
+%
+[V:1] E | F G A B | B2 A d | d3/2 c/ B F | G3 |
+[V:2] C | D E F G | G2 F B | B3/2 A/ G E | E3 |
+[V:3] A, | A, B, C D | D2 D F | F3/2 E/ D C | B,3 |
+[V:4] A, | F, G, A, B, | B,2 C D | D3/2 C/ B, A, | G,3 |
+[V:5] B, | D E F G | G2 F B | B3/2 A/ B B | B3 |
+[V:6] G, | A, B, C D | D2 D F | F3/2 E/ D B, | G,3 |
+[V:7] C, | F, G, A, B, | B,2 A, D, | A,3/2 G,/ F, F, | G,3 |
+[V:8] A,, | D, E, F, G, | G,2 F, B,, | F,3/2 E,/ D, D,, | E,3 |
+%
+% ── PHRASE 4 ─────────────────────────────────────────────────────────────────
+% Texture: Full 8-voice homophony. Stretto between S1 and T1 at final cadence.
+% B1 lands on D,, (D2) at final cadence — maximum bass depth for close.
+%
+[V:1] E | F F G F | F2 E D | D E D C | D3 |]
+[V:2] C | D D E D | D2 C B, | B, C B, A, | A,3 |]
+[V:3] A, | A, A, B, A, | B,2 B, A, | G, A, G, F, | F,3 |]
+[V:4] G, | F, D, G, F, | G,2 G, F, | E, F, E, D, | D,3 |]
+[V:5] B, | D D B D | D2 B B | B B B B | B3 |]
+[V:6] G, | A, A, G, A, | B,2 G, G, | G, G, G, G, | G,3 |]
+[V:7] C, | F, F, F, F, | B,,2 B,, B,, | G,, G,, C, C, | A,,3 |]
+[V:8] A,, | D, D, D, D, | G,,2 G,, G,, | E,, E,, A,, A,, | D,,3 |]
+W:1.The Church's one foundation
+W:Is Jesus Christ, her Lord;
+W:She is His new creation
+W:By water and the Word;
+W:From heaven He came and sought her
+W:To be His holy Bride;
+W:With His own blood He bought her,
+W:And for her life He died.
+W:
+W:2.Elect from every nation,
+W:Yet one o'er all the earth,
+W:Her charter of salvation
+W:One Lord, one faith, one birth;
+W:One holy Name she blesses,
+W:Partakes one holy food,
+W:And to one hope she presses,
+W:With every grace endued.
+W:
+W:3.Though with a scornful wonder
+W:Men see her sore oppressed,
+W:By schisms rent asunder,
+W:By heresies distressed;
+W:Yet saints their watch are keeping,
+W:Their cry goes up, "How long?"
+W:And soon the night of weeping
+W:Shall be the morn of song.
+W:
+W:4.Mid toil and tribulation,
+W:And tumult of her war,
+W:She waits the consummation
+W:Of peace forevermore;
+W:Till with the vision glorious
+W:Her longing eyes are blest,
+W:And the great Church victorious
+W:Shall be the Church at rest.
+W:
+W:5.Yet she on earth hath union
+W:With God the Three in One,
+W:And mystic sweet communion
+W:With those whose rest is won,
+W:With all her sons and daughters
+W:Who, by the Master's hand
+W:Led through the deathly waters,
+W:Repose in Eden land.
+W:
+W:6.O happy ones and holy!
+W:Lord, give us grace that we
+W:Like them, the meek and lowly,
+W:On high may dwell with Thee:
+W:There, past the border mountains,
+W:Where in sweet vales the Bride
+W:With Thee by living fountains
+W:Forever shall abide!

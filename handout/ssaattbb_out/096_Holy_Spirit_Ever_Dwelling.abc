@@ -1,0 +1,71 @@
+X:1
+T:Holy Spirit, Ever Dwelling
+T:(SSAATTBB arrangement)
+C:Words: Timothy Rees, 1922.
+C:Music: 'Ebenezer' (Ton-Y-Botel), Thomas J. Williams, 1890.
+C:Setting: "A Hymnal" (Episcopal), 1916.
+C:SSAATTBB arr. for double choir and lever harp, 2026.
+C:Transposed Ab -> A major (+1 semitone). Harp: raise F# C# G# levers.
+S:Original: Open Hymnal Project, 2008 Revision.
+M:8/4
+L:1/4
+Q:1/4=180
+%%staves [(1 2) (3 4) (5 6) (7 8)]
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+K:A
+%
+% ===== SECTION A1 (bars 1-4): Full 8-voice homophony =====
+%
+[V:1] F2 (3FGA G2 F2 | G2 (3GAB (A3/2 G/) F2 | c2 (3Bcd (c3/2 B/) A2 | (B3/2 A/) G2 F4 |
+[V:2] D2 D2 E2 D2 | E2 E2 F2 D2 | A2 A2 A2 F2 | F2 E2 D4 |
+[V:3] A,2 A,2 B,2 A,2 | B,2 B,2 C2 A,2 | E2 E2 E2 C2 | D2 B,2 A,4 |
+[V:4] F,2 F,2 G,2 F,2 | G,2 G,2 A,2 F,2 | C2 C2 C2 A,2 | B,2 G,2 F,4 |
+[V:5] E2 E2 F2 E2 | F2 F2 G2 E2 | B2 B2 B2 G2 | A2 F2 E4 |
+[V:6] C2 C2 D2 C2 | D2 D2 E2 C2 | G2 G2 G2 E2 | F2 D2 C4 |
+[V:7] A,,2 A,,2 C,2 C,2 | D,2 E,2 A,2 A,2 | C2 G,2 C,2 F,2 | D,2 E,2 A,,4 |
+[V:8] F,,2 A,,2 C,2 D,2 | B,,2 C,2 F,2 F,2 | A,2 E,2 A,,2 D,2 | B,,2 C,2 F,4 |
+%
+% ===== SECTION A2 (bars 5-8): Antiphonal — SSAA melody, TTBB sustained =====
+% SSAA carries the melody; TTBB holds block harmonies in four-beat units
+%
+[V:1] F2 (3FGA G2 F2 | G2 (3GAB (A3/2 G/) F2 | c2 (3Bcd (c3/2 B/) A2 | (B3/2 A/) G2 F4 |
+[V:2] D2 D2 E2 D2 | E2 E2 F2 D2 | A2 A2 A2 F2 | F2 E2 D4 |
+[V:3] A,2 F,2 G,2 F,2 | G,2 G,2 A,2 A,2 | E2 E2 E2 E2 | F2 E2 D4 |
+[V:4] F,2 D,2 E,2 D,2 | E,2 E,2 F,2 F,2 | C2 C2 C2 C2 | D2 B,2 A,4 |
+[V:5] E4 F4 | F4 G4 | B4 G4 | A4 E4 |
+[V:6] C4 D4 | D4 E4 | G4 E4 | F4 C4 |
+[V:7] A,,4 B,,4 | B,,4 C,4 | E,4 C,4 | D,4 A,,4 |
+[V:8] F,,2 A,,2 C,2 D,2 | B,,2 C,2 F,2 F,2 | A,2 E,2 A,,2 D,2 | B,,2 C,2 F,4 |
+%
+% ===== SECTION B (bars 9-12): Canonic imitation S1/T1; richer counterpoint =====
+% T1 bar 10 imitates S1 bar 9 motive (c (3ABc B B) at octave below
+%
+[V:1] c2 (3ABc B2 B2 | A2 (3FGA G2 G2 | F2 (3FGA B2 B2 | A2 (3BAB c4 |
+[V:2] A2 A2 G2 G2 | F2 D2 E2 E2 | D2 D2 D2 G2 | F2 F2 E4 |
+[V:3] C2 C2 C2 B,2 | A,2 D2 E2 E2 | F2 A2 A2 G2 | A2 D2 E4 |
+[V:4] A,2 A,2 A,2 G,2 | F,2 B,2 B,2 B,2 | D2 F2 F2 E2 | F2 B,2 C4 |
+[V:5] A2 A2 A2 G2 | c2 (3ABc B2 B2 | F2 A2 A2 G2 | A2 F2 G4 |
+[V:6] F2 F2 F2 E2 | A2 A2 A2 A2 | D2 F2 F2 E2 | F2 D2 E4 |
+[V:7] C,2 E,2 G,2 G,2 | A,2 C,2 E,2 E,2 | A,2 G,2 F,2 G,2 | A,2 G,2 F,4 |
+[V:8] A,,2 C,2 E,2 E,2 | F,2 A,,2 C,2 C,2 | F,2 E,2 D,2 E,2 | (F, E,) D,2 C,4 |
+%
+% ===== SECTION A3 (bars 13-16): Climax — full 8-voice, suspension cadence =====
+% S2 rises to A4 for added weight; T1 canonic echo of S1 melody.
+% Baritone reaches C#4 at bar 15 beat 1 (professional climax, within range).
+% Final chord: A major (A-C#-E-A) across all voices.
+%
+[V:1] !sintro! F2 (3FGA G2 F2 | G2 (3GAB (A3/2 G/) F2 | c2 (3Bcd (c3/2 B/) A2 | (B3/2 A/) G2 F4 !eintro! |]
+[V:2] E2 F2 E2 F2 | F2 E2 F2 F2 | A2 A2 A2 F2 | F2 E2 C4 |]
+[V:3] D2 C2 B,2 C2 | D2 C2 C2 D2 | E2 E2 E2 C2 | D2 B,2 A,4 |]
+[V:4] B,2 A,2 G,2 A,2 | B,2 G,2 A,2 B,2 | C2 C2 C2 A,2 | B,2 G,2 F,4 |]
+[V:5] F2 C2 C2 A2 | D2 C2 (C3/2 B/) A2 | A2 (3GAB (A3/2 G/) F2 | (D3/2 C/) B2 A4 |]
+[V:6] D2 A2 A2 F2 | B2 A2 G2 F2 | F2 (3EFG (F3/2 E/) D2 | B2 G2 E4 |]
+[V:7] F,2 C,2 E,2 F,2 | D,2 E,2 A,2 A,2 | C2 G,2 C,2 F,2 | D,2 E,2 A,4 |]
+[V:8] D,2 A,,2 C,2 D,2 | B,,2 C,2 F,2 F,2 | A,2 E,2 A,,2 D,2 | B,,2 C,2 F,4 |]

@@ -1,0 +1,89 @@
+X: 48
+T: Silent Night
+C: Words: Josef Mohr, 1818. stanzas 1,3 Translated by John Freeman Young, 1863.
+C: stanzas 2,4 translator anonymous.
+C: Music: 'Stille Nacht' Franz Xaver Gruber, 1818.  Setting: "Concordia Kinderchöre", 1908.
+C: SSAATTBB arrangement: professional 8-voice double choir with lever harp.
+C: copyright: public domain.  This score is a part of the Open Hymnal Project, 2005 Revision.
+S: Music source: 'Lutheran Worship' Hymnal, 1982 Hymn 68.
+M: 3/4
+L: 1/4
+%%staves [(1 2) (3 4) (5 6) (7 8)]
+V:1 name="Soprano I"   clef=treble
+V:2 name="Soprano II"  clef=treble
+V:3 name="Alto I"      clef=treble
+V:4 name="Alto II"     clef=treble
+V:5 name="Tenor I"     clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"    clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"    clef=bass
+V:8 name="Bass I"      clef=bass
+K: Bb
+%%MIDI program 52
+%
+% BARS 1-2: Bb major (I). Texture: all 8 voices, TTBB on sustained harmony.
+% SSAA present with original soprano figuration; TTBB on sustained chord tones.
+%
+[V:1] [Q:1/4=60] F3/4G// F/ D3/2 | F3/4G// F/ D3/2 |
+[V:2]            D3/4E// D/ B,3/2 | D3/4E// D/ B,3/2 |
+[V:3]            D D/ B,3/2       | D D/ F3/2         |
+[V:4]            B, B,/ B,3/2     | B, B,/ G,3/2      |
+[V:5]            F, F,/ F,3/2     | F, F,/ D,3/2      |
+[V:6]            D, D,/ B,,3/2    | D, D,/ B,,3/2     |
+[V:7]            D, D,/ D,3/2     | D, D,/ D,3/2      |
+[V:8]            B,, B,,/ B,,3/2  | B,, B,,/ B,,3/2   |
+%
+% BAR 3: F7 (V7). BAR 4: Bb (I).
+%
+[V:1] c c/ A3/2 | B B/ F3/2 |
+[V:2] A A/ F3/2 | G G/ D3/2 |
+[V:3] E E/ C3/2 | D D/ B,3/2 |
+[V:4] C C/ A,3/2 | B, B,/ G,3/2 |
+[V:5] C C/ A,3/2 | D, D,/ F,3/2 |
+[V:6] A, A,/ F,3/2 | B,, B,,/ D,3/2 |
+[V:7] A, A,/ A,3/2 | D, D,/ D,3/2 |
+[V:8] F, F,/ F,3/2 | B,, B,,/ B,,3/2 |
+%
+% BARS 5-6: Eb (IV) — Bb (I). Antiphonal exchange: SSAA leads bar 5, TTBB echoes bar 6.
+%
+[V:1] G G/ B3/4A// G/ | F3/4G// F/ D3/2 |
+[V:2] E E/ G3/4F// E/ | D3/4E// D/ B,3/2 |
+[V:3] G G/ B3/4A// G/ | D D/ F3/2 |
+[V:4] E E/ G3/4F// E/ | B, B,/ G,3/2 |
+[V:5] G, G,/ B,3/4A,// G,/ | F, F,/ D,3/2 |
+[V:6] E, E,/ G,3/4F,// E,/ | D, D,/ B,,3/2 |
+[V:7] G,, G,,/ G,, G,,/ | D, D,/ D,3/2 |
+[V:8] E, E,/ E, E,/ | B,, B,,/ B,,3/2 |
+%
+% BARS 7-8: Eb (IV) — Bb (I). Full 8-voice texture begins.
+%
+[V:1] G G/ B3/4A// G/ | F3/4G// F/ D3/2 |
+[V:2] E E/ G3/4F// E/ | D3/4E// D/ B,3/2 |
+[V:3] G G/ B3/4A// G/ | F F/ D3/2 |
+[V:4] E E/ G3/4F// E/ | B, B,/ G,3/2 |
+[V:5] G, G,/ B,3/4A,// G,/ | F, F,/ D,3/2 |
+[V:6] E, E,/ G,3/4F,// E,/ | D, D,/ B,,3/2 |
+[V:7] G,, G,,/ G,, G,,/ | F, D,/ B,,3/2 |
+[V:8] E, E,/ E, E,/ | B,, B,,/ B,,3/2 |
+%
+% BAR 9: F7 (V7) — rising toward climax. BAR 10: Bb (I) — climax, S1 on d (D5), B1 on B, (Bb2).
+%
+[V:1] c c/ e3/4c// A/ | (B3/2 d3/2) |
+[V:2] A A/ c3/4A// F/ | (G3/2 B3/2) |
+[V:3] F F/ A3/4F// D/ | (D3/2 F3/2) |
+[V:4] C C/ E3/4C// A,/ | (B,3/2 D3/2) |
+[V:5] C C/ E3/4C// A,/ | (D3/2 F3/2) |
+[V:6] A, A,/ C3/4A,// F,/ | (B,,3/2 D,3/2) |
+[V:7] A, A,/ A,3/4A,// A,/ | D,3 |
+[V:8] F, F,/ F,3/2       | B,3 |
+%
+% BAR 11: Bb cadential motion (Bb–F–Bb with passing Eb and C).
+% BAR 12: Bb final (I). Suspended 4-3 in inner voices resolves to tonic.
+%
+[V:1] !sintro!B/F/ D/ F3/4E// C/ | B,3 !eintro!|]
+[V:2] G,/D/ B,/ D3/4C// A,/      | B,3          |]
+[V:3] F F/ D3/4E// C/             | F,3          |]
+[V:4] D D/ B,3/4A// G,/           | D,3          |]
+[V:5] F,/D,/ B,,/ D,3/4C,// C,/ | F,3          |]
+[V:6] D,/B,,/ G,,/ B,,3/4A,,// G,,/ | B,,3       |]
+[V:7] F, D,/ A,,3/4A,,// A,,/    | D,3          |]
+[V:8] D, B,,/ F,,3/4F,,// F,,/   | B,,3         |]

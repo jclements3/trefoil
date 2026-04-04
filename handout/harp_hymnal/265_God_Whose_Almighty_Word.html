@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>God, Whose Almighty Word — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }
+p.legend { font-size: 12px; color: #555; }</style>
+</head><body>
+<h1>God, Whose Almighty Word</h1>
+<p class="legend">Above melody: Abstract / RH voicing / LH voicing.
+RH = upper notes, LH = lower notes (no hand crossing).</p>
+<div id="music"></div>
+<script src="../../abc2stripchart/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 1\nT: God, Whose Almighty Word\nM: 3/4\nL: 1/4\nQ: 1/4=120\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: G\n[V: M] \"^IV\u03949-5\"d B G | ( \"^vii\u00f87\u00b2\"A G ) F | \"^IV\u0394\u00b3\"G3 | \"^vi7\u00b9\"\"^C\"\"^Am7\u00b9\"G A B | ( \"^V9\u00b3\"\"^Dm\"\"^G7\u00b3-5\"c/ d/ c ) B | \"^V\u00b2\"\"^G\u00b2\"A3 | \"^vi7\"d B G | z3 | \"^iii7s+6\"\"^C-5+2\"\"^Ems\"A B c | \"^vii\u00b0\u00b9\"B3/2 A/ G | \"^I\u03949\u00b9\"\"^C-5+2\"\"^Em\"A B c | \"^V7\u00b2\"\"^G7\u00b2-3\"B3/2 A/ G | \"^IV\u03949\"\"^F\u0394\u00b3-5\"\"^F+2\"G B d | \"^V9\u00b3\"\"^G-5+2\"\"^G7\u00b3-3\"d3/2 e/ d | \"^IV\u03949\u00b2\"\"^C\"\"^F\u00b2\"c B A | G3 |]\n[V: RH] [Bd] [GB] [EG] | ( [FA] [EG] ) [DF] | [EG]3 | [GBd] [FA] [GB] | ( [Ace]/ z/ [Bcd] ) [GBd] | [Ad]3 | [Bd] [GB] [EG] | z3 | [GAB] [Bcd] [GB]3/2 | [FA]/ [EG] [FA] | [GAB] [Bcd] [GB]3/2 | [FA]/ [EG] [Geg] | [Bce] [cd] [deg]3/2 | [def]/ [cde] [Ace] | [GBd] [GAc] [GBd]3 | G3 |]\n[V: LH] [CE] [B,D] [A,C] | ( [CE] [B,D] ) [A,C] | [B,C]3 | [G,B,DE] [A,D] [B,D] | ( [CDF]/ [d]/ [A,CEG] ) [B,CE] | [A,DF]3 | [EG] [DE] [B,C] | z3 | [B,EF] [A,DFA] [B,D]3/2 | [A,C]/ [B,D] [A,D] | [B,DF] [A,EGA] [B,DE]3/2 | [A,CD]/ [B,C] [G,B,CE] | [CDEG] [EGB] [DEGB]3/2 | [CDAc]/ [B,EGB] [A,DF] | [G,CE] [F,A,DF] [G,B,E]3 | G3 |]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ""; }
+};
+var abc = new abc2svg.Abc(user);
+abc.tosvg("score", abc_src);
+</script></body></html>

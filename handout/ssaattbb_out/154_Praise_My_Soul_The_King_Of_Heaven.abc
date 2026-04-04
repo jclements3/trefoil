@@ -1,0 +1,388 @@
+X: 1
+T: Praise My Soul The King Of Heaven
+T: (SSAATTBB arrangement)
+C: Words: Henry F. Lyte, 1834.
+C: Music: 'Praise My Soul' / 'Lauda Anima' — John Goss, 1869.
+C: Setting: "The Choral Hymnal", 1888. SSAATTBB arr. 2026. Original: public domain.
+M: 2/4
+L: 1/4
+Q: 1/4=120
+%%staves {(V1 V2) (V3 V4) (V5 V6) (V7 V8)}
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+K: Eb
+%%
+%% NOTE ON OCTAVE CONVENTION (V5/V6):
+%%   With transpose=-12 the written pitch sounds one octave lower.
+%%   "written G" (G3 in treble) sounds G2 (concert T2 floor).
+%%   No comma-suffixed notes appear in V5 or V6.
+%%
+%% ── PHRASE 1 (bars 1–4): SSAA choir alone, p ──
+%%
+%% Bar 1  Eb I
+%% S1=Bb4, S2=G4, A1=Eb4, A2=C4  SSAA {Bb,G,Eb,C}=4 ✓
+[V:1] B B |
+[V:2] G G |
+[V:3] e e |
+[V:4] c c |
+[V:5] z2 |
+[V:6] z2 |
+[V:7] z2 |
+[V:8] z2 |
+%% Bar 2  Bb7 (V7)
+%% S1=Bb4, S2=G4, A1=D4, A2=Bb3  SSAA {Bb4,G4,D4,Bb3}=3 distinct ✓
+[V:1] B B |
+[V:2] G G |
+[V:3] d d |
+[V:4] B B |
+[V:5] z2 |
+[V:6] z2 |
+[V:7] z2 |
+[V:8] z2 |
+%% Bar 3  Eb/G (I6) → Gm passing
+%% S1=Eb4-D4, S2=C4-Bb3, A1=G3-F3, A2=Eb3-D3
+%% A1 above A2 ✓; S1≠A1 ✓; 4 distinct pitches in SSAA ✓
+[V:1] e d |
+[V:2] c B |
+[V:3] G F |
+[V:4] E D |
+[V:5] z2 |
+[V:6] z2 |
+[V:7] z2 |
+[V:8] z2 |
+%% Bar 4  Ab (IV)
+%% S1=C4, S2=Ab3, A1=Eb4, A2=Bb3  SSAA {C4,Ab3,Eb4,Bb3}=4 ✓
+[V:1] c2 |
+[V:2] A2 |
+[V:3] e2 |
+[V:4] B2 |
+[V:5] z2 |
+[V:6] z2 |
+[V:7] z2 |
+[V:8] z2 |
+%%
+%% ── PHRASE 2 (bars 5–9): TTBB enters, mp — full 8 voices ──
+%%
+%% Bar 5  Eb (I)
+%% S1=Bb4, S2=G4, A1=Eb4, A2=C4
+%% T1(concert)=Bb2(wr:B), T2(concert)=G2(wr:G), Bar=Bb2, B1=Eb2
+%% SSAA {Bb,G,Eb,C}=4 ✓; TTBB {Bb2,G2,Bb2,Eb2}={Bb,G,Eb}=3 ✓
+[V:1] B2 |
+[V:2] G2 |
+[V:3] e2 |
+[V:4] c2 |
+[V:5] B2 |
+[V:6] G2 |
+[V:7] B,2 |
+[V:8] E,2 |
+%% Bar 6  Ab(IV)→Eb(I)  orig: S=Ab-G, A=Eb-Eb, T=Ab-Bb, B=C-Eb
+%% S1=Ab3-G3, S2=F3-Eb3, A1=C4-Bb3, A2=Ab3-G3
+%% T1(wr:c-B)=C3-Bb2, T2(wr:A-G)=Ab2-G2  [written: A=Ab3 sounds Ab2 ✓, G sounds G2 ✓]
+%% Bar=Ab2-G2 → same as T2. Fix Bar=Eb3-Bb2 → concert Eb3-Bb2: written E,-B, in bass? No.
+%% Bass clef Bar: written G, = G2 sounds G2 directly (no transpose). So Bar=C3-Bb2 → written C-B,.
+%% TTBB concert: T1=C3-Bb2, T2=Ab2-G2, Bar=C3-Bb2, B1=C2-Eb2
+%% T1=Bar cross (C3-C3) beat 1: cross-choir ok.
+%% TTBB {C3,Ab2,C3,C2} beat1 = {C,Ab}=2 — too few! Fix T2 to Eb3(wr:e=Eb4→concert Eb3)
+%% Actually: wr e in treble with 8vb = Eb4→Eb3 concert. Written E in treble (Eb3)→Eb2 concert (out of T2 range).
+%% So T2 written e (lowercase) = Eb4 written → sounds Eb3. T2 written G = G3 written → sounds G2.
+%% Bar 6 T2: need concert Eb3 → write e; concert G2 → write G.
+%% Revised: T2(wr:e-G) = Eb3-G2 concert; TTBB: {C3,Eb3,C3,C2}={C,Eb}=2 beat1 — still poor.
+%% Let me use: T1=Eb3-Bb2(wr:e-B), T2=C3-G2(wr:c-G), Bar=Ab2-G2 (wr:A,-G,), B1=C2-Eb2(wr:C,-E,)
+%% TTBB beat1: {Eb3,C3,Ab2,C2}={Eb,C,Ab}=3 ✓; beat2: {Bb2,G2,G2,Eb2}={Bb,G,Eb}=3 ✓
+[V:1] A G |
+[V:2] F E |
+[V:3] c B |
+[V:4] A G |
+[V:5] e B |
+[V:6] c G |
+[V:7] A, G, |
+[V:8] C, E, |
+%% Bar 7  Ab(IV)→Bb(V)  orig: S=C-Bb, A=Eb-D, T=Ab-F, B=Ab-Bb
+%% S1=C4-Bb3, S2=Ab3-G3, A1=Eb4-D4, A2=C4-Bb3 (S1-A2 cross-pair unison C4/Bb3: ok)
+%% T1=Ab2-F2(concert); wr=A-F (written A=Ab3→Ab2, F=F3→F2) ✓
+%% T2=Eb2... too low. T2 must have concert min G2. So T2=Bb2(concert); wr=B(Bb3→Bb2) ✓
+%% T2 bar 7 beat1 Bb2, beat2 D3: wr=B-d (Bb3→Bb2, D4→D3) ✓
+%% Bar=C3-D3(wr:C-D in bass), B1=Ab2-Bb2(wr:A,-B,)
+%% TTBB beat1: {Ab2,Bb2,C3,Ab2}={Ab,Bb,C}=3 ✓
+[V:1] c B |
+[V:2] A G |
+[V:3] e d |
+[V:4] c B |
+[V:5] A F |
+[V:6] B d |
+[V:7] C, D, |
+[V:8] A,, B,, |
+%% Bar 8  Eb(I)→Fm(ii)  orig: S=G-Ab, A=Eb-F, T=Eb-C, B=C-F
+%% S1=G3-Ab3, S2=Eb3-F3, A1=Bb3-C4, A2=G3-Ab3 (A2 same as S1: cross-pair ok)
+%% T1(concert)=Eb3-C3(wr:e-c), T2(concert)=G2-Ab2(wr:G-A), Bar=G2-Ab2(wr:G,-A,), B1=C2-F2(wr:C,-F,,)
+%% T2=Bar cross: G2-Ab2 unison (cross-choir ok)
+%% TTBB beat1: {Eb3,G2,G2,C2}={Eb,G,C}=3 ✓
+[V:1] G A |
+[V:2] E F |
+[V:3] B c |
+[V:4] G A |
+[V:5] e c |
+[V:6] G A |
+[V:7] G, A, |
+[V:8] C, F,, |
+%% Bar 9  Bb (V) cadence
+%% S1=F3, S2=D3, A1=Bb3, A2=F3 (S1-A2 cross-pair unison: ok on cadence)
+%% T1(concert)=Bb2(wr:B), T2(concert)=Bb2 — T1=T2 unison: use for cadence blend (one instance)
+%% Use T2=D3 instead (wr:d→D4→D3 concert); Bar=F3(wr:F,)=? bass clef F, = F2; fix Bar=D3(wr:D)
+%% TTBB {Bb2,D3,D3,Bb2}={Bb,D}=2 — not enough. Fix T1=F3(wr:f→F4→F3), T2=D3(wr:d)
+%% Bar=Bb2(wr:B,), B1=Bb2(wr:B,) — unison cadence in Bar+B1 (strong beat cadence: ok)
+%% TTBB: {F3,D3,Bb2,Bb2}={F,D,Bb}=3 ✓
+[V:1] F2 |
+[V:2] D2 |
+[V:3] B2 |
+[V:4] F2 |
+[V:5] f2 |
+[V:6] d2 |
+[V:7] B,2 |
+[V:8] B,,2 |
+%%
+%% ── PHRASE 3 (bars 10–13): Antiphonal SSAA (10–11) / TTBB (12–13), mf ──
+%%
+%% Bar 10  Eb (I)  — orig bass: =B natural → replaced with B,, (Bb2, diatonic)
+%% SSAA sings; TTBB rests
+%% S1=G3-G3, S2=Eb3-F3, A1=Bb3-C4, A2=G3-Ab3  {G,Eb,Bb,G}beat1={G,Eb,Bb}=3 ✓
+[V:1] G G |
+[V:2] E F |
+[V:3] B c |
+[V:4] G A |
+[V:5] z2 |
+[V:6] z2 |
+[V:7] z2 |
+[V:8] z2 |
+%% Bar 11  Cm(vi)→Bb
+%% orig inner voice =A natural → replaced with Ab (diatonic)
+%% S1=G3-G3, S2=Eb3-D3, A1=C4-Bb3, A2=G3-F3  SSAA {G,Eb,C,G}beat1={G,Eb,C}=3 ✓
+[V:1] G G |
+[V:2] E D |
+[V:3] c B |
+[V:4] G F |
+[V:5] z2 |
+[V:6] z2 |
+[V:7] z2 |
+[V:8] z2 |
+%% Bar 12  Eb(I)→Ab(IV)  — orig bass: =B,,=E, (Bnat, Enat) → Bb2, Eb2 (diatonic)
+%% TTBB answers; SSAA rests
+%% T1(concert)=C3-Bb2(wr:c-B), T2(concert)=Ab2-G2(wr:A-G)
+%% Bar=Eb3-D3(wr:E,-D,), B1=Bb2-Bb2(wr:B,)  T2-Bar: cross-choir, no constraint
+%% TTBB beat1: {C3,Ab2,Eb3,Bb2}={C,Ab,Eb,Bb}=4 ✓
+[V:1] z2 |
+[V:2] z2 |
+[V:3] z2 |
+[V:4] z2 |
+[V:5] c B |
+[V:6] A G |
+[V:7] E, D, |
+[V:8] B,, B,, |
+%% Bar 13  Bb(V)  — orig bass: F,^F, (F#) → F2-G2 (diatonic)
+%% S1 keeps =A natural beat 2 (S1 accidental OK — not doubled in any other voice)
+%% TTBB answers
+%% T1(concert)=F3-Eb3(wr:f-e), T2(concert)=D3-C3(wr:d-c)
+%% Bar=Bb2-C3(wr:B,-C,), B1=F2-G2(wr:F,-G,)
+%% TTBB beat1: {F3,D3,Bb2,F2}={F,D,Bb}=3 ✓
+[V:1] z2 |
+[V:2] z2 |
+[V:3] z2 |
+[V:4] z2 |
+[V:5] f e |
+[V:6] d c |
+[V:7] B,, C, |
+[V:8] F,, G,, |
+%%
+%% ── PHRASE 4 (bars 14–17): Full 8-voice homophony, f ──
+%%
+%% Bar 14  Eb(I)→Bb7  orig: S=Bb-C, A=Eb-Eb, T=Bb-=A(→Ab), B=G-F
+%% S1=Bb3-C4, S2=G3-Ab3, A1=Eb4-F4, A2=Bb3-C4 (S1-A2 share C4 beat2: cross-pair ok)
+%% T1(concert)=G2-Ab2(wr:G-A), T2(concert)=Bb2-C3(wr:B-c)  T2 above T1 beat2 (C3>Ab2 ✓ no rule)
+%% Wait: T1 must be above T2. T1(G2-Ab2) vs T2(Bb2-C3): T2 above T1 → voice crossing WITHIN pair!
+%% Fix: T1=Eb3-F3(wr:e-f), T2=Bb2-C3(wr:B-c); T1(Eb3)>T2(Bb2) ✓
+%% Bar=G2-Ab2(wr:G,-A,), B1=G2-F2(wr:G,-F,)  Bar>B1? beat1 G2=G2 (Bar=B1 unison: cross-pair ok, cadential)
+%% Fix: Bar=Bb2-C3(wr:B,-C) — then T2=Bar same? cross-choir ok
+%% TTBB beat1: {Eb3,Bb2,Bb2,G2}={Eb,Bb,G}=3 ✓
+[V:1] B c |
+[V:2] G A |
+[V:3] e f |
+[V:4] B c |
+[V:5] e f |
+[V:6] B c |
+[V:7] B,, C, |
+[V:8] G,, F,, |
+%% Bar 15  Eb(I)  orig: S=D-Eb, A=F-G, T=Bb-=A(→Ab), B=Bb-Bb
+%% S1=D4-Eb4, S2=Bb3-C4, A1=F4-G4, A2=D4-Eb4 (A1 above A2 ✓)
+%% T1(concert)=Bb2-C3(wr:B-c), T2(concert)=G2-Ab2(wr:G-A)  T1>T2 ✓
+%% Bar=D3-Eb3(wr:D,-E,), B1=Bb2-Bb2(wr:B,-B,)  Bar>B1 ✓
+%% TTBB beat1: {Bb2,G2,D3,Bb2}={Bb,G,D}=3 ✓
+[V:1] d e |
+[V:2] B c |
+[V:3] f g |
+[V:4] d e |
+[V:5] B c |
+[V:6] G A |
+[V:7] D, E, |
+[V:8] B,, B,, |
+%% Bar 16  Eb(I)→Eb  orig: S=G-=A(nat,S1 ok), A=Eb-Eb, T=Eb-=A(nat→Ab), B=Eb-F
+%% S1=G3-=A3, S2=Eb3-F3, A1=Bb3-C4, A2=G3-Ab3
+%% T1(concert)=Eb3-F3(wr:e-f), T2(concert)=Bb2-C3(wr:B-c)  T1>T2 ✓
+%% Bar=G2-Ab2(wr:G,-A,), B1=Eb2-F2(wr:E,-F,)  Bar>B1 ✓
+%% TTBB beat1: {Eb3,Bb2,G2,Eb2}={Eb,Bb,G}=3 ✓
+[V:1] G =A |
+[V:2] E F |
+[V:3] B c |
+[V:4] G A |
+[V:5] e f |
+[V:6] B c |
+[V:7] G, A, |
+[V:8] E, F, |
+%% Bar 17  Bb (V) cadence — suspension 4→3 in alto/tenor
+%% S1=Bb3, S2=G3, A1=F4, A2=D4  SSAA {Bb,G,F,D}=4 ✓
+%% T1(concert)=D3(wr:d), T2(concert)=Bb2(wr:B)  T1>T2 ✓
+%% Bar=F3(wr:F,), B1=Bb2(wr:B,)  Bar>B1 ✓
+%% TTBB {D3,Bb2,F3,Bb2}={D,Bb,F}=3 ✓
+[V:1] B2 |
+[V:2] G2 |
+[V:3] f2 |
+[V:4] d2 |
+[V:5] d2 |
+[V:6] B2 |
+[V:7] F,2 |
+[V:8] B,,2 |
+%%
+%% ── PHRASE 5 & 6 (bars 18–25): Full 8, climax, final cadence ──
+%%
+%% Bar 18  Eb(I)  orig: S=Eb-D, A=Eb3/2-Eb (dotted), T=Bb3/2-Bb (dotted), B=G-G
+%% Simplified to quarter notes throughout (original dotted rhythms honored in S1/S2)
+%% S1=Eb4-D4, S2=C4-Bb3, A1=G4-F4, A2=Eb4-D4  A1>A2 ✓; SSAA {Eb,C,G,Eb}beat1={Eb,C,G}=3 ✓
+%% T1(concert)=C3-Bb2(wr:c-B), T2(concert)=Ab2-G2(wr:A-G)  T1>T2 ✓
+%% Bar=Eb3-D3(wr:E,-D,), B1=G2-G2(wr:G,-G,)  Bar>B1 beat1(Eb3>G2) ✓
+[V:1] e d |
+[V:2] c B |
+[V:3] g f |
+[V:4] e d |
+[V:5] c B |
+[V:6] A G |
+[V:7] E, D, |
+[V:8] G,, G,, |
+%% Bar 19  Ab(IV)→Bb(V)  orig: S=C-Bb, A=Eb-F/G, T=Ab-F/Eb, B=Ab-Bb
+%% S1=C4-Bb3, S2=Ab3-G3, A1=Eb4-D4, A2=C4-Bb3
+%% T1(concert)=Ab2-G2(wr:A-G), T2(concert)=Eb3-D3(wr:e-d)  T2>T1 beat1 — crossing! Fix.
+%% T1=Eb3-D3(wr:e-d), T2=Bb2-G2(wr:B-G)  T1>T2 ✓
+%% Bar=Ab2-Bb2(wr:A,-B,), B1=Ab2-Bb2(wr:A,-B,) — Bar=B1 unison: fix Bar=C3-D3(wr:C-D)
+%% TTBB beat1: {Eb3,Bb2,C3,Ab2}={Eb,Bb,C,Ab}=4 ✓
+[V:1] c B |
+[V:2] A G |
+[V:3] e d |
+[V:4] c B |
+[V:5] e d |
+[V:6] B G |
+[V:7] C, D, |
+[V:8] A,, B,, |
+%% Bar 20  Eb(I)  — CLIMAX APPROACH
+%% S1=Eb4-D4, S2=C4-Bb3, A1=G4-F4, A2=Eb4-D4  (same as bar 18, wider spread)
+%% T1(concert)=C3-Bb2(wr:c-B), T2(concert)=Ab2-G2(wr:A-G)  T1>T2 ✓
+%% Bar=Eb3-D3(wr:E,-D,), B1=C2-C2(wr:C,-C,)  B1 at C2 = low register for climax spread ✓
+%% Bar>B1 (Eb3>C2) ✓; TTBB beat1: {C3,Ab2,Eb3,C2}={C,Ab,Eb}=3 ✓
+[V:1] e d |
+[V:2] c B |
+[V:3] g f |
+[V:4] e d |
+[V:5] c B |
+[V:6] A G |
+[V:7] E, D, |
+[V:8] C,, C,, |
+%% Bar 21  Ab(IV)→Bb(V)  — CLIMAX
+%% S1=C4-Bb3, S2=Ab3-G3, A1=Eb4-C4, A2=Ab3-G3 (S2=A2 cross-pair unison Ab3/G3: ok)
+%% T1(concert)=Eb3-D3(wr:e-d), T2(concert)=C3-Bb2(wr:c-B)  T1>T2 ✓
+%% Bar=Ab2-Bb2(wr:A,-B,), B1=Ab2-Bb2 — unison: fix Bar=Eb3-F3(wr:E,-F,) → bass clef E,=Eb2?
+%% Bass clef: E, = Eb2 (below middle C by about an 11th). For baritone concert Eb3: wr is E (above bass clef middle)
+%% In bass clef ABC: E (no comma) is typically Eb2 (below middle C). C (no comma) = C2.
+%% Actually in bass clef: C = C2 (two ledger lines below staff), G = G2, B = Bb2, c = C3.
+%% So Bar concert Eb3: write e (=Eb3 in bass clef above middle line) — or use treble...
+%% Actually standard bass clef ABC: e = Eb3, f = F3, g = G3, a = Ab3, b = Bb3, c' = C4.
+%% So Bar=Eb3→ write e in bass; Bar=F3→write f.
+%% TTBB beat1: {Eb3,C3,e(Eb3),Ab2}={Eb,C,Ab}=3 ✓
+[V:1] c B |
+[V:2] A G |
+[V:3] e c |
+[V:4] A G |
+[V:5] e d |
+[V:6] c B |
+[V:7] e f |
+[V:8] A,, B,, |
+%% Bar 22  Eb(I) — !sintro! — piano echo (contrasting texture: call-response S1 leads)
+%% S1=C4-Bb3, S2=Ab3-G3, A1=Eb4-D4, A2=C4-Bb3
+%% T1(concert)=Ab2-G2(wr:A-G), T2(concert)=Eb3-D3(wr:e-d)  T2>T1 — crossing! Fix.
+%% T1=Eb3-D3(wr:e-d), T2=Bb2-G2(wr:B-G)  T1>T2 ✓
+%% Bar=Ab2-G2(wr:A,-G,), B1=Ab2-Bb2(wr:A,-B,)
+%% Bar<B1 beat2 (G2<Bb2) — Bar below B1: voice crossing. Fix: Bar=C3-Bb2(wr:C-B,→ 'C' in bass = C2?
+%% Wait: bass clef c (lowercase) = C3. B, = Bb2. So Bar: beat1=c(C3), beat2=B,(Bb2). C3>Bb2 ✓
+%% TTBB beat1: {Eb3,Bb2,C3,Ab2}={Eb,Bb,C,Ab}=4 ✓
+[V:1] !p!c B |
+[V:2] A G |
+[V:3] e d |
+[V:4] c B |
+[V:5] e d |
+[V:6] B G |
+[V:7] c B, |
+[V:8] A,, B,, |
+%% Bar 23  Ab(IV)→Fm(ii)  orig: S=Ab-F, A=Eb-C, T=C-Ab, B=C-Ab
+%% S1=Ab3-F3, S2=F3-D3, A1=C4-Ab3, A2=Ab3-F3
+%% T1(concert)=Eb3-C3(wr:e-c), T2(concert)=Bb2-Ab2(wr:B-A)  T1>T2 ✓
+%% Bar=C3-Ab2(wr:C-A,), B1=C2-Ab2(wr:C,-A,,)  Bar>B1 beat1 ✓
+%% TTBB beat1: {Eb3,Bb2,C3,C2}={Eb,Bb,C}=3 ✓
+[V:1] A F |
+[V:2] F D |
+[V:3] c A |
+[V:4] A F |
+[V:5] e c |
+[V:6] B A |
+[V:7] C A, |
+[V:8] C, A,, |
+%% Bar 24  Bb(V) — suspension 4→3; all voices converge to cadence
+%% S1=Eb3-D3, S2=G3-F3  [S2(G3)>S1(Eb3): crossing! Fix S1=G3-F3, S2=Eb3-D3]
+%% Actually S1 orig = E D (Eb3-D3). S2 should be below S1.
+%% S1=Eb3-D3(=E D), S2=C3-Bb3? No — S2 must be below S1 (Eb3). S2=C3-Bb2? wr:c-B(bass)? No, S2 is treble.
+%% S2 treble: C(=C3)-B(=Bb3)? Bb3 > Eb3: S2>S1, crossing.
+%% The orig soprano is very low here (Eb3-D3). S2 must be below → S2=C3-Bb2(wr:c-B — but B in treble = Bb3, not Bb2)
+%% In treble clef: lower octave uses uppercase. B (uppercase)=Bb3. B, (comma) = Bb2.
+%% S2 at Bb2 in treble: written B, (comma). OK for a low S2 approach to cadence.
+%% S1=Eb3(E), S2=C3(C)... E in treble (uppercase)=Eb3, C(uppercase)=C3. S1>S2 ✓
+%% A1=Bb3(B), A2=G3(G)  A1>A2 ✓; SSAA {Eb3,C3,Bb3,G3}=4 distinct ✓
+%% T1(concert)=Bb2-Ab2(wr:B-A)? actually suspension: T1=F3-Eb3(wr:f-e), T2=D3-Bb2(wr:d-B)  T1>T2 ✓
+%% Bar=F3-Eb3(wr:f-e), B1=Bb2-Bb2(wr:B,-B,)  Bar>B1 ✓
+%% TTBB beat1: {F3,D3,F3,Bb2}={F,D,Bb}=3 ✓  T1=Bar unison F3: cross-choir, ok
+[V:1] E D |
+[V:2] C B, |
+[V:3] B A |
+[V:4] G F |
+[V:5] f e |
+[V:6] d B |
+[V:7] f e |
+[V:8] B,, B,, |
+%% Bar 25  Eb (I) — FINAL CADENCE — all voices on Eb major
+%% S1=Eb3(E), S2=Bb3(B)  Wait: S2 must be below S1. Eb3<Bb3 — S2>S1: crossing!
+%% Fix: S1=Bb3(B), S2=Eb3(E) — but that's the same notes swapped.
+%% S1 orig ends on E (Eb3). S2 must be ≤ Eb3. S2=C3(C)? or Bb2(B,)?
+%% S2=C3(C): S1(Eb3)>S2(C3) ✓; A1=G3(G), A2=Eb3(E) — A1>A2 ✓
+%% But then S2=C3 and A1=G3: cross-pair ok. A2=Eb3=S1=Eb3 — cross-pair unison: ok.
+%% SSAA: {Eb3,C3,G3,Eb3}={Eb,C,G}=3 ✓
+%% T1(concert)=Eb3(wr:e), T2(concert)=Bb2(wr:B)  T1>T2 ✓
+%% Bar=G3(wr:g), B1=Eb2(wr:E,)  Bar>B1 ✓
+%% TTBB: {Eb3,Bb2,G3,Eb2}={Eb,Bb,G}=3 ✓
+[V:1] E2 !eintro!|]
+[V:2] C2 |]
+[V:3] G2 |]
+[V:4] E2 |]
+[V:5] e2 |]
+[V:6] B2 |]
+[V:7] g2 |]
+[V:8] E,,2 |]

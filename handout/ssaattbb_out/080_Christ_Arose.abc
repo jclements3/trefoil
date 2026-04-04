@@ -1,0 +1,328 @@
+X: 1
+T: Christ Arose
+C: Words: Robert Lowry, 1874. Music: Robert Lowry, 1874.
+C: SSAATTBB arrangement for double choir and lever harp.
+C: Lever harp: C major. Raise Eb, Bb, Ab levers (3 of 7 from Eb storage).
+S: Source: Open Hymnal Project, 2007 Revision.
+M: 4/4
+L: 1/4
+Q: 1/4=100
+%%staves [(1 2) (3 4) (5 6) (7 8)]
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+K: C
+%
+% ============================================================
+% VERSE — bars 1–8  "Low in the grave He lay / Jesus my Saviour"
+%
+% Texture plan:
+%   Bars 1–2:  SSAA choir + Bass (5 voices; TTBB silent except B1 pedal)
+%   Bars 3–4:  Add Baritone and Tenor I (7 voices)
+%   Bars 5–8:  All 8 voices
+% ============================================================
+%
+% ---- BAR 1 ----
+% S1: original soprano; S2: 3rd below; A1: alto; A2: rest
+% B1 pedal underpins from the start
+[V:1]  G2 G A |
+[V:2]  E2 E F |
+[V:3]  C2 C C |
+[V:4]  z4      |
+[V:5]  z4      |
+[V:6]  z4      |
+[V:7]  z4      |
+[V:8]  C,2 C, C, |
+%
+% ---- BAR 2 ----
+[V:1]  A G G2 |
+[V:2]  F E E2 |
+[V:3]  C C C2 |
+[V:4]  z4      |
+[V:5]  z4      |
+[V:6]  z4      |
+[V:7]  z4      |
+[V:8]  C, C, C,2 |
+%
+% ---- BAR 3 — Baritone and Tenor I enter ----
+% Original tenor: B,2 B, B, (sounding B2-B2-B2)
+% T1 written an octave up (transpose=-12): B2 B2 B2 → write B B B
+[V:1]  G2 F A |
+[V:2]  D2 D F |
+[V:3]  B,2 B, D |
+[V:4]  z4       |
+[V:5]  B2 B B   |
+[V:6]  z4       |
+[V:7]  G,2 G, G, |
+[V:8]  G,,2 G,, G,, |
+%
+% ---- BAR 4 ----
+% Original tenor: C2 C2 (sounding C3) → write c (C4 written, C3 sounding)
+[V:1]  A2 G2 |
+[V:2]  F2 E2 |
+[V:3]  D2 C2 |
+[V:4]  z4     |
+[V:5]  c2 c2  |
+[V:6]  z4     |
+[V:7]  E,2 E,2 |
+[V:8]  C,2 C,2 |
+%
+% ---- BAR 5 — all 8 voices; "Waiting the coming day" ----
+% S1: A B c; S2: F G A (3rd below); A1: C D E; A2: F G A (6th below S1, 3rd below A1)
+% T1 sounding C3 E3 G3 → write c e g (C4 E4 G4 written, C3 E3 G3 sounding)
+% T2 sounding A2 B2 C3 → write a b c' ... too high. Use A, B, c (A3 B3 C4 written, A2 B2 C3 snd)
+% Bar sounding F2 G2 A2 (3rd above B1) → bass clef F, G, A,
+% B1 sounding F2 G2 A2 → same as Bar — needs to be distinct.
+% B1 follows original bass F,; Bar goes to A, (3rd above).
+[V:1]  A2 B c |
+[V:2]  F2 G A |
+[V:3]  C2 D E |
+[V:4]  A,2 B, C |
+[V:5]  c2 d e  |
+[V:6]  A,2 B, c |
+[V:7]  A,2 A, A, |
+[V:8]  F,2 F, F, |
+%
+% ---- BAR 6 ----
+% S1: c G G; S2: E E E (3rd below); A1: E C C; A2: C A, A,
+% T1 sounding E3 C3 C3 → write e c c (E4 C4 C4 written)
+% T2 sounding C3 G2 G2 → write c G G (C4 G4 G4 written — G4 is high for T2; use lower G, G, G, = G3 snd)
+% Wait: G, in 8vb treble = G3 written = G2 sounding. That's the bottom of T2. Use G G = G4 written = G3 snd.
+[V:1]  c G G2 |
+[V:2]  G E E2 |
+[V:3]  E C C2 |
+[V:4]  C A, A,2 |
+[V:5]  e c c2   |
+[V:6]  G G G2   |
+[V:7]  G, G, G,2 |
+[V:8]  E, C, C,2 |
+%
+% ---- BAR 7 — S1 has ^F (raised leading tone); all others diatonic F natural ----
+% Original S2V1 tenor: C2 B, A, (sounding C3 B2 A2) → write c B A (C4 B4 A4 written, C3 B3 A3 snd)
+% That's too high for tenor; inner voice. Use c B, A, (C4 B3 A3 written, C3 B2 A2 snd) ✓
+[V:1]  A2 G ^F |
+[V:2]  E2 D C  |
+[V:3]  C2 B, A, |
+[V:4]  A,2 G, F, |
+[V:5]  c2 B A   |
+[V:6]  A2 G F   |
+[V:7]  C,2 D, D, |
+[V:8]  C,2 D, D, |
+%
+% ---- BAR 8 — half cadence on G; phrasing breath before refrain ----
+% Original tenor: G,4 (sounding G2) → write G, (G3 written, G2 snd)
+% T2 a third below T1: E2 → write E, (E3 written, E2 snd)
+[V:1]  G4 |
+[V:2]  B,4 |
+[V:3]  G,4 |
+[V:4]  D,4 |
+[V:5]  B,4  |
+[V:6]  G,4  |
+[V:7]  G,,4  |
+[V:8]  G,,4 |
+%
+% ============================================================
+% REFRAIN — "Up from the grave He arose!"
+% Full 8-voice homophony; march character with dotted rhythms
+% Bars 9–11: first statement; bars 12–15: "He arose!"; bars 16–20: climax/close
+% ============================================================
+%
+% Refrain harmony plan for march figure (C E G / C E G pattern):
+%  SSAA: S1=C4-E4-G4, S2=A3-C4-E4, A1=G3-C4-E4 neighbor, A2=E3-G3-C4
+%  TTBB: T1 sounds C3-E3-G3 (write c-e-g), T2 sounds A2-C3-E3 (write A,-c-e)
+%        Bar sounds C2-E2-G2 (bass clef C,-E,-G,), B1 sounds C2 pedal (C,)
+%
+% ---- BAR 9 "Up from the grave He arose" ----
+[V:1]  C C3/4C// E G3/4G// |
+[V:2]  A, A,3/4A,// C E3/4E// |
+[V:3]  G, G,3/4G,// C E3/4E// |
+[V:4]  E, E,3/4E,// G, C3/4C// |
+[V:5]  c c3/4c// e g3/4g// |
+[V:6]  A, A,3/4A,// c e3/4e// |
+[V:7]  C, C,3/4C,// E, G,3/4G,// |
+[V:8]  C, C,3/4C,// C, C,3/4C,// |
+%
+% ---- BAR 10 "with a mighty triumph o'er His foes" ----
+% S1: c3 c3/4d//; S2: E3 E3/4F//; A1: G3 G3/4A//; A2: E3 E3/4E//
+% T1 original: G,3 G,3/4A,// (sounding G2) → write G, (kept)
+%   But rewritten to match new T1 concept: sounding G3 → write g
+% T2: sounding E3 → write e (but that's treble high); use A,3 A,3/4B,// (snd A2 → write A,... hmm)
+%   Actually in 8vb treble: write A, = A3 written = A2 sounding. For sounding E3 write E = E4 sounding E3. ✓
+[V:1]  c3 c3/4d// |
+[V:2]  E3 E3/4F// |
+[V:3]  G3 G3/4A// |
+[V:4]  E3 E3/4E// |
+[V:5]  e3 e3/4f// |
+[V:6]  E3 E3/4F// |
+[V:7]  G, G,3/4G,// C, C,3/4C,// |
+[V:8]  C, C,3/4C,// C, C,3/4C,// |
+%
+% ---- BAR 11 "He arose a victor from the dark domain" ----
+% S1: e c d3/4c// B3/4A//; S2: G G A3/4G// F3/4E//
+% A1: E G F3/4E// D3/4C//; A2: C E D3/4C// B,3/4A,//
+% T1 sounding E3 C3 D3 C3 B2 A2 → write E c D c B, A,
+%   Check: e=E4 snd E3✓, c=C4 snd C3✓, D=D4 snd D3✓, B,=B3 snd B2✓, A,=A3 snd A2✓ ✓
+% T2 sounding C3 E3 F3 E3 D3 C3 → write C e F E D C
+%   Check: C=C4 snd C3✓, e=E4 snd E3✓ — but T2 max comfortable is C3 sounding (write c).
+%   E4 written → E3 sounding is fine for T2 (max E4 sounding). ✓
+[V:1]  e c d3/4c// B3/4A// |
+[V:2]  G G A3/4G// F3/4E// |
+[V:3]  E G F3/4E// D3/4C// |
+[V:4]  C E D3/4C// B,3/4A,// |
+[V:5]  e c d3/4c// B,3/4A,// |
+[V:6]  C E F3/4E// D3/4C// |
+[V:7]  C, E, F,3/4F,// F,3/4F,// |
+[V:8]  C, E, F,3/4F,// F,3/4F,// |
+%
+% ---- BAR 12 — "and He lives forever" ----
+% S1: G3 B3/4c//; S2: E3 D3/4E//
+% A1: C C3/4C// G G,3/4G,// (original tenor figure); A2: C, C,3/4C,// G, G,,3/4G,,// (too low for A2!)
+%   A2 minimum D3 in concert (A2 = alto II). D, in treble = D3. Fix A2 to stay above D3:
+%   A2: G, G,3/4G,// E, E,3/4E,// (G3 E3 range — fine)
+% T1 original: C C3/4C// G G,3/4G,// (sounding C3 G2) → write c C/ g G, (but G,= G3 wr → G2 snd ✓)
+%   Actually original S2V1 bar 12: C C3/4 C// C G,3/4 G,// (sounding C3 C3 G2)
+%   T1 written (8vb transpose): c c3/4c// c G,3/4G,// → sounding C3 C3 G2 — hmm G2 is T1 minimum? T1 min B2. G2 below minimum.
+%   Fix T1: c c3/4c// c B,3/4B,// (snd C3 B2) ✓ or c c3/4c// c g3/4g// (snd C3 G3) ✓
+% T2: a 3rd below T1 = A2-A2-E3 → write A, A,3/4A,// A, e3/4e//
+[V:1]  G3 B3/4c// |
+[V:2]  E3 D3/4E// |
+[V:3]  C3 C3/4D// |
+[V:4]  G,3 G,3/4A,// |
+[V:5]  c c3/4c// c g3/4g// |
+[V:6]  A, A,3/4A,// A, c3/4c// |
+[V:7]  C, C,3/4C,// C, E,3/4E,// |
+[V:8]  C, C,3/4C,// C, G,,3/4G,,// |
+%
+% ---- BAR 13 "He arose!" ----
+% S1: d d d3/4c// d3/4e//; S2: F F F3/4E// F3/4G//
+% A1: B, B, A3/4G// A3/4B// (passing motion, diatonic); A2: G, G, F,3/4E,// F,3/4G,//
+% Original tenor S2V1: G, G, G,3/4G,// G,3/4G,// (sounding G2)
+%   T1 (8vb): write g g g3/4g// g3/4g// (snd G3) — more interesting; original had G2, I'll use G3 for fullness
+%   T2: a 3rd below T1 = E3 → write e e e3/4e// e3/4e// (snd E3)
+% Bar: G, G, G,3/4G,// G,3/4G,// (original); B1: G,, G,, G,,3/4G,,// G,,3/4G,,//
+[V:1]  d d d3/4c// d3/4e// |
+[V:2]  F F F3/4E// F3/4G// |
+[V:3]  B, B, A3/4G// A3/4B// |
+[V:4]  G, G, F,3/4E,// F,3/4G,// |
+[V:5]  g g g3/4g// g3/4g// |
+[V:6]  e e e3/4e// e3/4e// |
+[V:7]  G, G, G,3/4G,// G,3/4G,// |
+[V:8]  G,, G,, G,,3/4G,,// G,,3/4G,,// |
+%
+% ---- BAR 14 "He arose!" ----
+% S1: c A G G3/4G//; S2: E F E E3/4E//
+% A1: G E C C3/4C//; A2: E C A, A,3/4A,//
+% T1 original: C C C C3/4C// (sounding C3) → write c c c c3/4c//
+% T2: A, A, G, G,3/4G,// (snd A2 G2) → write A, A, G, G,3/4G,// (A3 G3 wr, A2 G2 snd ✓)
+% Bar: original A, F, C, C,3/4C,//; B1: A, F, C, C,3/4C,// — same; differ them
+%   Bar: C, F, C, C,3/4C,// (stays on C-F-C area, 3rd above B1)
+[V:1]  c A G G3/4G// |
+[V:2]  E F E E3/4E// |
+[V:3]  G E C C3/4C// |
+[V:4]  E C A, A,3/4A,// |
+[V:5]  c c c c3/4c// |
+[V:6]  A, A, G, G,3/4G,// |
+[V:7]  A, F, C, C,3/4C,// |
+[V:8]  A, F, C, C,3/4C,// |
+%
+% ---- BAR 15 "Hallelujah! Christ arose!"
+% Original S1V2 had ^F here: F F ^F3/4^F// ^F3/4A//
+% All non-S1 voices: replace ^F with F natural (diatonic substitute)
+% S1: A A A3/4d// d3/4c//; S2: F F F3/4F// F3/4A// (original, now F natural throughout)
+% A1: D D D3/4D// D3/4F//; A2: F, F, D,3/4D,// D,3/4F,// (A2 minimum D3: D, = D3 fine)
+% Original tenor S2V1: C C C3/4A,// A,3/4D// (sounding C3 A2 D3)
+%   T1: write c c c3/4A,// A,3/4D// (snd C3 A2 D3) ✓
+% T2: F, F, D,3/4D,// D,3/4F,// (snd F2 D2 F2 — T2 min G2; F2 < G2: problem)
+%   Fix T2: A, A, F,3/4F,// F,3/4A,// (snd A2 F2 — F2 still < G2 min for T2)
+%   T2 min G2: use G, G, G,3/4G,// G,3/4G,// (snd G2 throughout) — stays on G pedal; fine
+% Bar: F, F, D,3/4D,// D,3/4D,//; B1: F, F, D,3/4D,// D,3/4D,//
+%   Differ them: Bar a 3rd above B1 = use A, A, F,3/4F,// F,3/4F,//
+[V:1]  A A A3/4d// d3/4c// |
+[V:2]  F F F3/4F// F3/4A// |
+[V:3]  D D D3/4D// D3/4F// |
+[V:4]  F, F, D,3/4D,// D,3/4F,// |
+[V:5]  c c c3/4A,// A,3/4D// |
+[V:6]  G, G, G,3/4G,// G,3/4G,// |
+[V:7]  A, A, F,3/4F,// F,3/4F,// |
+[V:8]  F, F, D,3/4D,// D,3/4D,// |
+%
+% ---- BAR 16 "Up from the grave He arose" (climax statement) ----
+% S1: B c d G3/4G//; S2: G/F/ E F G3/4G//
+% A1: D C D E3/4E//; A2: B, A, B, C3/4C//
+% T1 sounding D3 C3 D3 E3 → write D c D E (D4 C4 D4 E4 wr, D3 C3 D3 E3 snd) ✓
+% T2 sounding B2 A2 B2 C3 → write B, A, B, c (B3 A3 B3 C4 wr, B2 A2 B2 C3 snd) ✓
+% Bar: original D C B, z; B1: G, A, G, z
+%   Swap so Bar is above B1: Bar = G, A, G, z; B1 = G, A, G, z — same
+%   Bar = D, C, B,, z (B,, = B1 — below Baritone range E2); fix: Bar = G, A, G, z; B1 = G,, A,, G,, z
+[V:1]  B c d G3/4G// |
+[V:2]  G/F/ E F G3/4G// |
+[V:3]  D C D E3/4E// |
+[V:4]  B, A, B, C3/4C// |
+[V:5]  D c D E3/4E// |
+[V:6]  B, A, B, c3/4c// |
+[V:7]  G, A, G, z |
+[V:8]  G,, A,, G,, z |
+%
+% ---- BAR 17 "with a mighty triumph" ----
+% SSAA leads; TTBB enters on beat 2 (antiphonal call-and-response)
+% S1: e3 d3/4c//; S2: G3 F3/4E//; A1: C3 B3/4A//; A2: C3 A3/4G//
+% T1-B1: z C3/4C// C z (original tenor/bass)
+%   T1: sounding z C3 C3 z → write z c3/4c// c z ✓
+%   T2: sounding z A2 A2 z → write z A,3/4A,// A, z ✓
+%   Bar: z C, C, z (snd z C3 C3 z); B1: z C, C, z — same; differ: Bar z E, E, z
+[V:1]  e3 d3/4c// |
+[V:2]  G3 F3/4E// |
+[V:3]  C3 B3/4A// |
+[V:4]  C3 A3/4G// |
+[V:5]  z c3/4c// c z |
+[V:6]  z A,3/4A,// A, z |
+[V:7]  z E,3/4E,// E, z |
+[V:8]  z C,3/4C,// C, z |
+%
+% ---- BAR 18 "Victor from the dark domain" ----
+% S1: f3 !sintro!e3/4d//; S2: A3 G3/4F//; A1: C3 C3/4B,//; A2: A,3 G,3/4F,//
+% T1 original S2V1: z C3/4C// C C3/4A,// (snd z C3 C3 A2) → write z c3/4c// c A,3/4A,//
+% T2: z A,3/4A,// A, F,3/4F,// (snd z A2 A2 F2 — F2 below T2 min G2; fix F to G)
+%   T2: z A,3/4A,// A, G,3/4G,// (snd z A2 A2 G2) ✓
+% Bar original: z F,3/4F,// F, F,3/4F,//; B1 original: z F,,3/4F,,// F,, F,,3/4F,,//
+[V:1]  f3 !sintro!e3/4d// |
+[V:2]  A3 G3/4F// |
+[V:3]  C3 C3/4B,// |
+[V:4]  A,3 G,3/4F,// |
+[V:5]  z c3/4c// c A,3/4A,// |
+[V:6]  z A,3/4A,// A, G,3/4G,// |
+[V:7]  z F,3/4F,// F, F,3/4F,// |
+[V:8]  z F,,3/4F,,// F,, F,,3/4F,,// |
+%
+% ---- BAR 19 "He lives forever with His saints to reign" — stretto, all 8 voices ----
+% S1: c G e d; S2: E E G F; A1: C C C B,; A2: G, G, G, G, (pedal G3)
+% T1 original: G, C C B, (snd G2 C3 C3 B2) → write G, c c B, (G3 wr G2 snd; c=C4 wr C3 snd; B,=B3 wr B2 snd) ✓
+% T2: E, G, G, G, (snd E2 G2 G2 G2) → write E, G, G, G, ✓
+% Bar original: G, C, C, B,; B1: G,, G,, G,, G,,
+%   Check Bar: G, = G3, C, = C3, B, = B3 — all within Baritone range (E2-C4) ✓
+%   But B,, = B1 — that's B1 concert (30Hz), way too low. Should be G,, = G2 ✓
+[V:1]  c G e d |
+[V:2]  E E G F |
+[V:3]  C C C B, |
+[V:4]  G, G, G, G, |
+[V:5]  d c c B, |
+[V:6]  G, G, G, G, |
+[V:7]  G, C, C, G, |
+[V:8]  G,, G,, G,, G,, |
+%
+% ---- BAR 20 — final cadence, wide-spaced root-position C major ----
+% S1 on c (C5), B1 on C,, (C2) — maximum 3-octave spread
+% Inner voices fill in E and G across registers
+[V:1]  c4 !eintro!|]
+[V:2]  E4 |]
+[V:3]  C4 |]
+[V:4]  G,4 |]
+[V:5]  e4   |]
+[V:6]  C4   |]
+[V:7]  G,4   |]
+[V:8]  C,,4 |]

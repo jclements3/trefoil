@@ -1,0 +1,160 @@
+X: 1
+T: Holy God, We Praise Thy Name
+T: (SSAATTBB arrangement)
+C: Words: attr. Ignaz Franz, 1774. Translated by Clarence A. Walworth, 1858.
+C: Music: 'Te Deum' (Grosser Gott, wir Loben Dich) from Katholisches Gesangbuch,
+C: Maria Theresa, 1774. Setting: "Hymns Ancient and Modern", 1869, alt.
+C: SSAATTBB arrangement (2026). Original SATB: Open Hymnal Project, 2005.
+C: copyright: public domain.
+S: Music source: "Hymns Ancient and Modern", 1869 Hymn 11
+M: 3/4
+L: 1/4
+Q: 1/4=120
+%%staves [(1 2) (3 4) (5 6) (7 8)]
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+K: F
+%%
+%% ======================================================
+%% BARS 1-4: SSAA only, pp opening (TTBB rests)
+%% Harmony: F | F | C | F
+%% ======================================================
+%%
+%% V1 S1 = original soprano verbatim
+%% V2 S2 = third below S1, diatonic
+%% V3 A1 = chord tones below S2, avoiding S-A unisons; neighbor motion added
+%% V4 A2 = third below A1, diatonic
+%%
+[V:1] F2 F | (F E) F | (G A) G | F3 |
+[V:2] D2 D | (D C) D | (E F) E | D3 |
+[V:3] A2 A | A2 A | C D C | C3 |
+[V:4] F,2 F, | F,2 F, | A, B, A, | A,3 |
+[V:5] z3 | z3 | z3 | z3 |
+[V:6] z3 | z3 | z3 | z3 |
+[V:7] z3 | z3 | z3 | z3 |
+[V:8] z3 | z3 | z3 | z3 |
+%%
+%% ======================================================
+%% BARS 5-8: Full 8 voices, homophony
+%% Harmony: F | F | F->C | C->F
+%% ======================================================
+%%
+%% V5 T1 raised to f (F3 sounding) in bars 5-6 for TTBB spacing
+%% V6 T2 = third below T1 sounding
+%% V7 Bar = third above B1 (A2 sounding)
+%%
+[V:1] A2 A | (A G) A | (c B) A | A G2 |
+[V:2] F2 F | (F E) F | (A G) F | F E2 |
+[V:3] C2 C | (C D) C | F2 E | C D2 |
+[V:4] A,2 A, | (A, B,) A, | D2 C | A, B,2 |
+[V:5] f2 f | (f e) f | (c' B) A | A G2 |
+[V:6] c2 c | (c B) c | (A G) F | F E2 |
+[V:7] C2 C | C2 C | C2 A, | A,2 A, |
+[V:8] F,2 F, | F,2 F, | E,2 F, | C C,2 |
+%%
+%% ======================================================
+%% BARS 9-12: Full 8 voices, tutti (repeat of opening phrase)
+%% Harmony: F | F | C | F
+%% ======================================================
+%%
+[V:1] F2 F | (F E) F | (G A) G | F3 |
+[V:2] D2 D | (D C) D | (E F) E | D3 |
+[V:3] A2 A | A2 A | C D C | C3 |
+[V:4] F,2 F, | F,2 F, | A, B, A, | A,3 |
+[V:5] f2 f | (f e) f | (c' B) A | A3 |
+[V:6] c2 c | (c B) c | (A G) F | F3 |
+[V:7] C2 C | C2 C | E,2 E, | A,3 |
+[V:8] F,2 F, | F,2 F, | C,2 C, | F,3 |
+%%
+%% ======================================================
+%% BARS 13-14: Antiphonal — SSAA alone (TTBB tacet)
+%% Harmony: F | F
+%% ======================================================
+%%
+[V:1] A2 A | .(A G) A |
+[V:2] F2 F | .(F E) F |
+[V:3] C2 C | .(C D) C |
+[V:4] A,2 A, | .(A, G,) A, |
+[V:5] z3 | z3 |
+[V:6] z3 | z3 |
+[V:7] z3 | z3 |
+[V:8] z3 | z3 |
+%%
+%% ======================================================
+%% BARS 15-16: Antiphonal — TTBB alone (SSAA tacet)
+%% Harmony: F->C | C->F
+%% ======================================================
+%%
+[V:1] z3 | z3 |
+[V:2] z3 | z3 |
+[V:3] z3 | z3 |
+[V:4] z3 | z3 |
+[V:5] (c' B) A | A G2 |
+[V:6] (A G) F | F E2 |
+[V:7] C2 A, | A,2 A, |
+[V:8] E,2 F, | C C,2 |
+%%
+%% ======================================================
+%% BARS 17-18: Full tutti — S leads canonic imitation
+%% (T1/T2 will echo S1/S2 in bars 19-20)
+%% Harmony: Dm->Gm->C | Gm->C->F
+%% Bar 17 original alto had ^F (F#) — replaced with G (diatonic)
+%% ======================================================
+%%
+[V:1] G2 A/c/ | .(B A) G |
+[V:2] E2 F/A/ | .(G F) E |
+[V:3] C2 D | .(E D) C |
+[V:4] A,2 B, | .(C B,) A, |
+[V:5] (c d) c | B2 A |
+[V:6] (A B) A | G2 F |
+[V:7] E,2 E, | D,2 C, |
+[V:8] C B, A, | G,2 C, |
+%%
+%% ======================================================
+%% BARS 19-20: S+A climax; T1/T2 echo S1/S2 from bars 17-18
+%% (2-bar canonic imitation at the lower octave, between S and T)
+%% Harmony: F->C | C
+%% ======================================================
+%%
+[V:1] A2 B/d/ | c3 |
+[V:2] F2 G/B/ | A3 |
+[V:3] F2 F | E3 |
+[V:4] D2 D | C3 |
+[V:5] G2 A/c/ | c3 |
+[V:6] E2 F/A/ | A3 |
+[V:7] A,2 F, | G,3 |
+[V:8] F,2 D, | C,3 |
+%%
+%% ======================================================
+%% BARS 21-22: Full 8 voices, stretto to final cadence
+%% Harmony: Bb->F | F->C->Dm
+%% ======================================================
+%%
+[V:1] !sintro!d2 d | (c B) A |
+[V:2] B2 B | (A G) F |
+[V:3] F2 F | F2 F |
+[V:4] D2 D | D2 C |
+[V:5] f2 f | (f e) d |
+[V:6] d2 d | (c B) A |
+[V:7] D2 D | C2 A, |
+[V:8] B,2 B, | G,2 F, |
+%%
+%% ======================================================
+%% BARS 23-24: Final cadence — 4-3 suspension in inner voices
+%% Harmony: F->C->F | F
+%% ======================================================
+%%
+[V:1] (B A) G | F3 !eintro!|]
+[V:2] (G F) E | F3 |]
+[V:3] F2 E | F3 |]
+[V:4] D2 C | C3 |]
+[V:5] (d c) B | A3 |]
+[V:6] (B A) G | F3 |]
+[V:7] (D C) B, | A,3 |]
+[V:8] (B, C,) C, | F,3 |]

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Look Down, O Lord, From Heaven Behold — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }
+p.legend { font-size: 12px; color: #555; }</style>
+</head><body>
+<h1>Look Down, O Lord, From Heaven Behold</h1>
+<p class="legend">Above melody: Abstract / RH voicing / LH voicing.
+RH = upper notes, LH = lower notes (no hand crossing).</p>
+<div id="music"></div>
+<script src="../../abc2stripchart/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 1\nT: Look Down, O Lord, From Heaven Behold\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: F\n[V: M] \"^vi7\"\"^C\u00b2\"\"^Am\"A | \"^ii\"\"^Dm\"B A G d | \"^ii7\"\"^F\u00b2\"\"^Dm\"d B A c | \"^ii\"\"^Dm\"B A G c | ( \"^ii\u00b2\"\"^Dm\u00b2\"\"^Dm\u00b2\"B A ) G | \"^V\"G | \"^ii\"\"^Dm\"B A G d | \"^IV\"\"^F\"d B A c | \"^ii\"\"^Dm\"B A G c | ( \"^ii\"\"^Dm\"B A ) G | \"^V\u00b9\"\"^G\u00b9\"G | \"^I\"\"^C\"A F E D | \"^vi\"\"^Am\"F G A F | \"^V\u00b9\"\"^G\u00b9\"G B A B | \"^V\u00b9\"\"^G\u00b9\"G ^F G G | \"^IV\"\"^F\"d B c d | ( \"^iii\"\"^Em\"c B ) A |]\n[V: RH] [CFA] | [GB] [CFA] [CEG] [FBd] | [FBd] [DGB] [CFA] [EAc] | [GB] [CFA] [CEG] [EAc] | ( [DGB] [FA] ) [CEG] | [EG] | [GB] [FA] [CEG] [Bd] | [Bd] [DGB] [FA] [Ac] | [GB] [FA] [CEG] [Ac] | ( [GB] [FA] ) [CEG] | [EG] | [FA] [DF] [CE] [B,D] | [DF] [EG] [FA] [DF] | [EG] [DGB] [FA] [DGB] | [EG] [D^F] [EG] [EG] | [Bd] [GB] [Ac] [Bd] | ( [Ac] [GB] ) [FA] |]\n[V: LH] [D,F,A,] | [G,B,D] [D,F,A,] [C,E,G,] [B,,B,D] | [G,,B,D] [G,,G,B,] [D,F,A,] [C,A,C] | [G,B,D] [D,F,A,] [C,E,G,] [C,A,C] | ( [D,G,B,] [F,A,C] ) [G,,E,G,] | [C,G,C] | [G,B,D] [F,A,C] [E,G,B,] [B,DF] | [B,DF] [B,,G,B,] [F,A,C] [A,CE] | [G,B,D] [F,A,C] [E,G,B,] [A,CE] | ( [G,B,D] [F,A,C] ) [E,G,B,] | [E,G,C] | [F,A,C] [D,F,A,] [C,E,G,] [B,,D,F,] | [D,F,A,] [E,G,B,] [F,A,C] [D,F,A,] | [E,G,C] [F,G,B,] [F,A,C] [F,G,B,] | [E,G,C] [D,F,A,] [E,G,B,] [E,G,C] | [B,DF] [G,B,D] [A,CE] [B,DF] | ( [A,CE] [G,B,D] ) [F,A,C] |]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ""; }
+};
+var abc = new abc2svg.Abc(user);
+abc.tosvg("score", abc_src);
+</script></body></html>

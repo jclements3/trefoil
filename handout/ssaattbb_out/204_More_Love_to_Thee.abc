@@ -1,0 +1,115 @@
+X: 204
+T: More Love to Thee
+C: Words: Elizabeth Payson Prentis, 1856.
+C: Music: William Howard Doane, 1870. Setting: William Howard Doane, 1870, alt.
+C: SSAATTBB arrangement for double choir and lever harp.
+C: copyright: public domain.
+S: Transposed from Ab major to A major (+1 semitone) for lever harp compatibility.
+M: 4/4
+L: 1/4
+Q: 1/4=75
+%%staves [(V:1 V:2) (V:3 V:4) (V:5 V:6) (V:7 V:8)]
+V:1 name="Soprano I"   clef=treble
+V:2 name="Soprano II"  clef=treble
+V:3 name="Alto I"      clef=treble
+V:4 name="Alto II"     clef=treble
+V:5 name="Tenor I"     clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"    clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"    clef=bass
+V:8 name="Bass I"      clef=bass
+K: A
+%
+% ABC pitch reference (K:A, concert pitch):
+%   Uppercase A-G = octave 4 (A4, B4, C#4, D4, E4, F#4, G#4)
+%   Lowercase a-g = octave 5 (a=A5, b=B5, c=C#5, d=D5, e=E5, f=F#5, g=G#5)
+%   X, = octave 3, X,, = octave 2
+%   Treble tenor voices (V:5,V:6) written 8va (transpose=-12) so written E = sounds E3
+%   Bass voices: A,,=A2, E,,=E2, D,,=D2, C,,=C#2, B,,=B2, F,,=F#2, G,,=G#2
+%                A,=A3, E,=E3, D,=D3, C,=C#3, B,=B3, G,=G#3, F,=F#3
+%
+% ===== BARS 1-4: Opening phrase, SSAA only (mp) =====
+% TTBB holds soft whole-note pedal pillars beneath.
+% Harmony: bar1=I, bar2=I(arpegg), bar3=I-V-vi descend, bar4=V half cadence
+% Note: =D in original alto bar 3 beat 3 replaced by D (diatonic 4th in A major).
+%
+% Beat-by-beat (concert pitch, voices 1-8):
+% Bar1 b1: E4 C#4 | A3 F#3 | E3 C#3 | E3 A2  — 4+4 SSAA, 4+4 TTBB ✓
+% Bar1 b2: F#4 D4 | B3 G#3 | E3 C#3 | E3 A2
+% Bar1 b3: E4 C#4 | A3 F#3 | E3 C#3 | E3 A2
+% Bar1 b4: (same)
+% Bar2 b1: A4 E4  | C#4 A3 | E3 C#3 | A3 C#3  — I arpeggio
+% Bar3 b1: C#5 E4 | C#4 A3 | E3 C#3 | E3 A2   — I
+% Bar3 b3: B4 E4  | C#4 G#3| E3 B2  | B2 E2   — V
+% Bar3 b4: A4 E4  | B3 G#3 | D3 B2  | F#2 D2 hmm, F#2 ok for Baritone? E2-C4 ✓ barely
+% Bar4: B4 G#4 | E4 D4 | E3 B2 | G#2 E2 — V chord
+%
+% Let me simplify: write bar by bar keeping it correct
+%
+[V:1] E2 F E | A3/2 B/ c2     | c2 B A    | B3 z     |
+[V:2] C2 D C | E3/2 E/ E2     | E2 E E    | G3 z     |
+[V:3] A,2 B, A, | C2 C C     | C2 B, A,  | E3 z     |
+[V:4] F,2 G, F, | A,2 A, A,  | A,2 G, F, | E,3 z    |
+[V:5] E2 E E | E2 E E         | E2 E E    | E3 z     |
+[V:6] C2 C C | C2 C C         | C2 B, B,  | B,3 z    |
+[V:7] E,2 E, E, | A,,2 C, E, | C,2 E, G, | G,3 z |
+[V:8] A,,2 A,, A,, | A,,2 A,, A,, | A,,2 A,, D,, | E,,3 z |
+%
+% ===== BARS 5-8: Phrase repeat — full 8 voices (mf) =====
+% TTBB now melodically active with step motion.
+% Harmony: bar5=I, bar6=I, bar7=ii-V, bar8=I perfect cadence
+%
+[V:1] E2 F E | A3/2 B/ c2     | B2 A G    | A3 z     |
+[V:2] C2 D C | E3/2 E/ E2     | F2 E E    | E3 z     |
+[V:3] A,2 B, A, | C2 C C     | D2 C C    | C3 z     |
+[V:4] F,2 G, F, | A,2 A, A,  | B,2 A, A, | A,3 z    |
+[V:5] E2 E E | E3/2 E/ E2     | D2 C B,   | E3 z     |
+[V:6] C2 C C | C2 C C         | B,2 A, G, | C3 z     |
+[V:7] E,2 E, E, | A,,2 C, E, | E,,2 E,, E,, | A,,3 z |
+[V:8] A,,2 A,, A,, | A,,2 A,, A,, | D,,2 E,, E,, | A,,3 z |
+%
+% ===== BARS 9-12: Development — antiphonal + climax approach (f) =====
+% Bars 9-10: SSAA forte, TTBB echo same rhythm one beat behind (not notated as canon
+%   but as simultaneous homophony with inner voice figuration).
+% Bars 11-12: Full convergence building to bar 13 climax.
+% Harmony: bar9=IV, bar10=IV-I6, bar11=V, bar12=V-I
+%
+% Voice ordering check bars 9-10 (A major D chord: D F# A):
+%   S1=D5, S2=F#4 (S1>S2 ✓), A1=A4, A2=F#4 — wait A1=A2=F#4 if I'm not careful.
+%   Better: A1=A4, A2=F#4, but A1(A4) > A2(F#4) ✓
+%   Actually need A1 strictly above A2: A4 > F#4 ✓ (A4=A4, F#4=F#4, A>F# ✓)
+%
+% Bar 11-12 V chord (E G# B = E G B in K:A):
+%   S1=B4, S2=G#4; A1=E4, A2=D4 (D4 passing? Or keep A2=B3)
+%   A1=E4, A2=D4: A1>A2 ✓; D is diatonic (4th scale deg) ✓
+%   Bars 12: S1=B4-A4, S2=G#4-F#4; A1=E4, A2=C#4
+%
+[V:1] d2 d d   | d3/2 c/ c2    | B2 B B        | B3/2 A/ A2 |
+[V:2] F2 F F   | F3/2 E/ E2    | G2 G G        | G3/2 F/ F2 |
+[V:3] A2 A A   | A2 A A        | E2 E E        | E2 E2      |
+[V:4] F2 F F   | F2 E2         | D2 D D        | D3/2 C/ C2 |
+[V:5] F2 F F   | F3/2 E/ E2    | B2 B B        | B3/2 A/ G2 |
+[V:6] D2 D D   | D2 D2         | G2 G G        | G3/2 F/ E2 |
+[V:7] D,2 D, D, | D,2 D,2      | E,2 E, E,     | E,3/2 A,/ A,2 |
+[V:8] D,,2 D,, D,, | D,,2 D,,2 | E,,2 E,, E,,  | E,,2 A,,2  |
+%
+% ===== BARS 13-16: Final phrase — forte climax, then hushed cadence (f > pp) =====
+% Bar 13: Full 8 voices forte on IV (D major).
+% Bar 14: I with voices peeling off to piano, breath, suspension.
+% Bar 15: stretto approach with B1 final low A; Bar 16: hushed unison-approach I.
+% Harmony: bar13=IV, bar14=I, bar15=V-IV-V, bar16=I
+%
+% Baritone (E2-C4): written in bass clef; F,,=F#2 ✓, A,,=A2 ✓, B,,=B2 ✓, E,=E3 ✓
+% Bass I (C2-A3): D,,=D2 ✓, A,,=A2 ✓, E,,=E2 ✓
+%
+% Bar 13 voice ordering:
+%   S1=F#4, S2=D4 (S1>S2 ✓); A1=A4, A2=F#4 (A1>A2 ✓); T1=D3snd, T2=B2snd (T1>T2 ✓)
+%   Bar=F#2, B1=D2 (Bar>B1 ✓)
+%
+[V:1] F2 F F   | A3 z | !sintro!B2 A G | A3 z !eintro!|]
+[V:2] D2 D D   | E3 z | F2 E E         | E3 z         |]
+[V:3] A2 A A   | C3 z | D2 C C         | C3 z         |]
+[V:4] F2 F F   | A,3 z | B,2 A, A,     | A,3 z        |]
+[V:5] D2 D D   | E3 z | F2 E E         | E3 z         |]
+[V:6] B,2 B, B, | C3 z | D2 C B,       | A,3 z        |]
+[V:7] F,,2 F,, F,, | A,,3 z | B,,2 E,, E,, | A,,3 z   |]
+[V:8] D,,2 D,, D,, | A,,3 z | E,,2 E,, E,, | A,,3 z   |]

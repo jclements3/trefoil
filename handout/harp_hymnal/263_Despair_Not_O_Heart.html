@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Despair Not, O Heart — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }
+p.legend { font-size: 12px; color: #555; }</style>
+</head><body>
+<h1>Despair Not, O Heart</h1>
+<p class="legend">Above melody: Abstract / RH voicing / LH voicing.
+RH = upper notes, LH = lower notes (no hand crossing).</p>
+<div id="music"></div>
+<script src="../../abc2stripchart/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 1\nT: Despair Not, O Heart\nM: 2/4\nL: 1/4\nQ: 1/4=100\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: F\n[V: M] \"^I\"F | \"^ii\"\"^Dm\"B G/ G/ | \"^I\"\"^C\"A G/ F/ | \"^V7\u00b9\"\"^G\"\"^B\u00b0\"G2 | \"^vi7\u00b9\"\"^C\"F F | \"^V7\u00b2\"\"^G7\u00b2-3\"G A/ A/ | \"^iii\"\"^Em\"c B/ A/ | \"^ii+6\"\"^Dm\"G2 | \"^I\u0394\u00b9\"\"^Em\"A F | \"^I\"\"^C\"A G/ G/ | \"^vi\"\"^Am\"F E/ C/ | \"^IV\"\"^F\"D2 | \"^iii\"\"^Em\"C c | \"^IV\"\"^F\"d B/ B/ | \"^V\u00b2\"\"^G\u00b2\"c B/ A/ | \"^V7\u00b2\"\"^G7\u00b2-3\"G2 | \"^I\"F |]\n[V: RH] [CF] | [GB] [EG]/ [EG]/ | [FA] [EG]/ [DF]/ | [CEG]2 | [DF] [DF] | [EG] [FA]/ [DFA]/ | [Ac] [GB]/ [FA]/ | [EG]2 | [FA] [DF] | [FA] [DEG]/ [DEG]/ | [DF] [CE]/ [A,C]/ | [B,D]2 | [A,C] [Ac] | [Bd] [GB]/ [GB]/ | [Gc] [GB]/ [FA]/ | [EG]2 | [CF] |]\n[V: LH] [F,A,] | [G,B,D] [G,B,D]/ [G,CD]/ | [F,A,C] [E,G,B,]/ [D,F,A,]/ | [E,G,B,]2 | [F,A,C] [F,A,C] | [G,B,C] [G,A,C]/ [G,A,B,]/ | [A,CE] [G,B,D]/ [F,A,C]/ | [G,B,D]2 | [A,CE] [F,A,C] | [F,A,C] [F,G,B,]/ [E,G,B,]/ | [D,F,A,] [C,E,G,]/ [A,,C,E,]/ | [B,,D,F,]2 | [A,,C,E,] [A,CE] | [B,DF] [G,B,D]/ [G,B,D]/ | [G,CE] [G,B,D]/ [F,A,C]/ | [G,B,C]2 | [F,A,] |]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ""; }
+};
+var abc = new abc2svg.Abc(user);
+abc.tosvg("score", abc_src);
+</script></body></html>

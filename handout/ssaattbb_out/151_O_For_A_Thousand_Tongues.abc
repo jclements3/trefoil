@@ -1,0 +1,192 @@
+X:151
+T:O For A Thousand Tongues
+C:Words: Charles Wesley, 1740. Music: 'Azmon' Carl G. Gläser, 1828. Setting: Lowell Mason, 1839.
+C:SSAATTBB arr. Transposed to A major (up 1 semitone from Ab). Public domain.
+M:3/2
+L:1/4
+Q:1/4=200
+%%staves [(V1 V2) (V3 V4) (V5 V6) (V7 V8)]
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+K:A
+%
+% ════════════════════════════════════════
+% PHRASE 1
+% Texture: Opening — SSBB only (4 voices), T enter bar 2, A enter bar 3
+% ════════════════════════════════════════
+%
+% Pickup — 2 beats — V chord (E G# B)
+% S1=E4, S2=C#4, Bar=G#2, B1=E2; A and T rest
+[V:1] [Q:1/4=200] E2 |
+[V:2]              C2 |
+[V:3]              z2 |
+[V:4]              z2 |
+[V:5]              z2 |
+[V:6]              z2 |
+[V:7]              G,,2 |
+[V:8]              E,,2 |
+%
+% Bar 1 — I (beats 1-2): A C# E; V (beats 3-6): E G# B
+% S1: A4 A4 B4 B4 | S2: E4 C#4 E4 E4 (diatonic thirds below S1)
+% Bar: C#3 C#3 G#2 G#2 | B1: A2 A2 E2 E2 (a third below Bar)
+% A and T still rest — 4-voice opening texture
+[V:1] A A B2 B2 |
+[V:2] E C E2 E2 |
+[V:3] z2 z2 z2 |
+[V:4] z2 z2 z2 |
+[V:5] z2 z2 z2 |
+[V:6] z2 z2 z2 |
+[V:7] C, C, G,,2 G,,2 |
+[V:8] A,, A,, E,,2 E,,2 |
+%
+% Bar 2 — T1 T2 enter (6 voices now)
+% Harmony: I6 (beats 1-2), V (3-4), I (5-6) ... following original
+% S1: C#5 B4 A4 B4 | S2: E4 D4 C#4 E4
+% T1(written, sounds 8vb): A3 G#3 A3 G#3 → written A, G, A, G, | T2: E3 E3 E3 E3 → written E, E, E, E,
+% Bar: C#3 B2 A2 B2 | B1: A2 E2 A2 E2 (alternating I and V bass)
+% No parallel octaves: check S1/B1 and S2/Bar
+[V:1] c B A2 B2 |
+[V:2] E D C2 E2 |
+[V:3] z2 z2 z2 |
+[V:4] z2 z2 z2 |
+[V:5] A, G, A,2 G,2 |
+[V:6] E, E, E,2 E,2 |
+[V:7] C, B,, A,,2 B,,2 |
+[V:8] A,, E,, A,,2 E,,2 |
+%
+% Bar 3 — A1 A2 enter: full 8 voices
+% Harmony: I (beats 1-2), IV (3-4), I (5-6)
+% S1: C#5 C#5 D5 C#5 | S2: E4 E4 E4 E4 (inner pedal)
+% A1: A4 A4 B4 A4 (rising with IV, then back) | A2: E4 E4 D4 E4 (contrary to A1 on IV)
+% T1(written): A, A, A, A, (sustain A3) | T2: E, E, F, E, (F#3 on IV beat)
+% Bar: C, C, D, C, (C#3→D3 on IV) | B1: A,, A,, D, A,, (A2 stays, D3 on IV)
+[V:1] c c d2 c2 |
+[V:2] E E E2 E2 |
+[V:3] A A B2 A2 |
+[V:4] E E D2 E2 |
+[V:5] A, A, A,2 A,2 |
+[V:6] E, E, F,2 E,2 |
+[V:7] C, C, D,2 C,2 |
+[V:8] A,, A,, D,2 A,,2 |
+%
+% Bar 4 — Half cadence V; all 8 voices hold; suspension in S2 (E stays from I→V)
+% S1: B4 | S2: E4 (common tone suspension) | A1: G#4 | A2: E4
+% T1: B3 (written B,) | T2: G#3 (written G,) | Bar: G#2 (G,,) | B1: E2 (E,,)
+[V:1] B4 |
+[V:2] E4 |
+[V:3] G4 |
+[V:4] E4 |
+[V:5] B,4 |
+[V:6] G,4 |
+[V:7] G,,4 |
+[V:8] E,,4 |
+%
+% ════════════════════════════════════════
+% PHRASE 2 — full 8 voices; antiphonal and climax textures
+% ════════════════════════════════════════
+%
+% Pickup 2 — 2 beats — V chord (E G# B); higher register, building energy
+% S1: E5 | S2: A4 (third below) | A1: B4 | A2: G#4
+% T1(written): E, (E3 concert) | T2: C, (C#3 concert) | Bar: B,, (B2) | B1: E,, (E2)
+% Bar=B2 > B1=E2 ✓
+[V:1] e2 |
+[V:2] A2 |
+[V:3] B2 |
+[V:4] G2 |
+[V:5] E,2 |
+[V:6] C,2 |
+[V:7] B,,2 |
+[V:8] E,,2 |
+%
+% Bar 5 — I — antiphonal: SSAA carry melody, TTBB sustain harmony beneath
+% S1: E5 C#5 C#5 A4 | S2: A4 E4 E4 E4 (thirds below)
+% A1: B4 A4 A4 E4 (stepwise descent) | A2: G#4 E4 E4 C#4 (contrary motion to A1)
+% T1(written): A, A, A, A, (sustain A3 — drone-like harmonic support)
+% T2(written): E, C, C, A,, (C#3 on beat 3, A2 on beat 5 — bass motion)
+% Bar: E, E, E, C, (E3 sustain, C#3 at end) | B1: E,, C, C, A,, (E2→C#3→A2)
+% Note: B1 E,, = E2 ✓ in range C2-A3
+[V:1] e c c2 A2 |
+[V:2] A E E2 E2 |
+[V:3] B A A2 E2 |
+[V:4] G E E2 C2 |
+[V:5] A, A, A,2 A,2 |
+[V:6] E, C, C,2 A,,2 |
+[V:7] E, E, E,2 C,2 |
+[V:8] E,, C, C,2 A,,2 |
+%
+% Bar 6 — IV (D F# A) — full homophony; all 8 voices together
+% S1: A4 F#4 F#4 A4 F#4 | S2: F#4 D4 D4 F#4 D4 (thirds below)
+% A1: D4 B3 B3 D4 B3 | A2: A3 F#3 F#3 A3 F#3 (A1 a third above A2)
+% T1(written): D, B,, B,,2 D, B,, (D3 B2 pattern)
+% T2(written): A,, F,, F,,2 A,, F,, (A2 F#2 pattern, a third below T1)
+% Bar: F, D, D,2 F, D, (F#3 D3 — same interval as S pair, upper register)
+% B1: D, D, D,2 D, D, (D3 root pedal — strong IV bass)
+% Check: Bar(F#3) > B1(D3) ✓; T1(D3) > T2(F#2)... written D, > F,,: D3>F#2 ✓
+[V:1] A F F2 A F |
+[V:2] F D D2 F D |
+[V:3] D B B2 D B |
+[V:4] A, F F2 A, F |
+[V:5] D, B,, B,,2 D, B,, |
+[V:6] A,, F,, F,,2 A,, F,, |
+[V:7] F, D, D,2 F, D, |
+[V:8] D, D, D,2 D, D, |
+%
+% Bar 7 — I → V — call and response; building to final cadence
+% S1: E4 A4 A4 B4 | S2: C#4 C#4 C#4 D4 (common tone then step up)
+% A1: A4 E4 E4 E4 | A2: E4 A3 A3 G#3 (contrary to A1)
+% T1(written): A, A, A, B, (A3 sustained, B3 pickup to cadence)
+% T2(written): E, E, E, E, (sustain E3)
+% Bar: A,, A,, A,, G,, (A2→G#2 — V bass preparation)
+% B1: A,, A,, A,, E,, (A2→E2 — strong V root arrival)
+[V:1] E A A2 B2 |
+[V:2] C C C2 D2 |
+[V:3] A E E2 E2 |
+[V:4] E A A2 G2 |
+[V:5] A, A, A,2 B,2 |
+[V:6] E, E, E,2 E,2 |
+[V:7] A,, A,, A,,2 G,,2 |
+[V:8] A,, A,, A,,2 E,,2 |
+%
+% Bar 8 — I — final cadence; full homophony; stretto feel in bar lines
+% S1: A4 | S2: C#4 | A1: E4 | A2: A3 (A2+T1 cross at the register break)
+% T1(written): A, (A3 concert) | T2(written): E, (E3 concert)
+% Bar: C, (C#3) | B1: A,, (A2 — root in low register per instruction)
+% Check: Bar(C#3) > B1(A2) ✓; no parallel octaves at cadence
+[V:1] A4 |]
+[V:2] C4 |]
+[V:3] E4 |]
+[V:4] A4 |]
+[V:5] A,4 |]
+[V:6] E,4 |]
+[V:7] C,4 |]
+[V:8] A,,4 |]
+W:O for a thousand tongues to sing
+W:My great Redeemer's praise,
+W:The glories of my God and King,
+W:The triumphs of His grace!
+W:
+W:2.My gracious Master and my God,
+W:Assist me to proclaim,
+W:To spread through all the earth abroad
+W:The honors of Thy name.
+W:
+W:3.Jesus! the name that charms our fears,
+W:That bids our sorrows cease;
+W:'Tis music in the sinner's ears,
+W:'Tis life, and health, and peace.
+W:
+W:4.He breaks the power of canceled sin,
+W:He sets the prisoner free;
+W:His blood can make the foulest clean,
+W:His blood availed for me.
+W:
+W:5.He speaks, and, listening to His voice,
+W:New life the dead receive,
+W:The mournful, broken hearts rejoice,
+W:The humble poor believe.

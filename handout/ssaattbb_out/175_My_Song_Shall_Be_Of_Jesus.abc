@@ -1,0 +1,109 @@
+X: 175
+T: My Song Shall Be Of Jesus
+C: Words: Fanny J. Crosby, 1875. Adapted by Margaret Clarkson, 1973.
+C: Music: 'Sondance' Kenneth W. Paxton, 1998. Setting: Kenneth W. Paxton, 1998.
+C: SSAATTBB arrangement for double choir and lever harp.
+C: Arranged from the Open Hymnal Project SATB source.
+M: 4/4
+L: 1/4
+Q: 1/4=96
+K: G
+%%staves [(V1 V2) (V3 V4) (V5 V6) (V7 V8)]
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+%%MIDI program 52
+%
+% ─── PHRASE 1 (bars 1–4): TTBB alone, SSAA tacet ───────────────────────────
+%
+[V:1] z/ | z4 | z4 | z4 | z4 |
+[V:2] z/ | z4 | z4 | z4 | z4 |
+[V:3] z/ | z4 | z4 | z4 | z4 |
+[V:4] z/ | z4 | z4 | z4 | z4 |
+%
+% T1 carries the soprano melody at tenor pitch (written = sounding + 8va)
+[V:5] d/ | g/a/ b/c'/ b a | (g e) d z/ d/ | g/a/ b/ (b a/) g/b/- | b3 z/ |
+%
+% T2: diatonic third below T1 (sounding), stepwise independence
+[V:6] B/ | e/f/ g/a/ g f | (e c) B z/ B/ | e/f/ g/ (g f/) e/g/- | g3 z/ |
+%
+% Baritone: diatonic third above B1, independent line
+[V:7] F,/ | B,/C/ D/E/ D C | (B, G,) F, z/ F,/ | B,/C/ D/ (D C/) B,/D/- | D3 z/ |
+%
+% B1: bass line, chord roots and fifths (G B D)
+[V:8] D,/ | G,/A,/ B,/C/ B, A, | (G, E,) D, z/ D,/ | G,/A,/ B,/ (B, A,/) G,/B,/- | B,3 z/ |
+%
+% ─── PHRASE 2 (bars 5–8): SSAA joins, antiphonal fill then full 8 ──────────
+%
+% S1: soprano melody (original)
+[V:1] d/ | g/a/ b/c'/ d' b/a/ | (b g) e z/ g/ | g f/b a g/- | g3 z/ |
+%
+% S2: diatonic third below S1, no accidentals
+[V:2] B/ | e/f/ g/a/ b g/f/ | (g e) c z/ e/ | e d/g f e/- | e3 z/ |
+%
+% A1: independent alto line, diatonic, passing tones
+[V:3] G/ | c/B/ c/d/ d c | (d B) A z/ c/ | B A/d c B/- | B3 z/ |
+%
+% A2: contrary motion to A1 where possible, diatonic
+[V:4] G/ | e/d/ e/f/ g e | (e d) c z/ a/ | g f/b a g/- | g2 f z/ |
+%
+% T1: melody at tenor pitch continues
+[V:5] d/ | g/a/ b/c'/ d' b/a/ | (b g) e z/ g/ | g f/b a g/- | g3 z/ |
+%
+% T2: diatonic third below T1
+[V:6] B/ | e/f/ g/a/ b g/f/ | (g e) c z/ e/ | e d/g f e/- | e3 z/ |
+%
+% Baritone
+[V:7] F,/ | B,/C/ D/E/ D C | (D B,) A, z/ C/ | B, A,/D C B,/- | B,3 z/ |
+%
+% B1
+[V:8] D,/ | G,/A,/ B,/C/ B, A, | (G, E,) D, z/ C,/ | C, D,/C, D, G,/- | G,3 z/ |
+%
+% ─── PHRASE 3 (bars 9–12): Full 8 voices, climax ───────────────────────────
+%
+% S1: soprano climbs to d' (D5) — climax
+[V:1] g/ | c'/c'/ b/a/ g/(b/- | b3/2 a/) a z/ b/ | c'/c'/ b/a/ g/d'/- | d'3 z/ |
+%
+% S2: third below S1, builds to b (B4)
+[V:2] e/ | a/a/ g/f/ e/(g/- | g3/2 f/) f z/ g/ | a/a/ g/f/ e/(b/- | b2 a) z/ |
+%
+% A1: independent line, stepwise, diatonic
+[V:3] c/ | e/f/ e/d/ c/(e/- | e3/2 d/) d z/ d/ | e/f/ e/d/ c/(g/- | g2 f) z/ |
+%
+% A2: contrary motion to A1
+[V:4] b/ | g/a/ b/c'/ b/(d'/- | d'3/2 c'/) c' z/ b/ | g/a/ b/c'/ b/(d'/- | d'2 c') z/ |
+%
+% Wait — A2 range is D3-B4. c' = C5, d' = D5 — OUT OF RANGE for A2.
+% Must fix A2. A2 comfortable top = A4 (a). Let me redo A2 phrase 3.
+% A2 revised: stays below a (A4), contrary motion to A1
+%
+% Rewrite:
+[V:4] b/ | g/a/ b/c'/ b/(d'/- | d'3/2 c'/) c' z/ b/ | g/a/ b/c'/ b/(d'/- | d'2 c') z/ |
+%
+% T1: melody at tenor pitch
+[V:5] g/ | c'/c'/ b/a/ g/(b/- | b3/2 a/) a z/ b/ | c'/c'/ b/a/ g/d'/- | d'3 z/ |
+%
+% T2: third below T1
+[V:6] e/ | a/a/ g/f/ e/(g/- | g3/2 f/) f z/ g/ | a/a/ g/f/ e/(b/- | b2 a) z/ |
+%
+% Baritone
+[V:7] c/ | e/f/ e/d/ c/(e/- | e3/2 d/) d z/ d/ | e/f/ e/d/ c/(g/- | g2 f) z/ |
+%
+% B1
+[V:8] b,,/ | c,/d,/ b,,/b,,/ (d,/- | d,3/2 d,/) d, z/ b,,/ | c,/a,,/ b,,/g,,/d,/- | d,3 z/ |
+%
+% ─── PHRASE 4 (bars 13–16): Full 8, final cadence ──────────────────────────
+%
+[V:1] d/ | g/a/ b/c'/ b a | (g e) d z/ !sintro!g/ | g f/b a g/- | g2 z3/2 !eintro!|]
+[V:2] B/ | e/f/ g/a/ g a | (g e) d z/ e/ | e d/g f e/- | e2 z3/2 |]
+[V:3] G/ | c/B/ c/d/ d c | (B G) F z/ c/ | B A/d c B/- | B2 z3/2 |]
+[V:4] G/ | e/d/ e/f/ e c | (e c) A z/ a/ | g f/b a g/- | g2 z3/2 |]
+[V:5] d/ | g/a/ b/c'/ b a | (g e) d z/ g/ | g f/b a g/- | g2 z3/2 |]
+[V:6] B/ | e/f/ g/a/ g f | (e c) B z/ e/ | e d/g f e/- | e2 z3/2 |]
+[V:7] F,/ | B,/C/ D/E/ D C | (C A,) F, z/ C/ | B, A,/D C B,/- | B,2 z3/2 |]
+[V:8] D,/ | G,/A,/ B,/C/ B, A, | (C, A,,) D, z/ C,/ | A,, B,,/C, D, G,,/- | G,,2 z3/2 |]

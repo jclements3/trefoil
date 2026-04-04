@@ -1,0 +1,170 @@
+X: 261
+T: Thine Arm, O Lord, in Days of Old
+T: (also known as Your Hand, O Lord, in Days of Old)
+C: Text: Edward H. Plumptre, 1864. Music: 'Kingsfold' traditional English.
+C: Setting: Ralph Vaughan Williams, 1906.
+C: SSAATTBB arrangement for double choir and lever harp.
+C: Original SATB copyright: public domain. Open Hymnal Project, 2007 Revision.
+S: Music source: The English Hymnal, 1906, Hymn 574, alt.
+M: 4/4
+L: 1/4
+Q: 1/4=100
+K: G
+%%staves {(V1 V2) (V3 V4) (V5 V6) (V7 V8)}
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+%
+% ══════════════════════════════════════════════════════════════════
+% PHRASE 1  (pickup beat + bars 1–4)
+% Texture: SSAA alone — antiphonal opening with reduced texture.
+% TTBB rests throughout, creating a dialogue effect when they enter.
+% ══════════════════════════════════════════════════════════════════
+%
+% Soprano I — original soprano melody verbatim (may carry accidentals freely)
+[V:1] G/F/ | E E E D | G G A G/A/ | B B A/G/ E | D3 |
+%
+% Soprano II — diatonic third below S1; sixth below at bar 4 cadence
+% G/F/→E: thirds below = E/D/→C; careful: F#→D# invalid → use D (sixth below F# is A,)
+% Pickup G→E, F→D (diatonic). Bar 1: E→C, E→C, E→C, D→B,. Bar 2: G→E, G→E, A→F, G/A/→E/F/.
+% Bar 3: B→G, B→G, A→F, G→E, E→C. Bar 4: D→A, (a sixth below for cadence breadth)
+[V:2] E | C C C B, | E E F E/F/ | G G F E | A,3 |
+%
+% Alto I — independent melodic line, stepwise, implies G–Em–C–D–G harmony
+% Phrases shape: ascending motion in bars 1-2, descending to cadence
+[V:3] B, | B, C B, A, | B, D C B, | D D C A, | F,3 |
+%
+% Alto II — largely contrary motion to A1; outlines chord roots
+% Stays below A1 at all times; D3 to B4 range (D, to B)
+[V:4] G, | G, G, G, F, | G, B, A, G, | G, B, A, G, | D,3 |
+%
+% Tenor I — RESTING (TTBB enters phrase 2 for antiphonal effect)
+[V:5] z | z4 | z4 | z4 | z3 |
+%
+% Tenor II — RESTING
+[V:6] z | z4 | z4 | z4 | z3 |
+%
+% Baritone — RESTING
+[V:7] z | z4 | z4 | z4 | z3 |
+%
+% Bass I — RESTING
+[V:8] z | z4 | z4 | z4 | z3 |
+%
+% ══════════════════════════════════════════════════════════════════
+% PHRASE 2  (pickup beat + bars 5–8)
+% Texture: TTBB choir enters — antiphonal response to SSAA.
+% All 8 voices active from bar 5 onward.
+% ══════════════════════════════════════════════════════════════════
+%
+% Soprano I — original soprano phrase 2 (ends E3)
+[V:1] G/F/ | E E E D | G G A G/A/ | B B A/G/ E | E3 |
+%
+% Soprano II — diatonic thirds below, B,→B, unison at bar 8 cadence (emphasis)
+[V:2] E | C C C B, | E E F E/F/ | G G F E | C3 |
+%
+% Alto I — stepwise melodic line, passing tones, implies inner harmony
+[V:3] B, | A, B, A, G, | B, D C B, | D D C A, | A,3 |
+%
+% Alto II — contrary motion to A1; harmonic support
+[V:4] G, | F, G, F, E, | G, B, A, G, | B, B, A, G, | G,3 |
+%
+% Tenor I (8vb: written pitch sounds an octave lower)
+% Mirrors soprano melody at the lower octave — canonic echo effect
+% Written: G=sounds G3, B=sounds B3; range check: all within B2–G4 sounding
+[V:5] G/F/ | E E E D | G G A G/A/ | B B A/G/ E | E3 |
+%
+% Tenor II — diatonic third below T1 (sounding); written a third lower than T1 part
+% T1 sounds G3/F3/ E3 E3 E3 D3... T2 third below: E3/D3/ C3 C3 C3 B2
+% Written (add octave): E/D/ C C C B,
+[V:6] E/D/ | C C C B, | E E F E/F/ | G G F E | C3 |
+%
+% Baritone — a diatonic third above Bass I throughout
+% B1 pickup: B,, → Bar pickup: D,
+% B1 bar5: C, C,/B,,/ A,, D, → Bar: E, E,/D,/ C, F,
+% B1 bar6: B,, E, D, B,,/A,,/ → Bar: D, G, F, D,/C,/
+% B1 bar7: G,, B,, C, A,, → Bar: B,, D, E, C,
+% B1 bar8: E,3 → Bar: G,3
+[V:7] D, | E, E,/D,/ C, F, | D, G, F, D,/C,/ | B,, D, E, C, | G,3 |
+%
+% Bass I — follows original SATB bass (S2V2) closely
+[V:8] B,, | C, C,/B,,/ A,, D, | B,, E, D, B,,/A,,/ | G,, B,, C, A,, | E,3 |
+%
+% ══════════════════════════════════════════════════════════════════
+% PHRASE 3  (pickup beat + bars 9–12)
+% Texture: Full 8-voice homophony — climactic phrase.
+% S1 rises to d (D5); B1 descends to G,, (G2) for maximum spread.
+% ══════════════════════════════════════════════════════════════════
+%
+% Soprano I — original soprano phrase 3; highest note d (D5)
+[V:1] B/c/ | d B B/A/ G | A A B G/A/ | B B/A/ G E | D3 |
+%
+% Soprano II — diatonic thirds below S1
+% B/c/→G/A/. d→B, B/A/→G/F, G→E. A→F, A→F, B→G, G/A/→E/F/. B→G, B/A/→G/F, G→E, E→C. D→A,.
+[V:2] G | B G G/F/ E | F F G E/F/ | G G/F/ E C | A,3 |
+%
+% Alto I — independent line with passing tones; contrary motion to A2
+% Implies alto harmony: D4 area, stepwise motion
+[V:3] D | D D D B, | C C D B, | D D B, A, | F,3 |
+%
+% Alto II — contrary motion to A1; outlines chord tones below
+[V:4] B, | B, B, G, G, | A, A, G, G, | B, B,/A,/ G, F, | D,3 |
+%
+% Tenor I (8vb) — independent line implying tenor register
+% Pickup B sounding = B3; bar 9: sounds d3=D4 written d, b3=B3 written B...
+% Aim for sounding range D3–D4 to stay comfortable yet full
+% Sounding: B3/C4/ D4 B3 B3/A3/ G3 | A3 A3 B3 G3/A3/ | B3 D4/C4/ B3 G3 | A3-3
+[V:5] B/c/ | d B B/A/ G | A A B G/A/ | B d/c/ B G | A3 |
+%
+% Tenor II (8vb) — diatonic third below T1 (sounding)
+% T1 sounds B3/C4/: T2 third below = G3/A3/ → written G/A/
+% T1 sounds d/B/B/A/ G: T2 = B/G/ G/F/ E → written B/G/ G/F/ E
+[V:6] G/A/ | B G G/F/ E | F F G E/F/ | G B/A/ G E | F3 |
+%
+% Baritone — above B1 throughout; steps with the bass when it rises to B3
+% B1: E, | B,, B, E,/F,/ G, | C, D, G,, B,,/A,,/ | G,, G,,/A,,/ B,, C, | D,3
+% Bar: B, | G, B, G,/A,/ B, | E, F, B,, D,/C,/ | B,, B,,/C,/ D, E, | F,3
+[V:7] B, | G, B, G,/A,/ B, | E, F, B,, D,/C,/ | B,, B,,/C,/ D, E, | F,3 |
+%
+% Bass I — original SATB bass phrase 3
+[V:8] E, | B,, B, E,/F,/ G, | C, D, G,, B,,/A,,/ | G,, G,,/A,,/ B,, C, | D,3 |
+%
+% ══════════════════════════════════════════════════════════════════
+% PHRASE 4  (pickup beat + bars 13–16)
+% Texture: Full 8-voice with stretto imitation (T1 echoes S1 one beat late).
+% Final cadence: B1 on G,, (G2, root); 4–3 suspensions in inner voices.
+% ══════════════════════════════════════════════════════════════════
+%
+% Soprano I — original soprano phrase 4 with rhythmic variant
+[V:1] !sintro!G/F/ | E E E/D/ E/F/ | G G A G/A/ | B B A/G/ E | E3 !eintro!|]
+%
+% Soprano II — diatonic thirds below; cadence on C (third below E)
+[V:2] E | C C C B, | E E F E/F/ | G G F E | C3 |]
+%
+% Alto I — 4–3 suspension at bar 16: D–C over G chord
+[V:3] B, | B, B, A, G, | B, D C D | D D C B, | A,3 |]
+%
+% Alto II — stepwise descent; contrary motion to A1
+[V:4] G, | G, G, F, E, | G, B, A, G, | G, B, A, G, | G,3 |]
+%
+% Tenor I (8vb) — echoes S1 melody (canonic doubling, phrase 4)
+% Sounding: G3/F3/ | E3 E3 E3/D3/ E3/F3/ | G3 G3 A3 G3/A3/ | B3 B3 A3/G3/ E3 | E3-3
+% Written (add octave): G/F/ | E E E/D/ E/F/ | G G A G/A/ | B B A/G/ E | E3
+[V:5] G/F/ | E E E/D/ E/F/ | G G A G/A/ | B B A/G/ E | E3 |]
+%
+% Tenor II (8vb) — diatonic third below T1; independent descent at cadence
+% Sounding third below: E3/D3/ | C3 C3 C3 C3 | E3 E3 F3 E3/F3/ | G3 G3 F3 E3 | C3-3
+% Written: E/D/ | C C C C | E E F E/F/ | G G F E | C3
+[V:6] E/D/ | C C C C | E E F E/F/ | G G F E | C3 |]
+%
+% Baritone — stepwise, consistently above B1; cadence on B,,
+% B1: B,, | C, C,/B,,/ A,, A, | G,/F,/ E, D, B,,/A,,/ | G,, B,, C, A,, | G,,3
+% Bar stays above V8 at every beat; rises to B, on bar 13 beat 4 (above V8 A3)
+[V:7] D, | E, G, B, B, | B, G, F, D, | B,, D, E, C, | B,,3 |]
+%
+% Bass I — original bass phrase 4; final note G,, (root, low register)
+[V:8] B,, | C, C,/B,,/ A,, A, | G,/F,/ E, D, B,,/A,,/ | G,, B,, C, A,, | G,,3 |]

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Under His Wings — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }
+p.legend { font-size: 12px; color: #555; }</style>
+</head><body>
+<h1>Under His Wings</h1>
+<p class="legend">Above melody: Abstract / RH voicing / LH voicing.
+RH = upper notes, LH = lower notes (no hand crossing).</p>
+<div id="music"></div>
+<script src="../../abc2stripchart/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 1\nT: Under His Wings\nM: 6/4\nL: 1/4\nQ: 1/4=110\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: Eb\n[V: M] \"^I-5+2\"g a =a b2 b/ b/ | \"^I-1+2\"b c' g b a2 | \"^vi9s\"\"^C-1+2\"\"^Am7s2\"f g a c' b b | \"^vi7\"\"^F-1+2\"b f ^f g3 | \"^ii11\"\"^C\"\"^Dm\"g a =a b b e' | \"^V9\u00b2\"\"^G-1+2\"\"^G7\u00b2-3\"f' e' c' c' b2 | \"^V9\u00b9\"\"^G-1+2\"\"^G7\u00b9\"c' d' e' e' b g | \"^vi9\"\"^Em\"\"^Am\"b a f e3 | \"^ii11\u00b2\"\"^F-5+2\"\"^Am+4\"b g b e'3 | \"^iii7\u00b2\"\"^Em\"\"^Em7\u00b2-3\"d' c' d' e'3 | \"^ii7\"e' b g ( c' b ) g | \"^ii9\"\"^Dm\"g f4 z | \"^vi+9\"\"^C\u0394\u00b9-5\"e g b e'2 d' | \"^V7s+6\"\"^G-3+6\"f' e' c' b3 | \"^I\u03949\u2074-5\"\"^B\u00b0-5+2\"c' d' e' ( b g ) e | \"^I\u00b9\"f'3 e'2 z |]\n[V: RH] [eg] [fa] [f=a] [gb]2 [gb]/ [gb]/ | [gb] [ac'] [eg] [db] [da]2 | [fgb] [egb] [fac'] [ac'e'] [bc'e'] [bc'e'] | [bc'e'] [fc'e'] [^fbd'] [gc'e']3 | [egb] [gab] [a=ac'] [bc'e'] [bc'e'] [be'g'] | [c'd'f'] [c'e'] [ac'] [ac'] [gb]2 | [c'd'f'] [ad'f'] [gc'e'] [bd'e'] [abc'] [egb] | [gbd'] [fac'] [fgb] [efa]3 | [abc'] [gc'e'] [be'g'] [c'e']3 | [gbd'] [bc'd'] [bd'f'] [c'd'e']3 | [c'e'] [gb] [eg] ( [ac'] [gb] ) [eg] | [eg] [df]4 z | [gd'e'] [bc'g'] [e']2 [gd'] [c'f'] | [ae'] [ac'] [b]3 [c'd'e'] | [d'e'f'] [be'g'] [gbd'] ( [egb] [gad'] ) [gf']3 | [ge']2 e'2 z |]\n[V: LH] [F,F] [F,F] [F,F] [F,F]2 [F,F]/ [F,F]/ | [F,F] [F,F] [F,F] [G,G] [G,G]2 | [CGBd] [CAc] [CBd] [CDf] [Ceg] [Ceg] | [CGg] [CGBd] [CGcd] [FBde]3 | [FAc] [FBdf] [FBdf] [CFeg] [CFeg] [EAg] | [FBa] [FBa] [DGf] [DGf] [CFe]2 | [DBfa] [DBf] [CAe] [CGeg] [CFeg] [EAc] | [CGe] [FBd] [DGBd] [FAc]3 | [CFeg] [CAce] [CFeg] [FAa]3 | [DGf] [CFea] [DGf] [EBgb]3 | [Fa] [CEe] [FAc] ( [DGf] [CFe] ) [EAc] | [FAc] [GB]4 z | [CEc] [FGe] [Ca]2 [B,D] [A,Ef] | [B,Fg] [CDg] [A,f]3 [A,Efa] | [F,Fg] [G,Cga] [A,Ae] ( [G,Fc] [F,Ge] ) [F,B]3 | [G,B]2 e'2 z |]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ""; }
+};
+var abc = new abc2svg.Abc(user);
+abc.tosvg("score", abc_src);
+</script></body></html>

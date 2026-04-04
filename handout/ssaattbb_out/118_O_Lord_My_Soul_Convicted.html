@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>O Lord My Soul Convicted — SSAATTBB</title>
+<style>
+body { font-family: sans-serif; margin: 20px; background: #fff; }
+h1 { font-size: 18px; }
+</style>
+</head>
+<body>
+<h1>O Lord My Soul Convicted — SSAATTBB</h1>
+<div id="music"></div>
+<script src="../../abc2stripchart/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 118\nT: O Lord My Soul Convicted\nT: (also known as Here Lord My Soul Convicted)\nC: Words: James Maxwell, 1759.\nC: Music: 'Winchester New' from \"Musikalisches Handbuch\", Hamburg, 1690. Setting: Charles Lewis Hutchins, 1896.\nC: SSAATTBB arrangement for 8-voice ensemble with lever harp.\nC: copyright: public domain.\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%staves [(V1 V2) (V3 V4) (V5 V6) (V7 V8)]\nV:1 name=\"Soprano I\"  clef=treble\nV:2 name=\"Soprano II\" clef=treble\nV:3 name=\"Alto I\"     clef=treble\nV:4 name=\"Alto II\"    clef=treble\nV:5 name=\"Tenor I\"    clef=treble middle=B3 transpose=-12\nV:6 name=\"Tenor II\"   clef=treble middle=B3 transpose=-12\nV:7 name=\"Baritone\"   clef=bass\nV:8 name=\"Bass I\"     clef=bass\nK: C\n%\n% Pickup bar (1 beat)\n[V:1] G |\n[V:2] E |\n[V:3] C |\n[V:4] A, |\n[V:5] G |\n[V:6] E |\n[V:7] E, |\n[V:8] C, |\n%\n% Bar 1 \u2014 I(6) \u2014 I \u2014 IV \u2014 IV(6)\n[V:1] c G A A |\n[V:2] A E F F |\n[V:3] E C D C |\n[V:4] C A, A, A, |\n[V:5] G G A A |\n[V:6] E E C C |\n[V:7] G, E, A, C, |\n[V:8] E, C, F, A,, |\n%\n% Bar 2 \u2014 V \u2014 V7 \u2014 I \u2014 I\n[V:1] G F E E |\n[V:2] E D C C |\n[V:3] D B, C D |\n[V:4] B, G, A, A, |\n[V:5] D D E E |\n[V:6] B, B, C C |\n[V:7] D, D, E, E, |\n[V:8] B,, G,, C, C, |\n%\n% Bar 3 \u2014 IV \u2014 I \u2014 V \u2014 V\n[V:1] F E D G |\n[V:2] D C B, E |\n[V:3] C D B, B, |\n[V:4] A, A, G, G, |\n[V:5] F G G B |\n[V:6] C C D D |\n[V:7] C, E, D, G, |\n[V:8] A,, C, G,, E, |\n%\n% Bar 4 \u2014 vi/Am \u2014 Dm(sub for D/V/V) \u2014 V \u2014 V7\n% S1 carries the only accidental ^F; all other voices diatonic\n[V:1] G ^F G G |\n[V:2] E D E E |\n[V:3] C D B, B, |\n[V:4] A, A, G, G, |\n[V:5] A A G B |\n[V:6] F F D G |\n[V:7] E, F, D, B, |\n[V:8] C, D, G,, G, |\n%\n% Bar 5 \u2014 I \u2014 vii\u00b0 \u2014 I \u2014 I\n[V:1] c d e c |\n[V:2] A B c A |\n[V:3] E F G E |\n[V:4] C D E C |\n[V:5] c B c G |\n[V:6] G G G E |\n[V:7] G, F, E, G, |\n[V:8] E, D, C, E, |\n%\n% Bar 6 \u2014 ii/IV \u2014 I \u2014 V \u2014 I  (climax: S1 at F5, B1 at D3)\n[V:1] f e d e |\n[V:2] d c B c |\n[V:3] F G A G |\n[V:4] D C D E |\n[V:5] A/B/ c B c |\n[V:6] F G E G |\n[V:7] F, G, B, G, |\n[V:8] D, C, G,, C, |\n%\n% Bar 7 \u2014 I(6) \u2014 IV \u2014 V \u2014 vi\n[V:1] c A G c |\n[V:2] A F E A |\n[V:3] E D B, E |\n[V:4] C A, G, C |\n[V:5] c c B A |\n[V:6] G E G F |\n[V:7] G, A, B, C |\n[V:8] E, F, G, A, |\n%\n% Bar 8 \u2014 IV(6) \u2014 V(sus4-3) \u2014 I  (final cadence, 3 beats)\n[V:1] c B c |]\n[V:2] A G A |]\n[V:3] D F E |]\n[V:4] A, D C |]\n[V:5] A G G |]\n[V:6] F E E |]\n[V:7] A, B, G, |]\n[V:8] F, G, C, |]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ""; }
+};
+var abc = new abc2svg.Abc(user);
+abc.tosvg("score", abc_src);
+</script>
+</body>
+</html>

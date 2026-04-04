@@ -1,0 +1,123 @@
+X: 1
+T: Out of the Deep I Cry to Thee
+T: (also known as From Depths of Woe I Cry to Thee)
+C: Words: Martin Luther, 1524. Tr. Arthur Tozer Russell (1806-1874).
+C: Music: Martin Luther, Erfurt Enchiridion, 1524. Setting: J. S. Bach, 1725.
+C: SSAATTBB arrangement for double choir and lever harp. Public domain.
+M: 4/4
+L: 1/4
+Q: 1/4=110
+%%staves [(1 2) (3 4) (5 6) (7 8)]
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+K: C
+%
+% Modal center: E Phrygian / Dorian within C major key signature.
+% Key: C (0 accidentals). Lever harp in C major: levers on Eb, Bb (from
+% Eb storage) raised to give C major (all 7 naturals available).
+% Actually from Eb storage: raise Ab->A, Eb->E, Bb->B levers for C major.
+%
+% Diatonic pitches: C D E F G A B. S1 may use accidentals freely.
+% All other voices strictly diatonic.
+%
+% Original SATB accidentals handled:
+%   Alto ^G (G#4) -> G4 (diatonic neighbor down) in bars 1,3 (and repeat 6,8)
+%   Alto ^F (F#4) -> F4 (diatonic neighbor down) in bars 2,11 (and repeat)
+%   Alto ^G (G#4) -> A4 (diatonic neighbor up) in bar 12
+%   Tenor ^G, (G#2) -> G2 in bars 1,5,16,18
+%   Tenor ^F, (F#2) -> F2 in bar 15
+%   Bass _B,, (Bb2) -> B2 in bar 17
+%   Bass ^G,, (G#2) -> G2 in bar 18
+%
+% ABC pitch convention (clef-independent):
+%   C=C4 (middle C), c=C5, C,=C3, C,,=C2
+%   Tenor voices (V:5 V:6): clef=treble transpose=-12 -> written pitch sounds 8va bassa
+%     Written G, (G3) sounds G2; written G (G4) sounds G3; written g (G5) sounds G4
+%   Baritone (V:7) and Bass I (V:8): bass clef, no transpose, pitch as written
+%
+% =====================================================================
+% PHRASE 1 — First statement (bars 1–5)
+% Texture: SSAA choir carries the melody; TTBB sustains beneath (pp).
+% Antiphonal opening — upper choir only feels like a choir emerging
+% from silence.
+% =====================================================================
+%
+%  V:1 S1  = original soprano (Bach), accidentals permitted
+%  V:2 S2  = diatonic 3rds below S1 (Em->C->Em pattern)
+%  V:3 A1  = independent diatonic alto; arching melodic line
+%  V:4 A2  = contrary motion to A1, diatonic; supporting harmony
+%  V:5 T1  = original tenor with accidentals replaced diatonically
+%  V:6 T2  = 3rds below T1 (written), diatonic; harmonic support
+%  V:7 Bar = 3rds above B1, diatonic; independent bass line
+%  V:8 B1  = original bass (Bach), all naturals already diatonic
+%
+[V:1] B2 E B          | c B/A/ =G A     | B2 B2       | c d c/B/ A      | (G F) E2         |
+[V:2] G2 C G          | A G/F/ E F      | G2 G2       | A B A/G/ F      | (E D) C2         |
+[V:3] E2 A E          | F E D C         | E2 E2       | F G F E         | (E D) C2         |
+[V:4] D2 D D          | D C A, B,       | D2 D2       | D E D C         | (C B,) A,2       |
+[V:5] G,2 A, D        | E D E/D/ C      | B,2 E2      | E F G C         | (C/B,/ A,) G,2   |
+[V:6] E,2 F, B,       | C B, G, A,      | G,2 C2      | C D E A,        | A, G, G,2        |
+[V:7] G,2 E, D,       | C, D, E,/D,/ C, | G,2 G,2     | C B,/A,/ G, A,  | (E, F,) G,2      |
+[V:8] E,2 C, B,,      | A,, B,, C,/B,,/ A,, | E,2 E,2 | A, G,/F,/ E, F, | (C, D,) E,2      |
+%
+% =====================================================================
+% PHRASE 1 — Repeat (bars 6–10): Full SSAATTBB, mf-f dynamic
+% All 8 voices enter. TTBB now carries independent contrapuntal lines.
+% =====================================================================
+%
+[V:1] B2 E B          | c B/A/ =G A     | B2 B2       | c d c/B/ A      | (G F) E2         |
+[V:2] G2 C G          | A G/F/ E F      | G2 G2       | A B A/G/ F      | (E D) C2         |
+[V:3] E2 A E          | F E D C         | E2 E2       | F G F E         | (E D) C2         |
+[V:4] D2 D D          | D C A, B,       | D2 D2       | D E D C         | (C B,) A,2       |
+[V:5] G,2 A, D        | E D E/D/ C      | B,2 E2      | E F G C         | (C/B,/ A,) G,2   |
+[V:6] E,2 C, G,       | A, G, E, F,     | E,2 G,2     | G, A, E, F,     | (E, D,) C,2      |
+[V:7] G,2 C, E,       | F, E, A,, D,    | G,,2 B,,2   | A,, B,, E, F,   | (E, D,) C,2      |
+[V:8] E,,2 C, B,,     | A,, B,, C,/B,,/ A,, | E,2 E,2 | A, G,/F,/ E, F, | (C, D,) E,2      |
+%
+% =====================================================================
+% PHRASE 2a (bars 11–14): Antiphonal dialogue
+% SSAA states each sub-phrase; TTBB answers immediately.
+% The texture shifts — freer inner voice writing; harmonic rhythm the same.
+% =====================================================================
+%
+%   Bar 11: Am   Bar 12: G-D-G-Em   Bar 13: Am-Em   Bar 14: Em-Am-Bm-E (pickup G)
+%   Original alto ^F (F#4) in bar 11 beat 4 -> F4 (nearest diatonic)
+%   Original alto ^G (G#4) in bar 12 beat 4 -> A4 (stepwise up preferred)
+%
+[V:1] A2 G c          | B A d/c/ B      | A2 c2       | B c d G         |
+[V:2] F2 E A          | G F B/A/ G      | F2 A2       | G A B E         |
+[V:3] C2 B, E         | D C G/F/ E      | C2 E2       | D E F C         |
+[V:4] A,2 G, C        | B, A, E D       | A,2 C2      | B, C D A,       |
+[V:5] A,2 B, C        | D D/E/ F B,     | C2 E2       | E E D C         |
+[V:6] F,2 G, A,       | B, G, D B,      | A,,2 C,2    | C, C, B, A,     |
+[V:7] A,,2 G,, C,     | B,, A,, D, C,   | A,,2 A,,2   | G,, A,, B,, E,  |
+[V:8] C,2 B,, A,,     | G,, F,,/E,,/ D,, E,, | A,,2 A,,2 | E,, D,,/C,,/ B,,, C,, |
+%
+% =====================================================================
+% PHRASE 2b (bars 15–18): Full 8-voice climax, then final cadence
+% Bar 15: Gm/D pedal  Bar 16: Am-F  Bar 17: Dm-C-G7sus
+% Bar 18: Em final (Phrygian close — E Dorian tonic)
+% Suspension: A1 and T2 hold then resolve into final chord.
+% Stretto-like motion in inner voices at bars 16-17.
+%
+%   T1 original bar 15 (^F,/G,): ^F, -> F, (concert F2; diatonic)
+%   T1 original bar 16 (^G,):    ^G, -> G, (concert G2; diatonic)
+%   T1 original bar 18 (^G,):    ^G, -> G, (concert G2; diatonic)
+%   B1 original bar 17 (_B,,):   _B,, -> B,, (concert B2; diatonic)
+%   B1 original bar 18 (^G,,):   ^G,, -> G,, (concert G2; diatonic)
+% =====================================================================
+%
+[V:1] B A G2          | !sintro!G2 c B  | A E (G F)   | E4 !eintro!     |]
+[V:2] G F E2          | E2 A G          | F C (E D)   | C4              |]
+[V:3] D C B,2         | C2 E D          | C A, (B, A,)| B,4             |]
+[V:4] B, A, G,2       | A,2 C B,        | A, F, G,2   | G,4             |]
+[V:5] D C B,2         | C2 E D          | C B, (A, G,)| B,4             |]
+[V:6] B, A, G,2       | A,2 C B,        | A, G, G,2   | G,4             |]
+[V:7] F, E, D,2       | E,2 G, F,       | E, C, (D, C,)| B,,4           |]
+[V:8] D, [D,,D,] G,,2 | C,2 A,, E,      | F, C, B,, A,, | G,, A,, [E,,2E,2] |]

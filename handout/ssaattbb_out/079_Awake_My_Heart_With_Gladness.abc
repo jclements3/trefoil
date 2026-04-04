@@ -1,0 +1,84 @@
+X: 1
+T: Awake, My Heart, With Gladness
+C: Words: Paul Gerhardt, 1648. Translated by John Kelly, 1867, alt.
+C: Music: 'Auf, Auf, Mein Herz mit Freuden' Johann Crüger, 1648.
+C: Setting: SSAATTBB arr. from "Mehrstimmiges ChoralBuch", 1906.
+C: copyright: public domain.
+S: Music source: "Mehrstimmiges ChoralBuch", 1906 Hymn #14 Ed. Karl Brauer.
+M: 3/4
+L: 1/4
+Q: 1/4=140
+K: Eb
+%%staves [(1 2) (3 4) (5 6) (7 8)]
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+%
+% ============================================================
+% SECTION A — BARS 1–7
+% Reduced texture: S1, A1, T1, B1 only (4-voice SATB core).
+% S2, A2, T2, Bar are silent — ensemble opens in lean 4-part.
+% ============================================================
+%
+[V:1] [Q:1/4=140] B G B | A2 G | F3 | E2 B | (c3/2 d/) e | (d3/2 c/) d | c3 |
+[V:2] z3 | z3 | z3 | z3 | z3 | z3 | z3 |
+[V:3] E E E | C2 B, | B,3 | B,2 E | E2 F | G2 G | E3 |
+[V:4] z3 | z3 | z3 | z3 | z3 | z3 | z3 |
+[V:5] G B E | E2 E | (D3/2 C/) D | G2 G | A2 G | B2 B | G3 |
+[V:6] z3 | z3 | z3 | z3 | z3 | z3 | z3 |
+[V:7] G, B, G, | C,2 G, | D,3 | G,3 | C,2 E, | B,,2 D, | E,3 |
+[V:8] E, E, G,, | A,,2 E, | B,,3 | E,,2 E, | (A,,3/2 B,,/) C, | G,,2 G,, | C,3 |
+%
+% ============================================================
+% SECTION A REPEAT — BARS 8–14
+% Full 8 voices; homophonic block-chord texture.
+% S2 a diatonic third below S1; A2 in contrary motion to A1;
+% T2 a diatonic third below T1; Bar a diatonic third above B1.
+% ============================================================
+%
+[V:1] B G B | A2 G | F3 | E2 B | (c3/2 d/) e | (d3/2 c/) d | c3 |
+[V:2] G E G | F2 E | D3 | C2 G | (A3/2 B/) c | (B3/2 A/) B | A3 |
+[V:3] E D E | C2 B, | B,3 | B,2 E | E2 F | G2 G | E3 |
+[V:4] C C C | A,2 G, | G,3 | G,2 C | C2 D | E2 E | C3 |
+[V:5] G B E | E2 E | (D3/2 C/) D | G2 G | A2 G | B2 B | G3 |
+[V:6] G G C | C2 B, | B,3 | E2 C | D2 C | E2 E | C3 |
+[V:7] F, A, G, | C,2 E, | D,3 | G,3 | C,2 E, | B,,2 D, | E,3 |
+[V:8] E, E, G,, | A,,2 E, | B,,3 | E,,2 E, | (A,,3/2 B,,/) C, | G,,2 G,, | C,3 |
+%
+% ============================================================
+% SECTION B1 — BARS 15–20
+% All 8 voices active. SSAA carries the melodic line while
+% TTBB provides a sustained harmonic counter-layer (bars 15–17).
+% Roles exchange at bar 18: TTBB becomes melodic, SSAA holds.
+% ============================================================
+%
+[V:1] G B e | (D3/2 E/) F | E3 | A c F | (=E3/2 F/) G | F2 F |
+[V:2] E G c | (B,3/2 C/) D | C3 | F A D | (C3/2 D/) E | D2 D |
+[V:3] B, D G | G2 G | G3 | F E D | C2 C | C2 D |
+[V:4] G, B, E | E2 E | E3 | D C B, | A,2 A, | A,2 B, |
+[V:5] G F E | (F3/2 E/) D | G3 | C C B, | (G3/2 F/) E | A2 B, |
+[V:6] E D C | (D3/2 C/) B, | E3 | A, A, G, | (E3/2 D/) C | F2 G, |
+[V:7] G, F, E, | D,2 D, | G,,3 | A,, C, D, | E,2 E, | D,2 E, |
+[V:8] E, D, C, | B,,2 B,, | E,,3 | F,, A,, B,, | C,2 C, | F,,2 B,, |
+%
+% ============================================================
+% SECTION B2 — BARS 21–26
+% Full 8-voice climax. All voices ascend stepwise to peak at
+% bar 25; S1 reaches e (Eb5), S2 reaches c (C5), B1 anchors
+% on E,, (Eb2) at final cadence. Stretto texture: SSAA and
+% TTBB echo the dotted motive in overlapping entries (bars 21–22).
+% ============================================================
+%
+[V:1] (G3/2 A/) B | (=A3/2 B/) c | B2 B | (c3/2 d/) e | (d3/2 c/) d | e3 |]
+[V:2] (E3/2 F/) G | (F3/2 G/) A | G2 G | (A3/2 B/) c | (B3/2 A/) B | c3 |]
+[V:3] B, C D | D2 E | E2 E | F E F | G2 F | G3 |]
+[V:4] G, A, B, | B,2 C | C2 C | D C D | E2 D | E3 |]
+[V:5] B, C D | D2 E | E2 E | A2 G | B2 B | B3 |]
+[V:6] G, A, B, | B,2 C | C2 C | F2 E | G2 G | G3 |]
+[V:7] G, A, B, | B,2 B, | G,2 B, | E,2 G, | D,2 F, | C,3 |]
+[V:8] E, E, D, | F,2 F, | B,,2 E, | (A,,3/2 B,,/) C, | B,,2 B,, | E,,3 |]

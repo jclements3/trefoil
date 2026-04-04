@@ -1,0 +1,76 @@
+X:20
+T: On Jordan's Bank the Baptist's Cry
+C: Words: Charles Coffin, 1736. st. 1-3 translated by John Chandler, 1837; st 4-5 translator unknown.
+C: Music: 'Puer Nobis Nascitur' Michael Praetorius, 1609.
+C: Setting: George Ratcliffe Woodward for "The English Hymnal", 1906.
+C: SSAATTBB arrangement for 8-voice ensemble and lever harp.
+C: copyright: public domain. Open Hymnal Project, 2006 Revision.
+M: 3/4
+L: 1/4
+Q: 1/4=120
+%%staves [(V1 V2) (V3 V4) (V5 V6) (V7 V8)]
+V:1 name="Soprano I"   clef=treble
+V:2 name="Soprano II"  clef=treble
+V:3 name="Alto I"      clef=treble
+V:4 name="Alto II"     clef=treble
+V:5 name="Tenor I"     clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"    clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"    clef=bass
+V:8 name="Bass I"      clef=bass
+K: D
+%%MIDI program 52
+%
+% Texture map:
+%   Pickup–bar 2:  SSAA only (4 voices) — hushed, intimate opening
+%   Bar 3 onward:  Full 8 voices
+%   Bars 9–10:     Antiphonal (SSAA prominent bar 9, TTBB prominent bar 10)
+%   Bars 11–12:    S1/B1 call-response; inner voices more sustained
+%   Bars 13–16:    Full 8-voice climax and cadence
+%
+% ─── SOPRANO I ───────────────────────────────────────────────────────────────
+[V:1]
+D | D2 E | F2 G | F2 E | D2 D | A2 A |
+(A B) c | d2 d | d2 A | d2 d | c2 A |
+B2 B | A2 G | A2 F | E2 F | D2 C | !fermata!D2 |]
+%
+% ─── SOPRANO II ──────────────────────────────────────────────────────────────
+[V:2]
+B, | B,2 C | D2 E | D2 C | B,2 B, | F2 F |
+(F G) A | B2 B | B2 F | B2 B | A2 F |
+G2 G | F2 E | F2 D | C2 D | B,2 A, | C D |]
+%
+% ─── ALTO I ──────────────────────────────────────────────────────────────────
+[V:3]
+A, | A,2 B, | A2 B | A2 G | F2 A, | D2 D |
+E2 E | F2 G | F2 E | D2 E | E2 D |
+B,2 D | D2 B, | E2 D | C2 D | B,2 A, | F,2 |]
+%
+% ─── ALTO II ─────────────────────────────────────────────────────────────────
+[V:4]
+F, | F,2 E, | A,2 G, | D2 E | F,2 G, | A,2 F, |
+D2 C | D2 C | D2 D | F,2 E, | A,2 B, |
+G,2 F, | G,2 F, | G,2 A, | A,2 G, | G,2 F, | D,2 |]
+%
+% ─── TENOR I (8vb treble: written pitch sounds one octave lower) ───────────
+[V:5]
+z | z3 | z3 | A2 F | d2 d | A2 F |
+E2 E | F2 G | F2 E | G2 A | A2 G |
+d2 e | d2 B | e2 d | c2 d | B2 A | A2 |]
+%
+% ─── TENOR II (8vb treble: written pitch sounds one octave lower) ──────────
+[V:6]
+z | z3 | z3 | D2 E | A2 B | D2 D |
+D2 B, | D2 E | D2 D | D2 E | E2 D |
+A2 B | B2 G | c2 B | A2 B | G2 F | F2 |]
+%
+% ─── BARITONE ────────────────────────────────────────────────────────────────
+[V:7]
+z | z3 | z3 | (C, B,,) C, | F,2 B, | (A, G,) F, |
+E,2 C, | F,2 F, | F,2 E, | (D, C,) B,, | C,2 F, |
+B,,2 D, | F,2 G, | E,2 F, | (C, B,,) A,, | B,,2 C, | F,2 |]
+%
+% ─── BASS I ──────────────────────────────────────────────────────────────────
+[V:8]
+z | z3 | z3 | (A,, G,,) A,, | D,2 G, | (F, E,) D, |
+C,2 A,, | D,2 D, | D,2 C, | (B,, A,,) G,, | A,,2 D, |
+G,,2 B,, | D,2 E, | C,2 D, | (A,, G,,) F,, | G,,2 A,, | D,2 |]

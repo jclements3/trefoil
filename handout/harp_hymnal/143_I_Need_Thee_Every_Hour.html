@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>I Need Thee Every Hour — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }
+p.legend { font-size: 12px; color: #555; }</style>
+</head><body>
+<h1>I Need Thee Every Hour</h1>
+<p class="legend">Above melody: Abstract / RH voicing / LH voicing.
+RH = upper notes, LH = lower notes (no hand crossing).</p>
+<div id="music"></div>
+<script src="../../abc2stripchart/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 1\nT: I Need Thee Every Hour\nM: 3/4\nL: 1/4\nQ: 1/4=80\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: A\n[V: M] \"^vi7\u00b9\"\"^F-1+2\"A | \"^I\"\"^C\u00b2\"\"^C\"c3/2 B/ A/ G/ | \"^vi7\u00b9\"\"^F-1+2\"A2 A | ( \"^IV\"A3/2 B/ ) A/ F/ | \"^I\"\"^C\"E2 E | \"^V\"\"^G\"\"^G\"B3/2 c/ B/ E/ | \"^vi7\u00b2\"\"^Am\"\"^C\u00b9\"c2 A | ( \"^V7\u00b2\"\"^G\"G3/2 A/ ) G/ F/ | \"^I\u0394\u00b2\"\"^C\u00b2\"E2 | | \"^I\u00b9\"\"^C\u00b2\"c | \"^I\u00b9\"\"^C\u00b2\"c3/2 A/ d/ c/ | \"^I\u00b2\"c B2 | \"^V7\"\"^G\"\"^G7-3\"B3/2 A/ c/ B/ | \"^I\u039411\"\"^G\"\"^Dm9\u00b3-5\"B A A | \"^IV\"\"^F\"\"^F\"A3/2 B/ A/ F/ | \"^I\"E A B | ( \"^IV\u0394s2\u00b9\"\"^Cs\u00b2\"c3/2 A/ ) B | A2 |] A ( ) D a c g a z e a d b e a e d b e e f a e a e f e d, e e e f a d/6 b e e d c a a e d B a e a c e g a =D D ( d a c e g b e e d e c e )\n[V: RH] [EFA] | [EAc]3/2 [DGB]/ [EFA]/ [B,EG]/ | [EFA]2 [CEA] | ( [FA]3/2 [B]/ ) [FA]/ [F]/ | [CE]2 [CEG] | [EGB]3/2 [EAc]/ [EGB]/ [EG]/ | [FAc]2 [EA] | ( [EGB]3/2 [A]/ ) [EGB]/ [FA]/ | [EG]2 | | [EAc] | [EAc]3/2 [EFA]/ [FAd]/ [EAc]/ | [Ac] [GB]2 | [EGB]3/2 [EFA]/ [Ac]/ [EGB]/ | [EGB] [EFA] [EFA] | [DFA]3/2 [DFB]/ [DFA]/ [DF]/ | [CE] [EA] [DFB] | ( [Ec]3/2 [CA]/ ) [DB] | [CA]2 |] A ( ) D a c g a z e a d b e a e d b e e f a e a e f e d, e e e f a d/6 b e e d c a a e d B a e a c e g a =D D ( d a c e g b e e d e c e )\n[V: LH] [A,,C,C] | [A,,E,A,C]3/2 [D,F,B,]/ [E,G,A,C]/ [E,G,A,]/ | [A,,C,A,C]2 [A,,C,A,] | ( [D,F,D]3/2 [E]/ ) [D,F,D]/ [D]/ | [A,,C,E,]2 [E,G,A,] | [E,G,B,]3/2 [E,F,A,D]/ [E,G,D]/ [E,G,D]/ | [C,A,E]2 [A,,C] | ( [B,,D,B,]3/2 [C,F]/ ) [B,,D,B,]/ [D,A,D]/ | [E,A,C]2 | | [C,A,C] | [C,A,C]3/2 [C,A,C]/ [F,A,D]/ [E,A,C]/ | [E,CE] [E,B,E]2 | [E,B,D]3/2 [E,A,C]/ [E,CE]/ [E,B,D]/ | [A,,C,B,D] [A,,A,C] [A,,E,A,C] | [D,F,A,]3/2 [D,F,A,]/ [D,F,A,]/ [D,F,B,]/ | [A,,E,A,] [C,A,C] [D,A,B,] | ( [E,A,D]3/2 [C,A,]/ ) [D,E,G,] | [A,,C,A,]2 |] A ( ) D a c g a z e a d b e a e d b e e f a e a e f e d, e e e f a d/6 b e e d c a a e d B a e a c e g a =D D ( d a c e g b e e d e c e )\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ""; }
+};
+var abc = new abc2svg.Abc(user);
+abc.tosvg("score", abc_src);
+</script></body></html>

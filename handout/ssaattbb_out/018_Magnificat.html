@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Magnificat — SSAATTBB</title>
+<style>
+body { font-family: sans-serif; margin: 20px; background: #fff; }
+h1 { font-size: 18px; }
+</style>
+</head>
+<body>
+<h1>Magnificat — SSAATTBB</h1>
+<div id="music"></div>
+<script src="../../abc2stripchart/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 18\nT: Magnificat\nC: Words: Brian L. Penney, 2009.  Music: 'Uffingham' Jeremiah Clarke, 1701.  Setting: \"The English Hymnal\", 1906.\nC: SSAATTBB arr. for lever harp accompaniment, transposed Ab->Bb (up 2 semitones).\nC: copyright: Words: Copyright 2009, Brian L. Penney. Music and Setting: public domain.\nS: Expanded from Open Hymnal Project SATB, 2009 Revision.\nM: 3/4\nL: 1/4\nQ: 1/4=110\n%%staves {(V1 V2) (V3 V4) (V5 V6) (V7 V8)}\nV:1 name=\"Soprano I\"   clef=treble\nV:2 name=\"Soprano II\"  clef=treble\nV:3 name=\"Alto I\"      clef=treble\nV:4 name=\"Alto II\"     clef=treble\nV:5 name=\"Tenor I\"     clef=treble middle=B3 transpose=-12\nV:6 name=\"Tenor II\"    clef=treble middle=B3 transpose=-12\nV:7 name=\"Baritone\"    clef=bass\nV:8 name=\"Bass I\"      clef=bass\nK: Bb\n%\n% PHRASE 1 (bars 1-4): SSAA only \u2014 open texture, upper choir presents melody\n%\n[V:1] G G/^F/ E | D2 A | (B A) G | ^F3 |\n[V:2] E E/D/ C | B,2 F | G F E | D3 |\n[V:3] D D B, | G,2 B, | D C B, | A,3 |\n[V:4] F, G, A, | F,2 F, | D, E, F, | D,3 |\n[V:5] z3 | z3 | z3 | z3 |\n[V:6] z3 | z3 | z3 | z3 |\n[V:7] z3 | z3 | z3 | z3 |\n[V:8] z3 | z3 | z3 | z3 |\n%\n% PHRASE 2a (bars 5-8): SSAA continue above, TTBB enters antiphonally below\n%\n[V:1] d d d | c2 B | c A2 | B3 |\n[V:2] B B B | A2 G | A F2 | G3 |\n[V:3] z3 | z3 | z3 | z3 |\n[V:4] z3 | z3 | z3 | z3 |\n[V:5] B B B | A2 B | G F2 | F3 |\n[V:6] G G G | F2 G | E D2 | D3 |\n[V:7] D, F, D, | A, A, B, | G, A, A, | D,3 |\n[V:8] B,, D, B,, | F,,2 G,, | E,, F,,2 | B,,3 |\n%\n% PHRASE 2b (bars 9-11): Full 8 voices \u2014 climax, all voices join\n%\n[V:1] f f e | d2 d | (d c) B |\n[V:2] d d c | B2 B | B A G |\n[V:3] B B B | G2 A | (G F) E |\n[V:4] F G A | F2 F | B, C D |\n[V:5] d B c | d2 d | (B c) d/B/ |\n[V:6] B G A | B2 G | G F E |\n[V:7] F, F, A, | F,3 | (D, C,) B,, |\n[V:8] B,, D, F, | B,,3 | (B,, A,,) G,, |\n%\n% PHRASE 3 (bars 12-16): Full 8 voices \u2014 final phrase with suspension at cadence\n%\n[V:1] A2 !sintro!A | (B A) G | ^F2 d | B2 A/G/ | G3 !eintro!|]\n[V:2] F2 F | G F E | D2 B | G2 F/E/ | E3 |]\n[V:3] D2 E | D C B, | C2 F | F2 E | D3 |]\n[V:4] C2 C | B, A, A, | F,2 A, | D2 C | B,3 |]\n[V:5] c2 d | d2 G | A2 G | G2 A | B3 |]\n[V:6] A2 B | B2 E | F2 E | D2 C | B,3 |]\n[V:7] A, A, F, | B, A, G, | F, F, D, | F, F, F, | D,3 |]\n[V:8] F,2 D, | (G, F,) E, | D,2 B,, | D,3 | [G,,3G,3] |]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ""; }
+};
+var abc = new abc2svg.Abc(user);
+abc.tosvg("score", abc_src);
+</script>
+</body>
+</html>

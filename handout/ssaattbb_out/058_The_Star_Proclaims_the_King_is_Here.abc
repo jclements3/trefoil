@@ -1,0 +1,49 @@
+X: 58
+T: The Star Proclaims the King is Here
+T: (Wo Gott Zum Haus — SSAATTBB arrangement)
+C: Words: Coelius Sedulius, c. 450. Trans. John Mason Neale, 1852.
+C: Music: Klug's Geistliche Lieder, Wittenberg, 1533. Setting: Kern des Deutschen Kirchengesangs, 1855.
+C: SSAATTBB arrangement: 2026.
+C: Source: Open Hymnal Project. Public domain.
+M: 4/4
+L: 1/4
+Q: 1/4=100
+%%staves [(1 2) (3 4) (5 6) (7 8)]
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+K: Eb
+%%MIDI program 52
+%
+% ── Phrase 1 (bars 1–4) ───────────────────────────────────────────────────
+% Bar 1: SSAA only (reduced opening texture, 4 voices)
+% Bar 2: SSAA + Bar + B1 (6 voices, TTBB tenors enter bar 3)
+% Bars 3–4: Full 8 voices
+%
+[V:1] E2 B B    | G F G =A   | B3/2 B/ G B   | A B G F    |
+[V:2] C2 G G    | E D E F    | G3/2 G/ E G   | F G E D    |
+[V:3] G,2 B, C  | B, A, B, C | B,3/2 D/ B, D | C D B, A,  |
+[V:4] G,2 F, E, | E, F, E, D,| G,3/2 F,/ G, F,| E, D, E, F,|
+[V:5] z4        | z4         | B,3/2 C/ D B, | C B, C D   |
+[V:6] z4        | z4         | G,3/2 G,/ B, G,| B, G, B, C |
+[V:7] z4        | G, D G, E, | D3/2 G,/ G, D | A, F, G, D |
+[V:8] z4        | E, B, E, C,| B,3/2 E,/ E, B,| F, D, E, B,|
+%
+% ── Phrase 2 (bars 5–9) ───────────────────────────────────────────────────
+% Bar 5: SSAA antiphonal (TTBB rest)
+% Bar 6: TTBB antiphonal response (SSAA rest)
+% Bars 7–9: Full 8 voices; climax bar 7 (S1 to Eb5); final cadence bar 9
+%
+[V:1] E3/2 B/ c c  | z4         | G3/2 e/ d c | B c A/G/ F | E4  |]
+[V:2] C3/2 G/ A A  | z4         | E3/2 c/ B A | G A F/E/ D | E4  |]
+[V:3] G,3/2 A,/ G, A,| z4       | C3/2 B,/ B, C| B, C A,/B,/ A,| G,4 |]
+[V:4] E,3/2 D,/ E, D,| z4       | G,3/2 A,/ G, G,| G, G, F,/E,/ F,| E,4 |]
+[V:5] z4            | D B, A, A,| G,3/2 B,/ B, A,| B, A, G, B,| B,4 |]
+[V:6] z4            | B, G, G, G,| G,3/2 G,/ G, G,| G, G, G, G,| G,4 |]
+[V:7] z4            | G, D A, A,| E3/2 E/ B, C | G, E A, D  | G,4 |]
+[V:8] z4            | E, B, F, F,| C,3/2 C,/ G, A,| E, C, F, B,| E,4 |]

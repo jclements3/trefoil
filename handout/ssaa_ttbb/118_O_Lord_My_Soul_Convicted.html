@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>O Lord My Soul Convicted — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }
+p.legend { font-size: 12px; color: #555; }</style>
+</head><body>
+<h1>O Lord My Soul Convicted</h1>
+<p class="legend">Above melody: Abstract chord / RH voicing / LH voicing</p>
+<div id="music"></div>
+<script src="../../abc2stripchart/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 1\nT: O Lord My Soul Convicted\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%staves M | {(RH1 RH2 RH3 RH4) (LH1 LH2 LH3 LH4)}\nV: M clef=treble name=\"Melody\"\nV: RH1 clef=treble name=\"RH\"\nV: RH2 clef=treble\nV: RH3 clef=treble\nV: RH4 clef=treble\nV: LH1 clef=bass name=\"LH\"\nV: LH2 clef=bass\nV: LH3 clef=bass\nV: LH4 clef=bass\nK: C\n[V: M] \"^vi7\u00b2\"\"^Am7\"G | \"^vi7\u00b3\"\"^Am\u00b9\"c G A A | \"^iii7\u00b3\"\"^Em7\u00b2\"G F E E | \"^ii7\u00b3\"\"^Dm7\u00b2\"F E D G | \"^IV\u03949\u00b3\"\"^Am7\"\"^F\u0394\u00b3-5\"G ^F G G | \"^vi7\u00b3\"\"^Am\u00b9\"c d e c | \"^ii\u00b9\"f e d e | \"^vi7\u00b3\"\"^Am\u00b9\"c A G c | \"^ii7\u00b2\"\"^Dm7\u00b2-3\"c B c |]\n[V: RH1] G | c G A A | G F E E | F E D G | G ^F G G | c d e c | f e d e | c A G c | c B c |]\n[V: RH2] E | A E F F | E D C C | D C B, E | E D E E | A B c A | d c B c | A F E A | A G A |]\n[V: RH3] C | E C D C | D B, C D | C D B, B, | C D B, B, | E F G E | F G A G | E D B, E | D F E |]\n[V: RH4] A, | C A, A, A, | B, G, A, A, | A, A, G, G, | A, A, G, G, | C D E C | D C D E | C A, G, C | A, D C |]\n[V: LH1] G | G G A A | D D E E | F G G B | A A G B | c B c G | A/B/ c B c | c c B A | A G G |]\n[V: LH2] E | E E C C | B, B, C C | C C D D | F F D G | G G G E | F G E G | G E G F | F E E |]\n[V: LH3] E, | G, E, A, C, | D, D, E, E, | C, E, D, G, | E, F, D, B, | G, F, E, G, | F, G, B, G, | G, A, B, C | A, B, G, |]\n[V: LH4] C, | % % Bar 1 \u2014 I(6) \u2014 I \u2014 IV \u2014 IV(6) E, C, F, A,, | % % Bar 2 \u2014 V \u2014 V7 \u2014 I \u2014 I B,, G,, C, C, | % % Bar 3 \u2014 IV \u2014 I \u2014 V \u2014 V A,, C, G,, E, | % % Bar 4 \u2014 vi/Am \u2014 Dm(sub for D/V/V) \u2014 V \u2014 V7 % S1 carries the only accidental ^F; all other voices diatonic C, D, G,, G, | % % Bar 5 \u2014 I \u2014 vii\u00b0 \u2014 I \u2014 I E, D, C, E, | % % Bar 6 \u2014 ii/IV \u2014 I \u2014 V \u2014 I  (climax: S1 at F5, B1 at D3) D, C, G,, C, | % % Bar 7 \u2014 I(6) \u2014 IV \u2014 V \u2014 vi E, F, G, A, | % % Bar 8 \u2014 IV(6) \u2014 V(sus4-3) \u2014 I  (final cadence, 3 beats) F, G, C, |]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ""; }
+};
+var abc = new abc2svg.Abc(user);
+abc.tosvg("score", abc_src);
+</script></body></html>

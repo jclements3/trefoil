@@ -1,0 +1,74 @@
+X:43
+T: Lo, How A Rose E'er Blooming
+C: Words: verses 1-2, 15th Century German. Translated by Theodore Baker, 1894.
+C: Music: 'Es Ist Ein Ros Entsprungen (Rhythmic)' German from Köln, 1599. Setting: Michael Praetorius, 1609.
+C: SSAATTBB arr. for lever harp accompaniment. Key: F major (no transposition).
+C: copyright: public domain.
+S: Expanded from Open Hymnal Project SATB, 2010 Revision.
+M: none
+L: 1/4
+Q: 1/4=72
+%%staves {(V1 V2) (V3 V4) (V5 V6) (V7 V8)}
+V:1 name="Soprano I"   clef=treble
+V:2 name="Soprano II"  clef=treble
+V:3 name="Alto I"      clef=treble
+V:4 name="Alto II"     clef=treble
+V:5 name="Tenor I"     clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"    clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"    clef=bass
+V:8 name="Bass I"      clef=bass
+K: F
+%
+% ═══════════════════════════════════════════════════════
+% FIRST A SECTION (pickup + bars 1-4)
+% Texture: reduced 4-voice pickup (S1 S2 Bar B1);
+%          full 8-voice homophony from bar 1.
+% ═══════════════════════════════════════════════════════
+%
+% Pickup: 2 quarter notes, F major tonic.
+% S1=C5 (fifth of chord), S2=A4 (third), Bar=A2 (third above bass),
+% B1=F2 (root). Inner voices tacet for quiet entry.
+%
+[V:1] [Q:1/4=72] c2 | c c d c | c2 A2 B2 | A G2 F2 E | F3 |
+[V:2] A2 | A A B A | A2 F2 G2 | F E2 D2 C | D3 |
+[V:3] z2 | F F E F | E2 D2 D2 | C D2 A,2 C | C3 |
+[V:4] z2 | C C C C | C2 A,2 B,2 | A, B,2 F,2 A, | A,3 |
+[V:5] z2 | E C D C | B,2 C2 B,2 | C E D C2 B, | C3 |
+[V:6] z2 | A, G, G, G, | G,2 G,2 G,2 | A, A, G,2 G,2 | A,3 |
+[V:7] A,2 | F C D C | E,2 F,2 D2 | A, G, F,2 E,2 | A,3 |
+[V:8] F,2 | F, F, B, F, | C,2 D,2 B,2 | F, E, D,2 C,2 | F,3 |
+%
+% ═══════════════════════════════════════════════════════
+% SECOND A SECTION (pickup + bars 1-4 repeated)
+% Texture: antiphonal. SSAA lead with ornamented inner voices;
+%          TTBB answer with sustained diatonic harmony below.
+%          S2 cadences on C4 (7-6 color); T2 rises to C3 at close.
+% ═══════════════════════════════════════════════════════
+%
+[V:1] c2 | c c d c | c2 A2 B2 | A G2 F2 E | F3 |
+[V:2] A2 | A A B A | A2 F2 G2 | F E2 D2 C | C3 |
+[V:3] F2 | A G F E | E2 D2 D2 | C D2 C2 D | C3 |
+[V:4] C2 | F, A, B, A, | C2 A,2 B,2 | A, G,2 F,2 E, | F,3 |
+[V:5] E2 | E C D C | B,2 C2 B,2 | C E D C2 B, | C3 |
+[V:6] C2 | A, G, G, G, | G,2 G,2 A,2 | A, G, G,2 G,2 | A,3 |
+[V:7] C2 | A, A, D A, | E,2 F,2 D2 | C C B,2 A,2 | F,3 |
+[V:8] F,2 | F, F, B, F, | C,2 D,2 B,2 | F, E, D,2 C,2 | F,3 |
+%
+% ═══════════════════════════════════════════════════════
+% B SECTION
+% Texture: bars 5-6 build to full 8-voice antiphonal;
+%          bars 7-8 compact stretto pairs;
+%          bars 9-11 climactic recapitulation with suspensions.
+% S1 peaks at A4-Bb4; B1 grounds on F2 for final cadence.
+% ═══════════════════════════════════════════════════════
+%
+% Pickup to B section: all 8 voices, F major, mezzo-forte.
+%
+[V:1] A | G E F D | C3 c | c c | d c | c2 A2 B2 | A G2 F2 E | F3 |]
+[V:2] F | E C D B, | A,3 A | A G | B A | A2 F2 G2 | F E2 D2 C | C3 |]
+[V:3] C | C A, B, G, | F,3 F | F G | A G | E2 D2 D2 | C D2 C2 D | C3 |]
+[V:4] A, | A, F, G, E, | D,3 D | D D | E D | C2 A,2 B,2 | A, B,2 F,2 A, | A,3 |]
+[V:5] C | D C C B, | C3 D | D E | F E | B,2 C2 B,2 | E D C2 B,2 | C3 |]
+[V:6] A, | B, A, A, G, | G,3 G, | G, A, | B, A, | G,2 G,2 G,2 | A, B, G,2 G,2 | A,3 |]
+[V:7] C | B, C A, B, | E,3 G, | G, A, | D C | E,2 F,2 B,2 | C D E,2 E,2 | A,3 |]
+[V:8] F, | G, A, F, G, | C,3 C, | E, F, | B, F, | C,2 D,2 G,2 | A, B, C,2 C,2 | F,3 |]

@@ -1,0 +1,306 @@
+X:32
+T: Break Forth, O Beauteous Heavenly Light
+C: Words: Johann Rist, 1641. Translated by John Troutbeck, 1885.
+C: Music: 'Ermuntre dich' (Schop) Johann Schop, 1641.
+C: Setting: J.S. Bach, Christmas Oratorio BWV 248/12, 1734.
+C: SSAATTBB arr. for lever harp accompaniment. Key: E major (4 sharps).
+C: copyright: public domain. Arrangement based on Bach chorale BWV 248/12.
+S: Expanded from Bach SATB chorale BWV 248/12 (E major, 4 sharps — valid for lever harp).
+M: 4/4
+L: 1/4
+Q: 1/4=84
+%%staves {(V1 V2) (V3 V4) (V5 V6) (V7 V8)}
+V:1 name="Soprano I"   clef=treble
+V:2 name="Soprano II"  clef=treble
+V:3 name="Alto I"      clef=treble
+V:4 name="Alto II"     clef=treble
+V:5 name="Tenor I"     clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"    clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"    clef=bass
+V:8 name="Bass I"      clef=bass
+K: E
+%%MIDI program 52
+%
+% KEY: E major (F# C# G# D# in force throughout).
+% In ABC K:E: F=F#, G=G#, C=C#, D=D# (letter names w/o accidentals).
+% To write a natural, use =F, =C, =G, =D.
+%
+% VOICE RANGES (concert pitch, ABC notation):
+%   S1 C4-A5:   ABC treble C to a' (middle C to high A)
+%   S2 A3-F5:   ABC treble A, to f
+%   A1 F3-D5:   ABC treble F, to d  (F, = F#3 in K:E)
+%   A2 D3-B4:   ABC treble D, to B  (D, = D#3, minimum)
+%   T1 concert B2-G4 → written B3-G5: ABC 8vb treble B to g
+%   T2 concert G2-E4 → written G3-E5: ABC 8vb treble G to e
+%   Bar E2-C4:  ABC bass E,, to C   (E,, = E2, minimum)
+%   B1 C2-A3:   ABC bass C,, to A,  (C,, = C2, minimum)
+%
+% TEXTURE PLAN:
+%   Pickup + Bars 1-3  (Phrase 1, A):  6 voices — S1 S2 A1 A2 Bar B1
+%                                       T1 T2 tacet; lean opening
+%   Pickup + Bars 4-6  (Phrase 2, A'): All 8 voices; SSAA carries melody,
+%                                       TTBB provides lower harmonic choir
+%                                       (antiphonal register separation)
+%   Pickup + Bars 7-9  (Phrase 3, B):  All 8 voices; full homophony;
+%                                       S1 reaches C#5; inner voices gain
+%                                       melodic independence
+%   Pickup + Bars 10-12(Phrase 4, B'): All 8 voices; climax (S1 C#5,
+%                                       B1 E2, maximum ensemble spread);
+%                                       4-3 suspensions at final cadence
+%
+% ──────────────────────────────────────────────────────────
+% PICKUP (1 beat) — Phrase 1; S1 S2 A1 A2 Bar B1 only
+% ──────────────────────────────────────────────────────────
+[V:1] E |
+[V:2] B, |
+[V:3] G, |
+[V:4] E, |
+[V:5] z |
+[V:6] z |
+[V:7] G, |
+[V:8] E,, |
+%
+% ──────────────────────────────────────────────────────────
+% BAR 1 — I(E) → IV(A) → V6(B/D#) → I
+% S1: F#4 G#4 A4 G#4   S2: D#4 E4 F#4 E4 (3rd below S1)
+% A1: B3 C#4 D#4 C#4   A2: G#3 A3 B3 A3 (3rd below A1)
+% Bar: B2 C#3 D#3 C#3  B1: E2 A2 B2 E2
+% No voice crossing: Bar always above B1 ✓
+% ──────────────────────────────────────────────────────────
+[V:1] F G A G |
+[V:2] D E F E |
+[V:3] B, C D C |
+[V:4] G, A, B, A, |
+[V:5] z4 |
+[V:6] z4 |
+[V:7] B,, C, D, C, |
+[V:8] E,, A,, B,, E,, |
+%
+% BAR 2 — V(B) → I; 4-3 suspension in upper voices
+% S1: F#4 E4 D#4 E4   S2: D#4 C#4 B3 C#4
+% A1: B3 A3 G#3 A3 — 4-3 over V chord then resolve
+% A2: F#3 E3 F#3 E3 — neighbor-tone figure
+% Bar: D#3 C#3 B2 C#3   B1: B2 E2 B2 E2
+% Bar bottom: B,, = B2 > E2 min ✓; B1 never below B,, = B2 ✓
+[V:1] F E D E |
+[V:2] D C B, C |
+[V:3] B, A, G, A, |
+[V:4] F, E, F, E, |
+[V:5] z4 |
+[V:6] z4 |
+[V:7] D, C, B,, C, |
+[V:8] B,, E,, B,, E,, |
+%
+% BAR 3 — Internal cadence; E major half note, then rest (breath)
+% All 6 voices land on E chord; fermata implied
+% A2: E3 (E,) — within D3-B4 range ✓; Bar: E3 (E,) ✓; B1: E2 (E,,) ✓
+[V:1] E2 z2 |
+[V:2] B,2 z2 |
+[V:3] G,2 z2 |
+[V:4] E,2 z2 |
+[V:5] z4 |
+[V:6] z4 |
+[V:7] E,2 z2 |
+[V:8] E,,2 z2 |
+%
+% ──────────────────────────────────────────────────────────
+% PICKUP — Phrase 2; all 8 voices enter together
+% TTBB choir joins — moment of textural expansion
+% ──────────────────────────────────────────────────────────
+[V:1] E |
+[V:2] B, |
+[V:3] G, |
+[V:4] E, |
+[V:5] e |
+[V:6] B |
+[V:7] G, |
+[V:8] E,, |
+%
+% ──────────────────────────────────────────────────────────
+% BAR 4 — All 8 voices; antiphonal register separation
+% SSAA choir (S1 S2 A1 A2) in upper register carries melody
+% TTBB choir (T1 T2 Bar B1) in lower register mirrors harmony
+% S1: F#4 G#4 A4 G#4  S2: D#4 E4 F#4 E4
+% A1: B3 C#4 D#4 C#4  A2: G#3 A3 B3 A3
+% T1 written (sounds -8va): F#3 G#3 A3 G#3 → written F G A G
+% T2 written: D#3 E3 F#3 E3 → written D E F E
+% Bar: B2 C#3 D#3 C#3 (B,, C, D, C,); B1: E2 A2 B2 E2 (E,, A,, B,, E,,)
+% ──────────────────────────────────────────────────────────
+[V:1] F G A G |
+[V:2] D E F E |
+[V:3] B, C D C |
+[V:4] G, A, B, A, |
+[V:5] F G A G |
+[V:6] D E F E |
+[V:7] B,, C, D, C, |
+[V:8] E,, A,, B,, E,, |
+%
+% BAR 5 — V → I; all 8 voices; stepwise inner voice motion
+% A1: B3 A3 G#3 G#3 (descending); A2: F#3 G#3 F#3 E3 (contrary)
+% T1/T2 written: mirror SSAA inner voices an octave lower
+[V:1] F E D E |
+[V:2] D C B, B, |
+[V:3] B, A, G, G, |
+[V:4] F, G, F, E, |
+[V:5] f e d d |
+[V:6] d c B B |
+[V:7] D, C, B,, B,, |
+[V:8] B,, E,, B,, E,, |
+%
+% BAR 6 — Cadence on E; all 8 voices hold 2 beats then rest
+% A2: E3 (E,) ✓; Bar: E3 (E,) ✓; B1: E2 (E,,) ✓
+[V:1] E2 z2 |
+[V:2] B,2 z2 |
+[V:3] G,2 z2 |
+[V:4] E,2 z2 |
+[V:5] e2 z2 |
+[V:6] B2 z2 |
+[V:7] E,2 z2 |
+[V:8] E,,2 z2 |
+%
+% ──────────────────────────────────────────────────────────
+% PICKUP — Phrase 3 (B section); melody leaps to B4
+% All 8 voices on E major chord
+% T1 pickup: B (written B4 = concert B3 ✓); T2 pickup: G (written G4 = concert G3 ✓)
+% ──────────────────────────────────────────────────────────
+[V:1] B |
+[V:2] G |
+[V:3] E |
+[V:4] B, |
+[V:5] B |
+[V:6] G |
+[V:7] G, |
+[V:8] E,, |
+%
+% ──────────────────────────────────────────────────────────
+% BAR 7 — B section; S1 reaches C#5; full homophony
+% S1: C#5 B4 A4 G#4  (c B A G)
+% S2: A4 G#4 F#4 E4  (A G F E) — 3rd below, descending
+% A1: E4 D#4 D#4 C#4 (E D D C) — independent descent with passing D#
+% A2: C#4 B3 A3 G#3  (C B, A, G,) — 6th below S1, stepwise descent
+%     [A2 top C#4 = C < B4 max ✓; bottom G#3 = G, > D3 min ✓]
+% T1 written: c B A G  (sounds C#4 B3 A3 G#3 concert — ✓ within B2-G4)
+% T2 written: A G F E  (sounds A3 G#3 F#3 E3 concert — ✓)
+% Bar: A2 G#2 F#2 E2  → raise to avoid range problems:
+%   Bar: A, G, F, E,  (A3 G#3 F#3 E3) — 3rd below A1 ✓; above B1 ✓
+% B1: A2 E2 D#2 E2  (A,, E,, D,, E,,) — A2 = A2 ✓; D,, = D#2 > C2 ✓
+% ──────────────────────────────────────────────────────────
+[V:1] c B A G |
+[V:2] A G F E |
+[V:3] E D D C |
+[V:4] C B, A, G, |
+[V:5] c B A G |
+[V:6] A G F E |
+[V:7] A, G, F, E, |
+[V:8] A,, E,, D,, E,, |
+%
+% BAR 8 — A4 B4 C#5 B4; S1 reaches C#5 again; building to final climax
+% S1: A4 B4 C#5 B4  (A B c B)
+% S2: F#4 G#4 A4 G#4 (F G A G) — 3rd below S1
+% A1: C#4 D#4 E4 D#4 (C D E D) — parallel 3rds with S2
+% A2: A3 B3 C#4 B3   (A, B, C B,) — contrary to A1: rises while A1 falls
+%     [A2 top C#4=C < B4 ✓; bottom A3=A, > D3 ✓]
+% T1 written: A B c B  (sounds A3 B3 C#4 B3 concert — ✓ max C#4<G4 ✓)
+% T2 written: F G A G  (sounds F#3 G#3 A3 G#3 concert — ✓)
+% Bar: F, G, A, G,  (F#3 G#3 A3 G#3) — mirrors T2 in bass clef
+%   [F, = F#3 > E2 min ✓; G, = G#3 < C4 max ✓]
+% B1: F,, B,, A,, B,,  (F#2 B2 A2 B2) [F,, = F#2 > C2 ✓; B,, = B2 < A3 ✓]
+[V:1] A B c B |
+[V:2] F G A G |
+[V:3] C D E D |
+[V:4] A, B, C B, |
+[V:5] A B c B |
+[V:6] F G A G |
+[V:7] F, G, A, G, |
+[V:8] F,, B,, A,, B,, |
+%
+% BAR 9 — Half-cadence on B major (V); 4-3 suspension; fermata
+% S1: A4 G#4 (half note)   S2: F#4 E4 (half note)
+% A1: (D#4→C#4) half — 4-3 suspension resolving: D C, held 2 beats
+% A2: (B3→A3) half — 4-3 suspension: B, A,, held 2 beats
+% T1 written: A G2  (A4→G#4 written = A3→G#3 concert — ✓ within B2-G4)
+% T2 written: F E2  (F#4→E4 written = F#3→E3 concert — ✓ within G2-E4)
+% Bar: D, B,,2  (D#3 B2 held) — Bar D, = D#3 > E,, ✓; B,, = B2 > E2 ✓
+% B1: B,, B,,2  (B2 held whole) — ✓
+[V:1] A G2 z |
+[V:2] F E2 z |
+[V:3] (D C) z2 |
+[V:4] (B, A,) z2 |
+[V:5] A G2 z |
+[V:6] F E2 z |
+[V:7] D, B,,2 z |
+[V:8] B,, B,,2 z |
+%
+% ──────────────────────────────────────────────────────────
+% PICKUP — Phrase 4 (B'); final phrase; all 8 voices; climax
+% T1: B (B4 written = B3 concert ✓); T2: G (G4 written = G3 concert ✓)
+% ──────────────────────────────────────────────────────────
+[V:1] B |
+[V:2] G |
+[V:3] E |
+[V:4] B, |
+[V:5] B |
+[V:6] G |
+[V:7] G, |
+[V:8] E,, |
+%
+% ──────────────────────────────────────────────────────────
+% BAR 10 — Climax; S1 C#5 + B1 E2 = maximum ensemble spread
+% S1: C#5 B4 A4 G#4   S2: A4 G#4 F#4 E4
+% A1: E4 F#4 G#4 F#4 (E F G F) — rising neighbor-note peak
+% A2: C#4 B3 A3 G#3  (C B, A, G,) — descends in contrary to A1
+%     [A2 top C#4=C ✓; bottom G#3=G, > D3 ✓]
+% T1 written: c B A G  (C#4 B3 A3 G#3 concert — ✓)
+% T2 written: A G F E  (A3 G#3 F#3 E3 concert — ✓)
+% Bar: A, G, F, E,  (A3 G#3 F#3 E3) — 3rd above B1 ✓
+% B1: A,, E,, D,, E,,  (A2 E2 D#2 E2) ✓
+% ──────────────────────────────────────────────────────────
+[V:1] c B A G |
+[V:2] A G F E |
+[V:3] E F G F |
+[V:4] C B, A, G, |
+[V:5] c B A G |
+[V:6] A G F E |
+[V:7] A, G, F, E, |
+[V:8] A,, E,, D,, E,, |
+%
+% BAR 11 — Dominant preparation; suspensions; all voices descend
+% S1: F#4 E4 D#4 E4  (F E D E)  S2: D#4 C#4 B3 C#4  (D C B, C)
+% A1: A3 G#3 F#3 G#3 (A, G, F, G,) — 4-3 suspension over V
+% A2: F#3 E3 D#3 E3  (F, E, D, E,) — 4-3 suspension a 3rd lower
+%     [A2 bottom D#3=D, = minimum — ✓ exactly at boundary]
+% T1 written: f e d e  (F#3 E3 D#3 E3 concert — ✓)
+% T2 written: d c B c  (D#3 C#3 B2 C#3 concert — B2 = minimum T2 ✓)
+% Bar: D, C, B,, C,  (D#3 C#3 B2 C#3) — above B1 at every beat:
+%   beat 1: Bar D#3 > B1 B2 ✓; beat 3: Bar B2 = B1 B2 (unison, cadential ok)
+% B1: B,, E,, B,, E,,  (B2 E2 B2 E2) ✓
+[V:1] F E D E |
+[V:2] D C B, C |
+[V:3] A, G, F, G, |
+[V:4] F, E, D, E, |
+[V:5] f e d e |
+[V:6] d c B c |
+[V:7] D, C, B,, C, |
+[V:8] B,, E,, B,, E,, |
+%
+% BAR 12 — Final cadence; whole note E major chord; all voices
+% S1: E4; B1: E2 — 2-octave spread for this pair; full ensemble spread E2-B4
+% A2: E3 (E,) — within D3-B4 ✓
+% Bar: E3 (E,) ✓; B1: E2 (E,,) ✓
+% Bar+B1 share same pitch class (E) but different octaves — not a unison
+[V:1] !sintro!E4 !eintro!|]
+[V:2] B,4 |]
+[V:3] G,4 |]
+[V:4] E,4 |]
+[V:5] e4 |]
+[V:6] B4 |]
+[V:7] E,4 |]
+[V:8] E,,4 |]
+W: 1. Break forth, O beauteous heavenly light,
+W: And usher in the morning;
+W: Ye shepherds, shrink not with affright,
+W: But hear the angel's warning.
+W: This Child, now weak in infancy,
+W: Our confidence and joy shall be,
+W: The power of Satan breaking,
+W: Our peace eternal making.

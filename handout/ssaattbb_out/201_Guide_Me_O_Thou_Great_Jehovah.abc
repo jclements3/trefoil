@@ -1,0 +1,209 @@
+X: 201
+T: Guide Me, O Thou Great Jehovah
+C: Words: William Williams, 1745. Translated by Peter Williams, 1771.
+C: Music: 'Cwm Rhondda' John Hughes, 1907. Setting: "The Methodist Hymnbook" (UK), 1933.
+C: SSAATTBB arr. for 8-voice ensemble and lever harp.
+C: copyright: public domain.
+M: 4/4
+L: 1/4
+Q: 1/4=120
+%%staves [(1 2) (3 4) (5 6) (7 8)]
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+K: G
+%
+% ======================================================================
+% PHRASE 1 (mm. 1-3): SSAA alone — reduced opening texture
+%   S1 = original soprano; S2 = diatonic third below;
+%   A1 = independent stepwise line; A2 = diatonic support below A1
+%   TTBB (V:5-8) silent
+% ======================================================================
+%
+% Pitch/beat plan:
+%   m1  S1: D4 E4 D4.(q+e) G4(e)  4 beats
+%       S2: B3 C4 B3.(q+e) E4(e)  third/sixth below S1
+%       A1: G3 A3 G3.(q+e) B3(e)  contrary to S2
+%       A2: G3 G3 G3.(q+e) G3(e)  sustained pedal
+%
+%   m2  S1: G4(e) F#4(e) G4(e) A4(e) B4 A4
+%       S2: E4(e) D4(e) E4(e) F#4(e) G4 F#4  — thirds below S1
+%       A1: B3    B3    D4    D4               — contrary to S1
+%       A2: G3    G3    B3    B3               — arpeggiated root/3rd
+%
+%   m3  S1: B4 G4 E4 C5
+%       S2: G4 E4 C4 A4               — thirds below S1
+%       A1: D4 C4 C4 E4               — neighbor/contrary
+%       A2: G3 G3 G3 G3               — pedal
+%
+[V:1] D E D3/2 G/ | G/F/ G/A/ B A | B G E c |
+[V:2] B, C B,3/2 E/ | E/D/ E/F/ G F | G E C A |
+[V:3] G, A, G,3/2 B,/ | B, B, D D | D C C E |
+[V:4] G, G, G,3/2 G,/ | G, G, B, B, | G, G, G, G, |
+[V:5] z4 | z4 | z4 |
+[V:6] z4 | z4 | z4 |
+[V:7] z4 | z4 | z4 |
+[V:8] z4 | z4 | z4 |
+%
+% ======================================================================
+% PHRASE 1 REPEAT (mm. 4-7): Full 8 voices enter
+%   T1 (V:5) enters with soprano melody sounding an octave below S1
+%   (canonic imitation — same written notes, transpose=-12 shifts display)
+%   T2 (V:6) = diatonic third below T1 (sounding)
+%   Baritone (V:7) = independent diatonic line above B1
+%   B1 (V:8) = original bass
+% ======================================================================
+%
+% m4  S1:B4 A4 G4(h)  S2:G4 F#4 D4(h)
+%     A1:D4 C4 B3(h)  A2:G3 A3 G3(h)
+%     T1(sounds):B3 A3 G3(h)  T2(sounds):G3 F#3 E3(h)
+%       written T1: B A G2    written T2: G F E2
+%     Bar: F#3 F#3 D3(h) [= F, F, D,2]
+%     B1: D3 D3 G2(h) [= D, D, G,,2]
+%
+% m5  S1:D4 E4 D4.(q+e) G4(e)  S2:B3 C4 B3.(q+e) E4(e)
+%     A1:D4 D4 D4.(q+e) D4(e)  A2:G3 G3 G3.(q+e) G3(e)
+%     T1(sounds):D3 E3 D3(q+e) G3(e) written: D E D3/2 G/
+%     T2(sounds):B2 C3 B2(q+e) E3(e) written: B, C B,3/2 E/
+%     Bar: D3 E3 D3(q+e) C3(e) [= D, E, D,3/2 C,/]
+%     B1: G2 C3 B2(q+e) A2(e) [= G,, C, B,, A,,]
+%
+% m6  S1: G4(e)F#4(e) G4(e)A4(e) B4 A4
+%     S2: E4(e)D4(e) E4(e)F#4(e) G4 F#4
+%     A1: D4 D4 D4 E4
+%     A2: B3 A3 B3 C4
+%     T1(sounds): G3(e)F#3(e) G3(e)A3(e) B3 A3  written: G/F/ G/A/ B A
+%     T2(sounds): E3(e)D3(e) E3(e)F#3(e) G3 F#3  written: E/D/ E/F/ G F
+%     Bar: D3(e)E3(e) F#3(e)G3(e) A3 A3 [= D,/E,/ F,/G,/ A, A,]
+%     B1: G2(e)A2(e) B2(e)C3(e) D3 D3 [= G,,/A,,/ B,,/C,/ D, D,]
+%
+% m7  S1: B4 C5 D5 C5(e)A4(e)
+%     S2: G4 A4 B4 A4  (S2 peaks at B4; S1 ≥ S2: B4=B4 unison on beat 3; both move away)
+%     A1: D4 E4 F4 E4
+%     A2: G3 G3 G3 A3
+%     T1(sounds): B3 C4 D4 C4(e)A3(e) written: B c d c/A/
+%     T2(sounds): G3 A3 B3 A3  written: G A B A
+%     Bar: D3 C3 D3 E3 [= D, C, D, E,]
+%     B1: G3 E3 B2 C3 [= G, E, B,, C,]
+%     (Note: S1=S2=B4 on beat 3 of m7 — intentional unison at phrase peak)
+%
+[V:1] B A G2 | D E D3/2 G/ | G/F/ G/A/ B A | B c d c/A/ |
+[V:2] G F D2 | B, C B,3/2 E/ | E/D/ E/F/ G F | G A B A |
+[V:3] D C B,2 | D D D3/2 D/ | D D D E | D E F E |
+[V:4] G, A, G,2 | G, G, G,3/2 G,/ | B, A, B, C | G, G, G, A, |
+[V:5] B A G2 | D E D3/2 G/ | G/F/ G/A/ B A | B c d c/A/ |
+[V:6] G F E2 | B, C B,3/2 E/ | E/D/ E/F/ G F | G A B A |
+[V:7] F, F, D,2 | D, E, D,3/2 C,/ | D,/E,/ F,/G,/ A, A, | D, C, D, E, |
+[V:8] D, D, G,,2 | G,, C, B,, A,, | G,,/A,,/ B,,/C,/ D, D, | G, E, B,, C, |
+%
+% ======================================================================
+% PHRASE 2A (mm. 8-9): Full 8-voice homophony
+%   S1+T1 lead; S2+T2 harmonize thirds below; altos provide inner fill
+% ======================================================================
+%
+% m8  S1: G4 F#4 G4(h)
+%     S2: E4 D4 E4(h)   — third below S1
+%     A1: B3 C4 B3(h)   — contrary to S1
+%     A2: G3 A3 G3(h)   — below A1
+%     T1(sounds): G3 F#3 G3(h) written: G F G2
+%     T2(sounds): E3 D3 E3(h)  written: E D E2
+%     Bar: E3 D3 E3(h) [= E, D, E,2]  — above B1
+%     B1: D3 D3 G2(h) [= D, D, G,,2]
+%
+% m9  S1: A4.(q+e) B4(e) C5 A4
+%     S2: F#4.(q+e) G4(e) A4 F#4  — thirds below
+%     A1: C4.(q+e) D4(e) E4 C4   — inner line
+%     A2: A3.(q+e) B3(e) C4 A3   — below A1
+%     T1(sounds): A3(q+e) B3(e) C4 A3 written: A3/2 B/ c A
+%     T2(sounds): F#3(q+e) G3(e) A3 F#3 written: F3/2 G/ A F
+%     Bar: F#3(q+e) F#3(e) F#3(e)G3(e) A3 [= F,3/2 F,/ F,/G,/ A,]
+%     B1: D3(q+e) D3(e) D3(e)E3(e) F#3 [= D,3/2 D,/ D,/E,/ F,]
+%
+[V:1] G F G2 | A3/2 B/ c A |
+[V:2] E D E2 | F3/2 G/ A F |
+[V:3] B, C B,2 | C3/2 D/ E C |
+[V:4] G, A, G,2 | A,3/2 B,/ C A, |
+[V:5] G F G2 | A3/2 B/ c A |
+[V:6] E D E2 | F3/2 G/ A F |
+[V:7] E, D, E,2 | F,3/2 F,/ F,/G,/ A, |
+[V:8] D, D, G,,2 | D,3/2 D,/ D,/E,/ F, |
+%
+% ======================================================================
+% PHRASE 2B (mm. 10-11): Building intensity — all voices full
+% ======================================================================
+%
+% m10  S1: B4.(q+e) C5(e) .(D5 B4)   [B3/2 c/ .(d B)]
+%      S2: G4.(q+e) A4(e) .(B4 G4)   [G3/2 A/ .(B G)]
+%      A1: D4.(q+e) E4(e) .(F4 D4)   [D3/2 E/ .(F D)]
+%      A2: B3.(q+e) C4(e) .(D4 B3)   [B,3/2 C/ .(D B,)]
+%      T1(sounds): B3(q+e) C4(e) .(D4 B3) written: B3/2 c/ .(d B)
+%      T2(sounds): G3(q+e) A3(e) .(B3 G3) written: G3/2 A/ .(B G)
+%      Bar: G3(q+e) A3(e) .(B3 G3) [= G,3/2 A,/ .(B, G,)]
+%      B1: G3(q+e) D3(e) .(G3(e)A3(e) B3) [= G,3/2 D,/ .(G,/A,/ B,)]
+%
+% m11  S1: D5.(q+e) D5(e) D5(e)D5(e) D5(e)D5(e)  [d3/2 d/ d/d/ d/d/]
+%      S2: B4.(q+e) B4(e) B4(e)B4(e) B4(e)A4(e)  [B3/2 B/ B/B/ B/A/]
+%      A1: E4.(q+e) E4(e) E4(e)F4(e) E4(e)D4(e)  [E3/2 E/ E/F/ E/D/]
+%      A2: D4.(q+e) D4(e) D4(e)D4(e) D4(e)C4(e)  [D3/2 D/ D/D/ D/C/]
+%      T1(sounds): D4(q+e)D4(e) D4(e)D4(e)D4(e)D4(e) written: d3/2 d/ d/d/ d/d/
+%      T2(sounds): B3(q+e)B3(e) B3(e)B3(e)B3(e)A3(e) written: B3/2 B/ B/B/ B/A/
+%      Bar: F#3(q+e)F#3(e) F#3(e)G3(e)F#3(e)E3(e) [= F,3/2 F,/ F,/G,/ F,/E,/]
+%      B1: B3(q+e)B3(e) B3(e)G3(e)F#3(e)E3(e) [= B,3/2 B,/ B,/G,/ F,/E,/]
+%
+[V:1] B3/2 c/ .(d B) | d3/2 d/ d/d/ d/d/ |
+[V:2] G3/2 A/ .(B G) | B3/2 B/ B/B/ B/A/ |
+[V:3] D3/2 E/ .(F D) | E3/2 E/ E/F/ E/D/ |
+[V:4] B,3/2 C/ .(D B,) | D3/2 D/ D/D/ D/C/ |
+[V:5] B3/2 c/ .(d B) | d3/2 d/ d/d/ d/d/ |
+[V:6] G3/2 A/ .(B G) | B3/2 B/ B/B/ B/A/ |
+[V:7] G,3/2 A,/ .(B, G,) | F,3/2 F,/ F,/G,/ F,/E,/ |
+[V:8] G,3/2 D,/ .(G,/A,/ B,) | B,3/2 B,/ B,/G,/ F,/E,/ |
+%
+% ======================================================================
+% CLIMAX + CADENCE (mm. 12-14)
+%   S1/T1 hold D5/D4 (climax); altos descend with 4-3 suspension;
+%   Bar has 4-3 suspension over B1 root motion D-G
+% ======================================================================
+%
+% m12  S1: D5(w) [d4]
+%      S2: B4(h) A4(h) [B2 A2]  — stays below S1's D5
+%      A1: G4(1) B3(1) D4(2) [(G B, D2)]
+%      A2: D4(1) G3(1) A3(2) [(D G, A,2)]
+%      T1(sounds): D4(w) written: d4
+%      T2(sounds): B3(h) A3(h) written: B2 A2
+%      Bar: F#3(h) A3(h) [= F,2 A,2]
+%      B1: D3(1) F#3(1/2)A3(1/2) C4(2) [= (D, F,/A,/ C2)]
+%         (original bass pattern — provides V7 color, resolves to G in m14)
+%
+% m13  S1: D5.(q+e) C5(e) B4(e)D5(e) C5(e)A4(e)  [d3/2 c/ B/d/ c/A/]
+%      S2: B4.(q+e) A4(e) G4 E4  [B3/2 A/ G E]
+%      A1: G4.(q+e) F#4(e) E4 C4  [G3/2 F/ E C]
+%      A2: D4.(q+e) C4(e) B3 G3  [D3/2 C/ B, G,]
+%      T1(sounds): D4(q+e)C4(e) B3(e)D4(e)C4(e)A3(e) written: d3/2 c/ B/d/ c/A/
+%      T2(sounds): B3(q+e)A3(e) G3 E3  written: B3/2 A/ G E
+%      Bar: B3(q+e) A3(e) G3 E3  [= B,3/2 A,/ G, E,]
+%      B1: B3(q+e) A3(e) G3 C3  [= B,3/2 A,/ G, C,]
+%
+% m14  (final — G major chord; suspension resolutions)
+%      S1: G4 F#4 G4(h)  [G F G2]
+%      S2: D4 D4 D4(h)   [D D D2]   — fifth
+%      A1: D4 C4 B3(h)   [D C B,2]  — 4-3 suspension resolving to B3
+%      A2: B3 A3 G3(h)   [B, A, G,2]  — descending inner line
+%      T1(sounds): G3 F#3 G3(h) written: G F G2
+%      T2(sounds): E3 D3 D3(h)  written: E D D2  — third/fifth at cadence
+%      Bar: D3 C3 D3(h)   [= D, C, D,2]  — inner suspension
+%      B1: D3 D3 G2(h)   [= D, D, G,,2]  — root at close
+%
+[V:1] d4 | !sintro!d3/2 c/ B/d/ c/A/ | G F G2 !eintro!|]
+[V:2] B2 A2 | B3/2 A/ G E | D D D2 |]
+[V:3] (G B, D2) | G3/2 F/ E C | D C B,2 |]
+[V:4] (D G, A,2) | D3/2 C/ B, G, | B, A, G,2 |]
+[V:5] d4 | d3/2 c/ B/d/ c/A/ | G F G2 |]
+[V:6] B2 A2 | B3/2 A/ G E | E D D2 |]
+[V:7] F,2 A,2 | B,3/2 A,/ G, E, | D, C, D,2 |]
+[V:8] (D, F,/A,/ C2) | B,3/2 A,/ G, C, | D, D, G,,2 |]

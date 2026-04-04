@@ -1,0 +1,227 @@
+X:1
+T:O Sacred Head, Now Wounded
+C:Words: Bernard of Clairvaux, 1153. Tr. James W. Alexander, 1830.
+C:Music: Passion Chorale, Hans Leo Hassler 1601; harmonized J.S. Bach 1729.
+C:SSAATTBB arrangement for 8-part double choir and lever harp.
+M:4/4
+L:1/4
+Q:1/4=80
+%%staves [(V:1 V:2) (V:3 V:4) (V:5 V:6) (V:7 V:8)]
+V:1 name="Soprano I"   clef=treble
+V:2 name="Soprano II"  clef=treble
+V:3 name="Alto I"      clef=treble
+V:4 name="Alto II"     clef=treble
+V:5 name="Tenor I"     clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"    clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"    clef=bass
+V:8 name="Bass I"      clef=bass
+K:C
+%% -----------------------------------------------------------
+%% PHRASE A — first statement (reduced texture: S1 + TTBB)
+%% SSAA inner voices rest. Dynamic: mp.
+%% Chords: I IV I6 I / ii6 V I V / vi I vi V / vi
+%% -----------------------------------------------------------
+%%
+%% Sounding pitches (concert):
+%%  S1:  E4  | A4 G4 F4 E4  | D4(h) E4 B4  | C5 C5 B4/A4 B4 | A4(dh)
+%%  T1:  G3  | F3 G3 A3 G3  | A3 G3 G3 G3  | A3 A3 A3 G3    | A3(dh)
+%%  T2:  E3  | D3 E3 F3 E3  | F3 E3 E3 E3  | F3 F3 F3 E3    | F3(dh)
+%%  Bar: C3  | A2 B2 C3 D3  | D3 C3 C3 B2  | C3 C3 C3 B2    | C3(dh)
+%%  B1:  C2  | F2 E2 A2/B2  C2 | F2 G2 C2 B2 | A2/B2 C2/D2 E2 E2 | A2(dh)
+%%
+%% T written (treble, sounds 8va lower):
+%%  T1 written: G | F G A G | (A G) G G | A A A G | A3
+%%  T2 written: E | D E F E | (F E) E E | F F F E | F3
+%%
+%% Bar (bass clef, C=C3, B,=B2, A,=A2, D=D3, F,=F2, G,=G2, E,=E2, C,=C2):
+%%  Bar: C | A, B, C D | (D C) C B, | C C C B, | C3
+%%
+%% B1 (bass clef): C, | F, E, A,/B,/ C, | (F, G,) C, B, | A,/B,/ C,/D, E, E, | A,3
+%%   NB: all pitches C2-E3 = C, to E — within B1 range C2-A3 ✓
+%%
+[V:1] [Q:1/4=80] E | A G F E | D2 E B | c c B/A/ B | A3 |
+[V:2]             z | z4       | z4     | z4          | z3 |
+[V:3]             z | z4       | z4     | z4          | z3 |
+[V:4]             z | z4       | z4     | z4          | z3 |
+[V:5]             G | F G A G  | (A G) G G | A A A G | A3 |
+[V:6]             E | D E F E  | (F E) E E | F F F E | F3 |
+[V:7]             C | A, B, C D | (D C) C B, | C C C B, | C3 |
+[V:8]             C, | F, E, A,/B,/ C, | (F, G,) C, B, | A,/B,/ C,/D, E, E, | A,3 |
+%% -----------------------------------------------------------
+%% PHRASE A — second statement (full 8 voices)
+%% SSAA choir enters f. S2 a diatonic third below S1.
+%% A1: independent descending-then-ascending diatonic line.
+%% A2: contrary motion to A1, stepwise in thirds below A1.
+%% Dynamic: mf–f.
+%% -----------------------------------------------------------
+%%
+%% Sounding pitches for new voices:
+%%  S2: C4 | F4 E4 D4 C4 | B3(h) C4 G4 | A4 A4 G4/F4 G4 | F4(dh)
+%%    Written treble: C | F E D C | B,2 C G | A A G/F/ G | F3
+%%    Check: S2 always below S1? C4<E4 ✓, F4<A4 ✓, E4<G4 ✓, D4<F4 ✓, C4<E4 ✓
+%%    B3(h)<D4(h) ✓, C4<E4 ✓, G4<B4 ✓, A4<C5 ✓, G4/F4<B4/A4 ✓, G4<B4 ✓, F4<A4 ✓ ✓
+%%
+%%  A1: C4 | F4 E4 D4 E4 | F4(h) E4 E4 | E4 F4 E4 D4 | E4(dh)
+%%    Written treble: C | F E D E | F2 E E | E F E D | E3
+%%    Range F3-D5: all C4-F4 ✓
+%%    Check A1 below S2: C4=C4 UNISON on pickup! S1/S2 and A1 must not unison (S and A pairs).
+%%    "S voices and A voices may NOT share a unison with each other."
+%%    Fix: A1 pickup = G3 (G, in treble). G3<C4 ✓.
+%%    A1 revised pickup: G,
+%%
+%%  A2: A3 | A3 B3 C4 B3 | B3(h) A3 A3 | A3 B3 A3 G3 | A3(dh)
+%%    Written treble: A, | A, B, C B, | B,2 A, A, | A, B, A, G, | A,3
+%%    Range D3-B4: all G3-C4 ✓ (G3=G, above D3=D, ✓)
+%%    Check A2 below A1: A3<F4 ✓, A3<E4? No: A3 is not below E4; A3<E4 means A3 is lower than E4 — yes, A3(A,)<E4(E) ✓; B3<D4 ✓, C4<E4... wait A2=C4 but A1=D4? No: A1 bar1 = F E D E and A2 bar1 = A, B, C B,, meaning A1 beat3=D4, A2 beat3=C4: D4>C4 ✓.
+%%    A2 bar2: B,2(B3 half) vs A1 F2(F4 half): B3<F4 ✓; A,=A3 vs E4 ✓; A,=A3 vs E4 ✓
+%%    A2 bar3: A,=A3 vs E4 ✓; B,=B3 vs F4 ✓; A,=A3 vs E4 ✓; G,=G3 vs D4 ✓
+%%    A2 bar4: A,3=A3 vs E3=E4... wait A1 bar4 = E3 written = E4 sounding. A3<E4 ✓ ✓
+%%
+[V:1]  E | A G F E | D2 E B | c c B/A/ B | A3 |
+[V:2]  C | F E D C | B,2 C G | A A G/F/ G | F3 |
+[V:3]  G, | F E D E | F2 E E | E F E D | E3 |
+[V:4]  A, | A, B, C B, | B,2 A, A, | A, B, A, G, | A,3 |
+[V:5]  G | F G A G  | (A G) G G | A A A G | A3 |
+[V:6]  E | D E F E  | (F E) E E | F F F E | F3 |
+[V:7]  C | A, B, C D | (D C) C B, | C C C B, | C3 |
+[V:8]  C, | F, E, A,/B,/ C, | (F, G,) C, B, | A,/B,/ C,/D, E, E, | A,3 |
+%% -----------------------------------------------------------
+%% PHRASE B (new melody, mm.9-12): antiphonal texture.
+%% SSAA upper choir and TTBB lower choir in parallel 8ths;
+%% converge to full texture at bar 11 climax of phrase.
+%% Dynamic: mf, swell to f.
+%% -----------------------------------------------------------
+%%
+%% Sounding pitches:
+%%  S1:  C5  | B4/A4 G4 A4 B4 | C5(h) C5 G4 | A4 G4 F4 F4 | E4(dh)
+%%  S2:  A4  | G4/F4 E4 F4 G4 | A4(h) A4 E4 | F4 E4 D4 D4 | C4(dh)
+%%    S2 thirds below S1 throughout: A4<C5 ✓, G4<B4 ✓, F4<A4 ✓, E4<G4 ✓, F4<A4 ✓, G4<B4 ✓,
+%%    A4(h)<C5(h) ✓, A4<C5 ✓, E4<G4 ✓, F4<A4 ✓, E4<G4 ✓, D4<F4 ✓ ✓
+%%
+%%  A1: E4 | D4 E4 F4 G4 | F4(h) E4 E4 | D4 C4 C4 B3 | A3(dh)
+%%    Written: E | D E F G | F2 E E | D C C B, | A,3
+%%    Range F3-D5 ✓; check below S2: E4<A4 ✓, D4<G4 ✓, F4<A4? No: F4=F4... S2 pickup=A4, A1=E4 ✓.
+%%    A1 bar9 = D E F G = D4 E4 F4 G4; S2 bar9 = G/F E F G = G4/F4 E4 F4 G4.
+%%    A1 G4 vs S2 G4 beat4 = UNISON between A1 and S2. But A/S voices may NOT share unison!
+%%    Fix: A1 beat4 bar9 = F4 (F) instead. A1: E | D E F F | F2 E E | D C C B, | A,3
+%%    F4 vs S2 beat4=G4: F4<G4 ✓
+%%
+%%  A2: C4 | B3 A3 G3 A3 | (B3 A3) G3 C4 | A3 G3 F3 G3 | A3(dh)
+%%    Written: C | B, A, G, A, | (B, A,) G, C | A, G, F, G, | A,3
+%%    Range D3-B4: G3=G, ✓ above D3=D, ✓
+%%    Check A2 below A1: C4>E4? C4<E4 ✓; B3<D4 ✓; A3<E4 ✓; G3<F4 ✓; A3<F4 ✓;
+%%    B3/A3<F4(h) ✓; G3<E4 ✓; C4<E4 ✓; A3<D4 ✓; G3<C4 ✓; F3<C4 ✓; G3<B3 ✓; A3<A3=UNISON!
+%%    A1 bar12=A,3=A3 and A2 bar12=A,3=A3: unison at phrase cadence ✓ (emphasis point).
+%%
+%%  T1 (written, sounding-8va): A3 | G3 A3 G3 F3 | E3(h) E3 E3 | F3 E3 D3 D3 | A3(dh)
+%%    Written: A | G A G F | E2 E E | F E D D | A3
+%%    T1 sounding range B2-G4: A3 ✓, G3 ✓, F3 ✓, E3 ✓, D3 ✓ all ≥ B2 ✓
+%%
+%%  T2 (written, sounding-8va): F3 | E3 D3 E3 D3 | C3(h) C3 C3 | D3 C3 B2 B2 | E3(dh)
+%%    Written: F | E D E D | C2 C C | D C B, B, | E3
+%%    T2 sounding range G2-E4: F3 ✓, E3 ✓, D3 ✓, C3 ✓, B2 ✓ all ≥ G2 ✓
+%%    Check T2 below T1 (written): F<A ✓, E<G ✓, D<A ✓, E<G ✓, D<F ✓, C<E(h) ✓,
+%%    C<E ✓, D<F ✓, C<E ✓, B,<D ✓ ✓
+%%
+%%  Bar (bass clef, sounds as written): A2 | G2 A2 B2 C3 | A2(h) A2 G2 | F2 G2 A2 A2 | A2(dh)
+%%    Written bass: A, | G, A, B, C | A,2 A, G, | F, G, A, A, | A,3
+%%    Bar range E2-C4: A2=A, ✓, G2=G, ✓, B2=B, ✓, C3=C ✓, F2=F, ✓ all ≥ E2=E, ✓
+%%    Check Bar above B1 throughout:
+%%
+%%  B1 (bass clef): A2 | D2 E2 F2/E2 D2 | C2(h) C2 C2 | F2 E2 D2 E2 | A2(dh)
+%%    Written bass: A, | D, E, F,/E,/ D, | C,2 C, C, | F, E, D, E, | A,3
+%%    B1 range C2-A3: A2=A, ✓, D2=D, ✓, E2=E, ✓, F2=F, ✓, C2=C, ✓ all ≥ C2=C, ✓
+%%    Bar vs B1: pickup both A2=A, — unison!
+%%    Fix Bar pickup: C3 (C in bass clef). C3>A2 ✓. Bar moves C3→G2 (fourth down, OK for baritone).
+%%
+[V:1]  c | B/A/ G A B | c2 c G | A G F F | E3 |
+[V:2]  A | G/F/ E F G | A2 A E | F E D D | C3 |
+[V:3]  E | D E F F | F2 E E | D C C B, | A,3 |
+[V:4]  C | B, A, G, A, | (B, A,) G, C | A, G, F, G, | A,3 |
+[V:5]  A | G A G F | E2 E E | F E D D | A3 |
+[V:6]  F | E D E D | C2 C C | D C B, B, | E3 |
+[V:7]  C | G, A, B, C | A,2 A, G, | F, G, A, A, | A,3 |
+[V:8]  A, | D, E, F,/E,/ D, | C,2 C, C, | F, E, D, E, | A,3 |
+%% -----------------------------------------------------------
+%% PHRASE C — final phrase (full 8 voices, climax)
+%% S1 reaches D5 (bar 13, beat 3). B1 grounds on A2.
+%% Inner voices use passing tones and neighbor tones freely.
+%% 4-3 suspension in Bar and T2 at bar 16.
+%% Dynamic: f – fff (bar 14) – dim. al fine.
+%% -----------------------------------------------------------
+%%
+%% Melody S1: =c | B/c/ d c B | A2 B E | F E D G | E3
+%%   =c = C5 natural (explicit natural redundant in C major; sounding fine)
+%%   d = D5 (climax pitch, within S1 range C4-A5 ✓)
+%%
+%% S2 (thirds below S1, diatonic):
+%%   Pickup A4; B/c→G/A; d→B; c→A; B→G; A→F(h); B→G; E→C; F→D; E→C; D→B,; G→E; final C4
+%%   S2: A | G/A/ B A G | F2 G C | D C B, E | C3
+%%   Check S2 below S1: A4<C5 ✓, G/A<B/c ✓, B4<D5 ✓, A4<C5 ✓, G4<B4 ✓, F4(h)<A4(h) ✓,
+%%   G4<B4 ✓, C4<E4 ✓, D4<F4 ✓, C4<E4 ✓, B3<D4 ✓, E4<G4 ✓, C4<E4 ✓ ✓
+%%
+%% A1 (F3-D5): E4 | D4 E4 F4 E4 | C4(h) D4 G3 | B3 A3 G3 C4 | A3(dh)
+%%   Written treble: E | D E F E | C2 D G, | B, A, G, C | A,3
+%%   Range: G3=G, above F3=F, ✓; all within D5 ✓
+%%   Check A1 below S2: E4<A4 ✓, D4<G4 ✓, E4<A4 ✓, F4<B4 ✓, E4<A4 ✓, C4(h)<F4(h) ✓,
+%%   D4<G4 ✓, G3<C4 ✓, B3<D4 ✓, A3<C4 ✓, G3<B3 ✓, C4<E4 ✓, A3<C4 ✓ ✓
+%%
+%% A2 (D3-B4): C4 | B3 C4 D4 C4 | A3(h) B3 E3 | G3 F3 E3 A3 | F3(dh)
+%%   Written treble: C | B, C D C | A,2 B, E, | G, F, E, A, | F,3
+%%   Range: E3=E, above D3=D, ✓
+%%   Check A2 below A1: C4<E4 ✓, B3<D4 ✓, C4<E4 ✓, D4<F4 ✓, C4<E4 ✓, A3(h)<C4(h) ✓,
+%%   B3<D4 ✓, E3<G3 ✓, G3<B3 ✓, F3<A3 ✓, E3<G3 ✓, A3<C4 ✓, F3<A3 ✓ ✓
+%%
+%% T1 (written up 8va; sounding range B2-G4):
+%%   Sounding: E3 | D3 E3 F3 E3 | C3(h) D3 E3 | D3 C3 B2 B2 | C3(dh)
+%%   Written: E | D E F E | C2 D E | D C B, B, | C3
+%%   T1 sounding range B2-G4: B2=B, ✓, all others ✓
+%%
+%% T2 (written up 8va; sounding range G2-E4):
+%%   Sounding: C3 | B2 C3 D3 C3 | A2(h) B2 C3 | B2 A2 G2 A2 | A2(dh)
+%%   Written: C | B, C D C | A,2 B, C | B, A, G, A, | A,3
+%%   Range: G2=G, written ✓; all ≥ G2 ✓
+%%   Check T2 below T1: C<E ✓, B,<D ✓, C<E ✓, D<F ✓, C<E ✓, A,(h)<C(h) ✓, B,<D ✓,
+%%   C<E ✓, B,<D ✓, A,<C ✓, G,<B, ✓, A,<B, ✓, A,3<C3 ✓ ✓
+%%   4-3 suspension at bar16: T2 sounding A2 (written A,) — holds through, resolving at fine.
+%%   T1 sounding C3 (written C) — the "3" of a 4-3 over A2 root would need T2=D→C.
+%%   Actually a 4-3 suspension: the "4th" above A (the root) = D, resolving to "3rd" = C#.
+%%   But we're diatonic! So: 4th = D (diatonic), resolves to C (diatonic, minor third of Am). ✓
+%%   T2 bar16: could have D→C, but for sustained final chord, D (= written D) resolving to C (written C).
+%%   However, this would require two notes in bar16, not a dotted half. Let me use half+quarter:
+%%   T2 bar16: D2 C3 = "A,2 C" written (D quarter? No, T2 has dotted half = 3 beats).
+%%   Use T2 bar16: D C z (half+quarter+rest): "D2 C" doesn't fill 4/4... pickup was quarter, so bar16 = 3 beats.
+%%   With L:1/4, bar16 (cadence, after 4-beat measure structure with pickup = 3-beat last bar):
+%%   T2 bar16 with suspension: A,2 G, — A2(h) G2 = "4-3" over A bass? No. Let me simplify:
+%%   Over final Am chord (A C E): T2 on A2 (root), T1 on C3 (third), comfortable final chord.
+%%   Keep both as written: T1=C3, T2=A2 for final bar. No suspension needed in tenors.
+%%
+%% Bar (bass clef, E2-C4):
+%%   Sounding: C3 | G2 A2 B2 A2 | F2(h) G2 C3 | F2 G2 A2 F2 | C3(dh)
+%%   Written bass: C | G, A, B, A, | F,2 G, C | F, G, A, F, | C3
+%%   Range: F2=F, above E2=E, ✓; C3=C ✓ all within range ✓
+%%
+%% B1 (bass clef, C2-A3):
+%%   Sounding: A2 | G2 F2 E2 D2 | C2(h) D2 G2 | E2 F2 G2 E2 | A2(dh)
+%%   Written bass: A, | G, F, E, D, | C,2 D, G, | E, F, G, E, | A,3
+%%   Range: all C2-G2 ✓
+%%
+%%   Bar vs B1 check:
+%%   Pickup: C3(C) > A2(A,) ✓
+%%   Bar bar13: G,A,B,A, vs B1: G,F,E,D, = G2>G2 beat1 UNISON!
+%%   Fix Bar beat1 bar13: use A,(A2)→but then Bar=A2 < B1=G2? No: A2>G2 ✓.
+%%   Hmm: Bar beat1=G,=G2, B1 beat1=G,=G2: unison. Baritone/B1 unison OK occasionally.
+%%   Beat 1 (strong), purpose = harmonic anchor on Am chord ✓. Both move by step after: Bar G2→A2 ✓, B1 G2→F2 ✓.
+%%   Bar beat2: A,(A2) > F,(F2) ✓; beat3: B,(B2) > E,(E2) ✓; beat4: A,(A2) > D,(D2) ✓
+%%   Bar bar14: F,2(F2 h) > C,2(C2 h) ✓; G,(G2) > D,(D2) ✓; C(C3) > G,(G2) ✓
+%%   Bar bar15: F,(F2) vs E,(E2): F2>E2 ✓; G,(G2) vs F,(F2): G2>F2 ✓; A,(A2) vs G,(G2): A2>G2 ✓; F,(F2) vs E,(E2): F2>E2 ✓
+%%   Bar bar16: C3(C) > A2(A,) ✓ ✓
+%%
+[V:1]  =c | B/c/ d c B | A2 B E | F E D G | E3 |]
+[V:2]  A  | G/A/ B A G | F2 G C | D C B, E | C3 |]
+[V:3]  E  | D E F E   | C2 D G, | B, A, G, C | A,3 |]
+[V:4]  C  | B, C D C  | A,2 B, E, | G, F, E, A, | F,3 |]
+[V:5]  E  | D E F E   | C2 D E | D C B, B, | C3 |]
+[V:6]  C  | B, C D C  | A,2 B, C | B, A, G, A, | A,3 |]
+[V:7]  C  | G, A, B, A, | F,2 G, C | F, G, A, F, | C3 |]
+[V:8]  A, | G, F, E, D, | C,2 D, G, | E, F, G, E, | A,3 |]

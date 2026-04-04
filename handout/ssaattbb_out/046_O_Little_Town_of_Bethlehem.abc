@@ -1,0 +1,71 @@
+X:46
+T:O Little Town of Bethlehem
+T:SSAATTBB Arrangement
+C:Words: Phillips Brooks, 1867. Music: 'St. Louis' Lewis H. Redner, 1868.
+C:SSAATTBB arr. for lever harp accompaniment (F major).
+C:copyright: public domain.
+M:4/4
+L:1/4
+Q:1/4=92
+K:F
+%%staves [(1 2) (3 4) (5 6) (7 8)]
+V:1 name="Soprano I"  clef=treble
+V:2 name="Soprano II" clef=treble
+V:3 name="Alto I"     clef=treble
+V:4 name="Alto II"    clef=treble
+V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
+V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
+V:7 name="Baritone"   clef=bass
+V:8 name="Bass I"     clef=bass
+%%MIDI program 52
+%
+% ── PHRASE 1: "O little town of Bethlehem" ──────────────────────────────
+% Texture: Hushed opening. SSAA carry the melody; TTBB sustain beneath.
+%
+[V:1] [Q:1/4=92] A |  A  A  ^G  A |  c  B  D  G |  F E/F/  G  C |  A3  |
+[V:2]             F |  F  F   F  F |  A  G  B,  E |  D  C   E  A, |  C3  |
+[V:3]             C |  C  C   C  D |  E  D  D   D |  G  G   G  E  |  A,3 |
+[V:4]             A, | A, A,  A,  A, | C  B,  B,  B, | E, E,  E,  C, | F,3 |
+[V:5]             A  |  A  A   A   A |  c  B  B   B  |  G  G   G  E  |  A3  |
+[V:6]             F  |  F  F   F   F |  F  F  G   G  |  E  E   E  C  |  F3  |
+[V:7]             A, | A, A,  A,  A, | A, A,  D,  D, | G, G,  G,  G, | A,3 |
+[V:8]             F, | F, F,  F,  F, | B,, B,, B,, B,, | C, C, C, C, | F,,3 |
+%
+% ── PHRASE 2: "For Christ is born of Mary" ──────────────────────────────
+% Texture: TTBB becomes active, antiphonal interplay begins.
+%
+[V:1]  A |  A  A  d  c |  c  B  D  G |  F E/F/  A  G |  F3  |
+[V:2]  F |  F  F  B  A |  A  G  B,  E |  D  C   F  E  |  A,3 |
+[V:3]  C |  C  F  F  E |  E  D  D   D |  A,  G,  C  B, |  F,3 |
+[V:4]  A, | A, C  D  C |  C  B,  B,  B, | F,  E,  A,  G, | C,3 |
+[V:5]  A  |  A  A   A  A  |  c  B  B   B  |  G  G   G  G  |  A3  |
+[V:6]  F  |  F  F   F  F  |  F  F  G   G  |  E  E   E  E  |  F3  |
+[V:7]  A, | A, G,  D, D, | A, A,  D,  D, | E, E,  F,  E, | A,3 |
+[V:8]  F, | F, F,  B,, B,, | B,, B,, B,, B,, | C,3/2 C,/ C, C, | F,,3 |
+%
+% ── PHRASE 3: "How silently, how silently" ──────────────────────────────
+% Texture: Antiphonal — SSAA descend in parallel thirds; TTBB answer
+%          on the sustained pedal Am (diatonic sub for A major).
+%          S1 sings chromatic E freely; all other voices diatonic.
+%
+[V:1]  A |  A  A  G  F |  E2     E  E |  D  E  F  G |  A3  |]
+[V:2]  F |  F  F  E  D |  C2     C  C |  B, C  D  E  |  F3  |]
+[V:3]  F |  F  F  E  D |  A,2    A, A, |  F  G  A  B  |  c3  |]
+[V:4]  C |  C  C  C  B, |  F,2   F,  F, |  D  E  F  G  |  D3  |]
+[V:5]  A  |  A  A  G  F  |  E2    E  E  |  A  G  F  E  |  A3  |]
+[V:6]  F  |  F  F  E  D  |  C2    C  C  |  F  E  D  C  |  F3  |]
+[V:7]  A, | A, A,  B,  B, | C2    C  C   | A, A,  A,  G, | A,3 |]
+[V:8]  F, | F, F,  G,  G, | A,2   A, A,, | F, E,  D,  B,, | D,,3 |]
+%
+% ── PHRASE 4: "O holy child of Bethlehem" ───────────────────────────────
+% Texture: Full 8-voice homophony, dynamic climax. S1 ascends to D5;
+%          B1 reaches low F2. 4-3 suspension at final cadence.
+%
+[V:1]  =C |  C  C  =B,  C |  D  D  B,  !f!d |  c  F  A3/2 G/ |  !f!F3  |]
+[V:2]  A, |  A, A,  A,  A, |  B, B,  A,  B   |  A, D  D3/2 C/ |  F3  |]
+[V:3]  F, |  F,  F,  F,  F, |  A, A,  G,  A, |  G, A,  G,3/2 F,/ |  F,3 |]
+[V:4]  D, |  D,  D,  D,  D, |  F, F,  F,  F, |  E, F,  E,3/2 D,/ |  D,3 |]
+[V:5]  A  |  A   A   A   A  |  B  B  A   B   |  c  A  A3/2 G/  |  A3  |]
+[V:6]  F  |  F   F   F   F  |  G  G  G   G   |  G  F  F3/2 E/  |  F3  |]
+[V:7]  F, |  A,  A,  A,  A, |  D, D,  D,  D, |  F, G,  E,3/2 D,/ |  C,3 |]
+[V:8]  F,, | F,, F,  F,  F, | B,, B,, B,, B,, | C, D, C,3/2 C,/ | F,,3 |]
