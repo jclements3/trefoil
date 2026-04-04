@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Let Children Hear The Mighty Deeds — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }
+p.legend { font-size: 12px; color: #555; }</style>
+</head><body>
+<h1>Let Children Hear The Mighty Deeds</h1>
+<p class="legend">Above melody: Abstract chord / RH voicing / LH voicing</p>
+<div id="music"></div>
+<script src="../../abc2stripchart/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 1\nT: Let Children Hear The Mighty Deeds\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%staves M | {(RH1 RH2 RH3 RH4) (LH1 LH2 LH3 LH4)}\nV: M clef=treble name=\"Melody\"\nV: RH1 clef=treble name=\"RH\"\nV: RH2 clef=treble\nV: RH3 clef=treble\nV: RH4 clef=treble\nV: LH1 clef=bass name=\"LH\"\nV: LH2 clef=bass\nV: LH3 clef=bass\nV: LH4 clef=bass\nK: A\n[V: M] \"^I\"\"^C\"\"^C\"E | \"^I\"\"^C\"\"^C-5\"c A F E | \"^vi\"\"^Am\u00b2\"\"^Am\"A B c e | \"^vi7\u00b9\"\"^Am\"\"^C\"c A F F | \"^V+6\"\"^Em7\u00b2\"\"^G\"E3 | \"^iii7\u00b2\"\"^B\u00b0-5\"\"^Em\u00b2\"B/ c/ | \"^ii7\u00b2\"\"^Dm7\u00b2\"\"^Cs-5\"d d c A | \"^IV\u00b9\"\"^F\u00b2\"\"^F\u00b9-5\"F B G e/ d/ | \"^C-5\"\"^C\u00b9-5\"c c B G | \"^I+4\"\"^F\u0394s2\u00b9\"\"^Cs\u00b9\"A3 |]\n[V: RH1] E | c A F E | A B c e | c A F F | E3 | B/c/ | d d c A | F B G e/d/ | c c B G | A3 |]\n[V: RH2] C | A F D C | F G A c | A F D D | C3 | G/A/ | B B A F | D G E c/B/ | A A G E | D2 C |]\n[V: RH3] E | E F F E | F E C B, | A E D C | B,3 | B,/C/ | A C C B, | D D B, B, | C A, F B, | C2 B, |]\n[V: RH4] A, | A, C B, A, | C B, A, G, | F, C B, A, | G,3 | G,/A,/ | F, G, A, E, | A, A, G, G, | A, F, D E, | E,3 |]\n[V: LH1] E | A B F E | C B A G | E F G F | G2 E | E | A G A B | F A B B | C B A G | A2 E |]\n[V: LH2] A, | A, A, D A, | A, E A, B, | A, C E D | E3 | C | D E E A, | D F E E | A, E D E | E3 |]\n[V: LH3] C, | C, E, F, E, | A, G, E, G, | C, A, D, F, | B,3 | G, | A, B, C, E, | F, F, G, B, | C, A, F, G, | D,2 C, |]\n[V: LH4] A,, | A,, C, D, C, | F, E, A,, G,, | A,, F, B,, D, | E,3 | % % Pickup 2 + Second phrase (bars 5-8) % E, | F, G, A,, C, | D, D, E, G, | A,, F, D, E, | A,,3 |]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ""; }
+};
+var abc = new abc2svg.Abc(user);
+abc.tosvg("score", abc_src);
+</script></body></html>

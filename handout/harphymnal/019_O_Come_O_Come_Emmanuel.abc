@@ -1,0 +1,25 @@
+X: 1
+T: O Come O Come Emmanuel
+M: 4/4
+L: 1/4
+Q: 1/4=130
+%%staves M | {(RH1 RH2 RH3 RH4) (LH1 LH2 LH3 LH4)}
+V: M clef=treble name="Melody"
+V: RH1 clef=treble name="RH"
+V: RH2 clef=treble
+V: RH3 clef=treble
+V: RH4 clef=treble
+V: LH1 clef=bass name="LH"
+V: LH2 clef=bass
+V: LH3 clef=bass
+V: LH4 clef=bass
+K: G
+[V: M] "^vii°11²""^Bø7""^FΔ-3"E | "^vi7""^Am¹""^Am7"G B B B | ( "^V11³""^CΔs2""^Dm¹"A c B ) A | "^vi¹""^Am¹""^C-5"G3 A | "^I""^C""^C"B G E G | ( "^viiø7²""^B°¹""^Dm¹"A F E ) D | "^vi""^Am""^Am-5"E3 d a c d b e e e a c c d e a A | A E E F | ( G2 F ) E | D3 G | A B B B | ( A c B ) A | G3 d b e d a c d | d3 B | B3 B | ( A c B ) A | G3 A | B G E G | ( A F E ) D | E3 |] d b e c a b ( B4 )
+[V: RH1] [Q:1/4=130] E | G B B B | (A c B) A | G3 A | B G E G | (A F E) D | E3 % S2: diatonic third below S1; stepwise; no accidentals A | A E E F | (G2 F) E | D3 G | A B B B | (A c B) A | G3 % S2: third below S1, diatonic d | d3 B | B3 B | (A c B) A | G3 A | B G E G | (A F E) D | E3 |] % S2: third below S1; climax b (B4)
+[V: RH2] C | E G G G | (F A G) F | E3 E | G E C E | (F D C) B, | B,3 % A1: independent diatonic line, implying original alto harmony F | F C C D | (E2 D) C | B,3 E | F G G G | (F A G) F | E3 % A1: chromatics replaced; ^D→D, ^C→C; =D is diatonic %   Original inner alto: C A, E ^D | (E =D D) ^C | D3 B, %   Replaced:            C A, D D  | (E D D)  C  | D3 B, B | B3 G | G3 G | (F A G) F | E3 F | G E C E | (F D C) B, | B,3 |] % A1: descending line for arch shape
+[V: RH3] A, | B, D D E | (D E D) C | B,3 C | D B, G B, | (C A, G,) A, | G,3 % A2: contrary motion to A1, diatonic, range D3–B4 C | C A, D D | (E D D) C | D3 B, | D D D E | (D E D) C | B,3 % A2: contrary motion to A1; diatonic G | A3 G | F3 E | (E E D) C | B,3 D | D B, G B, | (C A, G,) A, | G,3 |] % A2: contrary motion to A1; stays D3–B4
+[V: RH4] F, | G, G, G, G, | (G, A, G,) F, | G,3 F, | G, G, E G, | (A, F, E,) D, | E,3 % T1 (sounds 8va lower): independent diatonic line, tenor register A, | A, F, G, F, | (G, F, G,) A, | B,3 G, | A, G, G, G, | (A, G, G,) F, | G,3 % T1 (sounds 8va lower): climax line ascending to high register E, | F,3 G, | G,3 G, | (G, A, G,) F, | G,3 F, | G, G, E G, | (A, F, E,) D, | E,3 |] % T1 (sounds 8va lower): high climax matching S1 register
+[V: LH1] B | d B B d | (c e d) c | B3 c | d B G B | (c A G) F | G3 % T2 (sounds 8va lower): contrary motion to T1, diatonic c | c G G A | (B2 A) G | F3 B | c d d d | (c e d) c | B3 % T2 (sounds 8va lower): contrary motion to T1 d | d3 B | B3 B | (c e d) c | B3 c | d B G B | (c A G) F | G3 |] % T2 (sounds 8va lower): contrary motion to T1
+[V: LH2] G | B G G G | (A A G) F | G3 G | B G E G | (A F E) D | E3 % Baritone: diatonic third above B1; no parallel octaves with B1 A | A E E F | (G2 F) E | D3 G | A B B B | (A A G) F | G3 % Baritone: third above B1; beats 1-2 of bar 7: B,-C (C4 is unavoidable given B1=A3 on beat 2) B | A3 G | G3 G | (A A G) F | G3 A | B G E G | (A F E) D | E3 |] % Baritone: third above B1; stretto effect at sintro via rhythmic offset
+[V: LH3] C, | G, F, D, B,, | (E, C, D,) F, | B,,3 F, | B,, D, E, D, | (E, C, D,) D, | G,3 % B1: original bass, diatonic E,/D,/ | B, C B, A, | (G, D, C,) C, | F,3 G, | F, D, B,, D, | (E, C, D,) F, | B,,3 % B1: original bass, diatonic B,, | F,3 G, | D,3 B,, | (E, C, D,) F, | G,3 F, | B,, D, E, D, | (E, C, D,) D, | G,3 |] % B1: original bass; ends on low E (E3)
+[V: LH4] C, | E, D, B,, G,, | (C, A,, B,,) D, | G,,3 D, | G,, B,, C, B,, | (C, A,, B,,) B,, | E,3 % % ────────────────────────────────────────────────────────────── % SECTION 2  bars 7–12 + pickup % Texture: antiphonal — SSAA choir first phrase, TTBB choir answers % Chromatic replacements: A1 ^D→D, ^C→C (diatonic); =D already diatonic % ────────────────────────────────────────────────────────────── % % S1: original soprano with chromatic passing tones (F natural acceptable in S1) C,/B,,/ | A,, A, G, F, | (E, B,, A,,) A,, | D,3 E, | D, B,, G,, B,, | (C, A,, B,,) D, | G,,3 % % ────────────────────────────────────────────────────────────── % SECTION 3  bars 13–19 + pickup (includes sintro/eintro) % Texture: full 8-voice homophony at climax (d in S1) %          stretto imitation at sintro phrase % ────────────────────────────────────────────────────────────── % % S1: climax — rises to d (D5), full soprano range G,, | D,3 E, | B,,3 G,, | (C, A,, B,,) D, | E,3 D, | G,, B,, C, B,, | (C, A,, B,,) B,, | E,3 |]

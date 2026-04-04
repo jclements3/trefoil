@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>The King Shall Come — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }
+p.legend { font-size: 12px; color: #555; }</style>
+</head><body>
+<h1>The King Shall Come</h1>
+<p class="legend">Above melody: Abstract chord / RH voicing / LH voicing</p>
+<div id="music"></div>
+<script src="../../abc2stripchart/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 1\nT: The King Shall Come\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%staves M | {(RH1 RH2 RH3 RH4) (LH1 LH2 LH3 LH4)}\nV: M clef=treble name=\"Melody\"\nV: RH1 clef=treble name=\"RH\"\nV: RH2 clef=treble\nV: RH3 clef=treble\nV: RH4 clef=treble\nV: LH1 clef=bass name=\"LH\"\nV: LH2 clef=bass\nV: LH3 clef=bass\nV: LH4 clef=bass\nK: Bb\n[V: M] \"^I\u0394\u00b2\"\"^C\u0394\u00b2\"D | \"^IV\u039411\u00b2\"\"^G9-5\"\"^C\"G A B c/ B/ | \"^I\u0394\"\"^G-5\"\"^C\u0394\"A G/ F/ D D | \"^IV\u00b2\"\"^F-5\"\"^F\u00b2\"G A B c | \"^I\u03949-5\"\"^C\u03949\u00b3-5\"\"^C-5\"d3 B/ c/ | \"^ii9\u00b9-5\"\"^Dm9-5\"\"^F\u0394-3\"d e/ d/ c B | \"^iii7\"\"^G\u00b9\"\"^Em\"A G/ F/ D D | \"^iii11\u2074\"\"^B\u00f87\"\"^C-1+4\"G A B/ G/ A | \"^vi+2\"\"^Am\u00b9\"\"^F-1+4\"G3 |]\n[V: RH1] [Q:1/4=100] D | G A B c/B/ | A G/F/ D D | G A B c | d3 B/c/ | d e/d/ c B | A G/F/ D D | G A B/G/ A | G3 |]\n[V: RH2] B, | E F G A/G/ | F E/D/ B, B, | E F G A | B3 G/A/ | B c/B/ A G | F E/D/ B, B, | E F G/E/ F | G3 |]\n[V: RH3] A, | A, G, F, G, | A, B, A, A, | G, A, B, A, | C3 z    | E D C D | C B, A, A, | C D D E | D3 |]\n[V: RH4] F, | F, E, D, E, | F, G, F, F, | E, F, G, F, | A,3 z    | C B, A, B, | A, G, F, F, | A, B, B, C | B,3 |]\n[V: LH1] z  | f e d B | A c d c | B f d c | d3 d    | d B B B | A/B/ c d d/e/ | f e d A | B3 |]\n[V: LH2] z  | d c B G | F A B A | G d B A | B3 B    | B G G G | F/G/ A B B/c/ | d c B F | G3 |]\n[V: LH3] z  | B, A, G, C, | D, D, G, F, | E, D, G, F, | D,3 F,/E,| D, E,/F, G, E, | A, F, B, B,/C | D, A, D, F, | B,,3 |]\n[V: LH4] z  | B,, C, D, B,, | B,, C, E, D, | B,, B,, E, B,, | B,,3 % % ---- SECTION 2 ---- TTBB antiphonal pickup; SSAA joins on bar 7 downbeat % D,/C,| G,, C, D, C, | F, D, G, D, | B,, F,, B,, B,, | G,,3 |]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ""; }
+};
+var abc = new abc2svg.Abc(user);
+abc.tosvg("score", abc_src);
+</script></body></html>

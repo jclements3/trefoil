@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Happy the Man Who Feareth God — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }
+p.legend { font-size: 12px; color: #555; }</style>
+</head><body>
+<h1>Happy the Man Who Feareth God</h1>
+<p class="legend">Above melody: Abstract chord / RH voicing / LH voicing</p>
+<div id="music"></div>
+<script src="../../abc2stripchart/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 1\nT: Happy the Man Who Feareth God\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%staves M | {(RH1 RH2 RH3 RH4) (LH1 LH2 LH3 LH4)}\nV: M clef=treble name=\"Melody\"\nV: RH1 clef=treble name=\"RH\"\nV: RH2 clef=treble\nV: RH3 clef=treble\nV: RH4 clef=treble\nV: LH1 clef=bass name=\"LH\"\nV: LH2 clef=bass\nV: LH3 clef=bass\nV: LH4 clef=bass\nK: D\n[V: M] \"^vi\u00b9\"\"^Am\"D2 A A | \"^I\"\"^C\u00b9\"\"^C\"F A ( B/ d ) c/ | \"^vi7\u00b9\"\"^Am\u00b9\"\"^C\"d2 z d | \"^ii7\u00b9\"\"^F\u00b9\"\"^B\u00b0\u00b2-1\"B A B A | \"^ii\u00b9\"\"^Dm\u00b9\"G/ F/ E D2 | z4 | ( \"^IV\u0394\u00b2\"\"^Am\"\"^F\u00b2\"F E/ ) B A/ G | \"^I\u00b9\"\"^C\u00b9\"\"^C\u00b2-3\"F2 z/ B/ d | \"^vi7\u00b3\"\"^Am\u00b9\"\"^C\u00b2\"d/ c/ B e ( d/ e/ | \"^vi9s\"\"^Em7\"\"^Am7-3\"e/ d// c// B/ ) B/ A2 |]\n[V: RH1] [Q:1/4=100] D2 A A    | F A (B/ d) c/     | d2 z d           | B A B A          | G/F/ E D2            | z4                 | (F E/) B A/ G     | F2 z/ B/ d-  | d/ c/ B e (d/e/-   | e/d//c//B/) B/ A2  |]\n[V: RH2] B,2 F F    | D F G/ B A/        | B2 z B           | G F G F          | E/D/ B, B,2          | z4                 | (D C/) G F/ E     | D2 z/ G/ B-          | B/ A/ G c (B/c/-   | c/ B// A// G/) G/ F2        |]\n[V: RH3] F2 E E     | A, D E/ G F/       | F2 z F           | D D D C          | B,/A,/ G, F,2        | z4                 | D C B, E          | A,2 z/ E/ F-         | F/ E/ D A (G/A/-   | A/ G// F// E/) E/ D2        |]\n[V: RH4] D2 C C     | F, A, C/ E D/      | D2 z D           | B, A, B, A,      | G,/F,/ E, D,2        | z4                 | B, A, G, A,       | F,2 z/ D/ D-         | D/ D/ B, F (E/F/-  | F/ E// D// C/) C/ A,2       |]\n[V: LH1] z4         | F D D3/2 E/        | A2 z A           | G F G E          | z4                   | z A A G            | B, A, B, C        | D2 z/ D/ F-          | F/ E/ D A (G/A/-   | A/ G// F// E/) E/ D2        |]\n[V: LH2] z4         | D B, B,3/2 C/      | F2 z F           | E D E C          | z4                   | z F F E            | G, F, E, G,       | A,2 z/ B,/ D-        | D/ D/ B, F (E/F/-  | F/ E// D// C/) C/ A,2       |]\n[V: LH3] z4         | A, F, G, A,        | F,2 z F,         | G, D, G, E,      | z4                   | z F, F, G,         | D, G, B,/ A,/ G,  | A,2 z/ G,/ A,-       | A,/ A,/ G, C B,-   | B,/ A,/ G, E,2              |]\n[V: LH4] D,2 A, D,  | D, D, G,/B,/ A,   | D,2 z D,         | G, D, G, A,,     | % % --------------------------------------------------------------- % PHRASE 2 (Bars 5-7) % Bar 5: SSAA only (antiphonal); Bar 6: TTBB only (antiphonal answer); Bar 7: full 8-voice % --------------------------------------------------------------- z4                   | z D, D, E,         | C, E, G,/F,/ E,   | % % --------------------------------------------------------------- % PHRASE 3 / INTRO SECTION (Bars 8-10) % Full 8-voice; climax in bar 9 (S1 reaches E5); final suspension bar 10 % --------------------------------------------------------------- D,2 z/ G,/ D,-       | A,, E,/F,/G,/A,/ B,,/ (E,/ | C,/D,/E,/) E,/ A,,2 |]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ""; }
+};
+var abc = new abc2svg.Abc(user);
+abc.tosvg("score", abc_src);
+</script></body></html>

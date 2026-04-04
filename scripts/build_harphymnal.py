@@ -96,7 +96,7 @@ def compute_chord_fractions(parts, key, n_meas):
             name = PC_TO_C.get((midi - ko) % 12)
             if name and name not in rh_letters: rh_letters.append(name)
         rh_name = ''
-        if len(rh_letters) >= 3:
+        if len(rh_letters) >= 2:
             try: rh_name = best_name(rh_letters)
             except: pass
 
@@ -106,7 +106,7 @@ def compute_chord_fractions(parts, key, n_meas):
             name = PC_TO_C.get((midi - ko) % 12)
             if name and name not in lh_letters: lh_letters.append(name)
         lh_name = ''
-        if len(lh_letters) >= 3:
+        if len(lh_letters) >= 2:
             try: lh_name = best_name(lh_letters)
             except: pass
 

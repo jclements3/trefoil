@@ -1,0 +1,25 @@
+X: 1
+T: More Love to Thee
+M: 4/4
+L: 1/4
+Q: 1/4=75
+%%staves M | {(RH1 RH2 RH3 RH4) (LH1 LH2 LH3 LH4)}
+V: M clef=treble name="Melody"
+V: RH1 clef=treble name="RH"
+V: RH2 clef=treble
+V: RH3 clef=treble
+V: RH4 clef=treble
+V: LH1 clef=bass name="LH"
+V: LH2 clef=bass
+V: LH3 clef=bass
+V: LH4 clef=bass
+K: A
+[V: M] "^vi7¹""^Am7""^C"E2 F E | "^I""^C""^C"A3/2 B/ c2 | "^I""^C""^C"c2 B A | "^V""^G""^G"B3 z | "^vi7³""^Am7""^C²-1"E2 F E | "^I""^C""^C"A3/2 B/ c2 | "^V7s2""^Dm""^G7-3"B2 A G | "^I""^C""^C"A3 z | "^IV""^F¹""^F-5"d2 d d | "^IV""^F¹""^F-5"d3/2 c/ c2 | "^V7""^G7³""^G"B2 B B | "^V7""^G7³""^G"B3/2 A/ A2 | "^ii7²""^F""^Dm²"F2 F F | "^I""^C""^C"A3 z | "^ii""^Dm""^Dm"B2 A G | "^I""^C""^C-3"A3 z |]
+[V: RH1] E2 F E | A3/2 B/ c2     | c2 B A    | B3 z     | E2 F E | A3/2 B/ c2     | B2 A G    | A3 z     | d2 d d   | d3/2 c/ c2    | B2 B B        | B3/2 A/ A2 | F2 F F   | A3 z | B2 A G | A3 z |]
+[V: RH2] C2 D C | E3/2 E/ E2     | E2 E E    | G3 z     | C2 D C | E3/2 E/ E2     | F2 E E    | E3 z     | F2 F F   | F3/2 E/ E2    | G2 G G        | G3/2 F/ F2 | D2 D D   | E3 z | F2 E E         | E3 z         |]
+[V: RH3] A,2 B, A, | C2 C C     | C2 B, A,  | E3 z     | A,2 B, A, | C2 C C     | D2 C C    | C3 z     | A2 A A   | A2 A A        | E2 E E        | E2 E2      | A2 A A   | C3 z | D2 C C         | C3 z         |]
+[V: RH4] F,2 G, F, | A,2 A, A,  | A,2 G, F, | E,3 z    | F,2 G, F, | A,2 A, A,  | B,2 A, A, | A,3 z    | F2 F F   | F2 E2         | D2 D D        | D3/2 C/ C2 | F2 F F   | A,3 z | B,2 A, A,     | A,3 z        |]
+[V: LH1] E2 E E | E2 E E         | E2 E E    | E3 z     | E2 E E | E3/2 E/ E2     | D2 C B,   | E3 z     | F2 F F   | F3/2 E/ E2    | B2 B B        | B3/2 A/ G2 | D2 D D   | E3 z | F2 E E         | E3 z         |]
+[V: LH2] C2 C C | C2 C C         | C2 B, B,  | B,3 z    | C2 C C | C2 C C         | B,2 A, G, | C3 z     | D2 D D   | D2 D2         | G2 G G        | G3/2 F/ E2 | B,2 B, B, | C3 z | D2 C B,       | A,3 z        |]
+[V: LH3] E,2 E, E, | A,,2 C, E, | C,2 E, G, | G,3 z | E,2 E, E, | A,,2 C, E, | E,,2 E,, E,, | A,,3 z | D,2 D, D, | D,2 D,2      | E,2 E, E,     | E,3/2 A,/ A,2 | F,,2 F,, F,, | A,,3 z | B,,2 E,, E,, | A,,3 z   |]
+[V: LH4] A,,2 A,, A,, | A,,2 A,, A,, | A,,2 A,, D,, | E,,3 z | % % ===== BARS 5-8: Phrase repeat — full 8 voices (mf) ===== % TTBB now melodically active with step motion. % Harmony: bar5=I, bar6=I, bar7=ii-V, bar8=I perfect cadence % A,,2 A,, A,, | A,,2 A,, A,, | D,,2 E,, E,, | A,,3 z | % % ===== BARS 9-12: Development — antiphonal + climax approach (f) ===== % Bars 9-10: SSAA forte, TTBB echo same rhythm one beat behind (not notated as canon %   but as simultaneous homophony with inner voice figuration). % Bars 11-12: Full convergence building to bar 13 climax. % Harmony: bar9=IV, bar10=IV-I6, bar11=V, bar12=V-I % % Voice ordering check bars 9-10 (A major D chord: D F# A): %   S1=D5, S2=F#4 (S1>S2 ✓), A1=A4, A2=F#4 — wait A1=A2=F#4 if I'm not careful. %   Better: A1=A4, A2=F#4, but A1(A4) > A2(F#4) ✓ %   Actually need A1 strictly above A2: A4 > F#4 ✓ (A4=A4, F#4=F#4, A>F# ✓) % % Bar 11-12 V chord (E G# B = E G B in K:A): %   S1=B4, S2=G#4; A1=E4, A2=D4 (D4 passing? Or keep A2=B3) %   A1=E4, A2=D4: A1>A2 ✓; D is diatonic (4th scale deg) ✓ %   Bars 12: S1=B4-A4, S2=G#4-F#4; A1=E4, A2=C#4 % D,,2 D,, D,, | D,,2 D,,2 | E,,2 E,, E,,  | E,,2 A,,2  | % % ===== BARS 13-16: Final phrase — forte climax, then hushed cadence (f > pp) ===== % Bar 13: Full 8 voices forte on IV (D major). % Bar 14: I with voices peeling off to piano, breath, suspension. % Bar 15: stretto approach with B1 final low A; Bar 16: hushed unison-approach I. % Harmony: bar13=IV, bar14=I, bar15=V-IV-V, bar16=I % % Baritone (E2-C4): written in bass clef; F,,=F#2 ✓, A,,=A2 ✓, B,,=B2 ✓, E,=E3 ✓ % Bass I (C2-A3): D,,=D2 ✓, A,,=A2 ✓, E,,=E2 ✓ % % Bar 13 voice ordering: %   S1=F#4, S2=D4 (S1>S2 ✓); A1=A4, A2=F#4 (A1>A2 ✓); T1=D3snd, T2=B2snd (T1>T2 ✓) %   Bar=F#2, B1=D2 (Bar>B1 ✓) % D,,2 D,, D,, | A,,3 z | E,,2 E,, E,, | A,,3 z   |]

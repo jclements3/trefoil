@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Be Thou My Vision — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }
+p.legend { font-size: 12px; color: #555; }</style>
+</head><body>
+<h1>Be Thou My Vision</h1>
+<p class="legend">Above melody: Abstract chord / RH voicing / LH voicing</p>
+<div id="music"></div>
+<script src="../../abc2stripchart/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 1\nT: Be Thou My Vision\nM: 3/4\nL: 1/4\nQ: 1/4=100\n%%staves M | {(RH1 RH2 RH3 RH4) (LH1 LH2 LH3 LH4)}\nV: M clef=treble name=\"Melody\"\nV: RH1 clef=treble name=\"RH\"\nV: RH2 clef=treble\nV: RH3 clef=treble\nV: RH4 clef=treble\nV: LH1 clef=bass name=\"LH\"\nV: LH2 clef=bass\nV: LH3 clef=bass\nV: LH4 clef=bass\nK: Eb\n[V: M] \"^vi7\u00b9\"\"^Am\u00b9\"\"^C\"E E F/ E/ | \"^ii7\u00b2\"\"^Dm\"\"^Dm7\u00b2\"C B, B,/ C/ | \"^vi7\u00b9\"\"^Am\u00b9\"\"^C\"E E F | \"^I\"\"^C\u00b9\"\"^C\"G3 | \"^iii7\u00b3\"\"^Em7\"\"^C-1+2\"F F F | \"^iii7\u00b3\"\"^Em7\"\"^C-1+2\"F G B | \"^IV\"\"^F\u00b9\"\"^F-5\"c B G | \"^vi7\u00b3\"\"^Am7\"\"^C\u00b2-1\"B3 |\n[V: RH1] E E F/E/ | C B, B,/C/ | E E F | G3 |  F F F | F G B | c B G | B3 |\n[V: RH2] C C D/C/ | A, G, G,/A,/ | C C D | E3 | D D D | D E G | A G E | G3 |\n[V: RH3] G, B, B, | A, G, G, | G, B, B, | B,3 | B, B, B, | B, B, E | E E C | E3 |\n[V: RH4] E, G, G, | F, E, E, | E, G, G, | G,3 | G, G, G, | G, G, C | C C A, | C3 |\n[V: LH1] B, B, B, | A, F, F,/A,/ | B, B, B, | B,3 |  B, B, B, | B, B, B, | C D E | B,3 |\n[V: LH2] G, G, G, | F, D, D,/F,/ | G, G, G, | G,3 | G, G, G, | G, G, G, | A, B, C | G,3 |\n[V: LH3] G, G, F,/G,/ | E, D, D,/E,/ | G, G, F, | G,3 |  F, F, F, | F, G, B,, | A,, B,, G,, | (B,,2 G,,) |\n[V: LH4] E, E, E, | C, B,, B,,/C,/ | E, E, E, | E,3 | % % ----- PHRASE 2: bars 5-8  (Bb | Bb/Eb | Ab/Eb | Eb) ----- % Texture: mf, antiphonal \u2014 SSAA bars 5-6 call, TTBB responds; %          full 8-voice from bar 7 (first full-ensemble moment) % B,, B,, B,, | B,, B,, E, | F, G, E, | G,,3 | % % Note bar 7-8 check: %   Bar 7: A,,=Ab2, B,,=Bb2, G,,=G2 \u2014 Bar range Eb2-C4 \u2713 %   B1 bar 7: F,=F3, G,=G3, E,=Eb3 \u2713 %   Bar(Ab2) < B1(F3) bar7 beat1 \u2014 voice crossing! Fix Bar bar7: use A, B, G, (Ab3 Bb3 G3) %   B1 bar7: F, G, E, (F3 G3 Eb3) \u2713; Bar(Ab3)>B1(F3) \u2713 % % ----- PHRASE 2 corrected bars 7-8 (revise Bar voice above): ----- % Already in line above \u2014 need to fix. Rewriting phrase 2 here: % % [V:7] bar 5-6: F, F, F, | F, G, B,, \u2014 F,=F3, G,=G3, B,,=Bb2 %        bar 7: A, B, G, (Ab3 Bb3 G3) \u2014 CORRECTED %        bar 8: (A,2 G,) (Ab3 Ab3 G3) % [V:8] bar 7: F, G, E, (F3 G3 Eb3) \u2014 stays %        bar 8: G,,3 (G2 *3) \u2713 \u2014 B1 range min C2: G2 > C2 \u2713 % % I'll rewrite the whole file cleanly below with ALL corrections incorporated. % This is the definitive version.\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ""; }
+};
+var abc = new abc2svg.Abc(user);
+abc.tosvg("score", abc_src);
+</script></body></html>

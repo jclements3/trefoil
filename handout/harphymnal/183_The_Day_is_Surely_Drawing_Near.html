@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>The Day is Surely Drawing Near — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }
+p.legend { font-size: 12px; color: #555; }</style>
+</head><body>
+<h1>The Day is Surely Drawing Near</h1>
+<p class="legend">Above melody: Abstract chord / RH voicing / LH voicing</p>
+<div id="music"></div>
+<script src="../../abc2stripchart/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 1\nT: The Day is Surely Drawing Near\nM: 4/4\nL: 1/4\nQ: 1/4=140\n%%staves M | {(RH1 RH2 RH3 RH4) (LH1 LH2 LH3 LH4)}\nV: M clef=treble name=\"Melody\"\nV: RH1 clef=treble name=\"RH\"\nV: RH2 clef=treble\nV: RH3 clef=treble\nV: RH4 clef=treble\nV: LH1 clef=bass name=\"LH\"\nV: LH2 clef=bass\nV: LH3 clef=bass\nV: LH4 clef=bass\nK: G\n[V: M] z \"^vi7\u00b9\"\"^Am7\u00b2\"\"^C-5\"G G B | \"^V9\"\"^B\u00f87\u00b2\"\"^G-3\"A G A A | \"^I\"\"^C\u00b9\"\"^C-5\"B2 G2 | \"^I\"\"^C\u00b9\"\"^C-5\"B c d B | \"^V9\"\"^B\u00f87\u00b2\"\"^G-5\"A2 G2 | z \"^vi7\u00b9\"\"^Am7\u00b2\"\"^C\"G G B | \"^V9+6\"\"^B\u00f87\u00b2\"\"^G-3+6\"A G A A | \"^I\"\"^C\u00b9\"\"^C\"B2 G2 | \"^I\"\"^C\u00b9\"\"^C\"B c d B | \"^V9\"\"^B\u00f87\u00b2\"\"^G\"A2 G2 | z \"^IV\u0394\u00b2\"\"^F\u0394\"\"^C-5\"B B A | \"^IV\u0394\u00b9\"\"^F\"\"^Am\"G F G E | \"^iii\u00b9\"\"^Em\"\"^G-5\"D3 D | \"^IV\u03949\u00b3\"\"^F\"\"^Am7\u00b2\"G G G F | \"^IV\u00b9\"\"^F\"\"^Am-5\"G A B2 | \"^IV\"\"^F\"\"^F\"G2 B c | \"^V+6\"\"^Em7\u00b2\"\"^G\"d B A2 | \"^vi7\u00b9\"\"^F-1+2\"\"^Am\u00b9\"G4 |]\n[V: RH1] z G G B | A G A A | B2 G2 | B c d B | A2 G2 | z G G B | A G A A | B2 G2 | B c d B | A2 G2 | z B B A | G F G E | D3 D | G G G F | G A B2 | G2 B c | d B A2 | G4 |]\n[V: RH2] z E E G | F E F F | G2 E2 | G A B G | F2 E2 | z E E G | F E F F | G2 E2 | G A B G | F2 E2 | z G G F | E D E C | B,3 B, | E E E D | E F G2 | E2 G A | B G F2 | E4 |]\n[V: RH3] z D D G | E E F E | D2 E2 | D E F E | (E D) D2 | z D D G | E E F E | D2 E2 | D E F E | (E D) D2 | z E B A | G F G E | F3 E | E F E E | E F G2 | E2 F G | A F F2 | E4 |]\n[V: RH4] z B, B, E | C D C C | B,2 C2 | B, C D C | (C B,) B,2 | z B, B, E | C D C C | B,2 C2 | B, C D C | (C B,) B,2 | z C D D | C D C C | D3 C | C C C B, | C C D2 | C2 D E | F D D2 | D4 |]\n[V: LH1] z4 | z4 | z4 | z4 | z4 | z B G d | d B c d | d2 c2 | d e d d | d2 B2 | z G d d | B B B A | F3 F | G c B A | G F G2 | G2 G G | A G (G F) | G4 |]\n[V: LH2] z4 | z4 | z4 | z4 | z4 | z D E B, | B, D B, A, | B,2 G,2 | B, G, A, B, | A,2 D2 | z B, G G | E F E F | D3 D | E C D D | E D E2 | E2 E E | F E (E D) | E4 |]\n[V: LH3] z B,, D, B,, | A, G, C, F, | B,,2 E,2 | B, G, A, B, | F,2 B,,2 | z B,, D, B,, | A, G, C, F, | B,,2 E,2 | B, G, A, B, | F,2 B,,2 | z B,, B, F, | G, D, B,, C, | F,3 F, | D, E, B,, F, | G, F, B,,2 | E,2 B, G, | F, B,, F,2 | B,,4 |]\n[V: LH4] z G,, B,, G,, | D, E, A,, D, | G,,2 C,2 | G, E, F, G, | D,2 G,,2 | z G,, B,, G,, | D, E, A,, D, | G,,2 C,2 | G, E, F, G, | D,2 G,,2 | z G,, G, D, | E, B,, G,, A,, | D,3 D, | B,, C, G,, D, | E, D, G,,2 | C,2 G, E, | D, G,, D,2 | G,,4 |]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ""; }
+};
+var abc = new abc2svg.Abc(user);
+abc.tosvg("score", abc_src);
+</script></body></html>
