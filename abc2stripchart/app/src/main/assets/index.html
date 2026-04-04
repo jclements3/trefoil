@@ -86,6 +86,18 @@ label { font-size: 13px; color: #888; }
 .lib-panel.active {
   display: flex;
 }
+#key-filters {
+  display: flex; flex-wrap: wrap; gap: 4px;
+  padding: 6px 10px; background: #f0f4ff;
+  border-bottom: 1px solid #ddd;
+}
+.key-btn {
+  font-size: 13px; padding: 4px 10px; border: 1.5px solid #ccc;
+  border-radius: 6px; background: #fff; color: #444; cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.key-btn.active { background: #2563eb; color: #fff; border-color: #2563eb; }
+.key-btn:active { background: #dbeafe; }
 #drill-list {
   flex: 1; overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -133,7 +145,7 @@ label { font-size: 13px; color: #888; }
   z-index: 40;
   line-height: 1.1;
 }
-.chord-frac .cf-name {
+.chord-frac .cf-abs {
   font-size: 11px;
   font-weight: bold;
   color: #2563eb;
@@ -145,16 +157,13 @@ label { font-size: 13px; color: #888; }
 }
 .chord-frac .cf-rh {
   font-size: 9px;
-  color: #333;
-  white-space: nowrap;
-}
-.chord-frac .cf-rh .cf-chname, .chord-frac .cf-lh .cf-chname {
-  color: #16a34a;
   font-weight: bold;
-  margin-right: 2px;
+  color: #16a34a;
+  white-space: nowrap;
 }
 .chord-frac .cf-lh {
   font-size: 9px;
+  font-weight: bold;
   color: #666;
   white-space: nowrap;
 }
@@ -165,10 +174,7 @@ label { font-size: 13px; color: #888; }
 <div id="controls">
   <div class="row">
     <span id="title">Select a drill or hymn</span>
-    <button id="btn-restart" onclick="restartDrill()" style="font-size:16px;padding:4px 8px;">|&#9668;</button>
     <button id="btn-play">Play</button>
-    <button id="btn-next" onclick="nextDrill()" style="font-size:16px;padding:4px 8px;">&#9658;|</button>
-    <button id="btn-guide" onclick="window.open('trefoil_guide.pdf')" style="background:#28B4BE;color:white;border-color:#28B4BE;font-size:12px;padding:4px 10px;">Guide</button>
     <label>BPM:</label>
     <input type="range" id="bpm-slider" min="20" max="240" value="80" style="width:100px;vertical-align:middle;"/>
     <span id="bpm-val" style="font-size:14px;font-weight:bold;min-width:28px;text-align:center;">80</span>
@@ -189,6 +195,18 @@ label { font-size: 13px; color: #888; }
     <div class="lib-tab" data-panel="drill-panel">Drills</div>
   </div>
   <div id="hymn-panel" class="lib-panel active">
+    <div id="key-filters">
+      <span style="font-size:12px;color:#888;align-self:center;">Key:</span>
+      <button class="key-btn active" data-key="All">All</button>
+      <button class="key-btn" data-key="C">C</button>
+      <button class="key-btn" data-key="D">D</button>
+      <button class="key-btn" data-key="Eb">Eb</button>
+      <button class="key-btn" data-key="E">E</button>
+      <button class="key-btn" data-key="F">F</button>
+      <button class="key-btn" data-key="G">G</button>
+      <button class="key-btn" data-key="A">A</button>
+      <button class="key-btn" data-key="Bb">Bb</button>
+    </div>
     <div id="hymn-cols">
       <div id="hymn-col-left" class="hymn-col"></div>
       <div id="hymn-col-right" class="hymn-col"></div>
@@ -387,14 +405,16 @@ function renderDrill(idx) {
         var div = document.createElement('div');
         div.className = 'chord-frac';
         div.style.left = cx + 'px';
-        div.style.top = (topY - 38) + 'px';
-        var rhn = ch.rhn ? '<span class="cf-chname">' + ch.rhn + '</span>' : '';
-        var lhn = ch.lhn ? '<span class="cf-chname">' + ch.lhn + '</span>' : '';
+        div.style.top = (topY - 44) + 'px';
+        var abs = ch.abs || '';
+        var rhn = ch.rhn || '';
+        var lhn = ch.lhn || '';
         div.innerHTML =
-          '<div class="cf-name">' + ch.name + '</div>' +
-          '<div class="cf-rh">' + rhn + ch.rh.replace(/ /g,'') + '</div>' +
+          '<div class="cf-abs">' + abs + '</div>' +
           '<div class="cf-line"></div>' +
-          '<div class="cf-lh">' + lhn + ch.lh.replace(/ /g,'') + '</div>';
+          '<div class="cf-rh">' + rhn + '</div>' +
+          '<div class="cf-line"></div>' +
+          '<div class="cf-lh">' + lhn + '</div>';
         fracContainer.appendChild(div);
       }
       console.log('Placed ' + drill.chords.length + ' fractions, topY=' + topY.toFixed(1));
@@ -555,19 +575,6 @@ function selectDrill(drillIdx) {
   renderDrill(drillIdx);
 }
 
-function restartDrill() {
-  if (playing) stopPlayback();
-  renderDrill(currentDrill);
-}
-
-function nextDrill() {
-  if (playing) stopPlayback();
-  var next = currentDrill + 1;
-  if (next >= DRILLS.length) next = 0;
-  currentDrill = next;
-  selectDrill(next);
-}
-
 function buildLibrary() {
   var $drillList = document.getElementById('drill-list');
   var $colL = document.getElementById('hymn-col-left');
@@ -626,7 +633,8 @@ function buildLibrary() {
       var item = document.createElement('div');
       item.className = 'lib-item';
       item.dataset.idx = idx;
-      item.textContent = DRILLS[idx].t;
+      if (DRILLS[idx].key) item.dataset.key = DRILLS[idx].key;
+      item.textContent = DRILLS[idx].t + (DRILLS[idx].key ? ' [' + DRILLS[idx].key + ']' : '');
       item.onclick = (function(drillIdx) {
         return function() { selectDrill(drillIdx); };
       })(idx);
@@ -696,11 +704,47 @@ document.getElementById('lib-search').addEventListener('input', function() {
   }
 });
 
+// ── Key filter buttons ──
+var activeKey = 'All';
+var keyBtns = document.querySelectorAll('.key-btn');
+for (var i = 0; i < keyBtns.length; i++) {
+  keyBtns[i].onclick = function() {
+    for (var j = 0; j < keyBtns.length; j++) keyBtns[j].classList.remove('active');
+    this.classList.add('active');
+    activeKey = this.dataset.key;
+    applyKeyFilter();
+  };
+}
+function applyKeyFilter() {
+  var $cols = document.getElementById('hymn-cols');
+  var headers = $cols.querySelectorAll('.letter-header');
+  var itemDivs = $cols.querySelectorAll('.letter-items');
+
+  for (var i = 0; i < headers.length; i++) {
+    var items = itemDivs[i].querySelectorAll('.lib-item');
+    var visCount = 0;
+    for (var j = 0; j < items.length; j++) {
+      var show = (activeKey === 'All' || items[j].dataset.key === activeKey);
+      items[j].style.display = show ? '' : 'none';
+      if (show) visCount++;
+    }
+    headers[i].style.display = visCount > 0 ? '' : 'none';
+    // Update header count
+    var letter = headers[i].textContent.replace(/ \(.*/, '');
+    headers[i].textContent = letter + ' (' + visCount + ')';
+    // Keep collapsed state if filtering "All", expand otherwise
+    if (activeKey !== 'All') {
+      headers[i].classList.remove('collapsed');
+      itemDivs[i].classList.remove('hidden');
+    }
+  }
+}
+
 // ── Load hymnal and init ──
 positionPlayhead();
 
 // Load advanced drills and hymnal data, then build library
-var loaded = 0, toLoad = 5;
+var loaded = 0, toLoad = 4;
 function onDataLoaded() {
   loaded++;
   if (loaded >= toLoad) {
@@ -753,20 +797,6 @@ xhr3.onload = function() {
 };
 xhr3.onerror = function() { onDataLoaded(); };
 xhr3.send();
-
-// Load trefoil drills
-var xhr5 = new XMLHttpRequest();
-xhr5.open('GET', 'trefoil_drills.json', true);
-xhr5.onload = function() {
-  if (xhr5.status === 200) {
-    var data = JSON.parse(xhr5.responseText);
-    for (var i = 0; i < data.length; i++) DRILLS.push(data[i]);
-    console.log('Loaded ' + data.length + ' trefoil drills');
-  }
-  onDataLoaded();
-};
-xhr5.onerror = function() { onDataLoaded(); };
-xhr5.send();
 
 // Load hymnal
 var xhr2 = new XMLHttpRequest();
