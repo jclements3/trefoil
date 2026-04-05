@@ -2,7 +2,7 @@
 """Post-process harp hymnal ABC files to optimize chord voicings.
 
 Goals:
-- Enforce max 10-string span per hand (diatonic steps)
+- Enforce max hand span per hand (diatonic steps)
 - Target 6-8 unique notes per chord
 - Spread notes using wider intervals (3rds, 5ths) instead of clusters
 - Penalize minor 2nds (adjacent diatonic notes) within a hand
@@ -23,6 +23,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 from chord_name import best_name, roman_name
 
 HARP_DIR = os.path.join(os.path.dirname(__file__), "..", "handout/harp_hymnal")
+MAX_HAND_SPAN = 12  # max diatonic strings reachable in one hand
 
 KEY_PC = {
     "C": 0, "G": 7, "D": 2, "A": 9, "E": 4, "B": 11, "F": 5,
@@ -164,7 +165,7 @@ def parse_chord_bracket(bracket_str, key_acc):
 def voicing_score(midis, scale_midis):
     """Score a voicing. Higher = better.
     Rewards: wider intervals (3rds, 5ths), good spread.
-    Penalizes: clusters, minor 2nds, span > 10."""
+    Penalizes: clusters, minor 2nds, span > MAX_HAND_SPAN."""
     if len(midis) < 2:
         return 0
     score = 0
@@ -193,14 +194,14 @@ def voicing_score(midis, scale_midis):
 
     # Total hand span penalty
     total_span = diatonic_span(sorted_m[0], sorted_m[-1], scale_midis)
-    if total_span > 10:
-        score -= (total_span - 10) * 10  # heavy penalty
+    if total_span > MAX_HAND_SPAN:
+        score -= (total_span - MAX_HAND_SPAN) * 10  # heavy penalty
 
     return score
 
 
 def optimize_hand(midis, melody_midi, scale_midis, midi_to_pitch, is_lh,
-                  target_notes=4, max_span=10):
+                  target_notes=4, max_span=MAX_HAND_SPAN):
     """Optimize a hand's voicing by selecting the best subset/respacing of notes.
 
     Args:
@@ -546,9 +547,9 @@ def process_file(filepath, key_name, scale_midis, midi_to_pitch, key_acc, ko):
             all_midis = sorted(set(rh_midis + lh_midis))
 
             # Check if either hand exceeds span
-            if rh_midis and diatonic_span(min(rh_midis), max(rh_midis), scale_midis) > 10:
+            if rh_midis and diatonic_span(min(rh_midis), max(rh_midis), scale_midis) > MAX_HAND_SPAN:
                 needs_fix = True
-            if lh_midis and diatonic_span(min(lh_midis), max(lh_midis), scale_midis) > 10:
+            if lh_midis and diatonic_span(min(lh_midis), max(lh_midis), scale_midis) > MAX_HAND_SPAN:
                 needs_fix = True
 
             # Check total note count (target: 6-8, avg 7)
@@ -602,10 +603,10 @@ def process_file(filepath, key_name, scale_midis, midi_to_pitch, key_acc, ko):
 
                 # Verify spans and trim if needed, then refill to maintain density
                 for _ in range(3):  # iterate to converge
-                    if new_rh and diatonic_span(min(new_rh), max(new_rh), scale_midis) > 10:
-                        new_rh = _trim_to_span(new_rh, scale_midis, 10)
-                    if new_lh and diatonic_span(min(new_lh), max(new_lh), scale_midis) > 10:
-                        new_lh = _trim_to_span(new_lh, scale_midis, 10)
+                    if new_rh and diatonic_span(min(new_rh), max(new_rh), scale_midis) > MAX_HAND_SPAN:
+                        new_rh = _trim_to_span(new_rh, scale_midis, MAX_HAND_SPAN)
+                    if new_lh and diatonic_span(min(new_lh), max(new_lh), scale_midis) > MAX_HAND_SPAN:
+                        new_lh = _trim_to_span(new_lh, scale_midis, MAX_HAND_SPAN)
 
                 # Refill hands if too thin (< 3 notes) and span allows
                 for hand, is_lh_flag in [(new_rh, False), (new_lh, True)]:
@@ -618,7 +619,7 @@ def process_file(filepath, key_name, scale_midis, midi_to_pitch, key_acc, ko):
                         for sm in scale_midis:
                             if sm >= lo:
                                 count += 1
-                                if count == 10:
+                                if count == MAX_HAND_SPAN:
                                     upper = sm
                                     break
                         hi_cap = min(hi, upper)
