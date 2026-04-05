@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Holy, Holy, Holy — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Holy, Holy, Holy</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4124\nT: Holy, Holy, Holy\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: D\n[V: M] \"^D\"D D \"^Bm\"F F|\"^A\"A2 \"^D\"A2|\"^G\"B \"^A\"B \"^G\"B \"^C#ø7\"B|\"^D\"A2 F2|\"^A\"A3/2 A/2 \"^D\"A \"^A\"A|\"^Bm\"d \"^E7\"d \"^A\"c \"^D\"A|\"^C#m\"E \"^A\"A \"^E7\"B3/2 \"^A\"A/2|A4|\"^D\"D D \"^Bm\"F F|\"^A\"A A \"^D\"A2|\"^G\"B3/2 B/2 B \"^C#ø7\"B|\"^D\"A2 A2|\"^Bm\"d2 \"^D\"A \"^D7\"A|\"^G\"B2 \"^D\"F2|\"^G\"G \"^Em\"E \"^A7\"E3/2 \"^D\"D/2|D4|]\n[V: RH] [DFAd]2 [FBD]2|[EACa]2 [DFAf]2|[GDb] [EAea] [Ggb] [CGB]|[DFAa]4|[ECea]2 [DFdf] [ACEa]|[FBf] [DBe] [CEA] [DFda]|[ECeg] [CEc] [DBg]2|[DBg]4|[DFfa]2 [FBb]2|[CEe]2 [DAdf]2|[BDG]3 [CGc]|[DAda]4|[FDb]2 [DAfa] [Dda]|[DGBd]2 [Ddfa]2|[DGBg] [EBg] [EAg]2|[EAg]4|]\n[V: LH] [A,D,F,A]2 [F,B,D,B]2|[C,E,E]2 [A,D,F,A]2|[G,D,G] [C,E,E] [G,D,G] [C,E,G,B,]|[A,D,F,A]4|[C,E,E]2 [A,D,F,A] [C,E,E]|[F,B,D,B] [D,E,G,B,] [C,A,C] [A,D,F,A]|[C,E,G,C] [C,A,C] [D,E,G,B,]2|[D,E,G,B,]4|[A,D,F,A]2 [F,B,D,B]2|[C,A,C]2 [A,D,F,A]2|[G,D,G]3 [C,E,G,B,]|[A,D,F,A]4|[F,B,D,B]2 [A,D,F,A] [C,D,F,A,]|[G,D,G]2 [A,D,F,A]2|[G,D,G] [E,B,EG] [C,E,G,A,]2|[C,E,G,A,]4|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

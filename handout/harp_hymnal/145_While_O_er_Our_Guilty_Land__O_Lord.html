@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>While O'er Our Guilty Land, O Lord — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>While O'er Our Guilty Land, O Lord</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4145\nT: While O'er Our Guilty Land, O Lord\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: F\n[V: M] \"^F\"A2 A A|\"^Bb\"B2 \"^F\"A c|\"^C\"c2 B2|\"^F\"A4|\"^C7\"B2 B B|\"^F\"A3 A|\"^B°\"=B2 \"^Gm7\"B2|\"^C\"c4|\"^F\"c2 \"^C\"c B|\"^F\"A2 F2|\"^C\"E F \"^C7\"G \"^F\"A|\"^C7\"B4|\"^F\"A2 \"^Bb\"d d|\"^F\"c2 A2|F2 \"^C7\"G2|\"^F\"F4|]\n[V: RH] [ACF]4|[Ddf]2 [CFAc]2|[CEc]4|[CFAf]4|[Ccg]4|[CFcf]4|[FDfb]2 [Ddf]2|[CEe]4|[CAcf]2 [CEg]2|[FACf]4|[CGe]2 [Ceg] [FACa]|[EGC]4|[FAfa]2 [FBD]2|[FCfa]4|[EBC]2|[ACFa]4|]\n[V: LH] [F,C,F]4|[D,B,F]2 [F,C,F]2|[C,G,C]4|[F,C,F]4|[C,E,G,B,]4|[F,C,F]4|[D,F,B,D]2 [D,F,G,B,]2|[C,G,C]4|[F,C,F]2 [C,G,C]2|[F,C,F]4|[C,G,C]2 [C,E,G,B,] [F,C,F]|[C,E,G,B,]4|[F,C,F]2 [D,B,F]2|[F,C,F]4|[C,E,G,B,]2|[F,C,F]4|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

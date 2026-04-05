@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Go To Dark Gethsemane — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Go To Dark Gethsemane</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4095\nT: Go To Dark Gethsemane\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: Eb\n[V: M] \"^Eb\"E E \"^Bb\"F \"^Eb\"G|\"^C\"A3/2 A/2 \"^Eb\"G2|E \"^Cm\"E \"^Bb\"F \"^Eb\"G|\"^Cm7\"F \"^Bb\"F \"^Eb\"E2|E \"^Cm\"G \"^Bb\"B \"^Eb\"B|\"^C\"c \"^Dø7\"c \"^Eb\"B2|E G \"^Bb\"B \"^Gm\"B|\"^Cm7\"c \"^F\"c \"^Bb\"B2|\"^Eb\"E E \"^G#°\"F \"^Eb\"G|\"^C\"A3/2 A/2 \"^Eb\"G2|E \"^G#°\"F \"^Eb\"G \"^Fm\"F|\"^Eb\"E \"^Bb\"D \"^Eb\"E2|]\n[V: RH] [EGg]2 [DFf] [EGb]|[GCE]2 [EBe]2|[CEeg] [DBd] [EBg]|[EBC] [DBf] [EBb]2|[CGce] [Ddf] [Eeg]|[GCg] [CDA] [Eeb]2|[FBD] [GBDg]|[ECe] [Ccf] [FBf]2|[Egb]2 [GDg] [GBE]|[CEGc]2 [GEg]2|[GDb] [GEb] [FAa]|[BEG] [FBb] [BEb]2|]\n[V: LH] [E,G,EB]2 [B,D,F,B] [E,G,EB]|[C,CEG]2 [E,G,EB]2|[C,E,G,C] [B,D,F,B] [E,G,EB]|[C,E,G,B,] [B,D,F,B] [E,G,EB]2|[C,E,G,C] [B,D,F,B] [E,G,EB]|[C,CEG] [C,D,F,A,] [E,G,EB]2|[B,D,F,B] [D,G,DG]|[C,E,G,B,] [C,F,F] [B,D,F,B]2|[E,G,EB]2 [D,G,B,D] [E,G,EB]|[C,CEG]2 [E,G,EB]2|[D,G,B,D] [E,G,EB] [C,F,A,C]|[E,G,EB] [B,D,F,B] [E,G,EB]2|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

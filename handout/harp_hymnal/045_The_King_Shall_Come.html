@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>The King Shall Come — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>The King Shall Come</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4045\nT: The King Shall Come\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: G\n[V: M] B,|\"^Em\"E \"^B\"F \"^Em\"G \"^Am\"A/2 G/2|\"^Bm\"F \"^E\"E/2 D/2 \"^Em\"B, \"^Bm\"B,|\"^Am\"E \"^Bm\"F \"^Em\"G \"^D\"A|\"^G\"B3 G/2 A/2|B \"^Am\"c/2 B/2 A \"^Am7\"G|\"^D\"F \"^E\"E/2 D/2 \"^Em\"B, B,|E \"^D\"F \"^G\"G/2 E/2 \"^Bm\"F|\"^Em\"E3|]\n[V: RH] z|[BEb] [DFB] [EGBe] [ACEa]|[DFBd] [EBg] [EGBb] [DFdf]|[CEA] [DBdf] [EGeg] [FADf]|[BDGb]4|[CEc]2 [CEg]|[FADa] [EBb] [EGeb]2|[FDfa] [DGB] [FBDf]|[EGgb]3|]\n[V: LH] z|[E,G,B,G] [D,F,B,D] [E,G,B,G] [C,E,A,E]|[D,F,B,F] [E,G,B,G] [E,G,B,G] [D,F,B,F]|[C,E,CE] [D,F,B,F] [E,G,B,G] [D,F,DF]|[G,B,D,G]4|[C,E,CE]2 [C,E,G,A,]|[D,F,DF] [E,G,B,G] [E,G,B,G]2|[D,F,DF] [G,B,D,B] [D,F,B,F]|[E,G,B,G]3|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

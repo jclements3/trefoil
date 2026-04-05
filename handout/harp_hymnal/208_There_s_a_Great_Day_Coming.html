@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>There's a Great Day Coming — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>There's a Great Day Coming</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4208\nT: There's a Great Day Coming\nM: 4/4\nL: 1/8\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: G\n[V: M] \"^G\"D D|G2 G2 G/2 G3/2 z G|B2 B2 \"^Am\"A/2 \"^G\"G3/2 \"^C\"E \"^G\"D|G2 G2 G/2 G3/2 \"^D\"A \"^G\"B|\"^D\"A6 \"^G\"G \"^D\"A|\"^G\"B2 B B B d d B|\"^Am\"A \"^C\"G G E \"^G\"D2 D D|G/2 G3/2 G G \"^D7\"A2 A2|\"^G\"G6 z2|d3 d \"^C\"e \"^G\"d z2|B3 B \"^C\"c \"^G\"B z2|G3 G G G G G|\"^A\"B2 \"^Am\"A2 \"^D\"A4|\"^G\"d3 d \"^C\"e \"^G\"d z2|B3 B \"^C\"c \"^G\"B z2|G3 G \"^D7\"A2 A2|\"^G\"G6|]\n[V: RH] [DGBd]2|[DGBd]8|[ACEa]/2 [DGBg]3/2 [CEGg] [DGdg]|[FDf] [DBdg]|[ADF]6 [GBDg] [ADa]|[GBDb]8|[CEA] [CEce]3 [GBgb]4|[DFda]4|[GDgb]8|[CEcg] [BDGb]3|[CEeg] [DGB]3|[DGB]8|[ECa]2 [CEc]2 [DFAd]4|[DGd]4 [CGce] [DGg]3|[CGcg] [DBd]3|[DFfa]4|[DBg]6|]\n[V: LH] [D,B,G]2|[D,B,G]8|[C,CE]/2 [D,B,G]3/2 [E,C,G] [D,B,G]|[F,D,A] [D,B,G]|[F,D,A]6 [D,B,G] [F,D,A]|[D,B,G]8|[E,A,C,] [E,C,G]3 [D,B,G]4|[C,D,F,A,]4|[D,B,G]8|[E,C,G] [D,B,G]3|[E,C,G] [D,DG]3|[D,DG]8|[E,EA]2 [E,A,C,]2 [F,D,A]4|[D,DG]4 [E,C,G] [D,DG]3|[E,C,G] [D,DG]3|[C,D,F,A,]4|[D,DG]6|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

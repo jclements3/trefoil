@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>O Lord My Soul Convicted — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>O Lord My Soul Convicted</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4142\nT: O Lord My Soul Convicted\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: C\n[V: M] \"^C\"G|c G \"^F\"A A|\"^G\"G F \"^C\"E E|\"^F\"F \"^C\"E \"^G\"D \"^Em\"G|\"^Am7\"G \"^D\"^F \"^G\"G G|\"^C\"c \"^B°\"d \"^C\"e c|\"^Dm\"f \"^C\"e \"^G\"d \"^C\"e|c \"^F\"A \"^G\"G \"^Am\"c|\"^Dm7\"c \"^G\"B \"^C\"c|]\n[V: RH] [Ceg]|[CFf]2|[BDGb]2 [EGC]2|[CAc] [ECe] [DGB] [EGeb]|[CAg] [FDa] [DGd]2|[ECg] [FBDf] [GCE]2|[ADFa] [GCg] [DGg] [CEGc]|[CAf] [DBd] [Eea]|[DAC] [DBg] [CEGe]|]\n[V: LH] [C,E,G]|[F,C,F]2|[B,D,G,]2 [C,E,G]2|[F,C,F] [C,E,G] [D,G,B,D] [E,B,EB]|[C,E,G,A,] [D,F,A] [D,G,B,D]2|[C,E,G] [D,F,B,D] [C,E,G]2|[D,A,DF] [C,E,G] [D,G,B,D] [C,E,G]|[F,C,F] [D,G,B,D] [C,E,C]|[C,D,F,A,] [D,G,B,D] [C,E,G]|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

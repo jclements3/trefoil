@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>The Bridegroom Soon Will Call Us — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>The Bridegroom Soon Will Call Us</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4206\nT: The Bridegroom Soon Will Call Us\nM: 3/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: G\n[V: M] \"^G\"D|G2 \"^Em\"G|\"^D\"A2 \"^Am\"c|\"^E\"B3/2 A/2 B|\"^A\"A2 \"^D\"A|\"^G\"G2 \"^C\"G|\"^Am\"c2 \"^G\"B|\"^D\"A2 \"^Bm\"B|\"^Em\"E2 \"^D\"F|\"^C\"G2 \"^Am\"A|\"^D\"F3/2 E/2 F|D2 \"^G\"B|B2 \"^Bm\"d|\"^Am\"c2 \"^F#°\"c|\"^G\"B2 B|B2 \"^D\"d|A2 \"^G\"B|\"^C\"c3/2 d/2 c|\"^G\"B2 B|B2 \"^D\"d|\"^C\"c2 \"^G\"B|\"^D\"A2 \"^G\"B|\"^D\"A2 \"^Em\"G|\"^Am\"A2 \"^D\"F|\"^G\"G3/2 \"^F#m\"F/2 \"^Em\"G|\"^D\"A2 \"^G\"B|\"^D\"d2 \"^G\"B|\"^C\"c \"^D\"A2|\"^G\"G2|]\n[V: RH] [GDg]|[EGB]|[DFAa]2 [CEAe]|[EBg]3|[EAe]2 [DFdf]|[GDb]2 [CGc]|[CEce]2 [Ggb]|[DFda]2 [FBf]|[EGe]2 [DFfa]|[CGe]2 [CAce]|[DAdf]3|[BDG]|[FBb]|[EACe]2 [CFcf]|[DGBd]3|[DAda]|[DGBg]|[CGg]3|[DGdg]3|[DAfa]|[Cce]2 [DBdg]|[Ddfa]2 [GBDg]|[FADf]2 [EGg]|[EACa]2 [FADa]|[GBDb]2 [EGb]|[FDfa]2 [GBgb]|[ADFa]2 [GDgb]|[Ccg] [DFA]2|[BDGb]2|]\n[V: LH] [D,B,D]|[G,B,E,B]|[F,D,F]2 [C,CE]|[E,B,GB]3|[E,EA]2 [F,D,F]|[D,B,D]2 [E,C,G]|[C,CE]2 [D,B,D]|[F,D,F]2 [B,D,F,B]|[G,B,E,B]2 [F,D,F]|[E,C,G]2 [C,CE]|[F,D,F]3|[D,B,D]|[B,D,F,B]|[C,CE]2 [C,F,A,F]|[D,B,D]3|[F,D,F]|[D,B,D]|[E,C,G]3|[D,B,D]3|[F,D,F]|[E,C,G]2 [D,B,D]|[F,D,F]2 [D,B,D]|[F,D,F]2 [G,B,E,B]|[C,CE]2 [F,D,F]|[D,B,D]2 [G,B,E,B]|[F,D,F]2 [D,B,D]|[F,D,F]2 [D,B,D]|[E,C,G] [F,D,A]2|[D,B,D]2|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

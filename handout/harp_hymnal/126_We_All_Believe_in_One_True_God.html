@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>We All Believe in One True God — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>We All Believe in One True God</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4126\nT: We All Believe in One True God\nM: none\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: C\n[V: M] \"^D\"z2 \"^Dm\"D2 \"^F\"A \"^C\"G \"^D\"A \"^Em\"E \"^F\"F2 \"^D\"E \"^Am\"G \"^Bb\"F \"^A\"E \"^D\"D ^C D2|\"^Dm\"A2 \"^A\"A2 \"^G\"d \"^Am\"c \"^Em\"B \"^F\"A \"^C\"c2 \"^F\"A2|\"^Dm\"z \"^Bm\"B \"^F\"c \"^Dm7\"A \"^F\"A \"^D\"E \"^Dm\"F \"^F+\"F E2|\"^Dm\"D \"^Am\"E \"^Bb\"F \"^Gm\"G \"^F\"F \"^C\"E \"^Dm\"D \"^A\"^C \"^Dm\"D2|d2 \"^G\"d2 \"^C\"e \"^Dm\"d \"^E°\"e \"^A\"^c \"^Dm\"d2 d2|\"^C\"e \"^G\"B \"^Am\"c \"^F\"A \"^Dm\"A \"^A\"E \"^Dm\"F2 \"^A\"E2|\"^F\"A \"^C\"G \"^F\"A \"^B°\"B \"^Am\"c \"^Em\"B \"^F\"A \"^E\"^G \"^Am\"A2|\"^Em\"B3/2 c/2 \"^Dm\"d2 \"^F\"A \"^C\"G \"^Am\"A \"^C\"E \"^Dm\"F2 \"^C\"E2|z \"^Am\"G \"^F\"F3/2 E/2 \"^Dm\"D \"^F\"^C \"^Dm\"D \"^Gm\"F D2|\"^Dm\"F \"^C\"G \"^F\"A \"^Bm\"B \"^C\"c3/2 B/2 \"^F\"A3/2 G/2 \"^Dm\"F \"^A\"E|\"^Dm\"D \"^C\"E \"^Bb\"F \"^Gm\"G \"^F\"F \"^C\"E \"^Gm\"D \"^A\"^C \"^D\"D4|]\n[V: RH] z18|[ADa]2 [CAe]2 [GBDb] [AEa] [EBb] [CAc] [CEG]2 [CAf]2|[CAf]10|[DFAd] [CEAc] [FBfb] [Ggb] [Ccf] [CEe] [DFAf] [Cce] [DFAa]2|[GBgb]2 [CEg] [DFdf] [EGBg] [EAC] [DFda]4|[CGc] [GDgb] [CEAe] [FAC] [DAdf] [EAe] [DAda]2 [EAa]2|[FAa] [CGe] [FCf] [DBdf] [CEce] [Eeg] [FCa] [GEg] [CAce]2|[Eeb]2 [DAfa]2 [Ffa] [CGg] [EACe] [Cce] [Ddfa]2 [Ccg]2|[EACa] [ACF]2 [FADf] [CFAc] [FADa] [BDG]3|[FDfa] [Ceg] [CFAf] [Ffb] [EGC]2 [CFcf]2 [ADFa] [ECa]|[DFA] [ECe] [FDfb] [DGBd] [CAcf] [ECg] [DGBg] [Eea] [FADf]4|]\n[V: LH] z18|[D,F,FA]2 [C,A,C]2 [G,D,G] [A,C,E,A] [E,B,EG] [F,A,F] [C,E,C]2 [F,A,F]2|[F,A,F]10|[D,F,FA] [A,C,E,A] [D,F,F] [G,B,D,G] [F,A,F] [C,E,C] [D,F,FA] [C,A,C] [D,F,FA]2|[G,D,G]2 [C,E,C] [D,F,FA] [E,G,B,E] [C,A,C] [D,F,FA]4|[C,E,C] [G,D,G] [A,C,E,A] [F,A,F] [D,F,FA] [C,A,C] [D,F,FA]2 [C,A,C]2|[F,A,F] [C,E,C] [F,A,F] [D,F,B,D] [A,C,E,A] [E,B,EG] [F,A,F] [E,G,GB] [A,C,E,A]2|[E,B,EG]2 [D,F,FA]2 [F,A,F] [C,E,C] [A,C,E,A] [C,E,C] [D,F,FA]2 [C,E,C]2|[A,C,E,A] [F,A,F]2 [D,F,FA] [F,A,F] [D,F,FA] [G,B,D,G]3|[D,F,FA] [C,E,C] [F,A,F] [F,B,D,B] [C,E,C]2 [F,A,F]2 [D,F,FA] [C,A,C]|[D,A,DF] [C,E,C] [D,F,F] [G,B,D,G] [F,A,F] [C,E,C] [G,B,D,G] [C,A,C] [A,D,F,A]4|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

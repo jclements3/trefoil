@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Be Still My Soul — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Be Still My Soul</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4193\nT: Be Still My Soul\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: F\n[V: M] \"^F\"A \"^E\"G \"^F\"A|\"^Bb\"B3 \"^F\"A|\"^E\"G \"^F\"A \"^Bb\"F3/2 \"^C\"G/2|G \"^F\"A3|A A \"^E\"G \"^F\"A|\"^Bb\"B3 \"^F\"A|\"^E\"G \"^F\"A \"^Bb\"F3/2 \"^C\"G/2|\"^F\"A4|A c c \"^FΔ7\"c|\"^Dm\"d3 A|A \"^F\"c c3/2 \"^C\"G/2|G \"^Gm\"B3|B B \"^F#°\"A \"^Gm\"G|\"^F\"A3 F|\"^Bb\"F \"^Gm7\"G G3/2 \"^BbΔ7\"A/2|\"^A\"A4|A \"^F\"c c \"^FΔ7\"c|\"^Dm\"d3 A|A \"^F\"c c3/2 \"^C\"G/2|G \"^Gm\"B3|B B \"^F#°\"A \"^Gm\"G|\"^F\"A3 F|\"^Bb\"F \"^Gm\"G \"^C7\"G3/2 \"^Bb\"F/2|\"^F\"F4|F|]\n[V: RH] [FACf] [GBEb] [FACa]|[FDfb]3 [FAfa]|[GEgb] [FCfa] [BDFb]2|[ACFa]3|[BEGb] [CFA]|[DFB]3 [CFc]|[EGB] [CFf] [DFd]2|[CAc]4|[CFf]|[FAD]4|[CAf]3|[BDG]3|[ACF] [DGBd]|[Ccf]4|[DFf] [FBg]3|[EAea]4|[FAC]2 [CAc]|[FDf]4|[FAf]3|[DGBg]3|[CFAc] [DGdg]|[FAa]4|[DBd] [DBdg] [CEce]2|[FCf]4|[FCf]|]\n[V: LH] [C,A,CF] [E,B,EB] [C,A,CF]|[F,D,B]3 [C,A,CF]|[E,B,EB] [C,A,CF] [F,D,B]2|[C,A,CF]3|[E,B,EB] [F,A,C,F]|[F,FB]3 [F,A,C,F]|[E,B,GB] [F,A,C,F] [F,FB]2|[F,A,C,F]4|[C,E,F,A,]|[D,DFA]4|[F,A,C,F]3|[B,D,G,B]3|[C,F,A,F] [B,D,G,B]|[F,A,C,F]4|[F,FB] [D,F,G,B,]3|[E,A,A]4|[F,A,C,F]2 [C,E,F,A,]|[D,DFA]4|[F,A,C,F]3|[B,D,G,B]3|[C,F,A,F] [B,D,G,B]|[F,A,C,F]4|[F,FB] [B,D,G,B] [C,E,G,B,]2|[F,A,C,F]4|[F,A,C,F]|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

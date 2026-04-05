@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Faith of Our Fathers — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Faith of Our Fathers</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4219\nT: Faith of Our Fathers\nM: 3/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: G\n[V: M] \"^G\"B \"^Am\"A \"^G\"G|G \"^F#°\"F \"^G\"G|\"^Am\"A E \"^D\"F|\"^G\"G3|\"^C\"G \"^D\"F \"^C\"E|\"^G\"D2 G|\"^A7\"G F \"^A\"G|\"^D\"A3|\"^G\"B \"^Am\"A \"^G\"G|G \"^F#°\"F \"^Em\"G|\"^Am\"A E \"^D7\"F|\"^Em\"G3|\"^C\"G \"^D\"F \"^C\"E|\"^G\"D2 \"^Bm\"B|\"^A\"A B \"^D7\"A|\"^G\"G3|\"^C\"c c c|\"^G\"B2 B|\"^D\"A2 A|\"^G\"B3|B \"^Am\"A \"^G\"G|\"^C\"E2 \"^Em\"G|\"^G\"A2 \"^D7\"A|\"^G\"G3|]\n[V: RH] [DGd] [CEAc] [DGg]|[FACa] [DBd]|[CEAe]2 [DFa]|[DBg]3|[CEce] [DAd] [CEcg]|[Ddg]3|[EGAe]2 [CEce]|[DAf]3|[GBD] [CEce] [GBb]|[FAfa] [BEb]|[CAce]2 [Ddfa]|[EGBe]3|[CEeg] [DAa] [CGce]|[GDg]2 [BFb]|[CAce]2 [FACD]|[GDb]3|[CGcg]3|[Ggb]3|[Ddf]3|[BDG]3|[EACe] [DGBd]|[CGeg]2 [EGBg]|[DGBg]2 [FADf]|[DGdg]3|]\n[V: LH] [G,B,G] [E,A,E] [G,B,G]|[C,F,A,F] [G,B,G]|[E,A,E]2 [A,D,F,]|[G,B,G]3|[G,C,G] [A,D,F,] [G,C,G]|[G,B,G]3|[C,E,G,A,]2 [E,EA]|[A,D,F,]3|[G,B,G] [E,A,E] [G,B,G]|[C,F,A,F] [G,B,E,B]|[E,A,E]2 [C,D,F,A,]|[G,B,E,B]3|[G,C,G] [A,D,F,] [G,C,G]|[G,B,G]2 [B,D,F,B]|[E,EA]2 [C,D,F,A,]|[G,B,G]3|[G,C,G]3|[G,B,G]3|[A,D,F,]3|[G,B,G]3|[E,A,E] [G,B,G]|[G,C,G]2 [G,B,E,B]|[G,B,G]2 [C,D,F,A,]|[G,B,G]3|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

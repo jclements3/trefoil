@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Now Thank We All Our God — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Now Thank We All Our God</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4269\nT: Now Thank We All Our God\nM: none\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: F\n[V: M] \"^F\"c2|c3/2 c/2 \"^Bb\"d d|\"^F\"c3 A|\"^Bb\"B \"^F\"A \"^Gm\"G \"^F\"F|\"^C\"E2 \"^F\"F2|c2|c3/2 c/2 \"^Bb\"d d|\"^F\"c3 A|\"^Bb\"B \"^F\"A \"^Gm\"G \"^F\"F|\"^C\"E2 \"^F\"F2|\"^C\"G2|G3/2 G/2 \"^F\"A A|\"^C\"G3 G|\"^F\"A \"^C\"c \"^F\"c \"^G\"=B|\"^C\"c3 \"^F\"c|\"^Bb\"d \"^F\"c \"^Bb\"B \"^F\"A|\"^Bb\"B2 \"^F\"A2|\"^Gm\"G \"^F\"F \"^Gm7\"F \"^C\"E|\"^F\"F4|]\n[V: RH] [CAc]2|[BFb]2|[CAf]4|[DFBd] [Ccf] [DGBd] [FAf]|[ECg]2 [FAa]2|[FAa]2|[DFBf]2|[FCf]4|[DFdf] [FCa] [DGBg] [Ffa]|[GCE]2 [ACF]2|[GCg]2|[CFAc]2|[CEGc]4|[CFAf] [CEGe] [CFcf] [DBg]|[CEGg]3 [CAcf]|[DBdf] [FACf] [FBDb] [FACa]|[FBfb]2 [FAfa]2|[DGdg] [FCfa] [DFGf] [CEce]|[ACFa]4|]\n[V: LH] [F,A,C,]2|[F,B,D,F]2|[F,A,C,]4|[F,B,D,F] [F,A,C,] [D,B,D] [F,A,C,]|[C,E,EG]2 [F,A,C,]2|[F,A,C,]2|[F,B,D,F]2|[F,A,C,]4|[F,B,D,F] [F,A,C,] [D,B,D] [F,A,C,]|[C,E,EG]2 [F,A,C,]2|[C,E,EG]2|[F,A,C,]2|[C,E,EG]4|[F,A,C,] [C,E,EG] [F,A,C,] [G,D,GB]|[C,E,EG]3 [F,A,C,]|[F,B,D,F] [F,A,C,] [F,B,D,F] [F,A,C,]|[F,B,D,F]2 [F,A,C,]2|[D,B,D] [F,A,C,] [D,F,G,B,] [C,E,EG]|[F,A,C,]4|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

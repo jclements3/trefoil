@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>God Himself is Present — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>God Himself is Present</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4023\nT: God Himself is Present\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: G\n[V: M] \"^G\"B B B B|A2 \"^D\"A2|\"^Em\"G G G G|\"^E\"F2 \"^Bm\"F2|\"^C\"E E \"^G\"D \"^Em\"G|\"^D\"A \"^G\"B A2|G4|B B B B|A2 \"^D\"A2|\"^Em\"G G G G|\"^E\"F2 \"^Bm\"F2|\"^C\"E E \"^G\"D \"^Em\"G|\"^D\"A \"^G\"B A2|G4|B2 B2|\"^C\"c4|\"^D\"A2 A2|\"^G\"B4|\"^D\"d \"^G\"d \"^C\"c \"^G\"B|A2 B2|d d \"^Am\"c \"^G\"B|\"^Am7\"A2 \"^G\"G2|]\n[V: RH] [DGg]4|[FDfa]2|[Eeg]4|[EGB]2 [DFB]2|[CEg]2 [DBd] [Eeb]|[ADFa] [DBg]3|[DBg]4|[DBg]4|[DFA]2|[Egb]4|[EGe]2 [DFd]2|[CGc]2 [Ddg] [GBE]|[DFd] [GBD]3|[GBD]4|[GBD]4|[CGe]4|[DFf]4|[GBg]4|[DFa] [GBb] [CGg] [GDg]|[GDg]4|[CEA] [GDb]|[CEG]2 [Ggb]2|]\n[V: LH] [D,G,B,G]4|[D,F,A,D]2|[E,G,B,E]4|[E,G,B,E]2 [D,F,B,D]2|[C,E,G,C]2 [D,G,B,G] [E,G,B,E]|[D,F,A,D] [D,G,B,G]3|[D,G,B,G]4|[D,G,B,G]4|[D,F,A,F]2|[E,G,B,E]4|[E,G,B,E]2 [D,F,B,D]2|[C,E,G,C]2 [D,G,B,G] [E,G,B,E]|[D,F,A,F] [D,G,B,G]3|[D,G,B,G]4|[D,G,B,G]4|[C,E,G,C]4|[D,F,A,F]4|[D,G,B,G]4|[D,F,A,F] [D,G,B,G] [C,E,G,C] [D,G,B,G]|[D,G,B,G]4|[C,E,A,C] [D,G,B,G]|[C,E,G,A,]2 [D,G,B,G]2|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

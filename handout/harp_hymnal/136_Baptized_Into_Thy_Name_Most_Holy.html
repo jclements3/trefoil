@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Baptized Into Thy Name Most Holy — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Baptized Into Thy Name Most Holy</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4136\nT: Baptized Into Thy Name Most Holy\nM: 3/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: F\n[V: M] \"^F\"F A F|\"^C\"G2 \"^F\"c|\"^Bb\"B2 \"^F\"A|\"^C\"G \"^F\"F2|\"^C\"G \"^G\"G \"^C\"G|\"^F\"A2 \"^C\"c|\"^Dm7\"c2 \"^G\"=B|\"^C\"c3|\"^F\"F A F|\"^C\"G2 \"^F\"c|\"^Bb\"B2 \"^F\"A|\"^C\"G \"^F\"F2|\"^C\"G \"^G\"G \"^C\"G|\"^F\"A2 \"^C\"c|\"^Dm7\"c2 \"^G\"=B|\"^C\"c3|G \"^G7\"G \"^C\"G|\"^F\"A2 \"^Dm\"F|\"^Gm\"B2 \"^F\"A|\"^C\"G3|c c \"^F\"c|\"^Gm\"B2 \"^F\"A|\"^Gm7\"G \"^C\"G2|\"^F\"F3|]\n[V: RH] [FAC]3|[ECe]2 [FAf]|[DBdf]2 [FCf]|[ECg] [FCa]2|[GCE] [GBb] [GCg]|[Ffa]2 [CEGc]|[DFC]2 [GDg]|[CEGe]3|[ACF]3|[CEGg]2 [CFAc]|[FBDf]2 [CFAf]|[CEce] [CFcf]2|[CEcg] [GDb] [CEeg]|[CAcf]2 [CGce]|[DFd]2 [BDG]|[CGcg]3|[FGB] [CGeg]|[FACf]2 [DFAf]|[GDb]2 [FACa]|[Cceg]3|[FAfa]|[Ggb]2 [FCfa]|[DBd] [EGCe]2|[ACFa]3|]\n[V: LH] [F,A,A]3|[C,E,E]2 [F,A,A]|[D,B,D]2 [F,A,A]|[C,E,E] [F,A,A]2|[C,E,E] [G,GB] [C,E,E]|[F,A,A]2 [C,E,E]|[C,D,F,A,]2 [G,GB]|[C,E,E]3|[F,A,A]3|[C,E,E]2 [F,A,A]|[D,B,D]2 [F,A,A]|[C,E,E] [F,A,A]2|[C,E,E] [G,GB] [C,E,E]|[F,A,A]2 [C,E,E]|[C,D,F,A,]2 [G,GB]|[C,E,E]3|[D,F,G,B,] [C,E,E]|[F,A,A]2 [D,A,DF]|[G,B,D,B]2 [F,A,A]|[C,E,E]3|[F,A,A]|[G,B,D,B]2 [F,A,A]|[D,F,G,B,] [C,E,E]2|[F,A,A]3|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

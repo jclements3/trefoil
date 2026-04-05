@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Beautiful Savior — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Beautiful Savior</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4163\nT: Beautiful Savior\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: Eb\n[V: M] \"^Eb\"E2 \"^Cm\"E E|\"^Fm\"F \"^Bb\"D \"^Eb\"E2|G2 \"^Cm\"G \"^C7\"G|\"^Fm\"A \"^Bb\"F \"^Eb\"G2|B2 \"^C\"e c|\"^Eb\"B2 A G|A2 G2|\"^Bb\"F4|\"^Eb\"B2 \"^C\"c \"^Eb\"B|\"^C\"B G \"^Fm\"A2|\"^G#\"A2 \"^Gm\"B \"^G#\"A|A \"^Bb\"F \"^Eb\"G2|G2 \"^EbΔ7\"G \"^Cm\"G|\"^Eb\"B3 \"^C\"A|\"^Eb\"G2 \"^Bb\"F2|\"^Eb\"E4|]\n[V: RH] [EGBg]2 [CGg]2|[Ccf] [DBdf] [EGBb]2|[Cce] [GCb]|[FAC] [FBDf] [EGeg]2|[CEc]2|[EGeb]4|[EGeb]4|[FBDb]4|[EGgb]2 [CEe] [EBeg]|[CEg]2 [FAf]2|[GBb]2 [BDGb] [GDg]|[FBfb] [EBeb]2|[DEe] [Ccg]|[EBgb]3 [CGc]|[Eegb]2 [FDfb]2|[GBEb]4|]\n[V: LH] [G,B,E,G]2 [C,E,G,G]2|[C,F,A,F] [D,DF] [G,B,E,G]2|[C,E,G,G] [C,E,G,B,]|[C,F,A,F] [D,DF] [G,B,E,G]2|[C,CE]2|[G,B,E,G]4|[G,B,E,G]4|[D,DF]4|[G,B,E,G]2 [C,CE] [G,B,E,G]|[C,CE]2 [C,F,A,F]2|[D,G,B,D]2 [G,B,GB] [D,G,B,D]|[D,DF] [G,B,E,G]2|[D,E,G,B,] [C,E,G,G]|[G,B,E,G]3 [C,CE]|[G,B,E,G]2 [D,DF]2|[G,B,E,G]4|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

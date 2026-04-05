@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Now Rest Beneath Night's Shadow — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Now Rest Beneath Night's Shadow</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4312\nT: Now Rest Beneath Night's Shadow\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: G\n[V: M] \"^G\"B|\"^C\"G \"^F#°\"A \"^G\"B/2 \"^Am\"c/2 \"^Bm\"d|\"^CΔ7\"c2 \"^G\"B \"^Em\"B/2 c/2|\"^G\"d d \"^D\"A \"^Bm\"B|\"^Em\"G2 \"^D\"F \"^D7\"D|\"^G\"G \"^Am\"A \"^G\"B B|\"^D\"A3 \"^Eb\"B|\"^Em\"G \"^Bm7\"A \"^G\"B/2 c/2 \"^E7\"d|\"^Am\"c2 \"^E\"B \"^Em\"B/2 c/2|\"^D\"d \"^G\"d \"^A7\"A \"^E\"B|\"^Em\"G2 \"^Eb\"F \"^Bm\"D|\"^Em7\"G \"^Bm7\"A \"^G\"B \"^C\"c|\"^CΔ7\"B \"^D\"A \"^G\"G|]\n[V: RH] [GBD]|[Ceg] [FAfa]2 [BDFb]|[CGg]2 [GBg] [EBb]|[GBb]2 [ADFa] [DFB]|[Eeg]2 [DFA] [CFcf]|[GDg] [ACE] [Ggb]2|[DFd]3 [EBeb]|[Eeb] [ADb] [BDG] [DGBe]|[AEa]2 [GEb] [Egb]|[DFf] [DGBd] [CGg] [BEG]|[GBE]2 [EBgb] [DFd]|[DGBg] [AFb] [DGBg] [EGC]|[CBc] [DFa] [DGdg]|]\n[V: LH] [G,D,B]|[E,C,EG] [C,F,CF]2 [D,B,D]|[C,E,G,B,]2 [G,D,B] [E,G,B]|[G,D,B]2 [F,D,FA] [D,B,F]|[E,G,B]2 [A,D,F,A] [C,D,F,C]|[G,D,B] [C,E,A,E] [G,D,B]2|[A,D,F,A]3 [E,B,B]|[E,G,B] [D,F,A,B,] [G,D,B] [D,E,G,B,]|[C,E,A,E]2 [G,B,E,G] [E,G,B]|[A,D,F,A] [G,D,B] [C,E,G,C] [G,B,E,G]|[E,G,B]2 [E,B,B] [D,B,F]|[D,E,G,B,] [D,F,A,B,] [G,D,B] [E,C,EG]|[C,E,G,B,] [A,D,F,A] [G,D,B]|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

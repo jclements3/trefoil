@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>O Be Glad All Nations on Earth — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>O Be Glad All Nations on Earth</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4174\nT: O Be Glad All Nations on Earth\nM: 3/2\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: F\n[V: M] \"^F\"A4 \"^Bb\"B2|\"^C\"c4/3 B2/3 \"^F\"A2 \"^C7\"G2|\"^Dm\"F4 \"^C\"G2|\"^F\"A4/3 G2/3 A4|\"^Bb\"B2 A2 \"^Gm7\"G2|\"^F\"c4/3 B2/3 \"^Dm\"A2 \"^Gm\"G2|\"^F\"F4 \"^C\"E2|\"^F\"F6|A4 \"^Bb\"B2|\"^C\"c4/3 B2/3 \"^F\"A2 \"^C7\"G2|\"^Dm\"F4 \"^C\"G2|\"^F\"A4/3 G2/3 A4|\"^Bb\"B2 A2 \"^Gm7\"G2|\"^F\"c4/3 B2/3 \"^Dm\"A2 \"^Gm\"G2|\"^F\"F4 \"^C\"E2|\"^F\"F6|c4 c4/3 A2/3|\"^C\"c4 \"^F\"c2/3 d2/3 _e2/3|\"^Bb\"d4/3 c2/3 B2 \"^Bø7\"A2|\"^F\"A2 \"^C\"G4|\"^Am\"c4 \"^F\"c4/3 A2/3|\"^C\"c4 \"^F\"c2/3 d2/3 _e2/3|\"^Bb\"d4/3 c2/3 B2 \"^F\"A2|\"^C\"G6|\"^F\"A4 \"^Bb\"B2|\"^C\"c4/3 B2/3 \"^F\"A2 \"^C7\"G2|\"^Dm\"F4 \"^Gm\"G2|\"^Dm\"A4/3 G2/3 \"^A\"A4|\"^Eø7\"B2 \"^F\"A2 \"^Gm\"G2|\"^F\"c4/3 B2/3 A2 \"^Gm\"G2|\"^F\"F4 \"^C\"E2|\"^F\"F6|]\n[V: RH] [CFAf]4 [BDF]2|[EGCg]2 [CFcf]2 [CEGe]2|[DFA]4 [ECeg]2|[CAcf]6|[BFb]4 [FGf]2|[FACf]2 [DFd]2 [DGBd]2|[FACa]4 [GCEg]2|[FAfa]6|[DFBd]2|[CEG]2 [FCfa]2 [CEGg]2|[DFf]4 [CEc]2|[ACFa]6|[DFBf]4 [FGg]2|[CFA]2 [DFa]2 [DGBg]2|[CFc]4 [CEe]2|[CFf]6|[CFf]6|[CEg]4 [CAc]2|[DFdf]4 [DBf]2|[CAf]2 [CGc]4|[EAe]4 [Ccf]2|[CGe]4 [FAC]2|[DBdf]4 [FAf]2|[CGg]6|[FAa]4 [FBDf]2|[Cce]2 [FCf]2 [CEBc]2|[DAd]4 [DGdg]2|[DAf]2 [CAce]4|[DEg]2 [FCa]2 [DBdg]2|[Ffa]4 [GBDg]2|[ACF]4 [Ceg]2|[CFAc]6|]\n[V: LH] [C,F,A,C]4 [F,B,D,]2|[C,CE]2 [C,F,A,C]2 [C,E,G,B,]2|[D,DFA]4 [C,CE]2|[C,F,A,C]6|[F,B,D,]4 [D,F,G,B,]2|[C,F,A,C]2 [D,DFA]2 [G,D,GB]2|[C,F,A,C]4 [C,CE]2|[C,F,A,C]6|[F,B,D,]2|[C,CG]2 [C,F,A,C]2 [C,E,G,B,]2|[D,DFA]4 [C,CG]2|[C,F,A,C]6|[F,B,D,]4 [D,F,G,B,]2|[C,F,A,F]2 [D,DFA]2 [G,D,GB]2|[C,F,A,F]4 [C,CG]2|[C,F,A,F]6|[C,F,A,F]6|[C,CG]4 [C,F,A,F]2|[F,B,D,]4 [D,F,A,B,]2|[C,F,A,F]2 [C,CG]4|[C,A,E]4 [C,F,A,F]2|[C,CG]4 [C,F,A,F]2|[F,B,D,]4 [C,F,A,F]2|[C,CG]6|[C,F,A,F]4 [F,B,D,]2|[C,CG]2 [C,F,A,F]2 [C,E,G,B,]2|[D,DFA]4 [G,D,GB]2|[D,DFA]2 [E,A,E]4|[D,E,G,B,]2 [C,F,A,F]2 [G,D,GB]2|[C,F,A,F]4 [G,D,GB]2|[C,F,A,F]4 [C,CG]2|[C,F,A,F]6|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Nearer, My God, To Thee — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Nearer, My God, To Thee</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4200\nT: Nearer, My God, To Thee\nM: 6/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: G\n[V: M] \"^G\"B3 \"^D7\"A2 \"^Em\"G|\"^C\"G2 E E3|\"^G\"D3 G2 B|\"^D\"A3 A2 z|\"^G\"B3 \"^D7\"A2 \"^Em\"G|\"^C\"G2 E E3|\"^G\"D2 G \"^D\"F2 A|\"^G\"G3 G2 z|d3 \"^C\"e2 \"^G\"d|d2 B d3|d3 \"^C\"e2 \"^G\"d|\"^D\"d2 \"^G\"B \"^D\"A3|\"^G\"B3 \"^D7\"A2 \"^Em\"G|\"^C\"G2 E E3|\"^G\"D2 G \"^D\"F2 A|\"^G\"G3 G2 z|]\n[V: RH] [DGdg]3 [DFAd]2 [EGBe]|[CEGc]6|[DBdg]6|[Ddf]6|[GBDg]3 [DFAf]2 [EGBg]|[CEGe]6|[GBDb]3 [Dda]3|[GBgb]6|[CEGg]2 [GDgb]|[GDgb]6|[CEce]2 [BDGb]|[Dfa]2 [DGB] [FDf]3|[DGd]3 [DFAa]2 [EGBb]|[CEcg]6|[DBd]3 [FDa]3|[DBg]6|]\n[V: LH] [D,G,D]3 [C,D,F,A,]2 [G,B,E,G]|[E,C,E]6|[D,G,D]6|[F,A,D,]6|[D,G,D]3 [C,D,F,A,]2 [G,B,E,G]|[E,C,E]6|[D,G,D]3 [F,A,D,]3|[D,G,D]6|[E,C,E]2 [D,G,D]|[D,G,D]6|[E,C,E]2 [D,G,D]|[F,A,D,]2 [D,G,G] [F,A,D,]3|[D,G,G]3 [C,D,F,A,]2 [G,B,E,G]|[E,C,E]6|[D,G,G]3 [F,A,D,]3|[D,G,G]6|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

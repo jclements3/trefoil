@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>When The Roll Is Called Up Yonder — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>When The Roll Is Called Up Yonder</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4222\nT: When The Roll Is Called Up Yonder\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: G\n[V: M] \"^G\"G3/4 \"^Am\"A/4|\"^G\"B3/4 B/4 B3/4 B/4 B3/4 \"^D\"A/4 \"^G\"G3/4 G/4|\"^Am\"A3/4 \"^C\"G/4 G3/4 E/4 \"^G\"D G3/4 \"^Am\"A/4|\"^G\"B3/4 B/4 B3/4 B/4 B3/4 B/4 \"^D\"A3/4 \"^A7\"G/4|\"^D\"A3 \"^G\"G3/4 \"^Am\"A/4|\"^G\"B3/4 B/4 B3/4 B/4 B3/4 \"^D\"A/4 \"^G\"G3/4 G/4|\"^Am\"A3/4 \"^C\"G/4 G3/4 E/4 \"^G\"D G3/4 \"^Am\"A/4|\"^G\"B3/4 B/4 B3/4 G/4 \"^D7\"A3/4 A/4 A3/4 F/4|\"^G\"G3 B3/4 c/4|d2 d3/4 \"^Am\"c/4 \"^G\"B3/4 \"^D\"c/4|\"^G\"d2 B B3/4 B/4|\"^D\"c2 c3/4 \"^G\"B/4 \"^D\"A3/4 \"^G\"B/4|\"^D\"c2 A B3/4 c/4|\"^G\"d2 d3/4 B/4 \"^D\"A3/4 \"^G\"G/4|\"^C\"G2 c c3/4 \"^Am7\"A/4|\"^G\"B3/4 B/4 B3/4 G/4 \"^D7\"A3/4 A/4 A3/4 F/4|\"^G\"G3|]\n[V: RH] [DGd]|[DGg]3 [DBd]|[EACa]3/4 [Cceg]5/4 [DBg]2|[Ddg]4|[Ddfa]4|[GBD]3 [GBg]|[EAea]3/4 [EGCe]5/4 [GDg]2|[GDb]2 [FADa]2|[Ggb]4|[ECea]5/4|[BDG]4|[FADf]4|[FADa]4|[DGBd]4|[EGCg]4|[DGBg]2 [FCDf]2|[DGdg]3|]\n[V: LH] [G,B,B]|[G,B,B]3 [G,B,B]|[E,A,E]3/4 [G,C,G]5/4 [G,B,B]2|[G,B,B]4|[A,D,F,]4|[G,B,B]3 [G,B,B]|[E,A,E]3/4 [G,C,G]5/4 [G,B,B]2|[G,B,B]2 [C,D,F,A,]2|[G,B,B]4|[E,A,E]5/4|[G,B,B]4|[A,D,F,]4|[A,D,F,]4|[G,B,B]4|[G,C,G]4|[G,B,B]2 [C,D,F,A,]2|[G,B,B]3|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

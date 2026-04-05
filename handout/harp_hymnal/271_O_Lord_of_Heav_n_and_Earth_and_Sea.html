@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>O Lord of Heav'n and Earth and Sea — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>O Lord of Heav'n and Earth and Sea</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4271\nT: O Lord of Heav'n and Earth and Sea\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: D\n[V: M] \"^D\"A|d \"^C#°\"c/2 B/2 \"^D\"A \"^G\"B/2 \"^A\"A/2|\"^G\"G/2 F/2 \"^A\"E \"^D\"D F/2 G/2|A A \"^G\"B \"^C#°\"c|\"^D\"d \"^E7\"d/2 e/2 \"^A\"c \"^D\"d/2 c/2|\"^G\"B \"^D\"A \"^Em\"G \"^A\"E|\"^D\"F3/2 G/2 A \"^Bm\"D/2 E/2|\"^D\"F2 \"^A\"E2|\"^D\"D3|]\n[V: RH] [DFda]|[Cce] [DFfa]2|[DGB] [Eea] [DAda]2|[DGd] [Ccg]|[DAfa] [DEdg] [ACE] [Ddfa]|[DGg] [FADf] [Eeg] [AEa]|[FADa]3 [BDF]|[FDfa]2 [CEAc]2|[ADFa]3|]\n[V: LH] [D,A,DF]|[C,E,G,E] [D,A,DF]2|[B,D,G,B] [C,E,CE] [D,A,DF]2|[B,D,G,B] [C,E,G,E]|[D,A,DF] [D,E,G,B,] [C,E,CE] [D,A,DF]|[B,D,G,B] [D,A,DF] [E,G,B,] [C,E,CE]|[D,A,DF]3 [D,F,F]|[D,A,DF]2 [C,E,CE]2|[D,A,DF]3|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

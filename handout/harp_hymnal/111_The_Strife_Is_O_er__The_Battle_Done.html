@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>The Strife Is O'er, The Battle Done — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>The Strife Is O'er, The Battle Done</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4111\nT: The Strife Is O'er, The Battle Done\nM: 3/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: E\n[V: M] z \"^E\"G G|\"^A\"A3|\"^E\"G B B|\"^A\"c3|\"^E\"B B e|\"^Eb\"d3|\"^E\"e2 z|B B B|\"^A\"c2 \"^E\"B|\"^Ebm\"B \"^F#m\"A \"^C#m\"G|\"^Eb\"B3|\"^E\"G G G|\"^C#m\"G2 \"^Ebm\"G|\"^E\"G \"^F#m\"F \"^C#m\"E|\"^Eb\"F3|\"^Ebm\"B \"^E\"B B|\"^A\"c2 \"^E\"B|\"^Ebm\"B \"^F#m\"A \"^C#m\"G|\"^Eb\"B3|z \"^E\"B e|\"^Eb\"d3|\"^E\"e3|z G G|\"^A\"A3|\"^E\"G B B|\"^A\"c3|\"^E\"B B e|\"^Eb\"d3|\"^E\"e2 z|]\n[V: RH] [EGgb]2|[EACe]3|[EBeg]3|[EACa]3|[EBeb]3|[EGeg]3|[EBgb]3|[EBgb]3|[EAea]2 [Eegb]|[Egb] [Ccf] [GCg]|[EGeb]3|[GBEg]3|[CEGe]2 [GBE]|[GBEb] [FAC] [CEGg]|[EBeg]3|[GEg] [GEgb]2|[ECea]2 [BEGb]|[GEb] [FAf] [CEce]|[EBeb]3|[EGB]2|[EBgb]3|[EGe]3|[EGe]3|[CEc]3|[EGg]3|[CEe]3|[EGb]3|[Eegb]3|[EBe]3|]\n[V: LH] [E,G,EG]2|[A,C,E,A]3|[E,G,EG]3|[A,C,E,A]3|[E,G,EG]3|[E,G,GB]3|[E,G,EG]3|[E,G,EG]3|[A,C,E,A]2 [E,G,EG]|[E,G,B,E] [C,F,CF] [C,E,G,C]|[E,G,GB]3|[E,G,EG]3|[C,E,G,C]2 [E,G,B,E]|[E,G,EG] [C,F,CF] [C,E,G,C]|[E,G,GB]3|[E,G,B,E] [E,G,EG]2|[A,C,E,A]2 [E,G,EG]|[E,G,B,E] [C,F,CF] [C,E,G,C]|[E,G,GB]3|[E,G,EB]2|[E,G,GB]3|[E,G,EB]3|[E,G,EB]3|[C,E,A,]3|[E,G,EB]3|[C,E,A,]3|[E,G,EB]3|[E,G,GB]3|[E,G,EB]3|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Built on the Rock — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Built on the Rock</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4217\nT: Built on the Rock\nM: 3/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: F\n[V: M] \"^Dm\"D \"^Bb\"D \"^A\"A|\"^Dm\"F2 \"^D\"D|\"^Bb\"F2 \"^Gm\"G|\"^A\"A3|\"^Dm\"A \"^E7\"=B \"^Am\"c|\"^F\"A \"^Bb\"F \"^Gm\"G|\"^D\"E3|\"^Dm\"D3|\"^Bb\"D \"^Gm\"D \"^Dm\"A|\"^F\"F2 \"^Bb\"D|\"^Dm\"F2 \"^C\"G|\"^F\"A3|A \"^G7\"=B \"^C\"c|\"^F\"A \"^Dm\"F \"^Gm\"G|\"^Eø7\"E3|\"^Dm\"D3|d \"^Am\"c \"^E\"=B|\"^Am\"c2 \"^F\"A|A2 \"^C7\"G|\"^F\"F3|\"^A7\"A \"^Dm\"d \"^G#°7\"f|\"^Am\"e2 \"^B°\"d|\"^Am\"c2 \"^E7\"=B|\"^Am\"A3|\"^A7\"A \"^Dm\"A \"^A7\"G|\"^Dm\"F \"^Gm\"G \"^Gm7\"F|\"^D\"E3|\"^Dm\"D3|]\n[V: RH] [FAD] [FBD] [AEa]|[FDf]2 [FADa]|[FBf]2 [DGBd]|[CEAc]3|[FDa] [Eeb] [Cce]|[CFA] [FBb] [DGBg]|[FDfa]3|[ADF]3|[FDb] [DGdg] [ADa]|[CFc]2 [Ffb]|[DFAd]2 [ECg]|[CFf]3|[GDF] [GCE]|[CAc] [DFAf] [DBdg]|[DGg]3|[DFAa]3|[EAC] [EGBg]|[EAa]2 [CAf]|[EGCe]|[Ccf]3|[CAeg] [DFdf] [DFf]|[ECa]2 [DBf]|[Eea]2 [Egb]|[ACE]3|[Cceg] [DFda] [EGAC]|[DFfa] [GBDg] [Fgb]|[ADFa]3|[DAdf]3|]\n[V: LH] [F,A,D,F] [B,F,B] [E,EA]|[F,A,D,F]2 [F,D,A]|[B,F,B]2 [D,G,B,]|[E,EA]3|[F,A,D,F] [D,E,G,B,] [E,A,E]|[A,C,F,A] [B,F,B] [D,G,B,]|[F,D,A]3|[F,A,D,F]3|[B,F,B] [D,G,B,] [F,A,D,F]|[A,C,F,A]2 [B,F,B]|[F,A,D,F]2 [G,C,G]|[A,C,F,A]3|[D,F,G,B,] [G,C,G]|[A,C,F,A] [F,A,D,F] [D,G,B,]|[D,E,G,B,]3|[F,A,D,F]3|[E,A,E] [E,B,GB]|[E,A,E]2 [A,C,F,A]|[C,E,G,B,]|[A,C,F,A]3|[C,E,G,A,] [F,A,D,F] [D,F,G,B,]|[E,A,E]2 [D,F,B,F]|[E,A,E]2 [D,E,G,B,]|[E,A,E]3|[C,E,G,A,] [F,A,D,F] [C,E,G,A,]|[F,A,D,F] [D,G,B,] [D,F,G,B,]|[F,D,A]3|[F,A,D,F]3|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

@@ -495,8 +495,8 @@ def process_file(filepath, key_name, scale_midis, midi_to_pitch, key_acc, ko):
             r'(?:"[^"]*")*[_^=]*[A-Ga-g][,\']*[0-9/]*\.?|z[0-9/]*\.?|\(|\)',
             mel_bar,
         )
-        # Filter to just notes and rests (not slurs)
-        mel_note_tokens = [t for t in mel_tokens if re.match(r"[_^=]*[A-Ga-g]|z", t)]
+        # Filter to just notes and rests (not slurs), stripping annotations
+        mel_note_tokens = [t for t in mel_tokens if re.match(r'(?:"[^"]*")*[_^=]*[A-Ga-g]|z', t)]
 
         is_first_note = bar_idx <= 1  # first bar in the piece
 
@@ -529,7 +529,7 @@ def process_file(filepath, key_name, scale_midis, midi_to_pitch, key_acc, ko):
             has_accidentals = False
 
             # Check for accidentals (non-diatonic notes) in RH/LH
-            # Replace with nearest diatonic note — ALWAYS, regardless of needs_fix
+            # Replace with nearest diatonic note
             scale_set = set(scale_midis)
             for hand_list in [rh_midis, lh_midis]:
                 for idx_h in range(len(hand_list)):
@@ -633,6 +633,19 @@ def process_file(filepath, key_name, scale_midis, midi_to_pitch, key_acc, ko):
 
                 rh_midis = new_rh
                 lh_midis = new_lh
+
+            # Remove RH/LH notes that are a semitone from melody accidental
+            if melody_midi is not None and melody_midi not in scale_set:
+                mel_pc = melody_midi % 12
+                clash_pcs = {(mel_pc - 1) % 12, (mel_pc + 1) % 12}
+                rh_before = list(rh_midis)
+                lh_before = list(lh_midis)
+                rh_midis = [m for m in rh_midis if (m % 12) not in clash_pcs]
+                lh_midis = [m for m in lh_midis if (m % 12) not in clash_pcs]
+                if not rh_midis:
+                    rh_midis = [rh_before[len(rh_before)//2]] if rh_before else []
+                if not lh_midis:
+                    lh_midis = [lh_before[len(lh_before)//2]] if lh_before else []
 
                 # Compute new annotation for first note of each bar
                 if note_idx == 0:

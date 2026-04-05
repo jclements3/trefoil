@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>A Great and Mighty Wonder — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>A Great and Mighty Wonder</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4046\nT: A Great and Mighty Wonder\nM: none\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: F\n[V: M] \"^F\"c2|c c \"^Bb\"d \"^F\"c|\"^C\"c2 \"^Dm\"A2 \"^Bb\"B2|\"^F\"A \"^C\"G2 F2 E|\"^F\"F3 c2|c c \"^Bb\"d \"^F\"c|\"^C\"c2 \"^Dm\"A2 \"^Bb\"B2|\"^F\"A \"^C\"G2 F2 E|\"^F\"F3 A|\"^Gm\"G \"^Am\"E \"^F\"F \"^G\"D|\"^C\"C3 c|c \"^F\"c \"^Bb\"d \"^F\"c|\"^C\"c2 \"^D\"A2 \"^Gm\"B2|\"^F\"A \"^Gm\"G2 F2 E|\"^F\"F3|]\n[V: RH] [Ffa]2|[DFB] [ACF]|[ECeg]2 [ADFa]2 [DFd]2|[CFAc] [GCEg]5|[CFAf]5|[DFf] [CAcf]|[CEG]2 [DFA]2 [DBd]2|[FACf] [CEc]5|[FACa]4|[GBgb] [CEe] [FAfa] [DGd]|[CEe]4|[FCfa] [DBf] [ACFa]|[CEg]2 [ADFa]2 [GDgb]2|[CFA] [BDGb]5|[CFc]3|]\n[V: LH] [C,F,CF]2|[D,B,DF] [C,F,CF]|[C,E,G,G]2 [D,F,A,D]2 [D,B,DF]2|[C,F,CF] [C,E,G,G]5|[C,F,CF]5|[D,B,DF] [C,F,CF]|[C,E,CE]2 [D,F,A,F]2 [D,B,DF]2|[C,F,CF] [C,E,CE]5|[C,F,CF]4|[D,G,B,D] [C,E,CE] [C,F,CF] [G,B,D,B]|[C,E,CE]4|[C,F,CF] [D,B,DF] [C,F,CF]|[C,E,CE]2 [D,F,DF]2 [D,G,B,D]2|[C,A,CF] [D,G,B,D]5|[C,A,CF]3|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

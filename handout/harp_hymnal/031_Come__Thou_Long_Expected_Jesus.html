@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Come, Thou Long-Expected Jesus — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Come, Thou Long-Expected Jesus</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4031\nT: Come, Thou Long-Expected Jesus\nM: 2/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: C\n[V: M] \"^A\"A A/2 \"^G\"G/2|\"^Am\"E G/2 A/2|\"^C\"c B/2 A/2|\"^G\"B \"^A\"A|\"^Am\"A/2 G/2 \"^E\"E/2 D/2|E \"^G\"G/2 A/2|\"^C\"c \"^E\"B|\"^A\"A2|A A/2 \"^G\"G/2|\"^Am\"E G/2 A/2|\"^C\"c B/2 A/2|\"^G\"B \"^A\"A|\"^Am\"A/2 G/2 \"^E\"E/2 D/2|E \"^G\"G/2 A/2|\"^C\"c \"^E\"B|\"^A\"A2|\"^C\"c \"^G\"d|e e|\"^C\"c \"^A\"B/2 A/2|\"^E\"B \"^A\"A|\"^C\"c \"^D\"d|\"^C\"e e/2 d/2|c \"^Bm\"B/2 A/2|\"^E\"B2|\"^A\"A \"^C\"c/2 \"^D\"d/2|e \"^Am\"e|c \"^E\"B/2 A/2|\"^Bm\"B \"^A\"A|\"^Am\"A/2 G/2 E/2 D/2|E \"^G\"G/2 A/2|\"^C\"c \"^E\"B|\"^A\"A2|]\n[V: RH] [CAe]2|[Eea]2|[CEe]2|[GBD] [Cce]|[ACE] [Eeg]|[GBg]|[CEg] [Eeb]|[EAC]2|[GBb]/2|[AEa]2|[CGc]2|[GDg] [EAe]|[CEAe] [Egb]|[GDb]|[CGe] [GBE]|[EAa]2|[CGg] [Ggb]|[Ggb]2|[Cce] [ECa]|[GEg] [Eea]|[Ccg] [ADFa]|[Ceg]2|[FBD]|[GEb]2|[ACE]2|[CEce]|[BEG]|[FBf] [AEa]|[CAce]2|[BDG]|[EGC] [BEb]|[CEAc]2|]\n[V: LH] [C,E,A,E]2|[C,E,A,C]2|[C,E,G,E]2|[D,G,DG] [C,E,A,E]|[C,E,A,C] [E,G,B,E]|[D,G,DG]|[C,E,G,E] [E,G,B,E]|[C,E,A,E]2|[D,G,DG]/2|[C,E,A,C]2|[C,E,G,E]2|[D,G,DG] [C,E,A,E]|[C,E,A,C] [E,G,B,E]|[D,G,DG]|[C,E,G,E] [E,G,B,E]|[C,E,A,E]2|[C,E,G,E] [D,G,DG]|[D,G,DG]2|[C,E,G,E] [C,E,A,E]|[E,G,B,E] [C,E,A,E]|[C,E,G,E] [D,F,A,F]|[C,E,G,E]2|[D,F,B,D]|[E,G,B,E]2|[C,E,A,E]2|[C,E,A,C]|[E,G,B,E]|[D,F,B,D] [C,E,A,E]|[C,E,A,C]2|[D,G,DG]|[C,E,G,E] [E,G,B,E]|[C,E,A,E]2|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

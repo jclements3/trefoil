@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Fear Not, O Little Flock — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Fear Not, O Little Flock</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4273\nT: Fear Not, O Little Flock\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: F\n[V: M] \"^Gm\"G2 G \"^Cm\"G|\"^Bb\"d3 \"^F\"c|\"^Dm\"d \"^Gm\"B \"^D\"A2|z \"^Eb\"G \"^C7\"B A|\"^Bb\"B3 d|\"^F\"c \"^Gm\"B \"^D\"A2|z \"^F7\"A c2|\"^Cm\"c \"^Bb\"B \"^F\"A \"^Bb\"B|\"^F\"G2 F2|z \"^Dm\"F \"^Bb\"B A|B3 d|\"^F\"c \"^Gm\"B \"^D\"A2|z \"^Eb\"G \"^C7\"B A|\"^Bb\"B3 d|\"^F\"c \"^Gm\"B \"^D\"A2|z \"^Gm\"G d2|\"^Bb\"d \"^F\"c \"^Gm\"B \"^Cm\"c|\"^D\"A2 \"^G\"G2|]\n[V: RH] [GBgb]3 [GCg]|[DFB]3 [FCf]|[DAa] [GDgb] [DFA]2|[EBeb] [CBe]2|[DFd]4|[FCa] [BDGb] [DFd]2|[FCE]3|[CEGc] [DFf] [Ffa] [DBd]|[ACF]4|[Ddf] [DBf]2|[DBf]4|[CFAc] [DGB] [DFf]2|[EBgb] [CBg]2|[Ddf]4|[CFAf] [DGd] [DFa]2|[DGg]3|[FBD] [CFcf] [DBd] [CEGe]|[DAd]2 [DBg]2|]\n[V: LH] [D,B,D]3 [C,E,CG]|[F,B,D,B]3 [F,A,F]|[F,D,FA] [D,B,D] [D,A,DA]2|[E,B,E] [C,E,G,C]2|[F,B,D,B]4|[F,A,F] [D,B,D] [D,A,DA]2|[C,E,F,A,]3|[C,E,CG] [F,B,D,B] [F,A,F] [F,B,D,B]|[F,A,F]4|[F,D,FA] [F,B,D,B]2|[F,B,D,B]4|[F,A,F] [D,B,G] [D,A,DA]2|[E,B,E] [C,E,G,C]2|[F,B,D,B]4|[F,A,F] [D,B,G] [D,A,DA]2|[D,B,G]3|[F,B,D,B] [F,A,F] [D,B,G] [C,E,CG]|[D,A,DA]2 [B,D,G,B]2|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

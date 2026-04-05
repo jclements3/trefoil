@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>More Love to Thee — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>More Love to Thee</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4228\nT: More Love to Thee\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: G\n[V: M] \"^G\"D2 \"^C\"E \"^G\"D|G3/2 \"^D\"A/2 \"^G\"B2|B2 \"^D\"A \"^A7\"G|\"^D\"A3 z|\"^G\"D2 \"^C\"E \"^G\"D|G3/2 \"^D\"A/2 \"^G\"B2|\"^Am\"A2 \"^G\"G \"^D\"F|\"^G\"G3 z|\"^C\"c2 c c|c3/2 \"^G\"B/2 B2|\"^D7\"A2 \"^D\"A A|A3/2 \"^G\"G/2 G2|\"^C\"E2 E E|\"^G\"G3 z|\"^Am\"A2 \"^G\"G \"^D\"F|\"^G\"G3 z|]\n[V: RH] [GBDg]2 [GCg] [GBDb]|[Ddfa]/2 [GBgb]2|[FADf] [EGga]|[FADa]4|[GDgb]2 [CEGe] [BDGb]|[FDfa]/2 [DGB]2|[CEA]2 [DGd] [ADFa]|[DGg]4|[CEGg]4|[DBd]5/2|[ACDa]2 [DFA]2|[DBg]5/2|[CEce]4|[Ddg]4|[CEc]2 [GBD] [DFd]|[GBg]4|]\n[V: LH] [G,D,G]2 [C,E,G,C] [G,D,G]|[A,D,A]/2 [G,D,G]2|[A,D,A] [C,E,G,A,]|[A,D,A]4|[G,D,G]2 [C,E,G,C] [G,D,G]|[A,D,A]/2 [G,D,B]2|[E,A,A]2 [G,D,B] [A,D,A]|[G,D,B]4|[C,E,G,C]4|[G,D,B]5/2|[C,D,F,A,]2 [D,F,A,D]2|[G,D,B]5/2|[C,E,G,C]4|[G,D,B]4|[E,A,A]2 [G,D,B] [D,F,A,D]|[G,D,B]4|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

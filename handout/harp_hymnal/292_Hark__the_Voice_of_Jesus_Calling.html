@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Hark, the Voice of Jesus Calling — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Hark, the Voice of Jesus Calling</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4292\nT: Hark, the Voice of Jesus Calling\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: G\n[V: M] \"^G\"B \"^D\"A \"^G\"B d|\"^C\"c \"^Am\"A \"^G\"G \"^D\"F|\"^Em\"G \"^C\"E \"^D\"D \"^G\"B|\"^A7\"A \"^Am\"G \"^D\"A2|\"^G\"B \"^D\"A \"^G\"B d|\"^C\"c \"^Am\"A \"^G\"G \"^D7\"F|\"^Em\"G \"^C\"E \"^D7\"D \"^G\"B|\"^Am\"A3/2 G/2 \"^G\"G2|\"^A7\"A3/2 B/2 \"^G\"B \"^A7\"A|\"^D\"A d \"^C#°7\"^c \"^G\"B|\"^A\"A3/2 B/2 \"^D\"A \"^G#°\"d|\"^D\"d \"^A7\"e \"^D\"d2|\"^G\"B \"^D\"A \"^G\"B \"^Em7\"d|\"^C\"c \"^Am\"A \"^G\"G \"^F#°7\"F|\"^Em\"G \"^A7\"E \"^G\"D B|\"^Am\"A3/2 \"^G\"G/2 G2|]\n[V: RH] [GBDb] [DAa] [GBgb]2|[CGe] [ECa] [GDgb] [Ddf]|[GBEg] [CGg] [Dda] [BDGb]|[CEG] [Eea] [Dfa]2|[DGB] [FAD] [DGd]2|[Cce] [ACE] [DGg] [CDcd]|[GBEb] [Ccg] [CDcf] [DBd]|[CEAc]2 [DBg]2|[CEA]2 [GBD] [CEc]|[FDf]2 [CEc] [GBg]|[EAea]2 [FDa] [Ddg]|[ADF] [CEe] [ADa]2|[GBb] [DFAd] [GDg] [DEdg]|[Ceg] [CEAe] [GDb] [CFc]|[GEgb] [CEg] [Ggb]2|[CEce]3/2 [BDG]5/2|]\n[V: LH] [D,B,G] [F,A,D,F] [D,B,G]2|[C,CEG] [A,E,A] [D,B,G] [F,A,D,F]|[E,G,E] [C,CEG] [F,A,D,F] [D,B,G]|[C,E,G,C] [A,E,A] [F,A,D,F]2|[D,DG] [F,A,D,F] [D,DG]2|[C,CEG] [A,E,A] [D,DG] [C,D,F,C]|[E,G,E] [C,CEG] [C,D,F,C] [D,DG]|[A,E,A]2 [D,DG]2|[C,E,G,C]2 [D,DG] [C,E,G,C]|[F,A,D,F]2 [C,E,G,B,] [D,DG]|[C,A,CE]2 [F,A,D,F] [D,G,B,G]|[F,A,D,F] [C,E,G,C] [F,A,D,F]2|[D,DG] [F,A,D,F] [D,DG] [D,E,G,B,]|[C,CEG] [A,E,A] [D,DG] [C,E,F,A,]|[E,G,E] [C,E,G,C] [D,DG]2|[A,E,A]3/2 [D,DG]5/2|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

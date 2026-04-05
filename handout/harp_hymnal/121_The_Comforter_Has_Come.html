@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>The Comforter Has Come — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>The Comforter Has Come</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4121\nT: The Comforter Has Come\nM: 3/4\nL: 1/8\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: C\n[V: M] \"^C\"G2|G3 \"^F\"A \"^C\"G E|G4 c2|\"^F\"c3 \"^Dm\"d \"^F\"c A|c4 A2|\"^C\"G3 \"^F\"A \"^C\"G E|G4 E2|\"^Am\"E3 E \"^D\"D \"^Dm\"C|\"^G\"D4 G2|\"^C\"G3 \"^F\"A \"^C\"G E|G4 c2|\"^F\"c3 \"^Dm\"d \"^F\"c A|c4 A2|\"^C\"G4 c2|e4 \"^G7\"d2|\"^C\"c4|c2|e3 \"^Dm\"d \"^C\"c \"^Dm\"d|\"^C\"e4 c2|\"^F\"c3 \"^Dm\"d \"^F\"c A|c4 A2|\"^C\"G3 \"^F\"A \"^C\"G E|G4 E2|\"^Am\"E3 E \"^D\"D \"^Dm\"C|\"^G\"D4 G2|\"^C\"G3 \"^F\"A \"^C\"G E|G4 c2|\"^F\"c3 \"^Dm\"d \"^F\"c A|c4 A2|\"^C\"G4 c2|e4 \"^G7\"d2|\"^C\"c4|]\n[V: RH] [CEGc]2|[CFA] [CEGe]2|[CEGe]6|[CFc]3 [DAf] [CFf]2|[CFf]6|[CEGg]3 [CAc] [CEce]2|[CEce]6|[ECa]4 [DFfa] [DAa]|[DGg]6|[CEcg]3 [CAf] [CEeg]2|[CEeg]6|[Ccf]3 [Ddf] [FAf]2|[FAf]6|[CGce]6|[Ddg]2|[CGcg]4|[CGcg]2|[Dda] [CGeg] [Dfa]|[Cceg]6|[FAa]3 [FAD] [FCf]2|[FCf]6|[EGCe]3 [FCa] [EGCg]2|[EGCg]6|[Eea]4 [DAdf] [FDf]|[DBd]6|[ECeg]3 [Ffa] [CEc]2|[CEc]6|[ACF]3 [FDa] [CFAc]2|[CFAc]6|[CEe]6|[Dfg]2|[CEg]4|]\n[V: LH] [G,C,E,G]2|[F,A,C,] [G,C,E,G]2|[G,C,E,G]6|[F,A,C,]3 [D,F,FA] [F,A,C,]2|[F,A,C,]6|[G,C,E,G]3 [F,A,C,] [G,C,E,G]2|[G,C,E,G]6|[A,C,E,A]4 [F,D,FA] [D,F,FA]|[G,D,G]6|[G,C,E,G]3 [F,A,C,] [G,C,E,G]2|[G,C,E,G]6|[F,A,C,]3 [D,F,FA] [F,A,C,]2|[F,A,C,]6|[G,C,E,G]6|[D,F,G,B,]2|[G,C,E,G]4|[G,C,E,G]2|[D,F,FA] [G,C,E,G] [D,F,FA]|[G,C,E,G]6|[F,A,C,]3 [D,F,FA] [F,A,C,]2|[F,A,C,]6|[G,C,E,G]3 [F,A,C,] [G,C,E,G]2|[G,C,E,G]6|[A,C,E,A]4 [F,D,FA] [D,F,FA]|[G,D,G]6|[G,C,E,G]3 [F,A,C,] [C,E,G,]2|[C,E,G,]6|[F,A,C,]3 [D,F,FA] [F,A,C,]2|[F,A,C,]6|[C,E,G,]6|[D,F,G,B,]2|[C,E,G,]4|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

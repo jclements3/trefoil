@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>That Men a godly Life Might Live — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>That Men a godly Life Might Live</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4157\nT: That Men a godly Life Might Live\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: C\n[V: M] z \"^Em\"G \"^CΔ7\"G G|\"^G\"G \"^C\"G \"^G\"G/2 \"^Am\"A/2 \"^G\"B|\"^C\"c2 z c|\"^G\"d \"^Dm\"d \"^Am\"c \"^Em\"G|\"^Dm\"A \"^G\"B \"^C\"c2|z \"^Dm7\"c \"^Dm\"d d|\"^Am\"c \"^Em\"G \"^F\"A \"^C\"G|\"^Dm\"F2 z F|A \"^G\"B \"^C\"c2|\"^Gm\"_B \"^G\"G B2|\"^Gm\"_B3/2 \"^Dm\"A/2 \"^Em\"G2|\"^G\"G4|]\n[V: RH] [Egb] [CEe]2|[DGBg] [Cceg]2 [DBdg]|[EGCe]4|[GBDg] [ADa] [CEAe] [GBE]|[DFAd] [GBDb] [EGCg]2|[DCd] [DFAf]2|[CEce] [GEg] [FAf] [ECeg]|[DFAa]4|[GBgb] [GCEg]2|[DGBd] [GDgb]3|[DGBg]2 [GEb]2|[BDGb]4|]\n[V: LH] [E,B,GB] [C,E,G,B,]2|[D,G,DG] [C,G,E]2 [D,G,DG]|[C,G,E]4|[D,G,DG] [D,A,FA] [C,E,E] [E,B,GB]|[D,A,FA] [D,G,DG] [C,G,E]2|[C,D,F,A,] [D,A,FA]2|[C,E,E] [E,B,GB] [F,FA] [C,G,E]|[D,A,FA]4|[D,G,DG] [C,G,E]2|[G,B,GB] [D,G,DG]3|[G,B,GB]2 [E,B,GB]2|[D,G,DG]4|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

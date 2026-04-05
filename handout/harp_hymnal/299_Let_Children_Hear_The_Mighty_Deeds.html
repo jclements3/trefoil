@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Let Children Hear The Mighty Deeds — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Let Children Hear The Mighty Deeds</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4299\nT: Let Children Hear The Mighty Deeds\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: A\n[V: M] \"^A\"E|c A \"^D\"F \"^A\"E|\"^F#m\"A \"^E\"B \"^A\"c \"^E\"e|\"^A\"c \"^F#m7\"A \"^E\"F \"^Eb\"F|\"^E\"E3 B/2 c/2|\"^D\"d \"^E7\"d \"^A\"c A|\"^D\"F \"^Bm\"B \"^E\"G e/2 d/2|\"^A\"c \"^F#m\"c \"^Bm\"B \"^E\"G|\"^A\"A3|]\n[V: RH] [CEc]|[DFf] [CEe]|[FCf] [EBe] [CAc] [EBg]|[CAe] [CEf] [EBb] [EBg]|[Eeg]4|[DFa] [DEeg] [Cce]2|[DAd] [FBf] [Eeb]2|[EAC] [FCa] [FBb] [Egb]|[EAe]3|]\n[V: LH] [E,A,C,E]|[F,A,D,A] [E,A,C,E]|[F,A,FA] [G,B,E,G] [E,A,C,E] [G,B,E,G]|[E,A,C,E] [C,E,F,A,] [G,B,E,G] [E,B,B]|[G,B,E,G]4|[F,A,D,A] [D,E,G,B,] [E,A,C,E]2|[F,A,D,A] [D,B,D] [G,B,E,G]2|[E,A,C,E] [F,A,FA] [D,B,D] [G,B,E,G]|[E,A,C,E]3|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

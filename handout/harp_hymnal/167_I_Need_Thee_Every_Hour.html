@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>I Need Thee Every Hour — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>I Need Thee Every Hour</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4167\nT: I Need Thee Every Hour\nM: 3/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: G\n[V: M] \"^G\"G|B3/2 \"^Am\"A/2 \"^G\"G/2 \"^D\"F/2|\"^G\"G2 G|\"^C\"G3/2 A/2 G/2 E/2|\"^G\"D2 \"^D\"D|A3/2 \"^G\"B/2 \"^D\"A/2 D/2|\"^G\"B2 G|\"^D\"F3/2 G/2 F/2 \"^C#°\"E/2|\"^D\"D2|\"^G\"B|B3/2 G/2 \"^C\"c/2 \"^G\"B/2|B \"^D\"A2|A3/2 \"^G\"G/2 \"^Bm\"B/2 \"^D\"A/2|\"^Am\"A \"^G\"G G|\"^C\"G3/2 \"^Am7\"A/2 \"^C\"G/2 E/2|\"^G\"D G \"^Am7\"A|\"^G\"B3/2 G/2 \"^D7\"A|\"^G\"G2|]\n[V: RH] [GBgb]|[CEce]3/2|[GDgb]3|[ECg]3|[BDGb]2 [Ddfa]|[DGB]/2 [FADf]|[DGd]3|[FADa]3|[FDfa]2|[DGg]|[GCE]|[ADFa]2|[DBd]3/2|[CAce] [DBg]2|[GCg]2 [CEGc]|[Ddg]2 [EAC]|[GBD]2 [CDAc]|[GBg]2|]\n[V: LH] [G,B,D,G]|[C,A,C]3/2|[G,B,D,G]3|[C,CE]3|[G,B,D,G]2 [D,A,F]|[G,B,D,B]/2 [D,A,F]|[G,B,D,B]3|[D,A,F]3|[D,A,F]2|[G,B,D,B]|[C,CE]|[D,A,F]2|[G,B,D,B]3/2|[C,A,C] [G,B,D,B]2|[C,CE]2 [C,CE]|[G,B,D,B]2 [C,E,G,A,]|[G,B,D,B]2 [C,D,F,A,]|[G,B,D,B]2|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

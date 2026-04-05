@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>O Holy Spirit, Enter In — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>O Holy Spirit, Enter In</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4024\nT: O Holy Spirit, Enter In\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: Eb\n[V: M] z2 E2|\"^Bb\"B2 \"^Eb\"G2|\"^Cm\"E2 \"^Bb\"B2|\"^Cm7\"c \"^F\"c \"^Bb\"B2|z \"^Cm7\"B \"^Gm\"c d|\"^Eb\"e \"^Bb\"d c \"^F7\"c|\"^Bb\"B2 z B|\"^C\"c2 \"^Eb\"B2|\"^C\"A \"^Eb\"G \"^Bb\"F2|\"^Eb\"E4|z2 E2|\"^Bb\"B2 \"^Eb\"G2|\"^Cm\"E2 \"^Bb\"B2|\"^Cm7\"c \"^F\"c \"^Bb\"B2|z \"^Cm7\"B \"^Gm\"c d|\"^Eb\"e \"^Bb\"d c \"^F7\"c|\"^Bb\"B2 z B|\"^C\"c2 \"^Eb\"B2|\"^C\"A \"^Eb\"G \"^Bb\"F2|\"^Eb\"E4|\"^Gm\"B2 \"^Eb\"G2|\"^Gm\"B2 \"^Eb\"G2|G G F \"^Bb\"F|\"^Eb\"G G F \"^Bb\"F|\"^Eb\"G G \"^Bb\"F \"^Eb\"E|\"^Cm\"e2 \"^Eb\"B2|\"^C\"c2 \"^Eb\"B2|\"^C\"A \"^Eb\"G \"^Bb\"F2|\"^Eb\"E4|]\n[V: RH] z4|[DFB]2 [EGB]2|[CEG]2 [DFd]2|[CEG] [CFA] [DFf]2|[CEB] [DGB]2|[EGe] [DBd]2 [CEF]|[DBf]4|[Cce]2 [EGg]2|[Ccg] [EGb] [Ddf]2|[EBe]4|[EBe]4|[FBD]2 [EBg]2|[CEc]2 [FBf]2|[CEc] [CFc] [FBb]2|[CEe] [DGd]2|[EBb] [FDb]2 [CEA]|[Ffb]4|[Ceg]2 [Eeg]2|[EGC] [Eeb] [BDF]2|[Egb]4|[DGg]2 [GBE]2|[DBd]2 [GEg]2|[BFb]|[GEb]3 [DFBf]|[BEG]2 [DFdf] [BEb]|[CEe]2 [EGBg]2|[ECe]2 [EGBb]2|[ECg] [EGeg] [DBdf]2|[EGeb]4|]\n[V: LH] z4|[D,F,B,D]2 [E,G,B,E]2|[C,E,G,C]2 [D,F,B,D]2|[C,E,G,B,] [C,F,A,C] [D,F,B,D]2|[C,E,G,B,] [D,G,B,D]2|[E,G,B,E] [D,F,B,D]2 [C,E,F,A,]|[D,F,B,D]4|[C,E,G,C]2 [E,G,B,E]2|[C,E,G,C] [E,G,B,E] [D,F,B,D]2|[E,G,B,E]4|[E,G,B,E]4|[D,F,B,D]2 [E,G,B,E]2|[C,E,G,C]2 [D,F,B,D]2|[C,E,G,B,] [C,F,A,C] [D,F,B,D]2|[C,E,G,B,] [D,G,B,D]2|[E,G,B,E] [D,F,B,D]2 [C,E,F,A,]|[D,F,B,D]4|[C,E,G,C]2 [E,G,B,E]2|[C,E,G,C] [E,G,B,E] [D,F,B,D]2|[E,G,B,E]4|[D,G,B,D]2 [E,G,B,E]2|[D,G,B,D]2 [E,G,B,E]2|[D,F,B,D]|[E,G,B,E]3 [D,F,B,D]|[E,G,B,E]2 [D,F,B,D] [E,G,B,E]|[C,E,G,C]2 [E,G,B,E]2|[C,E,G,C]2 [E,G,B,E]2|[C,E,G,C] [E,G,B,E] [D,F,B,D]2|[E,G,B,E]4|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

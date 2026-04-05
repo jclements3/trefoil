@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>My Neighbor — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>My Neighbor</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4186\nT: My Neighbor\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: G\n[V: M] \"^G\"G|G \"^D\"F \"^Em\"G \"^G\"G|\"^Am7\"A \"^D\"A \"^G\"B G|\"^Am\"c \"^F#°\"c \"^G\"B B|\"^Am7\"A \"^D7\"A \"^G\"G d|\"^Am\"c \"^D\"A \"^G\"B B|\"^Am\"A \"^D\"A \"^G\"G D|\"^Am\"E \"^D\"F \"^Em\"G \"^Bm\"B|\"^Am\"A \"^D\"A \"^G\"G|]\n[V: RH] [DBg]|[DAfa] [EGb] [Ddg]|[Eea] [Ddfa] [GBD]2|[CEe] [Ffa] [GBg]2|[Ega] [CFdf] [GBb]2|[CAc] [FADf] [GDg]2|[CAe] [FADa] [GDb]2|[EAC] [FDfa] [EBe] [DFBf]|[EAe] [ADFa] [Ggb]|]\n[V: LH] [D,G,B,]|[D,DA] [G,B,E,G] [D,G,B,]|[C,E,G,A,] [D,DA] [D,G,B,]2|[C,CE] [C,F,A,F] [D,G,B,]2|[C,E,G,A,] [C,D,F,A,] [D,G,B,]2|[C,CE] [D,DA] [D,G,B,]2|[C,CE] [D,DA] [D,G,B,]2|[C,CE] [D,DA] [G,B,E,G] [F,D,FB]|[C,CE] [D,DA] [D,G,B,]|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

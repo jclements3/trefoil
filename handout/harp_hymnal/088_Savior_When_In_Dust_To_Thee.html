@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Savior When In Dust To Thee — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Savior When In Dust To Thee</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4088\nT: Savior When In Dust To Thee\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: F\n[V: M] \"^Dm\"D D/2 \"^A\"E/2 \"^Dm\"F/2 G/2 \"^F\"A|\"^Dm\"F \"^A\"E \"^Dm\"D2|F \"^A\"E \"^Dm\"D \"^A\"^C|\"^Dm\"D/2 E/2 F \"^A\"E2|\"^Dm\"D D/2 \"^C#m\"E/2 \"^Dm\"F/2 G/2 \"^F\"A|\"^Dm\"F \"^A\"E \"^Dm\"D2|\"^A\"E \"^Dm\"F/2 \"^C\"G/2 \"^F\"A \"^E°\"G|\"^Dm\"F \"^A\"E \"^Dm\"D2|\"^Bb\"D \"^F\"C \"^Bb\"D \"^E°\"E|\"^F\"F \"^Am\"A/2 G/2 \"^F\"F2|\"^Dm\"F \"^A\"E \"^Dm\"F \"^C\"G|\"^F\"A \"^C\"c/2 \"^G#°\"=B/2 \"^Am\"A2|\"^Bb\"d d \"^F\"c A|\"^Dm\"F \"^Gm\"G \"^A\"A2|\"^Dm\"D D/2 \"^C#°\"E/2 \"^Dm\"F/2 G/2 \"^F\"A|\"^Dm\"F \"^A\"E \"^Dm\"D2|]\n[V: RH] [ADFa]2 [DFA] [FAfa]|[DFd] [EAe] [DFf]2|[EAa] [DFa] [ECa]|[DAd]2 [Eea]2|[DAf]2 [DAa] [FCfa]|[Ddf] [ACE] [Dda]2|[AEa]2 [ACFa] [Egb]|[Dfa] [CEAc] [FAD]2|[FBD] [CFA] [FBf] [GBE]|[CFf] [ECea] [CAc]2|[FDf] [CEAe] [FDa] [ECeg]|[CAf]2 [ACEa]2|[FBb]2 [Ccf]2|[ADF] [GDb] [CEce]2|[ADa]2 [DFAd] [FAC]|[DFAf] [CAce] [DFAa]2|]\n[V: LH] [D,F,A,A]2 [D,F,DF] [C,F,A,]|[D,F,DF] [E,C,EA] [D,F,DF]2|[E,C,EA] [D,F,DF] [E,C,EA]|[D,F,DF]2 [E,C,EA]2|[D,F,DF]2 [D,F,DF] [C,F,A,]|[D,F,DF] [E,C,EA] [D,F,DF]2|[E,C,EA]2 [C,F,A,] [E,G,B,E]|[D,F,DF] [E,C,EA] [D,F,DF]2|[F,D,FB] [C,F,C] [F,D,FB] [E,G,B,E]|[C,F,C] [E,A,C,A] [C,F,C]2|[D,F,DF] [E,C,EA] [D,F,DF] [C,G,EG]|[C,F,C]2 [E,A,C,A]2|[F,D,FB]2 [C,F,C]2|[D,F,DF] [D,G,DG] [E,C,EA]2|[D,F,DF]2 [D,F,DF] [C,F,C]|[D,F,DF] [E,C,EA] [D,F,DF]2|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

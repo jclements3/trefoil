@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>I'm But A Stranger Here — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>I'm But A Stranger Here</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4213\nT: I'm But A Stranger Here\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: G\n[V: M] \"^G\"G2 \"^Am\"G \"^G\"G|\"^Am\"G \"^D7\"F A2|D2 \"^D\"D E|\"^G\"D4|D2 B \"^C#ø7\"B|\"^Bm\"B \"^D\"A \"^E7\"d2|\"^F#m\"A2 \"^D\"F \"^A7\"E|\"^D\"D4|\"^D7\"A2 \"^C\"B \"^D7\"A|\"^G\"A G D2|\"^D\"c2 \"^Em7\"B \"^D7\"A|\"^G\"A \"^C\"G \"^G\"D2|\"^G7\"B2 \"^E\"e \"^Em\"d|\"^D\"d \"^Am\"c \"^E\"B \"^Am\"A|\"^G\"G2 \"^D\"A F|\"^G\"G4|]\n[V: RH] [GDgb]2 [EAea] [BDGb]|[ECea] [DACd]3|[DFAf]2|[DGB]4|[CGe]|[Ffb] [DFAa] [Eeg]2|[CFf]2 [DFdf] [CAcg]|[DFda]4|[DACf]2 [CGeg] [DACa]|[DGd]4|[DFfa]2 [EDg] [DAdf]|[DGg] [Cceg] [DBd]2|[Fgb]2 [BEb] [GEb]|[DAdf] [ACEa] [EGBe] [CEA]|[DBg]2 [DAda]2|[Ddg]4|]\n[V: LH] [D,DG]2 [E,A,C,] [D,DG]|[E,A,C,] [C,D,F,A,]3|[F,D,A]2|[G,B,D,]4|[C,E,G,B,]|[B,D,F,B] [F,D,A] [D,E,G,B,]2|[F,A,C,A]2 [F,D,A] [C,E,G,A,]|[F,D,A]4|[C,D,F,A,]2 [G,C,E,] [C,D,F,A,]|[G,B,D,]4|[F,D,A]2 [D,E,G,B,] [C,D,F,A,]|[G,B,D,] [G,C,E,] [G,B,D,]2|[D,F,G,B,]2 [E,B,GB] [G,B,E,B]|[F,D,A] [E,A,C,] [E,B,GB] [E,A,E]|[G,B,D,]2 [F,D,A]2|[G,B,D,]4|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

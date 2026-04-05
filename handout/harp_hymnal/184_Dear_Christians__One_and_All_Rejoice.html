@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Dear Christians, One and All Rejoice — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Dear Christians, One and All Rejoice</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4184\nT: Dear Christians, One and All Rejoice\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: G\n[V: M] z \"^Em\"G \"^C\"G B|\"^D\"A \"^Em\"G \"^Am\"A \"^D\"A|\"^G\"B2 \"^Em\"G2|\"^G\"B \"^C\"c \"^D\"d \"^G\"B|A2 G2|z \"^Em\"G \"^C\"G B|\"^D\"A \"^Em\"G \"^Am\"A \"^D\"A|\"^G\"B2 \"^Em\"G2|\"^G\"B \"^C\"c \"^D\"d \"^G\"B|A2 G2|z \"^Em\"B \"^B\"B A|\"^C\"G \"^D\"F \"^Em\"G \"^C\"E|\"^G\"D2 z D|G \"^C\"G \"^G\"G \"^D\"F|\"^Em\"G \"^Am\"A \"^Eb\"B2|\"^Em\"G2 \"^G\"B \"^Am\"c|\"^D\"d \"^G\"B \"^D\"A2|\"^G\"G4|]\n[V: RH] [EGeb] [CGeg]2|[FDfa] [EGgb] [CEce] [ADFa]|[DGB]2 [EBeg]2|[DGd] [Cceg] [DFA] [DGg]|[DGg]4|[EBeb] [EGCe]2|[DFd] [EBgb] [CAce] [DFf]|[DBd]2 [GBEg]2|[DBg] [EGCg] [DFa] [Ddg]|[Ddg]4|[GBEb] [DBf]2|[ECeg] [DAd] [GEgb] [GCEg]|[GBD]4|[CEG] [GBg] [DAf]|[BEGb] [EACe] [GBEb]2|[EGB]2 [GBb] [EACa]|[DAa] [GDg] [Ddf]2|[GDb]4|]\n[V: LH] [E,EGB] [C,EG]2|[D,DF] [E,EGB] [C,A,E] [D,DF]|[B,D,G,B]2 [E,EGB]2|[B,D,G,B] [C,EG] [D,DA] [B,D,G,B]|[B,D,G,B]4|[E,EGB] [C,EG]2|[D,DA] [E,EGB] [C,A,E] [D,DA]|[B,D,G,B]2 [E,EGB]2|[B,D,G,B] [C,EG] [D,DA] [B,D,G,B]|[B,D,G,B]4|[E,EGB] [D,F,B,D]2|[C,EG] [D,DA] [E,EGB] [C,EG]|[B,D,G,B]4|[E,G,C,] [B,D,G,B] [D,DA]|[E,EGB] [C,A,E] [G,E,GB]2|[G,B,E,G]2 [B,D,G,B] [C,A,E]|[D,DA] [B,D,G,B] [D,DA]2|[B,D,G,B]4|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

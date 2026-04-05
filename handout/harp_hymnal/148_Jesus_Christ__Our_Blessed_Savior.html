@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Jesus Christ, Our Blessed Savior — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Jesus Christ, Our Blessed Savior</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4148\nT: Jesus Christ, Our Blessed Savior\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: C\n[V: M] \"^Dm\"D2 \"^A\"A2|\"^Dm\"A3/2 G/2 \"^A\"A \"^Dm\"D|F2 F2|F2 E2|D2 z2|F F \"^Bb\"F \"^F\"F|\"^Gm\"G2 \"^C\"G2|\"^F\"A3/2 \"^C\"G/2 \"^Dm\"F \"^A\"E|\"^Dm\"D4|F F \"^F\"F \"^Dm\"F|\"^Gm\"G2 \"^C\"G2|\"^F\"A3/2 \"^C\"G/2 \"^Dm\"F2|\"^F\"c \"^Bb\"d \"^C\"c/2 B/2 \"^F\"A|\"^Dm\"F2 \"^C\"G2|\"^F\"A3/2 \"^C\"G/2 \"^Dm\"F \"^A\"E|\"^Dm\"D4|]\n[V: RH] [DFAa]2 [EACa]2|[DFdf]2 [EAea] [DFda]|[DFda]4|[DFda]4|[DFda]4|[FBf] [CAc]|[DBg]2 [CGeg]2|[CAf]2 [DFfa] [ECea]|[DAdf]4|[Ccf] [DAfa]|[Ddg]2 [Cceg]2|[FAC]2 [Ddfa]2|[FAf] [FBb] [EGCe] [FAa]|[FADf]2 [EGCg]2|[FCf]2 [FADa] [ACEa]|[FDfa]4|]\n[V: LH] [D,A,DA]2 [C,CE]2|[D,A,DA]2 [C,CE] [D,A,DA]|[D,A,DA]4|[D,A,DA]4|[D,A,DA]4|[D,B,F] [F,C,A]|[G,B,GB]2 [C,G,C]2|[F,C,A]2 [D,A,DA] [C,CE]|[D,A,DA]4|[F,C,A] [D,A,DA]|[G,B,GB]2 [C,G,C]2|[F,C,A]2 [D,A,DA]2|[F,C,A] [D,B,F] [C,G,C] [F,C,A]|[D,A,DA]2 [C,G,C]2|[F,C,A]2 [D,A,DA] [C,CE]|[D,A,DA]4|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

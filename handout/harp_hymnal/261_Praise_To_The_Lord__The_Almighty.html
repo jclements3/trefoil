@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Praise To The Lord, The Almighty — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Praise To The Lord, The Almighty</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4261\nT: Praise To The Lord, The Almighty\nM: 3/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: G\n[V: M] \"^G\"G \"^Em\"G \"^D\"d|\"^G\"B3/2 \"^D7\"A/2 \"^Em\"G|\"^Bm\"F \"^C\"E \"^G\"D|\"^Em\"E \"^D\"F \"^G\"G|A3|G3|G \"^Em\"G \"^D\"d|\"^G\"B3/2 \"^D7\"A/2 \"^Em\"G|\"^Bm\"F \"^C\"E \"^G\"D|\"^Em\"E \"^D\"F \"^G\"G|A3|G3|d \"^D\"d \"^G\"d|\"^C\"e3|\"^G\"B3/2 \"^C\"c/2 \"^D\"d|\"^G\"d3/2 \"^Am\"c/2 \"^G\"B|\"^D\"A3|D \"^C\"E \"^F#°\"F|\"^G\"G \"^D\"A \"^G\"B|\"^Am7\"A3|\"^G\"G3|]\n[V: RH] [BDG] [EGBg] [ADF]|[DGBd]2 [EGBb]|[FBf] [ECe] [DGBg]|[EGeg] [ADa] [DGdg]|[DGdg]3|[DGdg]3|[EGeb] [DFAd]|[GBDg]2 [EGgb]|[FBb] [ECg] [GBDb]|[EBeg] [DFAf] [GBgb]|[GBgb]3|[GBgb]3|[DFAa] [GDgb]|[GCE]3|[BDGb]2 [DFdf]|[DGB]2 [DGd]|[DFfa]3|[GCg] [CFf]|[DGg] [DAdf] [DBd]|[ACG]3|[DBg]3|]\n[V: LH] [D,B,DG] [B,E,G,B] [D,F,DA]|[D,B,DG]2 [B,E,G,B]|[D,F,F] [C,E,CG] [D,B,DG]|[B,E,G,B] [D,F,DA] [D,B,DG]|[D,B,DG]3|[D,B,DG]3|[B,E,G,B] [D,F,DA]|[D,B,DG]2 [B,E,G,B]|[D,F,F] [C,E,CG] [D,B,DG]|[B,E,G,B] [D,F,DA] [D,B,DG]|[D,B,DG]3|[D,B,DG]3|[D,F,DA] [D,B,DG]|[C,E,CG]3|[D,B,DG]2 [D,F,DA]|[G,B,D,G]2 [G,B,D,G]|[D,F,DA]3|[C,E,CG] [C,F,CF]|[G,B,D,G] [D,F,DA] [G,B,D,G]|[C,E,G,A,]3|[G,B,D,G]3|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

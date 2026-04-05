@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>My Hope Is Built — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>My Hope Is Built</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4282\nT: My Hope Is Built\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: C\n[V: M] \"^C\"C|E3/2 E/2 G G|\"^F\"A A \"^C\"G \"^G\"G|\"^Am\"c \"^D\"d \"^G\"B G|G \"^D\"^F \"^G\"G D|\"^G7\"F3/2 F/2 \"^C\"E E|\"^A7\"G3/2 \"^Am7\"G/2 \"^D\"^F \"^Eb\"B|\"^Em\"G \"^F#m\"^F \"^Em\"E \"^Am\"A|\"^Em\"G \"^Eb\"^F \"^Em\"E E|\"^C7\"E3/2 \"^CΔ7\"E/2 \"^F\"F F|\"^D7\"^F3/2 \"^Dm7\"F/2 \"^G\"G \"^G7\"G|\"^C\"G \"^D7\"A \"^C\"G E|\"^G7\"D3/2 \"^C\"C/2 C|]\n[V: RH] [GCg]|[GCg]4|[FACf]2 [CEGc] [DGg]|[CAc] [DFa] [DBd]2|[DAd] [DBg]2|[DFBg]2 [CEGe]2|[GACa]2 [DAf] [EGeb]|[EGeb] [FAC] [EGgb] [CAe]|[EBeg] [EGgb] [EBeb]2|[Ccg]2 [FACa]2|[CDFd]2 [Ddg] [DFdf]|[CEGg] [CDFf] [CEce]2|[DFdg]3/2 [CEcg]3/2|]\n[V: LH] [C,G,CG]|[C,G,CG]4|[F,A,A]2 [C,G,CG] [D,G,D]|[A,C,E,] [D,A,FA] [D,G,D]2|[D,A,FA] [D,G,D]2|[D,F,G,B,]2 [C,G,CG]2|[C,E,G,A,]2 [D,A,FA] [E,B,G]|[E,G,B,] [F,A,FA] [E,G,B,] [A,C,E,]|[E,G,B,] [E,B,G] [E,G,B,]2|[C,E,G,C]2 [F,A,A]2|[C,D,F,C]2 [D,G,D] [D,F,G,B,]|[C,G,CG] [C,D,F,C] [C,G,CG]2|[D,F,G,B,]3/2 [C,G,CG]3/2|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Lamp of Our Feet — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Lamp of Our Feet</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4156\nT: Lamp of Our Feet\nM: 3/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: G\n[V: M] \"^G\"B B B|\"^Am\"A2 \"^G\"B|\"^Am\"c2 \"^D\"F|\"^G\"G3|\"^D\"D \"^G\"D \"^D\"D|\"^G\"B2 \"^A7\"A|\"^D\"A3|\"^Am\"c \"^F#ø7\"c \"^G#\"B|\"^Am\"A2 \"^A\"G|\"^D\"F2 \"^C#\"E|\"^D\"D3|\"^G\"D \"^C\"E G|\"^G\"B2 \"^D7\"A|\"^G\"G3|]\n[V: RH] [GBD]3|[Eea]2 [GBg]|[ACE]2 [Dda]|[GBb]3|[Dfa] [GDg] [FAD]|[GDb]2 [ACG]|[FDf]3|[AEa] [CFc] [GBg]|[CEAc]2 [EAe]|[FDa]2 [CEg]|[ADF]3|[Ggb] [CGeg]2|[BDG]2 [FAD]|[DGBd]3|]\n[V: LH] [D,G,DG]3|[C,E,E]2 [D,G,DG]|[C,E,E]2 [D,A,D]|[D,G,DG]3|[D,A,D] [D,G,DG] [D,A,D]|[D,G,DG]2 [C,E,G,A,]|[D,A,D]3|[C,E,E] [C,E,F,A,] [D,G,B,D]|[C,E,E]2 [E,A,C,]|[D,A,D]2 [C,E,G,C]|[D,A,D]3|[D,G,DG] [C,G,E]2|[D,G,DG]2 [C,D,F,A,]|[D,G,DG]3|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>All Hail The Power Of Jesus' Name — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>All Hail The Power Of Jesus' Name</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4161\nT: All Hail The Power Of Jesus' Name\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: G\n[V: M] D|\"^G\"G G B B|\"^D\"A \"^Em\"G \"^D\"A \"^G\"B|\"^D7\"A \"^Em\"G \"^G\"B \"^D7\"A|\"^G\"G3 \"^D\"A|\"^G\"B \"^D\"A \"^G\"G B|\"^Bm\"d/2 \"^Am\"c/2 \"^G\"B/2 \"^F#m\"A/2 \"^G\"B \"^D\"d|\"^G\"d2 \"^D\"d2|\"^Em\"e2 \"^D\"d ^c|d3 \"^G\"B|d B G B|\"^D7\"A/2 \"^Em\"G/2 \"^D7\"A/2 \"^G\"B/2 \"^D7\"A \"^Em\"G|\"^G\"d2 \"^C\"c2|\"^G\"B3/2 c/2 A \"^D7\"A|\"^G\"G3|]\n[V: RH] z|[DGBg]4|[DFda] [Eegb] [DFfa] [DGdg]|[FCD] [GBEg] [GBDg] [FDa]|[GBDb]3 [DAdf]|[GBgb] [DAda] [GDgb]2|[FBf]2 [BDGb] [DAfa]|[DGB]2 [Ddfa]2|[GBEb]2 [FADf]2|[DGd]|[DGd]4|[ACD]2 [CDFc] [GEgb]|[DGg]2 [CEeg]2|[DBd]3 [CDFd]|[DBg]3|]\n[V: LH] z|[D,B,DG]4|[D,A,D] [E,B,GB] [D,A,D] [D,B,DG]|[C,D,F,A,] [E,B,GB] [D,B,DG] [C,D,F,A,]|[D,B,DG]3 [D,A,D]|[D,B,DG] [D,A,D] [D,B,DG]2|[F,D,FB]2 [D,B,DG] [D,A,D]|[G,B,D,G]2 [D,A,D]2|[E,B,GB]2 [D,A,D]2|[G,B,D,G]|[G,B,D,G]4|[C,D,F,A,]2 [C,D,F,A,] [E,B,GB]|[G,B,D,G]2 [C,G,G]2|[G,B,D,G]3 [C,D,F,A,]|[G,B,D,G]3|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

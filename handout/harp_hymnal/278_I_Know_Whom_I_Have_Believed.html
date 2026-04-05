@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>I Know Whom I Have Believed — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>I Know Whom I Have Believed</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4278\nT: I Know Whom I Have Believed\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: Eb\n[V: M] \"^Eb\"E|G3/2 G/2 \"^C\"A/2 G/2 \"^Eb\"F/2 E/2|\"^C\"c \"^Eb\"B B G|B3/2 B/2 \"^C\"c/2 B/2 \"^G#\"A/2 \"^Eb\"G/2|\"^Bb\"F3 \"^G#\"A|\"^Eb\"G3/2 G/2 \"^C\"A/2 G/2 \"^Eb\"F/2 E/2|\"^C\"c \"^Eb\"B B G|\"^Bb\"B3/2 B/2 c/2 B/2 \"^G#\"A/2 F/2|\"^Eb\"E3 E/2 E/2|\"^C\"e e3/2 e/2 \"^Eb\"d/2 \"^C\"c/2|c \"^Eb\"B3/2 B/2 \"^C\"c/2 \"^Eb\"B/2|\"^Gm\"B \"^G#\"A3/2 A/2 \"^Gm\"B/2 \"^G#\"A/2|\"^Eb\"A G2 E|\"^C\"e e3/2 e/2 \"^Eb\"d/2 \"^C\"c/2|c \"^Eb\"B2 B/2 B/2|\"^Bb\"d3/2 \"^C\"c/2 \"^G#\"d B|\"^Eb\"e3|]\n[V: RH] [BEGb]|[CEG] [EGB]|[CEc] [EGe]3|[CEe]2|[FDfb]3 [GDgb]|[EGg]2 [CEg] [EGb]|[CGc] [EBe]3|[BDFb]3 [BDGb]|[EBb]4|[CGe]4|[Eeg]3|[Ddg] [DGB]3|[Eeb]4|[CGg]4|[Egb]3|[DFB]2 [DGd]2|[GBE]3|]\n[V: LH] [E,B,E]|[C,G,CG] [E,B,G]|[C,G,CG] [E,B,G]3|[C,G,CG]2|[F,B,D,B]3 [D,G,B,G]|[E,B,G]2 [C,G,CG] [E,B,G]|[C,G,CG] [E,B,G]3|[F,B,D,B]3 [D,G,B,G]|[E,B,G]4|[C,G,CG]4|[E,B,G]3|[D,B,G] [D,G,DG]3|[E,B,G]4|[C,G,CG]4|[E,B,G]3|[F,B,FB]2 [D,G,DG]2|[E,B,G]3|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

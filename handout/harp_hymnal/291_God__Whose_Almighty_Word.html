@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>God, Whose Almighty Word — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>God, Whose Almighty Word</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4291\nT: God, Whose Almighty Word\nM: 3/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: G\n[V: M] \"^G\"d B G|\"^Am\"A \"^G\"G \"^D\"F|\"^G\"G3|G \"^D\"A \"^G\"B|\"^D7\"c/2 d/2 \"^F#°\"c \"^G\"B|\"^D\"A3|d B G|D3|A \"^G\"B \"^D\"c|\"^G\"B3/2 \"^F#\"A/2 \"^G\"G|\"^D\"A \"^G\"B \"^D\"c|\"^G\"B3/2 \"^F#\"A/2 \"^G\"G|G B d|d3/2 \"^C\"e/2 \"^G\"d|\"^Am\"c \"^G\"B \"^D7\"A|\"^G\"G3|]\n[V: RH] [DBd]3|[EAe] [Ddg] [DFA]|[GBD]3|[DFd] [GBg]|[CDAd] [ACF] [GBb]|[DFf]3|[DFf]3|[DFf]3|[GDg] [DFa]|[GDb]2 [Ggb]|[DAd] [BDG] [DAf]|[DGBd]2 [DGBg]|[DGBg]3|[CGc]/2 [DGdg]|[EAa] [DBdg] [CDAf]|[GBDg]3|]\n[V: LH] [D,B,G]3|[A,E,A] [D,B,G] [F,A,D,F]|[D,B,G]3|[F,A,D,F] [D,B,G]|[C,D,F,C] [C,F,CF] [D,B,G]|[F,A,D,F]3|[F,A,D,F]3|[F,A,D,F]3|[D,B,G] [F,A,D,F]|[D,B,G]2 [D,B,G]|[F,A,D,F] [D,B,G] [F,A,D,F]|[D,B,G]2 [D,B,G]|[D,B,G]3|[C,CEG]/2 [D,B,G]|[A,E,A] [D,B,G] [C,D,F,C]|[D,B,G]3|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

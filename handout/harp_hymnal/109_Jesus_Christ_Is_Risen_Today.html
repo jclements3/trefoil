@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Jesus Christ Is Risen Today — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Jesus Christ Is Risen Today</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4109\nT: Jesus Christ Is Risen Today\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: C\n[V: M] \"^C\"C E \"^G\"G \"^C\"C|\"^F\"F A A G|\"^C\"E/2 F/2 G/2 C/2 \"^Dm7\"F \"^C\"E/2 \"^F\"F/2|\"^C\"E D C2|\"^F\"F \"^C\"G \"^F\"A \"^C\"G|\"^Dm7\"F \"^C\"E E D|E/2 F/2 G/2 C/2 \"^Dm7\"F \"^C\"E/2 \"^F\"F/2|\"^C\"E D C2|\"^G\"B \"^Am\"c \"^G\"d G|\"^C\"c \"^Dm\"d \"^C\"e2|\"^G\"B/2 c/2 d/2 G/2 \"^Am\"c \"^G\"B/2 \"^C\"c/2|\"^G\"B A G2|G/2 A/2 B/2 G/2 \"^C\"c E|\"^F\"F A A G|\"^C\"c/2 \"^B°\"B/2 \"^C\"c/2 G/2 \"^F\"A/2 \"^Bm\"B/2 \"^C\"c/2 \"^Dm\"d/2|\"^C\"c \"^G\"B \"^C\"c2|]\n[V: RH] [GCg]2 [DBg] [CEGc]|[ACFa]4|[CEGe]2 [Ccf]2|[CEGg]4|[CFA] [CEce] [CFc] [CEcg]|[Cdf] [CEeg]3|[DFA]2|[CGce]4|[Ddg] [CEAc] [GBg]2|[CGcg] [DFA] [CGeg]2|[GBb]2 [CEAe]2|[GDg]4|[Cceg]2|[CFf]4|[EGCe] [ECeg]3|[GCEg] [GDb] [CEG]2|]\n[V: LH] [E,G,C,G]2 [G,B,D,] [E,G,C,G]|[C,A,F]4|[E,G,C,G]2 [C,D,F,A,]2|[E,G,C,G]4|[C,CF] [E,G,C,G] [C,CF] [E,G,C,G]|[C,D,F,A,] [E,G,C,G]3|[C,D,F,A,]2|[E,G,C,G]4|[G,B,D,] [E,C,EA] [G,B,D,]2|[E,G,C,G] [D,F,FA] [E,G,C,G]2|[G,B,D,]2 [E,C,EA]2|[G,B,D,]4|[E,G,C,G]2|[C,CF]4|[E,G,C,G] [E,G,C,G]3|[E,G,C,G] [G,B,D,] [E,C,EG]2|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Rejoice, My Heart, Be Glad and Sing — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Rejoice, My Heart, Be Glad and Sing</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4201\nT: Rejoice, My Heart, Be Glad and Sing\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: Bb\n[V: M] \"^Bb\"F|F \"^F\"F \"^Bb\"F \"^Gm\"B|\"^Cm\"c \"^F\"A \"^Bb\"B \"^F\"c|\"^C\"G \"^F\"A \"^Gm7\"G \"^C\"G|\"^F\"F3 F|\"^Gm\"B \"^F\"c \"^Bb\"d \"^Eb\"B|\"^Cm\"e \"^Bb\"d \"^F\"c \"^Gm\"B|\"^F\"c \"^Bb\"d \"^Cm7\"c \"^F\"c|\"^Bb\"B3|]\n[V: RH] [FBf]|[CFf] [FBb] [GBDg]|[Cce] [CAc] [FDb] [CAf]|[CEeg] [Ccf] [FDg] [CGce]|[FAC]4|[GBDb] [FAf] [BDF] [EGg]|[Ccg] [BFb] [FAa] [GBgb]|[FCf] [DFBd] [CEGg] [FCa]|[DFBf]3|]\n[V: LH] [F,FB]|[F,A,C,A] [F,FB] [B,D,G,B]|[C,E,CE] [F,A,C,A] [F,FB] [F,A,C,A]|[E,C,E] [F,A,C,A] [D,F,G,B,] [E,C,E]|[F,A,C,A]4|[B,D,G,B] [F,A,C,A] [F,FB] [E,G,B,]|[C,E,CE] [F,FB] [F,A,C,A] [B,D,G,B]|[F,A,C,A] [F,FB] [C,E,G,B,] [F,A,C,A]|[F,FB]3|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

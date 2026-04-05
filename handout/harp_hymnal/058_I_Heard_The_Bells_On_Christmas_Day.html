@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>I Heard The Bells On Christmas Day — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>I Heard The Bells On Christmas Day</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4058\nT: I Heard The Bells On Christmas Day\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: Eb\n[V: M] \"^Eb\"E|G3/2 \"^Ebm\"^F/2 \"^Eb\"G \"^C#°7\"G|\"^G#\"A3/2 \"^Gm\"G/2 \"^G#\"A \"^F#°7\"=A|\"^Eb\"B e \"^EbΔ7\"d \"^Cm\"c|\"^Dø7\"c3/2 \"^G#\"B/2 B \"^Eb\"B|\"^C\"B3/2 A/2 \"^Eb\"G A|\"^G\"G3/2 \"^Gm7\"F/2 \"^Cm\"E \"^Eb\"F|G \"^C\"A \"^Eb\"B \"^Cm7\"c|\"^Bb\"D3/2 \"^G#\"F/2 \"^Eb\"E|]\n[V: RH] [Eeb]|[EGB]/2 [Egb] [CEG]|[DGB]2 [DGd] [CEF]|[GBE]2 [DEG] [GCE]|[CDF]3/2 [DGg]3/2 [GEg]|[CGg]2 [GEb]2|[BDGb]2 [GCg] [BEG]|[Cce] [BEb] [CGe]|[DFB]2 [EGBe]|]\n[V: LH] [E,G,B,B]|[E,G,B,E]/2 [E,G,B,B] [C,E,G,B,]|[D,G,B,D]2 [D,G,B,D] [C,E,F,A,]|[E,G,B,B]2 [D,E,G,B,] [C,E,G,C]|[C,D,F,A,]3/2 [D,G,B,D]3/2 [E,G,B,B]|[C,E,EG]2 [E,G,B,B]2|[G,B,GB]2 [C,E,G,C] [E,G,B,B]|[C,E,EG] [E,G,B,B] [C,E,G,B,]|[F,B,D,F]2 [E,G,B,B]|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

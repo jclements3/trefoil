@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>He Was Not Willing — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>He Was Not Willing</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4293\nT: He Was Not Willing\nM: 6/8\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: Eb\n[V: M] \"^Eb\"G3/4 G/4 G/2 G/2 G/2 G/2|\"^C\"A3/4 A/4 A/2 \"^Eb\"G E/2|B3/4 B/4 B/2 B/2 B/2 B/2|\"^C\"c/2 \"^Eb\"B/2 G/2 \"^Bb\"F3/2|\"^Eb\"G3/4 G/4 G/2 G/2 G/2 G/2|\"^C\"A3/4 A/4 A/2 \"^Eb\"G E/2|B3/4 B/4 B/2 \"^C\"c/2 \"^Eb\"B/2 G/2|E/2 G/2 \"^G#\"F/2 \"^Eb\"E3/2|G3/4 G/4 G/2 G/2 G/2 G/2|\"^C\"A3/4 A/4 A/2 \"^Eb\"G E/2|B3/4 B/4 B/2 \"^C\"c/2 \"^Eb\"B/2 G/2|E/2 G/2 \"^G#\"F/2 \"^Eb\"E3/2|\"^Cm\"c3/4 c/4 c/2 c/2 c/2 c/2|G3/4 G/4 G/2 G G/2|\"^Bb\"B3/4 B/4 B/2 B/2 B/2 B/2|\"^F\"F3/4 \"^Eb\"G/4 \"^F7\"=A/2 \"^Bb\"B3/2|]\n[V: RH] [EBeg]3|[EGC]3/2 [EBeb]3/2|[EBeb]3|[ECe]/2 [EBgb] [DFB]3/2|[Eegb]3|[ECg]3/2 [GBEg]3/2|[GCE]/2 [GBEb]|[DGg]/2 [GEgb]3/2|[GEgb]3|[GCg]3/2 [BEGb]3/2|[CEGc]/2 [EGB]|[DBd]/2 [EGe]3/2|[ECeg]3|[ECeg]3|[DFd]3|[FACa]3/2 [DFf]3/2|]\n[V: LH] [E,B,G]3|[C,CEG]3/2 [E,B,G]3/2|[E,B,G]3|[C,CEG]/2 [E,B,G] [F,D,FB]3/2|[E,B,G]3|[C,CEG]3/2 [E,B,G]3/2|[C,CEG]/2 [E,B,G]|[D,G,DG]/2 [E,B,G]3/2|[E,B,G]3|[C,CEG]3/2 [E,B,G]3/2|[C,CEG]/2 [E,B,B]|[D,G,DG]/2 [E,B,B]3/2|[C,E,CG]3|[C,E,CG]3|[F,D,FB]3|[F,C,F]3/2 [F,D,FB]3/2|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

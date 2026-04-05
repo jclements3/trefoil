@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Lo, How A Rose E'er Blooming — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Lo, How A Rose E'er Blooming</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4063\nT: Lo, How A Rose E'er Blooming\nM: none\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: F\n[V: M] \"^F\"c2|c c \"^Bb\"d \"^F\"c|\"^C\"c2 \"^Dm\"A2 \"^Bb\"B2|\"^F\"A \"^C\"G2 F2 E|\"^F\"F3 c2|c c \"^Bb\"d \"^F\"c|\"^C\"c2 \"^Dm\"A2 \"^Bb\"B2|\"^F\"A \"^C\"G2 F2 E|\"^F\"F3 A|\"^Gm\"G \"^Am\"E \"^F\"F \"^G\"D|\"^C\"C3 c|c \"^F\"c \"^Bb\"d \"^F\"c|\"^C\"c2 \"^D\"A2 \"^Gm\"B2|\"^F\"A \"^Gm\"G2 F2 E|\"^F\"F3|]\n[V: RH] [CFc]2|[DFdf] [CFf]|[CEGe]2 [DFda]2 [DBdf]2|[CAc] [CEGg]5|[CAf]5|[FBDb] [Ccf]|[CEce]2 [DFfa]2 [FBfb]2|[FAC] [CEcg]5|[FAf]4|[DBdg] [Eea] [FAa] [GBDg]|[CGce]4|[FCf] [FDfb] [FCa]|[CGcg]2 [DFd]2 [GBDg]2|[Ffa] [GBDb]5|[ACF]3|]\n[V: LH] [F,A,FA]2|[F,B,D,F] [F,A,FA]|[C,E,EG]2 [D,F,A,F]2 [F,B,D,F]2|[F,A,FA] [C,E,EG]5|[F,A,FA]5|[F,B,D,F] [F,A,FA]|[C,E,EG]2 [D,F,A,F]2 [F,B,D,F]2|[F,A,FA] [C,E,EG]5|[F,A,FA]4|[D,G,B,G] [C,A,CE] [F,A,FA] [G,D,GB]|[C,E,EG]4|[F,A,FA] [F,B,D,F] [F,A,FA]|[C,E,EG]2 [D,A,DF]2 [D,G,B,G]2|[F,A,FA] [D,G,B,G]5|[F,A,FA]3|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

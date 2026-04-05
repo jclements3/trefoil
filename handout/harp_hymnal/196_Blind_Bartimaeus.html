@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Blind Bartimaeus — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Blind Bartimaeus</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4196\nT: Blind Bartimaeus\nM: 3/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: F\n[V: M] \"^F\"F|A3/2 G/2 F|\"^C7\"G2 \"^Am\"A|\"^C7\"G2 \"^Dm\"F|\"^C\"G2 \"^F\"A|c2 c|c d c|A2 \"^C7\"G|\"^F\"F2 c|\"^Bb\"d2 d|d3/2 e/2 f|\"^F\"c2 c|A2 c|\"^Bb\"d2 d|d3/2 e/2 f|\"^F\"c2 c|A \"^C\"G \"^F\"F|A3/2 G/2 F|\"^C7\"G2 \"^Am\"A|\"^C7\"G2 \"^Dm\"F|\"^C\"G2 \"^F\"A|c2 c|c d c|A2 \"^C7\"G|\"^F\"F2|]\n[V: RH] [FCa]|[FCa]3|[CEcg]2 [EAa]|[CEeg]2 [FDa]|[EGCg]2 [Ffa]|[Ffa]3|[Ffa]3|[CGBc]|[ACF]3|[Ddf]3|[Ddf]3|[CFAc]3|[CFAc]3|[FBD]3|[FBD]3|[CFAf]3|[ECeg] [CFcf]|[CFcf]3|[CGBe]2 [ECa]|[CGBg]2 [ADF]|[GCEg]2 [CAcf]|[CAcf]3|[CAcf]3|[CGce]|[FACa]2|]\n[V: LH] [F,A,C,F]|[F,A,C,F]3|[C,E,G,B,]2 [C,CE]|[C,E,G,B,]2 [D,DFA]|[E,G,C,]2 [F,A,C,F]|[F,A,C,F]3|[F,A,C,F]3|[C,E,G,B,]|[F,A,C,F]3|[F,FB]3|[F,FB]3|[F,A,C,F]3|[F,A,C,F]3|[F,FB]3|[F,FB]3|[F,A,C,F]3|[E,G,C,] [F,A,C,F]|[F,A,C,F]3|[C,E,G,B,]2 [C,CE]|[C,E,G,B,]2 [D,DFA]|[E,G,C,]2 [F,A,C,F]|[F,A,C,F]3|[F,A,C,F]3|[C,E,G,B,]|[F,A,C,F]2|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

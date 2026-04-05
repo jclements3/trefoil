@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Souls of Men! Why Will Ye Scatter — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Souls of Men! Why Will Ye Scatter</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4284\nT: Souls of Men! Why Will Ye Scatter\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: G\n[V: M] \"^G\"G \"^F#°\"F/2 E/2 \"^G\"D \"^Em\"G|\"^Am7\"A \"^Em\"G/2 A/2 \"^G\"B G|\"^Am7\"c \"^Bm\"B/2 A/2 \"^G\"B \"^A\"A/2 G/2|\"^F#°\"F/2 \"^G\"G/2 \"^Am\"A/2 \"^D\"F/2 \"^G\"G2|G \"^F#°\"F/2 E/2 \"^G\"D \"^Em\"G|\"^Am7\"A \"^Em\"G/2 A/2 \"^G\"B G|\"^Am7\"c \"^Bm\"B/2 A/2 \"^G\"B \"^A\"A/2 G/2|\"^F#°\"F/2 \"^G\"G/2 \"^Am\"A/2 \"^D\"F/2 \"^G\"G2|\"^Em\"G \"^Dm\"A/2 B/2 \"^C\"c \"^B°\"B|\"^Am\"A \"^E\"^G \"^Am\"A A|\"^D\"A \"^Bm\"B/2 c/2 \"^G\"d \"^Em\"G|\"^D\"A \"^G\"G/2 F/2 \"^A7\"E \"^D\"D|\"^G\"G \"^F#°\"F/2 E/2 \"^G\"D \"^Em\"G|\"^Am7\"A \"^Em\"G/2 A/2 \"^G\"B G|\"^Am7\"c \"^Bm\"B/2 A/2 \"^G\"B \"^A\"A/2 G/2|\"^F#°\"F/2 \"^G\"G/2 \"^Am\"A/2 \"^D\"F/2 \"^G\"G2|]\n[V: RH] [GDb] [CAf] [Ggb] [Eegb]|[CGce] [GBEg] [BDG]2|[CGcg] [DFdf] [DGBd] [CAce]|[Ccf]2 [DGBg]2|[FAC] [DGdg] [GBEb]|[CGeg] [GEgb] [DBdg]2|[CAce] [DBdf] [GBDg] [EACe]|[FAf]2 [GBDb]2|[BEGb] [DFfa] [CEG] [FBD]|[EAa] [GBEb] [ECa]2|[Ddf] [FBDf] [GBgb] [EGB]|[Dda] [GDgb] [GAEg] [Dfa]|[BDGb] [FAa] [DGB] [EGg]|[CAcg] [EGb] [DGd]2|[CAeg] [FBDb] [DBd] [EACa]|[FCf]2 [DBg]2|]\n[V: LH] [D,G,D] [C,F,CF] [D,G,D] [E,G,B,]|[C,E,G,A,] [E,G,B,] [D,G,D]2|[C,E,G,A,] [D,F,F] [D,G,D] [C,E,CE]|[C,F,CF]2 [D,G,D]2|[C,F,CF] [D,G,D] [E,G,B,]|[C,E,G,A,] [E,G,B,] [D,G,D]2|[C,E,G,A,] [D,F,F] [D,G,D] [C,E,CE]|[C,F,CF]2 [D,G,D]2|[E,G,B,] [F,D,FA] [C,G,EG] [D,F,B,F]|[A,C,E,] [E,EGB] [A,C,E,]2|[D,A,FA] [D,F,F] [D,G,D] [E,G,E]|[D,A,FA] [D,G,D] [C,E,G,A,] [D,A,FA]|[D,G,D] [C,F,CF] [D,G,G] [E,G,E]|[C,E,G,A,] [E,G,E] [D,G,G]2|[C,E,G,A,] [D,F,F] [D,G,G] [C,E,CE]|[C,F,CF]2 [D,G,G]2|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

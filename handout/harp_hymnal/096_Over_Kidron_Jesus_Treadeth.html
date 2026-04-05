@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Over Kidron Jesus Treadeth — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Over Kidron Jesus Treadeth</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4096\nT: Over Kidron Jesus Treadeth\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: G\n[V: M] \"^Em\"B \"^F#°\"A \"^Em\"G \"^C\"E|\"^Em\"G \"^F#°\"F \"^Eb\"_E \"^A\"B,|\"^C\"E3/2 \"^F#°\"F/2 \"^Em\"G \"^D\"F|\"^G\"B \"^D\"A \"^G\"G3/2 z/2|\"^Em\"B \"^F#°\"A \"^Eb+\"G \"^C\"E|\"^Am\"G \"^F#°\"F \"^Eb\"_E B,|\"^CΔ7\"E3/2 \"^F#°\"F/2 \"^G\"G \"^F#°7\"F|\"^G\"B \"^D\"A \"^G\"G3/2 z/2|\"^D\"A \"^D7\"A \"^G\"B \"^Em\"G|\"^F#°\"c \"^G\"B \"^D\"A3/2 z/2|\"^G\"B \"^Bø7\"B \"^Am\"c \"^F\"A|\"^G#°\"d \"^Am\"c \"^E\"B3/2 z/2|\"^Am\"c \"^Eb\"B \"^Am\"A \"^Eb\"B|\"^Em\"G \"^F#°\"F \"^Em\"E \"^Am\"C|\"^A\"B,3/2 \"^F#7\"_E/2 \"^C\"E G|\"^Am\"B2 \"^F#°\"A G|\"^F#m\"F4|\"^Em\"E4|]\n[V: RH] [EBe] [ACF] [EBg] [CEGe]|[EBb] [CFAf] [EGBe] [EACe]|[CEGg]2 [Eeg] [ADF]|[GBb] [ADa] [GDg]2|[Eeb] [CFcf] [EGe] [CEce]|[CAc] [CAcf] [EGBg]2|[CEB]2 [GDb] [CEA]|[Ggb] [DFAd] [BDG]2|[DFAf] [DAf] [DGBd] [Egb]|[FACf] [DGBg] [DFAa]2|[DGdg] [DAd] [CAe] [FAC]|[Ggb] [Cce] [EGe]2|[EAC] [EGBb] [EAe] [EGeg]|[GBE] [FACa] [GEg] [EAa]|[EACa]2 [CEcg]2|[ECa]2 [FAfa]2|[CAc]4|[GEb]4|]\n[V: LH] [E,G,EB] [C,F,A,C] [E,G,EB] [C,CEG]|[E,G,EB] [C,F,A,C] [E,G,EB] [E,C,EA]|[C,CEG]2 [E,G,EB] [D,DFA]|[D,B,G] [D,DFA] [D,B,G]2|[E,G,EB] [C,F,A,C] [E,G,B,E] [C,CEG]|[E,A,EA] [C,F,A,C] [E,G,EB]2|[C,E,G,B,]2 [D,B,G] [C,E,F,A,]|[D,B,G] [D,DFA] [D,B,G]2|[D,DFA] [C,D,F,A,] [D,B,G] [E,G,EB]|[C,F,A,C] [D,B,G] [D,DFA]2|[D,B,G] [D,F,A,B,] [E,A,EA] [C,F,F]|[D,G,B,D] [E,A,EA] [E,G,EG]2|[E,A,EA] [E,G,EB] [E,A,EA] [E,G,EB]|[E,G,EB] [C,F,A,C] [E,G,EB] [E,A,EA]|[E,C,EA]2 [C,CEG]2|[E,A,EA]2 [C,F,A,C]2|[C,F,CF]4|[E,G,EB]4|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

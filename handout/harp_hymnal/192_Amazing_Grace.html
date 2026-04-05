@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Amazing Grace — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Amazing Grace</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4192\nT: Amazing Grace\nM: 3/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: G\n[V: M] \"^G\"D|G2 B/2 G/2|B2 \"^D7\"A|\"^Em\"G2 \"^C\"E|\"^G\"D2 D|G2 B/2 G/2|B2 \"^D7\"A|\"^G\"d3|d2 B|d3/2 B/2 d/2 B/2|G2 D|\"^C\"E3/2 \"^G\"G/2 \"^C\"G/2 E/2|\"^G\"D2 D|\"^Em\"G2 \"^G\"B/2 G/2|B2 \"^D7\"A|\"^G\"G3|G2|]\n[V: RH] [BDG]|[BDG]3|[CAcd]|[EBg]2 [CGeg]|[DGBd]3|[DGBd]3|[CAcf]|[DGBg]3|[DGBg]3|[DGBg]3|[DGBg]3|[Cceg]2 [EGCe]|[DGdg]3|[EBb]2 [DBdg]|[CAdf]|[GBDg]3|[GBDg]2|]\n[V: LH] [D,G,B,]|[D,G,B,]3|[C,D,F,A,]|[G,B,E,G]2 [E,G,C,]|[D,G,B,]3|[D,G,B,]3|[C,D,F,A,]|[D,G,B,]3|[D,G,B,]3|[D,G,B,]3|[D,G,B,]3|[E,G,C,]2 [E,G,C,]|[D,G,B,]3|[G,B,E,G]2 [D,G,B,]|[C,D,F,A,]|[D,G,B,]3|[D,G,B,]2|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

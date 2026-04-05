@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Blest Be The Tie That Binds — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Blest Be The Tie That Binds</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4214\nT: Blest Be The Tie That Binds\nM: 3/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: C\n[V: M] \"^C\"G|E/2 \"^Dm\"F/2 \"^C\"G \"^F\"A|\"^C\"G2 c|\"^Am\"c/2 \"^G\"B/2 \"^Am7\"A \"^Dm\"A|\"^G\"G2 \"^C\"G|E/2 \"^G7\"F/2 \"^C\"G G|\"^F\"A/2 \"^G7\"B/2 \"^C\"c \"^G7\"B|\"^C\"c/2 \"^F\"A/2 \"^G\"G G|\"^C\"G2|]\n[V: RH] [EGCe]|[Dda]/2 [EGCg] [FAfa]|[ECeg]3|[CEc] [GAC] [Dfa]|[GBg]2 [GCEg]|[GBD]/2 [CEG]2|[ACFa] [CEc] [GBF]|[CEe] [GBb]2|[CEg]2|]\n[V: LH] [G,C,E,]|[F,A,D,F]/2 [G,C,E,] [F,C,FA]|[G,C,E,]3|[E,A,E] [C,E,G,A,] [F,A,D,F]|[G,B,D,]2 [G,C,E,]|[D,F,G,B,]/2 [G,C,G]2|[F,C,FA] [G,C,G] [D,F,G,B,]|[G,C,G] [G,B,D,]2|[G,C,G]2|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

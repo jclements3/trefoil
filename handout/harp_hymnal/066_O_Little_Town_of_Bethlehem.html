@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>O Little Town of Bethlehem — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>O Little Town of Bethlehem</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4066\nT: O Little Town of Bethlehem\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: F\n[V: M] \"^F\"A|A A \"^G#°\"^G \"^F\"A|\"^Cø7\"c \"^Gm\"B D G|\"^F\"F \"^C\"E/2 F/2 G C|\"^F\"A3 A|A A \"^D\"d c|\"^C\"c \"^Gm\"B D G|\"^F\"F \"^C+\"E/2 \"^F\"F/2 \"^Am\"A \"^C7\"G|\"^F\"F3 A|A A \"^E°\"G \"^G#°7\"F|\"^A\"E2 E E|\"^Dm\"D \"^A\"E \"^Dm\"F \"^Gm\"G|\"^A\"A3 \"^F\"A|A A \"^G#°\"^G \"^F\"A|\"^Bb\"c \"^Gm\"B D \"^Bb\"d|\"^F\"c \"^G7\"F \"^F\"A3/2 \"^C7\"G/2|\"^F\"F3|]\n[V: RH] [CAcf]|[Ddg] [FACf]|[CEG] [GBgb]3|[FACa] [CEe]3|[FCfa]4|[DFAa]2|[CEg] [GDgb]3|[ACFa]2 [EACa] [CGe]|[CFA]4|[EBg] [DFG]|[CAce]4|[ADFa] [EACa] [DFA] [BDGb]|[EAea]3 [CFc]|[GBD] [CFf]|[BDFb] [DGB]2 [DFB]|[CAc] [DGB] [CAf]2|[Ccf]3|]\n[V: LH] [F,A,FA]|[D,G,B,D] [F,A,FA]|[C,E,G,B,] [D,G,B,G]3|[F,A,FA] [C,G,CE]3|[F,A,FA]4|[D,A,DF]2|[C,G,CE] [D,G,B,G]3|[F,A,FA]2 [C,A,CE] [C,E,G,B,]|[F,C,FA]4|[E,G,B,E] [D,F,G,B,]|[E,A,C,E]4|[D,F,A,F] [E,A,C,E] [D,F,A,A] [D,G,B,G]|[E,A,C,E]3 [F,C,FA]|[D,G,B,D] [F,C,FA]|[F,B,D,F] [D,G,DG]2 [F,B,D,B]|[F,C,FA] [D,F,G,B,] [F,C,FA]2|[F,C,FA]3|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

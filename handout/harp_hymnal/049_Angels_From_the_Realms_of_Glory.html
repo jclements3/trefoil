@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Angels From the Realms of Glory — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Angels From the Realms of Glory</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4049\nT: Angels From the Realms of Glory\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: C\n[V: M] \"^C\"G E|c G e3/2 \"^G7\"d/2|\"^C\"c G \"^F\"A A|\"^C\"G \"^Am\"c \"^G\"G F|\"^C\"E2 G E|c \"^Em\"G \"^C\"e3/2 \"^B°\"d/2|\"^Am\"c \"^E\"B \"^Am\"c \"^Em\"B|\"^Am\"A \"^Bm\"B/2 c/2 \"^G\"B \"^D7\"A|\"^G\"G2 d3/2 d/2|B G \"^C\"e3/2 d/2|\"^F\"c A \"^Dm\"f \"^Em\"e|\"^Dm\"d \"^Am\"c \"^C\"c \"^G\"B|\"^C\"c2|]\n[V: RH] [GCg]2|[DFd]/2|[CEGc]2 [CAc]2|[CEGe] [EAe] [DGB]2|[CEGg]4|[EGB] [CEcg]2|[EAa] [Eeg] [ECa] [EGe]|[Eea] [FDfb] [DGd] [CFf]|[DGg]4|[CEeg]2|[CAf]2 [DFf] [EGg]|[DFa] [ACE] [CGce] [DBd]|[CGcg]2|]\n[V: LH] [C,E,CE]2|[D,F,G,B,]/2|[C,E,CE]2 [C,A,CF]2|[C,E,CE] [C,E,CE] [G,B,GB]2|[C,E,CE]4|[E,G,B,B] [C,E,CE]2|[C,E,CE] [E,G,B,G] [C,E,CE] [E,G,B,B]|[C,E,CE] [D,F,B,F] [G,B,GB] [C,D,F,A,]|[G,B,GB]4|[C,E,CE]2|[C,A,CF]2 [D,F,A,F] [E,G,B,B]|[D,F,A,F] [C,E,CE] [C,E,CE] [G,B,GB]|[C,E,CE]2|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

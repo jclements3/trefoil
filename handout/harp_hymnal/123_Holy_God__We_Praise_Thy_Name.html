@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Holy God, We Praise Thy Name — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Holy God, We Praise Thy Name</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4123\nT: Holy God, We Praise Thy Name\nM: 3/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: F\n[V: M] \"^F\"F2 F|F E F|\"^C7\"G A G|\"^F\"F3|A2 A|A G A|c B A|A \"^C\"G2|\"^F\"F2 F|F E F|\"^C7\"G A G|\"^F\"F3|A2 A|A \"^Em\"G \"^F\"A|c B A|A \"^C\"G2|G2 \"^F#°\"A/2 c/2|\"^Gm\"B A \"^C\"G|\"^F\"A2 \"^Bb\"B/2 d/2|\"^C\"c3|\"^Bb\"d2 d|\"^F\"c B \"^Dm\"A|\"^Bb\"B \"^Am\"A \"^C7\"G|\"^F\"F3|]\n[V: RH] [CFAf]3|[CFAf]3|[CBe]3|[CFcf]3|[CFcf]3|[CFcf]3|[CFcf]3|[CGc]2|[CAcf]3|[CAcf]3|[CBg]3|[FACf]3|[FACf]3|[EBe] [FACa]|[FACa]3|[CGe]2|[CAf]|[GBD]2 [CGg]|[FAfa]2 [DFf]|[Cce]3|[DBd]3|[FCfa]2 [ADF]|[DBf] [ACE] [Cce]|[ACFa]3|]\n[V: LH] [F,A,C,]3|[F,A,C,]3|[C,E,G,B,]3|[F,A,C,]3|[F,A,C,]3|[F,A,C,]3|[F,A,C,]3|[C,E,G,]2|[F,A,C,]3|[F,A,C,]3|[C,E,G,B,]3|[F,A,C,]3|[F,A,C,]3|[E,B,EG] [F,A,C,]|[F,A,C,]3|[C,E,G,]2|[C,F,A,F]|[G,B,D,G]2 [C,E,G,]|[F,A,C,]2 [D,F,D]|[C,E,G,]3|[D,F,D]3|[F,A,C,]2 [D,F,FA]|[D,F,D] [A,C,E,A] [C,E,G,B,]|[F,A,C,]3|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

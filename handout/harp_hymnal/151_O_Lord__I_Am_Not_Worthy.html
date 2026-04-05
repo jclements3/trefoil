@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>O Lord, I Am Not Worthy — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>O Lord, I Am Not Worthy</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4151\nT: O Lord, I Am Not Worthy\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: Bb\n[V: M] \"^Bb\"D/2 E/2|F \"^Eb\"G \"^Bb\"F B|B \"^F\"A2 A/2 B/2|c \"^F7\"E \"^F\"G F|\"^Bb\"D3 D/2 E/2|F F \"^Gm\"B \"^Dm\"A|\"^A\"A \"^Eb\"G2 G|\"^Bb\"F B \"^F\"A \"^F7\"c|\"^Bb\"B3|]\n[V: RH] [DFdf]|[EGBb] [DBdf]2|[CFA]3|[CFc] [CFc]2|[FBDf]4|[Ggb] [FAD]|[CEe] [EGeg]3|[FBDb]2 [CFf] [CFe]|[FBfb]3|]\n[V: LH] [D,B,F]|[E,EGB] [D,B,F]2|[F,FA]3|[C,E,F,A,] [F,FA]2|[D,B,F]4|[G,B,GB] [D,A,FA]|[E,A,C,] [E,EGB]3|[D,B,F]2 [F,FA] [C,E,F,A,]|[D,B,F]3|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Savior Of The Nations Come — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Savior Of The Nations Come</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4043\nT: Savior Of The Nations Come\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: Bb\n[V: M] \"^Gm\"G \"^Cm\"G \"^Dm\"F \"^Bb\"B|\"^A°\"A/2 \"^Gm\"G/2 \"^D\"A \"^Gm\"G2|G B \"^Cm\"c3/2 \"^Gm\"B/2|\"^F\"c \"^Bb\"d B2|B \"^F\"c \"^Bb\"d \"^Eb\"B|\"^Cm\"c \"^Gm\"B/2 A/2 G2|\"^Eb\"G \"^Cm\"G \"^Dm\"F \"^Gm\"B|\"^D\"A/2 G/2 \"^Dm\"A \"^Gm\"G2|]\n[V: RH] [DGBg] [Ceg] [FADf] [FBfb]|[CEA] [DFAa] [DGdg]2|[EGC]2|[FCf] [FDfb]3|[FCa] [BDFb] [GEgb]|[ECe] [DBdg]3|[BEGb] [ECg] [FADa] [GBDg]|[DFda] [FDfa] [GBDb]2|]\n[V: LH] [D,G,B,D] [C,E,G,C] [D,F,A,D] [D,F,DF]|[C,E,A,C] [D,F,DF] [D,G,B,D]2|[C,E,G,C]2|[C,F,CF] [D,F,DF]3|[C,F,CF] [D,F,DF] [E,G,B,G]|[C,E,G,C] [D,G,B,D]3|[E,G,B,G] [C,E,G,C] [D,F,A,D] [D,G,B,D]|[D,F,DF] [D,F,A,D] [D,G,B,D]2|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Awake, My Soul, And With The Sun — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Awake, My Soul, And With The Sun</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4306\nT: Awake, My Soul, And With The Sun\nM: none\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: G\n[V: M] \"^G\"G2 G \"^D\"F \"^Em\"E \"^Bm\"D|\"^Em\"G2 \"^D\"A2 \"^G\"B3|B2 B B \"^D7\"A \"^Em\"G|\"^C\"c2 \"^G\"B2 \"^D\"A3|\"^Em\"G2 \"^D\"A \"^G\"B \"^D\"A \"^G\"G|\"^C\"E2 \"^D\"F2 \"^G\"G3|d2 B \"^Em\"G \"^D\"A \"^Am\"c|\"^G\"B2 \"^D\"A2 \"^G\"G3|]\n[V: RH] [DGBg]3 [DFA] [Eegb] [DFBf]|[GBEg]2 [DFd]2 [DGdg]3|[CFAf] [GBEb]|[CEeg]2 [DBdg]2 [DFf]3|[GEgb]2 [DFa] [GBDg] [DAd] [GBDb]|[CGce]2 [DAf]2 [GBgb]3|[BEGb] [DAa] [EACa]|[GDgb]2 [Ddf]2 [BDGb]3|]\n[V: LH] [G,B,B]3 [F,D,FA] [E,G,G] [D,B,D]|[E,G,G]2 [F,D,FA]2 [G,B,B]3|[C,D,F,C] [E,G,G]|[E,G,C,G]2 [G,B,B]2 [F,D,FA]3|[E,G,G]2 [F,D,FA] [G,B,B] [F,D,FA] [G,B,B]|[E,G,C,G]2 [F,D,FA]2 [G,B,B]3|[E,G,G] [F,D,FA] [C,E,A,C]|[G,B,B]2 [F,D,FA]2 [G,B,B]3|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

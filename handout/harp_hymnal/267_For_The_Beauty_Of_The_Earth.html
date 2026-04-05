@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>For The Beauty Of The Earth — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>For The Beauty Of The Earth</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4267\nT: For The Beauty Of The Earth\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: G\n[V: M] \"^G\"G \"^D7\"F/2 \"^G\"G/2 \"^D\"A \"^G\"G|\"^C\"c \"^D7\"c \"^G\"B2|\"^C\"E \"^D7\"F \"^G\"G \"^C\"E|\"^G\"D \"^D\"D \"^G\"D2|G \"^D7\"F/2 \"^G\"G/2 \"^D\"A \"^G\"G|\"^C\"c \"^D7\"c \"^G\"B2|\"^C\"E \"^D7\"F \"^G\"G \"^C\"E|\"^G\"D \"^D\"D \"^G\"D2|B \"^D\"A \"^G\"G B|\"^D\"d3/2 c/2 \"^G\"B2|\"^C\"E \"^D7\"F \"^G\"G \"^C\"c|\"^G\"B \"^D\"A \"^G\"G2|]\n[V: RH] [DBdg]2 [ADa] [GBDg]|[GCEg] [DCf] [GBgb]2|[CEG] [DCa] [GDgb] [CEc]|[BDGb] [DFAd] [DGB]2|[Ddf] [DFAf] [DGd]|[CEe] [Dda] [DGg]2|[CEg] [Dfa] [DBd] [CGc]|[DBg] [DFAa] [Ddg]2|[DFdf] [GBD]2|[DFda]2 [GBg]2|[CGe] [FAD] [GBb] [CGg]|[GDg] [DAdf] [GDb]2|]\n[V: LH] [G,B,D,B]2 [D,F,FA] [G,B,D,B]|[C,E,CG] [C,D,F,C] [G,B,D,B]2|[C,E,EG] [C,D,F,C] [G,B,D,B] [C,E,EG]|[G,B,D,B] [D,F,FA] [G,B,GB]2|[C,D,F,C] [D,F,FA] [G,B,GB]|[C,E,EG] [C,D,F,C] [G,B,GB]2|[C,E,EG] [C,D,F,C] [G,B,GB] [C,E,EG]|[G,B,GB] [D,F,FA] [G,B,GB]2|[D,F,FA] [G,B,GB]2|[D,F,FA]2 [G,B,GB]2|[C,E,EG] [C,D,F,C] [G,B,GB] [C,E,EG]|[G,B,GB] [D,F,FA] [G,B,GB]2|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

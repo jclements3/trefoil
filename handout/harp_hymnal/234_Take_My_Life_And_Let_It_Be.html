@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Take My Life And Let It Be — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Take My Life And Let It Be</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4234\nT: Take My Life And Let It Be\nM: 3/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: G\n[V: M] \"^G\"G2 G|\"^D\"F2 D|c2 c|\"^G\"B3|d2 B|\"^D\"d c A|\"^G\"G2 B/2 A/2|\"^D\"A3|\"^G\"G2 G|\"^F#°\"F3/2 \"^Em\"E/2 \"^D\"D|c2 c|\"^G\"B3|d2 \"^G#°7\"B|\"^Am\"A c e|\"^G\"G2 \"^D7\"F|\"^G\"G3|]\n[V: RH] [GBD]3|[DAfa]3|[DAfa]3|[GBg]3|[GBg]3|[Ddfa]3|[GBb]3|[FADf]3|[GDg]3|[FCfa]2 [FADa]|[FADa]3|[GDb]3|[DFg]|[CAc]3|[BDG]2 [CDf]|[DGBd]3|]\n[V: LH] [G,GB]3|[D,F,A,D]3|[D,F,A,D]3|[G,GB]3|[G,GB]3|[D,F,A,D]3|[G,GB]3|[D,F,A,D]3|[G,GB]3|[C,F,A,F]2 [D,F,A,D]|[D,F,A,D]3|[G,GB]3|[D,F,G,B,]|[E,A,A]3|[G,GB]2 [C,D,F,C]|[G,GB]3|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

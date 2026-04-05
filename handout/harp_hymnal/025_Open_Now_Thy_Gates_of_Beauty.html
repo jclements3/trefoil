@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Open Now Thy Gates of Beauty — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Open Now Thy Gates of Beauty</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4025\nT: Open Now Thy Gates of Beauty\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: Bb\n[V: M] \"^Bb\"B,3/2 \"^F\"C/2 \"^Bb\"D B,|D \"^Eb\"E \"^F\"F F|\"^Gm\"B \"^Bb\"A/2 G/2 F d|\"^Cm7\"c \"^F\"c \"^Bb\"B2|B,3/2 \"^F\"C/2 \"^Bb\"D B,|D \"^Eb\"E \"^F\"F F|\"^Gm\"B \"^Bb\"A/2 G/2 F d|\"^Cm7\"c \"^F\"c \"^Bb\"B2|d3/2 d/2 \"^F\"c c|\"^Gm\"B B \"^D\"A2|\"^Eb\"G3/2 G/2 \"^Bb\"F \"^Gm\"B|\"^Cm\"c \"^F\"A \"^Bb\"B2|]\n[V: RH] [FBDf]2 [FBDb]2|[EGgb] [CFf]2|[DBg] [FBfb]3|[CEg] [CAc] [FDfb]2|[CAf]/2 [BDFb]2|[EBeg] [Ccf]2|[Ddg] [DFB]3|[CGB] [FAC] [DFd]2|[FAf]2|[GBD]2 [DAd]2|[EBeb]2 [DFf] [GBg]|[CEg] [FAa] [DBd]2|]\n[V: LH] [D,F,B,D]2 [D,F,B,D]2|[E,G,B,E] [C,F,A,C]2|[D,G,B,D] [D,F,B,D]3|[C,E,G,B,] [C,F,A,C] [D,F,B,D]2|[C,F,A,C]/2 [D,F,B,D]2|[E,G,B,E] [C,F,A,C]2|[D,G,B,D] [D,F,B,F]3|[C,E,G,B,] [C,F,A,C] [D,F,B,F]2|[C,F,A,C]2|[D,G,B,D]2 [D,F,A,F]2|[E,G,B,E]2 [D,F,B,F] [D,G,B,D]|[C,E,G,C] [C,F,A,C] [D,F,B,F]2|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

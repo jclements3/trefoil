@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Hallelujah, What a Savior! — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Hallelujah, What a Savior!</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4166\nT: Hallelujah, What a Savior!\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: C\n[V: M] \"^C\"G G G E|\"^Am\"c c \"^E\"B2|\"^F\"A A \"^C\"G \"^Am\"c|\"^G\"B \"^D7\"A \"^G\"G2|\"^C\"G G G E|c \"^F\"c \"^C\"c c3/4 \"^G\"d/4|\"^C\"e2 \"^G7\"d \"^Am\"c3/4 A/4|\"^F\"A2 \"^C\"G2|]\n[V: RH] [CGe]4|[AEa]2 [EGBg]2|[CAcf]2 [CGg] [CEAc]|[DBdg] [CDFf] [GBDb]2|[Ccg]4|[FACf] [Ceg]2|[EGC]2 [FGg] [CEAe]|[FACa]2 [ECe]2|]\n[V: LH] [C,CE]4|[C,A,C]2 [E,B,EG]2|[A,C,F,]2 [C,CE] [C,A,C]|[G,B,D,G] [C,D,F,A,] [G,B,D,G]2|[C,CE]4|[A,C,F,] [C,CE]2|[C,CE]2 [D,F,G,B,] [C,A,C]|[A,C,F,]2 [C,CE]2|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

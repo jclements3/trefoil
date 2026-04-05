@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Within the Father's House — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Within the Father's House</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4081\nT: Within the Father's House\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: Eb\n[V: M] \"^Eb\"E|\"^Bb\"F \"^Eb\"G \"^C\"A \"^Bb\"B|\"^Eb\"G3 B|\"^C\"c \"^Eb\"e \"^G#°\"A \"^Eb\"G|\"^Bb\"F3 B|\"^Eb\"e \"^Bb\"d \"^Cm\"c \"^Gm\"B|\"^Bb\"c \"^F\"c \"^Bb\"B B|\"^Cm\"E \"^Eb\"G \"^Cm7\"F \"^Bb\"F|\"^Eb\"E3|]\n[V: RH] [Eeb]|[DFB] [Egb] [EGCg] [DFd]|[GBE]4|[ECeg] [GEg] [GBb] [GEb]|[DFf]4|[BEG] [DBd] [CEGg] [DBg]|[DBf] [CAf] [Ddf]2|[CEce] [BEb] [CBg] [FBD]|[EGBe]3|]\n[V: LH] [E,G,EG]|[F,B,FB] [E,G,EG] [C,G,CG] [F,B,FB]|[E,G,EG]4|[C,G,CG] [E,G,EG] [D,G,B,D] [E,G,EG]|[F,B,FB]4|[E,G,EG] [F,B,FB] [C,E,G,C] [D,G,DG]|[F,B,FB] [A,C,F,A] [F,B,FB]2|[C,E,G,C] [E,G,EG] [C,E,G,B,] [F,B,FB]|[E,G,EG]3|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

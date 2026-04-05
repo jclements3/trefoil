@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Holy Ghost, with Light Divine — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Holy Ghost, with Light Divine</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4119\nT: Holy Ghost, with Light Divine\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: Eb\n[V: M] \"^Eb\"G \"^C\"A \"^Eb\"B \"^C\"c|\"^Eb\"F \"^Bb\"F \"^Eb\"G2|\"^Bb\"B \"^F\"c \"^Bb\"d \"^Eb\"e|\"^Cm7\"c \"^F\"c \"^Bb\"B2|\"^Eb\"G \"^C\"A \"^Eb\"B \"^C\"c|\"^Fm\"A \"^C\"G \"^G#\"F2|\"^Bb\"B A/2 \"^Eb\"G/2 \"^G#\"F \"^Cm\"E|\"^Cm7\"F \"^Bb\"F \"^Eb\"E2|]\n[V: RH] [EGg] [CGe] [EGb] [CGg]|[EBe] [FBDf] [EBg]2|[FBDb] [FCfa] [FBfb] [EBb]|[ECg] [ACFa] [FDfb]2|[Eeg] [Cce] [Eeb] [Ccg]|[FCa] [Ceg] [DBd]2|[BDFb]2 [DBg] [CEg]|[ECb] [DFB] [Egb]2|]\n[V: LH] [E,B,EG] [G,C,E,G] [E,B,EG] [G,C,E,G]|[E,B,EG] [D,F,B,] [E,B,EG]2|[D,F,B,] [C,CF] [D,F,B,] [E,B,EG]|[C,E,G,B,] [C,CF] [D,F,B,]2|[E,B,EG] [G,C,E,G] [E,B,EG] [G,C,E,G]|[C,F,A,C] [G,C,E,G] [D,G,B,D]2|[D,F,B,]2 [D,G,B,D] [C,E,G,E]|[C,E,G,B,] [D,F,D] [E,B,EG]2|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Jesus Christ Who Came to Save — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Jesus Christ Who Came to Save</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4110\nT: Jesus Christ Who Came to Save\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: C\n[V: M] \"^Am\"A A \"^Em\"G \"^D\"A|\"^G\"B \"^F#°\"A \"^Em\"G \"^Eb\"^F|\"^Em\"E \"^C\"G \"^Dm\"A \"^G7\"B|\"^Am\"A \"^E\"^G \"^Am\"A \"^Bø7\"d|\"^Am\"A/2 B/2 c \"^Bø7\"B A|\"^E\"B \"^A\"A \"^Dm\"A \"^D\"A|\"^G\"B \"^Am\"A \"^Em\"G \"^Eb\"^F|\"^Em\"E \"^C\"G \"^F#°\"A \"^G\"B|\"^Am\"A \"^E\"^G \"^A\"A2|]\n[V: RH] [CEce]2 [EBeg] [ADFa]|[Ggb] [FCfa] [EBeb] [EGBg]|[EBgb] [CEc] [DFd] [Ddf]|[CAce] [EGBg] [EACe] [DAf]|[EACa]2 [DAa]2|[EGBb] [CEce] [DFf] [DFA]|[BDG] [EAea] [Eegb] [EGBb]|[GBEg] [CEe] [ACFa] [DGBd]|[ACEa] [EGeb] [CAce]2|]\n[V: LH] [E,C,EA]2 [E,G,EB] [F,A,D,F]|[G,B,D,] [C,F,A,C] [E,G,EB] [E,G,GB]|[E,G,EB] [E,C,EG] [D,F,FA] [D,F,G,B,]|[E,C,EA] [E,G,EG] [E,C,EA] [D,F,A,B,]|[E,C,EA]2 [D,F,A,B,]2|[E,G,EG] [A,C,E,A] [D,F,FA] [F,A,D,A]|[G,B,D,] [E,C,EA] [E,G,EB] [E,G,GB]|[E,G,EB] [E,C,EG] [C,F,A,C] [G,B,D,]|[E,C,EA] [E,G,EG] [A,C,E,A]2|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

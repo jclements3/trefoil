@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>'Take Up Thy Cross', the Savior Said — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>'Take Up Thy Cross', the Savior Said</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4296\nT: 'Take Up Thy Cross', the Savior Said\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: G\n[V: M] \"^G\"G2 \"^D\"A \"^Em\"G|\"^D\"F \"^G\"G \"^Am\"A \"^G\"B|\"^C\"G3 \"^Em\"G|\"^D\"A \"^G\"B \"^C\"c \"^G\"B|\"^Em\"G \"^D\"A \"^G\"B2|G2 \"^D\"A A|\"^G\"B \"^F#°\"A \"^Em\"G \"^Eb\"F|\"^C\"E3 \"^D\"A|\"^G\"B \"^Am\"A \"^G\"G \"^C\"E|\"^Em\"G \"^D\"A \"^G\"G2|]\n[V: RH] [DGdg]2 [DFfa] [BEG]|[DAdf] [DBdg] [CAc] [GBDg]|[Ceg]3 [BEb]|[DAda] [GBDb] [EGC] [GBgb]|[EGBe] [DAfa] [GDgb]2|[Ddfa]2|[BDGb] [CFAf] [EGBg] [EGb]|[ECe]3 [FADa]|[DGB] [CAe] [DGd] [ECg]|[EGBb] [FDfa] [DGg]2|]\n[V: LH] [G,B,D,]2 [F,A,D,F] [E,G,G]|[F,A,D,F] [G,B,D,] [C,E,A,C] [G,B,D,]|[E,G,C,E]3 [E,G,G]|[F,A,D,F] [G,B,D,] [E,G,C,E] [G,B,D,]|[E,G,G] [F,A,D,F] [G,B,D,]2|[F,A,D,F]2|[G,B,D,] [C,F,CF] [E,G,G] [E,B,B]|[E,G,C,E]3 [F,A,D,F]|[G,B,G] [C,E,A,C] [G,B,G] [E,G,C,E]|[E,G,G] [F,A,D,F] [G,B,G]2|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

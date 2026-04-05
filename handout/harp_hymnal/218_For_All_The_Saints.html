@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>For All The Saints — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>For All The Saints</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4218\nT: For All The Saints\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: G\n[V: M] \"^C\"z \"^G\"d \"^F#\"B \"^D7\"A|\"^C#ø7\"G3 \"^G\"D|\"^C\"E \"^Em\"G \"^Am\"A \"^D\"D|\"^Em7\"B3 \"^G\"B|A2 \"^Bm\"A \"^C#°\"G|\"^D\"F2 \"^Bm7\"F2|\"^Em7\"G \"^Bm7\"A \"^C\"F \"^A\"E|\"^D\"D3 \"^D7\"D|\"^Em7\"G2 \"^G\"G \"^C\"G|]\n[V: RH] z4|[CGg]3 [GDgb]|[CEGc] [BEG] [AEa] [DFA]|[EDb]3 [BDGb]|[BDF] [CEg]|[DFd]2 [FBa]2|[Eeg] [FBb] [CEGe] [CEAe]|[DFf]3 [DCfa]|[Eeb]2 [DGB] [CEGg]|]\n[V: LH] z4|[C,E,G,B,]3 [G,B,D,]|[G,C,G] [G,B,E,B] [E,A,E] [A,D,F,]|[D,E,G,B,]3 [G,B,D,]|[B,D,F,B] [C,E,G,E]|[A,D,F,]2 [D,F,A,B,]2|[D,E,G,B,] [D,F,A,B,] [G,C,G] [E,EA]|[A,D,F,]3 [C,D,F,A,]|[D,E,G,B,]2 [G,B,G] [G,C,G]|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

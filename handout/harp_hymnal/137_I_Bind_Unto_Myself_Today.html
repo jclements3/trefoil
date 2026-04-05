@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>I Bind Unto Myself Today — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>I Bind Unto Myself Today</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4137\nT: I Bind Unto Myself Today\nM: 3/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: Bb\n[V: M] D|\"^Gm\"G2 G|\"^Dm\"F D F|\"^Bb\"B d \"^Cm\"c/2 B/2|\"^Bb\"B A \"^F\"A|c A F|F A \"^Cm7\"c|\"^Bb\"B2 \"^Eb\"B|\"^F7\"A A \"^Gm7\"d|\"^Eb\"G3/2 A/2 \"^EbΔ7\"B/2 G/2|\"^Gm7\"F D \"^Bb\"B,|\"^EbΔ7\"B2 \"^Gm\"F|\"^Eb\"G \"^Dm\"A \"^Gm7\"B/2 \"^F\"c/2|\"^Bb\"d2 \"^Dm7\"c/2 d/2|\"^Gm\"B \"^Eb\"G \"^Dm7\"A|\"^Gm\"G2 \"^Cm\"G|\"^Gm\"G|]\n[V: RH] z|[BDG]3|[DFAa]3|[FBDb]2 [ECeg]|[FBfb]2 [CFA]|[CFA]3|[BCE]|[FDfb]2 [EBe]|[CFA]2 [DBf]|[EBg]2 [DEB]|[DBg]2 [BDFb]|[DEd]2 [DGBd]|[EBb] [DFdf]2|[DFB]2 [DFf]|[DGBg] [Eeg] [DFa]|[DGdg]2 [GCEg]|[DBdg]|]\n[V: LH] z|[G,B,D,B]3|[D,A,DF]3|[D,B,D]2 [C,E,G,E]|[D,B,D]2 [F,C,F]|[F,C,F]3|[C,E,G,B,]|[D,B,D]2 [E,EGB]|[C,E,F,A,]2 [D,F,G,B,]|[E,EGB]2 [D,E,G,B,]|[D,F,G,B,]2 [D,B,D]|[D,E,G,B,]2 [G,B,D,B]|[E,EGB] [D,A,DF]2|[D,B,F]2 [C,D,F,A,]|[G,B,D,B] [E,EGB] [C,D,F,A,]|[G,B,D,B]2 [C,E,G,E]|[G,B,D,B]|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

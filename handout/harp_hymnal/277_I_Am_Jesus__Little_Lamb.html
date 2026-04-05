@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>I Am Jesus' Little Lamb — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>I Am Jesus' Little Lamb</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4277\nT: I Am Jesus' Little Lamb\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: C\n[V: M] \"^C\"G c|\"^F\"A A \"^C\"G \"^Dm\"F|\"^C\"E2 G c|\"^F\"A \"^F#°7\"A \"^C\"G \"^G7\"F|\"^C\"E2 G c|\"^F\"A \"^A7\"A \"^D\"A d/2 c/2|\"^G\"B/2 A/2 G \"^C\"G c|\"^F\"A \"^A7\"A \"^D\"A d/2 _c/2|\"^G\"B/2 A/2 G \"^C\"c G|\"^F\"A \"^C\"G \"^Dm\"F \"^C\"E|\"^G\"D2 \"^C\"G c|\"^F\"A \"^Dm\"d \"^C\"c \"^G\"B|\"^C\"c2|]\n[V: RH] [CEGe]2|[CFc]2 [CEGg] [FAD]|[CEce]4|[CFf] [CFA] [CEcg] [DFBf]|[CEeg]4|[CAc] [GACE] [DFAd]2|[DGg]2 [CGcg]2|[CAf] [GACg] [DFAf]2|[DBd]2 [CGeg]2|[Ccf] [Cceg] [FDf] [EGCe]|[DBg]2 [EGCg]2|[FAC] [FDa] [ECeg] [Ddg]|[GCEg]2|]\n[V: LH] [C,G,CE]2|[F,A,A]2 [C,G,CE] [F,D,FA]|[C,G,CE]4|[F,A,A] [C,E,F,A,] [C,G,CE] [D,F,G,B,]|[C,G,CE]4|[F,A,A] [C,E,G,A,] [D,A,DA]2|[D,G,B,]2 [C,G,CE]2|[F,A,A] [C,E,G,A,] [D,A,DA]2|[D,G,B,]2 [C,G,CE]2|[F,A,A] [C,G,CE] [F,D,FA] [C,G,CE]|[D,G,B,]2 [C,G,CE]2|[F,A,A] [F,D,FA] [C,G,CE] [D,G,B,]|[C,G,CE]2|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

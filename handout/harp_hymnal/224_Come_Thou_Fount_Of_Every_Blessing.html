@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Come Thou Fount Of Every Blessing — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Come Thou Fount Of Every Blessing</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4224\nT: Come Thou Fount Of Every Blessing\nM: 3/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: Eb\n[V: M] \"^Eb\"G/2 F/2|E E G/2 B/2|\"^Bb\"F F \"^Eb\"G/2 B/2|\"^C\"c \"^Eb\"B G/2 \"^G#\"F/2|\"^Eb\"E2 G/2 F/2|E E G/2 B/2|\"^Bb\"F F \"^Eb\"G/2 B/2|\"^C\"c \"^Eb\"B G/2 \"^G#\"F/2|\"^Eb\"E2 B/2 \"^Fm\"c/4 d/4|\"^Eb\"e \"^EbΔ7\"d \"^C\"c/2 \"^Eb\"B/2|\"^C\"c/2 \"^Gm\"B/2 \"^Eb\"G B/2 \"^Dm\"c/4 d/4|\"^Cm\"e \"^Gm\"d \"^C\"c/2 \"^Bb\"B/2|\"^Eb\"e2 G/2 F/2|E E G/2 B/2|\"^Bb\"F F \"^Eb\"G/2 B/2|\"^C\"c \"^Eb\"B G/2 \"^G#\"F/2|\"^Eb\"E2|]\n[V: RH] [EGgb]|[EGgb]3|[FBfb]2 [EBeg]|[CGc] [EBeb]2|[EBgb]3|[EBgb]3|[FDfb]2 [Eegb]|[CGe] [GBEg]2|[GBEb]3|[GEgb] [DEg]2|[CGg] [BEGb]2|[CGeg] [BDGb]2|[EGB]3|[EGB]3|[BDFb]2 [EGe]|[Cce] [EGb]2|[EBe]2|]\n[V: LH] [E,G,E]|[E,G,E]3|[B,F,B]2 [E,G,E]|[C,E,G,C] [E,G,E]2|[E,G,E]3|[E,G,E]3|[B,F,B]2 [E,G,E]|[C,E,G,C] [E,G,E]2|[E,G,E]3|[E,G,E] [D,E,G,B,]2|[C,E,G,C] [E,G,E]2|[C,E,CE] [D,G,B,]2|[E,G,G]3|[E,G,G]3|[B,F,B]2 [E,G,G]|[C,E,G,C] [E,G,G]2|[E,G,G]2|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

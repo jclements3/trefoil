@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Come, God Creator, Holy Ghost — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Come, God Creator, Holy Ghost</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4117\nT: Come, God Creator, Holy Ghost\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: C\n[V: M] \"^C\"G2 \"^F\"A \"^C\"G|\"^Dm\"F \"^C\"G \"^Am\"c \"^G\"d|\"^C\"c2 z c|G \"^F\"A \"^C\"c \"^G\"d|\"^C\"e e \"^G\"d2|z d \"^C\"e c|\"^F\"A \"^C\"G \"^B°\"B \"^C\"c|\"^G\"d2 z G|\"^C\"c \"^F\"A F A|A \"^C\"G \"^G\"G2|\"^C\"G2 G2|]\n[V: RH] [GCg]2 [CAcf] [CEGc]|[DAd] [CEGe] [CEc] [Ggb]|[CEGg]4|[FACf] [CEce] [BDG]|[CEcg]2 [DGBd]2|[CEeg]2|[FACa] [CGce] [DFdf] [CGcg]|[DGBg]4|[CGeg] [FAfa]3|[Cceg] [DGdg]2|[EGCe]4|]\n[V: LH] [E,C,EG]2 [C,CF] [E,C,EG]|[D,F,FA] [E,C,EG] [A,C,E,A] [G,B,G]|[E,C,EG]4|[C,CF] [E,C,EG] [G,B,G]|[E,C,EG]2 [G,B,G]2|[E,C,EG]2|[C,CF] [E,C,EG] [D,F,B,D] [E,C,EG]|[G,B,G]4|[E,C,EG] [C,CF]3|[E,C,EG] [G,B,G]2|[E,C,EG]4|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

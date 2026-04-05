@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Lord Jesus Think On Me — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Lord Jesus Think On Me</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4141\nT: Lord Jesus Think On Me\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: G\n[V: M] \"^Em\"E|G \"^C\"G \"^F#ø7\"F \"^Eb\"F|\"^Em\"E3 G|G \"^G\"G \"^Am7\"A \"^D\"A|\"^G\"B3 B|d \"^D\"d \"^C\"c \"^D7\"c|\"^G\"B B \"^D\"A \"^Eb\"B|\"^Am\"A \"^Em\"G \"^F#ø7\"F \"^Eb\"F|\"^Em\"E3|]\n[V: RH] [EGBe]|[Cce] [CEf] [BEb]|[EGBg]4|[GBDb] [CAe] [Dfa]|[GBgb]4|[FAD] [Ccg] [Dfa]|[GDgb]2 [FDf] [EGBe]|[ECa] [EGBb] [CFA] [EGBg]|[EGeg]3|]\n[V: LH] [E,B,EB]|[C,E,G] [C,E,F,A,] [E,EGB]|[E,B,EB]4|[B,D,G,] [C,E,G,A,] [D,F,A]|[B,D,G,]4|[D,F,A] [C,E,G] [C,D,F,A,]|[B,D,G,]2 [D,F,A] [E,EGB]|[C,E,C] [E,B,EB] [C,E,F,A,] [E,EGB]|[E,B,EB]3|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

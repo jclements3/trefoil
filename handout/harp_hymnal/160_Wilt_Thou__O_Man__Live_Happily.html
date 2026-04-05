@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Wilt Thou, O Man, Live Happily — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Wilt Thou, O Man, Live Happily</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4160\nT: Wilt Thou, O Man, Live Happily\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: C\n[V: M] \"^Em\"E2 \"^C\"G \"^G\"G|\"^Am\"A \"^Em\"B \"^Am\"c \"^E\"B|\"^Am\"A2 \"^E\"B2|\"^Am\"c \"^G\"G \"^Am\"A E|\"^G\"G2 \"^C\"E C|\"^G\"G \"^Dm\"F \"^A\"E2|\"^G\"B2 \"^C\"c \"^G\"d|\"^C\"c \"^Dm\"A \"^E\"^G \"^Am\"A|\"^E\"B2 \"^Em\"E2|\"^B°\"B \"^C\"c \"^G\"B \"^Em\"G|\"^Am\"A \"^Dm\"F \"^Am\"E C|\"^G\"G3/2 \"^Dm\"F/2 \"^Am\"E2|\"^E\"E4|]\n[V: RH] [EGeb]2 [CEGc] [GBD]|[CEA] [EGgb] [CEc] [Eeb]|[CEe]2 [Egb]2|[CAe] [GBg] [Cce]2|[GBb]2 [CEGe]2|[GDg] [DFda] [EAa]2|[GDb]2 [CEGg] [Ggb]|[CEce] [DFfa] [GBE] [EAC]|[GEg]2 [EBeg]2|[DFd] [CEcg] [BDG] [EBeb]|[EAe] [DAdf] [EAa]2|[DGBd]2 [ECa]2|[GEb]4|]\n[V: LH] [E,B,GB]2 [C,G,G] [D,B,DG]|[C,A,C] [E,B,GB] [C,A,C] [E,B,EG]|[C,A,C]2 [E,B,EG]2|[C,A,C] [D,B,DG] [C,A,C]2|[D,B,DG]2 [C,G,G]2|[D,B,DG] [D,A,FA] [E,A,C,]2|[D,B,DG]2 [C,G,G] [D,B,DG]|[C,G,G] [D,A,FA] [E,B,EG] [C,A,C]|[E,B,EG]2 [E,B,GB]2|[D,F,B,F] [C,G,G] [D,B,DG] [E,B,GB]|[C,A,C] [D,A,FA] [C,A,C]2|[D,B,DG]2 [C,A,C]2|[E,B,EG]4|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

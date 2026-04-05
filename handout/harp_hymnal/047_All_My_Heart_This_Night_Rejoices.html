@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>All My Heart This Night Rejoices — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>All My Heart This Night Rejoices</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4047\nT: All My Heart This Night Rejoices\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: G\n[V: M] \"^G\"G2 \"^D\"A2|\"^G\"B3 \"^D\"A|\"^G\"B d \"^C\"e2|\"^G\"d4|d \"^Em\"e \"^Am\"c2|c \"^D\"d \"^G\"B2|B d \"^C\"c \"^G\"B|\"^D\"A2 \"^G\"G2|\"^Bm\"d2 \"^Am\"c2|\"^G\"B3 \"^D\"A|\"^G\"G \"^D\"F E2|D4|d \"^Em\"e \"^Am\"c2|\"^C\"c \"^D\"d \"^G\"B2|B \"^D\"A \"^C\"c \"^G\"B|A2 G2|]\n[V: RH] [DGg]2 [DFA]2|[DBd]3 [DFd]|[DBg]2 [CGc]2|[Ddg]4|[EBeg] [CAc]2|[DFf] [GBD]2|[CGe] [GBg]|[DFa]2 [GBb]2|[FBDb]2 [CAe]2|[GDg]3 [DAd]|[GDb] [DAf]3|[DAf]4|[EBeb] [Cce]2|[CGg] [DAa] [Ggb]2|[Ddf] [Cce] [BDG]|[BDG]4|]\n[V: LH] [G,B,D,B]2 [D,F,DA]2|[G,B,D,B]3 [D,F,DA]|[G,B,D,B]2 [C,E,CE]2|[G,B,D,B]4|[E,G,B,G] [C,E,CE]2|[D,F,DA] [G,B,D,B]2|[C,E,CE] [G,B,D,B]|[D,F,DA]2 [G,B,D,B]2|[D,F,B,F]2 [C,E,CE]2|[G,B,D,B]3 [D,F,DA]|[G,B,D,B] [D,F,DA]3|[D,F,DA]4|[E,G,B,G] [C,E,CE]2|[C,E,CE] [D,F,DA] [G,B,D,B]2|[D,F,DA] [C,E,CE] [G,B,D,B]|[G,B,D,B]4|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

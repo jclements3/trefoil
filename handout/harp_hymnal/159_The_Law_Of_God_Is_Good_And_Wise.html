@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>The Law Of God Is Good And Wise — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>The Law Of God Is Good And Wise</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4159\nT: The Law Of God Is Good And Wise\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: G\n[V: M] \"^Em\"E2 G \"^Am\"E|\"^Bm\"D \"^Am\"E \"^Em\"G \"^Eb\"F|\"^Em\"E2 \"^C\"G2|\"^Am\"A \"^D\"A \"^G\"B \"^C\"G|\"^Am\"A \"^D\"A \"^G\"B2|B2 \"^C\"c \"^G\"B|\"^D\"d \"^Em\"B \"^Am\"A \"^D\"A|\"^G\"G2 B2|\"^C\"G \"^Am\"A \"^G\"G \"^D\"F|\"^Em\"E \"^Eb\"^D \"^Em\"E2|]\n[V: RH] [BEG]3 [CAce]|[FBD] [EACe] [BEb] [BEb]|[EGBe]2 [ECe]2|[EACa] [ADa] [DGd] [ECg]|[EAea] [DFAd] [DGg]2|[GCE] [DBd]|[DFAf] [EGBg] [ECea] [DFAa]|[DBg]4|[GCg] [ACEa] [Ddg] [DFdf]|[EGBb] [EGBe] [EGeg]2|]\n[V: LH] [E,B,GB]3 [C,E,E]|[F,D,FB] [C,E,E] [E,B,GB] [G,B,E,G]|[E,B,GB]2 [C,G,G]2|[C,E,E] [D,A,D] [D,B,DG] [C,G,G]|[C,E,E] [D,A,D] [D,B,DG]2|[C,G,G] [D,B,DG]|[D,A,D] [E,B,GB] [C,E,E] [D,A,D]|[D,B,DG]4|[C,G,G] [C,E,E] [D,B,DG] [D,A,D]|[E,B,GB] [G,B,E,G] [E,B,GB]2|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

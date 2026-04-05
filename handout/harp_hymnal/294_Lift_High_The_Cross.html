@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Lift High The Cross — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Lift High The Cross</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4294\nT: Lift High The Cross\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: C\n[V: M] \"^C\"G2 c3/2 G/2|\"^Dm7\"F3 \"^G\"G|\"^C\"E3/2 F/2 \"^Em\"G \"^D7\"A|\"^C\"D3 \"^G7\"D|\"^C\"E \"^G7\"G \"^C\"c2|\"^CΔ7\"c \"^F\"A \"^G\"G2|\"^Em\"G \"^Dm\"A \"^Dm7\"F/2 E/2 \"^G7\"D|\"^F\"C4|\"^Em\"G2 \"^F#°\"^F3/2 \"^Am\"E/2|\"^D\"^F2 \"^G\"D2|\"^C\"E3/2 \"^Eb\"^F/2 \"^Em\"G \"^Am\"A|\"^Eb\"B2 \"^Em\"G2|\"^Am\"c2 \"^Bm\"B A|\"^G\"d2 D2|\"^C\"E3/2 G/2 \"^G\"G \"^D\"^F|\"^G\"G4 F0 D0 E0|]\n[V: RH] [CEGe]4|[CDAd]3 [DGBd]|[CEGg]2 [BEGb] [CDdf]|[CEce]3 [DGBf]|[CEcg] [DGBg] [CEeg]2|[CGe] [FAfa] [DGBg]2|[EGB] [FAD] [CDAf] [DGdf]|[FCfa]4|[EGe]2 [CFAc]2|[DFAf]2 [DGdg]2|[CGce]2 [EGb] [CAce]|[EGg]2 [EBe]2|[EACe]2 [DBf]2|[DBdg]4|[CGcg]2 [GBDg] [DFAa]|[GBDb]4|]\n[V: LH] [C,CEG]4|[C,D,F,A,]3 [D,DG]|[C,CEG]2 [E,G,E] [C,D,F,C]|[C,CEG]3 [D,F,G,B,]|[C,CEG] [D,F,G,B,] [C,CEG]2|[C,E,G,B,] [F,C,F] [D,DG]2|[E,G,G] [A,D,F,A] [C,D,F,A,] [D,F,G,B,]|[F,C,F]4|[E,G,G]2 [C,F,CF]2|[F,A,D,F]2 [D,DG]2|[C,CEG]2 [E,G,G] [A,E,A]|[E,B,B]2 [E,G,G]2|[A,E,A]2 [D,B,D]2|[D,DG]4|[C,CEG]2 [D,DG] [F,A,D,F]|[D,DG]4|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

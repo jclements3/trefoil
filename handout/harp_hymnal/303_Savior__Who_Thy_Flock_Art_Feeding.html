@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Savior, Who Thy Flock Art Feeding — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Savior, Who Thy Flock Art Feeding</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4303\nT: Savior, Who Thy Flock Art Feeding\nM: none\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: F\n[V: M] \"^F\"F \"^C\"G \"^F\"A \"^E°\"G|\"^F\"A \"^Bb\"B \"^C\"c2 \"^F\"A2|\"^Bb\"d \"^F\"c \"^Gm\"B \"^F\"A|\"^Gm\"G G \"^A\"A4|\"^Am\"c \"^C7\"c \"^F\"c A/2 \"^Gm\"B/2|\"^F\"c \"^C\"c/2 B/2 \"^F\"A2 \"^C\"G2|\"^Dm\"F \"^C\"G \"^F\"A \"^Bb\"B|\"^F\"A \"^C7\"G \"^F\"F4|]\n[V: RH] [FAa] [CGe] [FCf] [GBEg]|[FCa] [DFBf] [CGg]2 [ACF]2|[DFdf] [CFAc] [DBg] [CFAf]|[GBD]2 [CEAc]4|[CAce] [ECb] [CFcf]2|[CAcf] [Cce] [FACf]2 [Ccg]2|[DAfa] [Ceg] [FACa] [DBdf]|[FAfa] [GBC] [FCfa]4|]\n[V: LH] [F,FA] [E,G,C,G] [F,FA] [E,G,B,E]|[F,FA] [F,D,FB] [E,G,C,G]2 [F,FA]2|[F,D,FB] [F,FA] [D,DG] [F,FA]|[D,DG]2 [E,A,C,E]4|[C,E,A,C] [C,E,G,C] [F,FA]2|[F,FA] [E,G,C,G] [F,FA]2 [E,G,C,G]2|[A,D,F,A] [E,G,C,G] [F,FA] [F,D,FB]|[F,FA] [C,E,G,C] [F,FA]4|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

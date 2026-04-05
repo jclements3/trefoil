@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>The Advent of Our God — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>The Advent of Our God</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4044\nT: The Advent of Our God\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: G\n[V: M] \"^G\"D|G G B \"^D\"A/2 \"^C#°\"G/2|\"^D\"A3 \"^G\"B/2 \"^F#°\"c/2|\"^G\"d \"^D7\"c/2 \"^G\"B/2 \"^Am\"c \"^G\"B|\"^D\"A3 d|\"^G\"B G \"^D\"A D|\"^G\"G/2 A/2 \"^Em\"B/2 ^c/2 \"^D\"d3/2 \"^G\"d/2|\"^C\"e \"^G\"d/2 \"^C\"c/2 \"^G\"B \"^D7\"A|\"^G\"G3|]\n[V: RH] [DGBd]|[DFfa]|[DAdf]4|[DGBg]2 [ECea] [DGdg]|[DAda]4|[DBdg]2 [DAfa]2|[GBDb] [BEG] [Ddfa]2|[EGCg]2 [GBgb] [CFd]|[GDgb]3|]\n[V: LH] [G,B,D,G]|[D,F,DF]|[D,F,DF]4|[G,B,D,G]2 [C,E,A,E] [G,B,D,G]|[D,F,DF]4|[G,B,D,G]2 [D,F,DF]2|[G,B,D,G] [E,G,B,G] [D,F,DF]2|[C,E,G,G]2 [G,B,D,G] [C,D,F,A,]|[G,B,D,G]3|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

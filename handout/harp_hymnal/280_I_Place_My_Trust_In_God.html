@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>I Place My Trust In God — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>I Place My Trust In God</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4280\nT: I Place My Trust In God\nM: 2/2\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: Bb\n[V: M] \"^Bb\"F|\"^Eb\"G \"^F7\"A \"^Bb\"B B|B3/2 \"^Eb\"G/2 \"^Bb\"F F/2 \"^Cm\"G/2|\"^Bb\"B B d d|B3/2 \"^Eb\"G/2 \"^Bb\"F F|\"^Cm\"G G G \"^Bb\"d|B3/2 B/2 B F|\"^Eb\"G G \"^A°\"A A|\"^F\"c3/2 \"^Cm\"c/2 \"^Bb\"B F/2 \"^C\"G/2|\"^Bb\"B B B d|B3/2 \"^Eb\"G/2 \"^Bb\"F F/2 \"^Cm\"G/2|\"^Bb\"B B d d|\"^F\"c3/2 \"^Bb\"d/2 \"^F\"c \"^Bb\"d/2 \"^Cm\"c/2|\"^Bb\"B B B \"^F\"c|\"^Cm\"c3/2 \"^Bb\"d/2 \"^Cm\"e \"^Eb\"e|\"^Bb\"d d d B|\"^A°\"c \"^F\"A \"^Bb\"B|]\n[V: RH] [DFd]|[GEg] [FEf] [DFf]2|[GEb]/2 [DBd]2|[DBf]4|[BEG]/2 [Ddf]2|[CGce]3 [FBD]|[FBD]4|[BEb]2 [CEA]2|[FAf]2 [FBf]2|[FBb]4|[EGBe]/2 [FDb]2|[Ffb]4|[FCf]2 [FCa]2|[BDF]3 [Ffa]|[CGcg]2 [CGeg] [EGBg]|[BFb]4|[CEc] [ACF] [DFBd]|]\n[V: LH] [F,B,FB]|[E,B,G] [C,E,F,A,] [F,B,FB]2|[E,B,G]/2 [F,B,FB]2|[F,B,FB]4|[E,B,G]/2 [F,B,FB]2|[C,E,CG]3 [F,B,FB]|[F,B,FB]4|[E,B,G]2 [C,E,A,E]2|[F,A,A]2 [F,B,FB]2|[F,B,FB]4|[E,B,G]/2 [F,B,FB]2|[F,B,FB]4|[F,A,A]2 [F,A,A]2|[F,B,FB]3 [F,A,A]|[C,E,CG]2 [C,E,CG] [E,B,G]|[F,B,FB]4|[C,E,A,E] [F,A,A] [F,B,FB]|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

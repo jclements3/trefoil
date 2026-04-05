@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Christ My King On High — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Christ My King On High</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4183\nT: Christ My King On High\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: Bb\n[V: M] \"^Bb\"F3 F|B3 A|\"^F7\"A3 B|\"^Eb\"G4|\"^Bb\"F3 D|\"^Gm\"D2 C B,|\"^Bb\"D3 E|\"^F\"C4|\"^Bb\"F3 F|B3 A|\"^F7\"A3 B|\"^Eb\"G4|\"^Bb\"F3 D|\"^Gm\"D2 C B,|\"^Bb\"D3 C|B,4|]\n[V: RH] [BDF]4|[BDF]4|[Cce]4|[Eegb]4|[BFb]4|[GBb]4|[DFBd]4|[CAc]4|[DFBf]4|[DFBf]4|[Ccf]4|[GBEg]4|[DFdf]4|[GDg]4|[DBdf]4|[DBdf]4|]\n[V: LH] [F,B,B]4|[F,B,B]4|[C,E,F,A,]4|[G,E,GB]4|[F,B,B]4|[B,D,G,B]4|[F,B,B]4|[C,A,CF]4|[F,B,B]4|[F,B,B]4|[C,E,F,A,]4|[G,E,GB]4|[F,B,B]4|[B,D,G,B]4|[F,B,B]4|[F,B,B]4|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

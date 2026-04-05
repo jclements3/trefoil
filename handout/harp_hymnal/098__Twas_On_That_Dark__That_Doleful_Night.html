@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>'Twas On That Dark, That Doleful Night — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>'Twas On That Dark, That Doleful Night</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4098\nT: 'Twas On That Dark, That Doleful Night\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: F\n[V: M] \"^Dm\"F2 F \"^C\"G|\"^F\"A3 \"^Bb\"d|\"^F\"c2 \"^Bb\"B2|\"^F\"A4|\"^Dm\"A2 \"^FΔ7\"A \"^Bb\"B|\"^F\"c2 \"^Dm\"F2|\"^F\"A2 \"^C\"G2|\"^F\"F3 A|F3 \"^Dm\"A|\"^Eø7\"G2 \"^A\"A2|\"^Dm\"F2 \"^E°\"G2|\"^A\"E4|D2 D D|A3 \"^Gm\"G|\"^Dm\"F2 \"^F\"^E2|\"^Dm\"D4|]\n[V: RH] [FADa]3 [CGcg]|[CFAf]3 [BFb]|[CFcf]2 [DFBd]2|[CAcf]4|[FDfa]2 [CEf] [DFBf]|[FACf]2 [ADFa]2|[FACa]2 [CGeg]2|[FAfa]4|[DFA]|[DEB]2 [CEA]2|[DFd]2 [GEb]2|[CEc]4|[CEc]4|[GBgb]|[DFf]2 [FCfa]2|[DFa]4|]\n[V: LH] [D,F,DF]3 [C,CEG]|[C,F,F]3 [B,D,F,B]|[C,F,F]2 [B,D,F,B]2|[C,F,F]4|[D,F,DF]2 [C,E,F,A,] [B,D,F,B]|[C,F,F]2 [D,F,DF]2|[C,F,F]2 [C,CEG]2|[C,F,F]4|[D,F,DA]|[D,E,G,B,]2 [A,C,E,A]2|[D,F,DA]2 [E,G,B,E]2|[A,C,E,A]4|[A,C,E,A]4|[D,G,DG]|[D,F,DA]2 [C,F,F]2|[D,F,DA]4|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

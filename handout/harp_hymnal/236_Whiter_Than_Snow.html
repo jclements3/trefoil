@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Whiter Than Snow — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Whiter Than Snow</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4236\nT: Whiter Than Snow\nM: 3/4\nL: 1/8\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: A\n[V: M] \"^A\"E2|E2 A2 \"^E\"B2|\"^A\"c3 \"^Bm\"B \"^A\"A2|\"^E7\"B2 \"^C#m\"c2 \"^E7\"B2|\"^A\"A4 E2|E2 A2 \"^E\"B2|\"^A\"c3 \"^Bm\"B \"^A\"A2|\"^E7\"B2 \"^C#m\"c2 \"^E7\"B2|\"^A\"A4 c2|e2 c2 A2|\"^D\"F A A2 A2|d2 d2 d2|\"^A\"c4 E2|E2 A2 c2|c3 \"^E7\"B \"^A\"A2|\"^E\"B3 \"^F#m\"A \"^E7\"B2|\"^A\"A6|\"^E7\"B2 B2 B2|B4 \"^F#m\"A2|c2 A2 \"^D\"F2|\"^A\"E4 E2|\"^D\"F2 A2 d2|\"^A\"c3 \"^E7\"B \"^A\"A2|\"^E\"B3 \"^F#m\"A \"^E7\"B2|\"^A\"A4|]\n[V: RH] [EAC]2|[EBb]2|[EAe]3 [DFf] [EAa]2|[GEb]2 [CEGg]2 [BDE]2|[ECa]6|[Eeg]2|[Eea]3 [DBd] [ACE]2|[DEGd]2 [CEce]2 [DEGe]2|[CEAc]6|[CEAc]6|[FDfa]6|[FDfa]6|[CEAe]6|[CEAe]6|[DEGg] [CEce]2|[Eeb]3 [CFAc] [DEBd]2|[CAce]6|[DEBe]6|[CFAf]2|[ADFa]2|[EACe]6|[DFA]6|[EACa]3 [DEBg] [EAea]2|[Egb]3 [CFcf] [DEde]2|[ECea]4|]\n[V: LH] [A,E,A]2|[E,EGB]2|[A,E,A]3 [D,F,B,] [A,E,A]2|[D,E,G,B,]2 [C,E,G,E]2 [D,E,G,B,]2|[A,E,A]6|[E,EGB]2|[A,E,A]3 [D,F,B,] [A,E,A]2|[D,E,G,B,]2 [C,E,G,E]2 [D,E,G,B,]2|[A,E,A]6|[A,E,A]6|[D,F,A,D]6|[D,F,A,D]6|[A,E,A]6|[A,E,A]6|[D,E,G,B,] [A,E,A]2|[E,EGB]3 [F,A,C,A] [D,E,G,B,]2|[A,E,A]6|[D,E,G,B,]6|[F,A,C,A]2|[D,F,A,D]2|[A,E,A]6|[D,F,A,F]6|[A,E,A]3 [D,E,G,B,] [A,E,A]2|[E,EGB]3 [F,A,C,A] [D,E,G,B,]2|[A,E,A]4|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

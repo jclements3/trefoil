@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Let Our Gladness Have No End — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Let Our Gladness Have No End</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4062\nT: Let Our Gladness Have No End\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: G\n[V: M] \"^G\"G \"^D\"A \"^G\"B \"^C\"c|\"^D\"d \"^G\"d \"^D\"d2|\"^Am\"c \"^G\"d \"^C\"e2|\"^G\"d3 z|d d \"^C\"c \"^Am\"c|\"^Bm\"B B \"^Am\"A2|\"^G\"B \"^C\"c \"^G\"A2|G3 z|B \"^D\"A \"^Em\"B \"^C\"c|\"^Bm\"d3 \"^D\"c|\"^G\"B2 z2|\"^Em\"B \"^Am\"A \"^Eb\"B \"^Am\"c|\"^G\"d3 c|\"^Em\"B2 z2|\"^G\"z4|G2 \"^C\"e2|\"^D\"d \"^Em\"B \"^Am\"A2|\"^G\"G4|]\n[V: RH] [GBg] [Ddfa] [GBb] [EGC]|[FADf] [GDg] [FADa]2|[CAe] [GDb] [ECe]2|[Ggb]4|[ECg] [Cce]|[DBf]2 [EAC]2|[BDG] [GCE] [DGBd]2|[DGBd]4|[FDfa] [EGeg] [GCg]|[Ddf]3 [ADFa]|[DGBg]4|[EGeb] [EAe] [EGgb] [EAa]|[DGdg]4|[EGgb]4|[EGgb]4|[CEGc]2|[DFA] [EBeg] [ECa]2|[DBdg]4|]\n[V: LH] [G,D,GB] [D,F,FA] [G,D,GB] [C,E,EG]|[D,F,FA] [G,D,GB] [D,F,FA]2|[C,A,CE] [G,D,GB] [C,E,EG]2|[G,D,GB]4|[C,E,EG] [C,A,CE]|[D,F,DF]2 [C,A,CE]2|[G,D,GB] [C,E,EG] [G,D,GB]2|[G,D,GB]4|[D,F,FA] [E,G,B,B] [C,E,EG]|[D,F,DF]3 [D,F,FA]|[G,D,GB]4|[E,G,B,B] [C,A,CE] [E,G,B,B] [C,A,CE]|[G,D,GB]4|[E,G,B,B]4|[E,G,B,B]4|[C,E,EG]2|[D,A,DF] [E,G,B,B] [C,A,CE]2|[G,D,GB]4|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

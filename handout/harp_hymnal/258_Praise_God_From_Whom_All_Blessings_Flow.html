@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Praise God From Whom All Blessings Flow — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Praise God From Whom All Blessings Flow</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4258\nT: Praise God From Whom All Blessings Flow\nM: none\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: G\n[V: M] \"^G\"G2 G \"^D\"F \"^Em\"E \"^Bm\"D|\"^Em\"G2 \"^D\"A2 \"^G\"B3|B2 B B \"^D7\"A \"^Em\"G|\"^C\"c2 \"^G\"B2 \"^D\"A3|\"^Em\"G2 \"^D\"A \"^G\"B \"^D\"A \"^G\"G|\"^C\"E2 \"^D\"F2 \"^G\"G3|d2 B \"^Em\"G \"^D\"A \"^Am\"c|\"^G\"B2 \"^D\"A2 \"^G\"G3|]\n[V: RH] [DBd]3 [DAda] [EBe] [DFdf]|[EBg]2 [DAfa]2 [DBg]3|[DAC] [EBb]|[CEc]2 [Ddg]2 [Ddfa]3|[Eeg]2 [FADf] [GBD] [FADa] [GBg]|[CEe]2 [FDfa]2 [GBb]3|[Eeb] [ADFa] [Cce]|[GDg]2 [DFA]2 [GDb]3|]\n[V: LH] [D,B,DG]3 [D,F,DF] [B,E,G,B] [D,F,D]|[B,E,G,B]2 [D,F,DF]2 [D,B,DG]3|[C,D,F,C] [B,E,G,B]|[C,E,CG]2 [D,B,DG]2 [D,F,DF]3|[B,E,G,B]2 [D,F,DF] [D,B,DG] [D,F,DF] [D,B,DG]|[C,E,CG]2 [D,F,DF]2 [D,B,DG]3|[B,E,G,B] [D,F,DF] [E,EA]|[D,B,DG]2 [D,F,DA]2 [D,B,DG]3|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

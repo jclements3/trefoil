@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Gabriel's Message — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Gabriel's Message</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4033\nT: Gabriel's Message\nM: 3/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: C\n[V: M] E|\"^Am\"A2 c|\"^Bm\"B2 \"^Dm\"d|\"^Am\"c2 \"^Bm\"B|\"^Am\"A3|\"^Bø7\"B3|\"^Bm\"E3|\"^E7\"E2 \"^Em7\"E|\"^Am\"A2 c|\"^Bm\"B2 \"^Dm\"d|\"^Am\"c2 \"^B°\"B|\"^Am\"A3|\"^A\"A2 G|\"^Am\"A3|A2 \"^C\"c|c2 \"^G7\"d|\"^C\"c2 \"^B°\"B|\"^C\"c2 \"^B°\"d|\"^C\"e2 e|\"^Dm\"d3|\"^D7\"c3|\"^G\"B3|B2 \"^C\"c|\"^Dm\"d2 \"^Dm7\"c|\"^Bø7\"B2 \"^Dm\"A|\"^Bm\"B3|\"^E\"E3|\"^F\"A3|\"^Dm7\"c B c|\"^Am\"A3|\"^A\"A2 G|\"^Am\"A3|A3|]\n[V: RH] z|[EAea]3|[FBb]2 [DFAa]|[ECea]2 [FDb]|[ACEa]3|[DFA]3|[Ffb]3|[DEB]2 [DEB]|[CEA]3|[BDF]2 [DFdf]|[CEc]2 [DFd]|[CEe]3|[CEce]3|[CAc]3|[EGCe]|[DFB]|[EGCg]2 [DFf]|[ECeg]2 [DBd]|[GCEg]3|[DFda]3|[CDA]3|[DGBd]3|[CEG]|[DFfa]2 [CDF]|[DFB]2 [DAdf]|[BFb]3|[EGBg]3|[CAcf]3|[CDA]3|[CAe]3|[CAce]3|[Cce]3|[Cce]3|]\n[V: LH] z|[C,E,A,C]3|[D,F,B,D]2 [D,F,A,D]|[C,E,A,C]2 [D,F,B,D]|[C,E,A,C]3|[D,F,A,B,]3|[D,F,B,D]3|[D,E,G,B,]2 [D,E,G,B,]|[C,E,A,E]3|[D,F,B,D]2 [D,F,A,D]|[C,E,A,E]2 [D,F,B,D]|[C,E,A,E]3|[C,E,A,E]3|[C,E,A,E]3|[C,E,G,E]|[D,F,G,B,]|[C,E,G,E]2 [D,F,B,D]|[C,E,G,E]2 [D,F,B,D]|[C,E,G,E]3|[D,F,A,D]3|[C,D,F,A,]3|[D,G,DG]3|[C,E,G,G]|[D,F,A,D]2 [C,D,F,A,]|[D,F,A,B,]2 [D,F,A,D]|[D,F,B,D]3|[E,G,B,E]3|[C,F,A,F]3|[C,D,F,A,]3|[C,E,A,E]3|[C,E,A,E]3|[C,E,A,E]3|[C,E,A,E]3|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

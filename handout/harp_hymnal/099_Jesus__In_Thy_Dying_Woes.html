@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Jesus, In Thy Dying Woes — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Jesus, In Thy Dying Woes</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4099\nT: Jesus, In Thy Dying Woes\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: F\n[V: M] \"^Dm\"F F \"^Gm\"G \"^Dm\"F|\"^A7\"E3/2 \"^Dm\"D/2 D2|D F \"^A7\"E \"^Dm\"D|\"^A7\"G \"^Dm\"F \"^A\"E2|\"^Am\"E A \"^C\"c \"^F\"A|\"^C\"c \"^C7\"B \"^F\"A2|A \"^A7\"A \"^Dm\"A F|\"^Eø7\"E2 \"^Dm\"D2|]\n[V: RH] [DAd]2 [GDgb] [DAf]|[CAc]3/2 [DAa]5/2|[CAe] [Ddf]|[CAg] [Dda] [CEe]2|[Eea]2 [EGCe] [ACFa]|[EGCg] [CBc] [CFA]2|[Cce] [Dfa]2|[DEd]2 [FAD]2|]\n[V: LH] [D,F,DA]2 [D,G,DG] [D,F,DA]|[C,E,G,A,]3/2 [D,F,DA]5/2|[C,E,G,A,] [D,F,DA]|[C,E,G,A,] [D,F,DA] [A,C,E,A]2|[E,A,EA]2 [C,CEG] [C,F,F]|[C,CEG] [C,E,G,B,] [C,A,C]2|[C,E,G,A,] [D,F,DA]2|[D,E,G,B,]2 [D,F,DA]2|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

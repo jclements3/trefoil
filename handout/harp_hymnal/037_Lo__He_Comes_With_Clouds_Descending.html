@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Lo! He Comes With Clouds Descending — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Lo! He Comes With Clouds Descending</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4037\nT: Lo! He Comes With Clouds Descending\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: G\n[V: M] \"^G\"G2 B \"^D\"d|\"^Em\"G \"^Bm\"F \"^C\"E \"^G\"D|\"^C\"E3/2 F/2 G \"^D\"F/2 E/2|D3/2 C/2 \"^G\"B,2|\"^D\"D3 D|\"^G\"G2 \"^Am\"A2|\"^G\"B d \"^Am\"c B|\"^G\"B2 A2|G2 B \"^D\"d|\"^Em\"G \"^Bm\"F \"^C\"E \"^G\"D|\"^C\"E3/2 F/2 G \"^D\"F/2 E/2|D3/2 C/2 \"^G\"B,2|\"^D\"D3 D|\"^G\"G2 \"^Am\"A2|\"^G\"B d \"^Am\"c B|\"^G\"B2 A2|\"^D\"A3/2 B/2 A \"^G\"B|\"^Am\"c2 \"^G\"B2|G3/2 \"^F#m\"A/2 \"^Em\"G \"^Am\"c|\"^G\"B \"^D\"A \"^Em\"G2|B3/2 c/2 B \"^G\"d|\"^F#°\"c \"^G\"B A2|G2 \"^D\"A \"^G\"B|\"^D\"D2 \"^C\"c2|\"^G\"B2 \"^D\"A2|\"^G\"G4|]\n[V: RH] [GDgb]3 [FDa]|[EGgb] [DFB] [CEe] [BDGb]|[CEg]3 [ADF]|[DGB]2|[ADa]4|[DGd]2 [EAe]2|[DGg]2 [EAa]2|[DBd]4|[DFAd]|[EBeg] [DFd] [CGc] [DBg]|[CGe]3 [DFAf]|[Ddg]2|[DFdf]4|[GBD]2 [ECa]2|[GBg]2 [Eea]2|[GBb]4|[DFda]3 [GDg]|[ACE]2 [GDb]2|[ACF]/2 [EBeb] [AEa]|[Ggb] [DFfa] [EBgb]2|[BDG]|[CAc] [DGBd]3|[DAdf] [DGBg]|[DAda]2 [CGg]2|[DGdg]2 [DAfa]2|[GBDg]4|]\n[V: LH] [D,G,DG]3 [D,F,A,A]|[E,G,B,E] [D,F,B,F] [C,E,G,G] [D,G,DG]|[C,E,G,G]3 [D,F,A,A]|[D,B,DG]2|[D,F,A,A]4|[D,B,DG]2 [C,E,A,E]2|[D,B,DG]2 [C,E,A,E]2|[D,B,DG]4|[D,F,A,A]|[E,G,B,E] [D,F,B,F] [C,E,G,G] [D,B,DG]|[C,E,G,G]3 [D,F,A,A]|[D,B,DG]2|[D,F,A,A]4|[D,B,DG]2 [C,E,A,E]2|[D,B,DG]2 [C,E,A,E]2|[D,B,DG]4|[D,F,A,A]3 [D,B,DG]|[C,E,A,E]2 [D,B,DG]2|[C,F,A,C]/2 [E,G,B,E] [C,E,A,E]|[D,B,DG] [D,F,A,A] [E,G,B,E]2|[D,B,DG]|[C,F,A,C] [D,B,DG]3|[D,F,A,A] [D,B,DG]|[D,F,A,A]2 [C,E,G,G]2|[D,B,DG]2 [D,F,A,A]2|[D,B,DG]4|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

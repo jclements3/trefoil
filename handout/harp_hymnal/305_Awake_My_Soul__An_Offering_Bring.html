@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Awake My Soul, An Offering Bring — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Awake My Soul, An Offering Bring</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4305\nT: Awake My Soul, An Offering Bring\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: F\n[V: M] G|\"^Gm\"B \"^Am\"c \"^Gm\"d3/2 B/2|\"^F\"A \"^Gm\"G \"^D\"^F A|\"^Gm\"B3/2 c/2 d B|\"^Bb\"B \"^F\"A \"^Bb\"B2|B3/2 B/2 \"^F\"A c|\"^Gm\"B B \"^D\"A A|\"^Bb\"d3/2 B/2 \"^F\"A \"^G\"G|\"^Gm\"G \"^D\"^F \"^G\"G2|\"^Bb\"B3/2 B/2 \"^F\"A c|\"^Gm\"B B \"^D\"A A|\"^Bb\"d B \"^F\"A \"^G\"G|\"^Gm\"G \"^D\"^F \"^G\"G2|]\n[V: RH] z|[GBg] [EACe] [GBb]2|[FCf] [GDg] [DAfa]2|[GDb]4|[DFB] [FCa] [DFd]2|[Ffa]2|[Ggb]2 [Ddfa]2|[DFf]2 [CFAc] [GDb]|[BDG] [FADf] [Ggb]2|[DBd]2 [CFAf]2|[DGBd]2 [FDfa]2|[DBf]2 [CFcf] [BDG]|[DGBg] [ADFa] [DGBd]2|]\n[V: LH] z|[D,DG] [C,E,A,C] [D,DG]2|[A,C,F,] [D,DG] [F,A,D,A]2|[D,DG]4|[B,D,F,B] [A,C,F,] [B,D,F,B]2|[A,C,F,]2|[D,DG]2 [F,A,D,A]2|[B,D,F,B]2 [A,C,F,] [G,B,B]|[D,DG] [F,A,D,A] [G,B,B]2|[B,D,F,B]2 [A,C,F,]2|[D,DG]2 [F,A,D,A]2|[B,D,F,B]2 [A,C,F,] [G,B,B]|[D,DG] [F,A,D,A] [G,B,B]2|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>The Lily of the Valley — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>The Lily of the Valley</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4180\nT: The Lily of the Valley\nM: 6/8\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: F\n[V: M] \"^F\"F/4 A/4|c c/2 \"^Bb\"d \"^F\"c/2|\"^Bb\"c/2 \"^F\"A2 F/2|\"^Gm\"G \"^Bb\"F/2 F D/2|\"^F\"C3/2 F \"^Gm\"G/2|\"^F\"A A/2 A A/2|\"^Bb\"d \"^F\"c/2 A F/2|\"^C\"G3|G3/2 \"^F\"F A/2|c c/2 \"^Bb\"d \"^F\"c/2|c/2 A2 F/2|\"^Gm\"G \"^Bb\"F/2 F D/2|\"^F\"C3/2 F \"^Gm\"G/2|\"^F\"A A/2 \"^C7\"G \"^Dm\"F/2|\"^Gm\"G G/2 \"^F\"F \"^C\"E/2|\"^F\"F3|F3/2 z/2 F|\"^Bb\"F/2 B B B/2|B/2 d2 d/2|d/2 \"^F\"c c A/2|c3/2 A \"^C\"G/2|\"^F\"F \"^Gm\"F/2 \"^F\"F F/2|\"^Bb\"d \"^F\"c/2 A F/2|\"^C\"G3|G3/2 \"^F\"F A/2|c/2 c \"^Bb\"d \"^F\"c/2|c/2 A2 F/2|\"^Gm\"G \"^Bb\"F/2 F D/2|\"^F\"C3/2 F \"^Gm\"G/2|\"^F\"A A/2 \"^C\"G \"^Dm\"F/2|\"^Gm\"G G/2 \"^F\"F \"^C\"E/2|\"^F\"F3|F3/2 z/2|]\n[V: RH] [CFcf]/2|[DFdf]3/2|[DBdf]/2 [CAcf]5/2|[DGd] [FBDf]2|[FACf]3|[FACa]3|[FBDb] [FAfa]2|[EGC]3|[FCfa]3/2|[FBfb]3/2|[FBfb]3|[DGg] [FDfb]2|[ACFa]3|[CFA]3/2 [CEBe]3/2|[DBd]3/2 [CFc]3/2|[CFf]3|[CFf]3|[BDFb]3|[BDFb]3|[CAc]5/2|[ECe]/2|[CAf]3/2 [Ccf]3/2|[DFB] [FAC]2|[ECg]3|[FAf]3/2|[DFd]3/2|[DFd]3|[DBg] [DFf]2|[FAa]3|[FCf]3/2 [GCE]3/2|[Ddg]3/2 [FCa]3/2|[Ffa]3|[Ffa]2|]\n[V: LH] [C,F,A,F]/2|[F,B,F]3/2|[F,B,F]/2 [C,F,A,F]5/2|[B,D,G,B] [F,B,F]2|[C,F,A,F]3|[C,F,A,F]3|[F,B,F] [C,F,A,F]2|[C,EG]3|[C,F,A,F]3/2|[F,B,F]3/2|[F,B,F]3|[B,D,G,B] [F,B,F]2|[C,F,A,F]3|[C,F,CF]3/2 [C,E,G,B,]3/2|[B,D,G,B]3/2 [C,F,CF]3/2|[C,F,CF]3|[C,F,CF]3|[F,B,F]3|[F,B,F]3|[C,F,CF]5/2|[C,EG]/2|[C,F,CF]3/2 [C,F,CF]3/2|[F,B,B] [C,F,CF]2|[C,EG]3|[C,F,CF]3/2|[F,B,B]3/2|[F,B,B]3|[B,D,G,B] [F,B,B]2|[C,F,CF]3|[C,F,CF]3/2 [C,EG]3/2|[B,D,G,B]3/2 [C,F,CF]3/2|[C,F,CF]3|[C,F,CF]2|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

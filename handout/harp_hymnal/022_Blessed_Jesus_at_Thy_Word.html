@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Blessed Jesus at Thy Word — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Blessed Jesus at Thy Word</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4022\nT: Blessed Jesus at Thy Word\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: G\n[V: M] \"^G\"B G \"^D\"A d|\"^G\"B \"^Em\"G \"^D\"A2|\"^G\"G G \"^C\"G \"^G\"G|\"^F#°\"A \"^G\"B \"^D\"A2|\"^G\"G4|B G \"^D\"A d|\"^G\"B \"^Em\"G \"^D\"A2|\"^G\"G G \"^C\"G \"^G\"G|\"^F#°\"A \"^G\"B \"^D\"A2|\"^G\"G4|D \"^D\"D \"^C#°\"E \"^D\"F|\"^G\"G \"^A\"A \"^D\"F D|\"^G\"G \"^Em\"G \"^D\"A \"^G\"B|\"^C\"c \"^G\"B \"^D\"A2|\"^G\"G4|]\n[V: RH] [GBg]2 [DFAf]2|[GBb] [EBe] [DFAa]2|[GDg]2 [CEG] [GDb]|[CFA] [Ggb] [DFdf]2|[BDG]4|[DFda]2|[DGBg] [EBg] [DFfa]2|[DGdg]2 [CEc] [DBdg]|[CFc] [GBDg] [DAdf]2|[GBDb]4|[DAda] [CEG] [DAfa]|[GBgb] [EAe] [Ddfa]2|[GDgb] [EBb] [FADf] [BDGb]|[CEe] [DGB] [FADa]2|[DGd]4|]\n[V: LH] [D,G,B,D]2 [D,F,A,D]2|[D,G,B,D] [E,G,B,E] [D,F,A,D]2|[D,G,B,D]2 [C,E,G,C] [D,G,B,D]|[C,F,A,C] [D,G,B,D] [D,F,A,D]2|[D,G,B,D]4|[D,F,A,D]2|[D,G,B,D] [E,G,B,E] [D,F,A,D]2|[D,G,B,D]2 [C,E,G,C] [D,G,B,D]|[C,F,A,C] [D,G,B,D] [D,F,A,D]2|[D,G,B,D]4|[D,F,A,D] [C,E,G,C] [D,F,A,D]|[D,G,B,D] [C,E,A,C] [D,F,A,D]2|[D,G,B,D] [E,G,B,E] [D,F,A,D] [D,G,B,D]|[C,E,G,C] [D,G,B,G] [D,F,A,D]2|[D,G,B,G]4|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

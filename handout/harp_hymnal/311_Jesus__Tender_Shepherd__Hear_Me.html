@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Jesus, Tender Shepherd, Hear Me — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Jesus, Tender Shepherd, Hear Me</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4311\nT: Jesus, Tender Shepherd, Hear Me\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: F\n[V: M] \"^F\"c c \"^Am\"c B|\"^F\"A A A \"^E°\"G|\"^F\"F \"^Em\"G \"^F\"A A|\"^C\"c/2 B/2 \"^F\"A \"^C\"G2|\"^F\"c c \"^C\"c B|\"^F\"A A \"^A\"A G|\"^Dm\"F G \"^Am\"A A|\"^C7\"B \"^C\"E \"^F\"F2|]\n[V: RH] [FACa]2 [ECa]2|[FAfa]3 [GBEb]|[FCfa] [EBg] [ACFa]2|[CGe] [CFA] [CGg]2|[CFc]2 [Cce]2|[CFf]2 [ACEa]2|[FDfa]2 [Eea]2|[GCg] [Ccg] [CAc]2|]\n[V: LH] [A,C,F,]2 [C,E,A,E]2|[A,C,F,]3 [E,G,B,E]|[A,C,F,] [E,G,B] [A,C,F,]2|[E,C,EG] [C,F,A,C] [E,C,EG]2|[C,F,A,C]2 [E,C,EG]2|[C,F,A,C]2 [E,A,C,E]2|[A,D,F,A]2 [C,E,A,E]2|[C,E,G,C] [E,C,EG] [C,F,A,C]2|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

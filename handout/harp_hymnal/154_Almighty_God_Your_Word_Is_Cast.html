@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>Almighty God Your Word Is Cast — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>Almighty God Your Word Is Cast</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4154\nT: Almighty God Your Word Is Cast\nM: 4/4\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: C\n[V: M] \"^C\"G|E \"^F\"A \"^C\"G \"^Am\"c|\"^Dm7\"c \"^G\"B \"^C\"c G|\"^Am\"c \"^Em\"G \"^Am\"A \"^D\"^F|\"^G\"G3 B|\"^C\"c \"^F\"A \"^Dm\"d \"^G\"B|\"^C\"c \"^F\"A \"^E\"B \"^C\"G|\"^Dm\"A \"^C\"c \"^Dm\"d \"^G\"B|\"^C\"c3|]\n[V: RH] [ECe]|[CAf] [ECg] [EAe]|[DAa] [DGg] [GCE]2|[EAa] [Eeb] [ECa] [Ddf]|[DBd]4|[GCg] [Ccf] [FDf] [DBg]|[CEGc] [FAC] [Eeg] [CEGe]|[FDa] [CEGg] [ADF] [Ddg]|[CEce]3|]\n[V: LH] [C,G,E]|[F,FA] [C,G,E] [C,E,E]|[C,D,F,A,] [D,G,DG] [C,G,E]2|[C,E,E] [E,B,GB] [C,E,E] [D,A,D]|[D,G,DG]4|[C,G,E] [F,FA] [D,A,FA] [D,G,DG]|[C,G,E] [F,FA] [E,B,EG] [C,G,E]|[D,A,FA] [C,G,E] [D,A,FA] [D,G,DG]|[C,G,E]3|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

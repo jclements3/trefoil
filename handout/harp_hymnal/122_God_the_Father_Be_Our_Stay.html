@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>God the Father Be Our Stay — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>God the Father Be Our Stay</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4122\nT: God the Father Be Our Stay\nM: none\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: D\n[V: M] \"^D\"A A \"^Bm\"B \"^A\"c|\"^G\"d \"^Bm\"d \"^A\"c \"^Em\"B|\"^Bm\"d \"^D\"A F \"^G\"G|\"^D\"F E D2|A A \"^Bm\"B \"^A\"c|\"^G\"d \"^Bm\"d \"^A\"c \"^Em\"B|\"^Bm\"d \"^D\"A F \"^G\"G|\"^D\"F E D2|D \"^A\"E \"^D\"F \"^Bm\"F|D \"^A\"E \"^D\"F3/2 d/2 \"^A\"c \"^D\"d|\"^Em\"e3/2 \"^Bm\"d/2 \"^A\"c \"^E\"B \"^A\"A3/2 \"^D\"D/2|A \"^Bm\"d \"^F#m\"c A|\"^E\"B3/4 A/4 G \"^Eb\"F3/2 \"^Em\"E/2 \"^D\"F \"^Bm\"F|\"^A\"A3/2 \"^Em\"G/2 \"^Bm\"F \"^C#m\"E|\"^D\"D2 z|\"^Bm\"D \"^Em\"E \"^D\"F F|\"^Bm\"D \"^Em\"E \"^D\"F3/2 d/2 \"^A\"c \"^Bm\"d|\"^Em\"e3/2 d/2 \"^A\"c B A3/2 \"^D\"D/2|A \"^Bm\"d \"^F#m\"c \"^D\"A|\"^E\"B3/4 A/4 \"^C#°\"G \"^D\"F3/2 \"^A\"E/2 \"^D\"F \"^Bm\"F|\"^F#m\"A3/2 G/2 F E|\"^D\"D2 z|D \"^A\"E \"^D\"F \"^Bm\"F|D \"^A\"E \"^D\"F3/2 \"^Em\"G/2 \"^F#m\"A3/2 G/2|\"^D\"F \"^G\"G \"^D\"F \"^A\"E|\"^D\"D4|]\n[V: RH] [DAda]2 [BDF] [CAc]|[DBg] [BFb] [CAe] [GEgb]|[DFBd] [DAfa]2 [Ddg]|[Ddfa]4|[DFBf] [Cce]|[GBD] [DFdf] [EAC] [BEGb]|[DBdf] [FADf]2 [GBg]|[FADa]4|[EAe] [ADFa] [FBDb]|[EAa] [DFA]2 [ECa] [DFd]|[EGB]2 [Eea] [Eeb] [ACE]2|[FBfb] [CAf]2|[Egb]2 [EGgb]2 [DFf] [FDfb]|[AEa]2 [BDFb] [EGCg]|[DFa]3|[DFB] [EGe] [DAd]2|[DFd] [EGg] [DAf]2 [CEAc] [DFf]|[EGb]2 [CEAe]4|[DBd] [Ccf] [DAa]|[GBE] [CGce] [Ddf]2 [Dda] [DBf]|[FAC]4|[Dfa]3|[CEce] [FAD] [Ddf]|[CAce] [FDf]2 [FAf]2|[FDa] [GBb] [ADF] [EACe]|[ADa]4|]\n[V: LH] [F,D,FA]2 [F,B,D,F] [C,E,E]|[G,D,G] [F,B,D,F] [C,E,E] [E,G,GB]|[F,B,D,F] [F,D,FA]2 [G,D,G]|[F,D,FA]4|[F,B,D,F] [C,E,E]|[G,D,G] [F,B,D,F] [C,E,E] [E,G,GB]|[F,B,D,F] [F,D,FA]2 [G,D,G]|[F,D,FA]4|[C,E,E] [F,D,FA] [F,B,D,F]|[C,E,E] [A,D,F,A]2 [C,E,E] [A,D,F,A]|[E,B,EG]2 [C,E,E] [E,G,GB] [C,E,E]2|[F,B,D,F] [C,A,CF]2|[E,G,GB]2 [E,B,EG]2 [A,D,F,A] [F,B,D,F]|[C,E,E]2 [F,B,D,F] [C,E,G,C]|[A,D,F,A]3|[F,B,D,B] [E,B,EG] [A,D,F,A]2|[F,B,D,B] [E,B,EG] [A,D,F,A]2 [C,E,E] [F,B,D,B]|[E,B,EG]2 [C,E,E]4|[F,B,D,B] [C,A,CF] [A,D,F,A]|[E,G,GB] [C,E,G,C] [A,D,F,A]2 [A,D,F,A] [F,B,D,B]|[C,A,CF]4|[A,D,F,A]3|[C,E,E] [A,D,F,A] [F,B,D,B]|[C,E,E] [A,D,F,A]2 [C,A,CF]2|[A,D,F,A] [G,D,G] [A,D,F,A] [C,E,E]|[A,D,F,A]4|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>

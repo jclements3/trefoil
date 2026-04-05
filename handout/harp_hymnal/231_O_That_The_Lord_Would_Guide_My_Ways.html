@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<title>O That The Lord Would Guide My Ways — Harp Hymnal</title>
+<style>body { font-family: sans-serif; margin: 20px; } h1 { font-size: 18px; }</style>
+</head><body>
+<h1>O That The Lord Would Guide My Ways</h1>
+<div id="music"></div>
+<script src="../../app/app/src/main/assets/abc2svg/abc2svg-1.js"></script>
+<script>
+var abc_src = "X: 4231\nT: O That The Lord Would Guide My Ways\nM: 3/2\nL: 1/4\nQ: 1/4=100\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\n%%staves M | {RH LH}\nV: M clef=treble name=\"Melody\"\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: G\n[V: M] \"^G\"D2|D G B2 \"^D7\"A2|\"^Em\"G \"^C\"E \"^G\"D2 D2|D G \"^Em\"B2 G2|\"^D\"A4 c2|\"^G\"B \"^D\"A \"^Em\"G2 \"^D\"A2|\"^G\"B G \"^C\"E2 \"^D\"D2|\"^G\"D \"^Em\"G \"^G\"B2 \"^D7\"A2|\"^G\"G4|]\n[V: RH] [GBb]2|[CDF]2|[Eegb] [CGeg] [GDg]4|[GBEg]4|[ADF]6|[Ggb] [ADa] [GEgb]2 [DFAf]2|[BDG]2 [Cceg]2 [DFAa]2|[DGBd] [BEGb] [DGBg]2 [CDA]2|[DGdg]4|]\n[V: LH] [G,D,B]2|[C,D,F,C]2|[G,B,E,B] [C,E,G,C] [G,D,B]4|[G,B,E,B]4|[D,F,A,D]6|[G,D,B] [D,F,A,D] [G,B,E,B]2 [D,F,A,D]2|[G,D,B]2 [C,E,G,C]2 [D,F,A,D]2|[G,D,B] [G,B,E,B] [G,D,B]2 [C,D,F,C]2|[G,D,B]4|]\n";
+var user = {
+  img_out: function(str) { document.getElementById("music").innerHTML += str; },
+  errmsg: function(msg) { console.warn("abc2svg:", msg); },
+  read_file: function() { return ''; },
+  anno_start: function(){}, anno_stop: function(){},
+  get_abcmodel: function(){}
+};
+var abc = new Abc(user);
+abc.tosvg("hymn", abc_src);
+</script>
+</body></html>
