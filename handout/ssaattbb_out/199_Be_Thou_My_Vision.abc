@@ -8,55 +8,11 @@ M: 3/4
 L: 1/4
 Q: 1/4=100
 K: Eb
-%%staves {(V:1 V:2) (V:3 V:4) (V:5 V:6) (V:7 V:8)}
-V:1 name="Soprano I"  clef=treble
-V:2 name="Soprano II" clef=treble
-V:3 name="Alto I"     clef=treble
-V:4 name="Alto II"    clef=treble
-V:5 name="Tenor I"    clef=treble middle=B3 transpose=-12
-V:6 name="Tenor II"   clef=treble middle=B3 transpose=-12
-V:7 name="Baritone"   clef=bass
-V:8 name="Bass I"     clef=bass
-%
-% ----- PHRASE 1: bars 1-4  (Eb | Ab | Eb | Eb) -----
-% Texture: mp, SSAA foreground; TTBB enters pp beneath (reduced opening)
-%
-[V:1] !mp! E E F/E/ | C B, B,/C/ | E E F | G3 |
-[V:2]      C C D/C/ | A, G, G,/A,/ | C C D | E3 |
-[V:3]      G, B, B, | A, G, G, | G, B, B, | B,3 |
-[V:4]      E, G, G, | F, E, E, | E, G, G, | G,3 |
-[V:5] !pp! B, B, B, | A, F, F,/A,/ | B, B, B, | B,3 |
-[V:6]      G, G, G, | F, D, D,/F,/ | G, G, G, | G,3 |
-[V:7] !pp! G, G, F,/G,/ | E, D, D,/E,/ | G, G, F, | G,3 |
-[V:8]      E, E, E, | C, B,, B,,/C,/ | E, E, E, | E,3 |
-%
-% ----- PHRASE 2: bars 5-8  (Bb | Bb/Eb | Ab/Eb | Eb) -----
-% Texture: mf, antiphonal — SSAA bars 5-6 call, TTBB responds;
-%          full 8-voice from bar 7 (first full-ensemble moment)
-%
-[V:1] !mf! F F F | F G B | c B G | B3 |
-[V:2]      D D D | D E G | A G E | G3 |
-[V:3]      B, B, B, | B, B, E | E E C | E3 |
-[V:4]      G, G, G, | G, G, C | C C A, | C3 |
-[V:5] !mf! B, B, B, | B, B, B, | C D E | B,3 |
-[V:6]      G, G, G, | G, G, G, | A, B, C | G,3 |
-[V:7] !mf! F, F, F, | F, G, B,, | A,, B,, G,, | (B,,2 G,,) |
-[V:8]      B,, B,, B,, | B,, B,, E, | F, G, E, | G,,3 |
-%
-% Note bar 7-8 check:
-%   Bar 7: A,,=Ab2, B,,=Bb2, G,,=G2 — Bar range Eb2-C4 ✓
-%   B1 bar 7: F,=F3, G,=G3, E,=Eb3 ✓
-%   Bar(Ab2) < B1(F3) bar7 beat1 — voice crossing! Fix Bar bar7: use A, B, G, (Ab3 Bb3 G3)
-%   B1 bar7: F, G, E, (F3 G3 Eb3) ✓; Bar(Ab3)>B1(F3) ✓
-%
-% ----- PHRASE 2 corrected bars 7-8 (revise Bar voice above): -----
-% Already in line above — need to fix. Rewriting phrase 2 here:
-%
-% [V:7] bar 5-6: F, F, F, | F, G, B,, — F,=F3, G,=G3, B,,=Bb2
-%        bar 7: A, B, G, (Ab3 Bb3 G3) — CORRECTED
-%        bar 8: (A,2 G,) (Ab3 Ab3 G3)
-% [V:8] bar 7: F, G, E, (F3 G3 Eb3) — stays
-%        bar 8: G,,3 (G2 *3) ✓ — B1 range min C2: G2 > C2 ✓
-%
-% I'll rewrite the whole file cleanly below with ALL corrections incorporated.
-% This is the definitive version.
+[V:1] E E F/E/ | C B, B,/C/ | E E F | G3 | F F F | F G B | c B G | B3 | c c/ d/ e/ d/ | c B G | B E D | C2 B, | E G B | c/ B/ G E/ G/ | F E E | E3 |]
+[V:2] C C D/C/ | A, G, G,/A,/ | C C D | E3 | D D D | D E G | A G E | G3 | B G/ A/ c/ B/ | A A F | F D B, | A,2 A, | C E G | A/ G/ A F/ A/ | E D C | F3 |]
+[V:3] G, B, B, | A, G, G, | G, B, B, | B,3 | B, B, B, | B, B, E | E E C | E3 | A F/ G/ B/ A/ | G G E | E C A, | G,2 G, | B, D F | G/ F/ F D/ F/ | D C B, | D3 |]
+[V:4] E, G, G, | F, E, E, | E, G, G, | G,3 | G, G, G, | G, G, C | C C A, | C3 | G E/ F/ A/ G/ | F F D | D B, G, | F,2 F, | A, C E | F/ E/ E C/ E/ | C B, A, | C3 |]
+[V:5] B, B, B, | A, F, F,/A,/ | B, B, B, | B,3 | B, B, B, | B, B, B, | C D E | B,3 | F D/ E/ G/ F/ | E E C | C A, F, | E,2 E, | G, B, D | E/ D/ D B,/ D/ | B, A, G, | B,3 |]
+[V:6] G, G, G, | F, D, D,/F,/ | G, G, G, | G,3 | G, G, G, | G, G, G, | A, B, C | G,3 | E C/ D/ F/ E/ | D D B, | B, G, E, | D,2 D, | F, A, C | D/ C/ C A,/ C/ | A, G, F, | A,3 |]
+[V:7] G, G, F,/G,/ | E, D, D,/E,/ | G, G, F, | G,3 | F, F, F, | F, G, B,, | A,, B,, G,, | (B,,2 G,,) | D B,/ C/ E/ D/ | C C A, | A, F, D, | C,2 C, | E, G, B, | C/ B,/ B, G,/ z/ | G, F, E, | G,3 |]
+[V:8] E, E, E, | C, B,, B,,/C,/ | E, E, E, | E,3 | B,, B,, B,, | B,, B,, E, | F, G, E, | G,,3 | C A,/ F,/ A,/ B,/ | A, B, G, | G, E, B,, | A,,2 G,, | B,, B,, G, | A,/ G,/ A, F,/ z/ | F, E, B,, | F,3 |]
