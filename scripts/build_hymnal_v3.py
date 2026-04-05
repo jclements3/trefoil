@@ -411,6 +411,9 @@ for hi, h in enumerate(hymns):
     mel_line = ' | '.join(mel_parts) + ' |]'
     rh_line = ' | '.join(rh_parts) + ' |]'
     lh_line = ' | '.join(lh_parts) + ' |]'
+    # Strip accidentals from RH/LH — these voices must be purely diatonic
+    rh_line = re.sub(r'[\^_=](?=[A-Ga-g])', '', rh_line)
+    lh_line = re.sub(r'[\^_=](?=[A-Ga-g])', '', lh_line)
 
     rh_notes_all = re.findall(r'[A-G][,\']*', rh_line)
     low_count = sum(1 for n in rh_notes_all if ',,' in n)

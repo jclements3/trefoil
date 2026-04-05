@@ -174,7 +174,9 @@ label { font-size: 13px; color: #888; }
 <div id="controls">
   <div class="row">
     <span id="title">Select a drill or hymn</span>
+    <button id="btn-rewind" style="font-size:12px;padding:6px 8px;">|&lt;&lt;</button>
     <button id="btn-play">Play</button>
+    <button id="btn-next" style="font-size:12px;padding:6px 8px;">&gt;&gt;|</button>
     <label>BPM:</label>
     <input type="range" id="bpm-slider" min="20" max="240" value="80" style="width:100px;vertical-align:middle;"/>
     <span id="bpm-val" style="font-size:14px;font-weight:bold;min-width:28px;text-align:center;">80</span>
@@ -198,14 +200,14 @@ label { font-size: 13px; color: #888; }
     <div id="key-filters">
       <span style="font-size:12px;color:#888;align-self:center;">Key:</span>
       <button class="key-btn active" data-key="All">All</button>
-      <button class="key-btn" data-key="C">C</button>
-      <button class="key-btn" data-key="D">D</button>
       <button class="key-btn" data-key="Eb">Eb</button>
-      <button class="key-btn" data-key="E">E</button>
-      <button class="key-btn" data-key="F">F</button>
-      <button class="key-btn" data-key="G">G</button>
-      <button class="key-btn" data-key="A">A</button>
       <button class="key-btn" data-key="Bb">Bb</button>
+      <button class="key-btn" data-key="F">F</button>
+      <button class="key-btn" data-key="C">C</button>
+      <button class="key-btn" data-key="G">G</button>
+      <button class="key-btn" data-key="D">D</button>
+      <button class="key-btn" data-key="A">A</button>
+      <button class="key-btn" data-key="E">E</button>
     </div>
     <div id="hymn-cols">
       <div id="hymn-col-left" class="hymn-col"></div>
@@ -276,9 +278,9 @@ var DRILLS = [
 ];
 
 // ── State ──
-var currentDrill = 0, playing = false, bpm = 80, muted = true;
+var currentDrill = 0, playing = false, bpm = 80, muted = true, autoAdvance = false;
 var abc = null, abcplay = null, svgScale = 1, scrollX = 0;
-var targetScrollX = 0, animId = null;
+var targetScrollX = 0, animId = null, playLeadPx = 0;
 
 var $title = document.getElementById('title');
 var $container = document.getElementById('score-container');
@@ -288,15 +290,15 @@ var $phLine = document.getElementById('playhead-line');
 var $bpmVal = document.getElementById('bpm-val');
 var $btnPlay = document.getElementById('btn-play');
 
-function getPlayheadX() { return $area.offsetWidth * 0.2; }
+function getPlayheadX() { return $area.offsetWidth * 0.15; }
 
 function setScroll(x) {
   scrollX = x;
   $container.style.transform = 'scale(' + svgScale + ') translateX(' + (x / svgScale) + 'px)';
 }
 
-// Continuous linear scroll: compute start/end positions from the SVG,
-// then scroll at constant velocity for the entire piece duration.
+// Linear constant-velocity scroll synced to playback duration.
+// Blue line starts on first note, ends on last note.
 var playStartTime = 0, playStartX = 0, playEndX = 0, playTotalDuration = 0;
 
 function animateScroll(now) {
@@ -334,8 +336,7 @@ function renderDrill(idx) {
   $title.textContent = drill.t;
   $container.innerHTML = '';
 
-  var qm = drill.abc.match(/Q:\s*\d+\/\d+=(\d+)/);
-  if (qm) bpm = parseInt(qm[1]);
+  // Keep user's BPM and volume settings across hymns
   $bpmVal.textContent = bpm;
   if ($bpmSlider) $bpmSlider.value = bpm;
 
@@ -426,7 +427,22 @@ function renderDrill(idx) {
 }
 
 // ── Playback ──
+function getNextHymn(fromIdx) {
+  // Find the next visible hymn in the library after fromIdx
+  var items = document.querySelectorAll('.lib-item');
+  var found = false;
+  for (var i = 0; i < items.length; i++) {
+    var idx = parseInt(items[i].dataset.idx);
+    if (idx === fromIdx) { found = true; continue; }
+    if (found && items[i].style.display !== 'none' && items[i].offsetParent !== null) {
+      return idx;
+    }
+  }
+  return -1; // no next hymn
+}
+
 function startPlayback() {
+  autoAdvance = true;
   console.log('startPlayback: abc=' + !!abc + ' tunes=' + (abc ? abc.tunes.length : 0));
   if (!abc || !abc.tunes) { console.log('no abc/tunes'); return; }
   var tune = null;
@@ -438,10 +454,17 @@ function startPlayback() {
   var nativeBpm = qm ? parseInt(qm[1]) : 80;
 
   var playconf = {
-    onend: function() { playing = false; $btnPlay.textContent = 'Play'; stopScrollAnim(); },
-    onnote: function(istart, on) {
-      // Scroll is handled by the continuous animation loop — nothing to do here
+    onend: function() {
+      playing = false; $btnPlay.textContent = 'Play'; stopScrollAnim();
+      if (autoAdvance) {
+        // Find next hymn in the filtered list
+        var next = getNextHymn(currentDrill);
+        if (next >= 0) {
+          setTimeout(function() { selectDrill(next); startPlayback(); }, 800);
+        }
+      }
     },
+    onnote: function(istart, on) {},
     sfu: 'abc2svg/Scc1t2'
   };
 
@@ -450,24 +473,30 @@ function startPlayback() {
   abcplay.set_speed(bpm / nativeBpm);
   abcplay.set_vol(parseInt($volSlider.value) / 100);
 
-  // Compute total piece duration from the symbol chain
+  // Compute total duration from the abc2svg symbol chain
+  // Only count the melody voice (first voice) to avoid inflating duration
   var totalBeats = 0;
   for (var s = tune[0]; s; s = s.ts_next) {
     if (s.dur) totalBeats = Math.max(totalBeats, (s.time + s.dur));
   }
-  // abc2svg time units: BLEN (1536) = one whole note = 4 beats
   var totalBeatCount = totalBeats / 384; // 384 = quarter note in abc2svg units
+  // Duration at current BPM (speed ratio applied by abcplay separately)
   playTotalDuration = (totalBeatCount / bpm) * 60 * 1000; // ms
 
-  // Compute scroll range from first and last note overlay positions
+  // Scroll range: first note to last note, blue line tracks exactly
   var allNotes = $container.getElementsByClassName('abcr');
   var firstNote = allNotes[0];
   var lastNote = allNotes[allNotes.length - 1];
   var cRect = $container.getBoundingClientRect();
   var firstX = firstNote ? (firstNote.getBoundingClientRect().left - cRect.left) / svgScale : 0;
   var lastX = lastNote ? (lastNote.getBoundingClientRect().left - cRect.left) / svgScale : firstX + 100;
-  playStartX = getPlayheadX() - firstX * svgScale;
-  playEndX = getPlayheadX() - lastX * svgScale;
+  // Shift scroll so blue line leads ~1 beat ahead of the audio
+  var beatPx = 0;
+  if (allNotes.length > 1) {
+    beatPx = ((lastX - firstX) / totalBeatCount) * svgScale;
+  }
+  playStartX = getPlayheadX() - firstX * svgScale + beatPx;
+  playEndX = getPlayheadX() - lastX * svgScale + beatPx;
 
   setScroll(playStartX);
   playStartTime = performance.now();
@@ -479,6 +508,7 @@ function startPlayback() {
 }
 
 function stopPlayback() {
+  autoAdvance = false;
   if (abcplay) abcplay.stop();
   playing = false;
   $btnPlay.textContent = 'Play';
@@ -515,13 +545,46 @@ $btnPlay.onclick = function() {
   if (playing) stopPlayback();
   else startPlayback();
 };
+document.getElementById('btn-rewind').onclick = function() {
+  if (playing) stopPlayback();
+  renderDrill(currentDrill);
+};
+document.getElementById('btn-next').onclick = function() {
+  var wasPlaying = playing;
+  if (playing) stopPlayback();
+  var next = getNextHymn(currentDrill);
+  if (next >= 0) {
+    selectDrill(next);
+    if (wasPlaying) startPlayback();
+  }
+};
 var $bpmSlider = document.getElementById('bpm-slider');
 $bpmSlider.oninput = function() {
   bpm = parseInt(this.value);
   $bpmVal.textContent = bpm;
   if (playing && abcplay) {
     var q = DRILLS[currentDrill].abc.match(/Q:\s*\d+\/\d+=(\d+)/);
-    abcplay.set_speed(bpm / (q ? parseInt(q[1]) : 80));
+    var nativeBpm = q ? parseInt(q[1]) : 80;
+    abcplay.set_speed(bpm / nativeBpm);
+    // Recalculate scroll timing at new BPM
+    var now = performance.now();
+    var elapsed = now - playStartTime;
+    var oldT = playTotalDuration > 0 ? Math.min(elapsed / playTotalDuration, 1.0) : 0;
+    var currentPos = playStartX + (playEndX - playStartX) * oldT;
+    // New total duration
+    var totalBeats = 0;
+    var tune = null;
+    for (var i = 0; i < abc.tunes.length; i++) { if (abc.tunes[i]) { tune = abc.tunes[i]; break; } }
+    if (tune) {
+      for (var s = tune[0]; s; s = s.ts_next) {
+        if (s.dur) totalBeats = Math.max(totalBeats, (s.time + s.dur));
+      }
+    }
+    var newTotal = (totalBeats / 384 / bpm) * 60 * 1000;
+    var remaining = (1 - oldT) * newTotal;
+    playStartTime = now;
+    playStartX = currentPos;
+    playTotalDuration = remaining;
   }
 };
 var $volSlider = document.getElementById('vol-slider');
