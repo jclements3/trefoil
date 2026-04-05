@@ -94,18 +94,31 @@ python3 trefoil_all_keys_local.py
 
 ## TODO for lab (Claude AI)
 
-- **Save inline scripts**: The lead sheet builder and v4 hymnal builder are currently inline python in the conversation. They need to be saved as proper scripts in `scripts/`.
-- **Voicing variety**: Current v4 uses SA/TB directly + 1 fill note. Future: assign unique (LH shape, RH shape) pairs from the C-to-C frame so no voicing repeats across the hymnal. See memory file `project_lead_sheet_voicings.md` for the full design.
-- **Duration bug in legacy pipeline**: `build_harp_hymnal.py` writes RH/LH durations relative to L:1/4 but the ABC header says L:1/8. Not worth fixing — v4 pipeline replaces it.
-- **Melody-chord clashes**: `optimize_harp_voicings.py` has a fix for semitone clashes between melody accidentals and RH/LH. Down to 1 clash across 14,269 chords. The fix also corrected a melody token parsing bug where annotated first-beat notes were invisible to the optimizer.
+- **Save inline scripts**: The lead sheet builder and hymnal builder (v5d) are inline python in the conversation. Save as `scripts/build_lead_sheets.py` and `scripts/build_hymnal_v5.py`.
+- **Voicing variety (next step)**: Current v5d cycles through C-to-C windows when same chord repeats at measure boundaries. Future: assign unique (LH shape, RH shape) pairs so no voicing repeats across the entire hymnal. See memory file `project_lead_sheet_voicings.md` for the full design — 21 chord shapes, 4,760+ voicings per triad, 435K total available vs 9K needed.
+- **Legacy pipeline**: Do not use. Has duration bugs, melody-chord clashes, wrong rebuild script. v5 pipeline replaces it entirely.
+
+## Current Pipeline (v5d — 2026-04-05)
+
+Algorithm:
+1. Parse all SATB voices from OpenHymnal with music21
+2. Transpose Ab→G, Db→D for lever harp range
+3. At each beat, collect all SATB pitches → music21 chord recognition → absolute chord name
+4. **C-to-C voicing**: filter scale for chord PCs, find 7 consecutive chord tones centered near middle C, bottom 4 → LH, top 3 → RH. Hands 0-3 strings apart, never crossing.
+5. Beat-quantize: one chord per beat max, sustain when pitches identical
+6. **Measure-boundary shift**: when same chord repeats into next measure, advance to next voicing window (shifts up the harp). Resets to center when chord changes.
+7. Melody preserves fractional ABC durations; harp snaps to whole L-units only.
+
+Stats: 288 hymns, 2.2 chords/measure, 0 crossings, avg 1.5 string gap, 3% consecutive dupes.
 
 ## Recent Changes (2026-04-05)
 
-- **New v4 pipeline**: direct SATB → melody + RH/LH, bypassing SSAATTBB entirely
-- 288 lead sheets with absolute chord names from music21 chord recognition
+- **New v5d pipeline**: SATB → music21 chord ID → C-to-C voicing, bypassing SSAATTBB
+- C-to-C frame: 7 consecutive chord tones centered near middle C, split bottom 4 LH / top 3 RH
+- Zero hand crossings, 0-3 string gap between hands (avg 1.5)
+- Measure-boundary voicing shift: same chord in consecutive measures gets different window position
+- 288 lead sheets with absolute chord names (D, Am, G7 not roman numerals)
 - 22 hymns transposed from Ab/Db to lever harp range (G/D)
-- SA→RH, TB→LH with +1 fill note per hand from chord tones
-- Beat-quantized harp: only re-articulates on beat boundaries, sustains identical chords
-- Pickup measure alignment: uses actual music21 measure duration
-- Local browser preview: lead.html for lead sheets, index.html for full hymnal
-- Fixed melody-chord semitone clashes in optimizer (205→1 across all hymns)
+- Beat-quantized harp, clean integer durations (no slashes), sustain on identical pitches
+- Pickup measure alignment from actual music21 measure duration
+- Local preview: `cd app && python3 -m http.server 8080` → localhost:8080
