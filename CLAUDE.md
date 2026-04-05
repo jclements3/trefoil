@@ -4,21 +4,37 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-Trefoil — harp practice strip chart app with trefoil chord voicing system. WebView Android tablet app (abc2svg) plus drill handout generation.
+Trefoil — lever harp hymnal app. 282 OpenHymnal hymns arranged for melody + diatonic RH/LH chord accompaniment. WebView Android tablet app (abc2svg) plus drill handout generation.
 
 ## Structure
 
-- `abc2stripchart/` — WebView Android app. Package: `com.harp.stripchart`.
-- `handout/` — Trefoil drill generation: chord_name.py (terse naming algorithm), trefoil.tex (TiKZ diagram), trefoil_all_keys_local.py (ReportLab tables + abcm2ps notation), trefoil_C.json (voicing table).
+- `app/` — Android WebView app. Package: `com.harp.trefoil`.
+- `scripts/` — Build pipeline: chord_name.py (terse naming), build_harp_hymnal.py (SSAATTBB → harp), optimize_harp_voicings.py (span/dissonance), build_hymnal_v3.py (app JSON), build_ssaattbb.py (Claude API), drill builders.
+- `handout/` — Outputs: harp_hymnal/ (282 ABC+HTML), ssaattbb_out/ (8-voice ABC), trefoil_C.json (voicing table), trefoil.tex (TiKZ), output/ (PDFs).
 - `data/` — OpenHymnal SATB ABC source (293 hymns).
-- `scripts/` — build_hymnal_v3.py (music21), build_thomas_280.py, build_advanced_drills.py, build_lever_drills.py.
 
 ## App Build
 
 ```bash
-cd abc2stripchart
+cd app
 ANDROID_HOME=$HOME/Android/Sdk JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64 ./gradlew assembleDebug
 adb install app/build/outputs/apk/debug/app-debug.apk
+```
+
+## Harp Hymnal Build
+
+```bash
+# Full pipeline: SSAATTBB → harp hymnal → optimize → archive
+python3 scripts/build_harp_hymnal.py
+python3 scripts/optimize_harp_voicings.py
+ai-tar handout/harp_hymnal/ --include-ext .abc --output handout/harp_hymnal.tmd
+```
+
+## Hymnal App JSON Rebuild
+
+```bash
+python3 scripts/build_hymnal_v3.py
+# Outputs app/hymnal_data.json
 ```
 
 ## Handout Build
@@ -30,17 +46,11 @@ python3 trefoil_all_keys_local.py
 # Output in handout/output/
 ```
 
-## Hymnal Rebuild
-
-```bash
-python3 scripts/build_hymnal_v3.py
-# Outputs abc2stripchart/hymnal_data.json
-```
-
 ## Key Concepts
 
-- **Trefoil voicing table**: 48 LH/RH chord pairs, all asymmetric patterns, all 12 finger patterns used. `handout/chord_name.py` is the authoritative terse naming algorithm.
-- **Two-pass voicing assignment**: Dissonant voicings placed in accidental measures first.
+- **Harp voicing pipeline**: OpenHymnal SATB → SSAATTBB (8-voice, Claude API) → sort by pitch → split RH (upper) / LH (lower, comma notes) → optimize (max 10-string span, no accidentals in RH/LH, wider intervals).
+- **Chord naming**: `scripts/chord_name.py` is the authoritative terse naming algorithm. Roman numerals + inversions + modifications.
+- **Diatonic only**: RH/LH accompaniment uses only diatonic notes in the key. Melody may have accidentals.
 - **Music21**: For proper ABC parsing (barlines, pickups, compound meters).
 - **Key signature**: pitch_to_abc omits accidentals already in key signature.
-- **Pedal harp range**: A2 to D6 (hymns), C1 to G7 (instrument). 29-string span for trefoil voicings.
+- **Lever harp range**: Practical range for hymns. Max 10-string span per hand.

@@ -8,7 +8,7 @@ from pathlib import Path
 
 PROJECT = Path(__file__).parent.parent
 ABC_DIR = PROJECT / 'handout/ssaattbb_out'
-ABC2SVG = 'abc2stripchart/app/src/main/assets/abc2svg/abc2svg-1.js'
+ABC2SVG = 'app/app/src/main/assets/abc2svg/abc2svg-1.js'
 
 # Relative path from ssaattbb_out to abc2svg
 REL_ABC2SVG = os.path.relpath(PROJECT / ABC2SVG, ABC_DIR)

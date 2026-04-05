@@ -215,7 +215,7 @@ for num, desc, melody in connecting:
     xnum += 1
 
 # Save
-outpath = PROJECT_DIR / 'abc2stripchart/advanced_drills.json'
+outpath = PROJECT_DIR / 'app/advanced_drills.json'
 with open(outpath, 'w') as f:
     json.dump(drills, f, separators=(',', ':'))
 

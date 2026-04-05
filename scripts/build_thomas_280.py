@@ -384,7 +384,7 @@ for key in KEYS_MAJOR:
     xnum += 1
 
 # Save
-outpath = PROJECT_DIR / 'abc2stripchart/thomas_280.json'
+outpath = PROJECT_DIR / 'app/thomas_280.json'
 with open(outpath, 'w') as f:
     json.dump(exercises, f, separators=(',', ':'))
 

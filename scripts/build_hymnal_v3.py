@@ -18,7 +18,7 @@ from pathlib import Path
 import music21
 
 # Add handout to path for chord_name
-sys.path.insert(0, str(Path(__file__).parent.parent / 'handout'))
+sys.path.insert(0, str(Path(__file__).parent))
 from chord_name import best_name, roman_name
 
 SCRIPT_DIR = Path(__file__).parent
@@ -428,7 +428,7 @@ for hi, h in enumerate(hymns):
     )
     output.append({'n':str(3000+h['xnum']),'t':h['title'],'abc':abc,'chords':chords})
 
-outpath = PROJECT_DIR / 'abc2stripchart/hymnal_data.json'
+outpath = PROJECT_DIR / 'app/hymnal_data.json'
 with open(outpath, 'w') as f:
     json.dump(output, f, separators=(',',':'))
 

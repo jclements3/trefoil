@@ -220,7 +220,7 @@ drills.append(drill(x, "Lever: Circle of 5ths", "4/4", "1/4",
 )); x += 1
 
 # Save
-outpath = PROJECT_DIR / 'abc2stripchart/lever_drills.json'
+outpath = PROJECT_DIR / 'app/lever_drills.json'
 with open(outpath, 'w') as f:
     json.dump(drills, f, separators=(',', ':'))
 

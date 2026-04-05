@@ -8,12 +8,12 @@ import os, re, sys, glob, json, warnings
 warnings.filterwarnings('ignore')
 import music21
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'handout'))
+sys.path.insert(0, os.path.dirname(__file__))
 from chord_name import best_name, roman_name
 
 IN_DIR = os.path.join(os.path.dirname(__file__), '..', 'handout/ssaattbb_out')
 OUT_DIR = os.path.join(os.path.dirname(__file__), '..', 'handout/harp_hymnal')
-ABC2SVG_REL = '../../abc2stripchart/app/src/main/assets/abc2svg/abc2svg-1.js'
+ABC2SVG_REL = '../../app/app/src/main/assets/abc2svg/abc2svg-1.js'
 os.makedirs(OUT_DIR, exist_ok=True)
 
 KEY_PC = {'C':0,'G':7,'D':2,'A':9,'E':4,'B':11,'F':5,

@@ -19,7 +19,7 @@ import warnings
 warnings.filterwarnings("ignore")
 import music21
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "handout"))
+sys.path.insert(0, os.path.dirname(__file__))
 from chord_name import best_name, roman_name
 
 HARP_DIR = os.path.join(os.path.dirname(__file__), "..", "handout/harp_hymnal")
