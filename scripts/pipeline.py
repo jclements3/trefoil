@@ -498,7 +498,169 @@ def stage_verify(data):
 
 
 # ============================================================
-# Stage 7: Format
+# Stage 7: Vertical Consolidation (Grand Staff)
+# ============================================================
+
+def stage_vertical(data):
+    """Stack all voices into RH (treble) and LH (bass) chord events per beat.
+
+    Groups:
+      RH: S1+S2 (soprano rhythm) + A1+A2 (alto rhythm)
+      LH: T1+T2 (tenor rhythm) + B1+B2+PB (bass rhythm)
+
+    At each time point within a measure, collects all sounding pitches,
+    deduplicates, and produces (sorted_pitches_tuple, duration) events.
+
+    Returns:
+        data: updated with 'grand_staff' = {
+            'rh_measures': [[(pitches_tuple, dur_fraction), ...], ...],
+            'lh_measures': [[(pitches_tuple, dur_fraction), ...], ...],
+        }
+        report: validation messages
+    """
+    report = []
+    vdata = data['all_voice_data']
+    n_measures = data['n_measures']
+
+    def parse_dur(dur_str):
+        if not dur_str:
+            return Fraction(1)
+        if '/' in dur_str:
+            parts = dur_str.split('/')
+            num = int(parts[0]) if parts[0] else 1
+            den = int(parts[1]) if len(parts) > 1 and parts[1] else 2
+            return Fraction(num, den)
+        return Fraction(int(dur_str))
+
+    def build_measure_events(voice_groups):
+        """Time-align voice groups and stack pitches per beat.
+
+        Returns list of measures, each a list of (pitches_tuple, dur_fraction).
+        """
+        first_v = voice_groups[0][0]
+        meas_indices = vdata[first_v]['meas_idx']
+        n_notes = len(meas_indices)
+        n_meas = max(meas_indices) + 1 if n_notes > 0 else 0
+
+        raw_events = [[] for _ in range(n_meas)]
+
+        for group in voice_groups:
+            ref_voice = group[0]
+            durs = vdata[ref_voice]['durs']
+            midxs = vdata[ref_voice]['meas_idx']
+            midis_lists = {v: vdata[v]['midi'] for v in group}
+
+            cur_meas = -1
+            t = Fraction(0)
+            for i in range(len(durs)):
+                m = midxs[i]
+                if m != cur_meas:
+                    t = Fraction(0)
+                    cur_meas = m
+
+                dur_frac = parse_dur(durs[i])
+                pitches = set()
+                for v in group:
+                    mid = midis_lists[v][i]
+                    if mid is not None:
+                        pitches.add(mid)
+
+                if m < n_meas:
+                    raw_events[m].append((t, pitches, dur_frac))
+                t += dur_frac
+
+        # Merge events at same time point, compute durations from gaps
+        result_measures = []
+        for m in range(n_meas):
+            events = raw_events[m]
+            if not events:
+                result_measures.append([])
+                continue
+
+            time_map = {}
+            for t, pitches, dur in events:
+                if t not in time_map:
+                    time_map[t] = (set(), dur)
+                time_map[t][0].update(pitches)
+                if dur < time_map[t][1]:
+                    time_map[t] = (time_map[t][0], dur)
+
+            sorted_times = sorted(time_map.keys())
+            measure_events = []
+            for idx, t in enumerate(sorted_times):
+                pitches, orig_dur = time_map[t]
+                if idx + 1 < len(sorted_times):
+                    dur_frac = sorted_times[idx + 1] - t
+                else:
+                    dur_frac = orig_dur
+                measure_events.append((tuple(sorted(pitches)), dur_frac))
+
+            result_measures.append(measure_events)
+
+        return result_measures
+
+    rh_measures = build_measure_events([['S2', 'S1'], ['A2', 'A1']])
+    lh_measures = build_measure_events([['T2', 'T1'], ['PB', 'B2', 'B1']])
+
+    # Validate: count total events and unique chord shapes
+    rh_events = sum(len(m) for m in rh_measures)
+    lh_events = sum(len(m) for m in lh_measures)
+    rh_shapes = len(set(p for m in rh_measures for p, d in m))
+    lh_shapes = len(set(p for m in lh_measures for p, d in m))
+
+    report.append(f'OK: RH {rh_events} events, {rh_shapes} unique chord shapes')
+    report.append(f'OK: LH {lh_events} events, {lh_shapes} unique chord shapes')
+
+    data['grand_staff'] = {
+        'rh_measures': rh_measures,
+        'lh_measures': lh_measures,
+    }
+    return data, report
+
+
+# ============================================================
+# Stage 8: Horizontal Consolidation
+# ============================================================
+
+def stage_horizontal(data):
+    """Merge consecutive identical chords within each measure.
+
+    Operates on the grand_staff rh_measures and lh_measures.
+
+    Returns:
+        data: updated grand_staff with consolidated measures
+        report: validation messages
+    """
+    report = []
+    gs = data['grand_staff']
+
+    def consolidate(measures):
+        total_before = sum(len(m) for m in measures)
+        result = []
+        for meas_events in measures:
+            merged = []
+            for pitches, dur in meas_events:
+                if merged and merged[-1][0] == pitches and pitches:
+                    merged[-1] = (pitches, merged[-1][1] + dur)
+                else:
+                    merged.append((pitches, dur))
+            result.append(merged)
+        total_after = sum(len(m) for m in result)
+        return result, total_before, total_after
+
+    rh_cons, rh_before, rh_after = consolidate(gs['rh_measures'])
+    lh_cons, lh_before, lh_after = consolidate(gs['lh_measures'])
+
+    report.append(f'OK: RH {rh_before} → {rh_after} events ({rh_before - rh_after} merged)')
+    report.append(f'OK: LH {lh_before} → {lh_after} events ({lh_before - lh_after} merged)')
+
+    data['grand_staff']['rh_measures'] = rh_cons
+    data['grand_staff']['lh_measures'] = lh_cons
+    return data, report
+
+
+# ============================================================
+# Stage 9: Format
 # ============================================================
 
 def stage_format(data, title='SSAATTBB', x_num=1, fmt='grand'):
@@ -506,26 +668,119 @@ def stage_format(data, title='SSAATTBB', x_num=1, fmt='grand'):
 
     fmt: 'full' for 10-voice score, 'grand' for melody + grand staff
     """
-    from satb2ssaattbb import result_to_abc, result_to_grand_staff_abc
-
-    # Build a result dict compatible with the existing formatters
-    result = {
-        'key': data['key'],
-        'meter': data['meter'],
-        'default_len': data['default_len'],
-        'n_notes': len(data['all_voice_data']['S1']['midi']),
-        'n_measures': data['n_measures'],
-        'voice_data': data['all_voice_data'],
-        'chords': [c['name'] if c else '?' for c in data['measure_chords']],
-        'violations': data.get('new_violations', []),
-        'orig_violations': data.get('orig_violations', []),
-        'violation_count': len(data.get('new_violations', [])),
-        'orig_violation_count': len(data.get('orig_violations', [])),
-    }
+    from satb2ssaattbb import (result_to_abc, midi_to_abc,
+                                build_key_accidentals)
 
     if fmt == 'grand':
-        return result_to_grand_staff_abc(result, title=title, x_num=x_num)
+        # Use the pre-computed grand_staff data
+        key = data['key']
+        meter = data['meter']
+        dl = data['default_len']
+        vdata = data['all_voice_data']
+        chords_list = [c['name'] if c else '?' for c in data['measure_chords']]
+        gs = data['grand_staff']
+        key_acc = build_key_accidentals(key)
+
+        def format_dur(val):
+            if val == 1:
+                return ''
+            if val == int(val):
+                return str(int(val))
+            f = Fraction(val).limit_denominator(16)
+            if f.numerator == 1 and f.denominator == 2:
+                return '/2'
+            if f.denominator == 1:
+                return str(f.numerator)
+            return f'{f.numerator}/{f.denominator}'
+
+        def chord_display_name(chord_str):
+            if not chord_str or chord_str == '?':
+                return ''
+            m = re.match(r'^([A-G][b#]?)-?(.*)', chord_str)
+            if not m:
+                return chord_str
+            root, qual = m.group(1), m.group(2)
+            if 'major triad' in qual: return root
+            elif 'minor triad' in qual: return root + 'm'
+            elif 'diminished triad' in qual: return root + 'dim'
+            elif 'augmented triad' in qual: return root + 'aug'
+            elif 'dominant seventh' in qual: return root + '7'
+            elif 'minor seventh' in qual: return root + 'm7'
+            elif 'major seventh' in qual: return root + 'maj7'
+            elif 'half-diminished seventh' in qual: return root + 'm7b5'
+            elif 'diminished seventh' in qual: return root + 'dim7'
+            else: return root
+
+        def events_to_abc(measures, key_acc):
+            parts = []
+            for mi, meas_events in enumerate(measures):
+                if mi > 0:
+                    parts.append('|')
+                for pitches, dur_frac in meas_events:
+                    dur_out = format_dur(dur_frac)
+                    if not pitches:
+                        parts.append('z' + dur_out)
+                    elif len(pitches) == 1:
+                        parts.append(midi_to_abc(pitches[0], key_acc) + dur_out)
+                    else:
+                        notes = [midi_to_abc(p, key_acc) for p in pitches]
+                        parts.append('[' + ''.join(notes) + ']' + dur_out)
+            return ' '.join(parts) + ' |]'
+
+        # Build melody line
+        s1 = vdata['S1']
+        mel_parts = []
+        prev_meas = -1
+        for i in range(len(s1['midi'])):
+            meas_idx = s1['meas_idx'][i]
+            if meas_idx != prev_meas and prev_meas >= 0:
+                mel_parts.append('|')
+            chord_ann = ''
+            if meas_idx != prev_meas:
+                cname = chord_display_name(chords_list[meas_idx]) if meas_idx < len(chords_list) else ''
+                if cname:
+                    chord_ann = f'"^{cname}"'
+            prev_meas = meas_idx
+            midi = s1['midi'][i]
+            dur = s1['durs'][i]
+            if midi is None:
+                mel_parts.append(chord_ann + 'z' + dur)
+            else:
+                mel_parts.append(chord_ann + midi_to_abc(midi, key_acc) + dur)
+        melody_abc = ' '.join(mel_parts) + ' |]'
+
+        rh_abc = events_to_abc(gs['rh_measures'], key_acc)
+        lh_abc = events_to_abc(gs['lh_measures'], key_acc)
+
+        lines = []
+        lines.append(f'X: {x_num}')
+        lines.append(f'T: {title}')
+        lines.append(f'M: {meter}')
+        lines.append(f'L: {dl}')
+        lines.append(f'%%staves M | {{RH LH}}')
+        lines.append(f'V: M clef=treble name="Melody"')
+        lines.append(f'V: RH clef=treble name="RH"')
+        lines.append(f'V: LH clef=bass name="LH"')
+        lines.append(f'K: {key}')
+        lines.append(f'[V: M] {melody_abc}')
+        lines.append(f'[V: RH] {rh_abc}')
+        lines.append(f'[V: LH] {lh_abc}')
+        return '\n'.join(lines)
     else:
+        from satb2ssaattbb import result_to_abc
+        result = {
+            'key': data['key'],
+            'meter': data['meter'],
+            'default_len': data['default_len'],
+            'n_notes': len(data['all_voice_data']['S1']['midi']),
+            'n_measures': data['n_measures'],
+            'voice_data': data['all_voice_data'],
+            'chords': [c['name'] if c else '?' for c in data['measure_chords']],
+            'violations': data.get('new_violations', []),
+            'orig_violations': data.get('orig_violations', []),
+            'violation_count': len(data.get('new_violations', [])),
+            'orig_violation_count': len(data.get('orig_violations', [])),
+        }
         return result_to_abc(result, title=title, x_num=x_num)
 
 
@@ -533,7 +788,7 @@ def stage_format(data, title='SSAATTBB', x_num=1, fmt='grand'):
 # Full Pipeline
 # ============================================================
 
-def run_pipeline(tune_abc, hymn_num=None, stop_after=None, fmt='grand'):
+def run_pipeline(tune_abc, hymn_num=None, stop_after=None, fmt='grand', title=None):
     """Run the full pipeline with validation at each stage.
 
     Args:
@@ -541,6 +796,7 @@ def run_pipeline(tune_abc, hymn_num=None, stop_after=None, fmt='grand'):
         hymn_num: hymn number for output
         stop_after: stage name to stop after (None = run all)
         fmt: 'full' or 'grand'
+        title: display title for ABC output
 
     Returns:
         data: pipeline data dict
@@ -554,6 +810,8 @@ def run_pipeline(tune_abc, hymn_num=None, stop_after=None, fmt='grand'):
         ('second', stage_second_voices),
         ('pedal', stage_pedal),
         ('verify', stage_verify),
+        ('vertical', stage_vertical),
+        ('horizontal', stage_horizontal),
     ]
 
     all_reports = {}
@@ -574,7 +832,8 @@ def run_pipeline(tune_abc, hymn_num=None, stop_after=None, fmt='grand'):
             return data, all_reports, None
 
     # Format stage
-    title = f'{hymn_num:03d}' if hymn_num else 'SSAATTBB'
+    if title is None:
+        title = f'{hymn_num:03d}' if hymn_num else 'SSAATTBB'
     abc_output = stage_format(data, title=title, x_num=hymn_num or 1, fmt=fmt)
 
     return data, all_reports, abc_output
@@ -662,10 +921,13 @@ def main():
     elif args.build_json:
         results = []
         for num in sorted(hymn_map.keys()):
-            data, reports, abc_out = run_pipeline(hymn_map[num], num, fmt=args.format)
+            title = titles.get(num, f'Hymn {num}')
+            full_title = f'{num:03d} {title}'
+            data, reports, abc_out = run_pipeline(
+                hymn_map[num], num, fmt=args.format, title=full_title
+            )
             if abc_out is None:
                 continue
-            title = titles.get(num, f'Hymn {num}')
             results.append({
                 'n': num,
                 't': f'{num:03d} {title}',

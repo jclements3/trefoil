@@ -24,6 +24,7 @@ import sys
 import json
 import warnings
 from collections import defaultdict
+from fractions import Fraction
 from itertools import combinations
 
 warnings.filterwarnings('ignore')
@@ -1312,29 +1313,112 @@ def result_to_grand_staff_abc(result, title='SSAATTBB', x_num=1):
             mel_parts.append(chord_ann + midi_to_abc(midi, key_acc) + dur)
     melody_abc = ' '.join(mel_parts) + ' |]'
 
-    # Build grand staff voices
-    rh1_abc = build_chord_voice(['S2', 'S1'], key_acc)  # soprano pair (low to high)
-    rh2_abc = build_chord_voice(['A2', 'A1'], key_acc)  # alto pair
-    lh1_abc = build_chord_voice(['T2', 'T1'], key_acc)  # tenor pair
-    lh2_abc = build_chord_voice(['PB', 'B2', 'B1'], key_acc)  # bass + pedal
+    # Build single RH and LH voices by time-aligning all sub-voices per measure,
+    # deduplicating pitches, then consolidating consecutive identical chords.
+    def build_merged_voice(voice_groups, key_acc):
+        """Merge multiple rhythm groups into one voice with chord notation.
+
+        1. Vertical: time-align all groups, stack pitches, deduplicate
+        2. Horizontal: merge consecutive identical chord shapes
+        """
+        first_v = voice_groups[0][0]
+        meas_indices = vdata[first_v]['meas_idx']
+        n_notes = len(meas_indices)
+        n_meas = max(meas_indices) + 1 if n_notes > 0 else 0
+
+        measure_events = [[] for _ in range(n_meas)]
+
+        for group in voice_groups:
+            ref_voice = group[0]
+            durs = vdata[ref_voice]['durs']
+            midxs = vdata[ref_voice]['meas_idx']
+            midis_lists = {v: vdata[v]['midi'] for v in group}
+
+            cur_meas = -1
+            t = Fraction(0)
+            for i in range(len(durs)):
+                m = midxs[i]
+                if m != cur_meas:
+                    t = Fraction(0)
+                    cur_meas = m
+
+                d = parse_dur(durs[i])
+                dur_frac = Fraction(d).limit_denominator(16)
+
+                pitches = set()
+                for v in group:
+                    mid = midis_lists[v][i]
+                    if mid is not None:
+                        pitches.add(mid)
+
+                if m < n_meas:
+                    measure_events[m].append((t, pitches, dur_frac))
+                t += dur_frac
+
+        parts = []
+        for m in range(n_meas):
+            if m > 0:
+                parts.append('|')
+
+            events = measure_events[m]
+            if not events:
+                continue
+
+            # Vertical: group by time, merge pitch sets
+            time_map = {}
+            for t, pitches, dur in events:
+                if t not in time_map:
+                    time_map[t] = (set(), dur)
+                time_map[t][0].update(pitches)
+                if dur < time_map[t][1]:
+                    time_map[t] = (time_map[t][0], dur)
+
+            sorted_times = sorted(time_map.keys())
+            time_events = []
+            for idx, t in enumerate(sorted_times):
+                pitches, orig_dur = time_map[t]
+                if idx + 1 < len(sorted_times):
+                    dur_frac = sorted_times[idx + 1] - t
+                else:
+                    dur_frac = orig_dur
+                time_events.append((tuple(sorted(pitches)), dur_frac))
+
+            # Horizontal: merge consecutive identical chord shapes
+            merged = []
+            for pitches, dur in time_events:
+                if merged and merged[-1][0] == pitches and pitches:
+                    merged[-1] = (pitches, merged[-1][1] + dur)
+                else:
+                    merged.append((pitches, dur))
+
+            for pitches, dur_frac in merged:
+                dur_out = format_dur(float(dur_frac))
+                if not pitches:
+                    parts.append('z' + dur_out)
+                elif len(pitches) == 1:
+                    parts.append(midi_to_abc(pitches[0], key_acc) + dur_out)
+                else:
+                    notes = [midi_to_abc(p, key_acc) for p in pitches]
+                    parts.append('[' + ''.join(notes) + ']' + dur_out)
+
+        return ' '.join(parts) + ' |]'
+
+    rh_abc = build_merged_voice([['S2', 'S1'], ['A2', 'A1']], key_acc)
+    lh_abc = build_merged_voice([['T2', 'T1'], ['PB', 'B2', 'B1']], key_acc)
 
     lines = []
     lines.append(f'X: {x_num}')
     lines.append(f'T: {title}')
     lines.append(f'M: {meter}')
     lines.append(f'L: {dl}')
-    lines.append(f'%%staves M | {{RH1 RH2}} | {{LH1 LH2}}')
+    lines.append(f'%%staves M | {{RH LH}}')
     lines.append(f'V: M clef=treble name="Melody"')
-    lines.append(f'V: RH1 clef=treble name=""')
-    lines.append(f'V: RH2 clef=treble name=""')
-    lines.append(f'V: LH1 clef=bass name=""')
-    lines.append(f'V: LH2 clef=bass name=""')
+    lines.append(f'V: RH clef=treble name="RH"')
+    lines.append(f'V: LH clef=bass name="LH"')
     lines.append(f'K: {key}')
     lines.append(f'[V: M] {melody_abc}')
-    lines.append(f'[V: RH1] {rh1_abc}')
-    lines.append(f'[V: RH2] {rh2_abc}')
-    lines.append(f'[V: LH1] {lh1_abc}')
-    lines.append(f'[V: LH2] {lh2_abc}')
+    lines.append(f'[V: RH] {rh_abc}')
+    lines.append(f'[V: LH] {lh_abc}')
 
     return '\n'.join(lines)
 
