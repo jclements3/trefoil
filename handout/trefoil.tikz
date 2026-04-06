@@ -109,4 +109,32 @@
 % vi->I: in gap between 3rds and 2nds leaves
 \node[lbl, anchor=south west] at ( 2.4, 0.6)    {Loneliness};
 
+%% == HYMNAL STATS (v5g, 288 hymns, 3,014 transitions) =========================
+%% Positioned below the trefoil
+
+\node[anchor=north, text width=16cm, font=\small, align=left] at (0,-6.5) {%
+\textbf{Harp Hymnal -- 288 Hymns, 92 Voicing Patterns}\\[4pt]
+\begin{tabular}{@{}lrrr@{}}
+\textbf{Loop} & \textbf{Transitions} & \textbf{CW} & \textbf{CCW} \\[2pt]
+\textcolor{leafyellow!80!black}{\textbf{4ths}} (circle of 5ths) & 46\% & 52\% & 47\% \\
+\textcolor{leafcyan!80!black}{\textbf{2nds}} (stepwise) & 28\% & 47\% & 52\% \\
+\textcolor{leafred}{\textbf{3rds}} (mediant) & 24\% & 46\% & 53\% \\
+\end{tabular}\\[6pt]
+\begin{tabular}{@{}lr@{}}
+\textbf{Per-hymn dominant path:} & \\
+\textcolor{leafred}{\textbf{3rds}} loop & 184 hymns (64\%) \\
+\textcolor{leafcyan!80!black}{\textbf{2nds}} loop & 71 hymns (25\%) \\
+\textcolor{leafyellow!80!black}{\textbf{4ths}} loop & 33 hymns (11\%) \\
+\end{tabular}\\[6pt]
+\begin{tabular}{@{}lr@{\hspace{2em}}lr@{}}
+Chord voicings & 4,708 & Keys & Eb Bb F C G D A E \\
+LH patterns & 40 & RH patterns & 39 \\
+(LH,RH) pairs & 92 & 14 pairs cover & 80\% \\
+LH avg notes & 3.4 & RH avg notes & 3.0 \\
+LH avg span & 9.9 strings & RH avg span & 5.7 strings \\
+LH intervals & P4 32\%, P5 33\% & Hand gap avg & 3.6 semitones \\
+Harp range & C2--G5 & Crossings & 0 \\
+\end{tabular}
+};
+
 \end{tikzpicture}

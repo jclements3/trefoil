@@ -94,9 +94,31 @@ python3 trefoil_all_keys_local.py
 
 ## TODO for lab (Claude AI)
 
-- **Save inline scripts**: The lead sheet builder and hymnal builder (v5d) are inline python in the conversation. Save as `scripts/build_lead_sheets.py` and `scripts/build_hymnal_v5.py`.
-- **Voicing variety (next step)**: Current v5d cycles through C-to-C windows when same chord repeats at measure boundaries. Future: assign unique (LH shape, RH shape) pairs so no voicing repeats across the entire hymnal. See memory file `project_lead_sheet_voicings.md` for the full design — 21 chord shapes, 4,760+ voicings per triad, 435K total available vs 9K needed.
-- **Legacy pipeline**: Do not use. Has duration bugs, melody-chord clashes, wrong rebuild script. v5 pipeline replaces it entirely.
+- **Save inline scripts**: The lead sheet builder and hymnal builder (v5g) are inline python in the conversation history. Save as `scripts/build_lead_sheets.py` and `scripts/build_hymnal_v5.py`. The pattern drill builder is also inline — save as `scripts/build_pattern_drills.py`.
+- **Voicing variety (next step)**: Current v5g cycles through C-to-C windows when same chord repeats at measure boundaries. Future: assign unique (LH shape, RH shape) pairs so no voicing repeats across the entire hymnal. See memory file `project_lead_sheet_voicings.md` for the full design.
+- **Legacy pipeline**: Do not use. v5 pipeline replaces it entirely.
+- **Build the APK**: The laptop can't build or deploy to tablet. Run `cd app && ANDROID_HOME=$HOME/Android/Sdk JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64 ./gradlew assembleDebug && adb install app/build/outputs/apk/debug/app-debug.apk`
+
+## App structure changes (2026-04-05)
+
+### Drills are now hymnal entries
+All drills moved from embedded JS `DRILLS` array and external JSON files into `hymnal_data.json` with n < 4000. The `DRILLS` array in index.html is empty. External drill JSON files (`advanced_drills.json`, `lever_drills.json`, `thomas_280.json`) are emptied.
+
+- Threshold in index.html: n < 4000 = drills tab, n >= 4000 = hymns tab
+- Drills tab uses two-column layout (`drill-col-left`, `drill-col-right` inside `drill-list`)
+
+### Pattern drills (53 voicing patterns)
+- `app/pattern_index.json` — master list of 53 unique (LH, RH) voicing patterns with diatonic spacings, gap, key, count, and hex IDs (XXXX-XXXX format: 4 digits per hand, 0=unused finger)
+- Drill n=3200: "53 Patterns" — all patterns in key of G starting at G2, grand staff, triple fraction annotations (abstract chord / RH voicing name / LH voicing name)
+- Drills n=3100-3106: per-key pattern drills (D, G, Eb, F, C, A, Bb) — each in its own key with real chord names
+- All pattern drills use 3/4 time, half-note chord + quarter rest per measure (gives room for annotations)
+- Sorted: 53 Patterns first, then Eb→Bb→F→C→G→D→A (lever harp progression)
+
+### LH voicing rules
+- Bottom intervals: P4/P5/P8+ only (no 2nds or 3rds in bass — too muddy)
+- Top note of LH may form m3/M3 with note below (acceptable near middle C)
+- Target 3-4 notes. Open voicing: root-5th-octave-3rd typical.
+- LH intervals verified: P4 32%, P5 33%, zero 2nds, 3rds only 13% (top note only)
 
 ## Current Pipeline (v5g — 2026-04-05)
 

@@ -215,7 +215,10 @@ label { font-size: 13px; color: #888; }
     </div>
   </div>
   <div id="drill-panel" class="lib-panel">
-    <div id="drill-list"></div>
+    <div id="drill-list" style="flex:1;display:flex;min-height:0;">
+      <div id="drill-col-left" class="hymn-col"></div>
+      <div id="drill-col-right" class="hymn-col"></div>
+    </div>
   </div>
 </div>
 </div>
@@ -243,38 +246,6 @@ abc2svg.loadjs = function(fn, relay, onerror) {
 <script>
 // ── Embedded drill ABC data ──
 var DRILLS = [
-{n:"1001",t:"Drill: I Placing (Full)",abc:"X: 1001\nT: Drill: I Placing (Full)\nM: 4/4\nL: 1/4\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\nK: C\n[Q:1/4=80] C D E F | D E F G | E F G A | F G A B | G A B c | A G F E | G F E D | F E D C | C4 |]\n"},
-{n:"1002",t:"Drill: II Broken Thirds",abc:"X: 1002\nT: Drill: II Broken Thirds\nM: 4/4\nL: 1/4\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\nK: C\n[Q:1/4=80] C E D F | E G F A | G B A c | B A G F | E D C2 |]\n"},
-{n:"1003",t:"Drill: III Block Chords",abc:"X: 1003\nT: Drill: III Block Chords\nM: 4/4\nL: 1/4\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\nK: C\n[Q:1/4=72] F G A B | c B A G | F4 |]\n"},
-{n:"1004",t:"Drill: IV Arpeggios Up",abc:"X: 1004\nT: Drill: IV Arpeggios Up\nM: 4/4\nL: 1/4\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\nK: C\n[Q:1/4=80] C E G c | D F A d | E G B e | F A c f | e c A F | d B G E | c A F D | C4 |]\n"},
-{n:"1005",t:"Drill: V Arpeggios Down",abc:"X: 1005\nT: Drill: V Arpeggios Down\nM: 4/4\nL: 1/4\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\nK: C\n[Q:1/4=80] c G E C | d A F D | e B G E | f c A F | F A c f | E G B e | D F A d | C4 |]\n"},
-{n:"1006",t:"Drill: VI Zigzag",abc:"X: 1006\nT: Drill: VI Zigzag\nM: 3/4\nL: 1/4\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\nK: C\n[Q:1/4=80] C D E | F E D | E F G | A G F | G A B | c B A | B A G | F E D | C3 |]\n"},
-{n:"1007",t:"Drill: VII Scale Up Down",abc:"X: 1007\nT: Drill: VII Scale Up Down\nM: 4/4\nL: 1/4\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\nK: C\n[Q:1/4=72] C D E F | G A B c | c B A G | F E D C | C4 |]\n"},
-{n:"1008",t:"Drill: VIII Contrary Motion",abc:"X: 1008\nT: Drill: VIII Contrary Motion\nM: 4/4\nL: 1/4\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\nK: C\n[Q:1/4=72] C D E F | G A B c | c B A G | F E D C | C4 |]\n"},
-{n:"1009",t:"Drill: IX Scale + Chord",abc:"X: 1009\nT: Drill: IX Scale + Chord\nM: 4/4\nL: 1/4\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\nK: C\n[Q:1/4=72] C D E F | G A B c | c4 | c B A G | F E D C | C4 |]\n"},
-{n:"1101",t:"Adv a1: Finger Passing (4+4)",abc:"X: 1101\nT: Adv a1: Finger Passing (4+4)\nM: 4/4\nL: 1/8\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\nK: C\n[Q:1/4=60] CDEF GABc | DEFG ABcd | EFGa bcde | fgab c'4 |]\n"},
-{n:"1102",t:"Adv a2: Finger Passing (4+4 desc)",abc:"X: 1102\nT: Adv a2: Finger Passing (4+4 desc)\nM: 4/4\nL: 1/8\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\nK: C\n[Q:1/4=60] cBAG FEDC | dcBA GFED | edcB AGFE | DC C4 z2 |]\n"},
-{n:"1103",t:"Adv a3: Finger Passing (5+5)",abc:"X: 1103\nT: Adv a3: Finger Passing (5+5)\nM: 4/4\nL: 1/8\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\nK: C\n[Q:1/4=60] CDEFG ABcde | DEFGa bcdef | EFGab cdefg | a4 z4 |]\n"},
-{n:"1104",t:"Adv a4: Finger Passing (5+5 desc)",abc:"X: 1104\nT: Adv a4: Finger Passing (5+5 desc)\nM: 4/4\nL: 1/8\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\nK: C\n[Q:1/4=60] agfed cBAGF | gfedc BAGFE | fedcB AGFED | C4 z4 |]\n"},
-{n:"1105",t:"Adv a5: Finger Passing (6+6)",abc:"X: 1105\nT: Adv a5: Finger Passing (6+6)\nM: 4/4\nL: 1/8\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\nK: C\n[Q:1/4=60] CDEFGA Bcdefg | DEFGAb cdefga | EFGabc defgab | c'4 z4 |]\n"},
-{n:"1106",t:"Adv a6: Finger Passing (6+5)",abc:"X: 1106\nT: Adv a6: Finger Passing (6+5)\nM: 4/4\nL: 1/8\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\nK: C\n[Q:1/4=60] CDEFGA Bcdef | DEFGAb cdefg | EFGAbc defga | b4 z4 |]\n"},
-{n:"1107",t:"Rodriguez VII: Accelerating Scale",abc:"X: 1107\nT: Rodriguez VII: Accelerating Scale\nM: 4/4\nL: 1/8\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\nK: C\n[Q:1/4=60] C2 D2 E2 F2|GA Bc de fg| (3abc (3def g/a/b/c'/ d'/e'/f'/g'/|c'8|]\n"},
-{n:"1108",t:"Rodriguez VIII: Fix Position Scale",abc:"X: 1108\nT: Rodriguez VIII: Fix Position Scale\nM: 4/4\nL: 1/8\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\nK: C\n[Q:1/4=60] C2 D2 E2 F2|GA Bc de fg| (3abc (3def g/a/b/c'/ d'/e'/f'/g'/|c'8|]\n"},
-{n:"1109",t:"Rodriguez IX: Crossing Scale",abc:"X: 1109\nT: Rodriguez IX: Crossing Scale\nM: 4/4\nL: 1/8\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\nK: C\n[Q:1/4=60] C,D,E,F, G,A,B,C|DEFG ABcd|efga bc'd'e'|c'8|]\n"},
-{n:"1110",t:"Rodriguez X: Scale with Chords",abc:"X: 1110\nT: Rodriguez X: Scale with Chords\nM: 4/4\nL: 1/8\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\nK: C\n[Q:1/4=60] CDEF GABc|[CEGc]4 z4|defg abc'd'|[c'e'g'c'']4 z4|]\n"},
-{n:"1111",t:"Rodriguez XI: Zigzag Scale",abc:"X: 1111\nT: Rodriguez XI: Zigzag Scale\nM: 3/4\nL: 1/8\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\nK: C\n[Q:1/4=60] CDEFED|EFGAGF|GABcBA|Bcdedc|defgfe|fgabag|bagfga|gfedfe|edcBcd|cBAGAB|AGFEFG|FEDC C2|]\n"},
-{n:"1112",t:"Rodriguez XII: Accent Combos",abc:"X: 1112\nT: Rodriguez XII: Accent Combos\nM: 4/4\nL: 1/8\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\nK: C\n[Q:1/4=60] CDEF GABc|defg abc'd'|c'8|]\n"},
-{n:"1113",t:"Rodriguez XIII: Hand Interchange",abc:"X: 1113\nT: Rodriguez XIII: Hand Interchange\nM: 3/4\nL: 1/8\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\nK: C\n[Q:1/4=60] z4 EF|GABc z2|z4 ef|gabc' z2|c'6|]\n"},
-{n:"1114",t:"Rodriguez XIV: Combined Fingerings",abc:"X: 1114\nT: Rodriguez XIV: Combined Fingerings\nM: 4/4\nL: 1/4\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\nK: C\n[Q:1/4=60] C D E F|G A B c|d e f g|a b c' d'|c'4|]\n"},
-{n:"1115",t:"Rodriguez XV: Connecting Patterns",abc:"X: 1115\nT: Rodriguez XV: Connecting Patterns\nM: 4/4\nL: 1/8\n%%pagewidth 200cm\n%%continueall 1\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%writefields Q 0\nK: C\n[Q:1/4=60] C3/D/ E3/F/ G3/A/ B3/c/|d3/e/ f3/g/ a3/b/ c'4|]\n"},
-{n:"2001",t:"Trefoil Eb (Full)",abc:"X: 2001\nT: Trefoil Eb (Full)\nM: 4/4\nL: 1/4\n%%pagewidth 200cm\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%continueall 1\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: Eb\n[V: RH] [Q:1/4=60] [_B_eg] [_Adf_a] [DF_B_e] [Gc_e_a] | [CF_Bd] [CF_A] [DF_B] [_B_eg] | [_B_eg] [C_EGc] [C_E_A] [DF_A] | [DF_Bd] [DF_B] [_EG_B] [C_EG] | [C_EG] [DGcf] [CF_B] [DF_B] | [_Ac_eg] [_Bdg] [CF_A] [C_EG] | [C_EG] [_Acf] [G_B_e_a] [C_E_A] | [DG_B] [CF_Ad] [DGc_e] [_B_eg] | [_B_eg] [_Bdg] [DG_B] [_Bdf] | [CF_A] [_Acf_a] [CF_Ac] [C_EG] | [C_EG] [DGcf] [CF_B] [DF_B] | [_Ac_eg] [_Bdg] [CF_A] [C_EG] |]\n[V: LH] [_E,_A,DG] [_A,C_EG] [D,F,_B,] [G,CF] | [C,_E,G,_B,] [F,_A,DG] [_B,DF_B] [_E,_A,CF] | [_E,_A,CF] [C,_E,_A,] [_A,CF_A] [F,_B,_EG] | [D,F,_A,] [_B,_EG_B] [D,G,_B,] [_B,_EG] | [_E,_A,DF] [D,F,_A,] [C,_E,G,_B,] [_B,_EG_B] | [_A,DG] [G,_B,DG] [F,_A,DG] [_E,_A,DG] | [_E,_A,DG] [F,_A,DG] [G,CF] [_A,C_E_A] | [_B,DG_B] [C,_E,G,] [D,F,_B,] [_E,_A,CF] | [_E,_A,CF] [G,_B,_EG] [_B,_EG_B] [D,G,C_E] | [D,F,_A,] [_A,CF] [C,_E,G,_B,] [_B,_EG] | [_E,_A,DF] [D,F,_A,] [C,_E,G,_B,] [_B,_EG_B] | [_A,DG] [G,_B,DG] [F,_A,DG] [_E,_A,DG] |]"},
-{n:"2002",t:"Trefoil Eb Fourths",abc:"X: 2002\nT: Trefoil Eb Fourths\nM: 4/4\nL: 1/4\n%%pagewidth 200cm\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%continueall 1\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: Eb\n[V: RH] [Q:1/4=60] [C_EG] [_Bdg] [CF_A] [C_EG_B] | [Gcf] [DF_Ad] [C_E_A] [C_EG] | [_B_eg] [_Adf_a] [DF_B_e] [Gc_e_a] | [CF_Bd] [CF_A] [DF_B] [_B_eg] |]\n[V: LH] [_B,_EG] [_B,DF] [F,_A,DG] [C,_E,_A,] | [G,_B,DF] [D,G,C] [_A,C_E_A] [_E,_A,DG] | [_E,_A,DG] [_A,C_EG] [D,F,_B,] [G,CF] | [C,_E,G,_B,] [F,_A,DG] [_B,DF_B] [_E,_A,CF] |]"},
-{n:"2003",t:"Trefoil Eb Thirds",abc:"X: 2003\nT: Trefoil Eb Thirds\nM: 4/4\nL: 1/4\n%%pagewidth 200cm\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%continueall 1\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: Eb\n[V: RH] [Q:1/4=60] [_B_eg] [_Bdg] [DG_B] [_Bdf] | [CF_A] [_Acf_a] [CF_Ac] [C_EG] | [_B_eg] [C_EGc] [C_E_A] [DF_A] | [DF_Bd] [DF_B] [_EG_B] [C_EG] |]\n[V: LH] [_E,_A,CF] [G,_B,_EG] [_B,_EG_B] [D,G,C_E] | [D,F,_A,] [_A,CF] [C,_E,G,_B,] [_B,_EG] | [_E,_A,CF] [C,_E,_A,] [_A,CF_A] [F,_B,_EG] | [D,F,_A,] [_B,_EG_B] [D,G,_B,] [_B,_EG] |]"},
-{n:"2004",t:"Trefoil Eb Seconds",abc:"X: 2004\nT: Trefoil Eb Seconds\nM: 4/4\nL: 1/4\n%%pagewidth 200cm\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%continueall 1\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: Eb\n[V: RH] [Q:1/4=60] [C_EG] [_Acf] [G_B_e_a] [C_E_A] | [DG_B] [CF_Ad] [DGc_e] [_B_eg] | [C_EG] [DGcf] [CF_B] [DF_B] | [_Ac_eg] [_Bdg] [CF_A] [C_EG] |]\n[V: LH] [_E,_A,DG] [F,_A,DG] [G,CF] [_A,C_E_A] | [_B,DG_B] [C,_E,G,] [D,F,_B,] [_E,_A,CF] | [_E,_A,DF] [D,F,_A,] [C,_E,G,_B,] [_B,_EG_B] | [_A,DG] [G,_B,DG] [F,_A,DG] [_E,_A,DG] |]"},
-{n:"2005",t:"Trefoil C (Full)",abc:"X: 2005\nT: Trefoil C (Full)\nM: 4/4\nL: 1/4\n%%pagewidth 200cm\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%continueall 1\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: C\n[V: RH] [Q:1/4=60] [Ace] [Acf] [B,DFB] [EAd] | [Aceg] [Adf] [GBe] [Ace] | [Ace] [Adfa] [FAdf] [Adf] | [GBd] [Beg] [GBe] [Gce] | [Ace] [CFAd] [Acfa] [Bdg] | [Acf] [EGcf] [Adf] [Gce] | [Gce] [Adf] [EGcf] [Acf] | [Bdg] [Acfa] [CFAd] [Ace] | [Gce] [GBe] [Beg] [GBd] | [Adf] [FAdf] [Adfa] [Ace] | [Ace] [GBe] [Adf] [Aceg] | [EAd] [B,DFB] [Acf] [Ace] |]\n[V: LH] [C,F,B,E] [F,A,CF] [B,,E,A,] [E,G,B,D] | [A,CF] [D,F,B,E] [G,B,D] [G,CE] | [G,CE] [A,CEG] [F,A,D] [B,DF] | [B,,E,A,C] [G,CEG] [E,G,CE] [C,F,A,D] | [G,CE] [B,,E,A,] [A,CF] [G,CEG] | [F,A,CF] [E,A,D] [D,F,B,E] [C,F,A,D] | [C,F,A,D] [D,F,B,E] [E,A,D] [F,A,CF] | [G,CEG] [A,CF] [B,,E,A,] [G,CE] | [C,F,A,D] [E,G,CE] [G,CEG] [B,,E,A,C] | [B,DF] [F,A,D] [A,CEG] [G,CE] | [G,CE] [G,B,D] [D,F,B,E] [A,CF] | [E,G,B,D] [B,,E,A,] [F,A,CF] [C,F,B,E] |]"},
-{n:"2006",t:"Trefoil C Fourths",abc:"X: 2006\nT: Trefoil C Fourths\nM: 4/4\nL: 1/4\n%%pagewidth 200cm\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%continueall 1\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: C\n[V: RH] [Q:1/4=60] [Ace] [Acf] [B,DFB] [EAd] | [Aceg] [Adf] [GBe] [Ace] | [Ace] [GBe] [Adf] [Aceg] | [EAd] [B,DFB] [Acf] [Ace] |]\n[V: LH] [C,F,B,E] [F,A,CF] [B,,E,A,] [E,G,B,D] | [A,CF] [D,F,B,E] [G,B,D] [G,CE] | [G,CE] [G,B,D] [D,F,B,E] [A,CF] | [E,G,B,D] [B,,E,A,] [F,A,CF] [C,F,B,E] |]"},
-{n:"2007",t:"Trefoil C Thirds",abc:"X: 2007\nT: Trefoil C Thirds\nM: 4/4\nL: 1/4\n%%pagewidth 200cm\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%continueall 1\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: C\n[V: RH] [Q:1/4=60] [Ace] [Adfa] [FAdf] [Adf] | [GBd] [Beg] [GBe] [Gce] | [Gce] [GBe] [Beg] [GBd] | [Adf] [FAdf] [Adfa] [Ace] |]\n[V: LH] [G,CE] [A,CEG] [F,A,D] [B,DF] | [B,,E,A,C] [G,CEG] [E,G,CE] [C,F,A,D] | [C,F,A,D] [E,G,CE] [G,CEG] [B,,E,A,C] | [B,DF] [F,A,D] [A,CEG] [G,CE] |]"},
-{n:"2008",t:"Trefoil C Seconds",abc:"X: 2008\nT: Trefoil C Seconds\nM: 4/4\nL: 1/4\n%%pagewidth 200cm\n%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n%%continueall 1\nV: RH clef=treble name=\"RH\"\nV: LH clef=bass name=\"LH\"\nK: C\n[V: RH] [Q:1/4=60] [Ace] [CFAd] [Acfa] [Bdg] | [Acf] [EGcf] [Adf] [Gce] | [Gce] [Adf] [EGcf] [Acf] | [Bdg] [Acfa] [CFAd] [Ace] |]\n[V: LH] [G,CE] [B,,E,A,] [A,CF] [G,CEG] | [F,A,CF] [E,A,D] [D,F,B,E] [C,F,A,D] | [C,F,A,D] [D,F,B,E] [E,A,D] [F,A,CF] | [G,CEG] [A,CF] [B,,E,A,] [G,CE] |]"},
 ];
 
 // ── State ──
@@ -626,7 +597,7 @@ function getCat(drill) {
   if (n >= 1679 && n <= 1699) return 'Thomas: Glissando';
   if (n >= 2001 && n <= 2004) return 'Trefoil Eb';
   if (n >= 2005 && n <= 2008) return 'Trefoil C';
-  if (n >= 3000) return 'Hymns';
+  if (n >= 4000) return 'Hymns';
   return 'Other';
 }
 
@@ -639,30 +610,39 @@ function selectDrill(drillIdx) {
 }
 
 function buildLibrary() {
-  var $drillList = document.getElementById('drill-list');
+  var $dColL = document.getElementById('drill-col-left');
+  var $dColR = document.getElementById('drill-col-right');
   var $colL = document.getElementById('hymn-col-left');
   var $colR = document.getElementById('hymn-col-right');
-  $drillList.innerHTML = '';
+  if ($dColL) $dColL.innerHTML = '';
+  if ($dColR) $dColR.innerHTML = '';
   $colL.innerHTML = '';
   $colR.innerHTML = '';
 
-  // Drills tab content
+  // Drills tab content — two columns
+  var drillIdxs = [];
   for (var i = 0; i < DRILLS.length; i++) {
-    if (parseInt(DRILLS[i].n) >= 3000) continue;
+    if (parseInt(DRILLS[i].n) >= 4000) continue;
+    drillIdxs.push(i);
+  }
+  var dHalf = Math.ceil(drillIdxs.length / 2);
+  for (var di = 0; di < drillIdxs.length; di++) {
+    var idx = drillIdxs[di];
     var item = document.createElement('div');
     item.className = 'lib-item';
-    item.dataset.idx = i;
-    item.textContent = DRILLS[i].t;
-    item.onclick = (function(idx) {
-      return function() { selectDrill(idx); };
-    })(i);
-    $drillList.appendChild(item);
+    item.dataset.idx = idx;
+    item.textContent = DRILLS[idx].t;
+    item.onclick = (function(i) {
+      return function() { selectDrill(i); };
+    })(idx);
+    if (di < dHalf) { if ($dColL) $dColL.appendChild(item); }
+    else { if ($dColR) $dColR.appendChild(item); }
   }
 
   // Hymns: collect and sort alphabetically
   var hymnIndices = [];
   for (var i = 0; i < DRILLS.length; i++) {
-    if (parseInt(DRILLS[i].n) >= 3000) hymnIndices.push(i);
+    if (parseInt(DRILLS[i].n) >= 4000) hymnIndices.push(i);
   }
   hymnIndices.sort(function(a,b) {
     return DRILLS[a].t.localeCompare(DRILLS[b].t);
@@ -814,7 +794,7 @@ function onDataLoaded() {
     buildLibrary();
     // Default to first hymn
     for (var di = 0; di < DRILLS.length; di++) {
-      if (parseInt(DRILLS[di].n) >= 3000) { renderDrill(di); break; }
+      if (parseInt(DRILLS[di].n) >= 4000) { renderDrill(di); break; }
     }
   }
 }
@@ -876,7 +856,7 @@ xhr2.onerror = function() { onDataLoaded(); };
 xhr2.send();
 // Default to first hymn
 for (var di = 0; di < DRILLS.length; di++) {
-  if (parseInt(DRILLS[di].n) >= 3000) { renderDrill(di); break; }
+  if (parseInt(DRILLS[di].n) >= 4000) { renderDrill(di); break; }
 }
 </script>
 </body>
