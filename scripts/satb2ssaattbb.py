@@ -1010,6 +1010,36 @@ def result_to_abc(result, title='SSAATTBB', x_num=1):
 
     key_acc = build_key_accidentals(key)
 
+    def parse_dur(dur_str):
+        """Parse ABC duration string to a fraction of the default length.
+        '' -> 1, '2' -> 2, '3' -> 3, '/2' -> 0.5, '3/2' -> 1.5, '/' -> 0.5
+        """
+        if not dur_str:
+            return 1.0
+        if '/' in dur_str:
+            parts = dur_str.split('/')
+            num = int(parts[0]) if parts[0] else 1
+            den = int(parts[1]) if len(parts) > 1 and parts[1] else 2
+            return num / den
+        return float(dur_str)
+
+    def format_dur(val):
+        """Convert a numeric duration back to ABC duration string.
+        1.0 -> '', 2.0 -> '2', 0.5 -> '/2', 1.5 -> '3/2', 3.0 -> '3'
+        """
+        if val == 1.0:
+            return ''
+        if val == int(val):
+            return str(int(val))
+        # Express as fraction
+        from fractions import Fraction
+        f = Fraction(val).limit_denominator(16)
+        if f.numerator == 1 and f.denominator == 2:
+            return '/2'
+        if f.denominator == 1:
+            return str(f.numerator)
+        return f'{f.numerator}/{f.denominator}'
+
     for v in voice_order:
         # Melody voice duplicates S1 with chord annotations
         if v == 'M':
@@ -1021,29 +1051,53 @@ def result_to_abc(result, title='SSAATTBB', x_num=1):
         meas_indices = vd['meas_idx']
         n = len(midi_notes)
 
-        parts = []
-        prev_meas = -1
+        # Group notes by measure
+        measures = []  # list of lists of (midi, dur_str, is_first_in_measure)
+        cur_meas = -1
         for i in range(n):
             meas_idx = meas_indices[i]
-            # Insert barline when measure changes
-            if meas_idx != prev_meas and prev_meas >= 0:
+            if meas_idx != cur_meas:
+                measures.append([])
+                cur_meas = meas_idx
+            first = (len(measures[-1]) == 0)
+            measures[-1].append((midi_notes[i], durs[i], first))
+
+        # Consolidate consecutive identical pitches within each measure
+        # (not for melody voice M — preserve original rhythm for readability)
+        parts = []
+        for mi, meas_notes in enumerate(measures):
+            if mi > 0:
                 parts.append('|')
 
-            # For melody voice, add chord annotation at first note of each measure
-            chord_annotation = ''
-            if v == 'M' and meas_idx != prev_meas:
-                cname = chord_display_name(chords[meas_idx]) if meas_idx < len(chords) else ''
-                if cname:
-                    chord_annotation = f'"^{cname}"'
+            if v != 'M':
+                # Merge runs of identical MIDI
+                merged = []
+                for midi, dur_str, first in meas_notes:
+                    if merged and merged[-1][0] == midi and midi is not None:
+                        # Combine durations
+                        merged[-1] = (midi, merged[-1][1] + parse_dur(dur_str), merged[-1][2])
+                    else:
+                        merged.append((midi, parse_dur(dur_str), first))
 
-            prev_meas = meas_idx
-
-            midi = midi_notes[i]
-            dur_str = durs[i]
-            if midi is None:
-                parts.append(chord_annotation + 'z' + dur_str)
+                for midi, dur_val, first in merged:
+                    dur_out = format_dur(dur_val)
+                    if midi is None:
+                        parts.append('z' + dur_out)
+                    else:
+                        parts.append(midi_to_abc(midi, key_acc) + dur_out)
             else:
-                parts.append(chord_annotation + midi_to_abc(midi, key_acc) + dur_str)
+                # Melody: keep original rhythm, add chord annotation at measure start
+                for midi, dur_str, first in meas_notes:
+                    chord_annotation = ''
+                    if first:
+                        meas_idx = meas_indices[sum(len(m) for m in measures[:mi])]
+                        cname = chord_display_name(chords[meas_idx]) if meas_idx < len(chords) else ''
+                        if cname:
+                            chord_annotation = f'"^{cname}"'
+                    if midi is None:
+                        parts.append(chord_annotation + 'z' + dur_str)
+                    else:
+                        parts.append(chord_annotation + midi_to_abc(midi, key_acc) + dur_str)
 
         lines.append(f'[V: {v}] ' + ' '.join(parts) + ' |]')
 
