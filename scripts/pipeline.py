@@ -619,6 +619,150 @@ def stage_vertical(data):
 
 
 # ============================================================
+# Stage 7b: Stack and Split (alternative to vertical)
+# ============================================================
+
+def stage_stack_and_split(data):
+    """Stack all voices into one pitch set per time point, then split RH/LH.
+
+    At each time point across all 9 voices:
+    1. Collect all unique MIDI pitches
+    2. Sort low to high
+    3. Split: lower ceil(n/2) → LH, upper floor(n/2) → RH
+
+    Returns:
+        data: updated with grand_staff rh_measures and lh_measures
+        report: validation messages
+    """
+    report = []
+    vdata = data['all_voice_data']
+    n_measures = data['n_measures']
+
+    def parse_dur(dur_str):
+        if not dur_str:
+            return Fraction(1)
+        if '/' in dur_str:
+            parts = dur_str.split('/')
+            num = int(parts[0]) if parts[0] else 1
+            den = int(parts[1]) if len(parts) > 1 and parts[1] else 2
+            return Fraction(num, den)
+        return Fraction(int(dur_str))
+
+    # Build time grid per measure from ALL voices
+    all_voices = ['S1', 'S2', 'A1', 'A2', 'T1', 'T2', 'B1', 'B2', 'PB']
+
+    # First, find max measure index
+    max_meas = 0
+    for v in all_voices:
+        if vdata[v]['meas_idx']:
+            max_meas = max(max_meas, max(vdata[v]['meas_idx']))
+    n_meas = min(max_meas + 1, n_measures)
+
+    # For each voice, build a timeline: list of (meas_idx, time_offset, duration, midi)
+    voice_timelines = {}
+    for v in all_voices:
+        midis = vdata[v]['midi']
+        durs = vdata[v]['durs']
+        meas_indices = vdata[v]['meas_idx']
+        timeline = []
+        cur_meas = -1
+        t = Fraction(0)
+        for i in range(len(midis)):
+            m = meas_indices[i]
+            if m != cur_meas:
+                t = Fraction(0)
+                cur_meas = m
+            dur = parse_dur(durs[i])
+            if midis[i] is not None:
+                timeline.append((m, t, dur, midis[i]))
+            t += dur
+        voice_timelines[v] = timeline
+
+    # For each measure, collect all unique time points and build pitch stacks
+    rh_measures = []
+    lh_measures = []
+    total_events = 0
+    total_rh_notes = 0
+    total_lh_notes = 0
+
+    for m in range(n_meas):
+        # Gather all time events in this measure from all voices
+        # For each voice, find which notes are active at each time point
+        # Build: time -> set of active pitches
+
+        # First collect all time boundaries
+        time_set = set()
+        voice_events = {}  # v -> [(t_start, t_end, midi)]
+        for v in all_voices:
+            events = []
+            for meas_idx, t, dur, midi in voice_timelines[v]:
+                if meas_idx == m:
+                    events.append((t, t + dur, midi))
+                    time_set.add(t)
+            voice_events[v] = events
+
+        if not time_set:
+            rh_measures.append([])
+            lh_measures.append([])
+            continue
+
+        sorted_times = sorted(time_set)
+
+        # At each time point, collect all active pitches
+        meas_rh = []
+        meas_lh = []
+        for ti, t in enumerate(sorted_times):
+            # Duration until next time point (or end of last note)
+            if ti + 1 < len(sorted_times):
+                dur = sorted_times[ti + 1] - t
+            else:
+                # Find max end time of any note starting at or before t
+                max_end = t + Fraction(1)
+                for v in all_voices:
+                    for t_start, t_end, midi in voice_events[v]:
+                        if t_start <= t < t_end:
+                            if t_end > max_end:
+                                max_end = t_end
+                dur = max_end - t
+
+            # Collect all pitches sounding at time t
+            pitches = set()
+            for v in all_voices:
+                for t_start, t_end, midi in voice_events[v]:
+                    if t_start <= t < t_end:
+                        pitches.add(midi)
+
+            if not pitches:
+                continue
+
+            sorted_pitches = sorted(pitches)
+            n = len(sorted_pitches)
+
+            # Split: LH gets lower ceil(n/2), RH gets upper floor(n/2)
+            lh_count = (n + 1) // 2  # ceil
+            lh_pitches = tuple(sorted_pitches[:lh_count])
+            rh_pitches = tuple(sorted_pitches[lh_count:])
+
+            meas_rh.append((rh_pitches, dur))
+            meas_lh.append((lh_pitches, dur))
+            total_events += 1
+            total_rh_notes += len(rh_pitches)
+            total_lh_notes += len(lh_pitches)
+
+        rh_measures.append(meas_rh)
+        lh_measures.append(meas_lh)
+
+    report.append(f'OK: {total_events} time events across {n_meas} measures')
+    report.append(f'OK: RH avg {total_rh_notes/max(total_events,1):.1f} notes/event, LH avg {total_lh_notes/max(total_events,1):.1f} notes/event')
+
+    data['grand_staff'] = {
+        'rh_measures': rh_measures,
+        'lh_measures': lh_measures,
+    }
+    return data, report
+
+
+# ============================================================
 # Stage 8: Horizontal Consolidation
 # ============================================================
 
@@ -634,16 +778,55 @@ def stage_horizontal(data):
     report = []
     gs = data['grand_staff']
 
+    # Standard note durations that can be written as a single note
+    STANDARD_DURS = {
+        Fraction(1, 4), Fraction(1, 2), Fraction(3, 4),
+        Fraction(1), Fraction(3, 2), Fraction(2), Fraction(3),
+        Fraction(4), Fraction(6), Fraction(8), Fraction(12), Fraction(16),
+    }
+
     def consolidate(measures):
+        """Merge consecutive identical chords into standard durations.
+        Use ties to break non-standard totals into standard components."""
         total_before = sum(len(m) for m in measures)
         result = []
         for meas_events in measures:
-            merged = []
+            # First pass: group consecutive identical chords
+            groups = []  # [(pitches, [dur1, dur2, ...])]
             for pitches, dur in meas_events:
-                if merged and merged[-1][0] == pitches and pitches:
-                    merged[-1] = (pitches, merged[-1][1] + dur)
+                if groups and groups[-1][0] == pitches and pitches:
+                    groups[-1][1].append(dur)
                 else:
-                    merged.append((pitches, dur))
+                    groups.append((pitches, [dur]))
+
+            # Second pass: combine each group into standard durations
+            merged = []
+            for pitches, durs in groups:
+                total = sum(durs)
+                if total in STANDARD_DURS:
+                    merged.append((pitches, total, False))
+                elif len(durs) == 1:
+                    merged.append((pitches, durs[0], False))
+                else:
+                    # Break total into largest standard durations with ties
+                    remaining = total
+                    sorted_std = sorted(STANDARD_DURS, reverse=True)
+                    pieces = []
+                    while remaining > 0:
+                        placed = False
+                        for sd in sorted_std:
+                            if sd <= remaining:
+                                pieces.append(sd)
+                                remaining -= sd
+                                placed = True
+                                break
+                        if not placed:
+                            pieces.append(remaining)
+                            remaining = Fraction(0)
+                    for i, d in enumerate(pieces):
+                        tied = (i < len(pieces) - 1)
+                        merged.append((pitches, d, tied))
+
             result.append(merged)
         total_after = sum(len(m) for m in result)
         return result, total_before, total_after
@@ -716,15 +899,23 @@ def stage_format(data, title='SSAATTBB', x_num=1, fmt='grand'):
             for mi, meas_events in enumerate(measures):
                 if mi > 0:
                     parts.append('|')
-                for pitches, dur_frac in meas_events:
+                for event in meas_events:
+                    # Handle both old (pitches, dur) and new (pitches, dur, tied) format
+                    if len(event) == 3:
+                        pitches, dur_frac, tied = event
+                    else:
+                        pitches, dur_frac = event
+                        tied = False
                     dur_out = format_dur(dur_frac)
+                    tie_mark = '-' if tied else ''
                     if not pitches:
                         parts.append('z' + dur_out)
                     elif len(pitches) == 1:
-                        parts.append(midi_to_abc(pitches[0], key_acc) + dur_out)
+                        parts.append(midi_to_abc(pitches[0], key_acc) + dur_out + tie_mark)
                     else:
                         notes = [midi_to_abc(p, key_acc) for p in pitches]
-                        parts.append('[' + ''.join(notes) + ']' + dur_out)
+                        # In ABC, tie on a chord: put - after the closing bracket
+                        parts.append('[' + ''.join(notes) + ']' + dur_out + tie_mark)
             return ' '.join(parts) + ' |]'
 
         # Build melody line
@@ -749,6 +940,68 @@ def stage_format(data, title='SSAATTBB', x_num=1, fmt='grand'):
                 mel_parts.append(chord_ann + midi_to_abc(midi, key_acc) + dur)
         melody_abc = ' '.join(mel_parts) + ' |]'
 
+        # Multi-voice per staff: each rhythm group gets its own voice
+        # with independent horizontal consolidation.
+        # abc2svg renders {V1 V2} as shared staff with stems up/down.
+        from satb2ssaattbb import build_key_accidentals as _bka
+
+        def build_voice_abc(voice_names, key_acc):
+            """Build ABC for a voice group (shared rhythm), with horizontal consolidation."""
+            ref = voice_names[0]
+            durs_list = vdata[ref]['durs']
+            meas_list = vdata[ref]['meas_idx']
+            n = len(durs_list)
+
+            # Collect per-note chord (deduplicated pitches)
+            note_data = []
+            for i in range(n):
+                midis = set()
+                for v in voice_names:
+                    m = vdata[v]['midi'][i]
+                    if m is not None:
+                        midis.add(m)
+                note_data.append((tuple(sorted(midis)), durs_list[i], meas_list[i]))
+
+            # Group by measure
+            measures = []
+            cur_meas = -1
+            for midis, dur_str, meas_idx in note_data:
+                if meas_idx != cur_meas:
+                    measures.append([])
+                    cur_meas = meas_idx
+                measures[-1].append((midis, dur_str))
+
+            # Horizontal consolidation
+            parts = []
+            for mi, meas_notes in enumerate(measures):
+                if mi > 0:
+                    parts.append('|')
+                merged = []
+                for midis, dur_str in meas_notes:
+                    if not dur_str:
+                        dur_val = 1.0
+                    elif '/' in dur_str:
+                        parts = dur_str.split('/')
+                        num = int(parts[0]) if parts[0] else 1
+                        den = int(parts[1]) if len(parts) > 1 and parts[1] else 2
+                        dur_val = num / den
+                    else:
+                        dur_val = float(dur_str)
+                    if merged and merged[-1][0] == midis and midis:
+                        merged[-1] = (midis, merged[-1][1] + dur_val)
+                    else:
+                        merged.append((midis, dur_val))
+                for midis, dur_val in merged:
+                    dur_out = format_dur(Fraction(dur_val).limit_denominator(16))
+                    if not midis:
+                        parts.append('z' + dur_out)
+                    elif len(midis) == 1:
+                        parts.append(midi_to_abc(midis[0], key_acc) + dur_out)
+                    else:
+                        notes = [midi_to_abc(p, key_acc) for p in midis]
+                        parts.append('[' + ''.join(notes) + ']' + dur_out)
+            return ' '.join(parts) + ' |]'
+
         rh_abc = events_to_abc(gs['rh_measures'], key_acc)
         lh_abc = events_to_abc(gs['lh_measures'], key_acc)
 
@@ -757,6 +1010,11 @@ def stage_format(data, title='SSAATTBB', x_num=1, fmt='grand'):
         lines.append(f'T: {title}')
         lines.append(f'M: {meter}')
         lines.append(f'L: {dl}')
+        lines.append(f'%%pagewidth 200cm')
+        lines.append(f'%%continueall 1')
+        lines.append(f'%%scale 2')
+        lines.append(f'%%leftmargin 0.5cm')
+        lines.append(f'%%rightmargin 0.5cm')
         lines.append(f'%%staves M | {{RH LH}}')
         lines.append(f'V: M clef=treble name="Melody"')
         lines.append(f'V: RH clef=treble name="RH"')
@@ -810,7 +1068,7 @@ def run_pipeline(tune_abc, hymn_num=None, stop_after=None, fmt='grand', title=No
         ('second', stage_second_voices),
         ('pedal', stage_pedal),
         ('verify', stage_verify),
-        ('vertical', stage_vertical),
+        ('stack_split', stage_stack_and_split),
         ('horizontal', stage_horizontal),
     ]
 
