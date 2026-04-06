@@ -954,14 +954,49 @@ def result_to_abc(result, title='SSAATTBB', x_num=1):
     vdata = result['voice_data']
 
     # Voice order top to bottom
-    voice_order = ['S1', 'S2', 'A1', 'A2', 'T1', 'T2', 'B1', 'B2', 'PB']
+    voice_order = ['M', 'S1', 'S2', 'A1', 'A2', 'T1', 'T2', 'B1', 'B2', 'PB']
+
+    # Build chord name lookup from measure_chords
+    chords = result.get('chords', [])
+
+    def chord_display_name(chord_str):
+        """Convert music21 chord name to short lead-sheet symbol."""
+        if not chord_str or chord_str == '?':
+            return ''
+        # e.g. "G-major triad" -> "G", "D-minor triad" -> "Dm", "C-dominant seventh chord" -> "C7"
+        m = re.match(r'^([A-G][b#]?)-?(.*)', chord_str)
+        if not m:
+            return chord_str
+        root, qual = m.group(1), m.group(2)
+        root = root.replace('b', 'b').replace('#', '#')
+        if 'major triad' in qual:
+            return root
+        elif 'minor triad' in qual:
+            return root + 'm'
+        elif 'diminished triad' in qual:
+            return root + 'dim'
+        elif 'augmented triad' in qual:
+            return root + 'aug'
+        elif 'dominant seventh' in qual:
+            return root + '7'
+        elif 'minor seventh' in qual:
+            return root + 'm7'
+        elif 'major seventh' in qual:
+            return root + 'maj7'
+        elif 'half-diminished seventh' in qual:
+            return root + 'm7b5'
+        elif 'diminished seventh' in qual:
+            return root + 'dim7'
+        else:
+            return root
 
     lines = []
     lines.append(f'X: {x_num}')
     lines.append(f'T: {title}')
     lines.append(f'M: {meter}')
     lines.append(f'L: {dl}')
-    lines.append(f'%%staves (S1 S2) | (A1 A2) | (T1 T2) | (B1 B2) | PB')
+    lines.append(f'%%staves M | (S1 S2) | (A1 A2) | (T1 T2) | (B1 B2) | PB')
+    lines.append(f'V: M clef=treble name="Melody"')
     lines.append(f'V: S1 clef=treble name="S1"')
     lines.append(f'V: S2 clef=treble name="S2"')
     lines.append(f'V: A1 clef=treble name="A1"')
@@ -976,7 +1011,11 @@ def result_to_abc(result, title='SSAATTBB', x_num=1):
     key_acc = build_key_accidentals(key)
 
     for v in voice_order:
-        vd = vdata[v]
+        # Melody voice duplicates S1 with chord annotations
+        if v == 'M':
+            vd = vdata['S1']
+        else:
+            vd = vdata[v]
         midi_notes = vd['midi']
         durs = vd['durs']
         meas_indices = vd['meas_idx']
@@ -989,14 +1028,22 @@ def result_to_abc(result, title='SSAATTBB', x_num=1):
             # Insert barline when measure changes
             if meas_idx != prev_meas and prev_meas >= 0:
                 parts.append('|')
+
+            # For melody voice, add chord annotation at first note of each measure
+            chord_annotation = ''
+            if v == 'M' and meas_idx != prev_meas:
+                cname = chord_display_name(chords[meas_idx]) if meas_idx < len(chords) else ''
+                if cname:
+                    chord_annotation = f'"^{cname}"'
+
             prev_meas = meas_idx
 
             midi = midi_notes[i]
             dur_str = durs[i]
             if midi is None:
-                parts.append('z' + dur_str)
+                parts.append(chord_annotation + 'z' + dur_str)
             else:
-                parts.append(midi_to_abc(midi, key_acc) + dur_str)
+                parts.append(chord_annotation + midi_to_abc(midi, key_acc) + dur_str)
 
         lines.append(f'[V: {v}] ' + ' '.join(parts) + ' |]')
 
