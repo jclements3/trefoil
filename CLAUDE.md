@@ -98,27 +98,36 @@ python3 trefoil_all_keys_local.py
 - **Voicing variety (next step)**: Current v5d cycles through C-to-C windows when same chord repeats at measure boundaries. Future: assign unique (LH shape, RH shape) pairs so no voicing repeats across the entire hymnal. See memory file `project_lead_sheet_voicings.md` for the full design — 21 chord shapes, 4,760+ voicings per triad, 435K total available vs 9K needed.
 - **Legacy pipeline**: Do not use. Has duration bugs, melody-chord clashes, wrong rebuild script. v5 pipeline replaces it entirely.
 
-## Current Pipeline (v5d — 2026-04-05)
+## Current Pipeline (v5g — 2026-04-05)
 
 Algorithm:
-1. Parse all SATB voices from OpenHymnal with music21
-2. Transpose Ab→G, Db→D for lever harp range
-3. At each beat, collect all SATB pitches → music21 chord recognition → absolute chord name
-4. **C-to-C voicing**: filter scale for chord PCs, find 7 consecutive chord tones centered near middle C, bottom 4 → LH, top 3 → RH. Hands 0-3 strings apart, never crossing.
-5. Beat-quantize: one chord per beat max, sustain when pitches identical
-6. **Measure-boundary shift**: when same chord repeats into next measure, advance to next voicing window (shifts up the harp). Resets to center when chord changes.
-7. Melody preserves fractional ABC durations; harp snaps to whole L-units only.
+1. Parse all SATB voices from OpenHymnal with music21 (`python3.10` required)
+2. Transpose Ab→G, Db→D for lever harp range (Eb to E, 3 flats to 4 sharps)
+3. At beat 1 of each measure, collect all SATB pitches → `music21.chord.Chord` → absolute chord name (D, Am, G7)
+4. **C-to-C voicing**: filter diatonic scale for chord PCs within harp range (C2=36 to G5=79)
+5. **Open LH** (bass clef, up to D4=62): bottom 2-3 notes spaced by P4/P5+ only (no 2nds or 3rds in bass). 4th note allowed as m3/M3 from top note only (less muddy near middle C). Typical: root-5th-octave-3rd.
+6. **Close RH** (treble clef): 3 consecutive chord tones above LH top. 3rds OK in treble register.
+7. **One chord per measure**: harp plays downbeat harmony only, no mid-measure voice leading.
+8. **Measure-boundary shift**: when same chord repeats into next measure, advance voicing window up the harp. Resets to center when chord changes.
+9. Melody preserves fractional ABC durations (3/2, /2); harp snaps to whole L-units only (no slashes).
 
-Stats: 288 hymns, 2.2 chords/measure, 0 crossings, avg 1.5 string gap, 3% consecutive dupes.
+### LH voicing rules (critical)
+- **Bottom intervals must be P4(5), P5(7), m6(8), M6(9), m7(10), P8(12) or wider**
+- **No m2(1), M2(2), m3(3), M3(4) between bottom notes** — too muddy in bass register
+- **Top note of LH may form m3/M3 with note below** — acceptable near middle C
+- Target 3-4 notes per LH hand. If only root+5th pass the filter, that's 2 notes (acceptable).
+
+Stats: 288 hymns, 1 chord/measure, 0 crossings, LH intervals: P4 32%, P5 33%, m6 11%, 3rds only 13% (top note only), zero 2nds.
 
 ## Recent Changes (2026-04-05)
 
-- **New v5d pipeline**: SATB → music21 chord ID → C-to-C voicing, bypassing SSAATTBB
-- C-to-C frame: 7 consecutive chord tones centered near middle C, split bottom 4 LH / top 3 RH
-- Zero hand crossings, 0-3 string gap between hands (avg 1.5)
-- Measure-boundary voicing shift: same chord in consecutive measures gets different window position
-- 288 lead sheets with absolute chord names (D, Am, G7 not roman numerals)
+- **v5g pipeline**: SATB → music21 chord ID → open LH / close RH voicing
+- Open LH: root-5th-octave spacing, no 2nds/3rds in bass (only at top of LH near middle C)
+- Close RH: consecutive chord tones in treble, 3rds OK
+- One chord per measure (downbeat only, no mid-measure voice leading anticipation)
+- Measure-boundary shift: consecutive same-chord measures get different voicing window
+- Harp range: C2 (MIDI 36) to G5 (MIDI 79)
+- 288 lead sheets with absolute chord names from music21 chord recognition
 - 22 hymns transposed from Ab/Db to lever harp range (G/D)
-- Beat-quantized harp, clean integer durations (no slashes), sustain on identical pitches
-- Pickup measure alignment from actual music21 measure duration
+- Clean integer harp durations, fractional melody durations preserved
 - Local preview: `cd app && python3 -m http.server 8080` → localhost:8080
