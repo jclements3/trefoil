@@ -110,9 +110,10 @@ All drills moved from embedded JS `DRILLS` array and external JSON files into `h
 ### Pattern drills (53 voicing patterns)
 - `app/pattern_index.json` — master list of 53 unique (LH, RH) voicing patterns with diatonic spacings, gap, key, count, and hex IDs (XXXX-XXXX format: 4 digits per hand, 0=unused finger)
 - Drill n=3200: "53 Patterns" — all patterns in key of G starting at G2, grand staff, triple fraction annotations (abstract chord / RH voicing name / LH voicing name)
-- Drills n=3100-3106: per-key pattern drills (D, G, Eb, F, C, A, Bb) — each in its own key with real chord names
+- Drills n=3100-3107: per-key pattern drills — **only patterns that actually appear in hymns of that key**, sorted by frequency. E.g. "G (40 patterns)" = the 40 hand shapes you'll encounter in G-key hymns.
+- Pattern counts per key: Eb(26) Bb(28) F(36) C(31) G(40) D(34) A(21) E(13). 42 shared across keys, 11 unique to one key.
 - All pattern drills use 3/4 time, half-note chord + quarter rest per measure (gives room for annotations)
-- Sorted: 53 Patterns first, then Eb→Bb→F→C→G→D→A (lever harp progression)
+- Sorted: 53 Patterns first, then Eb→Bb→F→C→G→D→A→E (lever harp progression)
 
 ### LH voicing rules
 - Bottom intervals: P4/P5/P8+ only (no 2nds or 3rds in bass — too muddy)
