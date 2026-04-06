@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>SSAATTBB Viewer</title>
+<script src="https://cdn.jsdelivr.net/npm/abcjs@6.4.4/dist/abcjs-basic-min.js"></script>
+<style>
+body { font-family: sans-serif; margin: 0; padding: 0; background: #f5f5f5; }
+#controls {
+  position: sticky; top: 0; background: #fff; padding: 16px 20px;
+  border-bottom: 2px solid #999; z-index: 10;
+  display: flex; gap: 14px; align-items: center; flex-wrap: wrap;
+}
+#hymn-select {
+  font-size: 20px; padding: 8px; max-width: 500px; flex: 1;
+}
+#key-filter {
+  font-size: 20px; padding: 8px;
+}
+button {
+  font-size: 20px; padding: 10px 20px; cursor: pointer;
+  border: 2px solid #666; border-radius: 6px; background: #eee;
+}
+button:hover { background: #ddd; }
+button.active { background: #4CAF50; color: white; border-color: #388E3C; }
+#info {
+  font-size: 18px; color: #444; margin-left: 10px;
+}
+.warn { color: #e65100; font-weight: bold; }
+#score {
+  margin: 10px 20px; background: white; padding: 10px;
+  min-height: 200px; overflow-x: auto;
+}
+</style>
+</head>
+<body>
+<div id="controls">
+  <select id="key-filter">
+    <option value="">All keys</option>
+    <option value="Eb">Eb</option>
+    <option value="Bb">Bb</option>
+    <option value="F">F</option>
+    <option value="C">C</option>
+    <option value="G">G</option>
+    <option value="D">D</option>
+    <option value="A">A</option>
+    <option value="E">E</option>
+  </select>
+  <select id="hymn-select" size="1"></select>
+  <button id="play-btn" onclick="togglePlay()">Play</button>
+  <button id="prev-btn" onclick="nav(-1)">Prev</button>
+  <button id="next-btn" onclick="nav(1)">Next</button>
+  <span id="info"></span>
+</div>
+<div id="score"></div>
+
+<script>
+let DATA = [];
+let filtered = [];
+let currentIdx = 0;
+let synth = null;
+let playing = false;
+
+async function init() {
+  const resp = await fetch('ssaattbb_data.json');
+  DATA = await resp.json();
+  applyFilter();
+}
+
+function applyFilter() {
+  const key = document.getElementById('key-filter').value;
+  filtered = key ? DATA.filter(h => h.key === key) : [...DATA];
+  populateSelect();
+  if (filtered.length > 0) {
+    currentIdx = 0;
+    render();
+  }
+}
+
+function populateSelect() {
+  const sel = document.getElementById('hymn-select');
+  sel.innerHTML = '';
+  filtered.forEach((h, i) => {
+    const opt = document.createElement('option');
+    opt.value = i;
+    opt.textContent = h.t + (h.violations > 0 ? ' *' : '');
+    sel.appendChild(opt);
+  });
+}
+
+function render() {
+  if (filtered.length === 0) return;
+  const h = filtered[currentIdx];
+  document.getElementById('hymn-select').value = currentIdx;
+
+  const visualObj = ABCJS.renderAbc('score', h.abc, {
+    responsive: 'resize',
+    staffwidth: 700,
+    scale: 0.8,
+    paddingtop: 0,
+    paddingbottom: 0,
+  });
+
+  let info = `Key: ${h.key}`;
+  if (h.violations > 0) {
+    info += ` <span class="warn">${h.violations} violation(s)</span>`;
+  }
+  document.getElementById('info').innerHTML = info;
+
+  if (synth) { synth.stop(); playing = false; updatePlayBtn(); }
+  if (ABCJS.synth && ABCJS.synth.supportsAudio()) {
+    synth = new ABCJS.synth.CreateSynth();
+    synth.init({
+      visualObj: visualObj[0],
+      options: { qpm: 100 }
+    }).then(() => {
+      synth.prime().then(() => {});
+    });
+  }
+}
+
+function togglePlay() {
+  if (!synth) return;
+  if (playing) {
+    synth.stop();
+    playing = false;
+  } else {
+    synth.start();
+    playing = true;
+  }
+  updatePlayBtn();
+}
+
+function updatePlayBtn() {
+  document.getElementById('play-btn').textContent = playing ? 'Stop' : 'Play';
+  document.getElementById('play-btn').className = playing ? 'active' : '';
+}
+
+function nav(dir) {
+  currentIdx = (currentIdx + dir + filtered.length) % filtered.length;
+  render();
+}
+
+document.getElementById('hymn-select').addEventListener('change', function() {
+  currentIdx = parseInt(this.value);
+  render();
+});
+
+document.getElementById('key-filter').addEventListener('change', applyFilter);
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'ArrowLeft') nav(-1);
+  else if (e.key === 'ArrowRight') nav(1);
+  else if (e.key === ' ') { e.preventDefault(); togglePlay(); }
+});
+
+init();
+</script>
+</body>
+</html>
