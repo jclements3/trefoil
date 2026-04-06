@@ -1175,6 +1175,170 @@ def result_to_abc(result, title='SSAATTBB', x_num=1):
     return '\n'.join(lines)
 
 
+def result_to_grand_staff_abc(result, title='SSAATTBB', x_num=1):
+    """Convert result to a grand staff: Melody + RH (treble) + LH (bass).
+
+    Voices sharing the same rhythm are stacked into ABC chords [CEG].
+    - RH voice 1: S1+S2 chords (soprano rhythm)
+    - RH voice 2: A1+A2 chords (alto rhythm)
+    - LH voice 1: T1+T2 chords (tenor rhythm)
+    - LH voice 2: B1+B2+PB chords (bass rhythm)
+    """
+    key = result['key']
+    meter = result['meter']
+    dl = result['default_len']
+    vdata = result['voice_data']
+    chords = result.get('chords', [])
+
+    key_acc = build_key_accidentals(key)
+
+    def parse_dur(dur_str):
+        if not dur_str:
+            return 1.0
+        if '/' in dur_str:
+            parts = dur_str.split('/')
+            num = int(parts[0]) if parts[0] else 1
+            den = int(parts[1]) if len(parts) > 1 and parts[1] else 2
+            return num / den
+        return float(dur_str)
+
+    def format_dur(val):
+        if val == 1.0:
+            return ''
+        if val == int(val):
+            return str(int(val))
+        from fractions import Fraction
+        f = Fraction(val).limit_denominator(16)
+        if f.numerator == 1 and f.denominator == 2:
+            return '/2'
+        if f.denominator == 1:
+            return str(f.numerator)
+        return f'{f.numerator}/{f.denominator}'
+
+    def chord_display_name(chord_str):
+        if not chord_str or chord_str == '?':
+            return ''
+        m = re.match(r'^([A-G][b#]?)-?(.*)', chord_str)
+        if not m:
+            return chord_str
+        root, qual = m.group(1), m.group(2)
+        if 'major triad' in qual: return root
+        elif 'minor triad' in qual: return root + 'm'
+        elif 'diminished triad' in qual: return root + 'dim'
+        elif 'augmented triad' in qual: return root + 'aug'
+        elif 'dominant seventh' in qual: return root + '7'
+        elif 'minor seventh' in qual: return root + 'm7'
+        elif 'major seventh' in qual: return root + 'maj7'
+        elif 'half-diminished seventh' in qual: return root + 'm7b5'
+        elif 'diminished seventh' in qual: return root + 'dim7'
+        else: return root
+
+    def build_chord_voice(voice_pairs, key_acc):
+        """Merge voice pairs into chord notation, consolidating repeated chords.
+
+        voice_pairs: list of (voice_name_low, voice_name_high) or
+                     list of voice names sharing the same rhythm.
+        Returns ABC string for one voice line.
+        """
+        # All voices in the group share the parent's rhythm
+        first_voice = voice_pairs[0]
+        durs = vdata[first_voice]['durs']
+        meas_indices = vdata[first_voice]['meas_idx']
+        n = len(durs)
+
+        # Build per-note chord: collect MIDI from all voices, sort, deduplicate
+        note_data = []  # (sorted_midis_tuple, dur_str, meas_idx)
+        for i in range(n):
+            midis = set()
+            for v in voice_pairs:
+                m = vdata[v]['midi'][i]
+                if m is not None:
+                    midis.add(m)
+            note_data.append((tuple(sorted(midis)), durs[i], meas_indices[i]))
+
+        # Group by measure
+        measures = []
+        cur_meas = -1
+        for midis, dur_str, meas_idx in note_data:
+            if meas_idx != cur_meas:
+                measures.append([])
+                cur_meas = meas_idx
+            measures[-1].append((midis, dur_str))
+
+        # Consolidate consecutive identical chord shapes within each measure
+        parts = []
+        for mi, meas_notes in enumerate(measures):
+            if mi > 0:
+                parts.append('|')
+
+            merged = []
+            for midis, dur_str in meas_notes:
+                if merged and merged[-1][0] == midis and midis:
+                    merged[-1] = (midis, merged[-1][1] + parse_dur(dur_str))
+                else:
+                    merged.append((midis, parse_dur(dur_str)))
+
+            for midis, dur_val in merged:
+                dur_out = format_dur(dur_val)
+                if not midis:
+                    parts.append('z' + dur_out)
+                elif len(midis) == 1:
+                    parts.append(midi_to_abc(midis[0], key_acc) + dur_out)
+                else:
+                    notes = [midi_to_abc(m, key_acc) for m in midis]
+                    parts.append('[' + ''.join(notes) + ']' + dur_out)
+
+        return ' '.join(parts) + ' |]'
+
+    # Build melody line (S1 with chord annotations, original rhythm)
+    s1 = vdata['S1']
+    mel_parts = []
+    prev_meas = -1
+    for i in range(len(s1['midi'])):
+        meas_idx = s1['meas_idx'][i]
+        if meas_idx != prev_meas and prev_meas >= 0:
+            mel_parts.append('|')
+        chord_ann = ''
+        if meas_idx != prev_meas:
+            cname = chord_display_name(chords[meas_idx]) if meas_idx < len(chords) else ''
+            if cname:
+                chord_ann = f'"^{cname}"'
+        prev_meas = meas_idx
+        midi = s1['midi'][i]
+        dur = s1['durs'][i]
+        if midi is None:
+            mel_parts.append(chord_ann + 'z' + dur)
+        else:
+            mel_parts.append(chord_ann + midi_to_abc(midi, key_acc) + dur)
+    melody_abc = ' '.join(mel_parts) + ' |]'
+
+    # Build grand staff voices
+    rh1_abc = build_chord_voice(['S2', 'S1'], key_acc)  # soprano pair (low to high)
+    rh2_abc = build_chord_voice(['A2', 'A1'], key_acc)  # alto pair
+    lh1_abc = build_chord_voice(['T2', 'T1'], key_acc)  # tenor pair
+    lh2_abc = build_chord_voice(['PB', 'B2', 'B1'], key_acc)  # bass + pedal
+
+    lines = []
+    lines.append(f'X: {x_num}')
+    lines.append(f'T: {title}')
+    lines.append(f'M: {meter}')
+    lines.append(f'L: {dl}')
+    lines.append(f'%%staves M | {{RH1 RH2}} | {{LH1 LH2}}')
+    lines.append(f'V: M clef=treble name="Melody"')
+    lines.append(f'V: RH1 clef=treble name=""')
+    lines.append(f'V: RH2 clef=treble name=""')
+    lines.append(f'V: LH1 clef=bass name=""')
+    lines.append(f'V: LH2 clef=bass name=""')
+    lines.append(f'K: {key}')
+    lines.append(f'[V: M] {melody_abc}')
+    lines.append(f'[V: RH1] {rh1_abc}')
+    lines.append(f'[V: RH2] {rh2_abc}')
+    lines.append(f'[V: LH1] {lh1_abc}')
+    lines.append(f'[V: LH2] {lh2_abc}')
+
+    return '\n'.join(lines)
+
+
 def main():
     import argparse
     parser = argparse.ArgumentParser(description='SATB to SSAATTBB converter')
