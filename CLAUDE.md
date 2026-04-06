@@ -154,3 +154,8 @@ Stats: 288 hymns, 1 chord/measure, 0 crossings, LH intervals: P4 32%, P5 33%, m6
 - 22 hymns transposed from Ab/Db to lever harp range (G/D)
 - Clean integer harp durations, fractional melody durations preserved
 - Local preview: `cd app && python3 -m http.server 8080` → localhost:8080
+- Fixed `^G` (G#) → `A` (Ab) enharmonic misspelling in RH/LH of all 29 Eb-key hymns
+- Fixed barline alignment in 12 hymns (pickup duration mismatches, meter errors, zero-duration notes)
+- Blue tracking line synced exactly with audio (zero lead), extends 4 beats past last note
+- Navigator defaults to Eb key filter
+- **Mic chroma scoring (NEW, untested on real harp)**: optional mic button in controls bar. FFT → 12-bin chroma → cosine similarity vs expected pitch classes, sampled once per beat. Running % displayed. Similarity threshold 0.4 in `animateScroll()` — may need adjustment after harp testing. RECORD_AUDIO permission added to manifest + WebView permission grant in MainActivity.java.
