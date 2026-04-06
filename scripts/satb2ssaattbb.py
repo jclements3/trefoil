@@ -85,8 +85,13 @@ def parse_voice_lines(tune_abc):
     return voice_data, key_str, meter, default_len
 
 
-def abc_note_to_midi(note_str):
-    """Convert an ABC note token to MIDI pitch number."""
+def abc_note_to_midi(note_str, key_acc_map=None):
+    """Convert an ABC note token to MIDI pitch number.
+
+    key_acc_map: dict of letter -> alter from build_key_accidentals().
+    In ABC, the key signature sets default accidentals. A note without
+    explicit accidental uses the key sig. Explicit ^ _ = override it.
+    """
     m = re.match(r'([_^=]*)([A-Ga-g])([,\']*)', note_str)
     if not m:
         return None
@@ -106,15 +111,23 @@ def abc_note_to_midi(note_str):
         elif ch == "'":
             midi += 12
 
-    if '^' in acc:
-        midi += acc.count('^')
-    elif '_' in acc:
-        midi -= acc.count('_')
+    if acc:
+        # Explicit accidental overrides key signature
+        if '^' in acc:
+            midi += acc.count('^')
+        elif '_' in acc:
+            midi -= acc.count('_')
+        # '=' means natural — no adjustment (base values are already natural)
+    elif key_acc_map is not None:
+        # No explicit accidental — apply key signature
+        upper_letter = letter.upper()
+        alter = key_acc_map.get(upper_letter, 0)
+        midi += alter
 
     return midi
 
 
-def extract_all_notes(voice_lines):
+def extract_all_notes(voice_lines, key_acc_map=None):
     """Extract ALL notes with durations from concatenated voice ABC lines.
 
     Returns list of (midi, duration_str, measure_index) tuples.
@@ -184,7 +197,7 @@ def extract_all_notes(voice_lines):
         if nm:
             note_str = nm.group(1) + nm.group(2) + nm.group(3)
             dur_str = nm.group(4) or ''
-            midi = abc_note_to_midi(note_str)
+            midi = abc_note_to_midi(note_str, key_acc_map)
             notes.append((midi, dur_str, measure_idx))
             pos += nm.end()
             continue
@@ -243,7 +256,18 @@ def identify_chord(midi_pitches, key_str=None, diatonic_triads=None):
     """
     p_objs = [music21.pitch.Pitch(midi=m) for m in midi_pitches]
     chord = music21.chord.Chord(p_objs)
+
+    # If music21 returns "enharmonic equivalent" names, respell and retry
     cn = chord.commonName
+    if 'enharmonic' in cn:
+        chord.closedPosition(forceOctave=4, inPlace=True)
+        for p in chord.pitches:
+            if p.accidental and p.accidental.alter > 0:
+                e = p.getEnharmonic()
+                if e.accidental is None or e.accidental.alter <= 0:
+                    p.name = e.name
+                    p.octave = e.octave
+        cn = chord.commonName
 
     # If music21 identifies a triad or seventh chord, use it directly
     if 'triad' in cn or 'seventh' in cn:
@@ -617,17 +641,18 @@ def verify_all_pairs(all_voices, chord_infos, key_str):
 # ---------- MIDI to ABC ----------
 
 def build_key_accidentals(key_str):
-    """Build a dict of pitch class -> accidental for a key signature.
-    Returns dict like {6: 1, 1: 1} for D major (F#, C#).
+    """Build a dict of letter name -> accidental for a key signature.
+    Returns dict like {'F': 1, 'C': 1} for D major (F#, C#).
     Values: -1=flat, 0=natural, 1=sharp.
     """
     k = music21.key.Key(key_str)
     acc_map = {}
     for p in k.alteredPitches:
+        letter = p.step  # 'F', 'C', 'B', etc.
         if p.accidental.alter > 0:
-            acc_map[p.pitchClass] = 1  # sharp
+            acc_map[letter] = 1  # sharp
         elif p.accidental.alter < 0:
-            acc_map[p.pitchClass] = -1  # flat
+            acc_map[letter] = -1  # flat
     return acc_map
 
 
@@ -635,8 +660,39 @@ def midi_to_abc(midi, key_acc_map=None):
     """Convert MIDI pitch to ABC notation string.
     key_acc_map: dict from build_key_accidentals() — used to suppress
     redundant accidentals that are already in the key signature.
+    Respells enharmonics to match the key (flats in flat keys, sharps in sharp keys).
     """
     p = music21.pitch.Pitch(midi=midi)
+
+    # Respell to match key context: prefer the spelling where the letter name
+    # is NOT an unaltered diatonic note. E.g. in D major, prefer Bb over A#
+    # because A is diatonic (A# looks like a modified A, Bb is clearly chromatic).
+    if key_acc_map is not None and p.accidental is not None:
+        enharmonic = p.getEnharmonic()
+        if enharmonic.accidental is not None or p.accidental is not None:
+            p_letter = p.step
+            e_letter = enharmonic.step if enharmonic else None
+
+            # Is the original letter an unaltered diatonic note?
+            p_is_plain_diatonic = p_letter not in key_acc_map
+            # Is the enharmonic letter an unaltered diatonic note?
+            e_is_plain_diatonic = e_letter is not None and e_letter not in key_acc_map
+
+            if p_is_plain_diatonic and not e_is_plain_diatonic:
+                # Original modifies a diatonic note (bad) — swap to enharmonic
+                p = enharmonic
+            elif not p_is_plain_diatonic and e_is_plain_diatonic:
+                # Keep original — it doesn't modify a diatonic note
+                pass
+            else:
+                # Both letters are plain diatonic — prefer the flat spelling
+                # (flats = borrowed from parallel minor, more readable than sharps
+                # which imply augmented/leading-tone function)
+                if p.accidental.alter > 0 and enharmonic.accidental is not None and enharmonic.accidental.alter < 0:
+                    p = enharmonic
+                elif p.accidental.alter < 0:
+                    pass  # already flat, keep it
+
     note_name = p.name  # e.g. 'F#', 'B-', 'G'
     octave = p.octave
     letter = note_name[0]
@@ -644,15 +700,12 @@ def midi_to_abc(midi, key_acc_map=None):
     # Determine if we need an explicit accidental
     acc = ''
     if key_acc_map is not None:
-        pc = p.pitchClass
-        key_alter = key_acc_map.get(pc, 0)  # what the key sig says
         note_alter = 0
         if p.accidental is not None:
             note_alter = int(p.accidental.alter)
 
-        # Check if note's letter is affected by key sig
-        natural_pc = music21.pitch.Pitch(letter).pitchClass
-        key_alter_for_letter = key_acc_map.get(natural_pc, 0)
+        # What does the key signature say about this letter?
+        key_alter_for_letter = key_acc_map.get(letter, 0)
 
         if note_alter == key_alter_for_letter:
             acc = ''  # key sig handles it
@@ -692,18 +745,36 @@ def process_hymn(tune_abc, hymn_num=None):
     """
     voice_data, key_str, meter, default_len = parse_voice_lines(tune_abc)
 
+    # Build key accidentals for the ORIGINAL key (needed to parse ABC correctly)
+    orig_key_acc = build_key_accidentals(key_str)
+
+    # Transpose non-lever keys: Ab→G, Db→D
+    TRANSPOSE_MAP = {'Ab': ('G', -1), 'Db': ('D', 1)}  # (target_key, semitones)
+    transpose_semitones = 0
+    if key_str in TRANSPOSE_MAP:
+        new_key, transpose_semitones = TRANSPOSE_MAP[key_str]
+        key_str = new_key
+
     # Check we have all 4 voices
     for v in ['S1V1', 'S1V2', 'S2V1', 'S2V2']:
         if not voice_data[v]:
             return None, f'Missing voice {v}'
 
-    # Extract ALL notes with durations from each voice
+    # Extract ALL notes with durations from each voice (using original key sig)
     voice_raw = {
-        'S1': extract_all_notes(voice_data['S1V1']),
-        'A1': extract_all_notes(voice_data['S1V2']),
-        'T1': extract_all_notes(voice_data['S2V1']),
-        'B1': extract_all_notes(voice_data['S2V2']),
+        'S1': extract_all_notes(voice_data['S1V1'], orig_key_acc),
+        'A1': extract_all_notes(voice_data['S1V2'], orig_key_acc),
+        'T1': extract_all_notes(voice_data['S2V1'], orig_key_acc),
+        'B1': extract_all_notes(voice_data['S2V2'], orig_key_acc),
     }
+
+    # Apply transposition if needed
+    if transpose_semitones != 0:
+        for v in voice_raw:
+            voice_raw[v] = [
+                (midi + transpose_semitones if midi is not None else None, dur, meas)
+                for midi, dur, meas in voice_raw[v]
+            ]
 
     # Group by measure for chord identification
     voice_meas = {v: group_notes_by_measure(raw) for v, raw in voice_raw.items()}
