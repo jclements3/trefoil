@@ -199,8 +199,8 @@ label { font-size: 13px; color: #888; }
   <div id="hymn-panel" class="lib-panel active">
     <div id="key-filters">
       <span style="font-size:12px;color:#888;align-self:center;">Key:</span>
-      <button class="key-btn active" data-key="All">All</button>
-      <button class="key-btn" data-key="Eb">Eb</button>
+      <button class="key-btn" data-key="All">All</button>
+      <button class="key-btn active" data-key="Eb">Eb</button>
       <button class="key-btn" data-key="Bb">Bb</button>
       <button class="key-btn" data-key="F">F</button>
       <button class="key-btn" data-key="C">C</button>
@@ -454,20 +454,22 @@ function startPlayback() {
   // Duration at current BPM (speed ratio applied by abcplay separately)
   playTotalDuration = (totalBeatCount / bpm) * 60 * 1000; // ms
 
-  // Scroll range: first note to last note, blue line tracks exactly
+  // Scroll range: first note to past the last note
   var allNotes = $container.getElementsByClassName('abcr');
   var firstNote = allNotes[0];
   var lastNote = allNotes[allNotes.length - 1];
   var cRect = $container.getBoundingClientRect();
   var firstX = firstNote ? (firstNote.getBoundingClientRect().left - cRect.left) / svgScale : 0;
   var lastX = lastNote ? (lastNote.getBoundingClientRect().left - cRect.left) / svgScale : firstX + 100;
-  // Shift scroll so blue line leads ~1 beat ahead of the audio
+  // Pixels per beat for lead/trail calculations
   var beatPx = 0;
   if (allNotes.length > 1) {
     beatPx = ((lastX - firstX) / totalBeatCount) * svgScale;
   }
-  playStartX = getPlayheadX() - firstX * svgScale + beatPx;
-  playEndX = getPlayheadX() - lastX * svgScale + beatPx;
+  // Extend scroll past last note by 4 beats so line reaches the final barline
+  var trailPx = beatPx * 4;
+  playStartX = getPlayheadX() - firstX * svgScale;
+  playEndX = getPlayheadX() - (lastX * svgScale + trailPx);
 
   setScroll(playStartX);
   playStartTime = performance.now();
@@ -748,7 +750,7 @@ document.getElementById('lib-search').addEventListener('input', function() {
 });
 
 // ── Key filter buttons ──
-var activeKey = 'All';
+var activeKey = 'Eb';
 var keyBtns = document.querySelectorAll('.key-btn');
 for (var i = 0; i < keyBtns.length; i++) {
   keyBtns[i].onclick = function() {
@@ -792,6 +794,7 @@ function onDataLoaded() {
   loaded++;
   if (loaded >= toLoad) {
     buildLibrary();
+    applyKeyFilter();
     // Default to first hymn
     for (var di = 0; di < DRILLS.length; di++) {
       if (parseInt(DRILLS[di].n) >= 4000) { renderDrill(di); break; }
