@@ -28,7 +28,7 @@ label { font-size: 13px; color: #888; }
   position: relative; overflow: hidden; flex: 1;
 }
 #score-container {
-  position: absolute; top: 0; left: 0;
+  position: absolute; top: 45px; left: 0;
   transform-origin: 0 0;
 }
 #playhead-glow {
@@ -53,55 +53,36 @@ label { font-size: 13px; color: #888; }
   border-top: 2px solid #ccc;
   background: #fff;
 }
-#lib-search {
-  padding: 10px 14px;
-  border: none; border-bottom: 1px solid #ddd;
-  font-size: 16px; outline: none;
-  background: #f8f8f8;
-  -webkit-tap-highlight-color: transparent;
-}
-#lib-search::placeholder { color: #aaa; }
-#lib-tabs {
-  display: flex;
-  border-bottom: 2px solid #ddd;
-  background: #f0f4ff;
-}
-.lib-tab {
-  flex: 1; text-align: center;
-  padding: 12px 8px;
-  font-size: 15px; font-weight: bold;
-  color: #666; cursor: pointer;
-  border-bottom: 3px solid transparent;
-  -webkit-tap-highlight-color: transparent;
-}
-.lib-tab.active {
-  color: #2563eb;
-  border-bottom-color: #2563eb;
-  background: #fff;
-}
-.lib-panel {
-  display: none;
-  flex: 1; flex-direction: column; min-height: 0;
-}
-.lib-panel.active {
-  display: flex;
-}
-#key-filters {
-  display: flex; flex-wrap: wrap; gap: 4px;
+#lib-toolbar {
+  display: flex; align-items: center; gap: 4px;
   padding: 6px 10px; background: #f0f4ff;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 2px solid #ddd; flex-shrink: 0;
+}
+.mode-btn {
+  font-size: 13px; padding: 5px 12px; border: 2px solid #ccc;
+  border-radius: 6px; background: #fff; color: #666; cursor: pointer;
+  font-weight: bold; -webkit-tap-highlight-color: transparent;
+}
+.mode-btn.active { background: #2563eb; color: #fff; border-color: #2563eb; }
+.mode-btn:active { background: #dbeafe; }
+#key-filters {
+  display: flex; gap: 3px; margin: 0 4px;
 }
 .key-btn {
-  font-size: 13px; padding: 4px 10px; border: 1.5px solid #ccc;
+  font-size: 12px; padding: 4px 8px; border: 1.5px solid #ccc;
   border-radius: 6px; background: #fff; color: #444; cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 }
 .key-btn.active { background: #2563eb; color: #fff; border-color: #2563eb; }
 .key-btn:active { background: #dbeafe; }
-#drill-list {
-  flex: 1; overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
+#lib-search {
+  flex: 1; min-width: 80px;
+  padding: 5px 10px; border: 1.5px solid #ccc;
+  border-radius: 6px; font-size: 14px; outline: none;
+  background: #fff;
+  -webkit-tap-highlight-color: transparent;
 }
+#lib-search::placeholder { color: #aaa; }
 #hymn-cols {
   flex: 1; display: flex; min-height: 0;
 }
@@ -111,7 +92,7 @@ label { font-size: 13px; color: #888; }
   border-right: 1px solid #eee;
 }
 .hymn-col:last-child { border-right: none; }
-#score-area { height: 43vh; margin-top: 24px; }
+#score-area { height: 35vh; margin-top: 0; }
 .lib-item {
   padding: 10px 10px;
   font-size: 13px;
@@ -136,6 +117,39 @@ label { font-size: 13px; color: #888; }
 .letter-items { }
 .letter-items.hidden { display: none; }
 
+/* Drill area (generated per-hymn) */
+#drill-area {
+  flex: 1; overflow-y: auto; width: 100%;
+  background: #f8f8f0;
+  display: none; min-height: 0;
+  -webkit-overflow-scrolling: touch;
+}
+.drill-area-header {
+  font-size: 13px; font-weight: bold; color: #555;
+  padding: 6px 12px; background: #ece8d8; border-bottom: 1px solid #ccc;
+  position: sticky; top: 0; z-index: 10;
+}
+.drill-pattern { border-bottom: 1px solid #ddd; }
+.drill-header {
+  padding: 8px 12px; font-size: 13px; font-weight: bold;
+  color: #2a2a2a; cursor: pointer; background: #f4f0e4;
+  -webkit-tap-highlight-color: transparent;
+}
+.drill-header:active { background: #e8e0c8; }
+.drill-header.active { background: #dbeafe; font-weight: bold; }
+.drill-header .hex { color: #2563eb; }
+.drill-header .notes { color: #888; font-weight: normal; font-size: 12px; }
+.drill-body { background: #fff; }
+.drill-score {
+  display: flex; align-items: center; gap: 8px;
+  padding: 2px 8px; border-bottom: 1px solid #f0f0f0;
+  overflow-x: auto;
+}
+.drill-label {
+  font-size: 11px; font-weight: bold; color: #666;
+  min-width: 70px; flex-shrink: 0;
+}
+
 /* Chord fraction overlays */
 .chord-frac {
   position: absolute;
@@ -143,28 +157,24 @@ label { font-size: 13px; color: #888; }
   font-family: monospace;
   pointer-events: none;
   z-index: 40;
-  line-height: 1.1;
+  line-height: 1.0;
 }
 .chord-frac .cf-abs {
-  font-size: 11px;
+  font-size: 14px;
   font-weight: bold;
   color: #2563eb;
   white-space: nowrap;
 }
-.chord-frac .cf-line {
-  border-top: 1px solid #999;
-  margin: 1px 0;
-}
 .chord-frac .cf-rh {
-  font-size: 9px;
+  font-size: 11px;
   font-weight: bold;
   color: #16a34a;
   white-space: nowrap;
 }
 .chord-frac .cf-lh {
-  font-size: 9px;
+  font-size: 11px;
   font-weight: bold;
-  color: #666;
+  color: #999;
   white-space: nowrap;
 }
 </style>
@@ -173,9 +183,13 @@ label { font-size: 13px; color: #888; }
 <div id="app">
 <div id="controls">
   <div class="row">
-    <span id="title">Select a drill or hymn</span>
+    <span id="title">Select a hymn</span>
+  </div>
+  <div class="row">
     <button id="btn-rewind" style="font-size:12px;padding:6px 8px;">|&lt;&lt;</button>
+    <button id="btn-scroll-left" style="font-size:12px;padding:6px 8px;">|&lt;</button>
     <button id="btn-play">Play</button>
+    <button id="btn-scroll-right" style="font-size:12px;padding:6px 8px;">&gt;|</button>
     <button id="btn-next" style="font-size:12px;padding:6px 8px;">&gt;&gt;|</button>
     <label>BPM:</label>
     <input type="range" id="bpm-slider" min="20" max="240" value="80" style="width:100px;vertical-align:middle;"/>
@@ -183,6 +197,7 @@ label { font-size: 13px; color: #888; }
     <label>Vol:</label>
     <input type="range" id="vol-slider" min="0" max="100" value="0" style="width:100px;vertical-align:middle;"/>
     <span id="vol-label" style="font-size:11px;color:#888;min-width:18px;">0</span>
+    <button id="btn-mel" style="font-size:14px;padding:6px 14px;border:2px solid #2563eb;border-radius:8px;background:#2563eb;color:#fff;cursor:pointer;">Melody</button>
     <button id="btn-mic" style="font-size:12px;padding:6px 8px;margin-left:8px;opacity:0.5;">Mic</button>
     <span id="mic-score" style="font-size:13px;font-weight:bold;color:#2563eb;min-width:40px;"></span>
   </div>
@@ -193,14 +208,9 @@ label { font-size: 13px; color: #888; }
   <div id="playhead-line"></div>
 </div>
 <div id="library">
-  <input type="text" id="lib-search" placeholder="Search hymns and drills..."/>
-  <div id="lib-tabs">
-    <div class="lib-tab active" data-panel="hymn-panel">Hymns</div>
-    <div class="lib-tab" data-panel="drill-panel">Drills</div>
-  </div>
-  <div id="hymn-panel" class="lib-panel active">
+  <div id="lib-toolbar">
+    <button id="btn-mode" class="mode-btn active">Hymns</button>
     <div id="key-filters">
-      <span style="font-size:12px;color:#888;align-self:center;">Key:</span>
       <button class="key-btn" data-key="All">All</button>
       <button class="key-btn active" data-key="Eb">Eb</button>
       <button class="key-btn" data-key="Bb">Bb</button>
@@ -211,17 +221,16 @@ label { font-size: 13px; color: #888; }
       <button class="key-btn" data-key="A">A</button>
       <button class="key-btn" data-key="E">E</button>
     </div>
-    <div id="hymn-cols">
-      <div id="hymn-col-left" class="hymn-col"></div>
-      <div id="hymn-col-right" class="hymn-col"></div>
-    </div>
+    <input type="text" id="lib-search" placeholder="Search..." style="flex:0.5;"/>
+    <select id="recent-select" style="flex:0.5;padding:5px 6px;border:1.5px solid #ccc;border-radius:6px;font-size:13px;background:#fff;outline:none;">
+      <option value="">Recent...</option>
+    </select>
   </div>
-  <div id="drill-panel" class="lib-panel">
-    <div id="drill-list" style="flex:1;display:flex;min-height:0;">
-      <div id="drill-col-left" class="hymn-col"></div>
-      <div id="drill-col-right" class="hymn-col"></div>
-    </div>
+  <div id="hymn-cols">
+    <div id="hymn-col-left" class="hymn-col"></div>
+    <div id="hymn-col-right" class="hymn-col"></div>
   </div>
+  <div id="drill-area"></div>
 </div>
 </div>
 
@@ -251,7 +260,7 @@ var DRILLS = [
 ];
 
 // ── State ──
-var currentDrill = 0, playing = false, bpm = 80, muted = true, autoAdvance = false;
+var currentDrill = 0, playing = false, bpm = 80, muted = true, autoAdvance = false, melodyOn = true;
 var abc = null, abcplay = null, svgScale = 1, scrollX = 0;
 var targetScrollX = 0, animId = null, playLeadPx = 0;
 
@@ -262,6 +271,52 @@ var $phGlow = document.getElementById('playhead-glow');
 var $phLine = document.getElementById('playhead-line');
 var $bpmVal = document.getElementById('bpm-val');
 var $btnPlay = document.getElementById('btn-play');
+
+// ── Melody toggle ──
+function getAbc(drill) {
+  var abc = drill.abc;
+  if (!melodyOn) {
+    var lines = abc.split('\n');
+    for (var i = 0; i < lines.length; i++) {
+      if (lines[i].indexOf('[V: M]') === 0) {
+        var voice = lines[i].replace(/\[V: M\]\s*/, '');
+        var result = '[V: M] ';
+        var pos = 0;
+        while (pos < voice.length) {
+          if (voice[pos] === '"') {
+            var end = voice.indexOf('"', pos + 1);
+            if (end >= 0) { result += voice.substring(pos, end + 1); pos = end + 1; continue; }
+          }
+          if (voice[pos] === '[' && voice[pos+1] !== 'V') {
+            var cb = voice.indexOf(']', pos);
+            if (cb >= 0) {
+              pos = cb + 1;
+              var dm = voice.substring(pos).match(/^(\d*(?:\/\d*)?)/);
+              var dur = dm ? dm[1] : '';
+              pos += dur.length;
+              result += 'z' + dur;
+              continue;
+            }
+          }
+          var nm = voice.substring(pos).match(/^[_^=]*[A-Ga-g][,']*(\d*(?:\/\d*)?)/);
+          if (nm) { result += 'z' + nm[1]; pos += nm[0].length; continue; }
+          result += voice[pos]; pos++;
+        }
+        lines[i] = result;
+      }
+    }
+    abc = lines.join('\n');
+  }
+  return abc;
+}
+document.getElementById('btn-mel').onclick = function() {
+  melodyOn = !melodyOn;
+  this.textContent = melodyOn ? 'Melody' : 'Melody Off';
+  this.style.background = melodyOn ? '#2563eb' : '#fff';
+  this.style.color = melodyOn ? '#fff' : '#444';
+  this.style.borderColor = melodyOn ? '#2563eb' : '#ccc';
+  renderDrill(currentDrill);
+};
 
 function getPlayheadX() { return $area.offsetWidth * 0.15; }
 
@@ -355,7 +410,10 @@ function renderDrill(idx) {
   };
 
   abc = new abc2svg.Abc(user);
-  abc.tosvg('drill', drill.abc);
+  // Hide the built-in chord annotations — fractions replace them
+  var renderAbc = getAbc(drill);
+  renderAbc = renderAbc.replace(/%%annotationfont[^\n]*/g, '%%annotationfont * 0.1');
+  abc.tosvg('drill', renderAbc);
 
   // Scale SVG to fill viewport height
   var svgs = $container.getElementsByTagName('svg');
@@ -368,53 +426,59 @@ function renderDrill(idx) {
   console.log('areaH=' + areaH + ' totalH=' + totalH + ' svgScale=' + svgScale.toFixed(2) + ' playheadX=' + getPlayheadX().toFixed(1));
   $container.style.transformOrigin = '0 0';
 
-  // Build chord fraction overlays using rendered DOM positions
-  if (drill.chords && drill.chords.length > 0) {
-    setTimeout(function() {
-      var rects = $container.querySelectorAll('.abcr');
-      if (!rects.length) return;
-      var cRect = $container.getBoundingClientRect();
-      // Find topmost rect Y in unscaled container coords
-      var topY = 9999;
-      for (var i = 0; i < rects.length; i++) {
-        var br = rects[i].getBoundingClientRect();
-        var ry = (br.top - cRect.top) / svgScale;
-        if (ry < topY) topY = ry;
-      }
-      // Build beat→X map from rect positions
-      var fracContainer = document.createElement('div');
-      fracContainer.style.position = 'absolute';
-      fracContainer.style.top = '0';
-      fracContainer.style.left = '0';
-      fracContainer.style.pointerEvents = 'none';
-      $container.appendChild(fracContainer);
+  // Build chord fraction overlays on-the-fly from ABC
+  setTimeout(function() {
+    var chords = extractChordAnnotations(drill.abc, drill.key || 'C');
+    if (!chords.length) return;
+    var rects = $container.querySelectorAll('.abcr');
+    if (!rects.length) return;
+    var cRect = $container.getBoundingClientRect();
+    var topY = 9999;
+    for (var i = 0; i < rects.length; i++) {
+      var br = rects[i].getBoundingClientRect();
+      var ry = (br.top - cRect.top) / svgScale;
+      if (ry < topY) topY = ry;
+    }
+    var fracContainer = document.createElement('div');
+    fracContainer.style.position = 'absolute';
+    fracContainer.style.top = '0';
+    fracContainer.style.left = '0';
+    fracContainer.style.pointerEvents = 'none';
+    $container.appendChild(fracContainer);
 
-      for (var ci = 0; ci < drill.chords.length; ci++) {
-        var ch = drill.chords[ci];
-        if (ch.beat >= rects.length) continue;
-        var br = rects[ch.beat].getBoundingClientRect();
-        var cx = (br.left - cRect.left + br.width / 2) / svgScale;
-        var div = document.createElement('div');
-        div.className = 'chord-frac';
-        div.style.left = cx + 'px';
-        div.style.top = (topY - 44) + 'px';
-        var abs = ch.abs || '';
-        var rhn = ch.rhn || '';
-        var lhn = ch.lhn || '';
-        div.innerHTML =
-          '<div class="cf-abs">' + abs + '</div>' +
-          '<div class="cf-line"></div>' +
-          '<div class="cf-rh">' + rhn + '</div>' +
-          '<div class="cf-line"></div>' +
-          '<div class="cf-lh">' + lhn + '</div>';
-        fracContainer.appendChild(div);
-      }
-      console.log('Placed ' + drill.chords.length + ' fractions, topY=' + topY.toFixed(1));
-    }, 100);
-  }
+    // Map chords to note positions: one fraction per measure
+    // Use the first .abcr rect in each measure group as anchor
+    // Since chords align to measures, space them by measure count
+    var measCount = chords.length;
+    var step = Math.max(1, Math.floor(rects.length / measCount));
+    for (var ci = 0; ci < chords.length; ci++) {
+      var rectIdx = ci * step;
+      if (rectIdx >= rects.length) break;
+      var ch = chords[ci];
+      if (!ch.abs && !ch.rhn && !ch.lhn) continue;
+      var br = rects[rectIdx].getBoundingClientRect();
+      var cx = (br.left - cRect.left + br.width / 2) / svgScale;
+      var div = document.createElement('div');
+      div.className = 'chord-frac';
+      div.style.left = cx + 'px';
+      div.style.top = (topY - 34) + 'px';
+      div.innerHTML =
+        '<div class="cf-abs">' + (ch.abs || '') + '</div>' +
+        '<div class="cf-rh">' + (ch.rhn || '') + '</div>' +
+        '<div class="cf-lh">' + (ch.lhn || '') + '</div>';
+      fracContainer.appendChild(div);
+    }
+    console.log('Placed ' + chords.length + ' fractions');
+  }, 150);
 
   positionPlayhead();
   setScroll(getPlayheadX());
+
+  // Generate per-hymn drills (always build content, mode toggle controls visibility)
+  renderHymnDrills(drill);
+  if (viewMode === 'drills') {
+    document.getElementById('drill-area').style.display = '';
+  }
 }
 
 // ── Mic chroma scoring ──
@@ -644,21 +708,57 @@ window.addEventListener('mouseup', function() { dragging = false; });
 
 // ── Buttons ──
 $btnPlay.onclick = function() {
-  console.log('Play clicked, playing=' + playing + ' currentDrill=' + currentDrill);
   if (playing) stopPlayback();
   else startPlayback();
 };
+
+// |< and >| — scroll 3/4 screen width
+document.getElementById('btn-scroll-left').onclick = function() {
+  if (playing) return;
+  var step = $area.offsetWidth * 0.75;
+  setScroll(scrollX + step);
+};
+document.getElementById('btn-scroll-right').onclick = function() {
+  if (playing) return;
+  var step = $area.offsetWidth * 0.75;
+  setScroll(scrollX - step);
+};
+
+// |<< — prev drill (in drills mode) or rewind (in hymns mode)
 document.getElementById('btn-rewind').onclick = function() {
   if (playing) stopPlayback();
-  renderDrill(currentDrill);
+  if (viewMode === 'drills') {
+    // Navigate to previous drill pattern
+    var headers = document.getElementById('drill-area').querySelectorAll('.drill-header');
+    var activeIdx = -1;
+    for (var i = 0; i < headers.length; i++) {
+      if (headers[i].classList.contains('active')) { activeIdx = i; break; }
+    }
+    if (activeIdx > 0) headers[activeIdx - 1].click();
+    else if (headers.length > 0) headers[headers.length - 1].click();
+  } else {
+    renderDrill(currentDrill);
+  }
 };
+
+// >>| — next drill (in drills mode) or next hymn (in hymns mode)
 document.getElementById('btn-next').onclick = function() {
   var wasPlaying = playing;
   if (playing) stopPlayback();
-  var next = getNextHymn(currentDrill);
-  if (next >= 0) {
-    selectDrill(next);
-    if (wasPlaying) startPlayback();
+  if (viewMode === 'drills') {
+    var headers = document.getElementById('drill-area').querySelectorAll('.drill-header');
+    var activeIdx = -1;
+    for (var i = 0; i < headers.length; i++) {
+      if (headers[i].classList.contains('active')) { activeIdx = i; break; }
+    }
+    if (activeIdx < headers.length - 1) headers[activeIdx + 1].click();
+    else if (headers.length > 0) headers[0].click();
+  } else {
+    var next = getNextHymn(currentDrill);
+    if (next >= 0) {
+      selectDrill(next);
+      if (wasPlaying) startPlayback();
+    }
   }
 };
 var $bpmSlider = document.getElementById('bpm-slider');
@@ -708,82 +808,476 @@ document.addEventListener('keydown', function(e) {
 });
 
 // ── Library browser ──
-function getCat(drill) {
-  var n = parseInt(drill.n);
-  if (n >= 1001 && n <= 1005) return 'Grossi Drills';
-  if (n >= 1006 && n <= 1009) return 'Grossi Drills';
-  if (n >= 1101 && n <= 1106) return 'Adv a: Finger Passing';
-  if (n >= 1107 && n <= 1115) return 'Rodriguez VII-XV';
-  if (n >= 1120 && n <= 1151) return 'Adv b: Fix Position';
-  if (n >= 1152 && n <= 1158) return 'Adv c: Crossing';
-  if (n >= 1159 && n <= 1170) return 'Adv d: Scales+Chords';
-  if (n >= 1171 && n <= 1184) return 'Adv e: Zigzag';
-  if (n >= 1185 && n <= 1200) return 'Adv f: Accents';
-  if (n >= 1201 && n <= 1202) return 'Adv g: Hand Interchange';
-  if (n >= 1203 && n <= 1214) return 'Adv h: Combined';
-  if (n >= 1215 && n <= 1221) return 'Adv i: Connecting';
-  if (n >= 1300 && n <= 1399) return 'Lever Harp Technique';
-  if (n >= 1400 && n <= 1404) return 'Thomas: Accent/Touch';
-  if (n >= 1405 && n <= 1608) return 'Thomas: Major Keys';
-  if (n >= 1609 && n <= 1678) return 'Thomas: Minor Keys';
-  if (n >= 1679 && n <= 1699) return 'Thomas: Glissando';
-  if (n >= 2001 && n <= 2004) return 'Trefoil Eb';
-  if (n >= 2005 && n <= 2008) return 'Trefoil C';
-  if (n >= 4000) return 'Hymns';
-  return 'Other';
-}
-
 function selectDrill(drillIdx) {
   var all = document.querySelectorAll('.lib-item.active');
   for (var k = 0; k < all.length; k++) all[k].classList.remove('active');
   var el = document.querySelector('.lib-item[data-idx="' + drillIdx + '"]');
   if (el) el.classList.add('active');
+  addRecent(drillIdx, DRILLS[drillIdx].t);
   renderDrill(drillIdx);
 }
 
+// ── Recent selections ──
+var recentItems = JSON.parse(localStorage.getItem('trefoilRecent') || '[]');
+
+function addRecent(idx, title) {
+  recentItems = recentItems.filter(function(r) { return r.idx !== idx; });
+  recentItems.unshift({idx: idx, title: title});
+  if (recentItems.length > 20) recentItems = recentItems.slice(0, 20);
+  localStorage.setItem('trefoilRecent', JSON.stringify(recentItems));
+  updateRecentDropdown();
+}
+
+function updateRecentDropdown() {
+  var sel = document.getElementById('recent-select');
+  sel.innerHTML = '<option value="">Recent...</option>';
+  for (var i = 0; i < recentItems.length; i++) {
+    var opt = document.createElement('option');
+    opt.value = recentItems[i].idx;
+    opt.textContent = recentItems[i].title;
+    sel.appendChild(opt);
+  }
+}
+
+document.getElementById('recent-select').addEventListener('change', function() {
+  var idx = parseInt(this.value);
+  if (isNaN(idx)) return;
+  selectDrill(idx);
+  this.value = '';
+});
+updateRecentDropdown();
+
+// ── Pattern Extraction & Drill Generation ──
+var LETTER_VAL = {'C':0,'D':1,'E':2,'F':3,'G':4,'A':5,'B':6};
+function diaVal(n) { return n.oct * 7 + LETTER_VAL[n.letter]; }
+
+function parseAbcChord(bracket) {
+  var notes = [], inner = bracket.replace(/[\[\]]/g, ''), i = 0;
+  while (i < inner.length) {
+    var acc = '';
+    while (i < inner.length && '^_='.indexOf(inner[i]) >= 0) { acc += inner[i]; i++; }
+    if (i >= inner.length) break;
+    var ch = inner[i];
+    if ('CDEFGABcdefgab'.indexOf(ch) < 0) { i++; continue; }
+    var letter, oct;
+    if (ch >= 'A' && ch <= 'G') { letter = ch; oct = 4; }
+    else { letter = ch.toUpperCase(); oct = 5; }
+    i++;
+    var octMod = '';
+    while (i < inner.length) {
+      if (inner[i] === ',') { oct--; octMod += ','; i++; }
+      else if (inner[i] === "'") { oct++; octMod += "'"; i++; }
+      else break;
+    }
+    var abcStr = acc + (oct >= 5 ? letter.toLowerCase() : letter) + octMod;
+    notes.push({letter: letter, oct: oct, acc: acc, abc: abcStr});
+  }
+  return notes;
+}
+
+function extractHymnPatterns(abcText) {
+  var lines = abcText.split('\n'), rhLine = '', lhLine = '';
+  for (var i = 0; i < lines.length; i++) {
+    // Support both formats: [V: RH]/[V: LH] and [V: RH2]/[V: LH2]
+    if (lines[i].indexOf('[V: RH]') === 0 || lines[i].indexOf('[V: RH2]') === 0) rhLine = lines[i];
+    if (lines[i].indexOf('[V: LH]') === 0 || lines[i].indexOf('[V: LH2]') === 0) lhLine = lines[i];
+  }
+  if (!rhLine || !lhLine) return [];
+  var bracketRe = /\[[A-Ga-g^_=][^\]]*\]/g;
+  var rhBrackets = rhLine.match(bracketRe) || [];
+  var lhBrackets = lhLine.match(bracketRe) || [];
+  var seen = {}, patterns = [], len = Math.min(rhBrackets.length, lhBrackets.length);
+  for (var i = 0; i < len; i++) {
+    var pk = rhBrackets[i] + '|' + lhBrackets[i];
+    if (!seen[pk]) {
+      seen[pk] = true;
+      patterns.push({
+        rh: parseAbcChord(rhBrackets[i]), lh: parseAbcChord(lhBrackets[i]),
+        rhStr: rhBrackets[i], lhStr: lhBrackets[i]
+      });
+    }
+  }
+  return patterns;
+}
+
+function computePatternHex(rh, lh, keyStr) {
+  var rs = rh.slice().sort(function(a,b){return diaVal(b)-diaVal(a);});
+  var ls = lh.slice().sort(function(a,b){return diaVal(b)-diaVal(a);});
+  var deg = (LETTER_VAL[rs[0].letter] - LETTER_VAL[keyStr.charAt(0)] + 7) % 7 + 1;
+  var rp = '' + deg;
+  for (var i = 0; i < rs.length-1; i++) rp += '' + (diaVal(rs[i]) - diaVal(rs[i+1]) + 1);
+  var gap = diaVal(rs[rs.length-1]) - diaVal(ls[0]) + 1;
+  var lp = '' + gap;
+  for (var i = 0; i < ls.length-1; i++) lp += '' + (diaVal(ls[i]) - diaVal(ls[i+1]) + 1);
+  return rp + '-' + lp;
+}
+
+// ── Chord identification from ABC notes ──
+var KEY_SHARPS = {'C':[],'G':['F'],'D':['F','C'],'A':['F','C','G'],'E':['F','C','G','D'],'F':[],'Bb':[],'Eb':[]};
+var KEY_FLATS = {'C':[],'G':[],'D':[],'A':[],'E':[],'F':['B'],'Bb':['B','E'],'Eb':['B','E','A']};
+var PC_BASE = {'C':0,'D':2,'E':4,'F':5,'G':7,'A':9,'B':11};
+var PC_NAMES = ['C','Db','D','Eb','E','F','F#','G','Ab','A','Bb','B'];
+
+function notePc(note, keyStr) {
+  var pc = PC_BASE[note.letter];
+  if (note.acc === '^') pc = (pc + 1) % 12;
+  else if (note.acc === '_') pc = (pc + 11) % 12;
+  else {
+    // Apply key signature
+    var sharps = KEY_SHARPS[keyStr] || [];
+    var flats = KEY_FLATS[keyStr] || [];
+    if (sharps.indexOf(note.letter) >= 0) pc = (pc + 1) % 12;
+    if (flats.indexOf(note.letter) >= 0) pc = (pc + 11) % 12;
+  }
+  return pc;
+}
+
+function chordName(notes, keyStr) {
+  if (!notes || notes.length === 0) return '';
+  var pcs = [];
+  for (var i = 0; i < notes.length; i++) {
+    var pc = notePc(notes[i], keyStr);
+    if (pcs.indexOf(pc) < 0) pcs.push(pc);
+  }
+  if (pcs.length < 2) return PC_NAMES[pcs[0]] || '';
+  // Try each pitch class as root, find best match
+  var patterns = [
+    {iv:'0,4,7', q:''}, {iv:'0,3,7', q:'m'}, {iv:'0,3,6', q:'\u00b0'},
+    {iv:'0,4,8', q:'+'}, {iv:'0,4,7,10', q:'7'}, {iv:'0,4,7,11', q:'\u03947'},
+    {iv:'0,3,7,10', q:'m7'}, {iv:'0,3,6,9', q:'\u00b07'}, {iv:'0,3,6,10', q:'\u00f87'},
+    {iv:'0,5,7', q:'sus4'}, {iv:'0,2,7', q:'sus2'},
+  ];
+  for (var r = 0; r < pcs.length; r++) {
+    var root = pcs[r];
+    var ivs = [];
+    for (var j = 0; j < pcs.length; j++) ivs.push((pcs[j] - root + 12) % 12);
+    ivs.sort(function(a,b){return a-b;});
+    var sig = ivs.join(',');
+    for (var p = 0; p < patterns.length; p++) {
+      if (sig === patterns[p].iv) return PC_NAMES[root] + patterns[p].q;
+    }
+  }
+  // Fallback: just use lowest note as root, try partial match (triad from first 3 pcs)
+  var root = notePc(notes[0], keyStr);
+  return PC_NAMES[root];
+}
+
+function extractChordAnnotations(abcText, keyStr) {
+  // Parse melody line for "^ChordName" annotations, and RH2/LH2 brackets per measure
+  var lines = abcText.split('\n');
+  var melLine = '', rh2Line = '', lh2Line = '';
+  for (var i = 0; i < lines.length; i++) {
+    if (lines[i].indexOf('[V: M]') === 0) melLine = lines[i];
+    if (lines[i].indexOf('[V: RH2]') === 0 || lines[i].indexOf('[V: RH]') === 0) rh2Line = lines[i];
+    if (lines[i].indexOf('[V: LH2]') === 0 || lines[i].indexOf('[V: LH]') === 0) lh2Line = lines[i];
+  }
+  // Extract abstract chords from melody annotations
+  var absChords = [];
+  var annRe = /"\^([^"]*)"/g;
+  var m;
+  while ((m = annRe.exec(melLine)) !== null) absChords.push(m[1]);
+
+  // Extract RH and LH brackets
+  var bracketRe = /\[[A-Ga-g^_=][^\]]*\]/g;
+  var rhBrackets = rh2Line.match(bracketRe) || [];
+  var lhBrackets = lh2Line.match(bracketRe) || [];
+
+  // Build chord array: one per measure (matched by index)
+  var chords = [];
+  var len = Math.max(absChords.length, rhBrackets.length, lhBrackets.length);
+  for (var i = 0; i < len; i++) {
+    var abs = absChords[i] || '';
+    var rhN = i < rhBrackets.length ? parseAbcChord(rhBrackets[i]) : [];
+    var lhN = i < lhBrackets.length ? parseAbcChord(lhBrackets[i]) : [];
+    var rhn = chordName(rhN, keyStr);
+    var lhn = chordName(lhN, keyStr);
+    chords.push({beat: i, abs: abs, rhn: rhn, lhn: lhn});
+  }
+  return chords;
+}
+
+function drillAbcHeader(key) {
+  return 'X: 1\nM: 4/4\nL: 1/4\nQ: 1/4=80\n%%pagewidth 200cm\n%%continueall 1\n%%scale 0.7\n%%writefields T 0\n%%staffsep 0\nK: ' + key + '\n';
+}
+
+function generatePatternDrills(pattern, key) {
+  // Sort high to low (finger 1=thumb=highest, 4=lowest)
+  var rh = pattern.rh.slice().sort(function(a,b){return diaVal(b)-diaVal(a);});
+  var lh = pattern.lh.slice().sort(function(a,b){return diaVal(b)-diaVal(a);});
+  var allUp = lh.slice().reverse().concat(rh.slice().reverse()); // low to high
+  var allDown = rh.concat(lh); // high to low
+  var drills = [], hdr = drillAbcHeader(key);
+
+  function n(arr) { return arr.map(function(x){return x.abc;}).join(''); }
+  function ns(arr,d) { return arr.map(function(x){return x.abc+(d||'');}).join(' '); }
+  function br(arr) { return arr.length > 1 ? '['+n(arr)+']' : n(arr); }
+
+  // Block
+  var blk = br(allUp);
+  drills.push({name:'Block', abc: hdr + blk+'4 z4 | '+blk+'4 z4 |]\n'});
+
+  // Full arpeggio up then down
+  drills.push({name:'Arp \u2191\u2193', abc: hdr + ns(allUp) + ' | ' + ns(allDown) + ' |]\n'});
+
+  // RH exercises
+  if (rh.length >= 3) {
+    drills.push({name:'RH \u2193\u2191', abc: hdr + ns(rh) + ' | ' + ns(rh.slice().reverse()) + ' | ' + ns(rh) + ' | ' + ns(rh.slice().reverse()) + ' |]\n'});
+    // [1,N][middle] — outer then inner
+    drills.push({name:'RH [1'+rh.length+'][mid]', abc: hdr +
+      br([rh[0],rh[rh.length-1]])+'2 '+br(rh.slice(1,-1))+'2 | '+
+      br([rh[0],rh[rh.length-1]])+'2 '+br(rh.slice(1,-1))+'2 | '+
+      br([rh[0],rh[rh.length-1]])+'2 '+br(rh.slice(1,-1))+'2 | '+
+      br([rh[0],rh[rh.length-1]])+'2 '+br(rh.slice(1,-1))+'2 |]\n'});
+  }
+  if (rh.length >= 4) {
+    drills.push({name:'RH [12][34]', abc: hdr +
+      br([rh[0],rh[1]])+'2 '+br([rh[2],rh[3]])+'2 | '+
+      br([rh[0],rh[1]])+'2 '+br([rh[2],rh[3]])+'2 | '+
+      br([rh[0],rh[1]])+'2 '+br([rh[2],rh[3]])+'2 | '+
+      br([rh[0],rh[1]])+'2 '+br([rh[2],rh[3]])+'2 |]\n'});
+    drills.push({name:'RH [14][23]', abc: hdr +
+      br([rh[0],rh[3]])+'2 '+br([rh[1],rh[2]])+'2 | '+
+      br([rh[0],rh[3]])+'2 '+br([rh[1],rh[2]])+'2 | '+
+      br([rh[0],rh[3]])+'2 '+br([rh[1],rh[2]])+'2 | '+
+      br([rh[0],rh[3]])+'2 '+br([rh[1],rh[2]])+'2 |]\n'});
+    drills.push({name:'RH [13][24]', abc: hdr +
+      br([rh[0],rh[2]])+'2 '+br([rh[1],rh[3]])+'2 | '+
+      br([rh[0],rh[2]])+'2 '+br([rh[1],rh[3]])+'2 | '+
+      br([rh[0],rh[2]])+'2 '+br([rh[1],rh[3]])+'2 | '+
+      br([rh[0],rh[2]])+'2 '+br([rh[1],rh[3]])+'2 |]\n'});
+  }
+
+  // LH exercises
+  if (lh.length >= 3) {
+    drills.push({name:'LH \u2193\u2191', abc: hdr + 'K: ' + key + ' clef=bass\n' + ns(lh) + ' | ' + ns(lh.slice().reverse()) + ' | ' + ns(lh) + ' | ' + ns(lh.slice().reverse()) + ' |]\n'});
+    drills.push({name:'LH [1'+lh.length+'][mid]', abc: hdr + 'K: ' + key + ' clef=bass\n' +
+      br([lh[0],lh[lh.length-1]])+'2 '+br(lh.slice(1,-1))+'2 | '+
+      br([lh[0],lh[lh.length-1]])+'2 '+br(lh.slice(1,-1))+'2 | '+
+      br([lh[0],lh[lh.length-1]])+'2 '+br(lh.slice(1,-1))+'2 | '+
+      br([lh[0],lh[lh.length-1]])+'2 '+br(lh.slice(1,-1))+'2 |]\n'});
+  }
+  if (lh.length >= 4) {
+    drills.push({name:'LH [12][34]', abc: hdr + 'K: ' + key + ' clef=bass\n' +
+      br([lh[0],lh[1]])+'2 '+br([lh[2],lh[3]])+'2 | '+
+      br([lh[0],lh[1]])+'2 '+br([lh[2],lh[3]])+'2 | '+
+      br([lh[0],lh[1]])+'2 '+br([lh[2],lh[3]])+'2 | '+
+      br([lh[0],lh[1]])+'2 '+br([lh[2],lh[3]])+'2 |]\n'});
+    drills.push({name:'LH [14][23]', abc: hdr + 'K: ' + key + ' clef=bass\n' +
+      br([lh[0],lh[3]])+'2 '+br([lh[1],lh[2]])+'2 | '+
+      br([lh[0],lh[3]])+'2 '+br([lh[1],lh[2]])+'2 | '+
+      br([lh[0],lh[3]])+'2 '+br([lh[1],lh[2]])+'2 | '+
+      br([lh[0],lh[3]])+'2 '+br([lh[1],lh[2]])+'2 |]\n'});
+    drills.push({name:'LH [13][24]', abc: hdr + 'K: ' + key + ' clef=bass\n' +
+      br([lh[0],lh[2]])+'2 '+br([lh[1],lh[3]])+'2 | '+
+      br([lh[0],lh[2]])+'2 '+br([lh[1],lh[3]])+'2 | '+
+      br([lh[0],lh[2]])+'2 '+br([lh[1],lh[3]])+'2 | '+
+      br([lh[0],lh[2]])+'2 '+br([lh[1],lh[3]])+'2 |]\n'});
+  }
+  return drills;
+}
+
+// Build grand staff strip chart ABC with all exercises for a pattern
+function buildDrillStripAbc(pat, key, hex) {
+  // Sort each hand high to low (finger 1=thumb=highest)
+  var rh = pat.rh.slice().sort(function(a,b){return diaVal(b)-diaVal(a);});
+  var lh = pat.lh.slice().sort(function(a,b){return diaVal(b)-diaVal(a);});
+
+  function br(arr) { return arr.length > 1 ? '[' + arr.map(function(x){return x.abc;}).join('') + ']' : arr[0].abc; }
+  var rhBlock = br(rh), lhBlock = br(lh);
+
+  var rhLine = '[V: RH] ';
+  var lhLine = '[V: LH] ';
+
+  // Block: both hands together
+  rhLine += '"^Block" ' + rhBlock + '4 | ' + rhBlock + '4 | ';
+  lhLine += rhBlock.replace(/./,'') ? lhBlock + '4 | ' + lhBlock + '4 | ' : lhBlock + '4 | ' + lhBlock + '4 | ';
+  // fix: just do it simply
+  rhLine = '[V: RH] "^Block" ' + rhBlock + '4 | ' + rhBlock + '4 | ';
+  lhLine = '[V: LH] ' + lhBlock + '4 | ' + lhBlock + '4 | ';
+
+  // Arp up (low to high): LH bottom to top, then RH bottom to top
+  var rhUp = rh.slice().reverse();
+  var lhUp = lh.slice().reverse();
+  rhLine += '"^Arp \u2191" ';
+  for (var i = 0; i < rhUp.length; i++) rhLine += rhUp[i].abc + ' ';
+  rhLine += '| ';
+  for (var i = 0; i < rhUp.length; i++) rhLine += rhUp[i].abc + ' ';
+  rhLine += '| ';
+  lhLine += '';
+  for (var i = 0; i < lhUp.length; i++) lhLine += lhUp[i].abc + ' ';
+  lhLine += '| ';
+  for (var i = 0; i < lhUp.length; i++) lhLine += lhUp[i].abc + ' ';
+  lhLine += '| ';
+
+  // Arp down (high to low)
+  rhLine += '"^Arp \u2193" ';
+  for (var i = 0; i < rh.length; i++) rhLine += rh[i].abc + ' ';
+  rhLine += '| ';
+  for (var i = 0; i < rh.length; i++) rhLine += rh[i].abc + ' ';
+  rhLine += '| ';
+  for (var i = 0; i < lh.length; i++) lhLine += lh[i].abc + ' ';
+  lhLine += '| ';
+  for (var i = 0; i < lh.length; i++) lhLine += lh[i].abc + ' ';
+  lhLine += '| ';
+
+  // RH runs
+  if (rh.length >= 3) {
+    rhLine += '"^RH \u2193\u2191" ';
+    for (var i = 0; i < rh.length; i++) rhLine += rh[i].abc + ' ';
+    rhLine += '| ';
+    for (var i = rh.length-1; i >= 0; i--) rhLine += rh[i].abc + ' ';
+    rhLine += '| ';
+    lhLine += lhBlock + '4 | ' + lhBlock + '4 | ';
+  }
+
+  // LH runs
+  if (lh.length >= 3) {
+    rhLine += '"^LH \u2193\u2191" ' + rhBlock + '4 | ' + rhBlock + '4 | ';
+    for (var i = 0; i < lh.length; i++) lhLine += lh[i].abc + ' ';
+    lhLine += '| ';
+    for (var i = lh.length-1; i >= 0; i--) lhLine += lh[i].abc + ' ';
+    lhLine += '| ';
+  }
+
+  // RH flips
+  if (rh.length >= 3) {
+    var outer = '[' + rh[0].abc + rh[rh.length-1].abc + ']';
+    var mid = rh.length === 3 ? rh[1].abc : '[' + rh.slice(1,-1).map(function(x){return x.abc;}).join('') + ']';
+    rhLine += '"^RH [1' + rh.length + '][mid]" ' + outer + '2 ' + mid + '2 | ' + outer + '2 ' + mid + '2 | ';
+    lhLine += lhBlock + '4 | ' + lhBlock + '4 | ';
+  }
+  if (rh.length >= 4) {
+    rhLine += '"^RH [12][34]" [' + rh[0].abc + rh[1].abc + ']2 [' + rh[2].abc + rh[3].abc + ']2 | [' + rh[0].abc + rh[1].abc + ']2 [' + rh[2].abc + rh[3].abc + ']2 | ';
+    lhLine += lhBlock + '4 | ' + lhBlock + '4 | ';
+    rhLine += '"^RH [14][23]" [' + rh[0].abc + rh[3].abc + ']2 [' + rh[1].abc + rh[2].abc + ']2 | [' + rh[0].abc + rh[3].abc + ']2 [' + rh[1].abc + rh[2].abc + ']2 | ';
+    lhLine += lhBlock + '4 | ' + lhBlock + '4 | ';
+    rhLine += '"^RH [13][24]" [' + rh[0].abc + rh[2].abc + ']2 [' + rh[1].abc + rh[3].abc + ']2 | [' + rh[0].abc + rh[2].abc + ']2 [' + rh[1].abc + rh[3].abc + ']2 | ';
+    lhLine += lhBlock + '4 | ' + lhBlock + '4 | ';
+  }
+
+  // LH flips
+  if (lh.length >= 3) {
+    var louter = '[' + lh[0].abc + lh[lh.length-1].abc + ']';
+    var lmid = lh.length === 3 ? lh[1].abc : '[' + lh.slice(1,-1).map(function(x){return x.abc;}).join('') + ']';
+    rhLine += '"^LH [1' + lh.length + '][mid]" ' + rhBlock + '4 | ' + rhBlock + '4 | ';
+    lhLine += louter + '2 ' + lmid + '2 | ' + louter + '2 ' + lmid + '2 | ';
+  }
+  if (lh.length >= 4) {
+    rhLine += '"^LH [12][34]" ' + rhBlock + '4 | ' + rhBlock + '4 | ';
+    lhLine += '[' + lh[0].abc + lh[1].abc + ']2 [' + lh[2].abc + lh[3].abc + ']2 | [' + lh[0].abc + lh[1].abc + ']2 [' + lh[2].abc + lh[3].abc + ']2 | ';
+    rhLine += '"^LH [14][23]" ' + rhBlock + '4 | ' + rhBlock + '4 | ';
+    lhLine += '[' + lh[0].abc + lh[3].abc + ']2 [' + lh[1].abc + lh[2].abc + ']2 | [' + lh[0].abc + lh[3].abc + ']2 [' + lh[1].abc + lh[2].abc + ']2 | ';
+    rhLine += '"^LH [13][24]" ' + rhBlock + '4 | ' + rhBlock + '4 | ';
+    lhLine += '[' + lh[0].abc + lh[2].abc + ']2 [' + lh[1].abc + lh[3].abc + ']2 | [' + lh[0].abc + lh[2].abc + ']2 [' + lh[1].abc + lh[3].abc + ']2 | ';
+  }
+
+  rhLine += '|]';
+  lhLine += '|]';
+
+  return 'X: 1\nT: ' + hex + '\nM: 4/4\nL: 1/4\nQ: 1/4=80\n' +
+    '%%pagewidth 200cm\n%%continueall 1\n%%scale 1.2\n%%writefields T 0\n' +
+    '%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n' +
+    '%%staves {RH LH}\n' +
+    'V: RH clef=treble\nV: LH clef=bass\n' +
+    'K: ' + key + '\n' +
+    rhLine + '\n' + lhLine + '\n';
+}
+
+function renderPatternInScore(pat, key, hex) {
+  if (playing) stopPlayback();
+  $title.textContent = 'Drill: ' + hex + '  RH:' + pat.rhStr + '  LH:' + pat.lhStr;
+  $container.innerHTML = '';
+
+  var drillAbc = buildDrillStripAbc(pat, key, hex);
+
+  var user = {
+    img_out: function(svg) { $container.innerHTML += svg; },
+    anno_stop: function(type, start, stop, x, y, w, h) {
+      if (type !== 'note' && type !== 'rest') return;
+      if (abc.out_sxsy && abc.sh) {
+        abc.out_svg('<rect class="abcr _' + start + '_" x="');
+        abc.out_sxsy(x, '" y="', y);
+        abc.out_svg('" width="' + w.toFixed(2) + '" height="' + abc.sh(h).toFixed(2) + '"/>\n');
+      } else {
+        abc.out_svg('<rect class="abcr _' + start + '_" x="' + x.toFixed(2) +
+          '" y="' + y.toFixed(2) + '" width="' + w.toFixed(2) + '" height="' + h.toFixed(2) + '"/>\n');
+      }
+    },
+    errmsg: function(msg) { console.warn('abc2svg:', msg); },
+    read_file: function() { return ''; }
+  };
+
+  abc = new abc2svg.Abc(user);
+  abc.tosvg('drill', drillAbc);
+
+  var svgs = $container.getElementsByTagName('svg');
+  var totalH = 0;
+  for (var i = 0; i < svgs.length; i++) totalH += parseFloat(svgs[i].getAttribute('height') || 0);
+  var areaH = $area.offsetHeight;
+  svgScale = (areaH > 0 && totalH > 0) ? (areaH * 0.9) / totalH : 1;
+  if (svgScale < 1) svgScale = 1;
+  if (svgScale > 3) svgScale = 3;
+  $container.style.transformOrigin = '0 0';
+  positionPlayhead();
+  setScroll(getPlayheadX());
+}
+
+function renderHymnDrills(drill) {
+  var $da = document.getElementById('drill-area');
+  $da.innerHTML = '';
+  if (!drill || !drill.abc) return;
+  var patterns = extractHymnPatterns(drill.abc);
+  if (patterns.length === 0) return;
+  var header = document.createElement('div');
+  header.className = 'drill-area-header';
+  header.textContent = hymnSortName(drill.t) + ' \u2014 ' + patterns.length + ' chord shapes';
+  $da.appendChild(header);
+
+  for (var pi = 0; pi < patterns.length; pi++) {
+    var p = patterns[pi];
+    var hex = computePatternHex(p.rh, p.lh, drill.key);
+    var item = document.createElement('div');
+    item.className = 'drill-header';
+    item.innerHTML = '<span class="hex">' + hex + '</span> <span class="notes">RH:' + p.rhStr + ' LH:' + p.lhStr + '</span>';
+    // Click renders drill in score area
+    (function(pat, key, hexId) {
+      item.onclick = function() {
+        // Highlight active
+        var all = $da.querySelectorAll('.drill-header');
+        for (var k = 0; k < all.length; k++) all[k].classList.remove('active');
+        this.classList.add('active');
+        renderPatternInScore(pat, key, hexId);
+      };
+    })(p, drill.key, hex);
+    $da.appendChild(item);
+  }
+}
+
+// Strip leading number prefix for sorting/grouping (e.g. "001 The Love of God" → "The Love of God")
+function hymnSortName(t) {
+  return t.replace(/^\d+\s*/, '');
+}
+
 function buildLibrary() {
-  var $dColL = document.getElementById('drill-col-left');
-  var $dColR = document.getElementById('drill-col-right');
   var $colL = document.getElementById('hymn-col-left');
   var $colR = document.getElementById('hymn-col-right');
-  if ($dColL) $dColL.innerHTML = '';
-  if ($dColR) $dColR.innerHTML = '';
   $colL.innerHTML = '';
   $colR.innerHTML = '';
 
-  // Drills tab content — two columns
-  var drillIdxs = [];
-  for (var i = 0; i < DRILLS.length; i++) {
-    if (parseInt(DRILLS[i].n) >= 4000) continue;
-    drillIdxs.push(i);
-  }
-  var dHalf = Math.ceil(drillIdxs.length / 2);
-  for (var di = 0; di < drillIdxs.length; di++) {
-    var idx = drillIdxs[di];
-    var item = document.createElement('div');
-    item.className = 'lib-item';
-    item.dataset.idx = idx;
-    item.textContent = DRILLS[idx].t;
-    item.onclick = (function(i) {
-      return function() { selectDrill(i); };
-    })(idx);
-    if (di < dHalf) { if ($dColL) $dColL.appendChild(item); }
-    else { if ($dColR) $dColR.appendChild(item); }
-  }
-
-  // Hymns: collect and sort alphabetically
+  // Hymns: collect and sort alphabetically by name (ignoring number prefix)
   var hymnIndices = [];
   for (var i = 0; i < DRILLS.length; i++) {
-    if (parseInt(DRILLS[i].n) >= 4000) hymnIndices.push(i);
+    hymnIndices.push(i);
   }
   hymnIndices.sort(function(a,b) {
-    return DRILLS[a].t.localeCompare(DRILLS[b].t);
+    return hymnSortName(DRILLS[a].t).localeCompare(hymnSortName(DRILLS[b].t));
   });
 
-  // Build alphabet bar
+  // Build alphabet bar (group by first letter of name, not number)
   var letters = {};
   for (var i = 0; i < hymnIndices.length; i++) {
-    var first = DRILLS[hymnIndices[i]].t.charAt(0).toUpperCase();
+    var name = hymnSortName(DRILLS[hymnIndices[i]].t);
+    var first = name.charAt(0).toUpperCase();
     if (!letters[first]) letters[first] = [];
     letters[first].push(hymnIndices[i]);
   }
@@ -826,26 +1320,33 @@ function buildLibrary() {
   }
 }
 
-// Tab switching
-var tabs = document.querySelectorAll('.lib-tab');
-for (var i = 0; i < tabs.length; i++) {
-  tabs[i].onclick = function() {
-    for (var j = 0; j < tabs.length; j++) tabs[j].classList.remove('active');
-    this.classList.add('active');
-    var panels = document.querySelectorAll('.lib-panel');
-    for (var j = 0; j < panels.length; j++) panels[j].classList.remove('active');
-    document.getElementById(this.dataset.panel).classList.add('active');
-  };
+// Mode toggle: Hymns vs Drills
+var viewMode = 'hymns';
+var $btnMode = document.getElementById('btn-mode');
+var $hymnCols = document.getElementById('hymn-cols');
+var $drillArea = document.getElementById('drill-area');
+
+function toggleMode() {
+  viewMode = viewMode === 'hymns' ? 'drills' : 'hymns';
+  $btnMode.textContent = viewMode === 'hymns' ? 'Hymns' : 'Drills';
+  if (viewMode === 'hymns') {
+    $hymnCols.style.display = 'flex';
+    $drillArea.style.display = 'none';
+  } else {
+    $hymnCols.style.display = 'none';
+    if (DRILLS[currentDrill]) renderHymnDrills(DRILLS[currentDrill]);
+    $drillArea.style.display = 'block';
+  }
+  console.log('toggleMode: ' + viewMode + ', drillArea display=' + $drillArea.style.display + ', children=' + $drillArea.children.length);
 }
+$btnMode.onclick = toggleMode;
 
 // Search filter
 document.getElementById('lib-search').addEventListener('input', function() {
   var q = this.value.toLowerCase().trim();
   var $cols = document.getElementById('hymn-cols');
-  var $drillList = document.getElementById('drill-list');
 
   if (!q) {
-    // Reset: collapse all, show all headers
     var headers = $cols.querySelectorAll('.letter-header');
     var itemDivs = $cols.querySelectorAll('.letter-items');
     for (var i = 0; i < headers.length; i++) {
@@ -857,12 +1358,9 @@ document.getElementById('lib-search').addEventListener('input', function() {
       var items = itemDivs[i].querySelectorAll('.lib-item');
       for (var j = 0; j < items.length; j++) items[j].style.display = '';
     }
-    var drills = $drillList.querySelectorAll('.lib-item');
-    for (var i = 0; i < drills.length; i++) drills[i].style.display = '';
     return;
   }
 
-  // Search: hide headers, expand all, filter items
   var headers = $cols.querySelectorAll('.letter-header');
   for (var i = 0; i < headers.length; i++) headers[i].style.display = 'none';
   var itemDivs = $cols.querySelectorAll('.letter-items');
@@ -872,10 +1370,6 @@ document.getElementById('lib-search').addEventListener('input', function() {
     for (var j = 0; j < items.length; j++) {
       items[j].style.display = items[j].textContent.toLowerCase().indexOf(q) >= 0 ? '' : 'none';
     }
-  }
-  var drills = $drillList.querySelectorAll('.lib-item');
-  for (var i = 0; i < drills.length; i++) {
-    drills[i].style.display = drills[i].textContent.toLowerCase().indexOf(q) >= 0 ? '' : 'none';
   }
 });
 
@@ -907,90 +1401,28 @@ function applyKeyFilter() {
     // Update header count
     var letter = headers[i].textContent.replace(/ \(.*/, '');
     headers[i].textContent = letter + ' (' + visCount + ')';
-    // Keep collapsed state if filtering "All", expand otherwise
-    if (activeKey !== 'All') {
-      headers[i].classList.remove('collapsed');
-      itemDivs[i].classList.remove('hidden');
-    }
+    // Keep collapsed — user expands manually
   }
 }
 
 // ── Load hymnal and init ──
 positionPlayhead();
 
-// Load advanced drills and hymnal data, then build library
-var loaded = 0, toLoad = 4;
-function onDataLoaded() {
-  loaded++;
-  if (loaded >= toLoad) {
-    buildLibrary();
-    applyKeyFilter();
-    // Default to first hymn
-    for (var di = 0; di < DRILLS.length; di++) {
-      if (parseInt(DRILLS[di].n) >= 4000) { renderDrill(di); break; }
-    }
-  }
-}
-
-// Load advanced drills
-var xhr1 = new XMLHttpRequest();
-xhr1.open('GET', 'advanced_drills.json', true);
-xhr1.onload = function() {
-  if (xhr1.status === 200) {
-    var data = JSON.parse(xhr1.responseText);
-    for (var i = 0; i < data.length; i++) DRILLS.push(data[i]);
-    console.log('Loaded ' + data.length + ' advanced drills');
-  }
-  onDataLoaded();
-};
-xhr1.onerror = function() { onDataLoaded(); };
-xhr1.send();
-
-// Load Thomas 280
-var xhr4 = new XMLHttpRequest();
-xhr4.open('GET', 'thomas_280.json', true);
-xhr4.onload = function() {
-  if (xhr4.status === 200) {
-    var data = JSON.parse(xhr4.responseText);
-    for (var i = 0; i < data.length; i++) DRILLS.push(data[i]);
-    console.log('Loaded ' + data.length + ' Thomas exercises');
-  }
-  onDataLoaded();
-};
-xhr4.onerror = function() { onDataLoaded(); };
-xhr4.send();
-
-// Load lever drills
-var xhr3 = new XMLHttpRequest();
-xhr3.open('GET', 'lever_drills.json', true);
-xhr3.onload = function() {
-  if (xhr3.status === 200) {
-    var data = JSON.parse(xhr3.responseText);
-    for (var i = 0; i < data.length; i++) DRILLS.push(data[i]);
-    console.log('Loaded ' + data.length + ' lever drills');
-  }
-  onDataLoaded();
-};
-xhr3.onerror = function() { onDataLoaded(); };
-xhr3.send();
-
-// Load hymnal
+// Load SSAATTBB data, then build library
 var xhr2 = new XMLHttpRequest();
-xhr2.open('GET', 'hymnal_data.json', true);
+xhr2.open('GET', 'ssaattbb_data.json', true);
 xhr2.onload = function() {
   if (xhr2.status === 200) {
     var data = JSON.parse(xhr2.responseText);
     for (var i = 0; i < data.length; i++) DRILLS.push(data[i]);
-    console.log('Loaded ' + data.length + ' hymns');
+    console.log('Loaded ' + DRILLS.length + ' hymns');
   }
-  onDataLoaded();
+  buildLibrary();
+  applyKeyFilter();
+  if (DRILLS.length > 0) renderDrill(0);
 };
-xhr2.onerror = function() { onDataLoaded(); };
+xhr2.onerror = function() { console.error('Failed to load data'); };
 xhr2.send();
-// Default to first hymn
-for (var di = 0; di < DRILLS.length; di++) {
-  if (parseInt(DRILLS[di].n) >= 4000) { renderDrill(di); break; }
-}
 </script>
 </body>
 </html>
