@@ -194,7 +194,7 @@ def extract_all_notes(voice_lines, key_acc_map=None):
             continue
 
         # Notes: optional accidental, letter, optional octave, optional duration
-        nm = re.match(r'([_^=]*)([A-Ga-g])([,\']*)(\d+(?:/\d+)?|/\d+)?', all_abc[pos:])
+        nm = re.match(r'([_^=]*)([A-Ga-g])([,\']*)(\d+(?:/\d*)?|/\d*)?', all_abc[pos:])
         if nm:
             note_str = nm.group(1) + nm.group(2) + nm.group(3)
             dur_str = nm.group(4) or ''

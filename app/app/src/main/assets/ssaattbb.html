@@ -22,7 +22,7 @@ body { font-family: sans-serif; margin: 0; padding: 0; background: #f5f5f5; }
   border-bottom: 2px solid #999; z-index: 10;
   display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
 }
-#hymn-select { font-size: 18px; padding: 6px; max-width: 500px; flex: 1; }
+#hymn-select { font-size: 18px; padding: 6px; max-width: 400px; }
 #key-filter { font-size: 18px; padding: 6px; }
 button {
   font-size: 18px; padding: 8px 16px; cursor: pointer;
@@ -56,6 +56,7 @@ button:hover { background: #ddd; }
   </select>
   <select id="hymn-select" size="1"></select>
   <button id="play-btn" onclick="togglePlay()">Play</button>
+  <button id="mel-btn" onclick="toggleMelody()" style="background:#4CAF50;color:white;">Melody On</button>
   <button onclick="nav(-1)">Prev</button>
   <button onclick="nav(1)">Next</button>
   <span id="info"></span>
@@ -65,6 +66,7 @@ button:hover { background: #ddd; }
 <script>
 var DATA = [], filtered = [], currentIdx = 0;
 var abcplay = null, playing = false, currentTune = null;
+var melodyOn = true;
 
 function init() {
   fetch('ssaattbb_data.json?v=' + Date.now()).then(function(r) { return r.json(); }).then(function(d) {
@@ -91,6 +93,24 @@ function populateSelect() {
   });
 }
 
+function getAbc(h) {
+  var abc = h.abc;
+  if (!melodyOn) {
+    // Mute melody: replace melody voice notes with rests
+    var lines = abc.split('\n');
+    for (var i = 0; i < lines.length; i++) {
+      if (lines[i].indexOf('[V: M]') === 0) {
+        // Replace all notes with rests of same duration, keep barlines and chord annotations
+        lines[i] = lines[i].replace(/(\"\^[^\"]*\")?\s*(?:\[[A-Ga-g,'^_=]+\]|[A-Ga-g][,'^_=]*)(\d*(?:\/\d*)?)/g, function(m, ann, dur) {
+          return (ann || '') + 'z' + (dur || '');
+        });
+      }
+    }
+    abc = lines.join('\n');
+  }
+  return abc;
+}
+
 function render() {
   if (filtered.length === 0) return;
   var h = filtered[currentIdx];
@@ -110,14 +130,24 @@ function render() {
     }
   };
 
+  var abcText = getAbc(h);
   var abc = new abc2svg.Abc(user);
-  abc.tosvg('ssaattbb', h.abc);
+  abc.tosvg('ssaattbb', abcText);
 
   var info = 'Key: ' + h.key;
   if (h.violations > 0) {
     info += ' <span class="warn">' + h.violations + ' violation(s)</span>';
   }
   document.getElementById('info').innerHTML = info;
+}
+
+function toggleMelody() {
+  melodyOn = !melodyOn;
+  var btn = document.getElementById('mel-btn');
+  btn.textContent = melodyOn ? 'Melody On' : 'Melody Off';
+  btn.style.background = melodyOn ? '#4CAF50' : '#eee';
+  btn.style.color = melodyOn ? 'white' : 'black';
+  render();
 }
 
 function togglePlay() {

@@ -648,17 +648,21 @@ def stage_stack_and_split(data):
             return Fraction(num, den)
         return Fraction(int(dur_str))
 
-    # Build time grid per measure from ALL voices
+    # RH = SSAA voices, LH = TTBB + Pedal
     all_voices = ['S1', 'S2', 'A1', 'A2', 'T1', 'T2', 'B1', 'B2', 'PB']
+    rh_voices = ['S1', 'S2', 'A1', 'A2']
+    lh_voices = ['T1', 'T2', 'B1', 'B2', 'PB']
+    SPLIT_POINT = 60  # C4
+    MAX_PER_HAND = 4
 
-    # First, find max measure index
+    # Find max measure index
     max_meas = 0
     for v in all_voices:
         if vdata[v]['meas_idx']:
             max_meas = max(max_meas, max(vdata[v]['meas_idx']))
     n_meas = min(max_meas + 1, n_measures)
 
-    # For each voice, build a timeline: list of (meas_idx, time_offset, duration, midi)
+    # Build timelines per voice
     voice_timelines = {}
     for v in all_voices:
         midis = vdata[v]['midi']
@@ -678,7 +682,6 @@ def stage_stack_and_split(data):
             t += dur
         voice_timelines[v] = timeline
 
-    # For each measure, collect all unique time points and build pitch stacks
     rh_measures = []
     lh_measures = []
     total_events = 0
@@ -686,13 +689,9 @@ def stage_stack_and_split(data):
     total_lh_notes = 0
 
     for m in range(n_meas):
-        # Gather all time events in this measure from all voices
-        # For each voice, find which notes are active at each time point
-        # Build: time -> set of active pitches
-
-        # First collect all time boundaries
+        # Collect time boundaries from all voices
         time_set = set()
-        voice_events = {}  # v -> [(t_start, t_end, midi)]
+        voice_events = {}
         for v in all_voices:
             events = []
             for meas_idx, t, dur, midi in voice_timelines[v]:
@@ -707,47 +706,56 @@ def stage_stack_and_split(data):
             continue
 
         sorted_times = sorted(time_set)
-
-        # At each time point, collect all active pitches
         meas_rh = []
         meas_lh = []
+
         for ti, t in enumerate(sorted_times):
-            # Duration until next time point (or end of last note)
             if ti + 1 < len(sorted_times):
                 dur = sorted_times[ti + 1] - t
             else:
-                # Find max end time of any note starting at or before t
-                max_end = t + Fraction(1)
+                max_end = t
                 for v in all_voices:
-                    for t_start, t_end, midi in voice_events[v]:
+                    for t_start, t_end, midi in voice_events.get(v, []):
                         if t_start <= t < t_end:
                             if t_end > max_end:
                                 max_end = t_end
-                dur = max_end - t
+                dur = max_end - t if max_end > t else Fraction(1)
 
-            # Collect all pitches sounding at time t
-            pitches = set()
-            for v in all_voices:
-                for t_start, t_end, midi in voice_events[v]:
+            # RH = SSAA voices: collect pitches, octave-up if below C4
+            rh_set = set()
+            for v in rh_voices:
+                for t_start, t_end, midi in voice_events.get(v, []):
                     if t_start <= t < t_end:
-                        pitches.add(midi)
+                        p = midi
+                        while p < SPLIT_POINT:
+                            p += 12
+                        rh_set.add(p)
 
-            if not pitches:
-                continue
+            # LH = TTBB+PB voices: collect pitches, octave-down if at/above C4
+            lh_set = set()
+            for v in lh_voices:
+                for t_start, t_end, midi in voice_events.get(v, []):
+                    if t_start <= t < t_end:
+                        p = midi
+                        while p >= SPLIT_POINT:
+                            p -= 12
+                        lh_set.add(p)
 
-            sorted_pitches = sorted(pitches)
-            n = len(sorted_pitches)
+            rh_pitches = tuple(sorted(rh_set))
+            lh_pitches = tuple(sorted(lh_set))
 
-            # Split: LH gets lower ceil(n/2), RH gets upper floor(n/2)
-            lh_count = (n + 1) // 2  # ceil
-            lh_pitches = tuple(sorted_pitches[:lh_count])
-            rh_pitches = tuple(sorted_pitches[lh_count:])
+            # Cap at MAX_PER_HAND: RH keep highest, LH keep lowest + spread
+            if len(rh_pitches) > MAX_PER_HAND:
+                rh_pitches = rh_pitches[-MAX_PER_HAND:]
+            if len(lh_pitches) > MAX_PER_HAND:
+                lh_pitches = (lh_pitches[0],) + lh_pitches[-(MAX_PER_HAND-1):]
 
-            meas_rh.append((rh_pitches, dur))
-            meas_lh.append((lh_pitches, dur))
-            total_events += 1
-            total_rh_notes += len(rh_pitches)
-            total_lh_notes += len(lh_pitches)
+            if rh_pitches or lh_pitches:
+                meas_rh.append((rh_pitches, dur))
+                meas_lh.append((lh_pitches, dur))
+                total_events += 1
+                total_rh_notes += len(rh_pitches)
+                total_lh_notes += len(lh_pitches)
 
         rh_measures.append(meas_rh)
         lh_measures.append(meas_lh)
@@ -768,8 +776,6 @@ def stage_stack_and_split(data):
 
 def stage_horizontal(data):
     """Merge consecutive identical chords within each measure.
-
-    Operates on the grand_staff rh_measures and lh_measures.
 
     Returns:
         data: updated grand_staff with consolidated measures
@@ -843,7 +849,98 @@ def stage_horizontal(data):
 
 
 # ============================================================
-# Stage 9: Format
+# Stage 9: Harp Reduction
+# ============================================================
+
+def stage_harp_reduce(data):
+    """Reduce to harp notation: full chord at start, then only changes.
+
+    For each hand, within each measure:
+    - First event: show all pitches (full chord)
+    - Subsequent events: split into two voices:
+      - Voice 1 (sustained): pitches that haven't changed, shown as one long note
+      - Voice 2 (moving): only NEW pitches that weren't in the previous event
+
+    Output: per hand, two voice tracks (sustained + moving) per measure.
+
+    Returns:
+        data: updated grand_staff with harp_rh and harp_lh
+        report: validation messages
+    """
+    report = []
+    gs = data['grand_staff']
+
+    def reduce_hand(measures):
+        """Reduce one hand's measures to sustained + moving voices."""
+        sustained_measures = []  # voice 1: notes that ring
+        moving_measures = []     # voice 2: notes that change
+
+        for meas_events in measures:
+            sus_events = []  # (pitches, dur)
+            mov_events = []  # (pitches, dur)
+
+            if not meas_events:
+                sustained_measures.append([])
+                moving_measures.append([])
+                continue
+
+            # Normalize events to (pitches, dur) — strip tied flag if present
+            norm_events = []
+            for ev in meas_events:
+                if len(ev) == 3:
+                    norm_events.append((ev[0], ev[1]))
+                else:
+                    norm_events.append((ev[0], ev[1]))
+
+            prev_pitches = set()
+            first_pitches = set(norm_events[0][0]) if norm_events else set()
+
+            # Find pitches that sustain the ENTIRE measure
+            all_measure_pitches = [set(p) for p, d in norm_events]
+            sustained_all = first_pitches.copy()
+            for ps in all_measure_pitches:
+                sustained_all &= ps
+
+            # Compute total measure duration
+            total_dur = sum(d for p, d in norm_events)
+
+            # Sustained voice: pitches present in every event, shown as one long note
+            if sustained_all:
+                sus_events.append((tuple(sorted(sustained_all)), total_dur))
+            else:
+                sus_events.append(((), total_dur))  # rest
+
+            # Moving voice: at each event, show only pitches NOT in sustained_all
+            for pitches, dur in norm_events:
+                moving = tuple(sorted(set(pitches) - sustained_all))
+                mov_events.append((moving, dur))
+
+            sustained_measures.append(sus_events)
+            moving_measures.append(mov_events)
+
+        return sustained_measures, moving_measures
+
+    rh_sus, rh_mov = reduce_hand(gs['rh_measures'])
+    lh_sus, lh_mov = reduce_hand(gs['lh_measures'])
+
+    # Stats
+    rh_sus_notes = sum(len(p) for m in rh_sus for p, d in m if p)
+    rh_mov_notes = sum(len(p) for m in rh_mov for p, d in m if p)
+    lh_sus_notes = sum(len(p) for m in lh_sus for p, d in m if p)
+    lh_mov_notes = sum(len(p) for m in lh_mov for p, d in m if p)
+
+    report.append(f'OK: RH sustained={rh_sus_notes} notes, moving={rh_mov_notes} notes')
+    report.append(f'OK: LH sustained={lh_sus_notes} notes, moving={lh_mov_notes} notes')
+
+    data['grand_staff']['rh_sustained'] = rh_sus
+    data['grand_staff']['rh_moving'] = rh_mov
+    data['grand_staff']['lh_sustained'] = lh_sus
+    data['grand_staff']['lh_moving'] = lh_mov
+    return data, report
+
+
+# ============================================================
+# Stage 10: Format
 # ============================================================
 
 def stage_format(data, title='SSAATTBB', x_num=1, fmt='grand'):
@@ -971,39 +1068,225 @@ def stage_format(data, title='SSAATTBB', x_num=1, fmt='grand'):
                     cur_meas = meas_idx
                 measures[-1].append((midis, dur_str))
 
-            # Horizontal consolidation
-            parts = []
+            # Horizontal consolidation with standard duration awareness
+            STANDARD_DURS = {
+                Fraction(1, 4), Fraction(1, 2), Fraction(3, 4),
+                Fraction(1), Fraction(3, 2), Fraction(2), Fraction(3),
+                Fraction(4), Fraction(6), Fraction(8), Fraction(12), Fraction(16),
+            }
+
+            def parse_dur_str(dur_str):
+                if not dur_str:
+                    return Fraction(1)
+                if '/' in dur_str:
+                    p = dur_str.split('/')
+                    return Fraction(int(p[0]) if p[0] else 1, int(p[1]) if p[1] else 2)
+                return Fraction(int(dur_str))
+
+            abc_parts = []
             for mi, meas_notes in enumerate(measures):
                 if mi > 0:
-                    parts.append('|')
-                merged = []
-                for midis, dur_str in meas_notes:
-                    if not dur_str:
-                        dur_val = 1.0
-                    elif '/' in dur_str:
-                        parts = dur_str.split('/')
-                        num = int(parts[0]) if parts[0] else 1
-                        den = int(parts[1]) if len(parts) > 1 and parts[1] else 2
-                        dur_val = num / den
-                    else:
-                        dur_val = float(dur_str)
-                    if merged and merged[-1][0] == midis and midis:
-                        merged[-1] = (midis, merged[-1][1] + dur_val)
-                    else:
-                        merged.append((midis, dur_val))
-                for midis, dur_val in merged:
-                    dur_out = format_dur(Fraction(dur_val).limit_denominator(16))
-                    if not midis:
-                        parts.append('z' + dur_out)
-                    elif len(midis) == 1:
-                        parts.append(midi_to_abc(midis[0], key_acc) + dur_out)
-                    else:
-                        notes = [midi_to_abc(p, key_acc) for p in midis]
-                        parts.append('[' + ''.join(notes) + ']' + dur_out)
-            return ' '.join(parts) + ' |]'
+                    abc_parts.append('|')
 
-        rh_abc = events_to_abc(gs['rh_measures'], key_acc)
-        lh_abc = events_to_abc(gs['lh_measures'], key_acc)
+                # Group consecutive identical chords
+                groups = []
+                for midis, dur_str in meas_notes:
+                    dur_val = parse_dur_str(dur_str)
+                    if groups and groups[-1][0] == midis and midis:
+                        groups[-1][1].append(dur_val)
+                    else:
+                        groups.append((midis, [dur_val]))
+
+                # Emit each group as standard durations with ties
+                for midis, durs in groups:
+                    total = sum(durs)
+                    if total in STANDARD_DURS:
+                        pieces = [(total, False)]
+                    elif len(durs) == 1:
+                        pieces = [(durs[0], False)]
+                    else:
+                        # Break into largest standard durations
+                        remaining = total
+                        sorted_std = sorted(STANDARD_DURS, reverse=True)
+                        pcs = []
+                        while remaining > 0:
+                            placed = False
+                            for sd in sorted_std:
+                                if sd <= remaining:
+                                    pcs.append(sd)
+                                    remaining -= sd
+                                    placed = True
+                                    break
+                            if not placed:
+                                pcs.append(remaining)
+                                remaining = Fraction(0)
+                        pieces = [(d, i < len(pcs)-1) for i, d in enumerate(pcs)]
+
+                    for dur_val, tied in pieces:
+                        dur_out = format_dur(dur_val)
+                        tie_mark = '-' if tied else ''
+                        if not midis:
+                            abc_parts.append('z' + dur_out)
+                        elif len(midis) == 1:
+                            abc_parts.append(midi_to_abc(midis[0], key_acc) + dur_out + tie_mark)
+                        else:
+                            notes = [midi_to_abc(p, key_acc) for p in midis]
+                            abc_parts.append('[' + ''.join(notes) + ']' + dur_out + tie_mark)
+
+            return ' '.join(abc_parts) + ' |]'
+
+        # Build per-voice-group ABC: SA pair and AA pair for RH, TT pair and BBP for LH
+        # Each pair shares rhythm and gets independently consolidated
+        SPLIT_POINT = 60  # C4
+
+        def build_voice_abc_octave(voice_names, direction, key_acc):
+            """Build ABC for a voice group, octave-shifting to stay on correct side of C4."""
+            ref = voice_names[0]
+            durs_list = vdata[ref]['durs']
+            meas_list = vdata[ref]['meas_idx']
+            n = len(durs_list)
+
+            note_data = []
+            for i in range(n):
+                midis = set()
+                for v in voice_names:
+                    m_val = vdata[v]['midi'][i]
+                    if m_val is not None:
+                        p = m_val
+                        if direction == 'up':
+                            while p < SPLIT_POINT:
+                                p += 12
+                        else:
+                            while p >= SPLIT_POINT:
+                                p -= 12
+                        midis.add(p)
+                note_data.append((tuple(sorted(midis)), durs_list[i], meas_list[i]))
+
+            measures = []
+            cur_meas = -1
+            for midis, dur_str, meas_idx in note_data:
+                if meas_idx != cur_meas:
+                    measures.append([])
+                    cur_meas = meas_idx
+                measures[-1].append((midis, dur_str))
+
+            # Horizontal consolidation with standard duration awareness
+            STANDARD_DURS_V = {
+                Fraction(1, 4), Fraction(1, 2), Fraction(3, 4),
+                Fraction(1), Fraction(3, 2), Fraction(2), Fraction(3),
+                Fraction(4), Fraction(6), Fraction(8), Fraction(12), Fraction(16),
+            }
+
+            def parse_d(ds):
+                if not ds: return Fraction(1)
+                if '/' in ds:
+                    pp = ds.split('/')
+                    return Fraction(int(pp[0]) if pp[0] else 1, int(pp[1]) if pp[1] else 2)
+                return Fraction(int(ds))
+
+            abc_out = []
+            for mi, meas_notes in enumerate(measures):
+                if mi > 0:
+                    abc_out.append('|')
+                groups = []
+                for midis, dur_str in meas_notes:
+                    dv = parse_d(dur_str)
+                    if groups and groups[-1][0] == midis and midis:
+                        groups[-1][1].append(dv)
+                    else:
+                        groups.append((midis, [dv]))
+                for midis, durs in groups:
+                    total = sum(durs)
+                    if total in STANDARD_DURS_V:
+                        pieces = [(total, False)]
+                    elif len(durs) == 1:
+                        pieces = [(durs[0], False)]
+                    else:
+                        remaining = total
+                        ss = sorted(STANDARD_DURS_V, reverse=True)
+                        pcs = []
+                        while remaining > 0:
+                            placed = False
+                            for sd in ss:
+                                if sd <= remaining:
+                                    pcs.append(sd)
+                                    remaining -= sd
+                                    placed = True
+                                    break
+                            if not placed:
+                                pcs.append(remaining)
+                                remaining = Fraction(0)
+                        pieces = [(d, i < len(pcs)-1) for i, d in enumerate(pcs)]
+                    for dv, tied in pieces:
+                        do = format_dur(dv)
+                        tm = '-' if tied else ''
+                        if not midis:
+                            abc_out.append('z' + do)
+                        elif len(midis) == 1:
+                            abc_out.append(midi_to_abc(midis[0], key_acc) + do + tm)
+                        else:
+                            ns = [midi_to_abc(p, key_acc) for p in midis]
+                            abc_out.append('[' + ''.join(ns) + ']' + do + tm)
+            return ' '.join(abc_out) + ' |]'
+
+        # Harp reduction: sustained (stems down) + moving (stems up) per hand
+        def harp_events_to_abc(measures, key_acc):
+            """Convert harp-reduced event list to ABC."""
+            STANDARD_DURS_H = {
+                Fraction(1, 4), Fraction(1, 2), Fraction(3, 4),
+                Fraction(1), Fraction(3, 2), Fraction(2), Fraction(3),
+                Fraction(4), Fraction(6), Fraction(8), Fraction(12), Fraction(16),
+            }
+            abc_parts = []
+            for mi, meas_events in enumerate(measures):
+                if mi > 0:
+                    abc_parts.append('|')
+                # Group consecutive identical chords
+                groups = []
+                for pitches, dur in meas_events:
+                    if groups and groups[-1][0] == pitches and pitches:
+                        groups[-1][1].append(dur)
+                    else:
+                        groups.append((pitches, [dur]))
+                for pitches, durs in groups:
+                    total = sum(durs)
+                    if total in STANDARD_DURS_H:
+                        pieces = [(total, False)]
+                    elif len(durs) == 1:
+                        pieces = [(durs[0], False)]
+                    else:
+                        remaining = total
+                        ss = sorted(STANDARD_DURS_H, reverse=True)
+                        pcs = []
+                        while remaining > 0:
+                            placed = False
+                            for sd in ss:
+                                if sd <= remaining:
+                                    pcs.append(sd)
+                                    remaining -= sd
+                                    placed = True
+                                    break
+                            if not placed:
+                                pcs.append(remaining)
+                                remaining = Fraction(0)
+                        pieces = [(d, i < len(pcs)-1) for i, d in enumerate(pcs)]
+                    for dv, tied in pieces:
+                        do = format_dur(dv)
+                        tm = '-' if tied else ''
+                        if not pitches:
+                            abc_parts.append('z' + do)
+                        elif len(pitches) == 1:
+                            abc_parts.append(midi_to_abc(pitches[0], key_acc) + do + tm)
+                        else:
+                            ns = [midi_to_abc(p, key_acc) for p in pitches]
+                            abc_parts.append('[' + ''.join(ns) + ']' + do + tm)
+            return ' '.join(abc_parts) + ' |]'
+
+        # Use harp-reduced voices: sustained (long notes) + moving (changes only)
+        rh_sus_abc = harp_events_to_abc(gs['rh_sustained'], key_acc)
+        rh_mov_abc = harp_events_to_abc(gs['rh_moving'], key_acc)
+        lh_sus_abc = harp_events_to_abc(gs['lh_sustained'], key_acc)
+        lh_mov_abc = harp_events_to_abc(gs['lh_moving'], key_acc)
 
         lines = []
         lines.append(f'X: {x_num}')
@@ -1015,14 +1298,18 @@ def stage_format(data, title='SSAATTBB', x_num=1, fmt='grand'):
         lines.append(f'%%scale 2')
         lines.append(f'%%leftmargin 0.5cm')
         lines.append(f'%%rightmargin 0.5cm')
-        lines.append(f'%%staves M | {{RH LH}}')
+        lines.append(f'%%score M | (RH1 RH2) | (LH1 LH2)')
         lines.append(f'V: M clef=treble name="Melody"')
-        lines.append(f'V: RH clef=treble name="RH"')
-        lines.append(f'V: LH clef=bass name="LH"')
+        lines.append(f'V: RH1 clef=treble stem=up')
+        lines.append(f'V: RH2 clef=treble stem=down')
+        lines.append(f'V: LH1 clef=bass stem=up')
+        lines.append(f'V: LH2 clef=bass stem=down')
         lines.append(f'K: {key}')
         lines.append(f'[V: M] {melody_abc}')
-        lines.append(f'[V: RH] {rh_abc}')
-        lines.append(f'[V: LH] {lh_abc}')
+        lines.append(f'[V: RH1] {rh_mov_abc}')
+        lines.append(f'[V: RH2] {rh_sus_abc}')
+        lines.append(f'[V: LH1] {lh_mov_abc}')
+        lines.append(f'[V: LH2] {lh_sus_abc}')
         return '\n'.join(lines)
     else:
         from satb2ssaattbb import result_to_abc
@@ -1070,6 +1357,7 @@ def run_pipeline(tune_abc, hymn_num=None, stop_after=None, fmt='grand', title=No
         ('verify', stage_verify),
         ('stack_split', stage_stack_and_split),
         ('horizontal', stage_horizontal),
+        ('harp_reduce', stage_harp_reduce),
     ]
 
     all_reports = {}
