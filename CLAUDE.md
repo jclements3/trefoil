@@ -142,20 +142,17 @@ Algorithm:
 
 Stats: 288 hymns, 1 chord/measure, 0 crossings, LH intervals: P4 32%, P5 33%, m6 11%, 3rds only 13% (top note only), zero 2nds.
 
-## Recent Changes (2026-04-05)
+## Recent Changes (2026-04-06)
 
-- **v5g pipeline**: SATB → music21 chord ID → open LH / close RH voicing
-- Open LH: root-5th-octave spacing, no 2nds/3rds in bass (only at top of LH near middle C)
-- Close RH: consecutive chord tones in treble, 3rds OK
-- One chord per measure (downbeat only, no mid-measure voice leading anticipation)
-- Measure-boundary shift: consecutive same-chord measures get different voicing window
-- Harp range: C2 (MIDI 36) to G5 (MIDI 79)
-- 288 lead sheets with absolute chord names from music21 chord recognition
-- 22 hymns transposed from Ab/Db to lever harp range (G/D)
-- Clean integer harp durations, fractional melody durations preserved
-- Local preview: `cd app && python3 -m http.server 8080` → localhost:8080
-- Fixed `^G` (G#) → `A` (Ab) enharmonic misspelling in RH/LH of all 29 Eb-key hymns
-- Fixed barline alignment in 12 hymns (pickup duration mismatches, meter errors, zero-duration notes)
-- Blue tracking line synced exactly with audio (zero lead), extends 4 beats past last note
-- Navigator defaults to Eb key filter
-- **Mic chroma scoring (NEW, untested on real harp)**: optional mic button in controls bar. FFT → 12-bin chroma → cosine similarity vs expected pitch classes, sampled once per beat. Running % displayed. Similarity threshold 0.4 in `animateScroll()` — may need adjustment after harp testing. RECORD_AUDIO permission added to manifest + WebView permission grant in MainActivity.java.
+- **App now loads SSAATTBB data** (`ssaattbb_data.json`, 276 hymns) instead of old `hymnal_data.json`. Five voices: Melody, RH1 (moving), RH2 (sustained), LH1 (moving), LH2 (sustained). Old hymnal data still on disk but not loaded.
+- **On-the-fly drill generation**: No pre-built drill files. Parses RH2/LH2 brackets from each hymn, generates block/arpeggio/run/flip exercises as grand staff strip charts in the hymn's key. Renders in score area when clicked.
+- **Hymns/Drills toggle**: Single button switches bottom panel between hymn TOC and drill list.
+- **Chord fraction overlays**: Abstract chord (blue), RH chord (green), LH chord (gray) computed on-the-fly from ABC annotations and bracket notes. JS chord identifier handles major/minor/dim/aug/7th/sus chords.
+- **Pattern hex encoding**: `pattern_index.json` updated. Digits = interval names (3rd=3, 4th=4). First digit = scale degree of RH thumb. E.g. `533-3333` = start on 5th, all thirds.
+- **UI restructure**: Title on own row. Toolbar: [Hymns/Drills toggle] [key filters] [Search] [Recent dropdown]. |< >| scroll 3/4 screen. |<< >>| navigate drills or hymns by mode. Melody toggle. Score 45vh. Playhead line removed (scroll sync unreliable with multi-voice). Hymn TOC sorted by name (strips number prefix), headers start collapsed.
+- **Local preview**: Port 8080 is Traefik — use `python3 -m http.server 9090 --directory app` → localhost:9090
+- **Mic chroma scoring**: Still present, untested on real harp.
+
+## Previous Changes (2026-04-05)
+
+- v5g pipeline, Eb enharmonic fix, barline alignment, mic chroma scoring added. See git log for details.
