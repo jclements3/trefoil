@@ -331,14 +331,34 @@ function setScroll(x) {
 
 // Linear scroll synced to playback duration.
 var playStartTime = 0, playStartX = 0, playEndX = 0, playTotalDuration = 0, scrollStarted = false;
-var playBarTimes = [], playBarPixels = [];
+var playBarTimes = [], playBarPixels = [], playFirstNotePx = 0;
+var playNoteTimes = [], playNotePixels = [];
+var playCurveTimes = [], playCurveFracs = [], playFirstPx = 0, playPxRange = 0;
 
 function animateScroll(now) {
   if (!now) now = performance.now();
-  if (playTotalDuration > 0) {
+  if (playTotalDuration > 0 && playCurveTimes.length > 1) {
+    var elapsed = now - playStartTime;
+
+    // Binary search in densely sampled scroll curve (50ms intervals)
+    var lo = 0, hi = playCurveTimes.length - 1;
+    while (lo < hi - 1) {
+      var mid = (lo + hi) >> 1;
+      if (playCurveTimes[mid] <= elapsed) lo = mid; else hi = mid;
+    }
+
+    // Linear interpolation between adjacent 50ms samples
+    var t0 = playCurveTimes[lo], t1 = playCurveTimes[hi];
+    var f0 = playCurveFracs[lo], f1 = playCurveFracs[hi];
+    var frac = t1 > t0 ? Math.min((elapsed - t0) / (t1 - t0), 1.0) : 1.0;
+    var xFrac = f0 + (f1 - f0) * frac;
+
+    // Map fraction to pixel position
+    setScroll(getPlayheadX() - (playFirstPx + playPxRange * xFrac));
+
+  } else if (playTotalDuration > 0) {
     var elapsed = now - playStartTime;
     var t = Math.min(elapsed / playTotalDuration, 1.0);
-    // Linear interpolation from first note to last note
     setScroll(playStartX + (playEndX - playStartX) * t);
     // Mic scoring: sample once per beat
     if (micEnabled && micAnalyser && micExpectedMap && micScoreData) {
@@ -424,8 +444,7 @@ function renderDrill(idx) {
   var beforeLen = renderAbc.length;
   renderAbc = renderAbc.replace(/"\^[^"]*"/g, '');
   console.log('Stripped annotations: ' + (beforeLen - renderAbc.length) + ' chars removed');
-  // Equal-width bars for linear scroll sync
-  renderAbc = renderAbc.replace(/(%%continueall[^\n]*)/, '$1\n%%equalbars 1');
+  // equalbars removed — causes wide bars with mixed note densities
   abc.tosvg('drill', renderAbc);
 
   // Scale SVG to fill viewport height
@@ -662,6 +681,7 @@ function startPlayback() {
       if (on && !scrollStarted) {
         scrollStarted = true;
         playStartTime = performance.now();
+        smoothScrollPos = scrollX;  // start from current position
         startScrollAnim();
       }
     },
@@ -698,41 +718,38 @@ function startPlayback() {
   }
   console.log('duration: ' + playTotalDuration.toFixed(0) + 'ms bars=' + playBarTimes.length + ' speedRatio=' + speedRatio.toFixed(2));
 
-  // Scroll range: use time-proportional pixel positions
-  // Don't reset scroll — keep the current view position
-  // Compute note positions from current scroll state
+  // Load precomputed PCHIP scroll curve: sc = [[time_ms, x_fraction], ...]
+  // Sampled at 50ms — smooth monotonic cubic hermite, like Blender IPO
+  var savedScroll = scrollX;
+  setScroll(0);
   var allNotes = $container.getElementsByClassName('abcr');
-  if (allNotes.length > 1) {
-    // Temporarily reset to get clean positions
-    var savedScroll = scrollX;
-    setScroll(0);
-    var cRect = $container.getBoundingClientRect();
-    var firstScreenX = allNotes[0].getBoundingClientRect().left - cRect.left;
-    var lastScreenX = allNotes[allNotes.length - 1].getBoundingClientRect().left - cRect.left;
-    var totalPx = lastScreenX - firstScreenX;
-    setScroll(savedScroll);
+  var scrollCurve = drill.sc || [];
 
-    // Build time-to-pixel mapping using barTimes
-    // Each barTime maps to a proportional pixel position
-    playBarPixels = [];
-    var totalDur = drill.dur || playTotalDuration;
-    for (var i = 0; i < playBarTimes.length; i++) {
-      var timeFrac = (playBarTimes[i] * speedRatio) / playTotalDuration;
-      playBarPixels.push(firstScreenX + totalPx * timeFrac);
+  playCurveTimes = [];
+  playCurveFracs = [];
+
+  if (allNotes.length > 1 && scrollCurve.length > 1) {
+    var cRect = $container.getBoundingClientRect();
+    playFirstPx = (allNotes[0].getBoundingClientRect().left - cRect.left) / svgScale * svgScale;
+    var lastPx = (allNotes[allNotes.length - 1].getBoundingClientRect().left - cRect.left) / svgScale * svgScale;
+    playPxRange = lastPx - playFirstPx;
+
+    // Load curve, adjust times for speed ratio
+    for (var i = 0; i < scrollCurve.length; i++) {
+      playCurveTimes.push(scrollCurve[i][0] / speedRatio);
+      playCurveFracs.push(scrollCurve[i][1]);
     }
 
-    // First note at playhead, last note at playhead
-    playStartX = getPlayheadX() - firstScreenX;
-    playEndX = getPlayheadX() - lastScreenX;
+    playStartX = getPlayheadX() - playFirstPx;
+    playEndX = getPlayheadX() - lastPx;
 
-    console.log('scroll: totalPx=' + totalPx.toFixed(0) + ' dur=' + playTotalDuration.toFixed(0) +
-                'ms bars=' + playBarTimes.length);
+    console.log('scroll: ' + scrollCurve.length + ' PCHIP points, pxRange=' + playPxRange.toFixed(0) +
+                ' dur=' + playTotalDuration.toFixed(0) + 'ms');
   } else {
     playStartX = getPlayheadX();
     playEndX = getPlayheadX() - 100;
   }
-
-  // DON'T reset scroll — keep current position. Scroll starts on first note.
+  setScroll(savedScroll);
 
   // Start mic scoring if enabled
   if (micEnabled) {

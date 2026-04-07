@@ -1549,6 +1549,23 @@ def main():
             # Final bar
             bar_times.append(duration_ms)
 
+            # Precompute time of each melody note (ms from start)
+            note_times = []
+            cum_units2 = Fraction(0)
+            for i in range(len(s1['durs'])):
+                cum_qtrs2 = float(cum_units2 * Fraction(dl_num, dl_den) * 4)
+                note_times.append(int(cum_qtrs2 / hymn_tempo * 60 * 1000))
+                dur_str2 = s1['durs'][i]
+                if not dur_str2:
+                    cum_units2 += Fraction(1)
+                elif '/' in dur_str2:
+                    parts2 = dur_str2.split('/')
+                    n2 = int(parts2[0]) if parts2[0] else 1
+                    d2 = int(parts2[1]) if parts2[1] else 2
+                    cum_units2 += Fraction(n2, d2)
+                else:
+                    cum_units2 += Fraction(int(dur_str2))
+
             # Count notes per measure in melody voice for barline pixel alignment
             notes_per_bar = []
             cur_meas = -1
@@ -1574,6 +1591,7 @@ def main():
                 'dur': duration_ms,
                 'barTimes': bar_times,
                 'npb': notes_per_bar,
+                'nt': note_times,
             })
 
         for path in ['app/ssaattbb_data.json', 'app/app/src/main/assets/ssaattbb_data.json']:
