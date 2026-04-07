@@ -31,16 +31,8 @@ label { font-size: 13px; color: #888; }
   position: absolute; top: 45px; left: 0;
   transform-origin: 0 0;
 }
-#playhead-glow {
-  position: absolute; top: 0; bottom: 0; width: 6px;
-  background: rgba(37, 99, 235, 0.25); z-index: 50;
-  pointer-events: none;
-}
-#playhead-line {
-  position: absolute; top: 0; bottom: 0; width: 2px;
-  background: #2563eb; z-index: 51;
-  pointer-events: none;
-}
+#playhead-glow { display: none; }
+#playhead-line { display: none; }
 
 .abcr { fill: #2563eb !important; fill-opacity: 0; z-index: 15; }
 
@@ -92,7 +84,7 @@ label { font-size: 13px; color: #888; }
   border-right: 1px solid #eee;
 }
 .hymn-col:last-child { border-right: none; }
-#score-area { height: 35vh; margin-top: 0; }
+#score-area { height: 45vh; margin-top: 0; }
 .lib-item {
   padding: 10px 10px;
   font-size: 13px;
@@ -325,8 +317,7 @@ function setScroll(x) {
   $container.style.transform = 'scale(' + svgScale + ') translateX(' + (x / svgScale) + 'px)';
 }
 
-// Linear constant-velocity scroll synced to playback duration.
-// Blue line starts on first note, ends on last note.
+// Linear scroll synced to playback duration.
 var playStartTime = 0, playStartX = 0, playEndX = 0, playTotalDuration = 0;
 
 function animateScroll(now) {
@@ -419,9 +410,8 @@ function renderDrill(idx) {
   var svgs = $container.getElementsByTagName('svg');
   var totalH = 0;
   for (var i = 0; i < svgs.length; i++) totalH += parseFloat(svgs[i].getAttribute('height') || 0);
-  var areaH = $area.offsetHeight;
-  svgScale = (areaH > 0 && totalH > 0) ? (areaH * 0.9) / totalH : 1;
-  if (svgScale < 1) svgScale = 1;
+  var areaH = $area.offsetHeight - 50;
+  svgScale = (areaH > 0 && totalH > 0) ? (areaH * 0.95) / totalH : 1;
   if (svgScale > 3) svgScale = 3;
   console.log('areaH=' + areaH + ' totalH=' + totalH + ' svgScale=' + svgScale.toFixed(2) + ' playheadX=' + getPlayheadX().toFixed(1));
   $container.style.transformOrigin = '0 0';
@@ -629,32 +619,29 @@ function startPlayback() {
   abcplay.set_speed(bpm / nativeBpm);
   abcplay.set_vol(parseInt($volSlider.value) / 100);
 
-  // Compute total duration from the abc2svg symbol chain
-  // Only count the melody voice (first voice) to avoid inflating duration
+  // Compute total duration — find max (time + dur) across all symbols
   var totalBeats = 0;
   for (var s = tune[0]; s; s = s.ts_next) {
-    if (s.dur) totalBeats = Math.max(totalBeats, (s.time + s.dur));
+    if (s.dur && s.time + s.dur > totalBeats) totalBeats = s.time + s.dur;
   }
   var totalBeatCount = totalBeats / 384; // 384 = quarter note in abc2svg units
   // Duration at current BPM (speed ratio applied by abcplay separately)
   playTotalDuration = (totalBeatCount / bpm) * 60 * 1000; // ms
 
-  // Scroll range: first note to past the last note
+  // Scroll range: first note to last note
   var allNotes = $container.getElementsByClassName('abcr');
-  var firstNote = allNotes[0];
-  var lastNote = allNotes[allNotes.length - 1];
   var cRect = $container.getBoundingClientRect();
-  var firstX = firstNote ? (firstNote.getBoundingClientRect().left - cRect.left) / svgScale : 0;
-  var lastX = lastNote ? (lastNote.getBoundingClientRect().left - cRect.left) / svgScale : firstX + 100;
-  // Pixels per beat for lead/trail calculations
-  var beatPx = 0;
-  if (allNotes.length > 1) {
-    beatPx = ((lastX - firstX) / totalBeatCount) * svgScale;
+  if (allNotes.length > 0) {
+    var firstNote = allNotes[0];
+    var lastNote = allNotes[allNotes.length - 1];
+    var firstX = (firstNote.getBoundingClientRect().left - cRect.left) / svgScale;
+    var lastX = (lastNote.getBoundingClientRect().left - cRect.left) / svgScale;
+    playStartX = getPlayheadX() - firstX * svgScale;
+    playEndX = getPlayheadX() - lastX * svgScale;
+  } else {
+    playStartX = getPlayheadX();
+    playEndX = getPlayheadX() - 100;
   }
-  // Extend scroll past last note by 4 beats so line reaches the final barline
-  var trailPx = beatPx * 4;
-  playStartX = getPlayheadX() - firstX * svgScale;
-  playEndX = getPlayheadX() - (lastX * svgScale + trailPx);
 
   setScroll(playStartX);
   playStartTime = performance.now();
@@ -1213,9 +1200,8 @@ function renderPatternInScore(pat, key, hex) {
   var svgs = $container.getElementsByTagName('svg');
   var totalH = 0;
   for (var i = 0; i < svgs.length; i++) totalH += parseFloat(svgs[i].getAttribute('height') || 0);
-  var areaH = $area.offsetHeight;
-  svgScale = (areaH > 0 && totalH > 0) ? (areaH * 0.9) / totalH : 1;
-  if (svgScale < 1) svgScale = 1;
+  var areaH = $area.offsetHeight - 50;
+  svgScale = (areaH > 0 && totalH > 0) ? (areaH * 0.95) / totalH : 1;
   if (svgScale > 3) svgScale = 3;
   $container.style.transformOrigin = '0 0';
   positionPlayhead();
