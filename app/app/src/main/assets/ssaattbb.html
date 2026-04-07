@@ -60,8 +60,7 @@ body { font-family: -apple-system, sans-serif; height: 100vh; display: flex; fle
 /* Library */
 #library { flex: 1; min-height: 0; display: flex; flex-direction: column; background: #fff; }
 #lib-search {
-  padding: 10px 14px; border: none; border-bottom: 1px solid #ddd;
-  font-size: 16px; outline: none; background: #f8f8f8;
+  padding: 10px 14px; font-size: 16px; outline: none; background: #f8f8f8;
 }
 #lib-search::placeholder { color: #aaa; }
 #lib-tabs { display: flex; border-bottom: 2px solid #ddd; background: #f0f4ff; }
@@ -127,7 +126,12 @@ body { font-family: -apple-system, sans-serif; height: 100vh; display: flex; fle
 </div>
 
 <div id="library">
-  <input type="text" id="lib-search" placeholder="Search hymns..."/>
+  <div style="display:flex;gap:8px;padding:0;">
+    <input type="text" id="lib-search" placeholder="Search..." style="flex:1;border-right:1px solid #ddd;"/>
+    <select id="recent-select" style="flex:1;font-size:14px;padding:8px 10px;border:none;border-bottom:1px solid #ddd;background:#f8f8f8;outline:none;">
+      <option value="">Recent...</option>
+    </select>
+  </div>
   <div id="lib-tabs">
     <div class="lib-tab active" data-panel="hymn-panel">Hymns</div>
     <div class="lib-tab" data-panel="drill-panel">Drills</div>
@@ -159,7 +163,8 @@ body { font-family: -apple-system, sans-serif; height: 100vh; display: flex; fle
 </div>
 
 <script>
-var DATA = [], currentIdx = -1;
+var DATA = [], DRILLS = [], currentIdx = -1, isDrill = false;
+var recentItems = JSON.parse(localStorage.getItem('harpRecent') || '[]');  // [{type:'hymn'|'drill', idx:N, title:str}]
 var abcplay = null, playing = false, currentTune = null;
 var melodyOn = true, activeKey = 'All';
 var bpm = 80;
@@ -211,9 +216,14 @@ positionPlayhead();
 
 // ── Load data ──
 function init() {
-  fetch('ssaattbb_data.json?v=' + Date.now()).then(function(r) { return r.json(); }).then(function(d) {
-    DATA = d;
+  Promise.all([
+    fetch('ssaattbb_data.json?v=' + Date.now()).then(function(r) { return r.json(); }),
+    fetch('pattern_drills.json?v=' + Date.now()).then(function(r) { return r.json(); })
+  ]).then(function(results) {
+    DATA = results[0];
+    DRILLS = results[1] || [];
     buildLibrary();
+    buildDrillList();
     if (DATA.length > 0) selectHymn(0);
   });
 }
@@ -278,6 +288,93 @@ function buildHymnCols(items) {
   buildCol($right, sortedLetters.slice(half));
 }
 
+function addRecent(type, idx, title) {
+  // Remove if already in list
+  recentItems = recentItems.filter(function(r) { return !(r.type === type && r.idx === idx); });
+  // Add to front
+  recentItems.unshift({type: type, idx: idx, title: title});
+  // Keep max 20
+  if (recentItems.length > 20) recentItems = recentItems.slice(0, 20);
+  localStorage.setItem('harpRecent', JSON.stringify(recentItems));
+  updateRecentDropdown();
+}
+
+function updateRecentDropdown() {
+  var sel = document.getElementById('recent-select');
+  sel.innerHTML = '<option value="">Recent...</option>';
+  recentItems.forEach(function(r, i) {
+    var opt = document.createElement('option');
+    opt.value = i;
+    opt.textContent = r.title;
+    sel.appendChild(opt);
+  });
+}
+
+function buildDrillList() {
+  var $left = document.getElementById('drill-col-left');
+  var $right = document.getElementById('drill-col-right');
+  $left.innerHTML = ''; $right.innerHTML = '';
+
+  // Group drills by hand + shape name (e.g. "RH 3rd+3rd", "LH 3rd+4th+5th")
+  var groups = {};
+  DRILLS.forEach(function(d, i) {
+    // Extract group: "RH 3rd+3rd from C" -> "RH 3rd+3rd"
+    var parts = d.t.split(' from ');
+    var group = parts[0];
+    if (!groups[group]) groups[group] = [];
+    groups[group].push({d: d, idx: i});
+  });
+
+  var groupNames = Object.keys(groups);
+  // Split: RH groups in left col, LH in right
+  var rhGroups = groupNames.filter(function(g) { return g.indexOf('RH') === 0; });
+  var lhGroups = groupNames.filter(function(g) { return g.indexOf('LH') === 0; });
+
+  function buildGroupCol(col, groupList) {
+    groupList.forEach(function(groupName) {
+      var hdr = document.createElement('div');
+      hdr.className = 'letter-header collapsed';
+      hdr.textContent = groupName;
+      hdr.onclick = function() {
+        hdr.classList.toggle('collapsed');
+        hdr.nextElementSibling.classList.toggle('hidden');
+      };
+      col.appendChild(hdr);
+
+      var itemsDiv = document.createElement('div');
+      itemsDiv.className = 'letter-items hidden';
+      groups[groupName].forEach(function(item) {
+        var div = document.createElement('div');
+        div.className = 'lib-item';
+        div.setAttribute('data-drill-idx', item.idx);
+        // Show just the starting note
+        var fromPart = item.d.t.split(' from ')[1] || item.d.t;
+        div.textContent = 'from ' + fromPart;
+        div.onclick = function() { selectDrill(item.idx); };
+        itemsDiv.appendChild(div);
+      });
+      col.appendChild(itemsDiv);
+    });
+  }
+
+  buildGroupCol($left, rhGroups);
+  buildGroupCol($right, lhGroups);
+}
+
+function selectDrill(idx) {
+  isDrill = true;
+  currentIdx = idx;
+  var d = DRILLS[idx];
+  document.getElementById('title').textContent = d.t;
+  document.getElementById('key-info').textContent = 'Key: ' + d.key;
+
+  document.querySelectorAll('.lib-item').forEach(function(el) { el.classList.remove('active'); });
+  document.querySelectorAll('[data-drill-idx="' + idx + '"]').forEach(function(el) { el.classList.add('active'); });
+
+  addRecent('drill', idx, d.t);
+  renderAbc(d.abc);
+}
+
 function filterByKey(key) {
   activeKey = key;
   document.querySelectorAll('.key-btn').forEach(function(btn) {
@@ -292,19 +389,19 @@ function filterByKey(key) {
 
 // ── Score rendering ──
 function selectHymn(idx) {
+  isDrill = false;
   currentIdx = idx;
   var h = DATA[idx];
 
-  // Update title
   document.getElementById('title').textContent = h.t;
   document.getElementById('key-info').textContent = 'Key: ' + h.key;
 
-  // Highlight in library
   document.querySelectorAll('.lib-item').forEach(function(el) {
     el.classList.toggle('active', parseInt(el.getAttribute('data-idx')) === idx);
   });
 
-  render();
+  addRecent('hymn', idx, h.t);
+  renderAbc(getAbc(h));
 }
 
 function getAbc(h) {
@@ -357,7 +454,14 @@ function getAbc(h) {
 
 function render() {
   if (currentIdx < 0) return;
-  var h = DATA[currentIdx];
+  if (isDrill) {
+    renderAbc(DRILLS[currentIdx].abc);
+  } else {
+    renderAbc(getAbc(DATA[currentIdx]));
+  }
+}
+
+function renderAbc(abcText) {
   $container.innerHTML = '';
 
   if (abcplay && playing) { abcplay.stop(); playing = false; updatePlayBtn(); stopScrollAnim(); }
@@ -382,7 +486,6 @@ function render() {
     }
   };
 
-  var abcText = getAbc(h);
   var abc = new abc2svg.Abc(user);
   abc.tosvg('harp', abcText);
 
@@ -476,6 +579,17 @@ function toggleMelody() {
   btn.classList.toggle('active', melodyOn);
   render();
 }
+
+// ── Recent ──
+document.getElementById('recent-select').addEventListener('change', function() {
+  var idx = parseInt(this.value);
+  if (isNaN(idx)) return;
+  var r = recentItems[idx];
+  if (r.type === 'hymn') selectHymn(r.idx);
+  else if (r.type === 'drill') selectDrill(r.idx);
+  this.value = '';  // reset to "Recent..."
+});
+updateRecentDropdown();
 
 // ── Search ──
 document.getElementById('lib-search').addEventListener('input', function() {
