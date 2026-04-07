@@ -113,6 +113,7 @@ body { font-family: -apple-system, sans-serif; height: 100vh; display: flex; fle
   <label style="font-size:13px;color:#888;">BPM:</label>
   <input type="range" id="bpm-slider" min="20" max="240" value="80" style="width:80px;vertical-align:middle;"/>
   <span id="bpm-val" style="font-size:14px;font-weight:bold;min-width:28px;">80</span>
+  <button class="ctrl-btn" id="btn-mute" onclick="toggleMute()">Mute</button>
   <label style="font-size:13px;color:#888;">Vol:</label>
   <input type="range" id="vol-slider" min="0" max="100" value="50" style="width:80px;vertical-align:middle;"/>
   <span id="vol-label" style="font-size:11px;color:#888;min-width:18px;">50</span>
@@ -498,6 +499,28 @@ document.querySelectorAll('.lib-tab').forEach(function(tab) {
     document.getElementById(tab.getAttribute('data-panel')).classList.add('active');
   };
 });
+
+var muted = false, savedVol = 50;
+
+function toggleMute() {
+  muted = !muted;
+  var btn = document.getElementById('btn-mute');
+  var slider = document.getElementById('vol-slider');
+  if (muted) {
+    savedVol = parseInt(slider.value);
+    slider.value = 0;
+    document.getElementById('vol-label').textContent = '0';
+    btn.classList.add('active');
+    btn.textContent = 'Unmute';
+    if (abcplay) abcplay.set_vol(0);
+  } else {
+    slider.value = savedVol;
+    document.getElementById('vol-label').textContent = savedVol;
+    btn.classList.remove('active');
+    btn.textContent = 'Mute';
+    if (abcplay) abcplay.set_vol(savedVol / 100);
+  }
+}
 
 // ── BPM and Volume ──
 document.getElementById('bpm-slider').addEventListener('input', function() {
