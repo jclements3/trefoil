@@ -2,7 +2,8 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>SSAATTBB Viewer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+<title>Harp Score</title>
 <script src="abc2svg/abc2svg-1.js"></script>
 <script src="abc2svg/snd-1.js"></script>
 <script>
@@ -16,94 +17,336 @@ abc2svg.loadjs = function(fn, relay, onerror) {
 };
 </script>
 <style>
-body { font-family: sans-serif; margin: 0; padding: 0; background: #f5f5f5; }
-#controls {
-  position: sticky; top: 0; background: #fff; padding: 8px 12px;
-  border-bottom: 2px solid #999; z-index: 10;
-  display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
+* { box-sizing: border-box; margin: 0; padding: 0; }
+.abcr { fill: #2563eb !important; fill-opacity: 0; }
+body { font-family: -apple-system, sans-serif; height: 100vh; display: flex; flex-direction: column; background: #f5f5f5; }
+
+/* Top bar */
+#topbar {
+  display: flex; align-items: center; gap: 8px;
+  padding: 6px 10px; background: #fff; border-bottom: 2px solid #ccc;
+  flex-shrink: 0;
 }
-#hymn-select { font-size: 18px; padding: 6px; max-width: 400px; }
-#key-filter { font-size: 18px; padding: 6px; }
-button {
-  font-size: 18px; padding: 8px 16px; cursor: pointer;
-  border: 2px solid #666; border-radius: 6px; background: #eee;
+#title { font-size: 16px; font-weight: bold; color: #2a2a2a; flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ctrl-btn {
+  font-size: 14px; padding: 6px 14px; border: 2px solid #ccc;
+  border-radius: 8px; background: #fff; color: #444; cursor: pointer;
 }
-button:hover { background: #ddd; }
-#info { font-size: 16px; color: #444; margin-left: 10px; }
-.warn { color: #e65100; font-weight: bold; }
-#score-wrapper {
-  overflow-x: auto; overflow-y: hidden;
-  margin: 10px 20px; background: white;
+.ctrl-btn:active { background: #dbeafe; }
+.ctrl-btn.active { background: #2563eb; color: #fff; border-color: #2563eb; }
+#key-info { font-size: 13px; color: #888; }
+
+/* Score area */
+#score-area {
+  height: 40vh; overflow: hidden; position: relative;
+  background: #fff; border-bottom: 2px solid #ccc;
+  flex-shrink: 0;
 }
-#score {
-  padding: 10px;
-  min-height: 100px;
+#score-container {
+  position: absolute; top: 0; left: 0;
+  transform-origin: 0 0;
 }
+#playhead-glow {
+  position: absolute; top: 0; bottom: 0; width: 6px;
+  background: rgba(37, 99, 235, 0.25); z-index: 50;
+  pointer-events: none;
+}
+#playhead-line {
+  position: absolute; top: 0; bottom: 0; width: 2px;
+  background: #2563eb; z-index: 51;
+  pointer-events: none;
+}
+
+/* Library */
+#library { flex: 1; min-height: 0; display: flex; flex-direction: column; background: #fff; }
+#lib-search {
+  padding: 10px 14px; border: none; border-bottom: 1px solid #ddd;
+  font-size: 16px; outline: none; background: #f8f8f8;
+}
+#lib-search::placeholder { color: #aaa; }
+#lib-tabs { display: flex; border-bottom: 2px solid #ddd; background: #f0f4ff; }
+.lib-tab {
+  flex: 1; text-align: center; padding: 12px 8px;
+  font-size: 15px; font-weight: bold; color: #666; cursor: pointer;
+  border-bottom: 3px solid transparent;
+}
+.lib-tab.active { color: #2563eb; border-bottom-color: #2563eb; background: #fff; }
+.lib-panel { display: none; flex: 1; flex-direction: column; min-height: 0; }
+.lib-panel.active { display: flex; }
+#key-filters {
+  display: flex; flex-wrap: wrap; gap: 4px;
+  padding: 6px 10px; background: #f0f4ff; border-bottom: 1px solid #ddd;
+}
+.key-btn {
+  font-size: 13px; padding: 4px 10px; border: 1.5px solid #ccc;
+  border-radius: 6px; background: #fff; color: #444; cursor: pointer;
+}
+.key-btn.active { background: #2563eb; color: #fff; border-color: #2563eb; }
+#hymn-cols { flex: 1; display: flex; min-height: 0; }
+.hymn-col { flex: 1; overflow-y: auto; border-right: 1px solid #eee; }
+.hymn-col:last-child { border-right: none; }
+#drill-list { flex: 1; overflow-y: auto; display: flex; min-height: 0; }
+.lib-item {
+  padding: 10px; font-size: 13px; color: #2a2a2a;
+  border-bottom: 1px solid #eee; cursor: pointer;
+}
+.lib-item:active { background: #dbeafe; }
+.lib-item.active { background: #dbeafe; font-weight: bold; }
+.letter-header {
+  padding: 10px 12px; font-size: 15px; font-weight: bold;
+  color: #2563eb; background: #f0f4ff; border-bottom: 1px solid #ddd; cursor: pointer;
+}
+.letter-header.collapsed::after { content: ' +'; color: #999; }
+.letter-header:not(.collapsed)::after { content: ' \2212'; color: #999; }
+.letter-items.hidden { display: none; }
 </style>
 </head>
 <body>
-<div id="controls">
-  <select id="key-filter">
-    <option value="">All keys</option>
-    <option value="Eb">Eb</option>
-    <option value="Bb">Bb</option>
-    <option value="F">F</option>
-    <option value="C">C</option>
-    <option value="G">G</option>
-    <option value="D">D</option>
-    <option value="A">A</option>
-    <option value="E">E</option>
-  </select>
-  <select id="hymn-select" size="1"></select>
-  <button id="play-btn" onclick="togglePlay()">Play</button>
-  <button id="mel-btn" onclick="toggleMelody()" style="background:#4CAF50;color:white;">Melody On</button>
-  <button onclick="nav(-1)">Prev</button>
-  <button onclick="nav(1)">Next</button>
-  <span id="info"></span>
+
+<div id="topbar">
+  <span id="title">Harp Score</span>
+  <button class="ctrl-btn" id="btn-rewind" onclick="rewind()">|&lt;&lt;</button>
+  <button class="ctrl-btn" id="btn-play" onclick="togglePlay()">Play</button>
+  <button class="ctrl-btn" id="btn-prev" onclick="navHymn(-1)">&lt; Prev</button>
+  <button class="ctrl-btn" id="btn-next" onclick="navHymn(1)">Next &gt;</button>
+  <button class="ctrl-btn active" id="btn-mel" onclick="toggleMelody()">Melody</button>
+  <label style="font-size:13px;color:#888;">BPM:</label>
+  <input type="range" id="bpm-slider" min="20" max="240" value="80" style="width:80px;vertical-align:middle;"/>
+  <span id="bpm-val" style="font-size:14px;font-weight:bold;min-width:28px;">80</span>
+  <label style="font-size:13px;color:#888;">Vol:</label>
+  <input type="range" id="vol-slider" min="0" max="100" value="50" style="width:80px;vertical-align:middle;"/>
+  <span id="vol-label" style="font-size:11px;color:#888;min-width:18px;">50</span>
+  <span id="key-info"></span>
 </div>
-<div id="score-wrapper"><div id="score"></div></div>
+
+<div id="score-area">
+  <div id="score-container"></div>
+  <div id="playhead-glow"></div>
+  <div id="playhead-line"></div>
+</div>
+
+<div id="library">
+  <input type="text" id="lib-search" placeholder="Search hymns..."/>
+  <div id="lib-tabs">
+    <div class="lib-tab active" data-panel="hymn-panel">Hymns</div>
+    <div class="lib-tab" data-panel="drill-panel">Drills</div>
+  </div>
+  <div id="hymn-panel" class="lib-panel active">
+    <div id="key-filters">
+      <span style="font-size:12px;color:#888;align-self:center;">Key:</span>
+      <button class="key-btn active" data-key="All">All</button>
+      <button class="key-btn" data-key="Eb">Eb</button>
+      <button class="key-btn" data-key="Bb">Bb</button>
+      <button class="key-btn" data-key="F">F</button>
+      <button class="key-btn" data-key="C">C</button>
+      <button class="key-btn" data-key="G">G</button>
+      <button class="key-btn" data-key="D">D</button>
+      <button class="key-btn" data-key="A">A</button>
+      <button class="key-btn" data-key="E">E</button>
+    </div>
+    <div id="hymn-cols">
+      <div id="hymn-col-left" class="hymn-col"></div>
+      <div id="hymn-col-right" class="hymn-col"></div>
+    </div>
+  </div>
+  <div id="drill-panel" class="lib-panel">
+    <div id="drill-list">
+      <div id="drill-col-left" class="hymn-col"></div>
+      <div id="drill-col-right" class="hymn-col"></div>
+    </div>
+  </div>
+</div>
 
 <script>
-var DATA = [], filtered = [], currentIdx = 0;
+var DATA = [], currentIdx = -1;
 var abcplay = null, playing = false, currentTune = null;
-var melodyOn = true;
+var melodyOn = true, activeKey = 'All';
+var bpm = 80;
+var svgScale = 1, scrollX = 0, animId = null;
+var playStartTime = 0, playStartX = 0, playEndX = 0, playTotalDuration = 0;
 
+var $area = null, $container = null, $phGlow = null, $phLine = null;
+
+function getPlayheadX() { return $area.offsetWidth * 0.05; }
+
+function setScroll(x) {
+  scrollX = x;
+  $container.style.transform = 'translateX(' + x + 'px)';
+}
+
+function animateScroll(now) {
+  if (!now) now = performance.now();
+  if (playTotalDuration > 0) {
+    var elapsed = now - playStartTime;
+    var t = Math.min(elapsed / playTotalDuration, 1.0);
+    setScroll(playStartX + (playEndX - playStartX) * t);
+  }
+  if (playing) {
+    animId = requestAnimationFrame(animateScroll);
+  }
+}
+
+function startScrollAnim() {
+  if (animId) cancelAnimationFrame(animId);
+  animId = requestAnimationFrame(animateScroll);
+}
+
+function stopScrollAnim() {
+  if (animId) { cancelAnimationFrame(animId); animId = null; }
+}
+
+function positionPlayhead() {
+  var px = getPlayheadX();
+  $phGlow.style.left = (px - 2) + 'px';
+  $phLine.style.left = px + 'px';
+}
+
+// ── Init DOM refs ──
+$area = document.getElementById('score-area');
+$container = document.getElementById('score-container');
+$phGlow = document.getElementById('playhead-glow');
+$phLine = document.getElementById('playhead-line');
+positionPlayhead();
+
+// ── Load data ──
 function init() {
   fetch('ssaattbb_data.json?v=' + Date.now()).then(function(r) { return r.json(); }).then(function(d) {
     DATA = d;
-    applyFilter();
+    buildLibrary();
+    if (DATA.length > 0) selectHymn(0);
   });
 }
 
-function applyFilter() {
-  var key = document.getElementById('key-filter').value;
-  filtered = key ? DATA.filter(function(h) { return h.key === key; }) : DATA.slice();
-  populateSelect();
-  if (filtered.length > 0) { currentIdx = 0; render(); }
+// ── Library ──
+function buildLibrary() {
+  var hymns = DATA.filter(function(h) { return h.n >= 4000 || h.n >= 1; });
+  var drills = [];
+  var hymnItems = [];
+
+  // Separate drills (n < 4000) from hymns (n >= 4000)
+  // In ssaattbb_data, all are hymns from OpenHymnal
+  DATA.forEach(function(h, i) { hymnItems.push({h: h, idx: i}); });
+
+  buildHymnCols(hymnItems);
 }
 
-function populateSelect() {
-  var sel = document.getElementById('hymn-select');
-  sel.innerHTML = '';
-  filtered.forEach(function(h, i) {
-    var opt = document.createElement('option');
-    opt.value = i;
-    opt.textContent = h.t + (h.violations > 0 ? ' *' : '');
-    sel.appendChild(opt);
+function buildHymnCols(items) {
+  var $left = document.getElementById('hymn-col-left');
+  var $right = document.getElementById('hymn-col-right');
+  $left.innerHTML = ''; $right.innerHTML = '';
+
+  // Group by first letter
+  var letters = {};
+  items.forEach(function(item) {
+    var title = item.h.t.replace(/^\d+\s*/, '');
+    var letter = title.charAt(0).toUpperCase();
+    if (!letters[letter]) letters[letter] = [];
+    letters[letter].push(item);
   });
+
+  var sortedLetters = Object.keys(letters).sort();
+  var half = Math.ceil(sortedLetters.length / 2);
+
+  function buildCol(col, letterList) {
+    letterList.forEach(function(letter) {
+      var hdr = document.createElement('div');
+      hdr.className = 'letter-header collapsed';
+      hdr.textContent = letter;
+      hdr.onclick = function() {
+        hdr.classList.toggle('collapsed');
+        var items = hdr.nextElementSibling;
+        items.classList.toggle('hidden');
+      };
+      col.appendChild(hdr);
+
+      var itemsDiv = document.createElement('div');
+      itemsDiv.className = 'letter-items hidden';
+      letters[letter].forEach(function(item) {
+        var div = document.createElement('div');
+        div.className = 'lib-item';
+        div.setAttribute('data-idx', item.idx);
+        div.textContent = item.h.t;
+        div.onclick = function() { selectHymn(item.idx); };
+        itemsDiv.appendChild(div);
+      });
+      col.appendChild(itemsDiv);
+    });
+  }
+
+  buildCol($left, sortedLetters.slice(0, half));
+  buildCol($right, sortedLetters.slice(half));
+}
+
+function filterByKey(key) {
+  activeKey = key;
+  document.querySelectorAll('.key-btn').forEach(function(btn) {
+    btn.classList.toggle('active', btn.getAttribute('data-key') === key);
+  });
+  var items = [];
+  DATA.forEach(function(h, i) {
+    if (key === 'All' || h.key === key) items.push({h: h, idx: i});
+  });
+  buildHymnCols(items);
+}
+
+// ── Score rendering ──
+function selectHymn(idx) {
+  currentIdx = idx;
+  var h = DATA[idx];
+
+  // Update title
+  document.getElementById('title').textContent = h.t;
+  document.getElementById('key-info').textContent = 'Key: ' + h.key;
+
+  // Highlight in library
+  document.querySelectorAll('.lib-item').forEach(function(el) {
+    el.classList.toggle('active', parseInt(el.getAttribute('data-idx')) === idx);
+  });
+
+  render();
 }
 
 function getAbc(h) {
   var abc = h.abc;
   if (!melodyOn) {
-    // Mute melody: replace melody voice notes with rests
     var lines = abc.split('\n');
     for (var i = 0; i < lines.length; i++) {
       if (lines[i].indexOf('[V: M]') === 0) {
-        // Replace all notes with rests of same duration, keep barlines and chord annotations
-        lines[i] = lines[i].replace(/(\"\^[^\"]*\")?\s*(?:\[[A-Ga-g,'^_=]+\]|[A-Ga-g][,'^_=]*)(\d*(?:\/\d*)?)/g, function(m, ann, dur) {
-          return (ann || '') + 'z' + (dur || '');
-        });
+        // Replace notes/chords with rests, preserve chord annotations and durations
+        var voice = lines[i].replace(/\[V: M\]\s*/, '');
+        var result = '[V: M] ';
+        var pos = 0;
+        while (pos < voice.length) {
+          // Chord annotation "^text"
+          if (voice[pos] === '"') {
+            var end = voice.indexOf('"', pos + 1);
+            if (end >= 0) { result += voice.substring(pos, end + 1); pos = end + 1; continue; }
+          }
+          // ABC chord [notes]duration
+          if (voice[pos] === '[' && voice[pos+1] !== 'V') {
+            var cb = voice.indexOf(']', pos);
+            if (cb >= 0) {
+              pos = cb + 1;
+              // grab duration after ]
+              var dm = voice.substring(pos).match(/^(\d*(?:\/\d*)?)/);
+              var dur = dm ? dm[1] : '';
+              pos += dur.length;
+              result += 'z' + dur;
+              continue;
+            }
+          }
+          // Single note: accidental? letter octave? duration?
+          var nm = voice.substring(pos).match(/^[_^=]*[A-Ga-g][,']*(\d*(?:\/\d*)?)/);
+          if (nm) {
+            result += 'z' + nm[1];
+            pos += nm[0].length;
+            continue;
+          }
+          // Pass through anything else (barlines, spaces, etc)
+          result += voice[pos];
+          pos++;
+        }
+        lines[i] = result;
       }
     }
     abc = lines.join('\n');
@@ -112,17 +355,25 @@ function getAbc(h) {
 }
 
 function render() {
-  if (filtered.length === 0) return;
-  var h = filtered[currentIdx];
-  document.getElementById('hymn-select').value = currentIdx;
+  if (currentIdx < 0) return;
+  var h = DATA[currentIdx];
+  $container.innerHTML = '';
 
-  var scoreDiv = document.getElementById('score');
-  scoreDiv.innerHTML = '';
-
-  if (abcplay && playing) { abcplay.stop(); playing = false; updatePlayBtn(); }
+  if (abcplay && playing) { abcplay.stop(); playing = false; updatePlayBtn(); stopScrollAnim(); }
 
   var user = {
-    img_out: function(svg) { scoreDiv.innerHTML += svg; },
+    img_out: function(svg) { $container.innerHTML += svg; },
+    anno_stop: function(type, start, stop, x, y, w, h) {
+      if (type !== 'note' && type !== 'rest') return;
+      if (abc.out_sxsy && abc.sh) {
+        abc.out_svg('<rect class="abcr _' + start + '_" x="');
+        abc.out_sxsy(x, '" y="', y);
+        abc.out_svg('" width="' + w.toFixed(2) + '" height="' + abc.sh(h).toFixed(2) + '"/>\n');
+      } else {
+        abc.out_svg('<rect class="abcr _' + start + '_" x="' + x.toFixed(2) +
+          '" y="' + y.toFixed(2) + '" width="' + w.toFixed(2) + '" height="' + h.toFixed(2) + '"/>\n');
+      }
+    },
     errmsg: function(msg) { console.warn('abc2svg:', msg); },
     read_file: function() { return ''; },
     get_abcmodel: function(tsfirst, voice_tb, anno_type, info) {
@@ -132,64 +383,140 @@ function render() {
 
   var abcText = getAbc(h);
   var abc = new abc2svg.Abc(user);
-  abc.tosvg('ssaattbb', abcText);
+  abc.tosvg('harp', abcText);
 
-  var info = 'Key: ' + h.key;
-  if (h.violations > 0) {
-    info += ' <span class="warn">' + h.violations + ' violation(s)</span>';
-  }
-  document.getElementById('info').innerHTML = info;
+  // Position playhead
+  positionPlayhead();
+  setScroll(getPlayheadX());
 }
 
-function toggleMelody() {
-  melodyOn = !melodyOn;
-  var btn = document.getElementById('mel-btn');
-  btn.textContent = melodyOn ? 'Melody On' : 'Melody Off';
-  btn.style.background = melodyOn ? '#4CAF50' : '#eee';
-  btn.style.color = melodyOn ? 'white' : 'black';
-  render();
-}
-
+// ── Playback ──
 function togglePlay() {
   if (!currentTune) return;
   if (playing) {
     if (abcplay) abcplay.stop();
     playing = false;
     updatePlayBtn();
+    stopScrollAnim();
     return;
   }
+
+  // Get native BPM from ABC Q: field
+  var h = DATA[currentIdx];
+  var qm = h.abc.match(/Q:\s*\d+\/\d+=(\d+)/);
+  var nativeBpm = qm ? parseInt(qm[1]) : 80;
+  var speedRatio = bpm / nativeBpm;
+
+  // Compute total duration from abc2svg symbol chain
+  var totalBeats = 0;
+  for (var s = currentTune[0]; s; s = s.ts_next) {
+    if (s.dur) totalBeats = Math.max(totalBeats, (s.time + s.dur));
+  }
+  var totalBeatCount = totalBeats / 384;
+  // Duration at native tempo, then adjusted by speed ratio
+  playTotalDuration = (totalBeatCount / nativeBpm) * 60 * 1000 / speedRatio;
+
+  // Scroll range from actual note positions
+  var allNotes = $container.getElementsByClassName('abcr');
+  var cRect = $container.getBoundingClientRect();
+  var firstX = allNotes.length > 0 ? (allNotes[0].getBoundingClientRect().left - cRect.left) : 0;
+  var lastX = allNotes.length > 0 ? (allNotes[allNotes.length - 1].getBoundingClientRect().left - cRect.left) : firstX + 100;
+  var beatPx = allNotes.length > 1 ? (lastX - firstX) / totalBeatCount : 0;
+  var trailPx = beatPx * 4;
+  playStartX = getPlayheadX() - firstX;
+  playEndX = getPlayheadX() - lastX - trailPx;
+
   var playconf = {
-    onend: function() { playing = false; updatePlayBtn(); },
+    onend: function() { playing = false; updatePlayBtn(); stopScrollAnim(); },
     onnote: function() {},
     sfu: 'abc2svg/Scc1t2'
   };
   if (!abcplay) abcplay = AbcPlay(playconf);
   abcplay.add(currentTune[0], currentTune[1], currentTune[3]);
+  abcplay.set_speed(speedRatio);
+  abcplay.set_vol(parseInt(document.getElementById('vol-slider').value) / 100);
+
+  setScroll(playStartX);
   abcplay.play(currentTune[0], null);
   playing = true;
+  playStartTime = performance.now();
   updatePlayBtn();
+  startScrollAnim();
 }
 
 function updatePlayBtn() {
-  var btn = document.getElementById('play-btn');
+  var btn = document.getElementById('btn-play');
   btn.textContent = playing ? 'Stop' : 'Play';
-  btn.style.background = playing ? '#4CAF50' : '#eee';
-  btn.style.color = playing ? 'white' : 'black';
+  btn.classList.toggle('active', playing);
 }
 
-function nav(dir) {
-  currentIdx = (currentIdx + dir + filtered.length) % filtered.length;
+function navHymn(dir) {
+  // Find visible hymns in current key filter
+  var visible = [];
+  DATA.forEach(function(h, i) {
+    if (activeKey === 'All' || h.key === activeKey) visible.push(i);
+  });
+  if (visible.length === 0) return;
+  var curPos = visible.indexOf(currentIdx);
+  if (curPos < 0) curPos = 0;
+  var newPos = (curPos + dir + visible.length) % visible.length;
+  selectHymn(visible[newPos]);
+}
+
+function rewind() {
+  if (abcplay && playing) { abcplay.stop(); playing = false; updatePlayBtn(); stopScrollAnim(); }
+  setScroll(playStartX);
+}
+
+function toggleMelody() {
+  melodyOn = !melodyOn;
+  var btn = document.getElementById('btn-mel');
+  btn.textContent = melodyOn ? 'Melody' : 'Melody Off';
+  btn.classList.toggle('active', melodyOn);
   render();
 }
 
-document.getElementById('hymn-select').addEventListener('change', function() {
-  currentIdx = parseInt(this.value);
-  render();
+// ── Search ──
+document.getElementById('lib-search').addEventListener('input', function() {
+  var q = this.value.toLowerCase();
+  document.querySelectorAll('.lib-item').forEach(function(el) {
+    el.style.display = el.textContent.toLowerCase().indexOf(q) >= 0 ? '' : 'none';
+  });
 });
-document.getElementById('key-filter').addEventListener('change', applyFilter);
+
+// ── Key filters ──
+document.querySelectorAll('.key-btn').forEach(function(btn) {
+  btn.onclick = function() { filterByKey(btn.getAttribute('data-key')); };
+});
+
+// ── Tab switching ──
+document.querySelectorAll('.lib-tab').forEach(function(tab) {
+  tab.onclick = function() {
+    document.querySelectorAll('.lib-tab').forEach(function(t) { t.classList.remove('active'); });
+    document.querySelectorAll('.lib-panel').forEach(function(p) { p.classList.remove('active'); });
+    tab.classList.add('active');
+    document.getElementById(tab.getAttribute('data-panel')).classList.add('active');
+  };
+});
+
+// ── BPM and Volume ──
+document.getElementById('bpm-slider').addEventListener('input', function() {
+  bpm = parseInt(this.value);
+  document.getElementById('bpm-val').textContent = bpm;
+  if (abcplay) abcplay.set_speed(bpm / 80);
+});
+document.getElementById('vol-slider').addEventListener('input', function() {
+  var vol = parseInt(this.value);
+  document.getElementById('vol-label').textContent = vol;
+  if (abcplay) abcplay.set_vol(vol / 100);
+});
+
+// ── Keyboard shortcuts ──
 document.addEventListener('keydown', function(e) {
-  if (e.key === 'ArrowLeft') nav(-1);
-  else if (e.key === 'ArrowRight') nav(1);
+  if (e.target.tagName === 'INPUT') return;
+  if (e.key === ' ') { e.preventDefault(); togglePlay(); }
+  else if (e.key === 'ArrowLeft' && currentIdx > 0) selectHymn(currentIdx - 1);
+  else if (e.key === 'ArrowRight' && currentIdx < DATA.length - 1) selectHymn(currentIdx + 1);
 });
 
 init();

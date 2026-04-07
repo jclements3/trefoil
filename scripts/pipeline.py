@@ -911,6 +911,7 @@ def stage_harp_reduce(data):
                 sus_events.append(((), total_dur))  # rest
 
             # Moving voice: at each event, show only pitches NOT in sustained_all
+            # Use invisible rests (None with 'x' flag) when moving voice is empty
             for pitches, dur in norm_events:
                 moving = tuple(sorted(set(pitches) - sustained_all))
                 mov_events.append((moving, dur))
@@ -1230,8 +1231,10 @@ def stage_format(data, title='SSAATTBB', x_num=1, fmt='grand'):
             return ' '.join(abc_out) + ' |]'
 
         # Harp reduction: sustained (stems down) + moving (stems up) per hand
-        def harp_events_to_abc(measures, key_acc):
-            """Convert harp-reduced event list to ABC."""
+        def harp_events_to_abc(measures, key_acc, invisible_rests=False):
+            """Convert harp-reduced event list to ABC.
+            invisible_rests: use 'x' instead of 'z' for rests (hides rest symbols)."""
+            rest_char = 'x' if invisible_rests else 'z'
             STANDARD_DURS_H = {
                 Fraction(1, 4), Fraction(1, 2), Fraction(3, 4),
                 Fraction(1), Fraction(3, 2), Fraction(2), Fraction(3),
@@ -1274,7 +1277,7 @@ def stage_format(data, title='SSAATTBB', x_num=1, fmt='grand'):
                         do = format_dur(dv)
                         tm = '-' if tied else ''
                         if not pitches:
-                            abc_parts.append('z' + do)
+                            abc_parts.append(rest_char + do)
                         elif len(pitches) == 1:
                             abc_parts.append(midi_to_abc(pitches[0], key_acc) + do + tm)
                         else:
@@ -1283,10 +1286,11 @@ def stage_format(data, title='SSAATTBB', x_num=1, fmt='grand'):
             return ' '.join(abc_parts) + ' |]'
 
         # Use harp-reduced voices: sustained (long notes) + moving (changes only)
-        rh_sus_abc = harp_events_to_abc(gs['rh_sustained'], key_acc)
-        rh_mov_abc = harp_events_to_abc(gs['rh_moving'], key_acc)
-        lh_sus_abc = harp_events_to_abc(gs['lh_sustained'], key_acc)
-        lh_mov_abc = harp_events_to_abc(gs['lh_moving'], key_acc)
+        # Both use invisible rests so empty measures don't show rest symbols
+        rh_sus_abc = harp_events_to_abc(gs['rh_sustained'], key_acc, invisible_rests=True)
+        rh_mov_abc = harp_events_to_abc(gs['rh_moving'], key_acc, invisible_rests=True)
+        lh_sus_abc = harp_events_to_abc(gs['lh_sustained'], key_acc, invisible_rests=True)
+        lh_mov_abc = harp_events_to_abc(gs['lh_moving'], key_acc, invisible_rests=True)
 
         lines = []
         lines.append(f'X: {x_num}')
@@ -1295,9 +1299,14 @@ def stage_format(data, title='SSAATTBB', x_num=1, fmt='grand'):
         lines.append(f'L: {dl}')
         lines.append(f'%%pagewidth 200cm')
         lines.append(f'%%continueall 1')
-        lines.append(f'%%scale 2')
+        lines.append(f'%%scale 1.2')
         lines.append(f'%%leftmargin 0.5cm')
         lines.append(f'%%rightmargin 0.5cm')
+        lines.append(f'%%topspace 0')
+        lines.append(f'%%titlespace 0')
+        lines.append(f'%%musicspace 0')
+        lines.append(f'%%writefields T 0')
+        lines.append(f'%%annotationfont * 14')
         lines.append(f'%%score M | (RH1 RH2) | (LH1 LH2)')
         lines.append(f'V: M clef=treble name="Melody"')
         lines.append(f'V: RH1 clef=treble stem=up')
