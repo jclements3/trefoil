@@ -67,6 +67,7 @@ def parse_voice_lines(tune_abc):
     key_str = 'C'
     meter = '4/4'
     default_len = '1/4'
+    tempo = 100  # default BPM
 
     for line in lines:
         km = re.match(r'^K:\s*(\S+)', line)
@@ -78,12 +79,16 @@ def parse_voice_lines(tune_abc):
         lm = re.match(r'^L:\s*(\S+)', line)
         if lm:
             default_len = lm.group(1)
+        # Tempo: Q:1/4=120 or inline [Q:1/4=120]
+        qm = re.search(r'Q:\s*\d+/\d+=(\d+)', line)
+        if qm:
+            tempo = int(qm.group(1))
         for vname in voice_data:
             vm = re.match(r'\[V:\s*' + vname + r'\]\s*(.*)', line)
             if vm:
                 voice_data[vname].append(vm.group(1))
 
-    return voice_data, key_str, meter, default_len
+    return voice_data, key_str, meter, default_len, tempo
 
 
 def abc_note_to_midi(note_str, key_acc_map=None):
@@ -744,7 +749,7 @@ def process_hymn(tune_abc, hymn_num=None):
     Voice leading is checked at measure downbeats (first note of each measure) across
     all 8 voices, since that's where all voices are rhythmically aligned.
     """
-    voice_data, key_str, meter, default_len = parse_voice_lines(tune_abc)
+    voice_data, key_str, meter, default_len, tempo = parse_voice_lines(tune_abc)
 
     # Build key accidentals for the ORIGINAL key (needed to parse ABC correctly)
     orig_key_acc = build_key_accidentals(key_str)

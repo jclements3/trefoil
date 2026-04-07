@@ -31,8 +31,16 @@ label { font-size: 13px; color: #888; }
   position: absolute; top: 45px; left: 0;
   transform-origin: 0 0;
 }
-#playhead-glow { display: none; }
-#playhead-line { display: none; }
+#playhead-glow {
+  position: absolute; top: 0; bottom: 0; width: 6px;
+  background: rgba(37, 99, 235, 0.25); z-index: 50;
+  pointer-events: none;
+}
+#playhead-line {
+  position: absolute; top: 0; bottom: 0; width: 2px;
+  background: #2563eb; z-index: 51;
+  pointer-events: none;
+}
 
 .abcr { fill: #2563eb !important; fill-opacity: 0; z-index: 15; }
 
@@ -152,20 +160,20 @@ label { font-size: 13px; color: #888; }
   line-height: 1.0;
 }
 .chord-frac .cf-abs {
-  font-size: 14px;
-  font-weight: bold;
+  font-size: 18px;
+  font-weight: normal;
   color: #2563eb;
   white-space: nowrap;
 }
 .chord-frac .cf-rh {
-  font-size: 11px;
-  font-weight: bold;
+  font-size: 15px;
+  font-weight: normal;
   color: #16a34a;
   white-space: nowrap;
 }
 .chord-frac .cf-lh {
-  font-size: 11px;
-  font-weight: bold;
+  font-size: 15px;
+  font-weight: normal;
   color: #999;
   white-space: nowrap;
 }
@@ -187,8 +195,8 @@ label { font-size: 13px; color: #888; }
     <input type="range" id="bpm-slider" min="20" max="240" value="80" style="width:100px;vertical-align:middle;"/>
     <span id="bpm-val" style="font-size:14px;font-weight:bold;min-width:28px;text-align:center;">80</span>
     <label>Vol:</label>
-    <input type="range" id="vol-slider" min="0" max="100" value="0" style="width:100px;vertical-align:middle;"/>
-    <span id="vol-label" style="font-size:11px;color:#888;min-width:18px;">0</span>
+    <input type="range" id="vol-slider" min="0" max="100" value="50" style="width:100px;vertical-align:middle;"/>
+    <span id="vol-label" style="font-size:11px;color:#888;min-width:18px;">50</span>
     <button id="btn-mel" style="font-size:14px;padding:6px 14px;border:2px solid #2563eb;border-radius:8px;background:#2563eb;color:#fff;cursor:pointer;">Melody</button>
     <button id="btn-mic" style="font-size:12px;padding:6px 8px;margin-left:8px;opacity:0.5;">Mic</button>
     <span id="mic-score" style="font-size:13px;font-weight:bold;color:#2563eb;min-width:40px;"></span>
@@ -228,6 +236,7 @@ label { font-size: 13px; color: #888; }
 
 <script src="abc2svg/abc2svg-1.js"></script>
 <script src="abc2svg/snd-1.js"></script>
+<script src="abc2svg/equalbars-1.js"></script>
 <script>
 // Override loadjs to handle file:///android_asset/ paths correctly.
 // The default loadjs prepends jsdir which can break with file:// protocol.
@@ -310,7 +319,9 @@ document.getElementById('btn-mel').onclick = function() {
   renderDrill(currentDrill);
 };
 
-function getPlayheadX() { return $area.offsetWidth * 0.15; }
+function getPlayheadX() {
+  return $area.offsetWidth * 0.20;
+}
 
 function setScroll(x) {
   scrollX = x;
@@ -318,13 +329,15 @@ function setScroll(x) {
 }
 
 // Linear scroll synced to playback duration.
-var playStartTime = 0, playStartX = 0, playEndX = 0, playTotalDuration = 0;
+var playStartTime = 0, playStartX = 0, playEndX = 0, playTotalDuration = 0, scrollStarted = false;
+var playBarTimes = [], playBarPixels = [];
 
 function animateScroll(now) {
   if (!now) now = performance.now();
   if (playTotalDuration > 0) {
     var elapsed = now - playStartTime;
     var t = Math.min(elapsed / playTotalDuration, 1.0);
+    // Linear interpolation from first note to last note
     setScroll(playStartX + (playEndX - playStartX) * t);
     // Mic scoring: sample once per beat
     if (micEnabled && micAnalyser && micExpectedMap && micScoreData) {
@@ -345,7 +358,9 @@ function animateScroll(now) {
       }
     }
   }
-  if (playing) {
+  // Keep animating until scroll reaches the end, even after audio stops
+  var t = playTotalDuration > 0 ? (performance.now() - playStartTime) / playTotalDuration : 1;
+  if (t < 1.0 && scrollStarted) {
     animId = requestAnimationFrame(animateScroll);
   }
 }
@@ -404,6 +419,8 @@ function renderDrill(idx) {
   // Hide the built-in chord annotations — fractions replace them
   var renderAbc = getAbc(drill);
   renderAbc = renderAbc.replace(/%%annotationfont[^\n]*/g, '%%annotationfont * 0.1');
+  // Equal-width bars for linear scroll sync
+  renderAbc = renderAbc.replace(/(%%continueall[^\n]*)/, '$1\n%%equalbars 1');
   abc.tosvg('drill', renderAbc);
 
   // Scale SVG to fill viewport height
@@ -451,7 +468,7 @@ function renderDrill(idx) {
       var div = document.createElement('div');
       div.className = 'chord-frac';
       div.style.left = cx + 'px';
-      div.style.top = (topY - 34) + 'px';
+      div.style.top = (topY - 50) + 'px';
       div.innerHTML =
         '<div class="cf-abs">' + (ch.abs || '') + '</div>' +
         '<div class="cf-rh">' + (ch.rhn || '') + '</div>' +
@@ -462,7 +479,17 @@ function renderDrill(idx) {
   }, 150);
 
   positionPlayhead();
-  setScroll(getPlayheadX());
+
+  // Scroll: first note at playhead (same as play start position)
+  var initNotes = $container.getElementsByClassName('abcr');
+  if (initNotes.length > 0) {
+    setScroll(0);
+    var cRect0 = $container.getBoundingClientRect();
+    var firstNoteX = initNotes[0].getBoundingClientRect().left - cRect0.left;
+    setScroll(getPlayheadX() - firstNoteX);
+  } else {
+    setScroll(getPlayheadX());
+  }
 
   // Generate per-hymn drills (always build content, mode toggle controls visibility)
   renderHymnDrills(drill);
@@ -597,7 +624,10 @@ function startPlayback() {
 
   var playconf = {
     onend: function() {
-      playing = false; $btnPlay.textContent = 'Play'; stopScrollAnim();
+      var actualMs = performance.now() - playStartTime;
+      console.log('AUDIO ENDED: actual=' + actualMs.toFixed(0) + 'ms computed=' + playTotalDuration.toFixed(0) + 'ms ratio=' + (playTotalDuration/actualMs).toFixed(2));
+      playing = false; $btnPlay.textContent = 'Play';
+      // Don't stop scroll — let it finish to the end
       if (micEnabled && micScoreData && micScoreData.total > 0) {
         $micScore.textContent = Math.round(100 * micScoreData.hits / micScoreData.total) + '%';
         stopMic();
@@ -610,7 +640,14 @@ function startPlayback() {
         }
       }
     },
-    onnote: function(istart, on) {},
+    onnote: function(istart, on) {
+      // Start scroll on first note-on to sync with actual audio
+      if (on && !scrollStarted) {
+        scrollStarted = true;
+        playStartTime = performance.now();
+        startScrollAnim();
+      }
+    },
     sfu: 'abc2svg/Scc1t2'
   };
 
@@ -619,44 +656,79 @@ function startPlayback() {
   abcplay.set_speed(bpm / nativeBpm);
   abcplay.set_vol(parseInt($volSlider.value) / 100);
 
-  // Compute total duration — find max (time + dur) across all symbols
-  var totalBeats = 0;
-  for (var s = tune[0]; s; s = s.ts_next) {
-    if (s.dur && s.time + s.dur > totalBeats) totalBeats = s.time + s.dur;
-  }
-  var totalBeatCount = totalBeats / 384; // 384 = quarter note in abc2svg units
-  // Duration at current BPM (speed ratio applied by abcplay separately)
-  playTotalDuration = (totalBeatCount / bpm) * 60 * 1000; // ms
+  // Use precomputed duration and bar timestamps from build pipeline
+  var drill = DRILLS[currentDrill];
+  var precomputedMs = drill.dur || 0;
+  var barTimes = drill.barTimes || [];
+  var speedRatio = bpm / nativeBpm;
 
-  // Scroll range: first note to last note
+  if (precomputedMs > 0) {
+    playTotalDuration = precomputedMs / speedRatio;
+    // Adjust barTimes for speed ratio
+    playBarTimes = barTimes.map(function(t) { return t / speedRatio; });
+  } else {
+    var melEnd = 0;
+    for (var s = tune[0]; s; s = s.ts_next) {
+      if (s.v === 0 && s.dur && s.time + s.dur > melEnd) melEnd = s.time + s.dur;
+    }
+    if (melEnd === 0) {
+      for (var s = tune[0]; s; s = s.ts_next) {
+        if (s.dur && s.time + s.dur > melEnd) melEnd = s.time + s.dur;
+      }
+    }
+    playTotalDuration = (melEnd / 384 / nativeBpm) * 60 * 1000;
+    playBarTimes = [];
+  }
+  console.log('duration: ' + playTotalDuration.toFixed(0) + 'ms bars=' + playBarTimes.length + ' speedRatio=' + speedRatio.toFixed(2));
+
+  // Scroll range: use time-proportional pixel positions
+  // Don't reset scroll — keep the current view position
+  // Compute note positions from current scroll state
   var allNotes = $container.getElementsByClassName('abcr');
-  var cRect = $container.getBoundingClientRect();
-  if (allNotes.length > 0) {
-    var firstNote = allNotes[0];
-    var lastNote = allNotes[allNotes.length - 1];
-    var firstX = (firstNote.getBoundingClientRect().left - cRect.left) / svgScale;
-    var lastX = (lastNote.getBoundingClientRect().left - cRect.left) / svgScale;
-    playStartX = getPlayheadX() - firstX * svgScale;
-    playEndX = getPlayheadX() - lastX * svgScale;
+  if (allNotes.length > 1) {
+    // Temporarily reset to get clean positions
+    var savedScroll = scrollX;
+    setScroll(0);
+    var cRect = $container.getBoundingClientRect();
+    var firstScreenX = allNotes[0].getBoundingClientRect().left - cRect.left;
+    var lastScreenX = allNotes[allNotes.length - 1].getBoundingClientRect().left - cRect.left;
+    var totalPx = lastScreenX - firstScreenX;
+    setScroll(savedScroll);
+
+    // Build time-to-pixel mapping using barTimes
+    // Each barTime maps to a proportional pixel position
+    playBarPixels = [];
+    var totalDur = drill.dur || playTotalDuration;
+    for (var i = 0; i < playBarTimes.length; i++) {
+      var timeFrac = (playBarTimes[i] * speedRatio) / playTotalDuration;
+      playBarPixels.push(firstScreenX + totalPx * timeFrac);
+    }
+
+    // First note at playhead, last note at playhead
+    playStartX = getPlayheadX() - firstScreenX;
+    playEndX = getPlayheadX() - lastScreenX;
+
+    console.log('scroll: totalPx=' + totalPx.toFixed(0) + ' dur=' + playTotalDuration.toFixed(0) +
+                'ms bars=' + playBarTimes.length);
   } else {
     playStartX = getPlayheadX();
     playEndX = getPlayheadX() - 100;
   }
 
-  setScroll(playStartX);
-  playStartTime = performance.now();
+  // DON'T reset scroll — keep current position. Scroll starts on first note.
 
   // Start mic scoring if enabled
   if (micEnabled) {
     startMic();
     micExpectedMap = buildExpectedChroma(tune, 384);
-    micTotalBeats = totalBeats; // in abc2svg time units
+    micTotalBeats = totalBeats;
     micLastScoredBeat = -1;
   }
 
+  // Scroll starts when first note actually sounds (via onnote callback)
+  scrollStarted = false;
   playing = true;
   $btnPlay.textContent = 'Pause';
-  startScrollAnim();
   abcplay.play(tune[0], null);
 }
 var micExpectedMap = null, micTotalBeats = 0, micLastScoredBeat = -1;
@@ -665,6 +737,7 @@ function stopPlayback() {
   autoAdvance = false;
   if (abcplay) abcplay.stop();
   playing = false;
+  scrollStarted = false;
   $btnPlay.textContent = 'Play';
   stopScrollAnim();
 }
@@ -1396,7 +1469,7 @@ positionPlayhead();
 
 // Load SSAATTBB data, then build library
 var xhr2 = new XMLHttpRequest();
-xhr2.open('GET', 'ssaattbb_data.json', true);
+xhr2.open('GET', 'ssaattbb_data.json?v=' + Date.now(), true);
 xhr2.onload = function() {
   if (xhr2.status === 200) {
     var data = JSON.parse(xhr2.responseText);

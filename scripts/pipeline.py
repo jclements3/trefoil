@@ -61,7 +61,7 @@ def stage_parse(tune_abc):
         }
         report: list of validation messages
     """
-    voice_data, key_str, meter, default_len = parse_voice_lines(tune_abc)
+    voice_data, key_str, meter, default_len, tempo = parse_voice_lines(tune_abc)
     report = []
 
     # Validate: all 4 voices present
@@ -114,10 +114,13 @@ def stage_parse(tune_abc):
     else:
         report.append(f'OK: No voice crossing in original SATB')
 
+    report.append(f'OK: Tempo Q=1/4={tempo}')
+
     data = {
         'key': key_str,
         'meter': meter,
         'default_len': default_len,
+        'tempo': tempo,
         'voice_raw': voice_raw,
         'n_measures': n_measures,
     }
@@ -1297,8 +1300,11 @@ def stage_format(data, title='SSAATTBB', x_num=1, fmt='grand'):
         lines.append(f'T: {title}')
         lines.append(f'M: {meter}')
         lines.append(f'L: {dl}')
+        tempo = data.get('tempo', 100)
+        lines.append(f'Q: 1/4={tempo}')
         lines.append(f'%%pagewidth 200cm')
         lines.append(f'%%continueall 1')
+        lines.append(f'%%equalbars 1')
         lines.append(f'%%scale 1.2')
         lines.append(f'%%leftmargin 0.5cm')
         lines.append(f'%%rightmargin 0.5cm')
@@ -1483,12 +1489,91 @@ def main():
             )
             if abc_out is None:
                 continue
+            # Compute exact duration from actual note data
+            # Use melody voice (S1) total duration — accounts for pickups
+            meter = data['meter']
+            default_len = data['default_len']
+            n_measures = data['n_measures']
+            import re as _re
+            mm = _re.match(r'(\d+)/(\d+)', meter)
+            beats_per_bar = int(mm.group(1)) if mm else 4
+            beat_unit = int(mm.group(2)) if mm else 4
+
+            # Sum actual durations from melody voice
+            s1 = data['all_voice_data']['S1']
+            dl_match = _re.match(r'(\d+)/(\d+)', default_len)
+            dl_num = int(dl_match.group(1)) if dl_match else 1
+            dl_den = int(dl_match.group(2)) if dl_match else 8
+            # Default length as fraction of whole note: dl_num/dl_den
+            # Each dur unit = dl_num/dl_den of a whole note = dl_num/dl_den * 4 quarter notes
+
+            total_default_units = Fraction(0)
+            for dur_str in s1['durs']:
+                if not dur_str:
+                    total_default_units += Fraction(1)
+                elif '/' in dur_str:
+                    parts = dur_str.split('/')
+                    n = int(parts[0]) if parts[0] else 1
+                    d = int(parts[1]) if parts[1] else 2
+                    total_default_units += Fraction(n, d)
+                else:
+                    total_default_units += Fraction(int(dur_str))
+
+            # Convert to quarter notes: total_units * (dl_num/dl_den) * 4
+            total_qtrs = float(total_default_units * Fraction(dl_num, dl_den) * 4)
+
+            # Duration at original tempo
+            hymn_tempo = data.get('tempo', 100)
+            duration_ms = int(total_qtrs / hymn_tempo * 60 * 1000)
+
+            # Per-bar cumulative timestamps (ms) for scroll sync
+            bar_times = []
+            cum_units = Fraction(0)
+            prev_meas = -1
+            for i, mi in enumerate(s1['meas_idx']):
+                if mi != prev_meas:
+                    if prev_meas >= 0:
+                        cum_qtrs = float(cum_units * Fraction(dl_num, dl_den) * 4)
+                        bar_times.append(int(cum_qtrs / hymn_tempo * 60 * 1000))
+                    prev_meas = mi
+                dur_str = s1['durs'][i]
+                if not dur_str:
+                    cum_units += Fraction(1)
+                elif '/' in dur_str:
+                    parts = dur_str.split('/')
+                    n = int(parts[0]) if parts[0] else 1
+                    d = int(parts[1]) if parts[1] else 2
+                    cum_units += Fraction(n, d)
+                else:
+                    cum_units += Fraction(int(dur_str))
+            # Final bar
+            bar_times.append(duration_ms)
+
+            # Count notes per measure in melody voice for barline pixel alignment
+            notes_per_bar = []
+            cur_meas = -1
+            count = 0
+            for mi in s1['meas_idx']:
+                if mi != cur_meas:
+                    if cur_meas >= 0:
+                        notes_per_bar.append(count)
+                    cur_meas = mi
+                    count = 0
+                count += 1
+            notes_per_bar.append(count)  # last measure
+
             results.append({
                 'n': num,
                 't': f'{num:03d} {title}',
                 'abc': abc_out,
                 'key': data['key'],
                 'violations': len(data.get('new_violations', [])),
+                'bars': n_measures,
+                'bpb': beats_per_bar,
+                'tempo': hymn_tempo,
+                'dur': duration_ms,
+                'barTimes': bar_times,
+                'npb': notes_per_bar,
             })
 
         for path in ['app/ssaattbb_data.json', 'app/app/src/main/assets/ssaattbb_data.json']:
