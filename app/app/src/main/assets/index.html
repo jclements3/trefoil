@@ -28,8 +28,9 @@ label { font-size: 13px; color: #888; }
   position: relative; overflow: hidden; flex: 1;
 }
 #score-container {
-  position: absolute; top: 45px; left: 0;
+  position: absolute; top: 65px; left: 0;
   transform-origin: 0 0;
+  overflow: visible;
 }
 #playhead-glow {
   position: absolute; top: 0; bottom: 0; width: 6px;
@@ -419,7 +420,10 @@ function renderDrill(idx) {
   abc = new abc2svg.Abc(user);
   // Hide the built-in chord annotations — fractions replace them
   var renderAbc = getAbc(drill);
-  renderAbc = renderAbc.replace(/%%annotationfont[^\n]*/g, '%%annotationfont * 0.1');
+  // Strip ABC chord annotations — chord fractions are drawn by JS overlay
+  var beforeLen = renderAbc.length;
+  renderAbc = renderAbc.replace(/"\^[^"]*"/g, '');
+  console.log('Stripped annotations: ' + (beforeLen - renderAbc.length) + ' chars removed');
   // Equal-width bars for linear scroll sync
   renderAbc = renderAbc.replace(/(%%continueall[^\n]*)/, '$1\n%%equalbars 1');
   abc.tosvg('drill', renderAbc);
@@ -454,18 +458,29 @@ function renderDrill(idx) {
     fracContainer.style.pointerEvents = 'none';
     $container.appendChild(fracContainer);
 
-    // Map chords to note positions: one fraction per measure
-    // Use the first .abcr rect in each measure group as anchor
-    // Since chords align to measures, space them by measure count
-    var measCount = chords.length;
-    var step = Math.max(1, Math.floor(rects.length / measCount));
+    // Place fractions at measure starts using notes-per-bar to find the right .abcr rect
+    // npb = melody notes per bar. But .abcr has ALL voices.
+    // Estimate rects per voice-beat: totalRects / totalMelodyNotes ≈ voices count
+    var npb = drill.npb || [];
+    var totalMelNotes = 0;
+    for (var i = 0; i < npb.length; i++) totalMelNotes += npb[i];
+    var voiceMult = totalMelNotes > 0 ? Math.round(rects.length / totalMelNotes) : 5;
+    if (voiceMult < 1) voiceMult = 1;
+
+    var prevAbs = '';
+    var cumNotes = 0;
     for (var ci = 0; ci < chords.length; ci++) {
-      var rectIdx = ci * step;
-      if (rectIdx >= rects.length) break;
       var ch = chords[ci];
-      if (!ch.abs && !ch.rhn && !ch.lhn) continue;
+      if (!ch.abs && !ch.rhn && !ch.lhn) { cumNotes += (npb[ci] || 1); continue; }
+      // Rect index = cumulative melody notes × voices multiplier
+      var rectIdx = Math.min(cumNotes * voiceMult, rects.length - 1);
       var br = rects[rectIdx].getBoundingClientRect();
-      var cx = (br.left - cRect.left + br.width / 2) / svgScale;
+      var cx = (br.left - cRect.left) / svgScale;
+      // Skip if all three parts match the previous fraction
+      var fracKey = (ch.abs || '') + '|' + (ch.rhn || '') + '|' + (ch.lhn || '');
+      if (ci < 3) console.log('Fraction ' + ci + ':', JSON.stringify(ch), 'fracKey:', fracKey, 'prevAbs:', prevAbs);
+      if (fracKey === prevAbs) { cumNotes += (npb[ci] || 1); continue; }
+      prevAbs = fracKey;
       var div = document.createElement('div');
       div.className = 'chord-frac';
       div.style.left = cx + 'px';
@@ -475,8 +490,9 @@ function renderDrill(idx) {
         '<div class="cf-rh">' + (ch.rhn || '') + '</div>' +
         '<div class="cf-lh">' + (ch.lhn || '') + '</div>';
       fracContainer.appendChild(div);
+      cumNotes += (npb[ci] || 1);
     }
-    console.log('Placed ' + chords.length + ' fractions');
+    console.log('Placed fractions, voiceMult=' + voiceMult + ' totalMelNotes=' + totalMelNotes + ' rects=' + rects.length);
   }, 150);
 
   positionPlayhead();
