@@ -388,7 +388,8 @@ function renderDrill(idx) {
   $title.textContent = drill.t;
   $container.innerHTML = '';
 
-  // Keep user's BPM and volume settings across hymns
+  // Set BPM to hymn's native tempo
+  bpm = drill.tempo || 100;
   $bpmVal.textContent = bpm;
   if ($bpmSlider) $bpmSlider.value = bpm;
 
@@ -1136,105 +1137,184 @@ function generatePatternDrills(pattern, key) {
   return drills;
 }
 
+// Render "All Chords" drill: compact cheat sheet
+// For each abstract chord: all voicings as blocks in one measure,
+// then eighth-note runs up/down for each voicing. No repeats.
+function renderAllChordsDrill(chordGroups, chordOrder, keyStr, drill) {
+  if (playing) stopPlayback();
+  $title.textContent = drill.t + ' \u2014 All Chords';
+  $container.innerHTML = '';
+
+  function br(arr) {
+    var sorted = arr.slice().sort(function(a,b){return diaVal(a)-diaVal(b);});
+    return sorted.length > 1 ? '[' + sorted.map(function(x){return x.abc;}).join('') + ']' : sorted[0].abc;
+  }
+
+  // Use L:1/8 so default note is an eighth
+  var rhLine = '[V: RH] ';
+  var lhLine = '[V: LH] ';
+
+  for (var ci = 0; ci < chordOrder.length; ci++) {
+    var cn = chordOrder[ci];
+    var group = chordGroups[cn];
+
+    // All voicings of this chord as block chords, one per beat
+    rhLine += '"^' + cn + '" ';
+    for (var vi = 0; vi < group.length; vi++) {
+      var v = group[vi];
+      rhLine += br(v.rh) + '2 ';
+      lhLine += br(v.lh) + '2 ';
+    }
+    rhLine += '| ';
+    lhLine += '| ';
+  }
+
+  rhLine += '|]';
+  lhLine += '|]';
+
+  // Time sig: use the longest measure's note count
+  var maxBeat = 8;
+  var abcStr = 'X: 1\nM: ' + maxBeat + '/8\nL: 1/8\nQ: 1/4=' + (drill.tempo || 100) + '\n' +
+    '%%pagewidth 200cm\n%%continueall 1\n%%scale 1.2\n%%writefields T 0\n' +
+    '%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n' +
+    '%%staves {RH LH}\nV: RH clef=treble\nV: LH clef=bass\nK: ' + keyStr + '\n' +
+    rhLine + '\n' + lhLine + '\n';
+
+  console.log('renderAllChordsDrill ABC:\n' + abcStr.substring(0, 500));
+  try {
+    var drillAbc = new abc2svg.Abc({
+      img_out: function(svg) { $container.innerHTML += svg; },
+      errmsg: function(msg) { console.warn('abc2svg drill:', msg); },
+      read_file: function() { return ''; }
+    });
+    drillAbc.tosvg('drill', abcStr);
+  } catch(e) {
+    console.error('Drill render error:', e);
+    $container.innerHTML = '<div style="color:red;padding:20px;">Drill render error: ' + e.message + '</div>';
+  }
+
+  var svgs = $container.getElementsByTagName('svg');
+  var totalH = 0;
+  for (var i = 0; i < svgs.length; i++) totalH += parseFloat(svgs[i].getAttribute('height') || 0);
+  var areaH = $area.offsetHeight - 50;
+  svgScale = (areaH > 0 && totalH > 0) ? (areaH * 0.95) / totalH : 1;
+  $container.style.transform = 'scale(' + svgScale + ')';
+  positionPlayhead();
+  var initNotes = $container.getElementsByClassName('abcr');
+  if (initNotes.length > 0) {
+    setScroll(0);
+    var cr = $container.getBoundingClientRect();
+    setScroll(getPlayheadX() - (initNotes[0].getBoundingClientRect().left - cr.left));
+  }
+}
+
+// Render drill for one chord group: all voicings as blocks, then runs
+function renderChordGroupDrill(group, chordN, keyStr, drill) {
+  // Reuse AllChords but with just this one group
+  var grp = {}; grp[chordN] = group;
+  renderAllChordsDrill(grp, [chordN], keyStr, drill);
+}
+
 // Build grand staff strip chart ABC with all exercises for a pattern
 function buildDrillStripAbc(pat, key, hex) {
   // Sort each hand high to low (finger 1=thumb=highest)
   var rh = pat.rh.slice().sort(function(a,b){return diaVal(b)-diaVal(a);});
   var lh = pat.lh.slice().sort(function(a,b){return diaVal(b)-diaVal(a);});
+  // Use the larger hand for the measure size
+  var maxNotes = Math.max(rh.length, lh.length, 2);
 
   function br(arr) { return arr.length > 1 ? '[' + arr.map(function(x){return x.abc;}).join('') + ']' : arr[0].abc; }
   var rhBlock = br(rh), lhBlock = br(lh);
+  // Pad a note sequence to exactly maxNotes beats with rests
+  function pad(line, nNotes) {
+    var need = maxNotes - nNotes;
+    for (var i = 0; i < need; i++) line += 'x ';
+    return line;
+  }
 
   var rhLine = '[V: RH] ';
   var lhLine = '[V: LH] ';
 
-  // Block: both hands together
-  rhLine += '"^Block" ' + rhBlock + '4 | ' + rhBlock + '4 | ';
-  lhLine += rhBlock.replace(/./,'') ? lhBlock + '4 | ' + lhBlock + '4 | ' : lhBlock + '4 | ' + lhBlock + '4 | ';
-  // fix: just do it simply
-  rhLine = '[V: RH] "^Block" ' + rhBlock + '4 | ' + rhBlock + '4 | ';
-  lhLine = '[V: LH] ' + lhBlock + '4 | ' + lhBlock + '4 | ';
+  // Block: both hands together (whole note = maxNotes beats)
+  rhLine = '[V: RH] "^Block" ' + rhBlock + maxNotes + ' | ' + rhBlock + maxNotes + ' | ';
+  lhLine = '[V: LH] ' + lhBlock + maxNotes + ' | ' + lhBlock + maxNotes + ' | ';
+
+  // Helper: build padded arpeggio measure
+  function arpMeasure(arr) {
+    var s = '';
+    for (var i = 0; i < arr.length; i++) s += arr[i].abc + ' ';
+    return pad(s, arr.length);
+  }
 
   // Arp up (low to high): LH bottom to top, then RH bottom to top
   var rhUp = rh.slice().reverse();
   var lhUp = lh.slice().reverse();
-  rhLine += '"^Arp \u2191" ';
-  for (var i = 0; i < rhUp.length; i++) rhLine += rhUp[i].abc + ' ';
-  rhLine += '| ';
-  for (var i = 0; i < rhUp.length; i++) rhLine += rhUp[i].abc + ' ';
-  rhLine += '| ';
-  lhLine += '';
-  for (var i = 0; i < lhUp.length; i++) lhLine += lhUp[i].abc + ' ';
-  lhLine += '| ';
-  for (var i = 0; i < lhUp.length; i++) lhLine += lhUp[i].abc + ' ';
-  lhLine += '| ';
+  rhLine += '"^Arp \u2191" ' + arpMeasure(rhUp) + '| ' + arpMeasure(rhUp) + '| ';
+  lhLine += arpMeasure(lhUp) + '| ' + arpMeasure(lhUp) + '| ';
 
   // Arp down (high to low)
-  rhLine += '"^Arp \u2193" ';
-  for (var i = 0; i < rh.length; i++) rhLine += rh[i].abc + ' ';
-  rhLine += '| ';
-  for (var i = 0; i < rh.length; i++) rhLine += rh[i].abc + ' ';
-  rhLine += '| ';
-  for (var i = 0; i < lh.length; i++) lhLine += lh[i].abc + ' ';
-  lhLine += '| ';
-  for (var i = 0; i < lh.length; i++) lhLine += lh[i].abc + ' ';
-  lhLine += '| ';
+  rhLine += '"^Arp \u2193" ' + arpMeasure(rh) + '| ' + arpMeasure(rh) + '| ';
+  lhLine += arpMeasure(lh) + '| ' + arpMeasure(lh) + '| ';
 
   // RH runs
   if (rh.length >= 3) {
-    rhLine += '"^RH \u2193\u2191" ';
-    for (var i = 0; i < rh.length; i++) rhLine += rh[i].abc + ' ';
-    rhLine += '| ';
-    for (var i = rh.length-1; i >= 0; i--) rhLine += rh[i].abc + ' ';
-    rhLine += '| ';
-    lhLine += lhBlock + '4 | ' + lhBlock + '4 | ';
+    rhLine += '"^RH \u2193\u2191" ' + arpMeasure(rh) + '| ' + arpMeasure(rh.slice().reverse()) + '| ';
+    lhLine += lhBlock + maxNotes + ' | ' + lhBlock + maxNotes + ' | ';
   }
 
   // LH runs
   if (lh.length >= 3) {
-    rhLine += '"^LH \u2193\u2191" ' + rhBlock + '4 | ' + rhBlock + '4 | ';
-    for (var i = 0; i < lh.length; i++) lhLine += lh[i].abc + ' ';
-    lhLine += '| ';
-    for (var i = lh.length-1; i >= 0; i--) lhLine += lh[i].abc + ' ';
-    lhLine += '| ';
+    rhLine += '"^LH \u2193\u2191" ' + rhBlock + maxNotes + ' | ' + rhBlock + maxNotes + ' | ';
+    lhLine += arpMeasure(lh) + '| ' + arpMeasure(lh.slice().reverse()) + '| ';
   }
+
+  // Helper: half-measure duration for pair drills
+  var halfDur = Math.max(Math.floor(maxNotes / 2), 1);
+  var otherHalf = maxNotes - halfDur;
+  function pairMeasure(a, b) { return a + halfDur + ' ' + b + otherHalf; }
 
   // RH flips
   if (rh.length >= 3) {
     var outer = '[' + rh[0].abc + rh[rh.length-1].abc + ']';
     var mid = rh.length === 3 ? rh[1].abc : '[' + rh.slice(1,-1).map(function(x){return x.abc;}).join('') + ']';
-    rhLine += '"^RH [1' + rh.length + '][mid]" ' + outer + '2 ' + mid + '2 | ' + outer + '2 ' + mid + '2 | ';
-    lhLine += lhBlock + '4 | ' + lhBlock + '4 | ';
+    rhLine += '"^RH [1' + rh.length + '][mid]" ' + pairMeasure(outer, mid) + ' | ' + pairMeasure(outer, mid) + ' | ';
+    lhLine += lhBlock + maxNotes + ' | ' + lhBlock + maxNotes + ' | ';
   }
   if (rh.length >= 4) {
-    rhLine += '"^RH [12][34]" [' + rh[0].abc + rh[1].abc + ']2 [' + rh[2].abc + rh[3].abc + ']2 | [' + rh[0].abc + rh[1].abc + ']2 [' + rh[2].abc + rh[3].abc + ']2 | ';
-    lhLine += lhBlock + '4 | ' + lhBlock + '4 | ';
-    rhLine += '"^RH [14][23]" [' + rh[0].abc + rh[3].abc + ']2 [' + rh[1].abc + rh[2].abc + ']2 | [' + rh[0].abc + rh[3].abc + ']2 [' + rh[1].abc + rh[2].abc + ']2 | ';
-    lhLine += lhBlock + '4 | ' + lhBlock + '4 | ';
-    rhLine += '"^RH [13][24]" [' + rh[0].abc + rh[2].abc + ']2 [' + rh[1].abc + rh[3].abc + ']2 | [' + rh[0].abc + rh[2].abc + ']2 [' + rh[1].abc + rh[3].abc + ']2 | ';
-    lhLine += lhBlock + '4 | ' + lhBlock + '4 | ';
+    var r12 = '[' + rh[0].abc + rh[1].abc + ']', r34 = '[' + rh[2].abc + rh[3].abc + ']';
+    var r14 = '[' + rh[0].abc + rh[3].abc + ']', r23 = '[' + rh[1].abc + rh[2].abc + ']';
+    var r13 = '[' + rh[0].abc + rh[2].abc + ']', r24 = '[' + rh[1].abc + rh[3].abc + ']';
+    rhLine += '"^RH [12][34]" ' + pairMeasure(r12, r34) + ' | ' + pairMeasure(r12, r34) + ' | ';
+    lhLine += lhBlock + maxNotes + ' | ' + lhBlock + maxNotes + ' | ';
+    rhLine += '"^RH [14][23]" ' + pairMeasure(r14, r23) + ' | ' + pairMeasure(r14, r23) + ' | ';
+    lhLine += lhBlock + maxNotes + ' | ' + lhBlock + maxNotes + ' | ';
+    rhLine += '"^RH [13][24]" ' + pairMeasure(r13, r24) + ' | ' + pairMeasure(r13, r24) + ' | ';
+    lhLine += lhBlock + maxNotes + ' | ' + lhBlock + maxNotes + ' | ';
   }
 
   // LH flips
   if (lh.length >= 3) {
     var louter = '[' + lh[0].abc + lh[lh.length-1].abc + ']';
     var lmid = lh.length === 3 ? lh[1].abc : '[' + lh.slice(1,-1).map(function(x){return x.abc;}).join('') + ']';
-    rhLine += '"^LH [1' + lh.length + '][mid]" ' + rhBlock + '4 | ' + rhBlock + '4 | ';
-    lhLine += louter + '2 ' + lmid + '2 | ' + louter + '2 ' + lmid + '2 | ';
+    rhLine += '"^LH [1' + lh.length + '][mid]" ' + rhBlock + maxNotes + ' | ' + rhBlock + maxNotes + ' | ';
+    lhLine += pairMeasure(louter, lmid) + ' | ' + pairMeasure(louter, lmid) + ' | ';
   }
   if (lh.length >= 4) {
-    rhLine += '"^LH [12][34]" ' + rhBlock + '4 | ' + rhBlock + '4 | ';
-    lhLine += '[' + lh[0].abc + lh[1].abc + ']2 [' + lh[2].abc + lh[3].abc + ']2 | [' + lh[0].abc + lh[1].abc + ']2 [' + lh[2].abc + lh[3].abc + ']2 | ';
-    rhLine += '"^LH [14][23]" ' + rhBlock + '4 | ' + rhBlock + '4 | ';
-    lhLine += '[' + lh[0].abc + lh[3].abc + ']2 [' + lh[1].abc + lh[2].abc + ']2 | [' + lh[0].abc + lh[3].abc + ']2 [' + lh[1].abc + lh[2].abc + ']2 | ';
-    rhLine += '"^LH [13][24]" ' + rhBlock + '4 | ' + rhBlock + '4 | ';
-    lhLine += '[' + lh[0].abc + lh[2].abc + ']2 [' + lh[1].abc + lh[3].abc + ']2 | [' + lh[0].abc + lh[2].abc + ']2 [' + lh[1].abc + lh[3].abc + ']2 | ';
+    var l12 = '[' + lh[0].abc + lh[1].abc + ']', l34 = '[' + lh[2].abc + lh[3].abc + ']';
+    var l14 = '[' + lh[0].abc + lh[3].abc + ']', l23 = '[' + lh[1].abc + lh[2].abc + ']';
+    var l13 = '[' + lh[0].abc + lh[2].abc + ']', l24 = '[' + lh[1].abc + lh[3].abc + ']';
+    rhLine += '"^LH [12][34]" ' + rhBlock + maxNotes + ' | ' + rhBlock + maxNotes + ' | ';
+    lhLine += pairMeasure(l12, l34) + ' | ' + pairMeasure(l12, l34) + ' | ';
+    rhLine += '"^LH [14][23]" ' + rhBlock + maxNotes + ' | ' + rhBlock + maxNotes + ' | ';
+    lhLine += pairMeasure(l14, l23) + ' | ' + pairMeasure(l14, l23) + ' | ';
+    rhLine += '"^LH [13][24]" ' + rhBlock + maxNotes + ' | ' + rhBlock + maxNotes + ' | ';
+    lhLine += pairMeasure(l13, l24) + ' | ' + pairMeasure(l13, l24) + ' | ';
   }
 
   rhLine += '|]';
   lhLine += '|]';
 
-  return 'X: 1\nT: ' + hex + '\nM: 4/4\nL: 1/4\nQ: 1/4=80\n' +
+  return 'X: 1\nT: ' + hex + '\nM: ' + maxNotes + '/4\nL: 1/4\nQ: 1/4=80\n' +
     '%%pagewidth 200cm\n%%continueall 1\n%%scale 1.2\n%%writefields T 0\n' +
     '%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n' +
     '%%staves {RH LH}\n' +
@@ -1244,41 +1324,12 @@ function buildDrillStripAbc(pat, key, hex) {
 }
 
 function renderPatternInScore(pat, key, hex) {
-  if (playing) stopPlayback();
+  // Compact: block chord + eighth-note run up-down, no repeats
+  var grp = {rh: pat.rh, lh: pat.lh, rhStr: pat.rhStr, lhStr: pat.lhStr, hex: hex};
+  var fakeGroups = {};
+  fakeGroups[hex] = [grp];
+  renderAllChordsDrill(fakeGroups, [hex], key, DRILLS[currentDrill]);
   $title.textContent = 'Drill: ' + hex + '  RH:' + pat.rhStr + '  LH:' + pat.lhStr;
-  $container.innerHTML = '';
-
-  var drillAbc = buildDrillStripAbc(pat, key, hex);
-
-  var user = {
-    img_out: function(svg) { $container.innerHTML += svg; },
-    anno_stop: function(type, start, stop, x, y, w, h) {
-      if (type !== 'note' && type !== 'rest') return;
-      if (abc.out_sxsy && abc.sh) {
-        abc.out_svg('<rect class="abcr _' + start + '_" x="');
-        abc.out_sxsy(x, '" y="', y);
-        abc.out_svg('" width="' + w.toFixed(2) + '" height="' + abc.sh(h).toFixed(2) + '"/>\n');
-      } else {
-        abc.out_svg('<rect class="abcr _' + start + '_" x="' + x.toFixed(2) +
-          '" y="' + y.toFixed(2) + '" width="' + w.toFixed(2) + '" height="' + h.toFixed(2) + '"/>\n');
-      }
-    },
-    errmsg: function(msg) { console.warn('abc2svg:', msg); },
-    read_file: function() { return ''; }
-  };
-
-  abc = new abc2svg.Abc(user);
-  abc.tosvg('drill', drillAbc);
-
-  var svgs = $container.getElementsByTagName('svg');
-  var totalH = 0;
-  for (var i = 0; i < svgs.length; i++) totalH += parseFloat(svgs[i].getAttribute('height') || 0);
-  var areaH = $area.offsetHeight - 50;
-  svgScale = (areaH > 0 && totalH > 0) ? (areaH * 0.95) / totalH : 1;
-  if (svgScale > 3) svgScale = 3;
-  $container.style.transformOrigin = '0 0';
-  positionPlayhead();
-  setScroll(getPlayheadX());
 }
 
 function renderHymnDrills(drill) {
@@ -1286,29 +1337,38 @@ function renderHymnDrills(drill) {
   $da.innerHTML = '';
   if (!drill || !drill.abc) return;
   var patterns = extractHymnPatterns(drill.abc);
-  if (patterns.length === 0) return;
-  var header = document.createElement('div');
-  header.className = 'drill-area-header';
-  header.textContent = hymnSortName(drill.t) + ' \u2014 ' + patterns.length + ' chord shapes';
-  $da.appendChild(header);
+  console.log('renderHymnDrills: ' + patterns.length + ' patterns, viewMode=' + viewMode);
+  if (patterns.length === 0) { console.log('No patterns found!'); return; }
+  var keyStr = drill.key || 'C';
 
+  // Group patterns by abstract chord name
+  var chordGroups = {};  // chordName -> [{rh, lh, rhStr, lhStr, hex}]
+  var chordOrder = [];   // preserve first-seen order
   for (var pi = 0; pi < patterns.length; pi++) {
     var p = patterns[pi];
-    var hex = computePatternHex(p.rh, p.lh, drill.key);
-    var item = document.createElement('div');
-    item.className = 'drill-header';
-    item.innerHTML = '<span class="hex">' + hex + '</span> <span class="notes">RH:' + p.rhStr + ' LH:' + p.lhStr + '</span>';
-    // Click renders drill in score area
-    (function(pat, key, hexId) {
-      item.onclick = function() {
-        // Highlight active
-        var all = $da.querySelectorAll('.drill-header');
-        for (var k = 0; k < all.length; k++) all[k].classList.remove('active');
-        this.classList.add('active');
-        renderPatternInScore(pat, key, hexId);
-      };
-    })(p, drill.key, hex);
-    $da.appendChild(item);
+    var hex = computePatternHex(p.rh, p.lh, keyStr);
+    // Get abstract chord from combined RH+LH notes
+    var allNotes = p.rh.concat(p.lh);
+    var cn = chordName(allNotes, keyStr) || 'Unknown';
+    if (!chordGroups[cn]) {
+      chordGroups[cn] = [];
+      chordOrder.push(cn);
+    }
+    chordGroups[cn].push({rh: p.rh, lh: p.lh, rhStr: p.rhStr, lhStr: p.lhStr, hex: hex});
+  }
+
+  // Store drill data for when user switches to drill view
+  $da.drillData = {chordGroups: chordGroups, chordOrder: chordOrder, keyStr: keyStr, drill: drill};
+
+  // Summary text
+  var header = document.createElement('div');
+  header.className = 'drill-area-header';
+  header.textContent = drill.t + ' \u2014 ' + chordOrder.length + ' chords, ' + patterns.length + ' shapes';
+  $da.appendChild(header);
+
+  // Only render drill in score if we're in drill view mode
+  if (viewMode === 'drills') {
+    renderAllChordsDrill(chordGroups, chordOrder, keyStr, drill);
   }
 }
 
@@ -1391,10 +1451,14 @@ function toggleMode() {
   if (viewMode === 'hymns') {
     $hymnCols.style.display = 'flex';
     $drillArea.style.display = 'none';
+    // Re-render the current hymn in the score area
+    if (DRILLS[currentDrill]) renderDrill(currentDrill);
   } else {
     $hymnCols.style.display = 'none';
-    if (DRILLS[currentDrill]) renderHymnDrills(DRILLS[currentDrill]);
     $drillArea.style.display = 'block';
+    if (DRILLS[currentDrill]) {
+      renderHymnDrills(DRILLS[currentDrill]);
+    }
   }
   console.log('toggleMode: ' + viewMode + ', drillArea display=' + $drillArea.style.display + ', children=' + $drillArea.children.length);
 }
