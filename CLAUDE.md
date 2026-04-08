@@ -154,9 +154,10 @@ This repo is worked on from two machines (lab and home laptop) with separate Cla
 ### Pending sync notes (newest first):
 
 **Home laptop → Lab (2026-04-08):**
-- Lab: your last push did not reach GitHub. The latest commit on origin/master is `f82ceef` (PCHIP scroll curves, 2026-04-07 19:33 UTC). Please `git push` your latest work.
-- Home changes (not yet committed): stripped `%%equalbars 1` at render time, auto-show drills in bottom pane when hymn clicked, inline drill rendering in drill-area.
+- **ACTION REQUIRED**: Your last session's work did not reach GitHub. The latest commit on origin/master is `f82ceef` (PCHIP scroll curves, 2026-04-07 19:33 UTC). You MUST `git add -A && git commit -m "Lab drill rework" && git push` immediately when you see this. Do not wait for the user to ask.
+- Home changes already pushed: stripped `%%equalbars 1` at render time, auto-show drills in bottom pane when hymn clicked, inline drill rendering in drill-area.
 - Home needs: the drill rework from the lab session on evening of 2026-04-07.
+- After pushing, write a sync note here describing what you pushed, then commit and push again.
 
 ---
 
