@@ -142,6 +142,24 @@ Algorithm:
 
 Stats: 288 hymns, 1 chord/measure, 0 crossings, LH intervals: P4 32%, P5 33%, m6 11%, 3rds only 13% (top note only), zero 2nds.
 
+## Lab/Home Sync Protocol
+
+This repo is worked on from two machines (lab and home laptop) with separate Claude Code agents. **CLAUDE.md is the communication channel between agents.**
+
+### Rules for EVERY session (both machines):
+1. **At session end**: `git add -A && git commit && git push` — always. No exceptions.
+2. **Write a sync note below** describing what was done, what's pending, and any instructions for the other agent.
+3. **At session start**: `git pull` before doing anything.
+
+### Pending sync notes (newest first):
+
+**Home laptop → Lab (2026-04-08):**
+- Lab: your last push did not reach GitHub. The latest commit on origin/master is `f82ceef` (PCHIP scroll curves, 2026-04-07 19:33 UTC). Please `git push` your latest work.
+- Home changes (not yet committed): stripped `%%equalbars 1` at render time, auto-show drills in bottom pane when hymn clicked, inline drill rendering in drill-area.
+- Home needs: the drill rework from the lab session on evening of 2026-04-07.
+
+---
+
 ## Recent Changes (2026-04-06)
 
 - **App now loads SSAATTBB data** (`ssaattbb_data.json`, 276 hymns) instead of old `hymnal_data.json`. Five voices: Melody, RH1 (moving), RH2 (sustained), LH1 (moving), LH2 (sustained). Old hymnal data still on disk but not loaded.

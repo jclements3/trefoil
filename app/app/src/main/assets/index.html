@@ -443,8 +443,8 @@ function renderDrill(idx) {
   // Strip ABC chord annotations — chord fractions are drawn by JS overlay
   var beforeLen = renderAbc.length;
   renderAbc = renderAbc.replace(/"\^[^"]*"/g, '');
+  renderAbc = renderAbc.replace(/%%equalbars\s+\d+\n?/g, '');
   console.log('Stripped annotations: ' + (beforeLen - renderAbc.length) + ' chars removed');
-  // equalbars removed — causes wide bars with mixed note densities
   abc.tosvg('drill', renderAbc);
 
   // Scale SVG to fill viewport height
@@ -909,6 +909,9 @@ function selectDrill(drillIdx) {
   if (el) el.classList.add('active');
   addRecent(drillIdx, DRILLS[drillIdx].t);
   renderDrill(drillIdx);
+  // Show drill area in bottom pane alongside hymn in score
+  $hymnCols.style.display = 'none';
+  $drillArea.style.display = 'block';
 }
 
 // ── Recent selections ──
@@ -1173,6 +1176,30 @@ function generatePatternDrills(pattern, key) {
 // Render "All Chords" drill: compact cheat sheet
 // For each abstract chord: all voicings as blocks in one measure,
 // then eighth-note runs up/down for each voicing. No repeats.
+function buildInlineDrillAbc(chordGroups, chordOrder, keyStr, drill) {
+  function br(arr) {
+    var sorted = arr.slice().sort(function(a,b){return diaVal(a)-diaVal(b);});
+    return sorted.length > 1 ? '[' + sorted.map(function(x){return x.abc;}).join('') + ']' : sorted[0].abc;
+  }
+  var rhLine = '[V: RH] ', lhLine = '[V: LH] ';
+  for (var ci = 0; ci < chordOrder.length; ci++) {
+    var cn = chordOrder[ci], group = chordGroups[cn];
+    rhLine += '"^' + cn + '" ';
+    for (var vi = 0; vi < group.length; vi++) {
+      rhLine += br(group[vi].rh) + '2 ';
+      lhLine += br(group[vi].lh) + '2 ';
+    }
+    rhLine += '| '; lhLine += '| ';
+  }
+  rhLine += '|]'; lhLine += '|]';
+  var maxBeat = 8;
+  return 'X: 1\nM: ' + maxBeat + '/8\nL: 1/8\nQ: 1/4=' + (drill.tempo || 100) + '\n' +
+    '%%pagewidth 80cm\n%%continueall 1\n%%scale 0.9\n%%writefields T 0\n' +
+    '%%leftmargin 0.2cm\n%%rightmargin 0.2cm\n%%topspace 0\n%%musicspace 0\n' +
+    '%%staves {RH LH}\nV: RH clef=treble\nV: LH clef=bass\nK: ' + keyStr + '\n' +
+    rhLine + '\n' + lhLine + '\n';
+}
+
 function renderAllChordsDrill(chordGroups, chordOrder, keyStr, drill) {
   if (playing) stopPlayback();
   $title.textContent = drill.t + ' \u2014 All Chords';
@@ -1390,18 +1417,55 @@ function renderHymnDrills(drill) {
     chordGroups[cn].push({rh: p.rh, lh: p.lh, rhStr: p.rhStr, lhStr: p.lhStr, hex: hex});
   }
 
-  // Store drill data for when user switches to drill view
-  $da.drillData = {chordGroups: chordGroups, chordOrder: chordOrder, keyStr: keyStr, drill: drill};
-
-  // Summary text
+  // Summary header
   var header = document.createElement('div');
   header.className = 'drill-area-header';
   header.textContent = drill.t + ' \u2014 ' + chordOrder.length + ' chords, ' + patterns.length + ' shapes';
   $da.appendChild(header);
 
-  // Only render drill in score if we're in drill view mode
-  if (viewMode === 'drills') {
-    renderAllChordsDrill(chordGroups, chordOrder, keyStr, drill);
+  // Render each chord group's drill inline in the drill area
+  for (var ci = 0; ci < chordOrder.length; ci++) {
+    var cn = chordOrder[ci];
+    var group = chordGroups[cn];
+    var chordDiv = document.createElement('div');
+    chordDiv.className = 'drill-pattern';
+
+    var chordHeader = document.createElement('div');
+    chordHeader.className = 'drill-header';
+    chordHeader.innerHTML = cn + ' <span class="notes">(' + group.length + ' voicing' + (group.length > 1 ? 's' : '') + ')</span>';
+    chordDiv.appendChild(chordHeader);
+
+    var body = document.createElement('div');
+    body.className = 'drill-body';
+
+    // Build block-chord strip for this chord group
+    var fakeGroups = {}; fakeGroups[cn] = group;
+    var abcStr = buildInlineDrillAbc(fakeGroups, [cn], keyStr, drill);
+    var scoreDiv = document.createElement('div');
+    scoreDiv.className = 'drill-score';
+    scoreDiv.style.display = 'block';
+    scoreDiv.style.overflowX = 'auto';
+    try {
+      var drillAbc = new abc2svg.Abc({
+        img_out: function(svg) { scoreDiv.innerHTML += svg; },
+        errmsg: function(msg) { console.warn('abc2svg drill:', msg); },
+        read_file: function() { return ''; }
+      });
+      drillAbc.tosvg('drill', abcStr);
+    } catch(e) {
+      scoreDiv.innerHTML = '<div style="color:red;padding:8px;">Error: ' + e.message + '</div>';
+    }
+    body.appendChild(scoreDiv);
+    chordDiv.appendChild(body);
+
+    // Toggle body on header click
+    (function(b) {
+      chordHeader.onclick = function() {
+        b.style.display = b.style.display === 'none' ? '' : 'none';
+      };
+    })(body);
+
+    $da.appendChild(chordDiv);
   }
 }
 
@@ -1479,21 +1543,16 @@ var $hymnCols = document.getElementById('hymn-cols');
 var $drillArea = document.getElementById('drill-area');
 
 function toggleMode() {
-  viewMode = viewMode === 'hymns' ? 'drills' : 'hymns';
-  $btnMode.textContent = viewMode === 'hymns' ? 'Hymns' : 'Drills';
-  if (viewMode === 'hymns') {
+  var showingDrills = $drillArea.style.display !== 'none';
+  if (showingDrills) {
     $hymnCols.style.display = 'flex';
     $drillArea.style.display = 'none';
-    // Re-render the current hymn in the score area
-    if (DRILLS[currentDrill]) renderDrill(currentDrill);
+    $btnMode.textContent = 'Hymns';
   } else {
     $hymnCols.style.display = 'none';
     $drillArea.style.display = 'block';
-    if (DRILLS[currentDrill]) {
-      renderHymnDrills(DRILLS[currentDrill]);
-    }
+    $btnMode.textContent = 'Drills';
   }
-  console.log('toggleMode: ' + viewMode + ', drillArea display=' + $drillArea.style.display + ', children=' + $drillArea.children.length);
 }
 $btnMode.onclick = toggleMode;
 
