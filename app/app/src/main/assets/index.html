@@ -167,13 +167,13 @@ label { font-size: 13px; color: #888; }
   white-space: nowrap;
 }
 .chord-frac .cf-rh {
-  font-size: 11px;
+  font-size: 8px;
   font-weight: bold;
   color: #2563eb;
   white-space: nowrap;
 }
 .chord-frac .cf-lh {
-  font-size: 11px;
+  font-size: 8px;
   font-weight: normal;
   color: #888;
   white-space: nowrap;
@@ -492,41 +492,85 @@ function renderDrill(idx) {
     fracContainer.style.pointerEvents = 'none';
     $container.appendChild(fracContainer);
 
-    // Place fractions at measure starts using notes-per-bar to find the right .abcr rect
-    // npb = melody notes per bar. But .abcr has ALL voices.
-    // Estimate rects per voice-beat: totalRects / totalMelodyNotes ≈ voices count
     var npb = drill.npb || [];
-    var totalMelNotes = 0;
-    for (var i = 0; i < npb.length; i++) totalMelNotes += npb[i];
-    var voiceMult = totalMelNotes > 0 ? Math.round(rects.length / totalMelNotes) : 5;
-    if (voiceMult < 1) voiceMult = 1;
 
-    var prevAbs = '';
-    var cumNotes = 0;
-    for (var ci = 0; ci < chords.length; ci++) {
-      var ch = chords[ci];
-      if (!ch.abs && !ch.rhn && !ch.lhn) { cumNotes += (npb[ci] || 1); continue; }
-      // Rect index = cumulative melody notes × voices multiplier
-      var rectIdx = Math.min(cumNotes * voiceMult, rects.length - 1);
-      var br = rects[rectIdx].getBoundingClientRect();
-      var cx = (br.left - cRect.left) / svgScale;
-      // Skip if all three parts match the previous fraction
-      var fracKey = (ch.abs || '') + '|' + (ch.rhn || '') + '|' + (ch.lhn || '');
-      if (ci < 3) console.log('Fraction ' + ci + ':', JSON.stringify(ch), 'fracKey:', fracKey, 'prevAbs:', prevAbs);
-      if (fracKey === prevAbs) { cumNotes += (npb[ci] || 1); continue; }
-      prevAbs = fracKey;
-      var div = document.createElement('div');
-      div.className = 'chord-frac';
-      div.style.left = cx + 'px';
-      div.style.top = (topY - 50) + 'px';
-      div.innerHTML =
-        (ch.abs ? '<div class="cf-abs">' + ch.abs + '</div>' : '') +
-        '<div class="cf-rh">' + (ch.rhn || '') + '</div>' +
-        '<div class="cf-lh">' + (ch.lhn || '') + '</div>';
-      fracContainer.appendChild(div);
-      cumNotes += (npb[ci] || 1);
+    if (tchMode) {
+      // Tchaikovsky mode: position fractions at each .abcr rect that starts a new measure.
+      // With block chords, each measure has ~3 rects per voice. Find the first rect of
+      // each measure by looking for rects whose x-position jumps (after a barline).
+      var rectXs = [];
+      for (var i = 0; i < rects.length; i++) {
+        var br = rects[i].getBoundingClientRect();
+        rectXs.push((br.left - cRect.left) / svgScale);
+      }
+      // Find measure-start x positions: collect unique x positions at barline boundaries
+      // Each measure's first rect is the one right after a barline (x jumps or is first)
+      var measureXs = [];
+      if (rectXs.length > 0) measureXs.push(rectXs[0]);
+      var lastX = rectXs[0] || 0;
+      for (var i = 1; i < rectXs.length; i++) {
+        // A new measure starts when x resets or jumps significantly forward
+        // With continueall, x always increases. Barlines cause a gap.
+        // Use the rect that follows a significant gap as measure start
+        if (rectXs[i] > lastX + 20) { // gap > 20px = likely barline
+          measureXs.push(rectXs[i]);
+        }
+        lastX = rectXs[i];
+      }
+      // If not enough measure starts found, fall back to evenly spacing
+      if (measureXs.length < chords.length) {
+        var totalWidth = rectXs[rectXs.length - 1] - rectXs[0];
+        measureXs = [];
+        for (var i = 0; i < chords.length; i++) {
+          measureXs.push(rectXs[0] + (totalWidth * i / chords.length));
+        }
+      }
+
+      for (var ci = 0; ci < chords.length; ci++) {
+        var ch = chords[ci];
+        if (!ch.rhn && !ch.lhn) continue;
+        var cx = ci < measureXs.length ? measureXs[ci] : (measureXs[measureXs.length-1] || 0);
+        var div = document.createElement('div');
+        div.className = 'chord-frac';
+        div.style.left = cx + 'px';
+        div.style.top = (topY - 20) + 'px';
+        div.innerHTML =
+          '<div class="cf-rh">' + (ch.rhn || '') + '</div>' +
+          '<div class="cf-lh">' + (ch.lhn || '') + '</div>';
+        fracContainer.appendChild(div);
+      }
+      console.log('Tch fractions: ' + chords.length + ' chords, ' + measureXs.length + ' measure positions');
+    } else {
+      // Regular mode: position fractions using notes-per-bar
+      var totalMelNotes = 0;
+      for (var i = 0; i < npb.length; i++) totalMelNotes += npb[i];
+      var voiceMult = totalMelNotes > 0 ? Math.round(rects.length / totalMelNotes) : 5;
+      if (voiceMult < 1) voiceMult = 1;
+
+      var prevAbs = '';
+      var cumNotes = 0;
+      for (var ci = 0; ci < chords.length; ci++) {
+        var ch = chords[ci];
+        if (!ch.abs && !ch.rhn && !ch.lhn) { cumNotes += (npb[ci] || 1); continue; }
+        var rectIdx = Math.min(cumNotes * voiceMult, rects.length - 1);
+        var br = rects[rectIdx].getBoundingClientRect();
+        var cx = (br.left - cRect.left) / svgScale;
+        var fracKey = (ch.abs || '') + '|' + (ch.rhn || '') + '|' + (ch.lhn || '');
+        if (fracKey === prevAbs) { cumNotes += (npb[ci] || 1); continue; }
+        prevAbs = fracKey;
+        var div = document.createElement('div');
+        div.className = 'chord-frac';
+        div.style.left = cx + 'px';
+        div.style.top = (topY - 50) + 'px';
+        div.innerHTML =
+          (ch.abs ? '<div class="cf-abs">' + ch.abs + '</div>' : '') +
+          '<div class="cf-rh">' + (ch.rhn || '') + '</div>' +
+          '<div class="cf-lh">' + (ch.lhn || '') + '</div>';
+        fracContainer.appendChild(div);
+        cumNotes += (npb[ci] || 1);
+      }
+      console.log('Placed fractions, voiceMult=' + voiceMult + ' totalMelNotes=' + totalMelNotes + ' rects=' + rects.length);
     }
-    console.log('Placed fractions, voiceMult=' + voiceMult + ' totalMelNotes=' + totalMelNotes + ' rects=' + rects.length);
   }, 150);
 
   positionPlayhead();
