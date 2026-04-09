@@ -153,15 +153,31 @@ This repo is worked on from two machines (lab and home laptop) with separate Cla
 
 ### Pending sync notes (newest first):
 
-**Home laptop → Lab (2026-04-08):**
-- **ACTION REQUIRED**: Your last session's work did not reach GitHub. The latest commit on origin/master is `f82ceef` (PCHIP scroll curves, 2026-04-07 19:33 UTC). You MUST `git add -A && git commit -m "Lab drill rework" && git push` immediately when you see this. Do not wait for the user to ask.
-- Home changes already pushed: stripped `%%equalbars 1` at render time, auto-show drills in bottom pane when hymn clicked, inline drill rendering in drill-area.
-- Home needs: the drill rework from the lab session on evening of 2026-04-07.
-- After pushing, write a sync note here describing what you pushed, then commit and push again.
+**Lab → Home (2026-04-09):**
+- Major new feature: Tchaikovsky-style arpeggio runs. See "Recent Changes (2026-04-09)" below.
+- New files: `scripts/build_tchaikovsky_hymnal.py`, `app/tchaikovsky_data.json`, `data/diatonic_chord_table.md`, `MANTRA.md`
+- AndroidManifest changed to allow landscape mode.
+- index.html has Tch checkbox, %%score alignment, chord label on melody staff.
+- Octave mapping in ABC was fixed (was off by one octave).
 
 ---
 
-## Recent Changes (2026-04-06)
+## Recent Changes (2026-04-09)
+
+- **Tchaikovsky mode**: Checkbox "Tch" in toolbar toggles between regular SSAATTBB score and Tchaikovsky-style arpeggio runs. Runs sweep the full 33-string lever harp (C2 to G6) with 4-chord transitions per measure.
+- **Tchaikovsky data**: `app/tchaikovsky_data.json` (288 hymns). Built by `scripts/build_tchaikovsky_hymnal.py` from `app/lead_sheets.json` chord annotations + diatonic chord table patterns.
+- **Tchaikovsky run algorithm**: For each measure, picks 4 chords from the chord table pool: A (ascending bass) > B (ascending treble) / C (descending treble) > D (descending bass). Chord A from current measure, B from color pairing, C/D from next measure's chord. Uses `%%score 1 {2 3}` for melody + grand staff alignment. All voices at L:1/64 with melody durations rescaled. Runs repeat to fill the measure. Invisible rests (x) where one staff is idle.
+- **Diatonic chord table**: `data/diatonic_chord_table.md` — 14 patterns x 7 degrees. Degree + finger pattern = chord address. Notation: I¹ (inversions), vii° (diminished), viiø7 (half-dim), Iq (quartal), I+9 (add9), I9-3/I9-5 (9th omissions).
+- **Chord labels**: Times Roman font (`%%gchordfont`), above melody staff. Format: `I¹>vim / iim6>iiq` (ascending chords > descending chords). Slash separates up/down. `>` separates chord transitions within a direction.
+- **8va/8vb**: Notes above A5 get 8va marking, notes at C2 get 8vb. Keeps notation readable across full harp range.
+- **Note counts**: Below each bar on bass staff, showing actual notes in the run.
+- **Landscape mode**: AndroidManifest changed from `portrait` to `unspecified`. Landscape works well for Tchaikovsky strip charts.
+- **Harp range**: Updated from G5 to G6 (33 strings). Octave mapping fixed: C4 = middle C = `C` in ABC.
+- **Pickup bar handling**: Harp runs truncated to match melody bar duration for barline alignment.
+- **Equalbars removed**: Script tag removed, scroll sync is precomputed.
+- **Practice mantra**: `MANTRA.md` — 15-point form checklist (height, posture, shoulders, arms, elbows, wrists, hands, thumbs, fingers, nails, breathing, harp angle, feet, closing, tension).
+
+## Changes (2026-04-06)
 
 - **App now loads SSAATTBB data** (`ssaattbb_data.json`, 276 hymns) instead of old `hymnal_data.json`. Five voices: Melody, RH1 (moving), RH2 (sustained), LH1 (moving), LH2 (sustained). Old hymnal data still on disk but not loaded.
 - **On-the-fly drill generation**: No pre-built drill files. Parses RH2/LH2 brackets from each hymn, generates block/arpeggio/run/flip exercises as grand staff strip charts in the hymn's key. Renders in score area when clicked.

@@ -210,7 +210,9 @@ label { font-size: 13px; color: #888; }
 </div>
 <div id="library">
   <div id="lib-toolbar">
-    <button id="btn-mode" class="mode-btn active">Hymns</button>
+    <label style="font-size:13px;color:#666;display:flex;align-items:center;gap:3px;cursor:pointer;-webkit-tap-highlight-color:transparent;">
+      <input type="checkbox" id="chk-tchaikovsky" style="width:16px;height:16px;"/> Tch
+    </label>
     <div id="key-filters">
       <button class="key-btn" data-key="All">All</button>
       <button class="key-btn active" data-key="Eb">Eb</button>
@@ -237,7 +239,7 @@ label { font-size: 13px; color: #888; }
 
 <script src="abc2svg/abc2svg-1.js"></script>
 <script src="abc2svg/snd-1.js"></script>
-<script src="abc2svg/equalbars-1.js"></script>
+<!-- equalbars removed — scroll sync precomputed -->
 <script>
 // Override loadjs to handle file:///android_asset/ paths correctly.
 // The default loadjs prepends jsdir which can break with file:// protocol.
@@ -280,9 +282,9 @@ function getAbc(drill) {
   if (!melodyOn) {
     var lines = abc.split('\n');
     for (var i = 0; i < lines.length; i++) {
-      if (lines[i].indexOf('[V: M]') === 0) {
-        var voice = lines[i].replace(/\[V: M\]\s*/, '');
-        var result = '[V: M] ';
+      if (lines[i].indexOf('[V: M]') === 0 || lines[i].indexOf('[V:1]') === 0) {
+        var voice = lines[i].replace(/\[V:\s*(?:M|1)\]\s*/, '');
+        var result = lines[i].match(/\[V:\s*(?:M|1)\]/)[0] + ' ';
         var pos = 0;
         while (pos < voice.length) {
           if (voice[pos] === '"') {
@@ -406,6 +408,19 @@ function renderDrill(idx) {
   if (playing) stopPlayback();
   currentDrill = idx;
   var drill = DRILLS[idx];
+
+  // Check if Tchaikovsky mode — swap in Tchaikovsky ABC if available
+  var tchMode = document.getElementById('chk-tchaikovsky').checked;
+  var useDrill = drill;
+  if (tchMode) {
+    var cleanTitle = drill.t.replace(/^\d+\s*/, '').trim();
+    var tch = TCHAIKOVSKY[cleanTitle];
+    if (tch && tch.abc) {
+      useDrill = {t: drill.t + ' (Tch)', abc: tch.abc, key: tch.key, tempo: tch.tempo, npb: tch.npb, n: drill.n};
+    }
+  }
+  drill = useDrill;
+
   $title.textContent = drill.t;
   $container.innerHTML = '';
 
@@ -438,13 +453,16 @@ function renderDrill(idx) {
   };
 
   abc = new abc2svg.Abc(user);
-  // Hide the built-in chord annotations — fractions replace them
   var renderAbc = getAbc(drill);
-  // Strip ABC chord annotations — chord fractions are drawn by JS overlay
-  var beforeLen = renderAbc.length;
-  renderAbc = renderAbc.replace(/"\^[^"]*"/g, '');
-  renderAbc = renderAbc.replace(/%%equalbars\s+\d+\n?/g, '');
-  console.log('Stripped annotations: ' + (beforeLen - renderAbc.length) + ' chars removed');
+  // Strip ABC chord annotations for regular hymns (JS overlays replace them)
+  // Keep annotations for Tchaikovsky mode (they ARE the chord labels)
+  if (!tchMode) {
+    var beforeLen = renderAbc.length;
+    renderAbc = renderAbc.replace(/"\^[^"]*"/g, '');
+    console.log('Stripped annotations: ' + (beforeLen - renderAbc.length) + ' chars, tchMode=' + tchMode);
+  } else {
+    console.log('Tchaikovsky mode: keeping ' + (renderAbc.match(/"\^[^"]*"/g) || []).length + ' annotations');
+  }
   abc.tosvg('drill', renderAbc);
 
   // Scale SVG to fill viewport height
@@ -457,7 +475,8 @@ function renderDrill(idx) {
   console.log('areaH=' + areaH + ' totalH=' + totalH + ' svgScale=' + svgScale.toFixed(2) + ' playheadX=' + getPlayheadX().toFixed(1));
   $container.style.transformOrigin = '0 0';
 
-  // Build chord fraction overlays on-the-fly from ABC
+  // Build chord fraction overlays on-the-fly from ABC (skip for Tchaikovsky — labels are in the ABC)
+  if (tchMode) { /* skip fraction overlay — annotations rendered by abc2svg */ } else
   setTimeout(function() {
     var chords = extractChordAnnotations(drill.abc, drill.key || 'C');
     if (!chords.length) return;
@@ -505,7 +524,7 @@ function renderDrill(idx) {
       div.style.left = cx + 'px';
       div.style.top = (topY - 50) + 'px';
       div.innerHTML =
-        '<div class="cf-abs">' + (ch.abs || '') + '</div>' +
+        (ch.abs ? '<div class="cf-abs">' + ch.abs + '</div>' : '') +
         '<div class="cf-rh">' + (ch.rhn || '') + '</div>' +
         '<div class="cf-lh">' + (ch.lhn || '') + '</div>';
       fracContainer.appendChild(div);
@@ -527,11 +546,6 @@ function renderDrill(idx) {
     setScroll(getPlayheadX());
   }
 
-  // Generate per-hymn drills (always build content, mode toggle controls visibility)
-  renderHymnDrills(drill);
-  if (viewMode === 'drills') {
-    document.getElementById('drill-area').style.display = '';
-  }
 }
 
 // ── Mic chroma scoring ──
@@ -818,41 +832,20 @@ document.getElementById('btn-scroll-right').onclick = function() {
   setScroll(scrollX - step);
 };
 
-// |<< — prev drill (in drills mode) or rewind (in hymns mode)
+// |<< — rewind to start
 document.getElementById('btn-rewind').onclick = function() {
   if (playing) stopPlayback();
-  if (viewMode === 'drills') {
-    // Navigate to previous drill pattern
-    var headers = document.getElementById('drill-area').querySelectorAll('.drill-header');
-    var activeIdx = -1;
-    for (var i = 0; i < headers.length; i++) {
-      if (headers[i].classList.contains('active')) { activeIdx = i; break; }
-    }
-    if (activeIdx > 0) headers[activeIdx - 1].click();
-    else if (headers.length > 0) headers[headers.length - 1].click();
-  } else {
-    renderDrill(currentDrill);
-  }
+  renderDrill(currentDrill);
 };
 
-// >>| — next drill (in drills mode) or next hymn (in hymns mode)
+// >>| — next hymn
 document.getElementById('btn-next').onclick = function() {
   var wasPlaying = playing;
   if (playing) stopPlayback();
-  if (viewMode === 'drills') {
-    var headers = document.getElementById('drill-area').querySelectorAll('.drill-header');
-    var activeIdx = -1;
-    for (var i = 0; i < headers.length; i++) {
-      if (headers[i].classList.contains('active')) { activeIdx = i; break; }
-    }
-    if (activeIdx < headers.length - 1) headers[activeIdx + 1].click();
-    else if (headers.length > 0) headers[0].click();
-  } else {
-    var next = getNextHymn(currentDrill);
-    if (next >= 0) {
-      selectDrill(next);
-      if (wasPlaying) startPlayback();
-    }
+  var next = getNextHymn(currentDrill);
+  if (next >= 0) {
+    selectDrill(next);
+    if (wasPlaying) startPlayback();
   }
 };
 var $bpmSlider = document.getElementById('bpm-slider');
@@ -909,9 +902,6 @@ function selectDrill(drillIdx) {
   if (el) el.classList.add('active');
   addRecent(drillIdx, DRILLS[drillIdx].t);
   renderDrill(drillIdx);
-  // Show drill area in bottom pane alongside hymn in score
-  $hymnCols.style.display = 'none';
-  $drillArea.style.display = 'block';
 }
 
 // ── Recent selections ──
@@ -976,8 +966,8 @@ function extractHymnPatterns(abcText) {
   var lines = abcText.split('\n'), rhLine = '', lhLine = '';
   for (var i = 0; i < lines.length; i++) {
     // Support both formats: [V: RH]/[V: LH] and [V: RH2]/[V: LH2]
-    if (lines[i].indexOf('[V: RH]') === 0 || lines[i].indexOf('[V: RH2]') === 0) rhLine = lines[i];
-    if (lines[i].indexOf('[V: LH]') === 0 || lines[i].indexOf('[V: LH2]') === 0) lhLine = lines[i];
+    if (lines[i].indexOf('[V: RH]') === 0 || lines[i].indexOf('[V: RH2]') === 0 || lines[i].indexOf('[V:2]') === 0) rhLine = lines[i];
+    if (lines[i].indexOf('[V: LH]') === 0 || lines[i].indexOf('[V: LH2]') === 0 || lines[i].indexOf('[V:3]') === 0) lhLine = lines[i];
   }
   if (!rhLine || !lhLine) return [];
   var bracketRe = /\[[A-Ga-g^_=][^\]]*\]/g;
@@ -1060,26 +1050,50 @@ function chordName(notes, keyStr) {
 }
 
 function extractChordAnnotations(abcText, keyStr) {
-  // Parse melody line for "^ChordName" annotations, and RH2/LH2 brackets per measure
+  // Parse chord annotations from RH and LH voice lines (Tchaikovsky format)
+  // Also falls back to melody annotations + bracket detection for old format
   var lines = abcText.split('\n');
-  var melLine = '', rh2Line = '', lh2Line = '';
+  var melLine = '', rhLine = '', lhLine = '';
   for (var i = 0; i < lines.length; i++) {
-    if (lines[i].indexOf('[V: M]') === 0) melLine = lines[i];
-    if (lines[i].indexOf('[V: RH2]') === 0 || lines[i].indexOf('[V: RH]') === 0) rh2Line = lines[i];
-    if (lines[i].indexOf('[V: LH2]') === 0 || lines[i].indexOf('[V: LH]') === 0) lh2Line = lines[i];
+    if (lines[i].indexOf('[V: M]') === 0 || lines[i].indexOf('[V:1]') === 0) melLine = lines[i];
+    if (lines[i].indexOf('[V: RH2]') === 0 || lines[i].indexOf('[V: RH]') === 0 || lines[i].indexOf('[V:2]') === 0) rhLine = lines[i];
+    if (lines[i].indexOf('[V: LH2]') === 0 || lines[i].indexOf('[V: LH]') === 0 || lines[i].indexOf('[V:3]') === 0) lhLine = lines[i];
   }
-  // Extract abstract chords from melody annotations
-  var absChords = [];
+
   var annRe = /"\^([^"]*)"/g;
   var m;
+
+  // Extract annotations from RH and LH voices (new Tchaikovsky format)
+  var rhChords = [];
+  while ((m = annRe.exec(rhLine)) !== null) rhChords.push(m[1]);
+  annRe.lastIndex = 0;
+  var lhChords = [];
+  while ((m = annRe.exec(lhLine)) !== null) lhChords.push(m[1]);
+
+  // If RH/LH have annotations, use those directly (no abstract chord)
+  if (rhChords.length > 0 || lhChords.length > 0) {
+    var chords = [];
+    var len = Math.max(rhChords.length, lhChords.length);
+    for (var i = 0; i < len; i++) {
+      chords.push({
+        beat: i,
+        abs: '',
+        rhn: rhChords[i] || '',
+        lhn: lhChords[i] || ''
+      });
+    }
+    return chords;
+  }
+
+  // Fallback: melody annotations + bracket detection (old format)
+  annRe.lastIndex = 0;
+  var absChords = [];
   while ((m = annRe.exec(melLine)) !== null) absChords.push(m[1]);
 
-  // Extract RH and LH brackets
   var bracketRe = /\[[A-Ga-g^_=][^\]]*\]/g;
-  var rhBrackets = rh2Line.match(bracketRe) || [];
-  var lhBrackets = lh2Line.match(bracketRe) || [];
+  var rhBrackets = rhLine.match(bracketRe) || [];
+  var lhBrackets = lhLine.match(bracketRe) || [];
 
-  // Build chord array: one per measure (matched by index)
   var chords = [];
   var len = Math.max(absChords.length, rhBrackets.length, lhBrackets.length);
   for (var i = 0; i < len; i++) {
@@ -1176,30 +1190,6 @@ function generatePatternDrills(pattern, key) {
 // Render "All Chords" drill: compact cheat sheet
 // For each abstract chord: all voicings as blocks in one measure,
 // then eighth-note runs up/down for each voicing. No repeats.
-function buildInlineDrillAbc(chordGroups, chordOrder, keyStr, drill) {
-  function br(arr) {
-    var sorted = arr.slice().sort(function(a,b){return diaVal(a)-diaVal(b);});
-    return sorted.length > 1 ? '[' + sorted.map(function(x){return x.abc;}).join('') + ']' : sorted[0].abc;
-  }
-  var rhLine = '[V: RH] ', lhLine = '[V: LH] ';
-  for (var ci = 0; ci < chordOrder.length; ci++) {
-    var cn = chordOrder[ci], group = chordGroups[cn];
-    rhLine += '"^' + cn + '" ';
-    for (var vi = 0; vi < group.length; vi++) {
-      rhLine += br(group[vi].rh) + '2 ';
-      lhLine += br(group[vi].lh) + '2 ';
-    }
-    rhLine += '| '; lhLine += '| ';
-  }
-  rhLine += '|]'; lhLine += '|]';
-  var maxBeat = 8;
-  return 'X: 1\nM: ' + maxBeat + '/8\nL: 1/8\nQ: 1/4=' + (drill.tempo || 100) + '\n' +
-    '%%pagewidth 80cm\n%%continueall 1\n%%scale 0.9\n%%writefields T 0\n' +
-    '%%leftmargin 0.2cm\n%%rightmargin 0.2cm\n%%topspace 0\n%%musicspace 0\n' +
-    '%%staves {RH LH}\nV: RH clef=treble\nV: LH clef=bass\nK: ' + keyStr + '\n' +
-    rhLine + '\n' + lhLine + '\n';
-}
-
 function renderAllChordsDrill(chordGroups, chordOrder, keyStr, drill) {
   if (playing) stopPlayback();
   $title.textContent = drill.t + ' \u2014 All Chords';
@@ -1395,78 +1385,46 @@ function renderPatternInScore(pat, key, hex) {
 function renderHymnDrills(drill) {
   var $da = document.getElementById('drill-area');
   $da.innerHTML = '';
-  if (!drill || !drill.abc) return;
-  var patterns = extractHymnPatterns(drill.abc);
-  console.log('renderHymnDrills: ' + patterns.length + ' patterns, viewMode=' + viewMode);
-  if (patterns.length === 0) { console.log('No patterns found!'); return; }
-  var keyStr = drill.key || 'C';
+  if (!drill) return;
 
-  // Group patterns by abstract chord name
-  var chordGroups = {};  // chordName -> [{rh, lh, rhStr, lhStr, hex}]
-  var chordOrder = [];   // preserve first-seen order
-  for (var pi = 0; pi < patterns.length; pi++) {
-    var p = patterns[pi];
-    var hex = computePatternHex(p.rh, p.lh, keyStr);
-    // Get abstract chord from combined RH+LH notes
-    var allNotes = p.rh.concat(p.lh);
-    var cn = chordName(allNotes, keyStr) || 'Unknown';
-    if (!chordGroups[cn]) {
-      chordGroups[cn] = [];
-      chordOrder.push(cn);
-    }
-    chordGroups[cn].push({rh: p.rh, lh: p.lh, rhStr: p.rhStr, lhStr: p.lhStr, hex: hex});
+  // Look up Tchaikovsky version by cleaned title
+  var cleanTitle = drill.t.replace(/^\d+\s*/, '').trim();
+  var tch = TCHAIKOVSKY[cleanTitle];
+  if (!tch || !tch.abc) {
+    $da.innerHTML = '<div class="drill-area-header">No Tchaikovsky drill for: ' + cleanTitle + '</div>';
+    console.log('renderHymnDrills: no Tchaikovsky data for title=' + cleanTitle);
+    return;
   }
 
-  // Summary header
+  console.log('renderHymnDrills: Tchaikovsky for ' + drill.t + ', abc length=' + tch.abc.length);
+
+  // Header
   var header = document.createElement('div');
   header.className = 'drill-area-header';
-  header.textContent = drill.t + ' \u2014 ' + chordOrder.length + ' chords, ' + patterns.length + ' shapes';
+  header.textContent = drill.t + ' \u2014 Tchaikovsky runs';
   $da.appendChild(header);
 
-  // Render each chord group's drill inline in the drill area
-  for (var ci = 0; ci < chordOrder.length; ci++) {
-    var cn = chordOrder[ci];
-    var group = chordGroups[cn];
-    var chordDiv = document.createElement('div');
-    chordDiv.className = 'drill-pattern';
+  // Render the Tchaikovsky ABC strip chart
+  var scoreDiv = document.createElement('div');
+  scoreDiv.className = 'drill-body';
+  scoreDiv.style.overflowX = 'auto';
+  scoreDiv.style.padding = '4px';
 
-    var chordHeader = document.createElement('div');
-    chordHeader.className = 'drill-header';
-    chordHeader.innerHTML = cn + ' <span class="notes">(' + group.length + ' voicing' + (group.length > 1 ? 's' : '') + ')</span>';
-    chordDiv.appendChild(chordHeader);
-
-    var body = document.createElement('div');
-    body.className = 'drill-body';
-
-    // Build block-chord strip for this chord group
-    var fakeGroups = {}; fakeGroups[cn] = group;
-    var abcStr = buildInlineDrillAbc(fakeGroups, [cn], keyStr, drill);
-    var scoreDiv = document.createElement('div');
-    scoreDiv.className = 'drill-score';
-    scoreDiv.style.display = 'block';
-    scoreDiv.style.overflowX = 'auto';
-    try {
-      var drillAbc = new abc2svg.Abc({
-        img_out: function(svg) { scoreDiv.innerHTML += svg; },
-        errmsg: function(msg) { console.warn('abc2svg drill:', msg); },
-        read_file: function() { return ''; }
-      });
-      drillAbc.tosvg('drill', abcStr);
-    } catch(e) {
-      scoreDiv.innerHTML = '<div style="color:red;padding:8px;">Error: ' + e.message + '</div>';
-    }
-    body.appendChild(scoreDiv);
-    chordDiv.appendChild(body);
-
-    // Toggle body on header click
-    (function(b) {
-      chordHeader.onclick = function() {
-        b.style.display = b.style.display === 'none' ? '' : 'none';
-      };
-    })(body);
-
-    $da.appendChild(chordDiv);
+  try {
+    var target = scoreDiv;
+    var drillAbc = new abc2svg.Abc({
+      img_out: function(svg) { target.innerHTML += svg; },
+      errmsg: function(msg) { console.warn('abc2svg tchaikovsky:', msg); },
+      read_file: function() { return ''; }
+    });
+    // Keep chord annotations — abc2svg renders them as text above/below staff
+    drillAbc.tosvg('tchaikovsky', tch.abc);
+  } catch(e) {
+    scoreDiv.innerHTML = '<div style="color:red;padding:8px;">Render error: ' + e.message + '</div>';
+    console.error('Tchaikovsky render error:', e);
   }
+
+  $da.appendChild(scoreDiv);
 }
 
 // Strip leading number prefix for sorting/grouping (e.g. "001 The Love of God" → "The Love of God")
@@ -1536,25 +1494,11 @@ function buildLibrary() {
   }
 }
 
-// Mode toggle: Hymns vs Drills
-var viewMode = 'hymns';
-var $btnMode = document.getElementById('btn-mode');
+// Tchaikovsky checkbox — re-render current hymn when toggled
 var $hymnCols = document.getElementById('hymn-cols');
-var $drillArea = document.getElementById('drill-area');
-
-function toggleMode() {
-  var showingDrills = $drillArea.style.display !== 'none';
-  if (showingDrills) {
-    $hymnCols.style.display = 'flex';
-    $drillArea.style.display = 'none';
-    $btnMode.textContent = 'Hymns';
-  } else {
-    $hymnCols.style.display = 'none';
-    $drillArea.style.display = 'block';
-    $btnMode.textContent = 'Drills';
-  }
-}
-$btnMode.onclick = toggleMode;
+document.getElementById('chk-tchaikovsky').onchange = function() {
+  if (DRILLS[currentDrill]) renderDrill(currentDrill);
+};
 
 // Search filter
 document.getElementById('lib-search').addEventListener('input', function() {
@@ -1623,7 +1567,8 @@ function applyKeyFilter() {
 // ── Load hymnal and init ──
 positionPlayhead();
 
-// Load SSAATTBB data, then build library
+// Load SSAATTBB data, then Tchaikovsky drills, then build library
+var TCHAIKOVSKY = {};  // keyed by cleaned title for lookup
 var xhr2 = new XMLHttpRequest();
 xhr2.open('GET', 'ssaattbb_data.json?v=' + Date.now(), true);
 xhr2.onload = function() {
@@ -1632,9 +1577,30 @@ xhr2.onload = function() {
     for (var i = 0; i < data.length; i++) DRILLS.push(data[i]);
     console.log('Loaded ' + DRILLS.length + ' hymns');
   }
-  buildLibrary();
-  applyKeyFilter();
-  if (DRILLS.length > 0) renderDrill(0);
+  // Load Tchaikovsky drill data
+  var xhr3 = new XMLHttpRequest();
+  xhr3.open('GET', 'tchaikovsky_data.json?v=' + Date.now(), true);
+  xhr3.onload = function() {
+    if (xhr3.status === 200) {
+      var tdata = JSON.parse(xhr3.responseText);
+      for (var i = 0; i < tdata.length; i++) {
+        // Key by cleaned title (strip leading number prefix)
+        var ct = tdata[i].t.replace(/^\d+\s*/, '').trim();
+        TCHAIKOVSKY[ct] = tdata[i];
+      }
+      console.log('Loaded ' + tdata.length + ' Tchaikovsky drills');
+    }
+    buildLibrary();
+    applyKeyFilter();
+    if (DRILLS.length > 0) renderDrill(0);
+  };
+  xhr3.onerror = function() {
+    console.warn('No Tchaikovsky data found, continuing without');
+    buildLibrary();
+    applyKeyFilter();
+    if (DRILLS.length > 0) renderDrill(0);
+  };
+  xhr3.send();
 };
 xhr2.onerror = function() { console.error('Failed to load data'); };
 xhr2.send();
