@@ -356,11 +356,10 @@ def build_hymn(ls, hymn_idx):
         chords = meas['chords']
         npb.append(len(re.findall(r'[A-Ga-g]', mel_raw)))
 
-        mel_line += mel_raw + ' | '
-
         if not chords:
             chords = prev_chords
         if not chords:
+            mel_line += mel_raw + ' | '
             rh_line += f'x{units_per_bar} | '
             lh_line += f'x{units_per_bar} | '
             continue
@@ -368,6 +367,7 @@ def build_hymn(ls, hymn_idx):
 
         cur_deg = chord_to_degree(chords[0], key)
         if cur_deg is None:
+            mel_line += mel_raw + ' | '
             rh_line += f'x{units_per_bar} | '
             lh_line += f'x{units_per_bar} | '
             continue
@@ -387,7 +387,12 @@ def build_hymn(ls, hymn_idx):
         dn_chords = [lc] if lc == ld else [lc, ld]
         up_str = '>'.join(up_chords)
         dn_str = '>'.join(dn_chords)
-        label = up_str if up_str == dn_str else f'{up_str} / {dn_str}'
+
+        # Stacked fraction: ascending chords above, descending chords below melody
+        if up_str == dn_str:
+            mel_line += f'"^{up_str}" ' + mel_raw + ' | '
+        else:
+            mel_line += f'"^{up_str}" "_{dn_str}" ' + mel_raw + ' | '
 
         # Compute actual bar duration from melody
         mel_dur = compute_bar_duration(mel_raw, units_per_bar)
@@ -407,11 +412,10 @@ def build_hymn(ls, hymn_idx):
         end_rh = [m for m in end if m >= MID_C]
 
         # RH: invisible rest for start, peak chord, invisible rest for end
-        # (start is in bass, peak is in treble, end is in bass)
         if start_rh:
-            rh_line += f'"{label}" !arpeggio!{block_chord_abc(start_rh, key, str(d1))} '
+            rh_line += f'!arpeggio!{block_chord_abc(start_rh, key, str(d1))} '
         else:
-            rh_line += f'"{label}" x{d1} '
+            rh_line += f'x{d1} '
 
         if peak_rh:
             rh_line += f'!arpeggio!{block_chord_abc(peak_rh, key, str(d2))} '
