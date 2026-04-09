@@ -153,12 +153,18 @@ This repo is worked on from two machines (lab and home laptop) with separate Cla
 
 ### Pending sync notes (newest first):
 
-**Lab → Home (2026-04-09):**
-- Major new feature: Tchaikovsky-style arpeggio runs. See "Recent Changes (2026-04-09)" below.
-- New files: `scripts/build_tchaikovsky_hymnal.py`, `app/tchaikovsky_data.json`, `data/diatonic_chord_table.md`, `MANTRA.md`
-- AndroidManifest changed to allow landscape mode.
-- index.html has Tch checkbox, %%score alignment, chord label on melody staff.
-- Octave mapping in ABC was fixed (was off by one octave).
+**Lab → Home (2026-04-09, end of session):**
+- **Tchaikovsky mode** is the main new feature. Tch checkbox (defaults checked) toggles between SSAATTBB score and Tchaikovsky arpeggio runs.
+- **Simplified notation**: block chords with arpeggio marks (3 per measure: start, peak, end). NOT individual run notes — the player sweeps through chord tones to fill the measure. Like orchestral harp shorthand.
+- **Chord fractions**: JS overlay (not ABC annotations). Ascending chords (bold blue 8px) over descending chords (gray 8px) with divider line. Positioned per-measure using barline gap detection.
+- **4-chord runs**: Each measure picks 4 chords from the diatonic chord table (14 patterns × 7 degrees). A>B ascending, C>D descending. Chords labeled with proper notation: I¹, vii°, viiø7, Iq, I+9, I9-3/I9-5.
+- **`%%score 1 {2 3}`** aligns melody + grand staff barlines. All voices at same L unit.
+- **33-string harp range**: C2 to G6 (MIDI 36-91). Octave mapping fixed: C4 = middle C = `C` in ABC.
+- **Landscape mode**: AndroidManifest `screenOrientation="unspecified"`.
+- **Chord table PDF**: `data/diatonic_chord_table.pdf` — printable reference card.
+- **New files**: `scripts/build_tchaikovsky_hymnal.py`, `app/tchaikovsky_data.json`, `data/diatonic_chord_table.md`, `data/diatonic_chord_table.pdf`, `MANTRA.md`
+- **abc2stripchart/** dir was accidentally committed (build artifacts). Add to .gitignore if desired.
+- **TODO**: First-measure fraction positioning still slightly off on pickup bars. Fraction font could be Times New Roman if serif doesn't render well on home laptop.
 
 ---
 
