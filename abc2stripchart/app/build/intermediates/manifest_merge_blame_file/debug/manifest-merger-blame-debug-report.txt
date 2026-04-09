@@ -1,0 +1,52 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.harp.stripchart"
+4    android:versionCode="1"
+5    android:versionName="0.1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="28"
+9        android:targetSdkVersion="35" />
+10
+11    <uses-permission android:name="android.permission.WAKE_LOCK" />
+11-->/home/james.clements/projects/trefoil/abc2stripchart/app/src/main/AndroidManifest.xml:5:5-68
+11-->/home/james.clements/projects/trefoil/abc2stripchart/app/src/main/AndroidManifest.xml:5:22-65
+12
+13    <application
+13-->/home/james.clements/projects/trefoil/abc2stripchart/app/src/main/AndroidManifest.xml:7:5-25:19
+14        android:debuggable="true"
+15        android:extractNativeLibs="false"
+16        android:hardwareAccelerated="true"
+16-->/home/james.clements/projects/trefoil/abc2stripchart/app/src/main/AndroidManifest.xml:11:9-43
+17        android:icon="@mipmap/ic_launcher"
+17-->/home/james.clements/projects/trefoil/abc2stripchart/app/src/main/AndroidManifest.xml:9:9-43
+18        android:label="Trefoil"
+18-->/home/james.clements/projects/trefoil/abc2stripchart/app/src/main/AndroidManifest.xml:8:9-32
+19        android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar"
+19-->/home/james.clements/projects/trefoil/abc2stripchart/app/src/main/AndroidManifest.xml:12:9-77
+20        android:usesCleartextTraffic="false" >
+20-->/home/james.clements/projects/trefoil/abc2stripchart/app/src/main/AndroidManifest.xml:10:9-45
+21        <activity
+21-->/home/james.clements/projects/trefoil/abc2stripchart/app/src/main/AndroidManifest.xml:14:9-24:20
+22            android:name="com.harp.stripchart.MainActivity"
+22-->/home/james.clements/projects/trefoil/abc2stripchart/app/src/main/AndroidManifest.xml:15:13-41
+23            android:configChanges="orientation|screenSize|keyboardHidden"
+23-->/home/james.clements/projects/trefoil/abc2stripchart/app/src/main/AndroidManifest.xml:18:13-74
+24            android:exported="true"
+24-->/home/james.clements/projects/trefoil/abc2stripchart/app/src/main/AndroidManifest.xml:16:13-36
+25            android:screenOrientation="portrait" >
+25-->/home/james.clements/projects/trefoil/abc2stripchart/app/src/main/AndroidManifest.xml:17:13-49
+26            <intent-filter>
+26-->/home/james.clements/projects/trefoil/abc2stripchart/app/src/main/AndroidManifest.xml:20:13-23:29
+27                <action android:name="android.intent.action.MAIN" />
+27-->/home/james.clements/projects/trefoil/abc2stripchart/app/src/main/AndroidManifest.xml:21:17-69
+27-->/home/james.clements/projects/trefoil/abc2stripchart/app/src/main/AndroidManifest.xml:21:25-66
+28
+29                <category android:name="android.intent.category.LAUNCHER" />
+29-->/home/james.clements/projects/trefoil/abc2stripchart/app/src/main/AndroidManifest.xml:22:17-77
+29-->/home/james.clements/projects/trefoil/abc2stripchart/app/src/main/AndroidManifest.xml:22:27-74
+30            </intent-filter>
+31        </activity>
+32    </application>
+33
+34</manifest>

@@ -302,7 +302,7 @@ def build_hymn(ls, hymn_idx):
         f"Q: 1/4={tempo}\n"
         f"%%pagewidth 2000cm\n%%continueall 1\n%%scale 0.85\n%%writefields T 0\n"
         f"%%staffsep 0.5cm\n%%sysstaffsep 0.3cm\n"
-        f"%%gchordfont Times-Roman 14\n"
+        f""
         f"%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n"
         f"%%score 1 {{2 3}}\n"
         f"V:1 clef=treble name=\"Mel\"\n"
@@ -329,7 +329,7 @@ def build_hymn(ls, hymn_idx):
         f"Q: 1/4={tempo}\n"
         f"%%pagewidth 2000cm\n%%continueall 1\n%%scale 0.85\n%%writefields T 0\n"
         f"%%staffsep 0.5cm\n%%sysstaffsep 0.3cm\n"
-        f"%%gchordfont Times-Roman 14\n"
+        f""
         f"%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n"
         f"%%score 1 {{2 3}}\n"
         f"V:1 clef=treble name=\"Mel\"\n"
@@ -388,11 +388,9 @@ def build_hymn(ls, hymn_idx):
         up_str = '>'.join(up_chords)
         dn_str = '>'.join(dn_chords)
 
-        # Stacked fraction: ascending chords above, descending chords below melody
-        if up_str == dn_str:
-            mel_line += f'"^{up_str}" ' + mel_raw + ' | '
-        else:
-            mel_line += f'"^{up_str}" "_{dn_str}" ' + mel_raw + ' | '
+        # Chord annotations on RH voice for fraction overlay extraction
+        # "^up_str" extracted as rhn, "^dn_str" on LH extracted as lhn
+        mel_line += mel_raw + ' | '
 
         # Compute actual bar duration from melody
         mel_dur = compute_bar_duration(mel_raw, units_per_bar)
@@ -411,11 +409,11 @@ def build_hymn(ls, hymn_idx):
         end_lh = [m for m in end if m < MID_C]
         end_rh = [m for m in end if m >= MID_C]
 
-        # RH: invisible rest for start, peak chord, invisible rest for end
+        # RH: chord annotation for fraction overlay + arpeggio chords
         if start_rh:
-            rh_line += f'!arpeggio!{block_chord_abc(start_rh, key, str(d1))} '
+            rh_line += f'"^{up_str}" !arpeggio!{block_chord_abc(start_rh, key, str(d1))} '
         else:
-            rh_line += f'x{d1} '
+            rh_line += f'"^{up_str}" x{d1} '
 
         if peak_rh:
             rh_line += f'!arpeggio!{block_chord_abc(peak_rh, key, str(d2))} '
@@ -427,11 +425,11 @@ def build_hymn(ls, hymn_idx):
         else:
             rh_line += f'x{d3} | '
 
-        # LH: start chord, invisible rest for peak, end chord
+        # LH: chord annotation for fraction overlay + arpeggio chords
         if start_lh:
-            lh_line += f'!arpeggio!{block_chord_abc(start_lh, key, str(d1))} '
+            lh_line += f'"^{dn_str}" !arpeggio!{block_chord_abc(start_lh, key, str(d1))} '
         else:
-            lh_line += f'x{d1} '
+            lh_line += f'"^{dn_str}" x{d1} '
 
         if peak_lh:
             lh_line += f'!arpeggio!{block_chord_abc(peak_lh, key, str(d2))} '

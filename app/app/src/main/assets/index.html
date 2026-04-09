@@ -161,19 +161,19 @@ label { font-size: 13px; color: #888; }
   line-height: 1.0;
 }
 .chord-frac .cf-abs {
-  font-size: 18px;
+  font-size: 13px;
   font-weight: normal;
   color: #2563eb;
   white-space: nowrap;
 }
 .chord-frac .cf-rh {
-  font-size: 15px;
-  font-weight: normal;
+  font-size: 11px;
+  font-weight: bold;
   color: #16a34a;
   white-space: nowrap;
 }
 .chord-frac .cf-lh {
-  font-size: 15px;
+  font-size: 11px;
   font-weight: normal;
   color: #999;
   white-space: nowrap;
@@ -211,7 +211,7 @@ label { font-size: 13px; color: #888; }
 <div id="library">
   <div id="lib-toolbar">
     <label style="font-size:13px;color:#666;display:flex;align-items:center;gap:3px;cursor:pointer;-webkit-tap-highlight-color:transparent;">
-      <input type="checkbox" id="chk-tchaikovsky" style="width:16px;height:16px;"/> Tch
+      <input type="checkbox" id="chk-tchaikovsky" checked style="width:16px;height:16px;"/> Tch
     </label>
     <div id="key-filters">
       <button class="key-btn" data-key="All">All</button>
@@ -454,15 +454,11 @@ function renderDrill(idx) {
 
   abc = new abc2svg.Abc(user);
   var renderAbc = getAbc(drill);
-  // Strip ABC chord annotations for regular hymns (JS overlays replace them)
-  // Keep annotations for Tchaikovsky mode (they ARE the chord labels)
-  if (!tchMode) {
-    var beforeLen = renderAbc.length;
-    renderAbc = renderAbc.replace(/"\^[^"]*"/g, '');
-    console.log('Stripped annotations: ' + (beforeLen - renderAbc.length) + ' chars, tchMode=' + tchMode);
-  } else {
-    console.log('Tchaikovsky mode: keeping ' + (renderAbc.match(/"\^[^"]*"/g) || []).length + ' annotations');
-  }
+  // Strip ABC chord annotations — JS fraction overlays replace them
+  var beforeLen = renderAbc.length;
+  renderAbc = renderAbc.replace(/"\^[^"]*"/g, '');
+  renderAbc = renderAbc.replace(/"_[^"]*"/g, '');
+  console.log('Stripped annotations: ' + (beforeLen - renderAbc.length) + ' chars');
   abc.tosvg('drill', renderAbc);
 
   // Scale SVG to fill viewport height
@@ -475,8 +471,7 @@ function renderDrill(idx) {
   console.log('areaH=' + areaH + ' totalH=' + totalH + ' svgScale=' + svgScale.toFixed(2) + ' playheadX=' + getPlayheadX().toFixed(1));
   $container.style.transformOrigin = '0 0';
 
-  // Build chord fraction overlays on-the-fly from ABC (skip for Tchaikovsky — labels are in the ABC)
-  if (tchMode) { /* skip fraction overlay — annotations rendered by abc2svg */ } else
+  // Build chord fraction overlays on-the-fly from ABC
   setTimeout(function() {
     var chords = extractChordAnnotations(drill.abc, drill.key || 'C');
     if (!chords.length) return;
