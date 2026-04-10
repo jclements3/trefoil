@@ -1,0 +1,121 @@
+\documentclass[letterpaper]{article}
+\usepackage{fontspec}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{longtable}
+\usepackage{microtype}
+
+\geometry{letterpaper, landscape, margin=6mm}
+
+\setmainfont{DejaVu Sans}
+
+\definecolor{headerbg}{HTML}{2C3E50}
+\definecolor{altrow}{HTML}{F0F4F8}
+\definecolor{white}{HTML}{FFFFFF}
+
+\newcommand{\inv}[1]{\textsuperscript{#1}}
+\newcommand{\rn}[2]{\textbf{#1}#2}
+
+\begin{document}
+
+\vspace*{-4mm}
+
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.4}
+\fontsize{19}{22}\selectfont
+
+\begin{longtable}{>{\bfseries\centering\arraybackslash}m{18mm}
+                  *{7}{>{\centering\arraybackslash}m{33mm}}}
+
+\rowcolor{headerbg}
+\color{white}{\small\textbf{}} &
+\color{white}{\small Ionian} &
+\color{white}{\small Dorian} &
+\color{white}{\small Phrygian} &
+\color{white}{\small Lydian} &
+\color{white}{\small Mixolydian} &
+\color{white}{\small Aeolian} &
+\color{white}{\small Locrian} \\
+\rowcolor{headerbg}
+\color{white}{\small\textbf{Pattern}} &
+\color{white}\textbf{1} &
+\color{white}\textbf{2} &
+\color{white}\textbf{3} &
+\color{white}\textbf{4} &
+\color{white}\textbf{5} &
+\color{white}\textbf{6} &
+\color{white}\textbf{7} \\
+\endfirsthead
+\rowcolor{headerbg}
+\color{white}{\small\textbf{}} &
+\color{white}{\small Ionian} &
+\color{white}{\small Dorian} &
+\color{white}{\small Phrygian} &
+\color{white}{\small Lydian} &
+\color{white}{\small Mixolydian} &
+\color{white}{\small Aeolian} &
+\color{white}{\small Locrian} \\
+\rowcolor{headerbg}
+\color{white}{\small\textbf{Pattern}} &
+\color{white}\textbf{1} &
+\color{white}\textbf{2} &
+\color{white}\textbf{3} &
+\color{white}\textbf{4} &
+\color{white}\textbf{5} &
+\color{white}\textbf{6} &
+\color{white}\textbf{7} \\
+\endhead
+
+\rowcolor{altrow}
+24 & \rn{I}{s2} & \rn{ii}{s2} & --- & \rn{IV}{s2} & \rn{V}{s2} & \rn{vi}{s2} & --- \\
+
+33 & \rn{I}{} & \rn{ii}{} & \rn{iii}{} & \rn{IV}{} & \rn{V}{} & \rn{vi}{} & \rn{vii}{°} \\
+
+\rowcolor{altrow}
+34 & \rn{vi}{}\inv{2} & \rn{vii}{°}\inv{2} & \rn{I}{}\inv{2} & \rn{ii}{}\inv{2} & \rn{iii}{}\inv{2} & \rn{IV}{}\inv{2} & \rn{V}{}\inv{2} \\
+
+42 & \rn{I}{s4} & \rn{ii}{s4} & \rn{iii}{s4} & --- & \rn{V}{s4} & \rn{vi}{s4} & --- \\
+
+\rowcolor{altrow}
+43 & \rn{IV}{}\inv{1} & \rn{V}{}\inv{1} & \rn{vi}{}\inv{1} & \rn{vii}{°}\inv{1} & \rn{I}{}\inv{1} & \rn{ii}{}\inv{1} & \rn{iii}{}\inv{1} \\
+
+44 & --- & \rn{ii}{q} & \rn{iii}{q} & --- & \rn{V}{q} & \rn{vi}{q} & \rn{vii}{q} \\
+
+\rowcolor{altrow}
+233 & \rn{ii}{m7}\inv{1} & \rn{iii}{m7}\inv{1} & \rn{IV}{Δ}\inv{1} & \rn{V}{7}\inv{1} & \rn{vi}{m7}\inv{1} & \rn{vii}{ø7}\inv{1} & \rn{I}{Δ}\inv{1} \\
+
+323 & \rn{IV}{Δ}\inv{2} & \rn{V}{7}\inv{2} & \rn{vi}{m7}\inv{2} & \rn{vii}{ø7}\inv{2} & \rn{I}{Δ}\inv{2} & \rn{ii}{m7}\inv{2} & \rn{iii}{m7}\inv{2} \\
+
+\rowcolor{altrow}
+332 & \rn{I}{6} & \rn{ii}{m6} & \rn{I}{Δ}\inv{3} & \rn{IV}{6} & \rn{V}{6} & \rn{IV}{Δ}\inv{3} & \rn{V}{7}\inv{3} \\
+
+333 & \rn{I}{Δ} & \rn{ii}{m7} & \rn{iii}{m7} & \rn{IV}{Δ} & \rn{V}{7} & \rn{vi}{m7} & \rn{vii}{ø7} \\
+
+\rowcolor{altrow}
+334 & \rn{I}{+8} & \rn{ii}{+8} & \rn{iii}{+8} & \rn{IV}{+8} & \rn{V}{+8} & \rn{vi}{+8} & \rn{vii}{+8} \\
+
+433 & \rn{I}{s4+8} & \rn{ii}{s4+8} & --- & --- & \rn{V}{s4+8} & --- & --- \\
+
+\rowcolor{altrow}
+434 & \rn{IV}{6}\inv{1} & \rn{V}{6}\inv{1} & \rn{IV}{Δ}\inv{3} & \rn{V}{7}\inv{3} & \rn{I}{6}\inv{1} & \rn{ii}{m6}\inv{1} & \rn{I}{Δ}\inv{3} \\
+
+444 & --- & \rn{ii}{q7} & \rn{iii}{q7} & --- & --- & \rn{vi}{q7} & \rn{vii}{q7} \\
+
+\bottomrule
+\end{longtable}
+
+\vspace{3mm}
+{\small\bfseries Key:}\quad
+{\small
+\begin{tabular}[t]{@{}r@{~=~}l@{\qquad}r@{~=~}l@{\qquad}r@{~=~}l@{}}
+Uppercase & major (I IV V)      & °  & diminished        & q      & quartal \\
+Lowercase & minor (ii iii vi)   & ø7 & half-diminished   & s2/s4  & sus2/sus4 \\
+Δ         & major 7th           & 7  & dominant 7th      & 6/m6   & major/minor 6th \\
++8        & root doubled at 8ve & s4+8 & sus4 w/ doubled root & \multicolumn{2}{@{}l}{\textsuperscript{1,2,3}~=~inversion} \\
+\end{tabular}
+}
+
+\end{document}

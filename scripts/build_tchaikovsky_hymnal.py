@@ -1,22 +1,42 @@
 #!/usr/bin/env python3
 """Build Tchaikovsky-style harp drills from OpenHymnal lead sheets.
 
-Simplified notation: block chords with glissando lines.
-Each measure shows 3 chord blocks: start → peak → end.
-The player fills the measure by sweeping through chord tones.
+Each measure renders a continuous chord-tone sweep across the full
+33-string harp (C2 to G6), up and down, as GRACE NOTES on the grand
+staff. Grace notes take zero bar time so barlines always align with
+the melody regardless of how many chord tones the sweep hits.
 
-Output: app/tchaikovsky_data.json
+For 1-4 chord phases per bar:
+  A = start (bottom going up)
+  B = top going up
+  C = top going down
+  D = end (bottom going down)
+
+The sweep walks string 1..33 and emits every string that is a chord
+tone of the current phase's chord. The divide between the bottom
+(LH bass) and top (RH treble) halves is at string 16 (~middle C).
+
+Chord annotations are placed on the melody voice (V:1) in roman-numeral
+form from CHORD_NAMES, with bold roman-numeral parts via $1/$0.
 """
 
-import json, re, sys, os
+import json, os, re, sys
 from pathlib import Path
-from math import gcd
 
 ROOT = Path(__file__).resolve().parent.parent
-LEAD_SHEETS = ROOT / "app" / "lead_sheets.json"
-OUTPUT = ROOT / "app" / "tchaikovsky_data.json"
+sys.path.insert(0, str(ROOT / 'scripts'))
+from generate_drill import (
+    PAT_MAP, CHORD_NAMES, VALID, NOTES_PER_OCT,
+    pattern_strings, string_to_abc, is_rh,
+)
 
-# ── Scales ──
+LEAD_SHEETS = ROOT / 'app' / 'lead_sheets.json'
+OUTPUT = ROOT / 'app' / 'tchaikovsky_data.json'
+
+HARP_LOW = 1
+HARP_HIGH = 33
+STAFF_DIVIDE = 14  # strings 1..14 → LH (bass), 15..33 → RH (treble, middle C = string 15)
+
 SCALES = {
     'Eb': ['Eb','F','G','Ab','Bb','C','D'],
     'Bb': ['Bb','C','D','Eb','F','G','A'],
@@ -31,415 +51,408 @@ NOTE_SEMI = {
     'C':0,'C#':1,'Db':1,'D':2,'D#':3,'Eb':3,'E':4,'F':5,
     'F#':6,'Gb':6,'G':7,'G#':8,'Ab':8,'A':9,'A#':10,'Bb':10,'B':11,
 }
-KEY_ACC = {k: {n for n in sc if '#' in n or 'b' in n} for k, sc in SCALES.items()}
 
-HARP_LOW = 36; HARP_HIGH = 91  # C2 to G6, 33 strings
-MID_C = 60
-
-# ── Chord table ──
-PATTERNS = {
-    '3-3': (2,2), '3-4': (2,3), '4-2': (3,1), '4-3': (3,2),
-    '4-4': (3,3), '2-4': (1,3),
-    '3-3-3': (2,2,2), '3-3-2': (2,2,1), '3-3-4': (2,2,3),
-    '3-2-3': (2,1,2), '2-3-3': (1,2,2), '3-4-2': (2,3,1),
-    '4-3-3': (3,2,2), '4-4-4': (3,3,3),
-}
-TABLE_NAMES = {
-    '3-3':   ['I',      'iim',     'iiim',    'IV',      'V',       'vim',     'vii\u00b0'],
-    '3-4':   ['I\u00b9','iim\u00b9','iiim\u00b9','IV\u00b9','V\u00b9','vim\u00b9','vii\u00b0\u00b9'],
-    '4-3':   ['I\u00b2','iim\u00b2','iiim\u00b2','IV\u00b2','V\u00b2','vim\u00b2','vii\u00b0\u00b2'],
-    '4-2':   ['IV\u00b9','V\u00b9','vim\u00b9','vii\u00b0\u00b9','I\u00b9','iim\u00b9','iiim\u00b2'],
-    '4-4':   ['Iq',     'iiq',     'iiiq',    'IVq',     'Vq',      'viq',     'vii\u00b0q'],
-    '2-4':   ['IM7-5\u00b2','iim7-5\u00b2','iiim7-5\u00b2','IVM7-5\u00b2','V7-5\u00b2','vim7-5\u00b2','Vq\u00b2'],
-    '3-3-3': ['IM7',    'iim7',    'iiim7',   'IVM7',    'V7',      'vim7',    'vii\u00f87'],
-    '3-3-2': ['I6',     'iim6',    'iiim6',   'IV6',     'V6',      'vim6',    'vii\u00b06'],
-    '3-3-4': ['I+9',    'ii+9',    'iii+9',   'IV+9',    'V+9',     'vi+9',    'vii\u00b0+9'],
-    '3-2-3': ['IM7\u00b2','iim7\u00b2','iiim7\u00b2','IVM7\u00b2','V7\u00b2','vim7\u00b2','vii\u00f87\u00b2'],
-    '2-3-3': ['IM7\u00b3','iim7\u00b3','iiim7\u00b3','IVM7\u00b3','V7\u00b3','vim7\u00b3','vii\u00f87\u00b3'],
-    '3-4-2': ['I9-5',   'ii9-5',   'iii9-5',  'IV9-5',   'V9-5',    'vi9-5',   'vii\u00b09-5'],
-    '4-3-3': ['I9-3',   'ii9-3',   'iii9-3',  'IV9-3',   'V9-3',    'vi9-3',   'vii\u00b09-3'],
-    '4-4-4': ['Iq7',    'iiq7',    'iiiq7',   'IVq7',    'Vq7',     'viq7',    'vii\u00b0q7'],
+# Phase chord-index mapping: (bot-asc, top-asc, top-dsc, bot-dsc)
+SWEEP_PHASES = {
+    1: (0, 0, 0, 0),
+    2: (0, 1, 1, 0),
+    3: (0, 1, 1, 2),
+    4: (0, 1, 2, 3),
 }
 
-COLOR_PAIRS = {
-    0: [5, 3, 4], 1: [3, 4, 5], 2: [0, 5, 4], 3: [0, 1, 4],
-    4: [0, 2, 5], 5: [0, 3, 2], 6: [4, 0, 3],
-}
-BASS_PATTERNS = ['3-3', '4-3', '3-4', '4-4', '3-3-3']
-TREBLE_PATTERNS = ['3-3-3', '3-3', '3-3-2', '3-2-3', '3-3-4', '4-3-3', '2-3-3']
+
+def deg_to_first_string(key, deg_1based):
+    scale_note = SCALES[key][deg_1based - 1]
+    letter = scale_note[0]
+    return NOTES_PER_OCT.index(letter) + 1
 
 
-def chord_to_degree(chord_str, key):
-    m = re.match(r'^([A-G][#b]?)', chord_str)
-    if not m: return None
-    root_pc = NOTE_SEMI.get(m.group(1))
-    if root_pc is None: return None
-    for deg, name in enumerate(SCALES.get(key, [])):
-        if NOTE_SEMI[name] == root_pc: return deg
-    return None
+def chord_to_spec(chord_str, key):
+    """Map 'D7' in 'G' to (start_string, pattern_str, degree, label). None if non-diatonic."""
+    m = re.match(r'^([A-G][#b]?)(.*)$', chord_str)
+    if not m:
+        return None
+    root, qual = m.group(1), m.group(2).strip()
 
+    pc = NOTE_SEMI.get(root)
+    if pc is None:
+        return None
+    deg = None
+    for i, name in enumerate(SCALES.get(key, [])):
+        if NOTE_SEMI[name] == pc:
+            deg = i + 1
+            break
+    if deg is None:
+        return None
 
-def pattern_tones(degree, pattern_name, key, low, high):
-    intervals = PATTERNS[pattern_name]
-    degs = {degree}; cur = degree
-    for step in intervals: cur = (cur + step) % 7; degs.add(cur)
-    scale = SCALES[key]
-    pcs = set(NOTE_SEMI[scale[d]] for d in degs)
-    return sorted(m for m in range(low, high + 1) if m % 12 in pcs)
-
-
-def pick_pattern(pool, seed):
-    return pool[seed % len(pool)]
-
-
-def table_label(pattern_name, degree):
-    if pattern_name in TABLE_NAMES: return TABLE_NAMES[pattern_name][degree]
-    return f'd{degree+1}_{pattern_name}'
-
-
-# ── ABC formatting ──
-
-def _fmt(name, octave, key='C'):
-    letter = name[0]
-    acc = '' if name in KEY_ACC.get(key, set()) else ('^' if '#' in name else ('_' if 'b' in name else ''))
-    if octave >= 6: return acc + letter.lower() + "'" * (octave - 5)
-    elif octave == 5: return acc + letter.lower()
-    elif octave == 4: return acc + letter.upper()
-    else: return acc + letter.upper() + ',' * (4 - octave)
-
-
-def midi_to_abc(midi, key):
-    scale = SCALES.get(key, SCALES['C'])
-    pc = midi % 12; octave = (midi // 12) - 1
-    for note in scale:
-        if NOTE_SEMI[note] == pc: return _fmt(note, octave, key)
-    names = ['C','C#','D','Eb','E','F','F#','G','Ab','A','Bb','B']
-    return _fmt(names[pc], octave, key)
-
-
-def block_chord_abc(midis, key, dur=''):
-    """Build ABC block chord from sorted MIDI list. e.g. [CEG]4"""
-    if not midis: return f'z{dur}'
-    if len(midis) == 1: return midi_to_abc(midis[0], key) + dur
-    notes = ''.join(midi_to_abc(m, key) for m in sorted(midis))
-    return f'[{notes}]{dur}'
-
-
-# ── Build block chords for each measure ──
-
-def select_4chords(cur_deg, next_deg, measure_idx, hymn_idx):
-    seed = hymn_idx * 17 + measure_idx * 7 + cur_deg * 3
-    if next_deg is not None and next_deg != cur_deg:
-        deg_a, deg_b = cur_deg, cur_deg
-        deg_c, deg_d = next_deg, next_deg
-        if seed % 3 == 0:
-            partners = COLOR_PAIRS.get(cur_deg, [cur_deg])
-            deg_b = partners[seed % len(partners)]
+    if qual in ('7', 'm7', 'Δ7', 'ø7', '°7'):
+        pat = '333'
     else:
-        partners = COLOR_PAIRS.get(cur_deg, [cur_deg])
-        partner = partners[(seed // 3) % len(partners)]
-        deg_a, deg_b = cur_deg, partner
-        deg_c, deg_d = partner, cur_deg
+        pat = '33'
+    if deg not in VALID.get(pat, []):
+        pat = '33'
+        if deg not in VALID.get(pat, []):
+            return None
 
-    pat_a = pick_pattern(BASS_PATTERNS, seed)
-    pat_b = pick_pattern(TREBLE_PATTERNS, seed + 1)
-    pat_c = pick_pattern(TREBLE_PATTERNS, seed + 2)
-    pat_d = pick_pattern(BASS_PATTERNS, seed + 3)
-
-    return (deg_a, pat_a, deg_b, pat_b, deg_c, pat_c, deg_d, pat_d,
-            table_label(pat_a, deg_a), table_label(pat_b, deg_b),
-            table_label(pat_c, deg_c), table_label(pat_d, deg_d))
+    start = deg_to_first_string(key, deg)
+    label = CHORD_NAMES.get((pat, deg))
+    if label is None or label == '—':
+        return None
+    return (start, pat, deg, label)
 
 
-def build_measure_chords(deg_a, pat_a, deg_b, pat_b, deg_c, pat_c, deg_d, pat_d, key):
-    """Build 3 block chords for a measure: start, peak, end.
+def bold_roman(label):
+    m = re.match(r'^([IVXLivxl]+)(.*)$', label)
+    if not m:
+        return label
+    return f'$1{m.group(1)}$0{m.group(2)}'
 
-    Start = A chord tones in bass (bottom 3-4 notes)
-    Peak  = B chord tones in treble (top 3-4 notes)
-    End   = D chord tones in bass (bottom 3-4 notes)
 
-    Returns: (start_midis, peak_midis, end_midis)
+def chord_tone_strings(chord_spec):
+    """Return a set of all harp string positions (1..33) that are chord tones."""
+    start, pat_str, _deg, _label = chord_spec
+    pat = PAT_MAP[pat_str]
+    tones = set()
+    for oct_off in range(-14, 42, 7):
+        for s in pattern_strings(start + oct_off, pat):
+            if HARP_LOW <= s <= HARP_HIGH:
+                tones.add(s)
+    return tones
+
+
+def build_sweep_strings(chord_specs):
+    """Continuous up-and-down sweep — returns the ordered list of string positions."""
+    n = len(chord_specs)
+    if n < 1 or n > 4:
+        return None
+    phases = SWEEP_PHASES[n]
+
+    tones_by_ci = [chord_tone_strings(spec) for spec in chord_specs]
+
+    asc_strings = []
+    for s in range(HARP_LOW, HARP_HIGH + 1):
+        ci = phases[0] if s <= STAFF_DIVIDE else phases[1]
+        if s in tones_by_ci[ci]:
+            asc_strings.append(s)
+
+    top_ascended = asc_strings[-1] if asc_strings else None
+    dsc_strings = []
+    peak_skipped = False
+    for s in range(HARP_HIGH, HARP_LOW - 1, -1):
+        if not peak_skipped and s == top_ascended:
+            peak_skipped = True
+            continue
+        ci = phases[2] if s > STAFF_DIVIDE else phases[3]
+        if s in tones_by_ci[ci]:
+            dsc_strings.append(s)
+
+    return asc_strings + dsc_strings
+
+
+def build_sweep(chord_specs):
+    """Cross-staff alternation sweep.
+
+    Returns (rh_tokens, lh_tokens, total) — parallel lists where at each
+    step one voice has the real note and the other has 'x', so only one
+    staff plays at a time (unified cross-staff sweep).
     """
-    a_all = pattern_tones(deg_a, pat_a, key, HARP_LOW, MID_C)
-    b_all = pattern_tones(deg_b, pat_b, key, MID_C, HARP_HIGH)
-    d_all = pattern_tones(deg_d, pat_d, key, HARP_LOW, MID_C)
+    strings = build_sweep_strings(chord_specs)
+    if not strings:
+        return None
 
-    # Take bottom 3-4 notes for start/end, top 3-4 for peak
-    start = a_all[:4] if len(a_all) >= 4 else a_all[:3]
-    peak = b_all[-4:] if len(b_all) >= 4 else b_all[-3:]
-    end = d_all[:4] if len(d_all) >= 4 else d_all[:3]
+    rh_tokens = []
+    lh_tokens = []
+    for s in strings:
+        abc = string_to_abc(s)
+        if is_rh(abc):
+            rh_tokens.append(abc)
+            lh_tokens.append('x')
+        else:
+            rh_tokens.append('x')
+            lh_tokens.append(abc)
+    return rh_tokens, lh_tokens, len(strings)
 
-    if not start: start = [HARP_LOW]
-    if not peak: peak = [HARP_HIGH]
-    if not end: end = start
 
-    return start, peak, end
+def fmt_run_tokens(tokens):
+    """Beam notes together; space between rest groups and note groups."""
+    result = []
+    prev_is_rest = None
+    for t in tokens:
+        is_rest = (t == 'x')
+        if prev_is_rest is not None and is_rest != prev_is_rest:
+            result.append(' ')
+        result.append(t)
+        prev_is_rest = is_rest
+    return ''.join(result)
 
 
 # ── Lead sheet parsing ──
 
 def parse_lead_sheet(abc_str):
     lines = abc_str.split('\n')
-    time_sig = '4/4'; note_len = '1/8'; tempo = 100
-    for line in lines:
-        if line.startswith('M:'): time_sig = line.split(':',1)[1].strip()
-        elif line.startswith('L:'): note_len = line.split(':',1)[1].strip()
+    time_sig = '4/4'
+    note_len = '1/8'
+    tempo = 100
+    mel_body = ''
+    for i, line in enumerate(lines):
+        if line.startswith('M:'):
+            time_sig = line.split(':', 1)[1].strip()
+        elif line.startswith('L:'):
+            note_len = line.split(':', 1)[1].strip()
         elif line.startswith('Q:'):
             qm = re.search(r'=(\d+)', line)
-            if qm: tempo = int(qm.group(1))
+            if qm:
+                tempo = int(qm.group(1))
         elif line.startswith('K:'):
-            idx = lines.index(line)
-            mel_body = ' '.join(lines[idx+1:]).strip()
+            mel_body = ' '.join(lines[i + 1:]).strip()
             break
-    else:
-        mel_body = ''
-    bars = re.split(r'\|+', mel_body)
-    bars = [b.strip() for b in bars if b.strip()]
-    measures = []
-    for bar in bars:
-        chords = re.findall(r'"\^([^"]+)"', bar)
-        mel = re.sub(r'"\^[^"]*"', '', bar).strip()
-        measures.append({'chords': chords, 'mel': mel})
-    return measures, time_sig, note_len, tempo
+    bars = [b.strip() for b in re.split(r'\|+', mel_body) if b.strip()]
+    return bars, time_sig, note_len, tempo
 
 
-def rescale_melody(mel_abc, scale):
-    if scale == 1: return mel_abc
-    result = []; i = 0; s = mel_abc
-    while i < len(s):
-        if s[i] in ' \t': result.append(s[i]); i += 1; continue
-        if s[i] in '()~.': result.append(s[i]); i += 1; continue
-        if s[i] in '^_=':
-            result.append(s[i]); i += 1
-            if i < len(s) and s[i] in '^_': result.append(s[i]); i += 1
-            continue
-        if s[i] == 'z' or s[i] == 'x':
-            result.append(s[i]); i += 1
-            dur, i = _parse_dur(s, i)
-            result.append(_scale_dur(dur, scale))
-            continue
-        if s[i].upper() in 'ABCDEFG':
-            result.append(s[i]); i += 1
-            while i < len(s) and s[i] in "',": result.append(s[i]); i += 1
-            dur, i = _parse_dur(s, i)
-            result.append(_scale_dur(dur, scale))
-            continue
-        result.append(s[i]); i += 1
-    return ''.join(result)
+def extract_chords(bar_raw):
+    return re.findall(r'"\^([^"]+)"', bar_raw)
 
-def _parse_dur(s, i):
-    start = i
-    while i < len(s) and s[i].isdigit(): i += 1
-    if i < len(s) and s[i] == '/':
-        i += 1
-        while i < len(s) and s[i].isdigit(): i += 1
-    return s[start:i], i
 
-def _scale_dur(dur_str, scale):
-    if not dur_str: return str(scale)
-    if '/' in dur_str:
-        parts = dur_str.split('/')
-        num = int(parts[0]) if parts[0] else 1
-        den = int(parts[1]) if parts[1] else 2
-        new_num = num * scale
-        g = gcd(new_num, den)
-        new_num //= g; den //= g
-        if den == 1: return str(new_num)
-        return f'{new_num}/{den}'
-    return str(int(dur_str) * scale)
+def rewrite_chord_annotations(bar_raw, key):
+    def repl(m):
+        chord = m.group(1)
+        spec = chord_to_spec(chord, key)
+        if spec is None:
+            return m.group(0)
+        _, _, _, label = spec
+        return f'"^{bold_roman(label)}"'
+    return re.sub(r'"\^([^"]+)"', repl, bar_raw)
 
-def compute_bar_duration(mel_abc, full_bar):
-    total = 0; i = 0; s = mel_abc.strip()
+
+def rescale_melody(mel_abc, scale_num, scale_den):
+    """Multiply note/rest durations by scale_num/scale_den. Pass quoted strings through."""
+    if scale_num == 1 and scale_den == 1:
+        return mel_abc
+    result = []
+    i = 0
+    s = mel_abc
     while i < len(s):
         c = s[i]
-        if c in ' \t': i += 1; continue
-        if c in '()~.^_=': i += 1; continue
-        if c in 'zx':
-            i += 1; dur, i = _parse_dur(s, i)
-            total += _dur_val(dur); continue
-        if c.upper() in 'ABCDEFG':
-            i += 1
-            while i < len(s) and s[i] in "',": i += 1
-            dur, i = _parse_dur(s, i)
-            total += _dur_val(dur); continue
-        i += 1
-    return int(round(total)) if total > 0 else full_bar
+        if c == '"':
+            end = s.find('"', i + 1)
+            if end == -1:
+                result.append(s[i:])
+                break
+            result.append(s[i:end + 1])
+            i = end + 1
+            continue
+        if c in ' \t()~.':
+            result.append(c); i += 1; continue
+        if c in '^_=':
+            result.append(c); i += 1
+            if i < len(s) and s[i] in '^_':
+                result.append(s[i]); i += 1
+            continue
+        if c in 'zx' or c.upper() in 'ABCDEFG':
+            result.append(c); i += 1
+            while i < len(s) and s[i] in "',":
+                result.append(s[i]); i += 1
+            start = i
+            while i < len(s) and s[i].isdigit():
+                i += 1
+            if i < len(s) and s[i] == '/':
+                i += 1
+                while i < len(s) and s[i].isdigit():
+                    i += 1
+            result.append(_scale_dur(s[start:i], scale_num, scale_den))
+            continue
+        result.append(c); i += 1
+    return ''.join(result)
 
-def _dur_val(dur_str):
-    """Return duration as a float in L units."""
-    if not dur_str: return 1.0
-    if '/' in dur_str:
+
+def _scale_dur(dur_str, sn, sd):
+    from math import gcd
+    if not dur_str:
+        num, den = 1, 1
+    elif '/' in dur_str:
         parts = dur_str.split('/')
         num = int(parts[0]) if parts[0] else 1
         den = int(parts[1]) if parts[1] else 2
-        return num / den if den > 0 else 1.0
-    return float(dur_str)
-
-
-def beats_per_bar(ts):
-    m = re.match(r'(\d+)/(\d+)', ts)
-    if not m: return 4
-    return int(m.group(1))
-
-
-# ── Main pipeline ──
-
-def build_hymn(ls, hymn_idx):
-    key = ls['key']
-    if key not in SCALES: return None
-    measures, ts, nl, tempo = parse_lead_sheet(ls['abc'])
-    bpb = beats_per_bar(ts)
-
-    # Melody uses original L, harp uses half notes / quarter notes for block chords
-    # Each measure = 3 block chords: start (1/3), peak (1/3), end (1/3)
-    # Use the original L unit for melody, same for harp chords
-    # Time sig denominator tells us the beat unit
-    ts_m = re.match(r'(\d+)/(\d+)', ts)
-    beat_unit = int(ts_m.group(2)) if ts_m else 4
-
-    header = (
-        f"X: {ls['n']}\nT: {ls['t']}\nM: {ts}\nL: 1/{beat_unit}\n"
-        f"Q: 1/4={tempo}\n"
-        f"%%pagewidth 2000cm\n%%continueall 1\n%%scale 0.85\n%%writefields T 0\n"
-        f"%%staffsep 0.5cm\n%%sysstaffsep 0.3cm\n"
-        f""
-        f"%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n"
-        f"%%score 1 {{2 3}}\n"
-        f"V:1 clef=treble name=\"Mel\"\n"
-        f"V:2 clef=treble\n"
-        f"V:3 clef=bass\n"
-        f"K: {key}\n"
-    )
-
-    # Compute melody rescale: original L to 1/beat_unit
-    nl_m = re.match(r'(\d+)/(\d+)', nl)
-    if nl_m:
-        nl_num, nl_den = int(nl_m.group(1)), int(nl_m.group(2))
     else:
-        nl_num, nl_den = 1, 8
-    mel_scale = (beat_unit * nl_num) // nl_den  # e.g. L:1/8 to L:1/4 = scale 0.5... hmm
+        num, den = int(dur_str), 1
+    new_num = num * sn
+    new_den = den * sd
+    g = gcd(new_num, new_den)
+    new_num //= g
+    new_den //= g
+    if new_den == 1:
+        return str(new_num) if new_num != 1 else ''
+    return f'{new_num}/{new_den}'
 
-    # Actually simpler: keep melody at its own L unit via inline [L:]
-    # and harp at the same L unit. Both use the header L.
-    # If header L = 1/4 and melody was L:1/8, melody notes need dur/2
 
-    # Simplest: set header L = original melody L, and give harp chords explicit durations
+def compute_bar_duration(bar_str):
+    """Return total duration in L-units, skipping quoted annotations."""
+    total = 0.0
+    i = 0
+    s = bar_str
+    while i < len(s):
+        c = s[i]
+        if c == '"':
+            end = s.find('"', i + 1)
+            if end == -1:
+                break
+            i = end + 1
+            continue
+        if c in ' \t()~.^_=':
+            i += 1; continue
+        if c in 'zx' or c.upper() in 'ABCDEFG':
+            i += 1
+            while i < len(s) and s[i] in "',":
+                i += 1
+            start = i
+            while i < len(s) and s[i].isdigit():
+                i += 1
+            if i < len(s) and s[i] == '/':
+                i += 1
+                while i < len(s) and s[i].isdigit():
+                    i += 1
+            total += _dur_val(s[start:i])
+            continue
+        i += 1
+    return int(round(total)) if total > 0 else 0
+
+
+def _dur_val(d):
+    if not d:
+        return 1.0
+    if '/' in d:
+        parts = d.split('/')
+        num = int(parts[0]) if parts[0] else 1
+        den = int(parts[1]) if parts[1] else 2
+        return num / den if den else 1.0
+    return float(d)
+
+
+def clamp_chords(chord_list):
+    """Collapse consecutive duplicates, keep first 4."""
+    out = []
+    for c in chord_list:
+        if not out or out[-1] != c:
+            out.append(c)
+    return out[:4]
+
+
+def full_bar_length(time_sig, note_len):
+    """Return the full-bar duration in L-units (used to detect pickups)."""
+    tm = re.match(r'(\d+)/(\d+)', time_sig)
+    if not tm:
+        return 0
+    ts_num, ts_den = int(tm.group(1)), int(tm.group(2))
+    nm = re.match(r'(\d+)/(\d+)', note_len)
+    if not nm:
+        return 0
+    ln_num, ln_den = int(nm.group(1)), int(nm.group(2))
+    # L-units per bar = (ts_num / ts_den) / (ln_num / ln_den)
+    return (ts_num * ln_den) // (ts_den * ln_num)
+
+
+def build_hymn(ls):
+    key = ls['key']
+    if key not in SCALES:
+        return None
+    bars, ts, note_len, tempo = parse_lead_sheet(ls['abc'])
+
+    # Melody keeps its original L. Harp voices set their own inline L.
+    # Try L:1/32 first (3 beam lines — thinner); fall back to L:1/64 per-bar
+    # if the sweep doesn't fit (24-note bar at 3/4, etc.).
+    ts_m = re.match(r'(\d+)/(\d+)', ts)
+    ts_num, ts_den = (int(ts_m.group(1)), int(ts_m.group(2))) if ts_m else (4, 4)
+    nl_m = re.match(r'(\d+)/(\d+)', note_len)
+    mel_num, mel_den = (int(nl_m.group(1)), int(nl_m.group(2))) if nl_m else (1, 8)
+    full_bar_mel = full_bar_length(ts, note_len)
+
     header = (
-        f"X: {ls['n']}\nT: {ls['t']}\nM: {ts}\nL: {nl}\n"
+        f"X: {ls['n']}\nT: {ls['t']}\nM: {ts}\nL: {note_len}\n"
         f"Q: 1/4={tempo}\n"
-        f"%%pagewidth 2000cm\n%%continueall 1\n%%scale 0.85\n%%writefields T 0\n"
+        f"%%pagewidth 2000cm\n%%continueall 1\n%%scale 0.85\n%%maxshrink 1\n"
+        f"%%writefields T 0\n"
         f"%%staffsep 0.5cm\n%%sysstaffsep 0.3cm\n"
-        f""
-        f"%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n%%topspace 0\n%%musicspace 0\n"
+        f"%%leftmargin 0.5cm\n%%rightmargin 0.5cm\n"
+        f"%%topspace 0\n%%musicspace 0\n"
+        f"%%gchordfont Times 14\n"
+        f"%%setfont-1 Times-Bold 14\n"
         f"%%score 1 {{2 3}}\n"
         f"V:1 clef=treble name=\"Mel\"\n"
-        f"V:2 clef=treble\n"
-        f"V:3 clef=bass\n"
+        f"V:2 clef=treble staffscale=0.5\n"
+        f"V:3 clef=bass staffscale=0.5\n"
         f"K: {key}\n"
     )
-
-    # In the header L unit, how many units per bar?
-    ts_num = int(ts_m.group(1)) if ts_m else 4
-    ts_den = int(ts_m.group(2)) if ts_m else 4
-    # L units per bar = ts_num * (nl_den / ts_den) * nl_num
-    # e.g. 3/4 with L:1/8 = 3 * (8/4) * 1 = 6 eighth notes per bar
-    units_per_bar = ts_num * nl_den // ts_den * nl_num
 
     mel_line = '[V:1] '
-    rh_line = '[V:2] '
-    lh_line = '[V:3] '
+    rh_line = '[V:2] [L:1/32]'
+    lh_line = '[V:3] [L:1/32]'
+    cur_harp_l = 32
     npb = []
-    prev_chords = None
+    prev_specs = None
 
-    for mi, meas in enumerate(measures):
-        mel_raw = meas['mel']
-        chords = meas['chords']
-        npb.append(len(re.findall(r'[A-Ga-g]', mel_raw)))
+    for bar_raw in bars:
+        npb.append(len(re.findall(r'[A-Ga-g]', re.sub(r'"[^"]*"', '', bar_raw))))
 
-        if not chords:
-            chords = prev_chords
-        if not chords:
-            mel_line += mel_raw + ' | '
-            rh_line += f'x{units_per_bar} | '
-            lh_line += f'x{units_per_bar} | '
+        bar_mel = rewrite_chord_annotations(bar_raw, key)
+        bar_dur_mel = compute_bar_duration(bar_mel)
+        if bar_dur_mel <= 0:
+            bar_dur_mel = 1
+        mel_line += bar_mel + ' | '
+
+        is_pickup = full_bar_mel > 0 and bar_dur_mel < full_bar_mel
+
+        chord_list = clamp_chords(extract_chords(bar_raw))
+        specs = []
+        for c in chord_list:
+            s = chord_to_spec(c, key)
+            if s is not None:
+                specs.append(s)
+        if not specs:
+            specs = prev_specs
+        else:
+            prev_specs = specs
+
+        def harp_rest_for(harp_l_denom):
+            return bar_dur_mel * mel_num * harp_l_denom // mel_den
+
+        if is_pickup or not specs:
+            rest_dur = harp_rest_for(cur_harp_l)
+            rh_line += f' x{rest_dur} | '
+            lh_line += f' x{rest_dur} | '
             continue
-        prev_chords = chords
 
-        cur_deg = chord_to_degree(chords[0], key)
-        if cur_deg is None:
-            mel_line += mel_raw + ' | '
-            rh_line += f'x{units_per_bar} | '
-            lh_line += f'x{units_per_bar} | '
+        result = build_sweep(specs)
+        if result is None:
+            rest_dur = harp_rest_for(cur_harp_l)
+            rh_line += f' x{rest_dur} | '
+            lh_line += f' x{rest_dur} | '
+            continue
+        rh_tokens, lh_tokens, note_count = result
+
+        bar_32 = harp_rest_for(32)
+        bar_64 = harp_rest_for(64)
+        if note_count <= bar_32:
+            target_l = 32
+            bar_units = bar_32
+        elif note_count <= bar_64:
+            target_l = 64
+            bar_units = bar_64
+        else:
+            rest_dur = harp_rest_for(cur_harp_l)
+            rh_line += f' x{rest_dur} | '
+            lh_line += f' x{rest_dur} | '
             continue
 
-        next_deg = None
-        if mi + 1 < len(measures) and measures[mi + 1]['chords']:
-            next_deg = chord_to_degree(measures[mi + 1]['chords'][0], key)
-        if len(chords) >= 2:
-            deg2 = chord_to_degree(chords[1], key)
-            if deg2 is not None: next_deg = deg2
+        prefix = ''
+        if target_l != cur_harp_l:
+            prefix = f'[L:1/{target_l}]'
+            cur_harp_l = target_l
 
-        (da,pa,db,pb,dc,pc,dd,pd,la,lb,lc,ld) = select_4chords(cur_deg, next_deg, mi, hymn_idx)
-        start, peak, end = build_measure_chords(da,pa,db,pb,dc,pc,dd,pd, key)
-
-        # Build chord label
-        up_chords = [la] if la == lb else [la, lb]
-        dn_chords = [lc] if lc == ld else [lc, ld]
-        up_str = '>'.join(up_chords)
-        dn_str = '>'.join(dn_chords)
-
-        # Chord annotations on RH voice for fraction overlay extraction
-        # "^up_str" extracted as rhn, "^dn_str" on LH extracted as lhn
-        mel_line += mel_raw + ' | '
-
-        # Compute actual bar duration from melody
-        mel_dur = compute_bar_duration(mel_raw, units_per_bar)
-
-        # 3 chords per bar: start, peak, end
-        # Divide the bar into 3 roughly equal parts
-        d1 = mel_dur // 3
-        d2 = mel_dur // 3
-        d3 = mel_dur - d1 - d2
-
-        # Split start/end into LH (below mid C) and peak into RH (above mid C)
-        start_lh = [m for m in start if m < MID_C]
-        start_rh = [m for m in start if m >= MID_C]
-        peak_lh = [m for m in peak if m < MID_C]
-        peak_rh = [m for m in peak if m >= MID_C]
-        end_lh = [m for m in end if m < MID_C]
-        end_rh = [m for m in end if m >= MID_C]
-
-        # RH: chord annotation for fraction overlay + arpeggio chords
-        if start_rh:
-            rh_line += f'"^{up_str}" !arpeggio!{block_chord_abc(start_rh, key, str(d1))} '
-        else:
-            rh_line += f'"^{up_str}" x{d1} '
-
-        if peak_rh:
-            rh_line += f'!arpeggio!{block_chord_abc(peak_rh, key, str(d2))} '
-        else:
-            rh_line += f'x{d2} '
-
-        if end_rh:
-            rh_line += f'!arpeggio!{block_chord_abc(end_rh, key, str(d3))} | '
-        else:
-            rh_line += f'x{d3} | '
-
-        # LH: chord annotation for fraction overlay + arpeggio chords
-        if start_lh:
-            lh_line += f'"^{dn_str}" !arpeggio!{block_chord_abc(start_lh, key, str(d1))} '
-        else:
-            lh_line += f'"^{dn_str}" x{d1} '
-
-        if peak_lh:
-            lh_line += f'!arpeggio!{block_chord_abc(peak_lh, key, str(d2))} '
-        else:
-            lh_line += f'x{d2} '
-
-        if end_lh:
-            lh_line += f'!arpeggio!{block_chord_abc(end_lh, key, str(d3))} | '
-        else:
-            lh_line += f'x{d3} | '
+        pad = bar_units - note_count
+        pad_str = f' x{pad}' if pad > 0 else ''
+        rh_line += ' ' + prefix + fmt_run_tokens(rh_tokens) + pad_str + ' | '
+        lh_line += ' ' + prefix + fmt_run_tokens(lh_tokens) + pad_str + ' | '
 
     mel_line = mel_line.rstrip(' | ') + ' |]'
     rh_line = rh_line.rstrip(' | ') + ' |]'
@@ -448,33 +461,39 @@ def build_hymn(ls, hymn_idx):
     abc = header + mel_line + '\n' + rh_line + '\n' + lh_line + '\n'
 
     return {
-        'n': ls['n'], 't': ls['t'], 'abc': abc,
-        'key': key, 'npb': npb, 'tempo': tempo,
+        'n': ls['n'],
+        't': ls['t'],
+        'abc': abc,
+        'key': key,
+        'npb': npb,
+        'tempo': tempo,
     }
 
 
 def main():
-    print("Loading lead sheets...")
+    print('Loading lead sheets...')
     with open(LEAD_SHEETS) as f:
         lead_sheets = json.load(f)
-    print(f"  {len(lead_sheets)} hymns")
+    print(f'  {len(lead_sheets)} hymns')
 
-    print("Building Tchaikovsky drills...")
+    print('Building Tchaikovsky sweeps...')
     output = []
-    for idx, ls in enumerate(lead_sheets):
-        result = build_hymn(ls, idx)
-        if result:
-            output.append(result)
-            if len(output) <= 3:
-                print(f"  [{len(output)}] {result['t']} key={result['key']} bars={len(result['npb'])}")
-                for ln in result['abc'].split('\n'):
-                    if ln.startswith('[V:'):
-                        print(f"      {ln[:140]}...")
+    failed = 0
+    for ls in lead_sheets:
+        try:
+            r = build_hymn(ls)
+            if r:
+                output.append(r)
+            else:
+                failed += 1
+        except Exception as e:
+            print(f"  FAIL {ls.get('n','?')} {ls.get('t','?')}: {e}")
+            failed += 1
 
-    print(f"\nWriting {len(output)} drills to {OUTPUT}...")
+    print(f'\nWriting {len(output)} drills to {OUTPUT} ({failed} failed)')
     with open(OUTPUT, 'w') as f:
         json.dump(output, f)
-    print(f"Done. {os.path.getsize(OUTPUT) / 1024:.0f} KB")
+    print(f'Done. {os.path.getsize(OUTPUT) / 1024:.0f} KB')
 
 
 if __name__ == '__main__':

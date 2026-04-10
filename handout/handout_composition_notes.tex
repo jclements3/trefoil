@@ -1,0 +1,198 @@
+\documentclass[letterpaper]{article}
+\usepackage{fontspec}
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{multicol}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{mdframed}
+
+\geometry{letterpaper, landscape, margin=10mm}
+
+\setmainfont{DejaVu Sans}
+
+\definecolor{headerbg}{HTML}{2C3E50}
+\definecolor{altrow}{HTML}{F0F4F8}
+\definecolor{white}{HTML}{FFFFFF}
+\definecolor{sectionbg}{HTML}{E8EEF4}
+\definecolor{rulecol}{HTML}{C0392B}
+
+\newcommand{\inv}[1]{\textsuperscript{#1}}
+\newcommand{\rn}[2]{\textbf{#1}#2}
+\newcommand{\prog}[1]{\textbf{#1}}
+
+\setlist[itemize]{leftmargin=4mm, itemsep=1pt, topsep=2pt, parsep=0pt}
+\setlist[enumerate]{leftmargin=4mm, itemsep=1pt, topsep=2pt, parsep=0pt}
+
+\begin{document}
+\pagestyle{empty}
+
+\begin{center}
+{\large\bfseries Diatonic Harp --- Progressions \& SATB Voicing Reference}
+\end{center}
+
+\vspace{2mm}
+
+\begin{multicols}{3}
+
+{\small\colorbox{headerbg}{\color{white}\textbf{\quad Cadences\quad}}}
+
+\vspace{2mm}
+{\small
+\begin{tabular}{@{}ll@{}}
+\textit{Authentic (perfect)} & \rn{V}{7}--\rn{I}{} \\[2pt]
+\textit{Authentic (imperfect)} & \rn{V}{}--\rn{I}{} \\[2pt]
+\textit{Half} & \rn{I}{}--\rn{V}{} or \rn{ii}{}--\rn{V}{} \\[2pt]
+\textit{Plagal} & \rn{IV}{}--\rn{I}{} \\[2pt]
+\textit{Deceptive} & \rn{V}{}--\rn{vi}{} \\[2pt]
+\textit{Phrygian half} & \rn{iv}{}--\rn{V}{} \\
+\end{tabular}
+}
+
+\vspace{4mm}
+{\small\colorbox{headerbg}{\color{white}\textbf{\quad Common Progressions\quad}}}
+
+\vspace{2mm}
+{\small
+\textit{Authentic close}\\
+\rn{I}{}--\rn{IV}{}--\rn{V}{}--\rn{I}{}
+
+\vspace{2mm}
+\textit{Extended authentic}\\
+\rn{I}{}--\rn{ii}{}--\rn{V}{}--\rn{I}{}
+
+\vspace{2mm}
+\textit{Circle of fifths}\\
+\rn{I}{}--\rn{IV}{}--\rn{vii}{°}--\rn{iii}{}--\rn{vi}{}--\rn{ii}{}--\rn{V}{}--\rn{I}{}
+
+\vspace{2mm}
+\textit{Pop/hymn (I--V--vi--IV)}\\
+\rn{I}{}--\rn{V}{}--\rn{vi}{}--\rn{IV}{}
+
+\vspace{2mm}
+\textit{Descending bass}\\
+\rn{I}{}--\rn{I}{}\inv{1}--\rn{IV}{}--\rn{IV}{}\inv{1}--\rn{V}{}
+
+\vspace{2mm}
+\textit{Deceptive resolution}\\
+\rn{I}{}--\rn{IV}{}--\rn{V}{}--\rn{vi}{}
+
+\vspace{2mm}
+\textit{ii--V--I (jazz/modal)}\\
+\rn{ii}{m7}--\rn{V}{7}--\rn{I}{}Δ
+
+\vspace{2mm}
+\textit{Pachelbel / hymn}\\
+\rn{I}{}--\rn{V}{}--\rn{vi}{}--\rn{iii}{}--\rn{IV}{}--\rn{I}{}--\rn{IV}{}--\rn{V}{}
+
+\vspace{2mm}
+\textit{Minor (natural)}\\
+\rn{i}{}--\rn{VII}{}--\rn{VI}{}--\rn{VII}{}--\rn{i}{}
+
+\vspace{2mm}
+\textit{Minor cadential}\\
+\rn{i}{}--\rn{iv}{}--\rn{V}{}--\rn{i}{}
+}
+
+\columnbreak
+
+{\small\colorbox{headerbg}{\color{white}\textbf{\quad SATB Voice Ranges\quad}}}
+
+\vspace{2mm}
+{\small
+\begin{tabular}{@{}lll@{}}
+\textbf{Voice} & \textbf{Low} & \textbf{High} \\
+\midrule
+Soprano & C4 & G5 \\
+Alto    & G3 & C5 \\
+Tenor   & C3 & G4 \\
+Bass    & E2 & C4 \\
+\end{tabular}
+
+\vspace{1mm}
+Soprano--Alto gap: $\leq$ octave\\
+Alto--Tenor gap: $\leq$ octave\\
+Tenor--Bass gap: $\leq$ 12th (no limit)
+}
+
+\vspace{4mm}
+{\small\colorbox{headerbg}{\color{white}\textbf{\quad Doubling Rules\quad}}}
+
+\vspace{2mm}
+{\small
+\begin{itemize}
+  \item Double the \textbf{root} in root-position chords
+  \item Double the \textbf{bass note} in 1st inversion
+  \item Avoid doubling the \textbf{leading tone} (vii / 7th scale degree)
+  \item Avoid doubling the \textbf{7th} of a 7th chord
+  \item In \rn{V}{7}: all four notes present --- no doubling needed
+  \item \rn{vii}{°} triad: double the 3rd (not root or 5th)
+  \item Diminished 5th resolves \textbf{inward}; augmented 4th resolves \textbf{outward}
+\end{itemize}
+}
+
+\vspace{4mm}
+{\small\colorbox{headerbg}{\color{white}\textbf{\quad Forbidden Motion\quad}}}
+
+\vspace{2mm}
+{\small
+\begin{itemize}
+  \item \textbf{No parallel 5ths} between any two voices
+  \item \textbf{No parallel octaves} between any two voices
+  \item \textbf{No direct (hidden) 5ths/octaves} in outer voices moving in similar motion
+  \item \textbf{No voice crossing} (alto must stay below soprano, etc.)
+  \item \textbf{No voice overlap} (alto's next note must not exceed soprano's previous note)
+\end{itemize}
+}
+
+\columnbreak
+
+{\small\colorbox{headerbg}{\color{white}\textbf{\quad Preferred Motion\quad}}}
+
+\vspace{2mm}
+{\small
+\begin{itemize}
+  \item \textbf{Contrary motion} between outer voices is always safe
+  \item \textbf{Oblique motion} (one voice stationary) is safe
+  \item \textbf{Similar motion} is acceptable if not producing parallel 5ths/8ths
+  \item Prefer \textbf{stepwise motion} in all voices; avoid large leaps
+  \item After a leap, resolve by \textbf{step in the opposite direction}
+  \item Avoid \textbf{augmented intervals} melodically (esp. aug 2nd)
+\end{itemize}
+}
+
+\vspace{4mm}
+{\small\colorbox{headerbg}{\color{white}\textbf{\quad Tendency Tones\quad}}}
+
+\vspace{2mm}
+{\small
+\begin{itemize}
+  \item \textbf{Leading tone} (scale degree 7): always resolves \textbf{up} to tonic
+  \item \textbf{Chordal 7th}: always resolves \textbf{down} by step
+  \item In \rn{V}{7}--\rn{I}{}: the 7th (4̂) resolves down to 3̂; the leading tone (7̂) resolves up to 1̂
+  \item \textbf{Tritone} in \rn{V}{7}: the diminished 5th (7̂--4̂) resolves inward to 1̂--3̂
+\end{itemize}
+}
+
+\vspace{4mm}
+{\small\colorbox{headerbg}{\color{white}\textbf{\quad Practical Tips\quad}}}
+
+\vspace{2mm}
+{\small
+\begin{itemize}
+  \item Keep \textbf{common tones} in the same voice when possible
+  \item \rn{I}{6} (1st inversion) weakens a cadence --- use for passing chords, not finals
+  \item \rn{I}{}--\rn{IV}{}: bass leaps a 4th --- move upper voices in contrary motion
+  \item \rn{V}{}--\rn{vi}{} (deceptive): double the 3rd of \rn{vi}{}, not the root
+  \item Avoid \textbf{unison} between adjacent voices except at cadences
+  \item The \textbf{5th} is the most expendable tone --- omit before the 3rd
+  \item \textbf{Open spacing} suits slow, solemn hymns; \textbf{close spacing} suits brighter passages
+\end{itemize}
+}
+
+\end{multicols}
+
+\end{document}

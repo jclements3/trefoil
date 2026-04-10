@@ -153,6 +153,13 @@ This repo is worked on from two machines (lab and home laptop) with separate Cla
 
 ### Pending sync notes (newest first):
 
+**Home → Lab (2026-04-10):**
+- **drill.tar.gz is incomplete.** User said it would contain a chord table page + composition notes page alongside `drill.abc`/`drill.pdf`/`generate_drill.py`, but only the drill music (13 pages of chord drill) is in there. No chord table, no composition notes.
+- **Action for Home Claude next session**: rebuild `drill.tar.gz` to include the corrected chord table (as PDF or ABC) AND the composition notes page. Lab needs these to generate a new handout.pdf.
+- **The corrected chord table** lives in `generate_drill.py` inside the tarball — `CHORD_NAMES` and `VALID` dicts. This is the authoritative version and should replace `data/diatonic_chord_table.md`. Please also export a typeset 1-page PDF of it.
+- **Composition notes**: whatever page of notes goes with the chord table — user referred to "two pages of chord table and composition notes" so there's a second page I don't have. Please include it.
+- Once the tarball has all three pieces (chord table PDF, composition notes PDF, drill PDF), Lab can assemble `handout.pdf`.
+
 **Lab → Home (2026-04-09, end of session):**
 - **Tchaikovsky mode** is the main new feature. Tch checkbox (defaults checked) toggles between SSAATTBB score and Tchaikovsky arpeggio runs.
 - **Simplified notation**: block chords with arpeggio marks (3 per measure: start, peak, end). NOT individual run notes — the player sweeps through chord tones to fill the measure. Like orchestral harp shorthand.

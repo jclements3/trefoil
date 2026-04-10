@@ -455,11 +455,14 @@ function renderDrill(idx) {
 
   abc = new abc2svg.Abc(user);
   var renderAbc = getAbc(drill);
-  // Strip ABC chord annotations — JS fraction overlays replace them
-  var beforeLen = renderAbc.length;
-  renderAbc = renderAbc.replace(/"\^[^"]*"/g, '');
-  renderAbc = renderAbc.replace(/"_[^"]*"/g, '');
-  console.log('Stripped annotations: ' + (beforeLen - renderAbc.length) + ' chars');
+  // Tchaikovsky mode keeps ABC chord annotations (rendered natively by abc2svg).
+  // Other modes strip them so JS fraction overlays can replace them.
+  if (!tchMode) {
+    var beforeLen = renderAbc.length;
+    renderAbc = renderAbc.replace(/"\^[^"]*"/g, '');
+    renderAbc = renderAbc.replace(/"_[^"]*"/g, '');
+    console.log('Stripped annotations: ' + (beforeLen - renderAbc.length) + ' chars');
+  }
   abc.tosvg('drill', renderAbc);
 
   // Scale SVG to fill viewport height
@@ -474,6 +477,8 @@ function renderDrill(idx) {
 
   // Build chord fraction overlays on-the-fly from ABC
   setTimeout(function() {
+    // Tchaikovsky mode renders its own chord annotations natively via abc2svg
+    if (tchMode) return;
     var chords = extractChordAnnotations(drill.abc, drill.key || 'C');
     if (!chords.length) return;
     var rects = $container.querySelectorAll('.abcr');
