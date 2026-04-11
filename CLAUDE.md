@@ -153,6 +153,36 @@ This repo is worked on from two machines (lab and home laptop) with separate Cla
 
 ### Pending sync notes (newest first):
 
+**Lab → Home (2026-04-10, end of session):**
+- **Tchaikovsky mode now renders via Verovio, not abc2svg.** The cadenza needs features (cross-staff beaming, cue notes, per-staff scale, hidden-bracket tuplets) that abc2svg cannot produce cleanly. Verovio bundled locally as `app/app/src/main/assets/verovio/verovio-toolkit-wasm.js` (~7MB, UMD wrapped, no network needed).
+- **New builder**: `scripts/build_tchaikovsky_mei.py`. Reads `app/lead_sheets.json` + chord table from `generate_drill.py`, emits `app/tchaikovsky_mei.json` (288 hymns, ~16MB). Mirrored to `app/app/src/main/assets/tchaikovsky_mei.json`.
+- **Cadenza architecture** (finalized after many iterations — don't drift):
+  1. Cross-staff alternation (example_624 algorithm): each sweep note on its natural staff, opposite staff gets `<space/>` at same time slot.
+  2. `dur="8"` (single-beam eighths) for shortest stems. 
+  3. Entire layer wrapped in hidden-bracket `<tuplet num="N" numbase="8*ts_num/ts_den" num.visible="false" bracket.visible="false">` so the eighths scale to fit exactly one bar.
+  4. `cue="true"` on cadenza notes.
+  5. `stem.dir="down"` on treble notes, `stem.dir="up"` on bass notes → beams point INWARD toward middle C (outside the sweep pointing inward) so they don't overlap between staves.
+  6. Beams break at direction changes (ascending→descending) so each beam slopes monotonically with contour.
+  7. `EXTRA_GAP_SLOTS = 6` inserted at middle-C crossings (6 extra `<space/>` on BOTH staves) — needed because the tuplet compresses the layer, small gaps get squashed; 6 slots gives ~18% bar width of visible horizontal air at each crossing.
+  8. Harp staves (2,3) rendered at `scale="50%"` via `<staffDef scale="50%"/>` so they're visibly smaller/subordinate to the melody staff. Verovio honors this — melody at full size, whole harp grand staff at half scale.
+- **Verovio options in index.html `renderDrill`** (Tch-mode path): `noJustification: true` (ragged-right), `spacingBracketGroup: 6` (melody↔harp gap), `spacingBraceGroup: 0` (harp treble↔bass tight — middle C ledger bridges cleanly), `leftMarginNote: 0.0, rightMarginNote: 0.0, spacingLinear: 0.05, spacingNonLinear: 0.3` (aggressive horizontal compression), `beamMaxSlope: 20` (beams slope with contour), `scale: 40, pageWidth: 60000, breaks: 'none'` (single wide strip).
+- **Things I tried and rejected** (don't re-attempt without reading this):
+  - `@stem.len` on notes → **Verovio ignores it on beamed notes.** Dead code.
+  - `@size="cue"` / `@size="grace"` / `@size="0.5"` on notes → **Verovio only honors `cue="true"` and `grace="unacc"` as boolean attrs**, not the string-valued `@size`.
+  - Grace notes in a single layer with `@staff` → WORKS for cross-staff beaming but grace notes don't consume time, so can't do cross-staff alternation with `<space/>`. Also cluster per-staff visually.
+  - Two parallel graceGrps (one per staff) → "two sets of notes" — user rejected.
+  - `graceRightAlign: true` / `graceFactor: 0.5` → helped in grace-note approach but we're not using grace.
+- **Algorithm the user gave us** (example_624.abc cross-staff alternation): this is sacred. Do not drift from it. Each sweep note at its natural position, opposite staff has invisible rest at same time position, beams break at middle-C crossings naturally. We use `<space/>` elements not `<rest visible="false"/>`.
+- **Known limitations**: tuplet wrapping means the cadenza's musical TIME is proportionally stretched to the bar (not a real cadenza ad-lib) but visually it looks right. Scroll sync with playback is not wired up in Tch/Verovio mode (no `.abcr` rects).
+- **Build pipeline** (runs clean locally):
+  ```bash
+  python3.10 scripts/build_tchaikovsky_mei.py                # rebuild MEI JSON
+  cp app/tchaikovsky_mei.json app/app/src/main/assets/       # mirror to assets
+  cd app && ANDROID_HOME=$HOME/Android/Sdk JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64 ./gradlew assembleDebug
+  adb install -r app/build/outputs/apk/debug/app-debug.apk
+  ```
+- **Files touched this session**: `scripts/build_tchaikovsky_mei.py` (rewritten cadenza_to_mei several times), `app/app/src/main/assets/index.html` (Verovio init + render path + options), `app/tchaikovsky_mei.json` (regenerated), `app/app/src/main/assets/tchaikovsky_mei.json` (mirror), `app/app/src/main/assets/verovio/verovio-toolkit-wasm.js` (already bundled earlier).
+
 **Home → Lab (2026-04-10):**
 - **drill.tar.gz is incomplete.** User said it would contain a chord table page + composition notes page alongside `drill.abc`/`drill.pdf`/`generate_drill.py`, but only the drill music (13 pages of chord drill) is in there. No chord table, no composition notes.
 - **Action for Home Claude next session**: rebuild `drill.tar.gz` to include the corrected chord table (as PDF or ABC) AND the composition notes page. Lab needs these to generate a new handout.pdf.

@@ -240,6 +240,29 @@ label { font-size: 13px; color: #888; }
 
 <script src="abc2svg/abc2svg-1.js"></script>
 <script src="abc2svg/snd-1.js"></script>
+<script src="verovio/verovio-toolkit-wasm.js"></script>
+<script>
+  // Verovio WASM init — after script loads, attach the runtime-init callback
+  // on verovio.module per https://book.verovio.org/first-steps/javascript.html
+  window.verovioReady = false;
+  window.verovioTk = null;
+  function initVerovio() {
+    if (typeof verovio === 'undefined' || !verovio.module) {
+      console.warn('Verovio script not loaded yet, retry in 100ms');
+      setTimeout(initVerovio, 100);
+      return;
+    }
+    verovio.module.onRuntimeInitialized = function() {
+      try {
+        window.verovioTk = new verovio.toolkit();
+        window.verovioReady = true;
+        console.log('Verovio toolkit initialized');
+        if (typeof window.onVerovioReady === 'function') window.onVerovioReady();
+      } catch (e) { console.error('Verovio init error:', e); }
+    };
+  }
+  initVerovio();
+</script>
 <!-- equalbars removed — scroll sync precomputed -->
 <script>
 // Override loadjs to handle file:///android_asset/ paths correctly.
@@ -410,17 +433,82 @@ function renderDrill(idx) {
   currentDrill = idx;
   var drill = DRILLS[idx];
 
-  // Check if Tchaikovsky mode — swap in Tchaikovsky ABC if available
+  // Check if Tchaikovsky mode — prefer MEI via Verovio, else fall back to ABC
   var tchMode = document.getElementById('chk-tchaikovsky').checked;
   var useDrill = drill;
+  var tchMei = null;
   if (tchMode) {
     var cleanTitle = drill.t.replace(/^\d+\s*/, '').trim();
+    tchMei = TCHAIKOVSKY_MEI[cleanTitle] || null;
     var tch = TCHAIKOVSKY[cleanTitle];
     if (tch && tch.abc) {
       useDrill = {t: drill.t + ' (Tch)', abc: tch.abc, key: tch.key, tempo: tch.tempo, npb: tch.npb, n: drill.n};
     }
   }
   drill = useDrill;
+
+  // If Tch mode and Verovio is ready with MEI data, render via Verovio and return.
+  if (tchMode && tchMei && window.verovioReady && window.verovioTk) {
+    $title.textContent = drill.t;
+    $container.innerHTML = '';
+    bpm = tchMei.tempo || 100;
+    $bpmVal.textContent = bpm;
+    if ($bpmSlider) $bpmSlider.value = bpm;
+    try {
+      var areaH = $area.offsetHeight - 50;
+      // Force the whole hymn onto one very wide "page" so we get a continuous strip chart.
+      // 'breaks: none' disables system breaks (one system for the entire hymn).
+      window.verovioTk.setOptions({
+        inputFrom: 'mei',
+        scale: 40,
+        pageWidth: 60000,
+        pageHeight: 3000,
+        adjustPageHeight: true,
+        breaks: 'none',
+        header: 'none',
+        footer: 'none',
+        // Aggressive spacing compression so the cadenza's many notes
+        // cluster tightly together rather than stretching across the bar.
+        spacingLinear: 0.05,
+        spacingNonLinear: 0.3,
+        // Zero the per-note margins so notes can touch their neighbors.
+        leftMarginNote: 0.0,
+        rightMarginNote: 0.0,
+        // Gap between melody (staff 1) and harp grand staff (staff 2).
+        spacingBracketGroup: 6,
+        // Gap between harp treble (staff 2) and harp bass (staff 3).
+        spacingBraceGroup: 0,
+        spacingStaff: 8,
+        spacingSystem: 4,
+        // Allow beams to slope aggressively so they follow the note
+        // contour and stems stay short.
+        beamMaxSlope: 20,
+        // Ragged-right — don't stretch the system to fill page width.
+        noJustification: true
+      });
+      window.verovioTk.loadData(tchMei.mei);
+      var pages = window.verovioTk.getPageCount();
+      for (var p = 1; p <= pages; p++) {
+        var svg = window.verovioTk.renderToSVG(p);
+        $container.innerHTML += svg;
+      }
+      var svgs = $container.getElementsByTagName('svg');
+      var totalH = 0;
+      for (var i = 0; i < svgs.length; i++) totalH += parseFloat(svgs[i].getAttribute('height') || 0);
+      svgScale = (areaH > 0 && totalH > 0) ? (areaH * 0.95) / totalH : 1;
+      if (svgScale > 3) svgScale = 3;
+      $container.style.transformOrigin = '0 0';
+      $container.style.transform = 'scale(' + svgScale + ')';
+      console.log('Verovio rendered ' + pages + ' pages, svgScale=' + svgScale.toFixed(2) + ' totalH=' + totalH);
+      positionPlayhead();
+      // Scroll so the first bar is at the playhead
+      setScroll(getPlayheadX());
+      return;
+    } catch (e) {
+      console.error('Verovio render error:', e);
+      // fall through to abc2svg
+    }
+  }
 
   $title.textContent = drill.t;
   $container.innerHTML = '';
@@ -1612,8 +1700,9 @@ function applyKeyFilter() {
 // ── Load hymnal and init ──
 positionPlayhead();
 
-// Load SSAATTBB data, then Tchaikovsky drills, then build library
-var TCHAIKOVSKY = {};  // keyed by cleaned title for lookup
+// Load SSAATTBB data, then Tchaikovsky drills (ABC + MEI), then build library
+var TCHAIKOVSKY = {};  // keyed by cleaned title for lookup (ABC)
+var TCHAIKOVSKY_MEI = {};  // keyed by cleaned title (MEI for Verovio)
 var xhr2 = new XMLHttpRequest();
 xhr2.open('GET', 'ssaattbb_data.json?v=' + Date.now(), true);
 xhr2.onload = function() {
@@ -1622,22 +1711,41 @@ xhr2.onload = function() {
     for (var i = 0; i < data.length; i++) DRILLS.push(data[i]);
     console.log('Loaded ' + DRILLS.length + ' hymns');
   }
-  // Load Tchaikovsky drill data
+  // Load Tchaikovsky drill data (ABC)
   var xhr3 = new XMLHttpRequest();
   xhr3.open('GET', 'tchaikovsky_data.json?v=' + Date.now(), true);
   xhr3.onload = function() {
     if (xhr3.status === 200) {
       var tdata = JSON.parse(xhr3.responseText);
       for (var i = 0; i < tdata.length; i++) {
-        // Key by cleaned title (strip leading number prefix)
         var ct = tdata[i].t.replace(/^\d+\s*/, '').trim();
         TCHAIKOVSKY[ct] = tdata[i];
       }
-      console.log('Loaded ' + tdata.length + ' Tchaikovsky drills');
+      console.log('Loaded ' + tdata.length + ' Tchaikovsky drills (ABC)');
     }
-    buildLibrary();
-    applyKeyFilter();
-    if (DRILLS.length > 0) renderDrill(0);
+    // Load MEI version
+    var xhr4 = new XMLHttpRequest();
+    xhr4.open('GET', 'tchaikovsky_mei.json?v=' + Date.now(), true);
+    xhr4.onload = function() {
+      if (xhr4.status === 200) {
+        var mdata = JSON.parse(xhr4.responseText);
+        for (var i = 0; i < mdata.length; i++) {
+          var ct = mdata[i].t.replace(/^\d+\s*/, '').trim();
+          TCHAIKOVSKY_MEI[ct] = mdata[i];
+        }
+        console.log('Loaded ' + mdata.length + ' Tchaikovsky drills (MEI)');
+      }
+      buildLibrary();
+      applyKeyFilter();
+      if (DRILLS.length > 0) renderDrill(0);
+    };
+    xhr4.onerror = function() {
+      console.warn('No Tchaikovsky MEI data');
+      buildLibrary();
+      applyKeyFilter();
+      if (DRILLS.length > 0) renderDrill(0);
+    };
+    xhr4.send();
   };
   xhr3.onerror = function() {
     console.warn('No Tchaikovsky data found, continuing without');
