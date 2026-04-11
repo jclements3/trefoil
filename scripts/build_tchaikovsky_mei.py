@@ -604,25 +604,14 @@ def build_hymn_mei(ls):
 
             staff1 = '<staff n="1"><layer n="1">' + ''.join(mel_notes_mei) + '</layer></staff>'
 
-            # Pickup bars get a cadenza too, sized to the pickup's actual
-            # duration rather than a full bar. Convert bar_dur_l (L-units)
-            # to 8ths: bar_dur_l * (mel_num/mel_den) whole-notes * 8 8ths/whole.
-            if not specs:
+            # Pickup bars don't get a cadenza — the cadenza is the
+            # downbeat flourish of the measure proper, not of the
+            # anacrusis leading into it.
+            if is_pickup or not specs:
                 staff2 = '<staff n="2"><layer n="1"><mRest visible="false"/></layer></staff>'
                 staff3 = '<staff n="3"><layer n="1"><mRest visible="false"/></layer></staff>'
             else:
-                if is_pickup:
-                    pickup_eighths_num = int(bar_dur_l * mel_num * 8)
-                    pickup_eighths_den = mel_den
-                    if pickup_eighths_num % pickup_eighths_den == 0:
-                        override_eighths = pickup_eighths_num // pickup_eighths_den
-                    else:
-                        override_eighths = None  # doesn't divide cleanly; fall back
-                    treble_layer, bass_layer = cadenza_to_mei(
-                        specs, ts_num, ts_den, bar_eighths=override_eighths
-                    )
-                else:
-                    treble_layer, bass_layer = cadenza_to_mei(specs, ts_num, ts_den)
+                treble_layer, bass_layer = cadenza_to_mei(specs, ts_num, ts_den)
                 if treble_layer is None:
                     staff2 = '<staff n="2"><layer n="1"><mRest visible="false"/></layer></staff>'
                     staff3 = '<staff n="3"><layer n="1"><mRest visible="false"/></layer></staff>'
