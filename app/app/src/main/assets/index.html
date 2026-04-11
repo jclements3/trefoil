@@ -471,8 +471,9 @@ function renderDrill(idx) {
         // cluster tightly together rather than stretching across the bar.
         spacingLinear: 0.05,
         spacingNonLinear: 0.3,
-        // Zero the per-note margins so notes can touch their neighbors.
-        leftMarginNote: 0.0,
+        // Tiny left margin so cadenza notes have breathing room and the
+        // noteheads don't literally touch their neighbors.
+        leftMarginNote: 0.3,
         rightMarginNote: 0.0,
         // Gap between melody (staff 1) and harp grand staff (staff 2).
         spacingBracketGroup: 6,

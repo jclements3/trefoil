@@ -450,8 +450,8 @@ def build_hymn_mei(ls):
 <staffGrp symbol="bracket">
 <staffDef n="1" lines="5" clef.shape="G" clef.line="2"/>
 <staffGrp symbol="brace">
-<staffDef n="2" lines="5" clef.shape="G" clef.line="2" scale="50%"/>
-<staffDef n="3" lines="5" clef.shape="F" clef.line="4" scale="50%"/>
+<staffDef n="2" lines="5" clef.shape="G" clef.line="2" scale="45%"/>
+<staffDef n="3" lines="5" clef.shape="F" clef.line="4" scale="45%"/>
 </staffGrp>
 </staffGrp>
 </scoreDef>
