@@ -153,6 +153,17 @@ This repo is worked on from two machines (lab and home laptop) with separate Cla
 
 ### Pending sync notes (newest first):
 
+**Home → Lab (2026-04-10, end of session):**
+- **Bug fixed: Tch-mode hymns were rendering without key signatures.** The MEI from `build_tchaikovsky_mei.py` declared `key.sig` only on `<scoreDef>`, but Verovio does not cascade the scoreDef attribute through the nested `staffGrp` (`bracket { 1, brace { 2, 3 } }`) to draw the signature glyphs on each staff. Note pitches were logically correct (no `@accid` emitted, key sig applied internally) but no flats/sharps were ever drawn.
+- **Fix**: added `key.sig` as an explicit attribute on all three `<staffDef>` elements in `build_tchaikovsky_mei.py` (line ~547-550). Rebuilt `app/tchaikovsky_mei.json` and mirrored to `app/app/src/main/assets/tchaikovsky_mei.json`. Verified Eb hymn MEI header now shows `key.sig="3f"` on each staffDef.
+- **Confirmed SSAATTBB mode is unaffected** — it renders from ABC which embeds `K: Eb` etc. and abc2svg draws key sigs correctly from that. Only the Tch/Verovio path had this issue.
+- **Action for Lab**: rebuild APK and push to tablet to pick up the fix:
+  ```bash
+  cd app && ANDROID_HOME=$HOME/Android/Sdk JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64 ./gradlew assembleDebug
+  adb install -r app/build/outputs/apk/debug/app-debug.apk
+  ```
+- **Files touched**: `scripts/build_tchaikovsky_mei.py`, `app/tchaikovsky_mei.json`, `app/app/src/main/assets/tchaikovsky_mei.json`.
+
 **Lab → Home (2026-04-11, end of session):**
 - **M: none hymns now split into 4-beat sub-measures.** 18 hymns in `data/OpenHymnal.abc` have `M: none` with phrase-length "bars" (e.g. hymn 128 A Mighty Fortress has 16-beat source bars = 4 measures of 4/4 per `|`). Previously my builder defaulted to 4/4 and stuffed 16 beats into one visual 4/4 bar — wrong and unreadable.
 - **Fix in `scripts/build_tchaikovsky_mei.py`**:

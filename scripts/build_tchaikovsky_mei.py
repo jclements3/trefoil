@@ -544,10 +544,10 @@ def build_hymn_mei(ls):
 <music><body><mdiv><score>
 <scoreDef {key_sig_attr} {meter_attrs}>
 <staffGrp symbol="bracket">
-<staffDef n="1" lines="5" clef.shape="G" clef.line="2"/>
+<staffDef n="1" lines="5" clef.shape="G" clef.line="2" {key_sig_attr}/>
 <staffGrp symbol="brace">
-<staffDef n="2" lines="5" clef.shape="G" clef.line="2" scale="45%"/>
-<staffDef n="3" lines="5" clef.shape="F" clef.line="4" scale="45%"/>
+<staffDef n="2" lines="5" clef.shape="G" clef.line="2" scale="45%" {key_sig_attr}/>
+<staffDef n="3" lines="5" clef.shape="F" clef.line="4" scale="45%" {key_sig_attr}/>
 </staffGrp>
 </staffGrp>
 </scoreDef>
