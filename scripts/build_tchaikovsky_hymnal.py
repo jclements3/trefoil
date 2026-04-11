@@ -67,8 +67,40 @@ def deg_to_first_string(key, deg_1based):
     return NOTES_PER_OCT.index(letter) + 1
 
 
-def chord_to_spec(chord_str, key):
-    """Map 'D7' in 'G' to (start_string, pattern_str, degree, label). None if non-diatonic."""
+def _pick_row_deg(chord_deg, has_7th, inv):
+    """Map (chord_deg, 7th-ness, inversion) → (handout_pattern_str, row_deg).
+
+    The handout chord table is keyed by pattern row and row-deg (which is the
+    Ionian "mode-index" of the pattern's first voicing tone, not always the
+    chord's own scale degree). For inverted rows the row_deg is rotated away
+    from chord_deg by a fixed offset — formulas verified against the 14×7
+    entries in CHORD_NAMES (see handout_chord_table.tex).
+    """
+    cd = chord_deg
+    if has_7th:
+        if inv == 0: return ('333', cd)
+        if inv == 1: return ('233', ((cd - 2) % 7) + 1)
+        if inv == 2: return ('323', ((cd - 4) % 7) + 1)
+        if inv == 3 and cd in (1, 4, 5):
+            return ('332', ((cd + 1) % 7) + 1)
+        # 3rd-inv 7ths on other degrees don't exist in the handout; fall back
+        return ('333', cd)
+    if inv == 0: return ('33', cd)
+    if inv == 1: return ('43', ((cd + 3) % 7) + 1)
+    if inv == 2: return ('34', ((cd + 1) % 7) + 1)
+    return ('33', cd)
+
+
+def chord_to_spec(chord_str, key, inv_hint=None):
+    """Map 'D7' in 'G' to (start_string, pattern_str, deg, label).
+
+    Returns None for non-diatonic chords. When `inv_hint` is given, it is a
+    dict {'inv': 0..3, 'seventh': None|'min'|'maj'} derived from SATB
+    analysis (see scripts/build_satb_chord_index.py); the function then
+    selects an inverted handout row instead of the default root-position
+    row 33 / 333. The sweep start_string comes from the row_deg returned
+    by _pick_row_deg, so inversions drive different runs.
+    """
     m = re.match(r'^([A-G][#b]?)(.*)$', chord_str)
     if not m:
         return None
@@ -77,28 +109,41 @@ def chord_to_spec(chord_str, key):
     pc = NOTE_SEMI.get(root)
     if pc is None:
         return None
-    deg = None
+    chord_deg = None
     for i, name in enumerate(SCALES.get(key, [])):
         if NOTE_SEMI[name] == pc:
-            deg = i + 1
+            chord_deg = i + 1
             break
-    if deg is None:
+    if chord_deg is None:
         return None
 
-    if qual in ('7', 'm7', 'Δ7', 'ø7', '°7'):
-        pat = '333'
-    else:
-        pat = '33'
-    if deg not in VALID.get(pat, []):
-        pat = '33'
-        if deg not in VALID.get(pat, []):
+    # Prefer SATB-derived 7th-ness over parsing the chord-string suffix —
+    # the SATB view catches "C" that actually sounds with a B (→ CΔ7) while
+    # the string suffix from lead_sheets would miss it. Either path
+    # detects 7ths correctly for the common cases.
+    str_has_7th = qual in ('7', 'm7', 'Δ7', 'ø7', '°7')
+    sat_has_7th = bool(inv_hint and inv_hint.get('seventh'))
+    has_7th = str_has_7th or sat_has_7th
+    inv = int(inv_hint['inv']) if (inv_hint and 'inv' in inv_hint) else 0
+
+    pat, row_deg = _pick_row_deg(chord_deg, has_7th, inv)
+
+    # Fall back along: (row_deg valid in requested pat) → root pos 333 / 33
+    # → return None (non-handout-mappable chord, caller emits letter-name).
+    if row_deg not in VALID.get(pat, []):
+        pat, row_deg = ('333' if has_7th else '33', chord_deg)
+        if row_deg not in VALID.get(pat, []):
             return None
 
-    start = deg_to_first_string(key, deg)
-    label = CHORD_NAMES.get((pat, deg))
+    label = CHORD_NAMES.get((pat, row_deg))
     if label is None or label == '—':
         return None
-    return (start, pat, deg, label)
+
+    # start_string is anchored to the row's voicing-first-tone degree, so
+    # inverted rows sweep different harp positions than root-pos rows even
+    # when the underlying chord is the same.
+    start = deg_to_first_string(key, row_deg)
+    return (start, pat, row_deg, label)
 
 
 def bold_roman(label):

@@ -29,7 +29,55 @@ from build_tchaikovsky_hymnal import (
 )
 
 LEAD_SHEETS = ROOT / 'app' / 'lead_sheets.json'
+SATB_INDEX = ROOT / 'app' / 'satb_chord_index.json'
 OUTPUT = ROOT / 'app' / 'tchaikovsky_mei.json'
+
+
+# Pitch-class for chord roots parsed out of lead_sheet chord annotations.
+# Used to align lead_sheet chord events with SATB chord-index events.
+NOTE_LETTER_PC = {
+    'C': 0, 'D': 2, 'E': 4, 'F': 5, 'G': 7, 'A': 9, 'B': 11,
+}
+def _chord_root_pc(chord_str):
+    m = re.match(r'^([A-G])([#b]?)', chord_str)
+    if not m:
+        return None
+    pc = NOTE_LETTER_PC[m.group(1)]
+    if m.group(2) == '#': pc = (pc + 1) % 12
+    elif m.group(2) == 'b': pc = (pc - 1) % 12
+    return pc
+
+
+class SatbAligner:
+    """Walks SATB chord events in order and returns inv_hint for each
+    lead-sheet chord annotation, matching by root pitch-class.
+
+    Tolerates spurious passing-tone chords in the SATB stream by skipping
+    events whose root doesn't match until a match is found within a
+    bounded lookahead. Falls back to inv=0 if no match.
+    """
+    LOOKAHEAD = 6  # how far ahead in SATB to scan for a matching root
+
+    def __init__(self, events):
+        self.events = events or []
+        self.idx = 0
+
+    def hint_for(self, chord_str):
+        if not self.events:
+            return None
+        root_pc = _chord_root_pc(chord_str)
+        if root_pc is None:
+            return None
+        # Scan forward (bounded) for the first event whose root matches
+        look_end = min(len(self.events), self.idx + self.LOOKAHEAD)
+        for j in range(self.idx, look_end):
+            if self.events[j]['root'] == root_pc:
+                ev = self.events[j]
+                self.idx = j + 1
+                return {'inv': ev.get('inv', 0), 'seventh': ev.get('seventh')}
+        # No match in window — return neutral hint so chord_to_spec falls
+        # back to root-pos behaviour but keep our cursor in place.
+        return None
 
 
 # ── ABC pitch → (pname, oct) for MEI ──
@@ -497,11 +545,16 @@ def cadenza_to_mei(chord_specs, ts_num, ts_den, bar_eighths=None):
 
 # ── Full hymn to MEI ──
 
-def build_hymn_mei(ls):
+def build_hymn_mei(ls, satb_events=None):
     key = ls['key']
     if key not in SCALES or key not in KEY_SIG:
         return None
     bars, ts, note_len, tempo = parse_lead_sheet(ls['abc'])
+
+    # SatbAligner walks the hymn's SATB chord events in lockstep with the
+    # lead-sheet chord annotations, so each chord_to_spec call below gets
+    # inv/seventh info derived from the actual SATB bass voice.
+    aligner = SatbAligner(satb_events or [])
 
     ts_m = re.match(r'(\d+)/(\d+)', ts)
     unmetered = not ts_m  # source said M: none
@@ -527,7 +580,12 @@ def build_hymn_mei(ls):
     sub_measure_L = Fraction(ts_num * mel_den, ts_den * mel_num) if unmetered else None
 
     key_sig_num, key_sig_acc = KEY_SIG[key]
-    key_sig_attr = f'key.sig="{key_sig_num}{key_sig_acc}"' if key_sig_acc else 'key.sig="0"'
+    key_sig_val = f'{key_sig_num}{key_sig_acc}' if key_sig_acc else '0'
+    # Verovio 6.1 does NOT draw key-signature accidentals from the
+    # @key.sig attribute on staffDef; it renders `<g class="keySig" />`
+    # empty. A nested `<keySig sig="...">` child element IS honored and
+    # produces the accidental glyphs. Emit the nested form on every staff.
+    key_sig_elem = f'<keySig sig="{key_sig_val}"/>'
 
     # Emit a real meter only when the source gave us one. If M: none,
     # use meter.sym="none" so Verovio draws no time signature (and does
@@ -542,12 +600,12 @@ def build_hymn_mei(ls):
 <meiHead><fileDesc><titleStmt><title>{ls["t"]}</title></titleStmt>
 <pubStmt/></fileDesc></meiHead>
 <music><body><mdiv><score>
-<scoreDef {key_sig_attr} {meter_attrs}>
+<scoreDef {meter_attrs}>
 <staffGrp symbol="bracket">
-<staffDef n="1" lines="5" clef.shape="G" clef.line="2" {key_sig_attr}/>
+<staffDef n="1" lines="5" clef.shape="G" clef.line="2">{key_sig_elem}</staffDef>
 <staffGrp symbol="brace">
-<staffDef n="2" lines="5" clef.shape="G" clef.line="2" scale="45%" {key_sig_attr}/>
-<staffDef n="3" lines="5" clef.shape="F" clef.line="4" scale="45%" {key_sig_attr}/>
+<staffDef n="2" lines="5" clef.shape="G" clef.line="2" scale="45%">{key_sig_elem}</staffDef>
+<staffDef n="3" lines="5" clef.shape="F" clef.line="4" scale="45%">{key_sig_elem}</staffDef>
 </staffGrp>
 </staffGrp>
 </scoreDef>
@@ -591,10 +649,28 @@ def build_hymn_mei(ls):
 
             # Chord specs live on the events themselves after splitting
             # (split_events_into_measures clears chord on tied halves).
-            chord_list = clamp_chords([ev['chord'] for ev in sub_events if ev.get('chord')])
+            # Walk chord annotations once, pulling an inv_hint per chord
+            # from the shared SatbAligner — consumed in one pass so we can
+            # reuse the same hints in the harm-label loop below.
+            chord_hints_seq = []
+            for ev in sub_events:
+                c = ev.get('chord')
+                if c:
+                    chord_hints_seq.append((c, aligner.hint_for(c)))
+
+            # clamp_chords collapses consecutive duplicates and keeps the
+            # first 4. Apply the same shape to the (chord, hint) sequence
+            # so each spec carries the hint that belongs to its chord.
+            clamped_pairs = []
+            for c, h in chord_hints_seq:
+                if not clamped_pairs or clamped_pairs[-1][0] != c:
+                    clamped_pairs.append((c, h))
+                if len(clamped_pairs) >= 4:
+                    break
+
             specs = []
-            for c in chord_list:
-                spec = chord_to_spec(c, key)
+            for c, h in clamped_pairs:
+                spec = chord_to_spec(c, key, inv_hint=h)
                 if spec is not None:
                     specs.append(spec)
             if not specs:
@@ -619,15 +695,22 @@ def build_hymn_mei(ls):
                     staff2 = '<staff n="2"><layer n="1">' + treble_layer + '</layer></staff>'
                     staff3 = '<staff n="3"><layer n="1">' + bass_layer + '</layer></staff>'
 
-            # Chord annotations (roman numerals above staff 1).
+            # Chord annotations (circled-digit labels above staff 1).
+            # Re-use the per-chord inv hints from chord_hints_seq so harm
+            # labels match the voicings we used for the run sweep above.
             harms = []
             beat_pos = 1.0
             ci = 0
+            hint_iter = iter(chord_hints_seq)
             for ev in sub_events:
                 if ev.get('chord') and ci < len(chord_labels):
                     abs_chord = ev['chord']
                     roman_label = abs_chord
-                    spec = chord_to_spec(abs_chord, key)
+                    try:
+                        _, harm_hint = next(hint_iter)
+                    except StopIteration:
+                        harm_hint = None
+                    spec = chord_to_spec(abs_chord, key, inv_hint=harm_hint)
                     if spec is not None:
                         roman_label = CHORD_NAMES.get((spec[1], spec[2]), abs_chord) or abs_chord
                     tstamp = round(beat_pos, 3)
@@ -660,12 +743,22 @@ def main():
         lead_sheets = json.load(f)
     print(f'  {len(lead_sheets)} hymns')
 
+    satb_index = {}
+    if SATB_INDEX.exists():
+        print(f'Loading SATB chord index from {SATB_INDEX.name}...')
+        with open(SATB_INDEX) as f:
+            satb_index = json.load(f)
+        print(f'  {len(satb_index)} hymns with SATB chord analysis')
+    else:
+        print(f'NOTE: {SATB_INDEX.name} not found — inversions will default to root position.')
+
     print('Building MEI cadenzas...')
     output = []
     failed = 0
     for ls in lead_sheets:
         try:
-            r = build_hymn_mei(ls)
+            events = satb_index.get(str(ls['n']))
+            r = build_hymn_mei(ls, satb_events=events)
             if r:
                 output.append(r)
             else:

@@ -153,6 +153,98 @@ This repo is worked on from two machines (lab and home laptop) with separate Cla
 
 ### Pending sync notes (newest first):
 
+**Lab → Home (2026-04-11, late session):**
+- **BIG CHANGE: Tch mode now uses the full handout chord table (inversions!).** Previously every Tch chord was either row `33` (plain triad) or row `333` (root-pos 7th) — only 14 of 82 handout entries ever appeared. Now 75 of 82 appear, with 2,418 of 10,891 labels (22%) carrying an inversion superscript. See "Inversion detection pipeline" below for the full architecture.
+- **ALSO this session (earlier):** circled-digit chord labels, minor `m` markers, thin-space kerning, nested `<keySig>` fix, 220px label font, CSS font-family override. All in one APK on the tablet now.
+
+### Inversion detection pipeline (new 2026-04-11)
+
+**`scripts/build_satb_chord_index.py`** (~250 lines, new):
+- Parses `data/OpenHymnal.abc` per-voice with music21. OpenHymnal uses `%%combinevoices 1` which defeats music21's automatic voice splitter — you MUST manually extract [V: S1V1] / [V: S1V2] / [V: S2V1] / [V: S2V2] blocks and feed each voice as a separate ABC stream. `split_voices()` does this: walks header lines until `K:`, then for each voice filters body lines matching `[V: <vid>]`, strips the tag, feeds to `converter.parse(abc_text, format='abc')`.
+- For each hymn, detects original SATB key via `parts[0].analyze('key')`, computes `transpose_off = (lead_key_pc - orig_key_pc) % 12` (normalised to ±6 semitones) so the 22 Ab→G / Db→D hymns get transposed consistently.
+- Walks every unique note onset across all 4 voices. At each onset uses **binary search** per voice for the "most recent note ≤ offset" (the `sounding_at()` closure inside `analyze_hymn`) to build a 4-voice slice. Builds a `music21.chord.Chord` from the slice and computes `{root_pc, bass_pc, quality, seventh, inv}` from pitch-class intervals:
+  - third: 3rd = `m`, 4th = `M`
+  - fifth: 7 = `P`, 6 = `d`, 8 = `A`
+  - seventh: 10 = `min`/dom, 11 = `maj`/Δ
+  - inv: `bass_pc - root_pc mod 12` → 0/3-4/6-7-8/10-11 maps to inversion 0/1/2/3
+- Dedupe consecutive events with identical `(root, bass, quality, seventh)` tuple.
+- Computes `deg` = Ionian scale degree of root in the **lead-sheet key** (transposed pc).
+- Output: `app/satb_chord_index.json` keyed by `str(hymn.n)` → list of event dicts. ~1.3 MB. **280/287 hymns** analyzed; 7 skipped for title mismatches against OpenHymnal (whitespace/punct differences — low priority to fix).
+- Rerun: `python3.10 scripts/build_satb_chord_index.py` (takes ~2 minutes, music21 parsing dominates).
+
+**`scripts/build_tchaikovsky_hymnal.py::chord_to_spec` — extended:**
+- New helper `_pick_row_deg(chord_deg, has_7th, inv)` returns `(pattern_str, row_deg)` for the handout table. Formulas verified against the 14×7 entries in `CHORD_NAMES`:
+  - triad root: `('33', cd)`
+  - triad 1st inv: `('43', ((cd + 3) % 7) + 1)`
+  - triad 2nd inv: `('34', ((cd + 1) % 7) + 1)`
+  - 7th root: `('333', cd)`
+  - 7th 1st inv: `('233', ((cd - 2) % 7) + 1)`
+  - 7th 2nd inv: `('323', ((cd - 4) % 7) + 1)`
+  - 7th 3rd inv (cd ∈ {1,4,5} only): `('332', ((cd + 1) % 7) + 1)`
+  - Fallthrough: root pos of matching family
+- `chord_to_spec(chord_str, key, inv_hint=None)` now accepts an optional `{'inv': 0..3, 'seventh': None|'min'|'maj'}` dict. CRITICAL: `start_string = deg_to_first_string(key, row_deg)` — it's anchored to the *row_deg*, not *chord_deg*, so inversions drive **different sweeps**, not just different labels. This is the mechanism by which the Tch runs re-voice per the user's spec.
+- Falls back along: `row_deg not in VALID[pat]` → root-pos of matching family → return None (caller emits letter-name fallthrough). `inv_hint=None` reproduces the old behavior exactly.
+
+**`scripts/build_tchaikovsky_mei.py` — SatbAligner class:**
+- Loads `app/satb_chord_index.json` at startup (gracefully degrades if missing — prints a NOTE and all hymns fall back to root-pos behavior).
+- `SatbAligner(events)`: stateful cursor over one hymn's SATB event list. `hint_for(chord_str)` parses the root pitch-class from the chord string (`_chord_root_pc`) and scans forward in events (window of `LOOKAHEAD = 6`) for a matching root, returning `{'inv', 'seventh'}` and advancing the cursor. If no match in window: returns None and leaves cursor in place (so next call retries from the same position).
+- `build_hymn_mei(ls, satb_events=None)` creates one aligner per hymn.
+- **Critical restructure of the sub-measure loop:** the old code called `chord_to_spec` twice per chord — once for specs (clamped), once for harm labels. With a stateful aligner, double-consumption would skip events. Fix: walk `sub_events` ONCE to build `chord_hints_seq = [(chord_str, hint), ...]`, then apply `clamp_chords`-shaped logic to the PAIRS (preserving which hint belongs to which chord), and feed the same `chord_hints_seq` to the harms loop via `iter()`.
+- **Known edge case:** if a bar has two consecutive same-root chords (`D` `D`), the SATB analyzer may have collapsed them into one event, so the second `D` in the bar scans forward past the match and pulls the *next* event. Usually harmless because successive `D`s would get the same inv anyway.
+
+**Distribution after rebuild (verify with a quick script):**
+```python
+import json, re
+from collections import Counter
+d = json.load(open('app/app/src/main/assets/tchaikovsky_mei.json'))
+all_labels = [l for h in d for l in re.findall(r'<harm[^>]*>([^<]+)</harm>', h['mei'])]
+c = Counter(all_labels)
+# Expect ~75 distinct, top 10 should include ①¹ ①² ⑤¹ ⑤² ②m¹ ⑥m² etc.
+print(len(all_labels), len(c), c.most_common(10))
+```
+
+### Other fixes shipped this session (2026-04-11, earlier)
+
+- **CHORD_NAMES rewritten to circled digits** in `scripts/generate_drill.py`. Each degree is now a unicode circled digit (①-⑦), minor triads get an explicit `m` marker (circled digits have no case — the `m` disambiguates `⑥m` from `⑥`), and inversion superscripts `¹²³` have a preceding `\u2009` THIN SPACE to stop them colliding with the chord body. `_S = '\u2009'` constant used throughout the dict.
+- **Key signatures rendering — ACTUAL fix (supersedes Home's earlier attempt).** Home Claude's commit 08207f4 added `key.sig="3f"` as an *attribute* on `<staffDef>`. Verovio 6.1 renders `<g class="keySig" />` empty from the attribute form — **the attribute is ignored**. Real fix: emit a nested `<keySig sig="3f"/>` *child element* inside each `<staffDef>`. Confirmed with direct verovio render: empty → 9 `<g class="keyAccid">` glyph groups (3 flats × 3 staves). Applied in `build_tchaikovsky_mei.py` header emission. `@key.sig` on `scoreDef` is gone now too — not needed.
+- **Verovio harm text was rendering only the circled digit on Android**, stripping `m7`, `Δ`, `°`, `¹²³`, etc. Root cause: Verovio sets `font-family="Times, serif"` on the root SVG; Android WebView's Times fallback chain handles circled digits from a symbols fallback font but **breaks mid-tspan**, so the Latin/Greek suffix that follows disappears. Fix: CSS override in `app/app/src/main/assets/index.html`:
+  ```css
+  svg g.harm text, svg g.harm text tspan {
+    font-family: "Noto Sans", "DejaVu Sans", sans-serif !important;
+    font-size: 220px !important;
+  }
+  ```
+  Noto Sans covers everything in a chord label, and 220px reads as a caption rather than a billboard.
+- **Handout pages rebuilt (landscape letter, 2 pages):**
+  - `handout/handout_chord_table.tex` — 14×7 chord table using circled-digit degrees. Requires **xelatex** (fontspec + DejaVu Sans).
+  - `handout/handout_finger_drills.tex` (NEW) — 4-finger sequence drills + tikz rhythm-grid sidebar anchored to page's north-east corner. `remember picture, overlay` requires **two xelatex passes** to render the overlay — if you rebuild it, don't skip the second pass or the sidebar disappears.
+  - `handout/handout.tex` — drastically slimmed to a 2-page wrapper that just `\includepdf[pages=-]`'s the two PDFs above. Old multi-page trefoil drill content is gone from this file. Build order: `xelatex handout_chord_table.tex`, `xelatex handout_finger_drills.tex` (twice), then `pdflatex handout.tex`.
+
+### Build / install commands (reminder)
+
+```bash
+# Full Tch rebuild after chord-table or SATB index changes:
+python3.10 scripts/build_satb_chord_index.py    # only if OpenHymnal changed (~2 min)
+python3.10 scripts/build_tchaikovsky_mei.py     # always
+cp app/tchaikovsky_mei.json app/app/src/main/assets/
+cd app && ANDROID_HOME=$HOME/Android/Sdk JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64 ./gradlew assembleDebug
+adb install -r app/build/outputs/apk/debug/app-debug.apk
+
+# Quick chord-label-only rebuild (no SATB re-analysis):
+python3.10 scripts/build_tchaikovsky_mei.py && cp app/tchaikovsky_mei.json app/app/src/main/assets/
+cd app && ./gradlew assembleDebug && adb install -r app/build/outputs/apk/debug/app-debug.apk
+```
+
+### Things still open / future work
+
+- **7 hymns** skipped by the SATB analyzer because their titles don't match OpenHymnal exactly (punctuation, whitespace). Stats: if you run the analyzer, look for the "FAIL ..." lines. Low priority — those hymns still render with plain root-pos labels (fallback).
+- **Label visual polish on the tablet**: the thin-space + superscript combination reads as `⑤ 2` rather than `⑤²` in some screenshots (the superscript isn't visually distinguished from a full-size digit). Possibly the WebView's Noto Sans metrics render U+00B2 at full size. If you want truer superscript typography, switch to wrapping the inversion digit in an inner `<tspan baseline-shift="super" font-size="70%">` via SVG post-processing in `index.html::renderDrill`. Not urgent.
+- **Non-diatonic chromatic chords** (Eb, Bb, C#°, etc. — 256 fallthrough instances, 2.4%) still render as letter-name. This is Option A per user's instruction — "fall back to what the diatonic harp can play" — so probably don't touch unless the user asks.
+- **Alignment heuristic** (SatbAligner root-match with 6-event lookahead) may mis-bind when a bar has same-root chords repeated. Low-impact because adjacent same-root events usually have the same inversion anyway.
+- **Files touched this session**: `scripts/generate_drill.py`, `scripts/build_satb_chord_index.py` (new), `scripts/build_tchaikovsky_hymnal.py`, `scripts/build_tchaikovsky_mei.py`, `app/tchaikovsky_mei.json`, `app/app/src/main/assets/tchaikovsky_mei.json`, `app/app/src/main/assets/index.html`, `app/satb_chord_index.json` (new), `handout/handout.tex`, `handout/handout_chord_table.tex`, `handout/handout_chord_table.pdf`, `handout/handout_finger_drills.tex` (new), `handout/handout_finger_drills.pdf` (new), `handout/handout.pdf`.
+
+---
+
 **Home → Lab (2026-04-10, end of session):**
 - **Bug fixed: Tch-mode hymns were rendering without key signatures.** The MEI from `build_tchaikovsky_mei.py` declared `key.sig` only on `<scoreDef>`, but Verovio does not cascade the scoreDef attribute through the nested `staffGrp` (`bracket { 1, brace { 2, 3 } }`) to draw the signature glyphs on each staff. Note pitches were logically correct (no `@accid` emitted, key sig applied internally) but no flats/sharps were ever drawn.
 - **Fix**: added `key.sig` as an explicit attribute on all three `<staffDef>` elements in `build_tchaikovsky_mei.py` (line ~547-550). Rebuilt `app/tchaikovsky_mei.json` and mirrored to `app/app/src/main/assets/tchaikovsky_mei.json`. Verified Eb hymn MEI header now shows `key.sig="3f"` on each staffDef.

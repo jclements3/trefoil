@@ -179,6 +179,18 @@ label { font-size: 13px; color: #888; }
   white-space: nowrap;
   border-top: 1px solid #ccc;
 }
+/* Verovio sets font-family="Times, serif" on its root <svg>, and Android
+   WebView's glyph fallback for Times breaks mid-tspan: circled digits
+   U+2460-U+2466 fall back OK but the Latin/Greek suffix that follows
+   (m7, Δ, ø, ¹²³, °) disappears. Force a single font that has full
+   coverage for everything in a chord label. */
+svg g.harm text, svg g.harm text tspan {
+  font-family: "Noto Sans", "DejaVu Sans", sans-serif !important;
+  /* Verovio's default harm-label font-size at our render scale comes out
+     ~405px — about 4x staff height. Clamp it down so labels read as
+     captions, not billboards. */
+  font-size: 220px !important;
+}
 </style>
 </head>
 <body>
