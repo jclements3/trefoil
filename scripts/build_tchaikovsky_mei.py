@@ -229,11 +229,16 @@ def l_units_to_mei_dur(num, den, mel_l_num, mel_l_den):
 
 # ── Melody to MEI ──
 
-def melody_to_mei(bar_raw, key, mel_l_num, mel_l_den):
-    """Return the contents of <staff n="1"><layer n="1">...</layer></staff>."""
-    events = parse_melody_bar(bar_raw, key)
+def events_to_mei(events, mel_l_num, mel_l_den, id_prefix='n'):
+    """Render a list of melody events (dicts from parse_melody_bar) to a
+    list of MEI element strings and a parallel list of (idx, chord) pairs.
+
+    Events may carry 'tie_in' / 'tie_out' flags when they were split at a
+    measure boundary — emit the corresponding MEI @tie attribute so
+    Verovio draws a tie between the halves.
+    """
     parts = []
-    chords_out = []  # list of (event_index_in_layer, chord_label) for <harm> placement
+    chords_out = []
     for ev in events:
         dur_val, dots = l_units_to_mei_dur(ev['num'], ev['den'], mel_l_num, mel_l_den)
         if dur_val is None:
@@ -242,12 +247,20 @@ def melody_to_mei(bar_raw, key, mel_l_num, mel_l_den):
             attrs = f'pname="{ev["pname"]}" oct="{ev["oct"]}" dur="{dur_val}"'
             if dots:
                 attrs += f' dots="{dots}"'
-            if ev['accid']:
+            if ev.get('accid'):
                 accid = {'^': 's', '_': 'f', '=': 'n', '^^': 'x', '__': 'ff'}.get(ev['accid'])
                 if accid:
                     attrs += f' accid="{accid}"'
-            parts.append(f'<note xml:id="n{len(parts)}" {attrs}/>')
-            if ev['chord']:
+            tie_in = ev.get('tie_in', False)
+            tie_out = ev.get('tie_out', False)
+            if tie_in and tie_out:
+                attrs += ' tie="m"'
+            elif tie_in:
+                attrs += ' tie="t"'
+            elif tie_out:
+                attrs += ' tie="i"'
+            parts.append(f'<note xml:id="{id_prefix}{len(parts)}" {attrs}/>')
+            if ev.get('chord'):
                 chords_out.append((len(parts) - 1, ev['chord']))
         else:
             attrs = f'dur="{dur_val}"'
@@ -257,10 +270,64 @@ def melody_to_mei(bar_raw, key, mel_l_num, mel_l_den):
     return parts, chords_out
 
 
+def melody_to_mei(bar_raw, key, mel_l_num, mel_l_den):
+    """Return the contents of <staff n="1"><layer n="1">...</layer></staff>."""
+    events = parse_melody_bar(bar_raw, key)
+    return events_to_mei(events, mel_l_num, mel_l_den)
+
+
+def split_events_into_measures(events, beats_per_measure_L):
+    """Split a flat event list into a list of event-lists, one per measure
+    of beats_per_measure_L L-units. An event that crosses a measure
+    boundary is split into two events, marked with tie_out / tie_in on
+    notes so they can be tied together in MEI.
+    """
+    from fractions import Fraction
+    limit = Fraction(beats_per_measure_L)
+    measures = []
+    current = []
+    pos = Fraction(0)
+
+    for ev in events:
+        remaining = Fraction(ev['num'], ev['den'])
+        tied_from_prev = False
+        while remaining > 0:
+            room = limit - pos
+            take = min(remaining, room)
+            new_ev = dict(ev)
+            new_ev['num'] = take.numerator
+            new_ev['den'] = take.denominator
+            if tied_from_prev:
+                new_ev['tie_in'] = True
+            if take < remaining and ev['type'] == 'note':
+                new_ev['tie_out'] = True
+            current.append(new_ev)
+            pos += take
+            remaining -= take
+            if pos >= limit:
+                measures.append(current)
+                current = []
+                pos = Fraction(0)
+                # Only the very first piece of an event carries its
+                # chord annotation — subsequent tied halves must not
+                # re-emit the chord label.
+                if remaining > 0:
+                    ev = dict(ev)
+                    ev['chord'] = None
+                tied_from_prev = (remaining > 0 and ev['type'] == 'note')
+    if current:
+        measures.append(current)
+    return measures
+
+
 # ── Cadenza to MEI (cross-staff alternation, example_624 algorithm) ──
 
-def cadenza_to_mei(chord_specs, ts_num, ts_den):
+def cadenza_to_mei(chord_specs, ts_num, ts_den, bar_eighths=None):
     """Build two parallel staff layers using the example_624 algorithm.
+
+    bar_eighths overrides the default full-bar tuplet length. Pass it when
+    rendering a pickup/partial measure so the cadenza fits that measure's
+    actual duration instead of a full bar.
 
     Each sweep note appears exactly once on its natural staff (treble above
     middle C, bass below). At the same time position on the OPPOSITE staff
@@ -404,11 +471,15 @@ def cadenza_to_mei(chord_specs, ts_num, ts_den):
     num = len(treble_events)  # treble and bass event lists are parallel
     if num == 0:
         return (None, None)
-    numbase_num = note_dur * ts_num
-    if numbase_num % ts_den != 0:
-        # Can't build an integer tuplet ratio for this meter; skip.
-        return (None, None)
-    numbase = numbase_num // ts_den
+    if bar_eighths is not None:
+        # Pickup / partial-bar override: numbase is already in 8ths.
+        numbase = int(bar_eighths)
+    else:
+        numbase_num = note_dur * ts_num
+        if numbase_num % ts_den != 0:
+            # Can't build an integer tuplet ratio for this meter; skip.
+            return (None, None)
+        numbase = numbase_num // ts_den
     if numbase <= 0:
         return (None, None)
 
@@ -433,20 +504,45 @@ def build_hymn_mei(ls):
     bars, ts, note_len, tempo = parse_lead_sheet(ls['abc'])
 
     ts_m = re.match(r'(\d+)/(\d+)', ts)
-    ts_num, ts_den = (int(ts_m.group(1)), int(ts_m.group(2))) if ts_m else (4, 4)
+    unmetered = not ts_m  # source said M: none
+    if ts_m:
+        ts_num, ts_den = int(ts_m.group(1)), int(ts_m.group(2))
+    else:
+        # Source said M: none — phrases are separated by | but each
+        # phrase is multiple measures of content. Default to 4/4 for
+        # display and split each phrase into 4-beat sub-measures below.
+        ts_num, ts_den = 4, 4
     nl_m = re.match(r'(\d+)/(\d+)', note_len)
-    mel_num, mel_den = (int(nl_m.group(1)), int(nl_m.group(2))) if nl_m else (1, 8)
-    full_bar_mel = full_bar_length(ts, note_len)
+    if not nl_m:
+        # L: is required. If it's missing, the source is malformed — skip
+        # the hymn loudly rather than silently inventing a unit length.
+        return None
+    mel_num, mel_den = int(nl_m.group(1)), int(nl_m.group(2))
+    full_bar_mel = full_bar_length(f'{ts_num}/{ts_den}', note_len)
+
+    # For M: none hymns, compute how many L-units make up one 4/4
+    # sub-measure so we can split the phrase:
+    #   beats_per_measure quarters * (mel_den / (mel_num * 4)) L-units
+    from fractions import Fraction
+    sub_measure_L = Fraction(ts_num * mel_den, ts_den * mel_num) if unmetered else None
 
     key_sig_num, key_sig_acc = KEY_SIG[key]
     key_sig_attr = f'key.sig="{key_sig_num}{key_sig_acc}"' if key_sig_acc else 'key.sig="0"'
+
+    # Emit a real meter only when the source gave us one. If M: none,
+    # use meter.sym="none" so Verovio draws no time signature (and does
+    # not claim the bar is 4/4 when it contains 15 beats).
+    if ts_num and ts_den:
+        meter_attrs = f'meter.count="{ts_num}" meter.unit="{ts_den}"'
+    else:
+        meter_attrs = 'meter.sym="none"'
 
     header = f'''<?xml version="1.0" encoding="UTF-8"?>
 <mei xmlns="http://www.music-encoding.org/ns/mei">
 <meiHead><fileDesc><titleStmt><title>{ls["t"]}</title></titleStmt>
 <pubStmt/></fileDesc></meiHead>
 <music><body><mdiv><score>
-<scoreDef {key_sig_attr} meter.count="{ts_num}" meter.unit="{ts_den}">
+<scoreDef {key_sig_attr} {meter_attrs}>
 <staffGrp symbol="bracket">
 <staffDef n="1" lines="5" clef.shape="G" clef.line="2"/>
 <staffGrp symbol="brace">
@@ -461,78 +557,99 @@ def build_hymn_mei(ls):
     measures = []
     npb = []
     prev_specs = None
+    measure_num = 0
     for mi, bar_raw in enumerate(bars):
         npb.append(len(re.findall(r'[A-Ga-g]', re.sub(r'"[^"]*"', '', bar_raw))))
 
-        # Melody events
-        mel_notes_mei, chord_labels = melody_to_mei(bar_raw, key, mel_num, mel_den)
+        # Parse the full source "bar" (which for metered hymns is one
+        # measure, and for M: none hymns is one phrase = many measures).
+        all_events = parse_melody_bar(bar_raw, key)
 
-        # Cadenza specs
-        is_pickup = False
-        # (compute bar duration to detect pickup)
-        def sum_bar():
-            total = 0
-            events = parse_melody_bar(bar_raw, key)
-            for ev in events:
-                total += ev['num'] / ev['den']
-            return total
-        bar_dur_l = sum_bar()
-        if full_bar_mel > 0 and bar_dur_l < full_bar_mel:
-            is_pickup = True
-
-        chord_list = clamp_chords(extract_chords(bar_raw))
-        specs = []
-        for c in chord_list:
-            spec = chord_to_spec(c, key)
-            if spec is not None:
-                specs.append(spec)
-        if not specs:
-            specs = prev_specs
+        # Split into sub-measures. Metered hymns keep the source bar
+        # exactly as-is (one sub-measure). Unmetered hymns get split
+        # every sub_measure_L L-units, with ties across boundaries.
+        if unmetered and sub_measure_L is not None:
+            event_sub_measures = split_events_into_measures(all_events, sub_measure_L)
         else:
-            prev_specs = specs
+            event_sub_measures = [all_events]
 
-        # Build staff contents
-        staff1 = '<staff n="1"><layer n="1">' + ''.join(mel_notes_mei) + '</layer></staff>'
+        for sub_events in event_sub_measures:
+            measure_num += 1
 
-        # For the harp staves, emit a full-bar rest (Verovio computes the rest duration).
-        # Grace group goes at the start of staff 2 layer.
-        if is_pickup or not specs:
-            staff2 = '<staff n="2"><layer n="1"><mRest visible="false"/></layer></staff>'
-            staff3 = '<staff n="3"><layer n="1"><mRest visible="false"/></layer></staff>'
-        else:
-            treble_layer, bass_layer = cadenza_to_mei(specs, ts_num, ts_den)
-            if treble_layer is None:
+            # Preserve the original 'n' prefix for metered hymns so their
+            # MEI output stays byte-identical to commit 33e8fdc. Only the
+            # split unmetered hymns need a per-measure unique prefix
+            # (their IDs must not collide across sub-measures).
+            id_prefix = f'm{measure_num}n' if unmetered else 'n'
+            mel_notes_mei, chord_labels = events_to_mei(
+                sub_events, mel_num, mel_den, id_prefix=id_prefix
+            )
+
+            # Pickup detection: a sub-measure shorter than a full bar.
+            bar_dur_l = sum(ev['num'] / ev['den'] for ev in sub_events)
+            is_pickup = full_bar_mel > 0 and bar_dur_l < full_bar_mel
+
+            # Chord specs live on the events themselves after splitting
+            # (split_events_into_measures clears chord on tied halves).
+            chord_list = clamp_chords([ev['chord'] for ev in sub_events if ev.get('chord')])
+            specs = []
+            for c in chord_list:
+                spec = chord_to_spec(c, key)
+                if spec is not None:
+                    specs.append(spec)
+            if not specs:
+                specs = prev_specs
+            else:
+                prev_specs = specs
+
+            staff1 = '<staff n="1"><layer n="1">' + ''.join(mel_notes_mei) + '</layer></staff>'
+
+            # Pickup bars get a cadenza too, sized to the pickup's actual
+            # duration rather than a full bar. Convert bar_dur_l (L-units)
+            # to 8ths: bar_dur_l * (mel_num/mel_den) whole-notes * 8 8ths/whole.
+            if not specs:
                 staff2 = '<staff n="2"><layer n="1"><mRest visible="false"/></layer></staff>'
                 staff3 = '<staff n="3"><layer n="1"><mRest visible="false"/></layer></staff>'
             else:
-                staff2 = '<staff n="2"><layer n="1">' + treble_layer + '</layer></staff>'
-                staff3 = '<staff n="3"><layer n="1">' + bass_layer + '</layer></staff>'
+                if is_pickup:
+                    pickup_eighths_num = int(bar_dur_l * mel_num * 8)
+                    pickup_eighths_den = mel_den
+                    if pickup_eighths_num % pickup_eighths_den == 0:
+                        override_eighths = pickup_eighths_num // pickup_eighths_den
+                    else:
+                        override_eighths = None  # doesn't divide cleanly; fall back
+                    treble_layer, bass_layer = cadenza_to_mei(
+                        specs, ts_num, ts_den, bar_eighths=override_eighths
+                    )
+                else:
+                    treble_layer, bass_layer = cadenza_to_mei(specs, ts_num, ts_den)
+                if treble_layer is None:
+                    staff2 = '<staff n="2"><layer n="1"><mRest visible="false"/></layer></staff>'
+                    staff3 = '<staff n="3"><layer n="1"><mRest visible="false"/></layer></staff>'
+                else:
+                    staff2 = '<staff n="2"><layer n="1">' + treble_layer + '</layer></staff>'
+                    staff3 = '<staff n="3"><layer n="1">' + bass_layer + '</layer></staff>'
 
-        # Chord annotations: rewrite absolute → roman, attach to melody notes
-        harms = []
-        # Compute tstamps: for each chord-annotated note, find its beat position
-        tstamp_cursor = 1
-        # We need to walk the melody events again alongside the chord labels
-        events_for_tstamp = parse_melody_bar(bar_raw, key)
-        beat_pos = 1.0  # 1-indexed beat within the bar
-        ci = 0
-        for ev in events_for_tstamp:
-            if ev.get('chord') and ci < len(chord_labels):
-                abs_chord = ev['chord']
-                # Rewrite to roman via chord_to_spec
-                roman_label = abs_chord
-                spec = chord_to_spec(abs_chord, key)
-                if spec is not None:
-                    roman_label = CHORD_NAMES.get((spec[1], spec[2]), abs_chord) or abs_chord
-                ts = round(beat_pos, 3)
-                harms.append(f'<harm staff="1" tstamp="{ts}" place="above">{roman_label}</harm>')
-                ci += 1
-            dur_beats = ev['num'] / ev['den'] * (mel_num / mel_den) * ts_den
-            beat_pos += dur_beats
+            # Chord annotations (roman numerals above staff 1).
+            harms = []
+            beat_pos = 1.0
+            ci = 0
+            for ev in sub_events:
+                if ev.get('chord') and ci < len(chord_labels):
+                    abs_chord = ev['chord']
+                    roman_label = abs_chord
+                    spec = chord_to_spec(abs_chord, key)
+                    if spec is not None:
+                        roman_label = CHORD_NAMES.get((spec[1], spec[2]), abs_chord) or abs_chord
+                    tstamp = round(beat_pos, 3)
+                    harms.append(f'<harm staff="1" tstamp="{tstamp}" place="above">{roman_label}</harm>')
+                    ci += 1
+                dur_beats = ev['num'] / ev['den'] * (mel_num / mel_den) * ts_den
+                beat_pos += dur_beats
 
-        measures.append(
-            f'<measure n="{mi + 1}">' + staff1 + staff2 + staff3 + ''.join(harms) + '</measure>'
-        )
+            measures.append(
+                f'<measure n="{measure_num}">' + staff1 + staff2 + staff3 + ''.join(harms) + '</measure>'
+            )
 
     footer = '</section></score></mdiv></body></music></mei>\n'
 

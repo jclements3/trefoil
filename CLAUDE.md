@@ -153,6 +153,23 @@ This repo is worked on from two machines (lab and home laptop) with separate Cla
 
 ### Pending sync notes (newest first):
 
+**Lab → Home (2026-04-11, end of session):**
+- **M: none hymns now split into 4-beat sub-measures.** 18 hymns in `data/OpenHymnal.abc` have `M: none` with phrase-length "bars" (e.g. hymn 128 A Mighty Fortress has 16-beat source bars = 4 measures of 4/4 per `|`). Previously my builder defaulted to 4/4 and stuffed 16 beats into one visual 4/4 bar — wrong and unreadable.
+- **Fix in `scripts/build_tchaikovsky_mei.py`**:
+  1. New `events_to_mei(events, mel_num, mel_den, id_prefix='n')` — renders a flat event list (from `parse_melody_bar`) to MEI note/rest XML. Supports `tie_in` / `tie_out` flags on notes emitting `@tie="i"` / `@tie="t"` / `@tie="m"` so split notes tie across sub-measure barlines.
+  2. New `split_events_into_measures(events, beats_per_measure_L)` — walks an event list and slices it into measures of exactly `beats_per_measure_L` L-units. Notes crossing a boundary are split into two halves, the first marked `tie_out` and the second `tie_in`. Uses `fractions.Fraction` for exact duration math. Clears `chord` on tied halves so the chord annotation only emits once.
+  3. `build_hymn_mei`: for `M: none` hymns, default to `ts_num=4, ts_den=4`, compute `sub_measure_L = 4 * mel_den / mel_num`, parse each source bar into events, and call `split_events_into_measures`. Each sub-measure becomes its own `<measure>` in the MEI. Uses `id_prefix=f'm{measure_num}n'` for the unmetered path so xml:ids don't collide across sub-measures; metered hymns keep `id_prefix='n'` so their output stays byte-identical to commit 33e8fdc.
+- **Metered hymns verified byte-identical to commit 33e8fdc** for the splitter change alone. The later pickup-cadenza change (below) does modify metered hymns with pickups.
+- **Pickup bars now get cadenzas.** Previously `cadenza_to_mei` was skipped when `is_pickup`. Now we pass `bar_eighths` to override the tuplet's `numbase`, so a pickup of N eighths worth fits a tuplet of `num=len(events) numbase=N` instead of the full-bar default. Caller computes `pickup_eighths = bar_dur_l * mel_num * 8 / mel_den` (must divide cleanly or we fall back to no cadenza). `cadenza_to_mei(specs, ts_num, ts_den, bar_eighths=override_eighths)`.
+- **Things I tried and reverted** (read before re-attempting):
+  - Emitting `meter.sym="none"` for M:none hymns and skipping cadenza → honest but leaves phrases as one unsplit visual measure with 15 beats of content. Rejected in favor of splitting into 4/4 sub-measures.
+  - Defaulting `ts_num/ts_den = (0,0)` sentinel → caused division-by-zero in tstamp calc and tuplet ratio. Replaced with `ts_num,ts_den=4,4` default for M:none.
+  - `Fraction(16, 4)` reducing to `4/1` → produced weird "4 whole notes per bar" meter. Fixed by using direct quarter-note math with fixed `ts_den=4`.
+- **Duplicate hymn titles**: 9 pairs of hymns share titles (A Mighty Fortress — 127 isorhythmic 4/4 vs 128 rhythmic M:none, plus 8 others). App lists both but only shows the title, so they look like duplicates. Consider adding a version suffix in the UI listing.
+- **Source edition difference**: our `data/OpenHymnal.abc` is the 2006/2013 Edition with the *rhythmic* 1931 setting of Ein Feste Burg. User compared against the 2013 Edition's *isorhythmic* 1917 setting (M:4/4, quarter/eighth notes only, no half notes). The notes ARE the source — we just have the older-rhythm edition. Consider updating to 2013 Edition if it's worth the effort.
+- **Still open**: Hymn 128 bar 1 pickup-cadenza discussion — hymn 128's bar 1 starts with a quarter rest but is a FULL 4-beat measure (1+1+2 beats), not a pickup. Verified cadenza is present in that measure in the current MEI.
+- **Files touched this session**: `scripts/build_tchaikovsky_mei.py` (events_to_mei, split_events_into_measures, build_hymn_mei refactor, cadenza bar_eighths), `app/tchaikovsky_mei.json`, `app/app/src/main/assets/tchaikovsky_mei.json`.
+
 **Lab → Home (2026-04-10, end of session):**
 - **Tchaikovsky mode now renders via Verovio, not abc2svg.** The cadenza needs features (cross-staff beaming, cue notes, per-staff scale, hidden-bracket tuplets) that abc2svg cannot produce cleanly. Verovio bundled locally as `app/app/src/main/assets/verovio/verovio-toolkit-wasm.js` (~7MB, UMD wrapped, no network needed).
 - **New builder**: `scripts/build_tchaikovsky_mei.py`. Reads `app/lead_sheets.json` + chord table from `generate_drill.py`, emits `app/tchaikovsky_mei.json` (288 hymns, ~16MB). Mirrored to `app/app/src/main/assets/tchaikovsky_mei.json`.
