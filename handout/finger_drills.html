@@ -138,11 +138,11 @@ function getCtx() {
 function playNote(ctx, midi, start, dur) {
   const osc = ctx.createOscillator();
   const gain = ctx.createGain();
-  osc.type = 'triangle';
+  osc.type = 'sawtooth';
   osc.frequency.value = midiToFreq(midi);
   gain.gain.setValueAtTime(0, start);
-  gain.gain.linearRampToValueAtTime(0.25, start + 0.01);
-  gain.gain.exponentialRampToValueAtTime(0.008, start + dur * 0.9);
+  gain.gain.linearRampToValueAtTime(0.2, start + 0.02);
+  gain.gain.setValueAtTime(0.2, start + dur * 0.8);
   gain.gain.linearRampToValueAtTime(0, start + dur);
   osc.connect(gain); gain.connect(ctx.destination);
   osc.start(start); osc.stop(start + dur);
