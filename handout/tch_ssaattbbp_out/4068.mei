@@ -1,0 +1,567 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+  <meiHead>
+    <fileDesc>
+      <titleStmt>
+        <title>Silent Night</title>
+        <title type="subtitle">Harp Arrangement — SSAATTBB + Pedal</title>
+      </titleStmt>
+      <pubStmt>
+        <date isodate="2026-04-12" />
+      </pubStmt>
+    </fileDesc>
+  </meiHead>
+  <music>
+    <body>
+      <mdiv>
+        <score>
+          <scoreDef meter.count="3" meter.unit="4" key.sig="2f">
+            <staffGrp symbol="bracket" barthru="true">
+              <staffDef n="1" lines="5" clef.shape="G" clef.line="2" label="Melody">
+                <keySig sig="2f" />
+              </staffDef>
+              <staffGrp symbol="brace">
+                <staffDef n="2" lines="5" clef.shape="G" clef.line="2" label="RH">
+                  <keySig sig="2f" />
+                </staffDef>
+                <staffDef n="3" lines="5" clef.shape="F" clef.line="4" label="LH">
+                  <keySig sig="2f" />
+                </staffDef>
+              </staffGrp>
+            </staffGrp>
+          </scoreDef>
+          <section>
+            <measure n="1" right="single">
+              <staff n="1">
+                <layer n="1">
+                  <note xml:id="m1s1n1" dur="4" dots="1" oct="4" pname="f" />
+                  <note xml:id="m1s1n2" dur="8" oct="4" pname="g" />
+                  <note xml:id="m1s1n3" dur="8" oct="4" pname="f" />
+                  <note xml:id="m1s1n4" dur="4" dots="1" oct="4" pname="d" />
+                </layer>
+              </staff>
+              <staff n="2">
+                <layer n="2">
+                  <chord xml:id="m1s2c1" dur="2" dots="1">
+                    <note xml:id="m1s2n1" pname="d" oct="4" />
+                    <note xml:id="m1s2n2" pname="f" oct="4" />
+                  </chord>
+                </layer>
+                <layer n="1">
+                  <space dur="2" dots="1" />
+                </layer>
+              </staff>
+              <staff n="3">
+                <layer n="2">
+                  <chord xml:id="m1s3c1" dur="2" dots="1">
+                    <note xml:id="m1s3n1" pname="b" oct="2" accid.ges="f" />
+                    <note xml:id="m1s3n2" pname="f" oct="3" />
+                    <note xml:id="m1s3n3" pname="b" oct="3" accid.ges="f" />
+                  </chord>
+                </layer>
+                <layer n="1">
+                  <space dur="2" dots="1" />
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">①</harm>
+            </measure>
+            <measure n="2" right="single">
+              <staff n="1">
+                <layer n="1">
+                  <note xml:id="m2s1n1" dur="4" dots="1" oct="4" pname="f" />
+                  <note xml:id="m2s1n2" dur="8" oct="4" pname="g" />
+                  <note xml:id="m2s1n3" dur="8" oct="4" pname="f" />
+                  <note xml:id="m2s1n4" dur="4" dots="1" oct="4" pname="d" />
+                </layer>
+              </staff>
+              <staff n="2">
+                <layer n="2">
+                  <chord xml:id="m2s2c1" dur="2" dots="1">
+                    <note xml:id="m2s2n1" pname="f" oct="4" />
+                    <note xml:id="m2s2n2" pname="b" oct="4" accid.ges="f" />
+                  </chord>
+                </layer>
+                <layer n="1">
+                  <space dur="2" dots="1" />
+                </layer>
+              </staff>
+              <staff n="3">
+                <layer n="2">
+                  <chord xml:id="m2s3c1" dur="2" dots="1">
+                    <note xml:id="m2s3n1" pname="b" oct="2" accid.ges="f" />
+                    <note xml:id="m2s3n2" pname="d" oct="3" />
+                    <note xml:id="m2s3n3" pname="f" oct="3" />
+                  </chord>
+                </layer>
+                <layer n="1">
+                  <space dur="2" dots="1" />
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">①</harm>
+            </measure>
+            <measure n="3" right="single">
+              <staff n="1">
+                <layer n="1">
+                  <note xml:id="m3s1n1" dur="4" oct="5" pname="c" />
+                  <note xml:id="m3s1n2" dur="8" oct="5" pname="c" />
+                  <note xml:id="m3s1n3" dur="4" dots="1" oct="4" pname="a" />
+                </layer>
+              </staff>
+              <staff n="2">
+                <layer n="2">
+                  <rest dur="2" dots="1" />
+                </layer>
+                <layer n="1">
+                  <chord dur="4" xml:id="sp12278">
+                    <note pname="c" oct="5" xml:id="sp12279" />
+                    <note pname="e" oct="5" accid.ges="f" xml:id="sp12280" />
+                  </chord>
+                  <note pname="a" oct="4" dur="4" xml:id="sp12281" />
+                  <note pname="f" oct="4" dur="4" xml:id="sp12282" />
+                </layer>
+                <layer n="2">
+                  <space dur="4" />
+                  <note pname="c" oct="5" dur="4" xml:id="sp12283" />
+                  <space dur="4" />
+                </layer>
+              </staff>
+              <staff n="3">
+                <layer n="2">
+                  <rest dur="2" dots="1" />
+                </layer>
+                <layer n="1">
+                  <chord dur="4" dots="1" xml:id="sp12284">
+                    <note pname="f" oct="2" xml:id="sp12285" />
+                    <note pname="c" oct="3" xml:id="sp12286" />
+                    <note pname="e" oct="3" accid.ges="f" xml:id="sp12287" />
+                  </chord>
+                  <note pname="a" oct="2" dur="4" dots="1" xml:id="sp12288" />
+                </layer>
+                <layer n="2">
+                  <space dur="4" dots="1" />
+                  <chord dur="4" dots="1" xml:id="sp12289">
+                    <note pname="f" oct="2" xml:id="sp12290" />
+                    <note pname="c" oct="3" xml:id="sp12291" />
+                  </chord>
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">⑤7</harm>
+            </measure>
+            <measure n="4" right="single">
+              <staff n="1">
+                <layer n="1">
+                  <note xml:id="m4s1n1" dur="4" oct="4" pname="b" accid.ges="f" />
+                  <note xml:id="m4s1n2" dur="8" oct="4" pname="b" accid.ges="f" />
+                  <note xml:id="m4s1n3" dur="4" dots="1" oct="4" pname="f" />
+                </layer>
+              </staff>
+              <staff n="2">
+                <layer n="2">
+                  <rest dur="2" dots="1" />
+                </layer>
+                <layer n="1">
+                  <chord dur="4" dots="1" xml:id="sp12292">
+                    <note pname="b" oct="4" accid.ges="f" xml:id="sp12293" />
+                    <note pname="d" oct="5" xml:id="sp12294" />
+                  </chord>
+                  <note pname="d" oct="4" dur="4" dots="1" xml:id="sp12295" />
+                </layer>
+                <layer n="2">
+                  <space dur="4" dots="1" />
+                  <note pname="f" oct="4" dur="4" dots="1" xml:id="sp12296" />
+                </layer>
+              </staff>
+              <staff n="3">
+                <layer n="2">
+                  <chord xml:id="m4s3c1" dur="2" dots="1">
+                    <note xml:id="m4s3n1" pname="b" oct="2" accid.ges="f" />
+                    <note xml:id="m4s3n2" pname="f" oct="3" />
+                    <note xml:id="m4s3n3" pname="b" oct="3" accid.ges="f" />
+                  </chord>
+                </layer>
+                <layer n="1">
+                  <space dur="2" dots="1" />
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">①</harm>
+            </measure>
+            <measure n="5" right="single">
+              <staff n="1">
+                <layer n="1">
+                  <note xml:id="m5s1n1" dur="4" oct="4" pname="g" />
+                  <note xml:id="m5s1n2" dur="8" oct="4" pname="g" />
+                  <note xml:id="m5s1n3" dur="4" dots="1" oct="4" pname="b" accid.ges="f" />
+                  <note xml:id="m5s1n4" dur="16" oct="4" pname="a" />
+                  <note xml:id="m5s1n5" dur="8" oct="4" pname="g" />
+                </layer>
+              </staff>
+              <staff n="2">
+                <layer n="2">
+                  <rest dur="2" dots="1" />
+                </layer>
+                <layer n="1">
+                  <chord dur="4" dots="1" xml:id="sp12297">
+                    <note pname="b" oct="4" accid.ges="f" xml:id="sp12298" />
+                    <note pname="g" oct="4" xml:id="sp12299" />
+                  </chord>
+                  <note pname="e" oct="5" accid.ges="f" dur="4" dots="1" xml:id="sp12300" />
+                </layer>
+                <layer n="2">
+                  <space dur="4" dots="1" />
+                  <note pname="b" oct="4" accid.ges="f" dur="4" dots="1" xml:id="sp12301" />
+                </layer>
+              </staff>
+              <staff n="3">
+                <layer n="2">
+                  <rest dur="2" dots="1" />
+                </layer>
+                <layer n="1">
+                  <chord dur="4" dots="1" xml:id="sp12302">
+                    <note pname="b" oct="2" accid.ges="f" xml:id="sp12303" />
+                    <note pname="e" oct="2" accid.ges="f" xml:id="sp12304" />
+                    <note pname="e" oct="3" accid.ges="f" xml:id="sp12305" />
+                  </chord>
+                  <chord dur="4" dots="1" xml:id="sp12306">
+                    <note pname="b" oct="3" accid.ges="f" xml:id="sp12307" />
+                    <note pname="g" oct="3" xml:id="sp12308" />
+                  </chord>
+                </layer>
+                <layer n="2">
+                  <space dur="4" dots="1" />
+                  <note pname="e" oct="2" accid.ges="f" dur="4" dots="1" xml:id="sp12309" />
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">④</harm>
+            </measure>
+            <measure n="6" right="single">
+              <staff n="1">
+                <layer n="1">
+                  <note xml:id="m6s1n1" dur="4" dots="1" oct="4" pname="f" />
+                  <note xml:id="m6s1n2" dur="8" oct="4" pname="g" />
+                  <note xml:id="m6s1n3" dur="8" oct="4" pname="f" />
+                  <note xml:id="m6s1n4" dur="4" dots="1" oct="4" pname="d" />
+                </layer>
+              </staff>
+              <staff n="2">
+                <layer n="2">
+                  <rest dur="2" dots="1" />
+                </layer>
+                <layer n="1">
+                  <chord dur="4" dots="1" xml:id="sp12310">
+                    <note pname="d" oct="4" xml:id="sp12311" />
+                    <note pname="f" oct="4" xml:id="sp12312" />
+                  </chord>
+                  <space dur="4" dots="1" />
+                </layer>
+                <layer n="2">
+                  <space dur="4" dots="1" />
+                  <chord dur="4" dots="1" xml:id="sp12313">
+                    <note pname="b" oct="4" accid.ges="f" xml:id="sp12314" />
+                    <note pname="f" oct="4" xml:id="sp12315" />
+                  </chord>
+                </layer>
+              </staff>
+              <staff n="3">
+                <layer n="2">
+                  <rest dur="2" dots="1" />
+                </layer>
+                <layer n="1">
+                  <chord dur="4" dots="1" xml:id="sp12316">
+                    <note pname="b" oct="2" accid.ges="f" xml:id="sp12317" />
+                    <note pname="f" oct="3" xml:id="sp12318" />
+                  </chord>
+                  <note pname="d" oct="3" dur="4" dots="1" xml:id="sp12319" />
+                </layer>
+                <layer n="2">
+                  <note pname="b" oct="3" accid.ges="f" dur="4" dots="1" xml:id="sp12320" />
+                  <chord dur="4" dots="1" xml:id="sp12321">
+                    <note pname="b" oct="2" accid.ges="f" xml:id="sp12322" />
+                    <note pname="f" oct="3" xml:id="sp12323" />
+                  </chord>
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">①</harm>
+              <harm staff="1" tstamp="2.5">①¹</harm>
+            </measure>
+            <measure n="7" right="single">
+              <staff n="1">
+                <layer n="1">
+                  <note xml:id="m7s1n1" dur="4" oct="4" pname="g" />
+                  <note xml:id="m7s1n2" dur="8" oct="4" pname="g" />
+                  <note xml:id="m7s1n3" dur="4" dots="1" oct="4" pname="b" accid.ges="f" />
+                  <note xml:id="m7s1n4" dur="16" oct="4" pname="a" />
+                  <note xml:id="m7s1n5" dur="8" oct="4" pname="g" />
+                </layer>
+              </staff>
+              <staff n="2">
+                <layer n="2">
+                  <rest dur="2" dots="1" />
+                </layer>
+                <layer n="1">
+                  <chord dur="4" dots="1" xml:id="sp12324">
+                    <note pname="g" oct="4" xml:id="sp12325" />
+                    <note pname="c" oct="5" xml:id="sp12326" />
+                  </chord>
+                  <note pname="a" oct="4" dur="4" dots="1" xml:id="sp12327" />
+                </layer>
+                <layer n="2">
+                  <space dur="4" dots="1" />
+                  <note pname="c" oct="5" dur="4" dots="1" xml:id="sp12328" />
+                </layer>
+              </staff>
+              <staff n="3">
+                <layer n="2">
+                  <rest dur="2" dots="1" />
+                </layer>
+                <layer n="1">
+                  <chord dur="4" dots="1" xml:id="sp12329">
+                    <note pname="e" oct="2" accid.ges="f" xml:id="sp12330" />
+                    <note pname="e" oct="3" accid.ges="f" xml:id="sp12331" />
+                  </chord>
+                  <chord dur="4" dots="1" xml:id="sp12332">
+                    <note pname="f" oct="2" xml:id="sp12333" />
+                    <note pname="c" oct="3" xml:id="sp12334" />
+                  </chord>
+                </layer>
+                <layer n="2">
+                  <note pname="b" oct="2" accid.ges="f" dur="4" dots="1" xml:id="sp12335" />
+                  <note pname="e" oct="3" accid.ges="f" dur="4" dots="1" xml:id="sp12336" />
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">④</harm>
+              <harm staff="1" tstamp="2.5">⑤</harm>
+            </measure>
+            <measure n="8" right="single">
+              <staff n="1">
+                <layer n="1">
+                  <note xml:id="m8s1n1" dur="4" dots="1" oct="4" pname="f" />
+                  <note xml:id="m8s1n2" dur="8" oct="4" pname="g" />
+                  <note xml:id="m8s1n3" dur="8" oct="4" pname="f" />
+                  <note xml:id="m8s1n4" dur="4" dots="1" oct="4" pname="d" />
+                </layer>
+              </staff>
+              <staff n="2">
+                <layer n="2">
+                  <rest dur="2" dots="1" />
+                </layer>
+                <layer n="1">
+                  <chord dur="4" dots="1" xml:id="sp12337">
+                    <note pname="d" oct="4" xml:id="sp12338" />
+                    <note pname="f" oct="4" xml:id="sp12339" />
+                  </chord>
+                  <note pname="b" oct="4" accid.ges="f" dur="4" dots="1" xml:id="sp12340" />
+                </layer>
+                <layer n="2">
+                  <space dur="4" dots="1" />
+                  <note pname="d" oct="4" dur="4" dots="1" xml:id="sp12341" />
+                </layer>
+              </staff>
+              <staff n="3">
+                <layer n="2">
+                  <rest dur="2" dots="1" />
+                </layer>
+                <layer n="1">
+                  <chord dur="4" dots="1" xml:id="sp12342">
+                    <note pname="b" oct="2" accid.ges="f" xml:id="sp12343" />
+                    <note pname="b" oct="3" accid.ges="f" xml:id="sp12344" />
+                    <note pname="f" oct="3" xml:id="sp12345" />
+                  </chord>
+                  <note pname="d" oct="3" dur="4" dots="1" xml:id="sp12346" />
+                </layer>
+                <layer n="2">
+                  <space dur="4" dots="1" />
+                  <chord dur="4" dots="1" xml:id="sp12347">
+                    <note pname="b" oct="2" accid.ges="f" xml:id="sp12348" />
+                    <note pname="b" oct="3" accid.ges="f" xml:id="sp12349" />
+                    <note pname="f" oct="3" xml:id="sp12350" />
+                  </chord>
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">①</harm>
+              <harm staff="1" tstamp="2.5">①</harm>
+            </measure>
+            <measure n="9" right="single">
+              <staff n="1">
+                <layer n="1">
+                  <note xml:id="m9s1n1" dur="4" oct="5" pname="c" />
+                  <note xml:id="m9s1n2" dur="8" oct="5" pname="c" />
+                  <note xml:id="m9s1n3" dur="4" dots="1" oct="5" pname="e" accid.ges="f" />
+                  <note xml:id="m9s1n4" dur="16" oct="5" pname="c" />
+                  <note xml:id="m9s1n5" dur="8" oct="4" pname="a" />
+                </layer>
+              </staff>
+              <staff n="2">
+                <layer n="2">
+                  <rest dur="2" dots="1" />
+                </layer>
+                <layer n="1">
+                  <chord dur="4" dots="1" xml:id="sp12351">
+                    <note pname="c" oct="5" xml:id="sp12352" />
+                    <note pname="e" oct="5" accid.ges="f" xml:id="sp12353" />
+                  </chord>
+                  <note pname="a" oct="4" dur="4" dots="1" xml:id="sp12354" />
+                </layer>
+                <layer n="2">
+                  <space dur="4" dots="1" />
+                  <note pname="c" oct="5" dur="4" dots="1" xml:id="sp12355" />
+                </layer>
+              </staff>
+              <staff n="3">
+                <layer n="2">
+                  <rest dur="2" dots="1" />
+                </layer>
+                <layer n="1">
+                  <chord dur="4" dots="1" xml:id="sp12356">
+                    <note pname="f" oct="2" xml:id="sp12357" />
+                    <note pname="c" oct="3" xml:id="sp12358" />
+                    <note pname="e" oct="3" accid.ges="f" xml:id="sp12359" />
+                  </chord>
+                  <note pname="a" oct="2" dur="4" dots="1" xml:id="sp12360" />
+                </layer>
+                <layer n="2">
+                  <space dur="4" dots="1" />
+                  <chord dur="4" dots="1" xml:id="sp12361">
+                    <note pname="f" oct="2" xml:id="sp12362" />
+                    <note pname="c" oct="3" xml:id="sp12363" />
+                  </chord>
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">⑤7</harm>
+            </measure>
+            <measure n="10" right="single">
+              <staff n="1">
+                <layer n="1">
+                  <note xml:id="m10s1n1" dur="4" dots="1" oct="4" pname="b" accid.ges="f" />
+                  <note xml:id="m10s1n2" dur="4" dots="1" oct="5" pname="d" />
+                </layer>
+              </staff>
+              <staff n="2">
+                <layer n="2">
+                  <rest dur="2" dots="1" />
+                </layer>
+                <layer n="1">
+                  <chord dur="4" dots="1" xml:id="sp12364">
+                    <note pname="b" oct="4" accid.ges="f" xml:id="sp12365" />
+                    <note pname="d" oct="5" xml:id="sp12366" />
+                  </chord>
+                  <note pname="f" oct="4" dur="4" dots="1" xml:id="sp12367" />
+                </layer>
+                <layer n="2">
+                  <space dur="4" dots="1" />
+                  <note pname="b" oct="4" accid.ges="f" dur="4" dots="1" xml:id="sp12368" />
+                </layer>
+              </staff>
+              <staff n="3">
+                <layer n="2">
+                  <rest dur="2" dots="1" />
+                </layer>
+                <layer n="1">
+                  <chord dur="4" dots="1" xml:id="sp12369">
+                    <note pname="b" oct="2" accid.ges="f" xml:id="sp12370" />
+                    <note pname="b" oct="3" accid.ges="f" xml:id="sp12371" />
+                    <note pname="f" oct="3" xml:id="sp12372" />
+                    <note pname="d" oct="4" xml:id="sp12373" />
+                  </chord>
+                  <note pname="d" oct="3" dur="4" dots="1" xml:id="sp12374" />
+                </layer>
+                <layer n="2">
+                  <space dur="4" dots="1" />
+                  <chord dur="4" dots="1" xml:id="sp12375">
+                    <note pname="b" oct="2" accid.ges="f" xml:id="sp12376" />
+                    <note pname="b" oct="3" accid.ges="f" xml:id="sp12377" />
+                    <note pname="f" oct="3" xml:id="sp12378" />
+                  </chord>
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">①</harm>
+            </measure>
+            <measure n="11" right="single">
+              <staff n="1">
+                <layer n="1">
+                  <note xml:id="m11s1n1" dur="8" oct="4" pname="b" accid.ges="f" />
+                  <note xml:id="m11s1n2" dur="8" oct="4" pname="f" />
+                  <note xml:id="m11s1n3" dur="8" oct="4" pname="d" />
+                  <note xml:id="m11s1n4" dur="4" dots="1" oct="4" pname="f" />
+                  <note xml:id="m11s1n5" dur="16" oct="4" pname="e" accid.ges="f" />
+                  <note xml:id="m11s1n6" dur="8" oct="4" pname="c" />
+                </layer>
+              </staff>
+              <staff n="2">
+                <layer n="2">
+                  <rest dur="2" dots="1" />
+                </layer>
+                <layer n="1">
+                  <note pname="a" oct="4" dur="4" xml:id="sp12379" />
+                  <note pname="e" oct="5" accid.ges="f" dur="4" xml:id="sp12380" />
+                  <note pname="c" oct="5" dur="4" xml:id="sp12381" />
+                </layer>
+                <layer n="2">
+                  <note pname="f" oct="4" dur="4" xml:id="sp12382" />
+                  <note pname="a" oct="4" dur="4" xml:id="sp12383" />
+                  <note pname="f" oct="4" dur="4" xml:id="sp12384" />
+                </layer>
+              </staff>
+              <staff n="3">
+                <layer n="2">
+                  <rest dur="2" dots="1" />
+                </layer>
+                <layer n="1">
+                  <chord dur="4" xml:id="sp12385">
+                    <note pname="f" oct="2" xml:id="sp12386" />
+                    <note pname="c" oct="3" xml:id="sp12387" />
+                  </chord>
+                  <note pname="e" oct="3" accid.ges="f" dur="4" xml:id="sp12388" />
+                  <note pname="a" oct="2" dur="4" xml:id="sp12389" />
+                </layer>
+                <layer n="2">
+                  <note pname="f" oct="3" dur="4" xml:id="sp12390" />
+                  <chord dur="2" xml:id="sp12391">
+                    <note pname="f" oct="2" xml:id="sp12392" />
+                    <note pname="c" oct="3" xml:id="sp12393" />
+                  </chord>
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">⑤</harm>
+              <harm staff="1" tstamp="2">⑤7</harm>
+            </measure>
+            <measure n="12" right="final">
+              <staff n="1">
+                <layer n="1">
+                  <note xml:id="m12s1n1" dur="2" dots="1" oct="3" pname="b" accid.ges="f" />
+                </layer>
+              </staff>
+              <staff n="2">
+                <layer n="2">
+                  <rest dur="2" dots="1" />
+                </layer>
+                <layer n="1">
+                  <chord dur="2" dots="1" xml:id="sp12394">
+                    <note pname="b" oct="3" accid.ges="f" xml:id="sp12395" />
+                    <note pname="d" oct="4" xml:id="sp12396" />
+                  </chord>
+                </layer>
+                <layer n="2">
+                  <note pname="f" oct="4" dur="2" dots="1" xml:id="sp12397" />
+                </layer>
+              </staff>
+              <staff n="3">
+                <layer n="2">
+                  <rest dur="2" dots="1" />
+                </layer>
+                <layer n="1">
+                  <chord dur="2" dots="1" xml:id="sp12398">
+                    <note pname="b" oct="2" accid.ges="f" xml:id="sp12399" />
+                    <note pname="b" oct="3" accid.ges="f" xml:id="sp12400" />
+                    <note pname="f" oct="3" xml:id="sp12401" />
+                    <note pname="d" oct="4" xml:id="sp12402" />
+                  </chord>
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">①</harm>
+            </measure>
+          </section>
+        </score>
+      </mdiv>
+    </body>
+  </music>
+</mei>

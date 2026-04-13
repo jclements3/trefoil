@@ -111,12 +111,28 @@ KEY_SIG = {
     'Eb': ('3', 'f'),
 }
 
+# Pitch classes altered by key signature → accid.ges value for MIDI export.
+# Verovio's MIDI export does not reliably apply keySig, so we stamp every
+# altered note with accid.ges (gestural accidental — audible, not visible).
+KEY_ACCID_GES = {
+    'C':  {},
+    'G':  {'f': 's'},
+    'D':  {'f': 's', 'c': 's'},
+    'A':  {'f': 's', 'c': 's', 'g': 's'},
+    'E':  {'f': 's', 'c': 's', 'g': 's', 'd': 's'},
+    'F':  {'b': 'f'},
+    'Bb': {'b': 'f', 'e': 'f'},
+    'Eb': {'b': 'f', 'e': 'f', 'a': 'f'},
+}
+
 
 # ── MEI element helpers ──
 
-def mei_note(pname, oct, dur, staff=None, grace=False, extra=''):
+def mei_note(pname, oct, dur, staff=None, grace=False, extra='', key=None):
     """Return a <note> element string."""
     attrs = f'pname="{pname}" oct="{oct}" dur="{dur}"'
+    if key and pname in KEY_ACCID_GES.get(key, {}):
+        attrs += f' accid.ges="{KEY_ACCID_GES[key][pname]}"'
     if staff is not None:
         attrs += f' staff="{staff}"'
     if grace:
@@ -277,7 +293,7 @@ def l_units_to_mei_dur(num, den, mel_l_num, mel_l_den):
 
 # ── Melody to MEI ──
 
-def events_to_mei(events, mel_l_num, mel_l_den, id_prefix='n'):
+def events_to_mei(events, mel_l_num, mel_l_den, id_prefix='n', key=None):
     """Render a list of melody events (dicts from parse_melody_bar) to a
     list of MEI element strings and a parallel list of (idx, chord) pairs.
 
@@ -285,6 +301,7 @@ def events_to_mei(events, mel_l_num, mel_l_den, id_prefix='n'):
     measure boundary — emit the corresponding MEI @tie attribute so
     Verovio draws a tie between the halves.
     """
+    ges_map = KEY_ACCID_GES.get(key, {}) if key else {}
     parts = []
     chords_out = []
     for ev in events:
@@ -299,6 +316,8 @@ def events_to_mei(events, mel_l_num, mel_l_den, id_prefix='n'):
                 accid = {'^': 's', '_': 'f', '=': 'n', '^^': 'x', '__': 'ff'}.get(ev['accid'])
                 if accid:
                     attrs += f' accid="{accid}"'
+            elif ev['pname'] in ges_map:
+                attrs += f' accid.ges="{ges_map[ev["pname"]]}"'
             tie_in = ev.get('tie_in', False)
             tie_out = ev.get('tie_out', False)
             if tie_in and tie_out:
@@ -321,7 +340,7 @@ def events_to_mei(events, mel_l_num, mel_l_den, id_prefix='n'):
 def melody_to_mei(bar_raw, key, mel_l_num, mel_l_den):
     """Return the contents of <staff n="1"><layer n="1">...</layer></staff>."""
     events = parse_melody_bar(bar_raw, key)
-    return events_to_mei(events, mel_l_num, mel_l_den)
+    return events_to_mei(events, mel_l_num, mel_l_den, key=key)
 
 
 def split_events_into_measures(events, beats_per_measure_L):
@@ -370,7 +389,7 @@ def split_events_into_measures(events, beats_per_measure_L):
 
 # ── Cadenza to MEI (cross-staff alternation, example_624 algorithm) ──
 
-def cadenza_to_mei(chord_specs, ts_num, ts_den, bar_eighths=None):
+def cadenza_to_mei(chord_specs, ts_num, ts_den, bar_eighths=None, key=None):
     """Build two parallel staff layers using the example_624 algorithm.
 
     bar_eighths overrides the default full-bar tuplet length. Pass it when
@@ -420,12 +439,14 @@ def cadenza_to_mei(chord_specs, ts_num, ts_den, bar_eighths=None):
     # one bar — 2 slots got squashed to invisibility, 6 gives a clearly
     # readable gap between the outgoing and incoming beam groups).
 
+    ges_map = KEY_ACCID_GES.get(key, {}) if key else {}
     for s in strings:
         abc = string_to_abc(s)
         pp = abc_to_pitch(abc)
         if pp is None:
             continue
         pname, octnum = pp
+        ges_attr = f' accid.ges="{ges_map[pname]}"' if pname in ges_map else ''
         hidden = f'<space dur="{note_dur}"/>'
 
         rh_here = is_rh(abc)
@@ -445,8 +466,8 @@ def cadenza_to_mei(chord_specs, ts_num, ts_den, bar_eighths=None):
             # Treble notes: stem DOWN so the beam sits BELOW the treble
             # notes (between the staves, angled inward toward middle C).
             note_xml = (
-                f'<note pname="{pname}" oct="{octnum}" dur="{note_dur}" '
-                f'cue="true" stem.dir="down"/>'
+                f'<note pname="{pname}" oct="{octnum}" dur="{note_dur}"'
+                f'{ges_attr} cue="true" stem.dir="down"/>'
             )
             treble_events.append((True, note_xml, s))
             bass_events.append((False, hidden, s))
@@ -454,8 +475,8 @@ def cadenza_to_mei(chord_specs, ts_num, ts_den, bar_eighths=None):
             # Bass notes: stem UP so the beam sits ABOVE the bass notes
             # (between the staves, angled inward toward middle C).
             note_xml = (
-                f'<note pname="{pname}" oct="{octnum}" dur="{note_dur}" '
-                f'cue="true" stem.dir="up"/>'
+                f'<note pname="{pname}" oct="{octnum}" dur="{note_dur}"'
+                f'{ges_attr} cue="true" stem.dir="up"/>'
             )
             treble_events.append((False, hidden, s))
             bass_events.append((True, note_xml, s))
@@ -600,7 +621,7 @@ def build_hymn_mei(ls, satb_events=None):
 <meiHead><fileDesc><titleStmt><title>{ls["t"]}</title></titleStmt>
 <pubStmt/></fileDesc></meiHead>
 <music><body><mdiv><score>
-<scoreDef {meter_attrs}>
+<scoreDef {meter_attrs} key.sig="{key_sig_val}">
 <staffGrp symbol="bracket">
 <staffDef n="1" lines="5" clef.shape="G" clef.line="2">{key_sig_elem}</staffDef>
 <staffGrp symbol="brace">
@@ -640,7 +661,7 @@ def build_hymn_mei(ls, satb_events=None):
             # (their IDs must not collide across sub-measures).
             id_prefix = f'm{measure_num}n' if unmetered else 'n'
             mel_notes_mei, chord_labels = events_to_mei(
-                sub_events, mel_num, mel_den, id_prefix=id_prefix
+                sub_events, mel_num, mel_den, id_prefix=id_prefix, key=key
             )
 
             # Pickup detection: a sub-measure shorter than a full bar.
@@ -687,7 +708,7 @@ def build_hymn_mei(ls, satb_events=None):
                 staff2 = '<staff n="2"><layer n="1"><mRest visible="false"/></layer></staff>'
                 staff3 = '<staff n="3"><layer n="1"><mRest visible="false"/></layer></staff>'
             else:
-                treble_layer, bass_layer = cadenza_to_mei(specs, ts_num, ts_den)
+                treble_layer, bass_layer = cadenza_to_mei(specs, ts_num, ts_den, key=key)
                 if treble_layer is None:
                     staff2 = '<staff n="2"><layer n="1"><mRest visible="false"/></layer></staff>'
                     staff3 = '<staff n="3"><layer n="1"><mRest visible="false"/></layer></staff>'

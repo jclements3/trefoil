@@ -4,17 +4,17 @@
 \usepackage{array}
 \usepackage{xcolor}
 \usepackage{colortbl}
-\usepackage{tikz}
-\geometry{letterpaper, landscape, margin=5mm}
+\geometry{letterpaper, landscape, margin=4mm}
 \setmainfont{DejaVu Sans}
-\setlength{\tabcolsep}{3pt}
-\renewcommand{\arraystretch}{1.0}
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{0.95}
 \definecolor{altrow}{HTML}{F0F4F8}
 \definecolor{headerbg}{HTML}{2C3E50}
 \definecolor{white}{HTML}{FFFFFF}
 \begin{document}
-\fontsize{13}{16}\selectfont
+\fontsize{10}{12}\selectfont
 \noindent
+\begin{minipage}[t]{0.48\linewidth}
 \begin{tabular}{@{}llllllllll@{}}
 \rowcolor{headerbg}\multicolumn{10}{l}{\color{white}\textbf{4-finger sequences}}\\
 \rowcolor{altrow}
@@ -29,7 +29,17 @@
 \rowcolor{altrow}
 \textbf{2143} & 1234 & 2341 & 3412 & 4123 & 4321 & 3214 & 1432 &  &  \\
 \textbf{1432} & 1234 & 2341 & 3412 & 4123 & 4321 & 3214 & 2143 &  &  \\
-\rowcolor{headerbg}\multicolumn{10}{l}{\color{white}\textbf{3-finger LH / 4-finger RH}}\\
+\rowcolor{headerbg}\multicolumn{10}{l}{\color{white}\textbf{3-finger sequences}}\\
+\rowcolor{altrow}
+\textbf{123} & 231 & 312 & 321 & 213 & 132 &  &  &  &  \\
+\textbf{231} & 123 & 312 & 321 & 213 & 132 &  &  &  &  \\
+\rowcolor{altrow}
+\textbf{312} & 123 & 231 & 321 & 213 & 132 &  &  &  &  \\
+\textbf{321} & 123 & 231 & 312 & 213 & 132 &  &  &  &  \\
+\rowcolor{altrow}
+\textbf{213} & 123 & 231 & 312 & 321 & 132 &  &  &  &  \\
+\textbf{132} & 123 & 231 & 312 & 321 & 213 &  &  &  &  \\
+\rowcolor{headerbg}\multicolumn{10}{l}{\color{white}\textbf{3-fng seq / 4-fng seq}}\\
 \rowcolor{altrow}
 \textbf{123} & 1234 & 2341 & 3412 & 4123 & 4321 & 3214 & 2143 & 1432 &  \\
 \textbf{231} & 1234 & 2341 & 3412 & 4123 & 4321 & 3214 & 2143 & 1432 &  \\
@@ -39,7 +49,7 @@
 \rowcolor{altrow}
 \textbf{213} & 1234 & 2341 & 3412 & 4123 & 4321 & 3214 & 2143 & 1432 &  \\
 \textbf{132} & 1234 & 2341 & 3412 & 4123 & 4321 & 3214 & 2143 & 1432 &  \\
-\rowcolor{headerbg}\multicolumn{10}{l}{\color{white}\textbf{4-finger LH / 3-finger RH}}\\
+\rowcolor{headerbg}\multicolumn{10}{l}{\color{white}\textbf{4-fng seq / 3-fng seq}}\\
 \rowcolor{altrow}
 \textbf{1234} & 123 & 231 & 312 & 321 & 213 & 132 &  &  &  \\
 \textbf{2341} & 123 & 231 & 312 & 321 & 213 & 132 &  &  &  \\
@@ -68,495 +78,95 @@
 \rowcolor{altrow}
 \textbf{31|42} & 12|34 & 23|41 & 34|12 & 41|23 & 13|24 & 24|13 & 14|23 & 23|14 & 42|31 \\
 \textbf{42|31} & 12|34 & 23|41 & 34|12 & 41|23 & 13|24 & 24|13 & 14|23 & 23|14 & 31|42 \\
+\rowcolor{headerbg}\multicolumn{10}{l}{\color{white}\textbf{3-finger pairs}}\\
+\rowcolor{altrow}
+\textbf{13|2} & 21|3 & 32|1 & 1|23 & 2|31 & 3|12 &  &  &  &  \\
+\textbf{21|3} & 13|2 & 32|1 & 1|23 & 2|31 & 3|12 &  &  &  &  \\
+\rowcolor{altrow}
+\textbf{32|1} & 13|2 & 21|3 & 1|23 & 2|31 & 3|12 &  &  &  &  \\
+\textbf{1|23} & 13|2 & 21|3 & 32|1 & 2|31 & 3|12 &  &  &  &  \\
+\rowcolor{altrow}
+\textbf{2|31} & 13|2 & 21|3 & 32|1 & 1|23 & 3|12 &  &  &  &  \\
+\textbf{3|12} & 13|2 & 21|3 & 32|1 & 1|23 & 2|31 &  &  &  &  \\
 \end{tabular}
-\begin{tikzpicture}[remember picture,overlay]
-  \node[anchor=north east,inner sep=8mm] at (current page.north east) {
-  \begin{tikzpicture}[x=1mm,y=1mm]
-    \node[font=\fontsize{6}{7}\selectfont] at (18.88,197.00) {1};
-    \node[font=\fontsize{6}{7}\selectfont] at (40.62,197.00) {2};
-    \node[font=\fontsize{6}{7}\selectfont] at (62.38,197.00) {3};
-    \node[font=\fontsize{6}{7}\selectfont] at (84.12,197.00) {4};
-    \draw[black!20] (8.00,0) -- (8.00,194.00);
-    \draw[black!20] (29.75,0) -- (29.75,194.00);
-    \draw[black!20] (51.50,0) -- (51.50,194.00);
-    \draw[black!20] (73.25,0) -- (73.25,194.00);
-    \draw[black!20] (95.00,0) -- (95.00,194.00);
-    \draw[black] (8,0) rectangle (95.00,194.00);
-    \node[font=\fontsize{5}{6}\selectfont\itshape,anchor=west] at (8.50,189.50) {Q vs Q-trip};
-    \fill[blue!12] (8,182.00) rectangle (95.00,187.00);
-    \fill[orange!12] (8,176.00) rectangle (95.00,181.00);
-    \draw[black!25] (8,184.50) -- (95.00,184.50);
-    \draw[black!25] (8,178.50) -- (95.00,178.50);
-    \draw[black!25] (8,182.00) rectangle (95.00,187.00);
-    \draw[black!25] (8,176.00) rectangle (95.00,181.00);
-    \node[font=\fontsize{5}{6}\selectfont\bfseries,anchor=west] at (0.3,184.50) {RH};
-    \node[font=\fontsize{5}{6}\selectfont\bfseries,anchor=west] at (0.3,178.50) {LH};
-    \draw[blue!50,line width=0.5pt] (8.00,182.00) -- (8.00,187.00);
-    \fill[blue!80] (8.00,184.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (29.75,182.00) -- (29.75,187.00);
-    \fill[blue!80] (29.75,184.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (51.50,182.00) -- (51.50,187.00);
-    \fill[blue!80] (51.50,184.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (73.25,182.00) -- (73.25,187.00);
-    \fill[blue!80] (73.25,184.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (8.00,176.00) -- (8.00,181.00);
-    \fill[orange!90] (8.00,178.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (22.50,176.00) -- (22.50,181.00);
-    \fill[orange!90] (22.50,178.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (37.00,176.00) -- (37.00,181.00);
-    \fill[orange!90] (37.00,178.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (51.50,176.00) -- (51.50,181.00);
-    \fill[orange!90] (51.50,178.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (66.00,176.00) -- (66.00,181.00);
-    \fill[orange!90] (66.00,178.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (80.50,176.00) -- (80.50,181.00);
-    \fill[orange!90] (80.50,178.50) circle (0.7mm);
-    \node[font=\fontsize{5}{6}\selectfont\itshape,anchor=west] at (8.50,173.50) {E vs E-trip};
-    \fill[blue!12] (8,166.00) rectangle (95.00,171.00);
-    \fill[orange!12] (8,160.00) rectangle (95.00,165.00);
-    \draw[black!25] (8,168.50) -- (95.00,168.50);
-    \draw[black!25] (8,162.50) -- (95.00,162.50);
-    \draw[black!25] (8,166.00) rectangle (95.00,171.00);
-    \draw[black!25] (8,160.00) rectangle (95.00,165.00);
-    \node[font=\fontsize{5}{6}\selectfont\bfseries,anchor=west] at (0.3,168.50) {RH};
-    \node[font=\fontsize{5}{6}\selectfont\bfseries,anchor=west] at (0.3,162.50) {LH};
-    \draw[blue!50,line width=0.5pt] (8.00,166.00) -- (8.00,171.00);
-    \fill[blue!80] (8.00,168.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (18.88,166.00) -- (18.88,171.00);
-    \fill[blue!80] (18.88,168.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (29.75,166.00) -- (29.75,171.00);
-    \fill[blue!80] (29.75,168.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (40.62,166.00) -- (40.62,171.00);
-    \fill[blue!80] (40.62,168.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (51.50,166.00) -- (51.50,171.00);
-    \fill[blue!80] (51.50,168.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (62.38,166.00) -- (62.38,171.00);
-    \fill[blue!80] (62.38,168.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (73.25,166.00) -- (73.25,171.00);
-    \fill[blue!80] (73.25,168.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (84.12,166.00) -- (84.12,171.00);
-    \fill[blue!80] (84.12,168.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (8.00,160.00) -- (8.00,165.00);
-    \fill[orange!90] (8.00,162.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (15.25,160.00) -- (15.25,165.00);
-    \fill[orange!90] (15.25,162.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (22.50,160.00) -- (22.50,165.00);
-    \fill[orange!90] (22.50,162.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (29.75,160.00) -- (29.75,165.00);
-    \fill[orange!90] (29.75,162.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (37.00,160.00) -- (37.00,165.00);
-    \fill[orange!90] (37.00,162.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (44.25,160.00) -- (44.25,165.00);
-    \fill[orange!90] (44.25,162.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (51.50,160.00) -- (51.50,165.00);
-    \fill[orange!90] (51.50,162.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (58.75,160.00) -- (58.75,165.00);
-    \fill[orange!90] (58.75,162.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (66.00,160.00) -- (66.00,165.00);
-    \fill[orange!90] (66.00,162.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (73.25,160.00) -- (73.25,165.00);
-    \fill[orange!90] (73.25,162.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (80.50,160.00) -- (80.50,165.00);
-    \fill[orange!90] (80.50,162.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (87.75,160.00) -- (87.75,165.00);
-    \fill[orange!90] (87.75,162.50) circle (0.7mm);
-    \node[font=\fontsize{5}{6}\selectfont\itshape,anchor=west] at (8.50,157.50) {Q vs E-trip};
-    \fill[blue!12] (8,150.00) rectangle (95.00,155.00);
-    \fill[orange!12] (8,144.00) rectangle (95.00,149.00);
-    \draw[black!25] (8,152.50) -- (95.00,152.50);
-    \draw[black!25] (8,146.50) -- (95.00,146.50);
-    \draw[black!25] (8,150.00) rectangle (95.00,155.00);
-    \draw[black!25] (8,144.00) rectangle (95.00,149.00);
-    \node[font=\fontsize{5}{6}\selectfont\bfseries,anchor=west] at (0.3,152.50) {RH};
-    \node[font=\fontsize{5}{6}\selectfont\bfseries,anchor=west] at (0.3,146.50) {LH};
-    \draw[blue!50,line width=0.5pt] (8.00,150.00) -- (8.00,155.00);
-    \fill[blue!80] (8.00,152.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (29.75,150.00) -- (29.75,155.00);
-    \fill[blue!80] (29.75,152.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (51.50,150.00) -- (51.50,155.00);
-    \fill[blue!80] (51.50,152.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (73.25,150.00) -- (73.25,155.00);
-    \fill[blue!80] (73.25,152.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (8.00,144.00) -- (8.00,149.00);
-    \fill[orange!90] (8.00,146.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (15.25,144.00) -- (15.25,149.00);
-    \fill[orange!90] (15.25,146.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (22.50,144.00) -- (22.50,149.00);
-    \fill[orange!90] (22.50,146.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (29.75,144.00) -- (29.75,149.00);
-    \fill[orange!90] (29.75,146.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (37.00,144.00) -- (37.00,149.00);
-    \fill[orange!90] (37.00,146.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (44.25,144.00) -- (44.25,149.00);
-    \fill[orange!90] (44.25,146.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (51.50,144.00) -- (51.50,149.00);
-    \fill[orange!90] (51.50,146.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (58.75,144.00) -- (58.75,149.00);
-    \fill[orange!90] (58.75,146.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (66.00,144.00) -- (66.00,149.00);
-    \fill[orange!90] (66.00,146.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (73.25,144.00) -- (73.25,149.00);
-    \fill[orange!90] (73.25,146.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (80.50,144.00) -- (80.50,149.00);
-    \fill[orange!90] (80.50,146.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (87.75,144.00) -- (87.75,149.00);
-    \fill[orange!90] (87.75,146.50) circle (0.7mm);
-    \node[font=\fontsize{5}{6}\selectfont\itshape,anchor=west] at (8.50,141.50) {E vs Q-trip};
-    \fill[blue!12] (8,134.00) rectangle (95.00,139.00);
-    \fill[orange!12] (8,128.00) rectangle (95.00,133.00);
-    \draw[black!25] (8,136.50) -- (95.00,136.50);
-    \draw[black!25] (8,130.50) -- (95.00,130.50);
-    \draw[black!25] (8,134.00) rectangle (95.00,139.00);
-    \draw[black!25] (8,128.00) rectangle (95.00,133.00);
-    \node[font=\fontsize{5}{6}\selectfont\bfseries,anchor=west] at (0.3,136.50) {RH};
-    \node[font=\fontsize{5}{6}\selectfont\bfseries,anchor=west] at (0.3,130.50) {LH};
-    \draw[blue!50,line width=0.5pt] (8.00,134.00) -- (8.00,139.00);
-    \fill[blue!80] (8.00,136.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (18.88,134.00) -- (18.88,139.00);
-    \fill[blue!80] (18.88,136.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (29.75,134.00) -- (29.75,139.00);
-    \fill[blue!80] (29.75,136.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (40.62,134.00) -- (40.62,139.00);
-    \fill[blue!80] (40.62,136.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (51.50,134.00) -- (51.50,139.00);
-    \fill[blue!80] (51.50,136.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (62.38,134.00) -- (62.38,139.00);
-    \fill[blue!80] (62.38,136.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (73.25,134.00) -- (73.25,139.00);
-    \fill[blue!80] (73.25,136.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (84.12,134.00) -- (84.12,139.00);
-    \fill[blue!80] (84.12,136.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (8.00,128.00) -- (8.00,133.00);
-    \fill[orange!90] (8.00,130.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (22.50,128.00) -- (22.50,133.00);
-    \fill[orange!90] (22.50,130.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (37.00,128.00) -- (37.00,133.00);
-    \fill[orange!90] (37.00,130.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (51.50,128.00) -- (51.50,133.00);
-    \fill[orange!90] (51.50,130.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (66.00,128.00) -- (66.00,133.00);
-    \fill[orange!90] (66.00,130.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (80.50,128.00) -- (80.50,133.00);
-    \fill[orange!90] (80.50,130.50) circle (0.7mm);
-    \node[font=\fontsize{5}{6}\selectfont\itshape,anchor=west] at (8.50,125.50) {Dotted-Q+E vs E-trip};
-    \fill[blue!12] (8,118.00) rectangle (95.00,123.00);
-    \fill[orange!12] (8,112.00) rectangle (95.00,117.00);
-    \draw[black!25] (8,120.50) -- (95.00,120.50);
-    \draw[black!25] (8,114.50) -- (95.00,114.50);
-    \draw[black!25] (8,118.00) rectangle (95.00,123.00);
-    \draw[black!25] (8,112.00) rectangle (95.00,117.00);
-    \node[font=\fontsize{5}{6}\selectfont\bfseries,anchor=west] at (0.3,120.50) {RH};
-    \node[font=\fontsize{5}{6}\selectfont\bfseries,anchor=west] at (0.3,114.50) {LH};
-    \draw[blue!50,line width=0.5pt] (8.00,118.00) -- (8.00,123.00);
-    \fill[blue!80] (8.00,120.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (24.31,118.00) -- (24.31,123.00);
-    \fill[blue!80] (24.31,120.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (29.75,118.00) -- (29.75,123.00);
-    \fill[blue!80] (29.75,120.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (46.06,118.00) -- (46.06,123.00);
-    \fill[blue!80] (46.06,120.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (51.50,118.00) -- (51.50,123.00);
-    \fill[blue!80] (51.50,120.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (67.81,118.00) -- (67.81,123.00);
-    \fill[blue!80] (67.81,120.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (73.25,118.00) -- (73.25,123.00);
-    \fill[blue!80] (73.25,120.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (89.56,118.00) -- (89.56,123.00);
-    \fill[blue!80] (89.56,120.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (8.00,112.00) -- (8.00,117.00);
-    \fill[orange!90] (8.00,114.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (15.25,112.00) -- (15.25,117.00);
-    \fill[orange!90] (15.25,114.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (22.50,112.00) -- (22.50,117.00);
-    \fill[orange!90] (22.50,114.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (29.75,112.00) -- (29.75,117.00);
-    \fill[orange!90] (29.75,114.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (37.00,112.00) -- (37.00,117.00);
-    \fill[orange!90] (37.00,114.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (44.25,112.00) -- (44.25,117.00);
-    \fill[orange!90] (44.25,114.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (51.50,112.00) -- (51.50,117.00);
-    \fill[orange!90] (51.50,114.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (58.75,112.00) -- (58.75,117.00);
-    \fill[orange!90] (58.75,114.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (66.00,112.00) -- (66.00,117.00);
-    \fill[orange!90] (66.00,114.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (73.25,112.00) -- (73.25,117.00);
-    \fill[orange!90] (73.25,114.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (80.50,112.00) -- (80.50,117.00);
-    \fill[orange!90] (80.50,114.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (87.75,112.00) -- (87.75,117.00);
-    \fill[orange!90] (87.75,114.50) circle (0.7mm);
-    \node[font=\fontsize{5}{6}\selectfont\itshape,anchor=west] at (8.50,109.50) {Q+2E vs Q-trip};
-    \fill[blue!12] (8,102.00) rectangle (95.00,107.00);
-    \fill[orange!12] (8,96.00) rectangle (95.00,101.00);
-    \draw[black!25] (8,104.50) -- (95.00,104.50);
-    \draw[black!25] (8,98.50) -- (95.00,98.50);
-    \draw[black!25] (8,102.00) rectangle (95.00,107.00);
-    \draw[black!25] (8,96.00) rectangle (95.00,101.00);
-    \node[font=\fontsize{5}{6}\selectfont\bfseries,anchor=west] at (0.3,104.50) {RH};
-    \node[font=\fontsize{5}{6}\selectfont\bfseries,anchor=west] at (0.3,98.50) {LH};
-    \draw[blue!50,line width=0.5pt] (8.00,102.00) -- (8.00,107.00);
-    \fill[blue!80] (8.00,104.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (18.88,102.00) -- (18.88,107.00);
-    \fill[blue!80] (18.88,104.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (24.31,102.00) -- (24.31,107.00);
-    \fill[blue!80] (24.31,104.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (29.75,102.00) -- (29.75,107.00);
-    \fill[blue!80] (29.75,104.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (40.62,102.00) -- (40.62,107.00);
-    \fill[blue!80] (40.62,104.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (46.06,102.00) -- (46.06,107.00);
-    \fill[blue!80] (46.06,104.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (51.50,102.00) -- (51.50,107.00);
-    \fill[blue!80] (51.50,104.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (62.38,102.00) -- (62.38,107.00);
-    \fill[blue!80] (62.38,104.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (67.81,102.00) -- (67.81,107.00);
-    \fill[blue!80] (67.81,104.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (73.25,102.00) -- (73.25,107.00);
-    \fill[blue!80] (73.25,104.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (84.12,102.00) -- (84.12,107.00);
-    \fill[blue!80] (84.12,104.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (89.56,102.00) -- (89.56,107.00);
-    \fill[blue!80] (89.56,104.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (8.00,96.00) -- (8.00,101.00);
-    \fill[orange!90] (8.00,98.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (22.50,96.00) -- (22.50,101.00);
-    \fill[orange!90] (22.50,98.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (37.00,96.00) -- (37.00,101.00);
-    \fill[orange!90] (37.00,98.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (51.50,96.00) -- (51.50,101.00);
-    \fill[orange!90] (51.50,98.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (66.00,96.00) -- (66.00,101.00);
-    \fill[orange!90] (66.00,98.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (80.50,96.00) -- (80.50,101.00);
-    \fill[orange!90] (80.50,98.50) circle (0.7mm);
-    \node[font=\fontsize{5}{6}\selectfont\itshape,anchor=west] at (8.50,93.50) {Syncopated vs E-trip};
-    \fill[blue!12] (8,86.00) rectangle (95.00,91.00);
-    \fill[orange!12] (8,80.00) rectangle (95.00,85.00);
-    \draw[black!25] (8,88.50) -- (95.00,88.50);
-    \draw[black!25] (8,82.50) -- (95.00,82.50);
-    \draw[black!25] (8,86.00) rectangle (95.00,91.00);
-    \draw[black!25] (8,80.00) rectangle (95.00,85.00);
-    \node[font=\fontsize{5}{6}\selectfont\bfseries,anchor=west] at (0.3,88.50) {RH};
-    \node[font=\fontsize{5}{6}\selectfont\bfseries,anchor=west] at (0.3,82.50) {LH};
-    \draw[blue!50,line width=0.5pt] (18.88,86.00) -- (18.88,91.00);
-    \fill[blue!80] (18.88,88.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (40.62,86.00) -- (40.62,91.00);
-    \fill[blue!80] (40.62,88.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (62.38,86.00) -- (62.38,91.00);
-    \fill[blue!80] (62.38,88.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (84.12,86.00) -- (84.12,91.00);
-    \fill[blue!80] (84.12,88.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (8.00,80.00) -- (8.00,85.00);
-    \fill[orange!90] (8.00,82.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (15.25,80.00) -- (15.25,85.00);
-    \fill[orange!90] (15.25,82.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (22.50,80.00) -- (22.50,85.00);
-    \fill[orange!90] (22.50,82.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (29.75,80.00) -- (29.75,85.00);
-    \fill[orange!90] (29.75,82.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (37.00,80.00) -- (37.00,85.00);
-    \fill[orange!90] (37.00,82.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (44.25,80.00) -- (44.25,85.00);
-    \fill[orange!90] (44.25,82.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (51.50,80.00) -- (51.50,85.00);
-    \fill[orange!90] (51.50,82.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (58.75,80.00) -- (58.75,85.00);
-    \fill[orange!90] (58.75,82.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (66.00,80.00) -- (66.00,85.00);
-    \fill[orange!90] (66.00,82.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (73.25,80.00) -- (73.25,85.00);
-    \fill[orange!90] (73.25,82.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (80.50,80.00) -- (80.50,85.00);
-    \fill[orange!90] (80.50,82.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (87.75,80.00) -- (87.75,85.00);
-    \fill[orange!90] (87.75,82.50) circle (0.7mm);
-    \node[font=\fontsize{5}{6}\selectfont\itshape,anchor=west] at (8.50,77.50) {Half+2Q vs Q-trip};
-    \fill[blue!12] (8,70.00) rectangle (95.00,75.00);
-    \fill[orange!12] (8,64.00) rectangle (95.00,69.00);
-    \draw[black!25] (8,72.50) -- (95.00,72.50);
-    \draw[black!25] (8,66.50) -- (95.00,66.50);
-    \draw[black!25] (8,70.00) rectangle (95.00,75.00);
-    \draw[black!25] (8,64.00) rectangle (95.00,69.00);
-    \node[font=\fontsize{5}{6}\selectfont\bfseries,anchor=west] at (0.3,72.50) {RH};
-    \node[font=\fontsize{5}{6}\selectfont\bfseries,anchor=west] at (0.3,66.50) {LH};
-    \draw[blue!50,line width=0.5pt] (8.00,70.00) -- (8.00,75.00);
-    \fill[blue!80] (8.00,72.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (51.50,70.00) -- (51.50,75.00);
-    \fill[blue!80] (51.50,72.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (73.25,70.00) -- (73.25,75.00);
-    \fill[blue!80] (73.25,72.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (8.00,64.00) -- (8.00,69.00);
-    \fill[orange!90] (8.00,66.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (22.50,64.00) -- (22.50,69.00);
-    \fill[orange!90] (22.50,66.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (37.00,64.00) -- (37.00,69.00);
-    \fill[orange!90] (37.00,66.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (51.50,64.00) -- (51.50,69.00);
-    \fill[orange!90] (51.50,66.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (66.00,64.00) -- (66.00,69.00);
-    \fill[orange!90] (66.00,66.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (80.50,64.00) -- (80.50,69.00);
-    \fill[orange!90] (80.50,66.50) circle (0.7mm);
-    \node[font=\fontsize{5}{6}\selectfont\itshape,anchor=west] at (8.50,61.50) {Halves vs E-trip};
-    \fill[blue!12] (8,54.00) rectangle (95.00,59.00);
-    \fill[orange!12] (8,48.00) rectangle (95.00,53.00);
-    \draw[black!25] (8,56.50) -- (95.00,56.50);
-    \draw[black!25] (8,50.50) -- (95.00,50.50);
-    \draw[black!25] (8,54.00) rectangle (95.00,59.00);
-    \draw[black!25] (8,48.00) rectangle (95.00,53.00);
-    \node[font=\fontsize{5}{6}\selectfont\bfseries,anchor=west] at (0.3,56.50) {RH};
-    \node[font=\fontsize{5}{6}\selectfont\bfseries,anchor=west] at (0.3,50.50) {LH};
-    \draw[blue!50,line width=0.5pt] (8.00,54.00) -- (8.00,59.00);
-    \fill[blue!80] (8.00,56.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (51.50,54.00) -- (51.50,59.00);
-    \fill[blue!80] (51.50,56.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (8.00,48.00) -- (8.00,53.00);
-    \fill[orange!90] (8.00,50.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (15.25,48.00) -- (15.25,53.00);
-    \fill[orange!90] (15.25,50.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (22.50,48.00) -- (22.50,53.00);
-    \fill[orange!90] (22.50,50.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (29.75,48.00) -- (29.75,53.00);
-    \fill[orange!90] (29.75,50.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (37.00,48.00) -- (37.00,53.00);
-    \fill[orange!90] (37.00,50.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (44.25,48.00) -- (44.25,53.00);
-    \fill[orange!90] (44.25,50.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (51.50,48.00) -- (51.50,53.00);
-    \fill[orange!90] (51.50,50.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (58.75,48.00) -- (58.75,53.00);
-    \fill[orange!90] (58.75,50.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (66.00,48.00) -- (66.00,53.00);
-    \fill[orange!90] (66.00,50.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (73.25,48.00) -- (73.25,53.00);
-    \fill[orange!90] (73.25,50.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (80.50,48.00) -- (80.50,53.00);
-    \fill[orange!90] (80.50,50.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (87.75,48.00) -- (87.75,53.00);
-    \fill[orange!90] (87.75,50.50) circle (0.7mm);
-    \node[font=\fontsize{5}{6}\selectfont\itshape,anchor=west] at (8.50,45.50) {Q+Q+E+E vs Q-trip};
-    \fill[blue!12] (8,38.00) rectangle (95.00,43.00);
-    \fill[orange!12] (8,32.00) rectangle (95.00,37.00);
-    \draw[black!25] (8,40.50) -- (95.00,40.50);
-    \draw[black!25] (8,34.50) -- (95.00,34.50);
-    \draw[black!25] (8,38.00) rectangle (95.00,43.00);
-    \draw[black!25] (8,32.00) rectangle (95.00,37.00);
-    \node[font=\fontsize{5}{6}\selectfont\bfseries,anchor=west] at (0.3,40.50) {RH};
-    \node[font=\fontsize{5}{6}\selectfont\bfseries,anchor=west] at (0.3,34.50) {LH};
-    \draw[blue!50,line width=0.5pt] (8.00,38.00) -- (8.00,43.00);
-    \fill[blue!80] (8.00,40.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (29.75,38.00) -- (29.75,43.00);
-    \fill[blue!80] (29.75,40.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (51.50,38.00) -- (51.50,43.00);
-    \fill[blue!80] (51.50,40.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (62.38,38.00) -- (62.38,43.00);
-    \fill[blue!80] (62.38,40.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (73.25,38.00) -- (73.25,43.00);
-    \fill[blue!80] (73.25,40.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (84.12,38.00) -- (84.12,43.00);
-    \fill[blue!80] (84.12,40.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (8.00,32.00) -- (8.00,37.00);
-    \fill[orange!90] (8.00,34.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (22.50,32.00) -- (22.50,37.00);
-    \fill[orange!90] (22.50,34.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (37.00,32.00) -- (37.00,37.00);
-    \fill[orange!90] (37.00,34.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (51.50,32.00) -- (51.50,37.00);
-    \fill[orange!90] (51.50,34.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (66.00,32.00) -- (66.00,37.00);
-    \fill[orange!90] (66.00,34.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (80.50,32.00) -- (80.50,37.00);
-    \fill[orange!90] (80.50,34.50) circle (0.7mm);
-    \node[font=\fontsize{5}{6}\selectfont\itshape,anchor=west] at (8.50,29.50) {Swing vs E-trip};
-    \fill[blue!12] (8,22.00) rectangle (95.00,27.00);
-    \fill[orange!12] (8,16.00) rectangle (95.00,21.00);
-    \draw[black!25] (8,24.50) -- (95.00,24.50);
-    \draw[black!25] (8,18.50) -- (95.00,18.50);
-    \draw[black!25] (8,22.00) rectangle (95.00,27.00);
-    \draw[black!25] (8,16.00) rectangle (95.00,21.00);
-    \node[font=\fontsize{5}{6}\selectfont\bfseries,anchor=west] at (0.3,24.50) {RH};
-    \node[font=\fontsize{5}{6}\selectfont\bfseries,anchor=west] at (0.3,18.50) {LH};
-    \draw[blue!50,line width=0.5pt] (8.00,22.00) -- (8.00,27.00);
-    \fill[blue!80] (8.00,24.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (22.50,22.00) -- (22.50,27.00);
-    \fill[blue!80] (22.50,24.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (29.75,22.00) -- (29.75,27.00);
-    \fill[blue!80] (29.75,24.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (44.25,22.00) -- (44.25,27.00);
-    \fill[blue!80] (44.25,24.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (51.50,22.00) -- (51.50,27.00);
-    \fill[blue!80] (51.50,24.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (66.00,22.00) -- (66.00,27.00);
-    \fill[blue!80] (66.00,24.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (73.25,22.00) -- (73.25,27.00);
-    \fill[blue!80] (73.25,24.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (87.75,22.00) -- (87.75,27.00);
-    \fill[blue!80] (87.75,24.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (8.00,16.00) -- (8.00,21.00);
-    \fill[orange!90] (8.00,18.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (15.25,16.00) -- (15.25,21.00);
-    \fill[orange!90] (15.25,18.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (22.50,16.00) -- (22.50,21.00);
-    \fill[orange!90] (22.50,18.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (29.75,16.00) -- (29.75,21.00);
-    \fill[orange!90] (29.75,18.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (37.00,16.00) -- (37.00,21.00);
-    \fill[orange!90] (37.00,18.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (44.25,16.00) -- (44.25,21.00);
-    \fill[orange!90] (44.25,18.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (51.50,16.00) -- (51.50,21.00);
-    \fill[orange!90] (51.50,18.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (58.75,16.00) -- (58.75,21.00);
-    \fill[orange!90] (58.75,18.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (66.00,16.00) -- (66.00,21.00);
-    \fill[orange!90] (66.00,18.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (73.25,16.00) -- (73.25,21.00);
-    \fill[orange!90] (73.25,18.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (80.50,16.00) -- (80.50,21.00);
-    \fill[orange!90] (80.50,18.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (87.75,16.00) -- (87.75,21.00);
-    \fill[orange!90] (87.75,18.50) circle (0.7mm);
-    \node[font=\fontsize{5}{6}\selectfont\itshape,anchor=west] at (8.50,13.50) {Dotted-Q+E vs Q-trip};
-    \fill[blue!12] (8,6.00) rectangle (95.00,11.00);
-    \fill[orange!12] (8,0.00) rectangle (95.00,5.00);
-    \draw[black!25] (8,8.50) -- (95.00,8.50);
-    \draw[black!25] (8,2.50) -- (95.00,2.50);
-    \draw[black!25] (8,6.00) rectangle (95.00,11.00);
-    \draw[black!25] (8,0.00) rectangle (95.00,5.00);
-    \node[font=\fontsize{5}{6}\selectfont\bfseries,anchor=west] at (0.3,8.50) {RH};
-    \node[font=\fontsize{5}{6}\selectfont\bfseries,anchor=west] at (0.3,2.50) {LH};
-    \draw[blue!50,line width=0.5pt] (8.00,6.00) -- (8.00,11.00);
-    \fill[blue!80] (8.00,8.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (24.31,6.00) -- (24.31,11.00);
-    \fill[blue!80] (24.31,8.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (29.75,6.00) -- (29.75,11.00);
-    \fill[blue!80] (29.75,8.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (46.06,6.00) -- (46.06,11.00);
-    \fill[blue!80] (46.06,8.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (51.50,6.00) -- (51.50,11.00);
-    \fill[blue!80] (51.50,8.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (67.81,6.00) -- (67.81,11.00);
-    \fill[blue!80] (67.81,8.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (73.25,6.00) -- (73.25,11.00);
-    \fill[blue!80] (73.25,8.50) circle (0.7mm);
-    \draw[blue!50,line width=0.5pt] (89.56,6.00) -- (89.56,11.00);
-    \fill[blue!80] (89.56,8.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (8.00,0.00) -- (8.00,5.00);
-    \fill[orange!90] (8.00,2.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (22.50,0.00) -- (22.50,5.00);
-    \fill[orange!90] (22.50,2.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (37.00,0.00) -- (37.00,5.00);
-    \fill[orange!90] (37.00,2.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (51.50,0.00) -- (51.50,5.00);
-    \fill[orange!90] (51.50,2.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (66.00,0.00) -- (66.00,5.00);
-    \fill[orange!90] (66.00,2.50) circle (0.7mm);
-    \draw[orange!60,line width=0.5pt] (80.50,0.00) -- (80.50,5.00);
-    \fill[orange!90] (80.50,2.50) circle (0.7mm);
-  \end{tikzpicture}
-  };
-\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.50\linewidth}
+\begin{tabular}{@{}lllllllllll@{}}
+\rowcolor{headerbg}\multicolumn{11}{l}{\color{white}\textbf{3-fng pair / 4-fng pair}}\\
+\rowcolor{altrow}
+\textbf{13|2} & 12|34 & 23|41 & 34|12 & 41|23 & 13|24 & 24|13 & 14|23 & 23|14 & 31|42 & 42|31 \\
+\textbf{21|3} & 12|34 & 23|41 & 34|12 & 41|23 & 13|24 & 24|13 & 14|23 & 23|14 & 31|42 & 42|31 \\
+\rowcolor{altrow}
+\textbf{32|1} & 12|34 & 23|41 & 34|12 & 41|23 & 13|24 & 24|13 & 14|23 & 23|14 & 31|42 & 42|31 \\
+\textbf{1|23} & 12|34 & 23|41 & 34|12 & 41|23 & 13|24 & 24|13 & 14|23 & 23|14 & 31|42 & 42|31 \\
+\rowcolor{altrow}
+\textbf{2|31} & 12|34 & 23|41 & 34|12 & 41|23 & 13|24 & 24|13 & 14|23 & 23|14 & 31|42 & 42|31 \\
+\textbf{3|12} & 12|34 & 23|41 & 34|12 & 41|23 & 13|24 & 24|13 & 14|23 & 23|14 & 31|42 & 42|31 \\
+\rowcolor{headerbg}\multicolumn{11}{l}{\color{white}\textbf{4-fng pair / 3-fng pair}}\\
+\rowcolor{altrow}
+\textbf{12|34} & 13|2 & 21|3 & 32|1 & 1|23 & 2|31 & 3|12 &  &  &  &  \\
+\textbf{23|41} & 13|2 & 21|3 & 32|1 & 1|23 & 2|31 & 3|12 &  &  &  &  \\
+\rowcolor{altrow}
+\textbf{34|12} & 13|2 & 21|3 & 32|1 & 1|23 & 2|31 & 3|12 &  &  &  &  \\
+\textbf{41|23} & 13|2 & 21|3 & 32|1 & 1|23 & 2|31 & 3|12 &  &  &  &  \\
+\rowcolor{altrow}
+\textbf{13|24} & 13|2 & 21|3 & 32|1 & 1|23 & 2|31 & 3|12 &  &  &  &  \\
+\textbf{24|13} & 13|2 & 21|3 & 32|1 & 1|23 & 2|31 & 3|12 &  &  &  &  \\
+\rowcolor{altrow}
+\textbf{14|23} & 13|2 & 21|3 & 32|1 & 1|23 & 2|31 & 3|12 &  &  &  &  \\
+\textbf{23|14} & 13|2 & 21|3 & 32|1 & 1|23 & 2|31 & 3|12 &  &  &  &  \\
+\rowcolor{altrow}
+\textbf{31|42} & 13|2 & 21|3 & 32|1 & 1|23 & 2|31 & 3|12 &  &  &  &  \\
+\textbf{42|31} & 13|2 & 21|3 & 32|1 & 1|23 & 2|31 & 3|12 &  &  &  &  \\
+\rowcolor{headerbg}\multicolumn{11}{l}{\color{white}\textbf{4-fng seq / 4-fng pair}}\\
+\rowcolor{altrow}
+\textbf{1234} & 12|34 & 23|41 & 34|12 & 41|23 & 13|24 & 24|13 & 14|23 & 23|14 & 31|42 & 42|31 \\
+\textbf{2341} & 12|34 & 23|41 & 34|12 & 41|23 & 13|24 & 24|13 & 14|23 & 23|14 & 31|42 & 42|31 \\
+\rowcolor{altrow}
+\textbf{3412} & 12|34 & 23|41 & 34|12 & 41|23 & 13|24 & 24|13 & 14|23 & 23|14 & 31|42 & 42|31 \\
+\textbf{4123} & 12|34 & 23|41 & 34|12 & 41|23 & 13|24 & 24|13 & 14|23 & 23|14 & 31|42 & 42|31 \\
+\rowcolor{altrow}
+\textbf{4321} & 12|34 & 23|41 & 34|12 & 41|23 & 13|24 & 24|13 & 14|23 & 23|14 & 31|42 & 42|31 \\
+\textbf{3214} & 12|34 & 23|41 & 34|12 & 41|23 & 13|24 & 24|13 & 14|23 & 23|14 & 31|42 & 42|31 \\
+\rowcolor{altrow}
+\textbf{2143} & 12|34 & 23|41 & 34|12 & 41|23 & 13|24 & 24|13 & 14|23 & 23|14 & 31|42 & 42|31 \\
+\textbf{1432} & 12|34 & 23|41 & 34|12 & 41|23 & 13|24 & 24|13 & 14|23 & 23|14 & 31|42 & 42|31 \\
+\rowcolor{headerbg}\multicolumn{11}{l}{\color{white}\textbf{4-fng pair / 4-fng seq}}\\
+\rowcolor{altrow}
+\textbf{12|34} & 1234 & 2341 & 3412 & 4123 & 4321 & 3214 & 2143 & 1432 &  &  \\
+\textbf{23|41} & 1234 & 2341 & 3412 & 4123 & 4321 & 3214 & 2143 & 1432 &  &  \\
+\rowcolor{altrow}
+\textbf{34|12} & 1234 & 2341 & 3412 & 4123 & 4321 & 3214 & 2143 & 1432 &  &  \\
+\textbf{41|23} & 1234 & 2341 & 3412 & 4123 & 4321 & 3214 & 2143 & 1432 &  &  \\
+\rowcolor{altrow}
+\textbf{13|24} & 1234 & 2341 & 3412 & 4123 & 4321 & 3214 & 2143 & 1432 &  &  \\
+\textbf{24|13} & 1234 & 2341 & 3412 & 4123 & 4321 & 3214 & 2143 & 1432 &  &  \\
+\rowcolor{altrow}
+\textbf{14|23} & 1234 & 2341 & 3412 & 4123 & 4321 & 3214 & 2143 & 1432 &  &  \\
+\textbf{23|14} & 1234 & 2341 & 3412 & 4123 & 4321 & 3214 & 2143 & 1432 &  &  \\
+\rowcolor{altrow}
+\textbf{31|42} & 1234 & 2341 & 3412 & 4123 & 4321 & 3214 & 2143 & 1432 &  &  \\
+\textbf{42|31} & 1234 & 2341 & 3412 & 4123 & 4321 & 3214 & 2143 & 1432 &  &  \\
+\rowcolor{headerbg}\multicolumn{11}{l}{\color{white}\textbf{3-fng seq / 3-fng pair}}\\
+\rowcolor{altrow}
+\textbf{123} & 13|2 & 21|3 & 32|1 & 1|23 & 2|31 & 3|12 &  &  &  &  \\
+\textbf{231} & 13|2 & 21|3 & 32|1 & 1|23 & 2|31 & 3|12 &  &  &  &  \\
+\rowcolor{altrow}
+\textbf{312} & 13|2 & 21|3 & 32|1 & 1|23 & 2|31 & 3|12 &  &  &  &  \\
+\textbf{321} & 13|2 & 21|3 & 32|1 & 1|23 & 2|31 & 3|12 &  &  &  &  \\
+\rowcolor{altrow}
+\textbf{213} & 13|2 & 21|3 & 32|1 & 1|23 & 2|31 & 3|12 &  &  &  &  \\
+\textbf{132} & 13|2 & 21|3 & 32|1 & 1|23 & 2|31 & 3|12 &  &  &  &  \\
+\rowcolor{headerbg}\multicolumn{11}{l}{\color{white}\textbf{3-fng pair / 3-fng seq}}\\
+\rowcolor{altrow}
+\textbf{13|2} & 123 & 231 & 312 & 321 & 213 & 132 &  &  &  &  \\
+\textbf{21|3} & 123 & 231 & 312 & 321 & 213 & 132 &  &  &  &  \\
+\rowcolor{altrow}
+\textbf{32|1} & 123 & 231 & 312 & 321 & 213 & 132 &  &  &  &  \\
+\textbf{1|23} & 123 & 231 & 312 & 321 & 213 & 132 &  &  &  &  \\
+\rowcolor{altrow}
+\textbf{2|31} & 123 & 231 & 312 & 321 & 213 & 132 &  &  &  &  \\
+\textbf{3|12} & 123 & 231 & 312 & 321 & 213 & 132 &  &  &  &  \\
+\end{tabular}
+\end{minipage}
 \end{document}

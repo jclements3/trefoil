@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0">
+  <meiHead>
+    <fileDesc>
+      <titleStmt>
+        <title>The Cloud Received Christ From Their Sight</title>
+      </titleStmt>
+      <pubStmt/>
+    </fileDesc>
+  </meiHead>
+  <music>
+    <body>
+      <mdiv>
+        <score>
+          <!-- Key: G major (1 sharp: F#). 3/2 time (3 half beats per bar). L:1/4.
+               accid.ges="s" on all f (→F#) notes in harp staves.
+               Pickup = 2 quarters (1 half beat = 1 beat in 3/2).
+               ABC bars: pickup | bar1 | bar2 | bar3 | bar4 | bar5 | bar6 | bar7 | bar8(final)
+          -->
+          <scoreDef meter.count="3" meter.unit="2" key.sig="1s">
+            <staffGrp symbol="bracket">
+              <staffDef n="1" lines="5" clef.shape="G" clef.line="2">
+                <keySig sig="1s"/>
+              </staffDef>
+              <staffGrp symbol="brace">
+                <staffDef n="2" lines="5" clef.shape="G" clef.line="2">
+                  <keySig sig="1s"/>
+                </staffDef>
+                <staffDef n="3" lines="5" clef.shape="F" clef.line="4">
+                  <keySig sig="1s"/>
+                </staffDef>
+              </staffGrp>
+            </staffGrp>
+          </scoreDef>
+          <section>
+
+            <!-- Pickup bar: D4 D4 = 2 quarter notes (1 half beat). G major pickup. -->
+            <measure n="0" type="pickup">
+              <staff n="1">
+                <layer n="1">
+                  <note xml:id="m0n1" pname="d" oct="4" dur="4"/>
+                  <note xml:id="m0n2" pname="d" oct="4" dur="4"/>
+                </layer>
+              </staff>
+              <staff n="2">
+                <layer n="1">
+                  <!-- RH: B4 pickup — light single note -->
+                  <note xml:id="m0r1" pname="b" oct="4" dur="2"/>
+                </layer>
+              </staff>
+              <staff n="3">
+                <layer n="1">
+                  <!-- LH: G2 D3 G3 — open pickup chord -->
+                  <chord xml:id="m0l1" dur="2">
+                    <note pname="g" oct="2"/>
+                    <note pname="d" oct="3"/>
+                    <note pname="g" oct="3"/>
+                  </chord>
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">①</harm>
+            </measure>
+
+            <!-- Bar 1: G G G, D7 A2 A2, G B B2 B2
+                 "^G"G G = 2 quarters on beat 1 (=1 half)
+                 "^D"A2 A2 = 2 halves (beats 2-3)
+                 Wait, re-reading ABC: "^G"G G "^D"A2 A2 = G(q) G(q) A(h) A(h)
+                 In 3/2, each beat = 1 half = 2 quarters.
+                 Beat 1 = G4 G4 (2 quarters = 1 half)
+                 Beat 2 = A4 A4 (2 halves? no — A2 = half note, A2 = half note = 2 beats)
+                 Wait — "A2" in L:1/4 context = 2 quarter notes worth = half note.
+                 So: G(q) G(q) A2(h) A2(h) = 0.5+0.5+1+1 = 3 half-note beats ✓
+                 Chords: G(beat1) D(beat2) D(beat3)
+            -->
+            <measure n="1">
+              <staff n="1">
+                <layer n="1">
+                  <note xml:id="m1n1" pname="g" oct="4" dur="4"/>
+                  <note xml:id="m1n2" pname="g" oct="4" dur="4"/>
+                  <note xml:id="m1n3" pname="a" oct="4" dur="2"/>
+                  <note xml:id="m1n4" pname="a" oct="4" dur="2"/>
+                </layer>
+              </staff>
+              <staff n="2">
+                <layer n="1">
+                  <!-- RH: D5 C5 A4 — moving gently into D -->
+                  <note xml:id="m1r1" pname="d" oct="5" dur="2"/>
+                  <note xml:id="m1r2" pname="c" oct="5" dur="2"/>
+                  <note xml:id="m1r3" pname="a" oct="4" dur="2"/>
+                </layer>
+              </staff>
+              <staff n="3">
+                <layer n="1">
+                  <!-- G "33": G2 B2 D3 G3 — root pos open -->
+                  <chord xml:id="m1l1" dur="2">
+                    <note pname="g" oct="2"/>
+                    <note pname="b" oct="2"/>
+                    <note pname="d" oct="3"/>
+                    <note pname="g" oct="3"/>
+                  </chord>
+                  <!-- D "334": D2 A2 D3 F#3 -->
+                  <chord xml:id="m1l2" dur="2">
+                    <note pname="d" oct="2"/>
+                    <note pname="a" oct="2"/>
+                    <note pname="d" oct="3"/>
+                    <note pname="f" oct="3" accid.ges="s"/>
+                  </chord>
+                  <!-- D continued: hold into beat 3 -->
+                  <chord xml:id="m1l3" dur="2">
+                    <note pname="d" oct="2"/>
+                    <note pname="a" oct="2"/>
+                    <note pname="d" oct="3"/>
+                    <note pname="f" oct="3" accid.ges="s"/>
+                  </chord>
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">①</harm>
+              <harm staff="1" tstamp="2">⑤</harm>
+            </measure>
+
+            <!-- Bar 2: "^G"B "^D7"A "^Em"G2 "^D"A2
+                 B(q) A(q) G2(h) A2(h) = beat1=B4+A4 (2 quarters=1 half), beat2=G4(half), beat3=A4(half)
+                 Chords: G(b1) D7(b1.5?) Em(b2) D(b3)
+                 Actually: B(q) A(q) G2(h) A2(h) — in 3/2 each half beat:
+                   beat 1 (1 half): B(q)+A(q) = G → D7 chord change mid-beat
+                   beat 2 (1 half): G2 = Em
+                   beat 3 (1 half): A2 = D
+                 Mark chords at beat boundaries (half-beat = 1 tstamp unit in 3/2):
+                   tstamp="1" for beat 1 = G major (B is 3rd of G)
+                   tstamp="1.5" for D7 on the A
+                   tstamp="2" for Em
+                   tstamp="3" for D
+            -->
+            <measure n="2">
+              <staff n="1">
+                <layer n="1">
+                  <note xml:id="m2n1" pname="b" oct="4" dur="4"/>
+                  <note xml:id="m2n2" pname="a" oct="4" dur="4"/>
+                  <note xml:id="m2n3" pname="g" oct="4" dur="2"/>
+                  <note xml:id="m2n4" pname="a" oct="4" dur="2"/>
+                </layer>
+              </staff>
+              <staff n="2">
+                <layer n="1">
+                  <!-- RH: G4 → E4 → F#4 — inner voice motion -->
+                  <note xml:id="m2r1" pname="g" oct="4" dur="2"/>
+                  <note xml:id="m2r2" pname="e" oct="4" dur="2"/>
+                  <note xml:id="m2r3" pname="f" oct="4" dur="2" accid.ges="s"/>
+                </layer>
+              </staff>
+              <staff n="3">
+                <layer n="1">
+                  <!-- G "43" 1st inv: B2 D3 G3 — then Em: E2 B2 E3 G3, then D: D2 A2 D3 -->
+                  <chord xml:id="m2l1" dur="2">
+                    <note pname="b" oct="2"/>
+                    <note pname="d" oct="3"/>
+                    <note pname="g" oct="3"/>
+                  </chord>
+                  <!-- Em "33": E2 G2 B2 E3 -->
+                  <chord xml:id="m2l2" dur="2">
+                    <note pname="e" oct="2"/>
+                    <note pname="g" oct="2"/>
+                    <note pname="b" oct="2"/>
+                    <note pname="e" oct="3"/>
+                  </chord>
+                  <!-- D "33": D2 F#2 A2 D3 -->
+                  <chord xml:id="m2l3" dur="2">
+                    <note pname="d" oct="2"/>
+                    <note pname="f" oct="2" accid.ges="s"/>
+                    <note pname="a" oct="2"/>
+                    <note pname="d" oct="3"/>
+                  </chord>
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">①</harm>
+              <harm staff="1" tstamp="2">⑥m</harm>
+              <harm staff="1" tstamp="3">⑤7</harm>
+            </measure>
+
+            <!-- Bar 3: "^G"B B "^D7"c2 "^G"B2
+                 B(q) B(q) c2(h) B2(h) = beat1=B4+B4, beat2=C5(half, D7 chord), beat3=B4(half, G)
+            -->
+            <measure n="3">
+              <staff n="1">
+                <layer n="1">
+                  <note xml:id="m3n1" pname="b" oct="4" dur="4"/>
+                  <note xml:id="m3n2" pname="b" oct="4" dur="4"/>
+                  <note xml:id="m3n3" pname="c" oct="5" dur="2"/>
+                  <note xml:id="m3n4" pname="b" oct="4" dur="2"/>
+                </layer>
+              </staff>
+              <staff n="2">
+                <layer n="1">
+                  <!-- RH: D5 E5 — ascending approach to climax -->
+                  <note xml:id="m3r1" pname="d" oct="5" dur="2"/>
+                  <note xml:id="m3r2" pname="e" oct="5" dur="2"/>
+                  <note xml:id="m3r3" pname="d" oct="5" dur="2"/>
+                </layer>
+              </staff>
+              <staff n="3">
+                <layer n="1">
+                  <!-- G "334": G2 D3 G3 B3 -->
+                  <chord xml:id="m3l1" dur="2">
+                    <note pname="g" oct="2"/>
+                    <note pname="d" oct="3"/>
+                    <note pname="g" oct="3"/>
+                    <note pname="b" oct="3"/>
+                  </chord>
+                  <!-- D "333" 7th: D2 F#2 A2 C3 (D7 for richness) -->
+                  <chord xml:id="m3l2" dur="2">
+                    <note pname="d" oct="2"/>
+                    <note pname="f" oct="2" accid.ges="s"/>
+                    <note pname="a" oct="2"/>
+                    <note pname="c" oct="3"/>
+                  </chord>
+                  <!-- G "43" 1st inv: B2 D3 G3 B3 -->
+                  <chord xml:id="m3l3" dur="2">
+                    <note pname="b" oct="2"/>
+                    <note pname="d" oct="3"/>
+                    <note pname="g" oct="3"/>
+                    <note pname="b" oct="3"/>
+                  </chord>
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">①</harm>
+              <harm staff="1" tstamp="2">⑤7</harm>
+              <harm staff="1" tstamp="3">①</harm>
+            </measure>
+
+            <!-- Bar 4: "^D"A4 d2
+                 A4(whole? = 4 quarters = 2 halves) d2(h) = 3 half beats ✓
+                 A(whole=2 half beats) d2(h) = beats 1+2 = A4, beat 3 = D5
+                 Chords: D(b1) then d=D5 melody for G or D chord
+                 "^D"A4 = D chord (A is 5th of D), on beats 1-2
+                 d2 = presumably G chord (d is 5th of G) but no annotation
+            -->
+            <measure n="4">
+              <staff n="1">
+                <layer n="1">
+                  <note xml:id="m4n1" pname="a" oct="4" dur="1"/>
+                  <note xml:id="m4n2" pname="d" oct="5" dur="2"/>
+                </layer>
+              </staff>
+              <staff n="2">
+                <layer n="1">
+                  <!-- RH: F#4 A4 then D5 — gentle melodic support -->
+                  <chord xml:id="m4r1" dur="1">
+                    <note pname="f" oct="4" accid.ges="s"/>
+                    <note pname="a" oct="4"/>
+                  </chord>
+                  <note xml:id="m4r2" pname="b" oct="4" dur="2"/>
+                </layer>
+              </staff>
+              <staff n="3">
+                <layer n="1">
+                  <!-- D "334": D2 A2 D3 F#3 — held whole note (2 half beats) -->
+                  <chord xml:id="m4l1" dur="1">
+                    <note pname="d" oct="2"/>
+                    <note pname="a" oct="2"/>
+                    <note pname="d" oct="3"/>
+                    <note pname="f" oct="3" accid.ges="s"/>
+                  </chord>
+                  <!-- G "33": G2 D3 G3 B3 on beat 3 -->
+                  <chord xml:id="m4l2" dur="2">
+                    <note pname="g" oct="2"/>
+                    <note pname="d" oct="3"/>
+                    <note pname="g" oct="3"/>
+                    <note pname="b" oct="3"/>
+                  </chord>
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">⑤</harm>
+              <harm staff="1" tstamp="3">①</harm>
+            </measure>
+
+            <!-- Bar 5: "^G"d B B2 G2
+                 d(q) B(q) B2(h) G2(h) = beat1=D5+B4 (2q), beat2=B4(h), beat3=G4(h)
+                 Chord: G throughout
+            -->
+            <measure n="5">
+              <staff n="1">
+                <layer n="1">
+                  <note xml:id="m5n1" pname="d" oct="5" dur="4"/>
+                  <note xml:id="m5n2" pname="b" oct="4" dur="4"/>
+                  <note xml:id="m5n3" pname="b" oct="4" dur="2"/>
+                  <note xml:id="m5n4" pname="g" oct="4" dur="2"/>
+                </layer>
+              </staff>
+              <staff n="2">
+                <layer n="1">
+                  <!-- RH: G4 A4 D5 — rising arpeggio over G -->
+                  <note xml:id="m5r1" pname="g" oct="4" dur="2"/>
+                  <note xml:id="m5r2" pname="a" oct="4" dur="2"/>
+                  <note xml:id="m5r3" pname="d" oct="5" dur="2"/>
+                </layer>
+              </staff>
+              <staff n="3">
+                <layer n="1">
+                  <!-- G "334": G2 D3 G3 B3 open — broad half-note values -->
+                  <chord xml:id="m5l1" dur="2">
+                    <note pname="g" oct="2"/>
+                    <note pname="d" oct="3"/>
+                    <note pname="g" oct="3"/>
+                    <note pname="b" oct="3"/>
+                  </chord>
+                  <!-- G "44" quartal: G2 C3 F#3 for variety on repeat beat -->
+                  <chord xml:id="m5l2" dur="2">
+                    <note pname="g" oct="2"/>
+                    <note pname="c" oct="3"/>
+                    <note pname="f" oct="3" accid.ges="s"/>
+                  </chord>
+                  <!-- G "33": G2 B2 D3 G3 -->
+                  <chord xml:id="m5l3" dur="2">
+                    <note pname="g" oct="2"/>
+                    <note pname="b" oct="2"/>
+                    <note pname="d" oct="3"/>
+                    <note pname="g" oct="3"/>
+                  </chord>
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">①</harm>
+              <harm staff="1" tstamp="2">①</harm>
+              <harm staff="1" tstamp="3">①</harm>
+            </measure>
+
+            <!-- Bar 6: "^C"G E E2 G E
+                 G(q) E(q) E2(h) G(q) E(q) = beats: GE(1 half) + E2(1 half) + GE(1 half) = 3 ✓
+                 Chord: C throughout → ④
+            -->
+            <measure n="6">
+              <staff n="1">
+                <layer n="1">
+                  <note xml:id="m6n1" pname="g" oct="4" dur="4"/>
+                  <note xml:id="m6n2" pname="e" oct="4" dur="4"/>
+                  <note xml:id="m6n3" pname="e" oct="4" dur="2"/>
+                  <note xml:id="m6n4" pname="g" oct="4" dur="4"/>
+                  <note xml:id="m6n5" pname="e" oct="4" dur="4"/>
+                </layer>
+              </staff>
+              <staff n="2">
+                <layer n="1">
+                  <!-- RH: E5 C5 E5 — gentle arching figure over C -->
+                  <note xml:id="m6r1" pname="e" oct="5" dur="2"/>
+                  <note xml:id="m6r2" pname="c" oct="5" dur="2"/>
+                  <note xml:id="m6r3" pname="e" oct="5" dur="2"/>
+                </layer>
+              </staff>
+              <staff n="3">
+                <layer n="1">
+                  <!-- C "334": C2 G2 C3 E3 open — light texture for contrast -->
+                  <chord xml:id="m6l1" dur="2">
+                    <note pname="c" oct="2"/>
+                    <note pname="g" oct="2"/>
+                    <note pname="c" oct="3"/>
+                    <note pname="e" oct="3"/>
+                  </chord>
+                  <!-- C "333" 7th: C2 E3 G3 B3 — CΔ7 for richness -->
+                  <chord xml:id="m6l2" dur="2">
+                    <note pname="c" oct="2"/>
+                    <note pname="e" oct="3"/>
+                    <note pname="g" oct="3"/>
+                    <note pname="b" oct="3"/>
+                  </chord>
+                  <!-- C "33": C2 G2 C3 E3 -->
+                  <chord xml:id="m6l3" dur="2">
+                    <note pname="c" oct="2"/>
+                    <note pname="g" oct="2"/>
+                    <note pname="c" oct="3"/>
+                    <note pname="e" oct="3"/>
+                  </chord>
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">④</harm>
+              <harm staff="1" tstamp="2">④Δ7</harm>
+              <harm staff="1" tstamp="3">④</harm>
+            </measure>
+
+            <!-- Bar 7: "^G"D G G2 "^D7"A2
+                 D(q) G(q) G2(h) A2(h) = beat1=D4+G4 (2q), beat2=G4(h), beat3=A4(h)
+                 Chord: G(b1) G(b2) D7(b3)
+            -->
+            <measure n="7">
+              <staff n="1">
+                <layer n="1">
+                  <note xml:id="m7n1" pname="d" oct="4" dur="4"/>
+                  <note xml:id="m7n2" pname="g" oct="4" dur="4"/>
+                  <note xml:id="m7n3" pname="g" oct="4" dur="2"/>
+                  <note xml:id="m7n4" pname="a" oct="4" dur="2"/>
+                </layer>
+              </staff>
+              <staff n="2">
+                <layer n="1">
+                  <!-- RH: B4 D5 C5 — suspension on D7 beat -->
+                  <note xml:id="m7r1" pname="b" oct="4" dur="2"/>
+                  <note xml:id="m7r2" pname="d" oct="5" dur="2"/>
+                  <note xml:id="m7r3" pname="c" oct="5" dur="2"/>
+                </layer>
+              </staff>
+              <staff n="3">
+                <layer n="1">
+                  <!-- G "334": G2 D3 G3 B3 -->
+                  <chord xml:id="m7l1" dur="2">
+                    <note pname="g" oct="2"/>
+                    <note pname="d" oct="3"/>
+                    <note pname="g" oct="3"/>
+                    <note pname="b" oct="3"/>
+                  </chord>
+                  <!-- G "334": same — hold through beat 2 -->
+                  <chord xml:id="m7l2" dur="2">
+                    <note pname="g" oct="2"/>
+                    <note pname="d" oct="3"/>
+                    <note pname="g" oct="3"/>
+                    <note pname="b" oct="3"/>
+                  </chord>
+                  <!-- D7 "333": D2 F#2 A2 C3 — cadential approach -->
+                  <chord xml:id="m7l3" dur="2">
+                    <note pname="d" oct="2"/>
+                    <note pname="f" oct="2" accid.ges="s"/>
+                    <note pname="a" oct="2"/>
+                    <note pname="c" oct="3"/>
+                  </chord>
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">①</harm>
+              <harm staff="1" tstamp="3">⑤7</harm>
+            </measure>
+
+            <!-- Bar 8 (final): "^G"G4
+                 G4 = 4 quarter notes = 2 half notes = 2 beats.
+                 In 3/2 this is only 2 out of 3 beats — but it's the final bar and
+                 a whole note fills it (the bar is underfull — like a final chord).
+                 Treat as dotted whole (3 halves) for completeness, or just write G as breve.
+                 Given ABC says G4 (4 quarters) in a 3/2 bar = 2 half beats, write as half + half.
+            -->
+            <measure n="8" right="end">
+              <staff n="1">
+                <layer n="1">
+                  <!-- G4 = whole note in 3/2 context = 2 half beats -->
+                  <note xml:id="m8n1" pname="g" oct="4" dur="1"/>
+                </layer>
+              </staff>
+              <staff n="2">
+                <layer n="1">
+                  <!-- Final RH: full G chord B4 D5 held -->
+                  <chord xml:id="m8r1" dur="1">
+                    <note pname="b" oct="4"/>
+                    <note pname="d" oct="5"/>
+                  </chord>
+                </layer>
+              </staff>
+              <staff n="3">
+                <layer n="1">
+                  <!-- Final G tonic: G2 D3 G3 B3 — root position, full open, whole note -->
+                  <chord xml:id="m8l1" dur="1">
+                    <note pname="g" oct="2"/>
+                    <note pname="d" oct="3"/>
+                    <note pname="g" oct="3"/>
+                    <note pname="b" oct="3"/>
+                  </chord>
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">①</harm>
+            </measure>
+
+          </section>
+        </score>
+      </mdiv>
+    </body>
+  </music>
+</mei>
+<!--
+VOICING PLAN:
+- Key: G major (1 sharp). Compact hymn (8 bars in 3/2, plus pickup) — stately, broad character.
+- 3/2 time: half-note values dominate; each bar has 3 broad beats.
+- Pickup and bars 1-4: Establish G major with open "334" voicings (G2 D3 G3 B3).
+- D chord voicings: "334" D2 A2 D3 F#3 — open 5th-root-3rd-octave spread.
+- Bar 2: G "43" 1st inversion (B2 D3 G3) for variety; Em "33" (E2 G2 B2 E3) for smooth vi.
+- Bar 3: D7 "333" (D2 F#2 A2 C3) for the dominant 7th — adds the 7th in bass for fullness.
+- Bar 5: Three voicings of G in succession — "334" → "44" quartal (G2 C3 F#3) → "33" — textural variety within a single chord.
+- Bar 6: C "334" → CΔ7 (C2 E3 G3 B3) for the C major section — the major 7th adds warmth.
+- Bar 7: G held 2 beats then D7 approach — RH suspension C5 (4-3 above G bass) on the dominant.
+- Bar 8: Final whole G tonic, full 4-note open voicing.
+
+VOICE LEADING HIGHLIGHTS:
+- Bar 2 RH: G4→E4→F#4 — small-step chromatic motion through Em/D7.
+- Bar 5 RH: G4→A4→D5 — ascending arpeggio mirrors the melody's D5→B4→B4 descent (contrary motion).
+- Bar 7 RH: B4→D5→C5 — the C5 suspension resolves the D7 bass tension before the final G.
+- Common tone G3 present in almost every LH voicing — provides tonal continuity.
+- Bars 6-7: smooth bass motion C2→G2→D2 in half notes — strong root bass line.
+
+TEXTURE ARC:
+- Pickup + bars 1-2: Sparse 3-note LH, single-note RH pickups — open, spacious beginning.
+- Bars 3-4: Richer — 4-note LH, fuller RH motion (up to E5 in bar 3).
+- Bar 5: Explorative — three different G voicings including quartal; RH rises to D5.
+- Bar 6: C major contrast — lighter texture (C2 bass) with CΔ7 warmth.
+- Bar 7: Return to G → D7 preparation; RH suspension (D5→C5) builds anticipation.
+- Bar 8: Final tonic G — full 4-note root position chord, whole-note values, quiet resolution.
+-->

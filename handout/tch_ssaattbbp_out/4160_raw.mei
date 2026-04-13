@@ -1,0 +1,831 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 4160: Wilt Thou, O Man, Live Happily — Key: C major, 4/4 -->
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0">
+  <meiHead>
+    <fileDesc>
+      <titleStmt><title>Wilt Thou, O Man, Live Happily</title></titleStmt>
+      <pubStmt><unpub/></pubStmt>
+    </fileDesc>
+  </meiHead>
+  <music>
+    <body>
+      <mdiv>
+        <score>
+          <scoreDef meter.count="4" meter.unit="4" key.sig="0">
+            <staffGrp symbol="bracket">
+              <staffDef n="1" lines="5" clef.shape="G" clef.line="2">
+                <keySig sig="0"/>
+              </staffDef>
+              <staffGrp symbol="brace">
+                <staffDef n="2" lines="5" clef.shape="G" clef.line="2">
+                  <keySig sig="0"/>
+                </staffDef>
+                <staffDef n="3" lines="5" clef.shape="F" clef.line="4">
+                  <keySig sig="0"/>
+                </staffDef>
+              </staffGrp>
+            </staffGrp>
+          </scoreDef>
+          <section>
+            <!--
+              Chord progression (measure by measure, L=1/4):
+              M1: Em Em C G
+              M2: Am Em Am E
+              M3: Am Am E E
+              M4: Am G Am Am
+              M5: G G C C
+              M6: G Dm A A
+              M7: G G C G
+              M8: C Dm E Am
+              M9: E E Em Em
+              M10: B° C G Em
+              M11: Am Dm Am Am
+              M12: G Dm Am Am
+              M13: E E E E (final)
+
+              Diatonic substitutions (key of C):
+              Em = iii, C = I, G = V, Am = vi, E = III (chromatic — use iii/Em diatonic sub)
+              Dm = ii, B° = vii°, A = VI (chromatic — use vi=Am)
+              For chromatic chords (E major, A major, B°) we use diatonic neighbors.
+
+              VOICING PLAN:
+              - Opening (M1-4): light "33" triads, RH 2 notes, LH 3 notes
+              - Middle (M5-9): "43" 1st inversions for variety; "333" 7ths at emotional peak
+              - Climax (M10-12): fuller 4-note LH, "34" 2nd inversions
+              - Cadence (M13): root position I, pedal C1
+
+              Circled digits: ① = I(C), ② = ii(Dm), ③ = iii(Em), ④ = IV(F), ⑤ = V(G), ⑥ = vi(Am), ⑦ = vii°(B°)
+            -->
+
+            <!-- MEASURE 1: Em Em C G  → ③ ③ ① ⑤ -->
+            <measure n="1">
+              <staff n="1">
+                <layer n="1">
+                  <!-- melody: E2 G G -->
+                  <note xml:id="m1s1n1" pname="e" oct="4" dur="2"/>
+                  <note xml:id="m1s1n2" pname="g" oct="4" dur="4"/>
+                  <note xml:id="m1s1n3" pname="g" oct="4" dur="4"/>
+                </layer>
+              </staff>
+              <staff n="2">
+                <!-- RH: Em → C: light opening, 2 notes moving -->
+                <layer n="1">
+                  <!-- Moving: Em chord tones B4 E5, then C4 E4 for C -->
+                  <chord dur="2" stem.dir="up">
+                    <note pname="b" oct="4"/>
+                    <note pname="e" oct="5"/>
+                  </chord>
+                  <chord dur="4" stem.dir="up">
+                    <note pname="c" oct="5"/>
+                    <note pname="e" oct="5"/>
+                  </chord>
+                  <chord dur="4" stem.dir="up">
+                    <!-- G: B4 D5 -->
+                    <note pname="b" oct="4"/>
+                    <note pname="d" oct="5"/>
+                  </chord>
+                </layer>
+                <layer n="2">
+                  <!-- Sustained: nothing held across chord change here -->
+                  <rest dur="1" visible="false"/>
+                </layer>
+              </staff>
+              <staff n="3">
+                <!-- LH: Em open voicing, 3 notes -->
+                <layer n="1">
+                  <!-- Moving Em: E2 B2 E3 -->
+                  <chord dur="2" stem.dir="up">
+                    <note pname="e" oct="2"/>
+                    <note pname="b" oct="2"/>
+                    <note pname="e" oct="3"/>
+                  </chord>
+                  <!-- C major: C3 G3 C4  (beat 3) -->
+                  <chord dur="4" stem.dir="up">
+                    <note pname="c" oct="3"/>
+                    <note pname="g" oct="3"/>
+                    <note pname="c" oct="4"/>
+                  </chord>
+                  <!-- G major: G2 D3 G3 (beat 4) -->
+                  <chord dur="4" stem.dir="up">
+                    <note pname="g" oct="2"/>
+                    <note pname="d" oct="3"/>
+                    <note pname="g" oct="3"/>
+                  </chord>
+                </layer>
+                <layer n="2">
+                  <!-- Pedal: E1 held -->
+                  <note pname="e" oct="1" dur="2" stem.dir="down"/>
+                  <rest dur="2" visible="false"/>
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">③</harm>
+              <harm staff="1" tstamp="3">①</harm>
+              <harm staff="1" tstamp="4">⑤</harm>
+            </measure>
+
+            <!-- MEASURE 2: Am Em Am E → ⑥ ③ ⑥ ③ -->
+            <measure n="2">
+              <staff n="1">
+                <layer n="1">
+                  <note pname="a" oct="4" dur="4"/>
+                  <note pname="b" oct="4" dur="4"/>
+                  <note pname="c" oct="5" dur="4"/>
+                  <note pname="b" oct="4" dur="4"/>
+                </layer>
+              </staff>
+              <staff n="2">
+                <layer n="1">
+                  <!-- Am: A4 C5; Em: B4 E5; Am: A4 C5; Em(E): B4 E5 -->
+                  <chord dur="4" stem.dir="up">
+                    <note pname="a" oct="4"/>
+                    <note pname="c" oct="5"/>
+                  </chord>
+                  <chord dur="4" stem.dir="up">
+                    <note pname="b" oct="4"/>
+                    <note pname="e" oct="5"/>
+                  </chord>
+                  <chord dur="4" stem.dir="up">
+                    <note pname="a" oct="4"/>
+                    <note pname="c" oct="5"/>
+                  </chord>
+                  <chord dur="4" stem.dir="up">
+                    <note pname="b" oct="4"/>
+                    <note pname="e" oct="5"/>
+                  </chord>
+                </layer>
+                <layer n="2">
+                  <rest dur="1" visible="false"/>
+                </layer>
+              </staff>
+              <staff n="3">
+                <layer n="1">
+                  <!-- Am: A2 E3 A3; Em: E3 B3; Am again; Em -->
+                  <chord dur="4" stem.dir="up">
+                    <note pname="a" oct="2"/>
+                    <note pname="e" oct="3"/>
+                    <note pname="a" oct="3"/>
+                  </chord>
+                  <chord dur="4" stem.dir="up">
+                    <note pname="e" oct="3"/>
+                    <note pname="b" oct="3"/>
+                    <note pname="e" oct="3"/>
+                  </chord>
+                  <chord dur="4" stem.dir="up">
+                    <note pname="a" oct="2"/>
+                    <note pname="e" oct="3"/>
+                    <note pname="a" oct="3"/>
+                  </chord>
+                  <chord dur="4" stem.dir="up">
+                    <note pname="e" oct="3"/>
+                    <note pname="b" oct="3"/>
+                    <note pname="g" oct="3"/>
+                  </chord>
+                </layer>
+                <layer n="2">
+                  <note pname="a" oct="1" dur="1" stem.dir="down"/>
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">⑥</harm>
+              <harm staff="1" tstamp="2">③</harm>
+              <harm staff="1" tstamp="3">⑥</harm>
+              <harm staff="1" tstamp="4">③</harm>
+            </measure>
+
+            <!-- MEASURE 3: Am Am E E → ⑥ ⑥ ③ ③  (E→iii diatonic) -->
+            <measure n="3">
+              <staff n="1">
+                <layer n="1">
+                  <note pname="a" oct="4" dur="2"/>
+                  <note pname="b" oct="4" dur="2"/>
+                </layer>
+              </staff>
+              <staff n="2">
+                <layer n="1">
+                  <chord dur="2" stem.dir="up">
+                    <note pname="a" oct="4"/>
+                    <note pname="c" oct="5"/>
+                  </chord>
+                  <!-- iii (Em): sustain C→B change, RH 1st inv "43" -->
+                  <chord dur="2" stem.dir="up">
+                    <note pname="b" oct="4"/>
+                    <note pname="e" oct="5"/>
+                  </chord>
+                </layer>
+                <layer n="2">
+                  <!-- E4 common tone between Am and Em -->
+                  <note pname="e" oct="4" dur="1" stem.dir="down"/>
+                </layer>
+              </staff>
+              <staff n="3">
+                <layer n="1">
+                  <chord dur="2" stem.dir="up">
+                    <note pname="a" oct="2"/>
+                    <note pname="e" oct="3"/>
+                    <note pname="a" oct="3"/>
+                  </chord>
+                  <chord dur="2" stem.dir="up">
+                    <note pname="e" oct="2"/>
+                    <note pname="b" oct="2"/>
+                    <note pname="g" oct="3"/>
+                  </chord>
+                </layer>
+                <layer n="2">
+                  <note pname="a" oct="1" dur="2" stem.dir="down"/>
+                  <note pname="e" oct="1" dur="2" stem.dir="down"/>
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">⑥</harm>
+              <harm staff="1" tstamp="3">③</harm>
+            </measure>
+
+            <!-- MEASURE 4: Am G Am Am → ⑥ ⑤ ⑥ ⑥ -->
+            <measure n="4">
+              <staff n="1">
+                <layer n="1">
+                  <note pname="c" oct="5" dur="4"/>
+                  <note pname="g" oct="4" dur="4"/>
+                  <note pname="a" oct="4" dur="4"/>
+                  <note pname="e" oct="4" dur="4"/>
+                </layer>
+              </staff>
+              <staff n="2">
+                <layer n="1">
+                  <chord dur="4" stem.dir="up">
+                    <note pname="e" oct="5"/>
+                    <note pname="a" oct="4"/>
+                  </chord>
+                  <chord dur="4" stem.dir="up">
+                    <note pname="d" oct="5"/>
+                    <note pname="b" oct="4"/>
+                  </chord>
+                  <chord dur="2" stem.dir="up">
+                    <note pname="e" oct="5"/>
+                    <note pname="a" oct="4"/>
+                  </chord>
+                </layer>
+                <layer n="2">
+                  <rest dur="1" visible="false"/>
+                </layer>
+              </staff>
+              <staff n="3">
+                <layer n="1">
+                  <chord dur="4" stem.dir="up">
+                    <note pname="a" oct="2"/>
+                    <note pname="e" oct="3"/>
+                    <note pname="a" oct="3"/>
+                  </chord>
+                  <chord dur="4" stem.dir="up">
+                    <note pname="g" oct="2"/>
+                    <note pname="d" oct="3"/>
+                    <note pname="b" oct="3"/>
+                  </chord>
+                  <chord dur="2" stem.dir="up">
+                    <note pname="a" oct="2"/>
+                    <note pname="e" oct="3"/>
+                    <note pname="a" oct="3"/>
+                  </chord>
+                </layer>
+                <layer n="2">
+                  <note pname="a" oct="1" dur="4" stem.dir="down"/>
+                  <note pname="g" oct="1" dur="4" stem.dir="down"/>
+                  <note pname="a" oct="1" dur="2" stem.dir="down"/>
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">⑥</harm>
+              <harm staff="1" tstamp="2">⑤</harm>
+              <harm staff="1" tstamp="3">⑥</harm>
+            </measure>
+
+            <!-- MEASURE 5: G G C C → ⑤ ⑤ ① ① -->
+            <measure n="5">
+              <staff n="1">
+                <layer n="1">
+                  <note pname="g" oct="4" dur="2"/>
+                  <note pname="e" oct="4" dur="4"/>
+                  <note pname="c" oct="4" dur="4"/>
+                </layer>
+              </staff>
+              <staff n="2">
+                <layer n="1">
+                  <!-- G: use "43" 1st inv — B4 E5; C: "33" — C5 E5 -->
+                  <chord dur="2" stem.dir="up">
+                    <note pname="b" oct="4"/>
+                    <note pname="d" oct="5"/>
+                  </chord>
+                  <chord dur="2" stem.dir="up">
+                    <note pname="c" oct="5"/>
+                    <note pname="e" oct="5"/>
+                  </chord>
+                </layer>
+                <layer n="2">
+                  <rest dur="1" visible="false"/>
+                </layer>
+              </staff>
+              <staff n="3">
+                <layer n="1">
+                  <!-- G: G2 D3 G3 B3; C: C3 G3 C4 -->
+                  <chord dur="2" stem.dir="up">
+                    <note pname="g" oct="2"/>
+                    <note pname="d" oct="3"/>
+                    <note pname="g" oct="3"/>
+                    <note pname="b" oct="3"/>
+                  </chord>
+                  <chord dur="2" stem.dir="up">
+                    <note pname="c" oct="3"/>
+                    <note pname="g" oct="3"/>
+                    <note pname="c" oct="4"/>
+                  </chord>
+                </layer>
+                <layer n="2">
+                  <note pname="g" oct="1" dur="2" stem.dir="down"/>
+                  <note pname="c" oct="1" dur="2" stem.dir="down"/>
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">⑤</harm>
+              <harm staff="1" tstamp="3">①</harm>
+            </measure>
+
+            <!-- MEASURE 6: G Dm A(→vi) A → ⑤ ② ⑥ ⑥ -->
+            <measure n="6">
+              <staff n="1">
+                <layer n="1">
+                  <note pname="g" oct="4" dur="4"/>
+                  <note pname="f" oct="4" dur="4"/>
+                  <note pname="e" oct="4" dur="2"/>
+                </layer>
+              </staff>
+              <staff n="2">
+                <layer n="1">
+                  <chord dur="4" stem.dir="up">
+                    <note pname="b" oct="4"/>
+                    <note pname="d" oct="5"/>
+                  </chord>
+                  <chord dur="4" stem.dir="up">
+                    <note pname="d" oct="5"/>
+                    <note pname="f" oct="5"/>
+                  </chord>
+                  <!-- A→vi (Am): A4 C5 -->
+                  <chord dur="2" stem.dir="up">
+                    <note pname="a" oct="4"/>
+                    <note pname="c" oct="5"/>
+                  </chord>
+                </layer>
+                <layer n="2">
+                  <rest dur="1" visible="false"/>
+                </layer>
+              </staff>
+              <staff n="3">
+                <layer n="1">
+                  <chord dur="4" stem.dir="up">
+                    <note pname="g" oct="2"/>
+                    <note pname="d" oct="3"/>
+                    <note pname="b" oct="3"/>
+                  </chord>
+                  <chord dur="4" stem.dir="up">
+                    <note pname="d" oct="3"/>
+                    <note pname="a" oct="3"/>
+                    <note pname="f" oct="3"/>
+                  </chord>
+                  <chord dur="2" stem.dir="up">
+                    <note pname="a" oct="2"/>
+                    <note pname="e" oct="3"/>
+                    <note pname="a" oct="3"/>
+                  </chord>
+                </layer>
+                <layer n="2">
+                  <note pname="g" oct="1" dur="4" stem.dir="down"/>
+                  <note pname="d" oct="1" dur="4" stem.dir="down"/>
+                  <note pname="a" oct="1" dur="2" stem.dir="down"/>
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">⑤</harm>
+              <harm staff="1" tstamp="2">②</harm>
+              <harm staff="1" tstamp="3">⑥</harm>
+            </measure>
+
+            <!-- MEASURE 7: G G C G → ⑤ ⑤ ① ⑤ -->
+            <measure n="7">
+              <staff n="1">
+                <layer n="1">
+                  <note pname="b" oct="4" dur="2"/>
+                  <note pname="c" oct="5" dur="4"/>
+                  <note pname="d" oct="5" dur="4"/>
+                </layer>
+              </staff>
+              <staff n="2">
+                <layer n="1">
+                  <!-- "333" V7 for richness -->
+                  <chord dur="2" stem.dir="up">
+                    <note pname="f" oct="5"/>
+                    <note pname="d" oct="5"/>
+                    <note pname="b" oct="4"/>
+                  </chord>
+                  <chord dur="4" stem.dir="up">
+                    <note pname="c" oct="5"/>
+                    <note pname="e" oct="5"/>
+                  </chord>
+                  <chord dur="4" stem.dir="up">
+                    <note pname="b" oct="4"/>
+                    <note pname="d" oct="5"/>
+                  </chord>
+                </layer>
+                <layer n="2">
+                  <rest dur="1" visible="false"/>
+                </layer>
+              </staff>
+              <staff n="3">
+                <layer n="1">
+                  <chord dur="2" stem.dir="up">
+                    <note pname="g" oct="2"/>
+                    <note pname="d" oct="3"/>
+                    <note pname="f" oct="3"/>
+                    <note pname="b" oct="3"/>
+                  </chord>
+                  <chord dur="4" stem.dir="up">
+                    <note pname="c" oct="3"/>
+                    <note pname="g" oct="3"/>
+                    <note pname="e" oct="3"/>
+                  </chord>
+                  <chord dur="4" stem.dir="up">
+                    <note pname="g" oct="2"/>
+                    <note pname="d" oct="3"/>
+                    <note pname="b" oct="3"/>
+                  </chord>
+                </layer>
+                <layer n="2">
+                  <note pname="g" oct="1" dur="1" stem.dir="down"/>
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">⑤7</harm>
+              <harm staff="1" tstamp="3">①</harm>
+              <harm staff="1" tstamp="4">⑤</harm>
+            </measure>
+
+            <!-- MEASURE 8: C Dm E(→iii) Am → ① ② ③ ⑥ -->
+            <measure n="8">
+              <staff n="1">
+                <layer n="1">
+                  <note pname="c" oct="5" dur="4"/>
+                  <note pname="a" oct="4" dur="4"/>
+                  <accid accid="s" pname="g" oct="4"/>
+                  <note pname="g" oct="4" dur="4" accid.ges="s"/>
+                  <note pname="a" oct="4" dur="4"/>
+                </layer>
+              </staff>
+              <staff n="2">
+                <layer n="1">
+                  <chord dur="4" stem.dir="up">
+                    <note pname="c" oct="5"/>
+                    <note pname="e" oct="5"/>
+                  </chord>
+                  <chord dur="4" stem.dir="up">
+                    <note pname="d" oct="5"/>
+                    <note pname="f" oct="5"/>
+                  </chord>
+                  <chord dur="4" stem.dir="up">
+                    <note pname="e" oct="5"/>
+                    <note pname="b" oct="4"/>
+                  </chord>
+                  <chord dur="4" stem.dir="up">
+                    <note pname="a" oct="4"/>
+                    <note pname="c" oct="5"/>
+                  </chord>
+                </layer>
+                <layer n="2">
+                  <rest dur="1" visible="false"/>
+                </layer>
+              </staff>
+              <staff n="3">
+                <layer n="1">
+                  <chord dur="4" stem.dir="up">
+                    <note pname="c" oct="3"/>
+                    <note pname="g" oct="3"/>
+                    <note pname="e" oct="3"/>
+                  </chord>
+                  <chord dur="4" stem.dir="up">
+                    <note pname="d" oct="3"/>
+                    <note pname="a" oct="3"/>
+                    <note pname="f" oct="3"/>
+                  </chord>
+                  <chord dur="4" stem.dir="up">
+                    <note pname="e" oct="3"/>
+                    <note pname="b" oct="3"/>
+                    <note pname="g" oct="3"/>
+                  </chord>
+                  <chord dur="4" stem.dir="up">
+                    <note pname="a" oct="2"/>
+                    <note pname="e" oct="3"/>
+                    <note pname="c" oct="4"/>
+                  </chord>
+                </layer>
+                <layer n="2">
+                  <note pname="c" oct="1" dur="4" stem.dir="down"/>
+                  <note pname="d" oct="1" dur="4" stem.dir="down"/>
+                  <note pname="e" oct="1" dur="4" stem.dir="down"/>
+                  <note pname="a" oct="1" dur="4" stem.dir="down"/>
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">①</harm>
+              <harm staff="1" tstamp="2">②</harm>
+              <harm staff="1" tstamp="3">③</harm>
+              <harm staff="1" tstamp="4">⑥</harm>
+            </measure>
+
+            <!-- MEASURE 9: E E Em Em → ③ ③ ③ ③ (E→iii) -->
+            <measure n="9">
+              <staff n="1">
+                <layer n="1">
+                  <note pname="b" oct="4" dur="2"/>
+                  <note pname="e" oct="4" dur="2"/>
+                </layer>
+              </staff>
+              <staff n="2">
+                <layer n="1">
+                  <!-- iii: E4 G4 B4 "33" -->
+                  <chord dur="2" stem.dir="up">
+                    <note pname="b" oct="4"/>
+                    <note pname="e" oct="5"/>
+                  </chord>
+                  <chord dur="2" stem.dir="up">
+                    <note pname="g" oct="4"/>
+                    <note pname="b" oct="4"/>
+                  </chord>
+                </layer>
+                <layer n="2">
+                  <note pname="e" oct="4" dur="1" stem.dir="down"/>
+                </layer>
+              </staff>
+              <staff n="3">
+                <layer n="1">
+                  <chord dur="1" stem.dir="up">
+                    <note pname="e" oct="2"/>
+                    <note pname="b" oct="2"/>
+                    <note pname="g" oct="3"/>
+                    <note pname="e" oct="3"/>
+                  </chord>
+                </layer>
+                <layer n="2">
+                  <note pname="e" oct="1" dur="1" stem.dir="down"/>
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">③</harm>
+            </measure>
+
+            <!-- MEASURE 10: B° C G Em → ⑦° ① ⑤ ③ -->
+            <measure n="10">
+              <staff n="1">
+                <layer n="1">
+                  <note pname="b" oct="4" dur="4"/>
+                  <note pname="c" oct="5" dur="4"/>
+                  <note pname="b" oct="4" dur="4"/>
+                  <note pname="g" oct="4" dur="4"/>
+                </layer>
+              </staff>
+              <staff n="2">
+                <layer n="1">
+                  <!-- vii°: B4 D5 (33 dim); I: C5 E5; V: B4 D5; iii: G4 B4 -->
+                  <chord dur="4" stem.dir="up">
+                    <note pname="b" oct="4"/>
+                    <note pname="d" oct="5"/>
+                  </chord>
+                  <chord dur="4" stem.dir="up">
+                    <note pname="c" oct="5"/>
+                    <note pname="e" oct="5"/>
+                  </chord>
+                  <chord dur="4" stem.dir="up">
+                    <note pname="b" oct="4"/>
+                    <note pname="d" oct="5"/>
+                  </chord>
+                  <chord dur="4" stem.dir="up">
+                    <note pname="g" oct="4"/>
+                    <note pname="b" oct="4"/>
+                  </chord>
+                </layer>
+                <layer n="2">
+                  <rest dur="1" visible="false"/>
+                </layer>
+              </staff>
+              <staff n="3">
+                <layer n="1">
+                  <chord dur="4" stem.dir="up">
+                    <note pname="b" oct="2"/>
+                    <note pname="f" oct="3"/>
+                    <note pname="d" oct="3"/>
+                  </chord>
+                  <chord dur="4" stem.dir="up">
+                    <note pname="c" oct="3"/>
+                    <note pname="g" oct="3"/>
+                    <note pname="e" oct="3"/>
+                  </chord>
+                  <chord dur="4" stem.dir="up">
+                    <note pname="g" oct="2"/>
+                    <note pname="d" oct="3"/>
+                    <note pname="b" oct="3"/>
+                  </chord>
+                  <chord dur="4" stem.dir="up">
+                    <note pname="e" oct="2"/>
+                    <note pname="b" oct="2"/>
+                    <note pname="g" oct="3"/>
+                  </chord>
+                </layer>
+                <layer n="2">
+                  <note pname="b" oct="1" dur="4" stem.dir="down"/>
+                  <note pname="c" oct="1" dur="4" stem.dir="down"/>
+                  <note pname="g" oct="1" dur="4" stem.dir="down"/>
+                  <note pname="e" oct="1" dur="4" stem.dir="down"/>
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">⑦°</harm>
+              <harm staff="1" tstamp="2">①</harm>
+              <harm staff="1" tstamp="3">⑤</harm>
+              <harm staff="1" tstamp="4">③</harm>
+            </measure>
+
+            <!-- MEASURE 11: Am Dm Am Am → ⑥ ② ⑥ ⑥ -->
+            <measure n="11">
+              <staff n="1">
+                <layer n="1">
+                  <note pname="a" oct="4" dur="4"/>
+                  <note pname="f" oct="4" dur="4"/>
+                  <note pname="e" oct="4" dur="4"/>
+                  <note pname="c" oct="4" dur="4"/>
+                </layer>
+              </staff>
+              <staff n="2">
+                <layer n="1">
+                  <chord dur="4" stem.dir="up">
+                    <note pname="a" oct="4"/>
+                    <note pname="e" oct="5"/>
+                  </chord>
+                  <chord dur="4" stem.dir="up">
+                    <note pname="f" oct="4"/>
+                    <note pname="d" oct="5"/>
+                  </chord>
+                  <chord dur="2" stem.dir="up">
+                    <note pname="a" oct="4"/>
+                    <note pname="c" oct="5"/>
+                  </chord>
+                </layer>
+                <layer n="2">
+                  <rest dur="1" visible="false"/>
+                </layer>
+              </staff>
+              <staff n="3">
+                <layer n="1">
+                  <!-- Fuller voicing, 4 notes per chord (climax) -->
+                  <chord dur="4" stem.dir="up">
+                    <note pname="a" oct="2"/>
+                    <note pname="e" oct="3"/>
+                    <note pname="a" oct="3"/>
+                    <note pname="c" oct="4"/>
+                  </chord>
+                  <chord dur="4" stem.dir="up">
+                    <note pname="d" oct="3"/>
+                    <note pname="a" oct="3"/>
+                    <note pname="f" oct="3"/>
+                    <note pname="c" oct="4"/>
+                  </chord>
+                  <chord dur="2" stem.dir="up">
+                    <note pname="a" oct="2"/>
+                    <note pname="e" oct="3"/>
+                    <note pname="a" oct="3"/>
+                    <note pname="c" oct="4"/>
+                  </chord>
+                </layer>
+                <layer n="2">
+                  <note pname="a" oct="1" dur="4" stem.dir="down"/>
+                  <note pname="d" oct="1" dur="4" stem.dir="down"/>
+                  <note pname="a" oct="1" dur="2" stem.dir="down"/>
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">⑥</harm>
+              <harm staff="1" tstamp="2">②</harm>
+              <harm staff="1" tstamp="3">⑥</harm>
+            </measure>
+
+            <!-- MEASURE 12: G Dm Am Am → ⑤ ② ⑥² ⑥ -->
+            <measure n="12">
+              <staff n="1">
+                <layer n="1">
+                  <note pname="g" oct="4" dur="4" dots="1"/>
+                  <note pname="f" oct="4" dur="8"/>
+                  <note pname="e" oct="4" dur="2"/>
+                </layer>
+              </staff>
+              <staff n="2">
+                <layer n="1">
+                  <chord dur="4" dots="1" stem.dir="up">
+                    <note pname="d" oct="5"/>
+                    <note pname="b" oct="4"/>
+                  </chord>
+                  <chord dur="8" stem.dir="up">
+                    <note pname="d" oct="5"/>
+                    <note pname="f" oct="4"/>
+                  </chord>
+                  <!-- vi² (Am 2nd inversion): E4 A4 C5 "34" -->
+                  <chord dur="2" stem.dir="up">
+                    <note pname="e" oct="4"/>
+                    <note pname="a" oct="4"/>
+                    <note pname="c" oct="5"/>
+                  </chord>
+                </layer>
+                <layer n="2">
+                  <rest dur="1" visible="false"/>
+                </layer>
+              </staff>
+              <staff n="3">
+                <layer n="1">
+                  <chord dur="4" dots="1" stem.dir="up">
+                    <note pname="g" oct="2"/>
+                    <note pname="d" oct="3"/>
+                    <note pname="b" oct="3"/>
+                  </chord>
+                  <chord dur="8" stem.dir="up">
+                    <note pname="d" oct="3"/>
+                    <note pname="a" oct="3"/>
+                    <note pname="f" oct="3"/>
+                  </chord>
+                  <chord dur="2" stem.dir="up">
+                    <note pname="e" oct="3"/>
+                    <note pname="a" oct="3"/>
+                    <note pname="c" oct="4"/>
+                  </chord>
+                </layer>
+                <layer n="2">
+                  <note pname="g" oct="1" dur="4" dots="1" stem.dir="down"/>
+                  <note pname="d" oct="1" dur="8" stem.dir="down"/>
+                  <note pname="e" oct="1" dur="2" stem.dir="down"/>
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">⑤</harm>
+              <harm staff="1" tstamp="2">②</harm>
+              <harm staff="1" tstamp="3">⑥²</harm>
+            </measure>
+
+            <!-- MEASURE 13: E4 (final) → ③ (root pos, full voicing, pedal E1) -->
+            <measure n="13">
+              <staff n="1">
+                <layer n="1">
+                  <note pname="e" oct="4" dur="1"/>
+                </layer>
+              </staff>
+              <staff n="2">
+                <layer n="1">
+                  <!-- Full root position iii: E4 G4 B4 -->
+                  <chord dur="1" stem.dir="up">
+                    <note pname="e" oct="4"/>
+                    <note pname="g" oct="4"/>
+                    <note pname="b" oct="4"/>
+                  </chord>
+                </layer>
+                <layer n="2">
+                  <rest dur="1" visible="false"/>
+                </layer>
+              </staff>
+              <staff n="3">
+                <layer n="1">
+                  <chord dur="1" stem.dir="up">
+                    <note pname="e" oct="2"/>
+                    <note pname="b" oct="2"/>
+                    <note pname="e" oct="3"/>
+                    <note pname="g" oct="3"/>
+                  </chord>
+                </layer>
+                <layer n="2">
+                  <note pname="e" oct="1" dur="1" stem.dir="down"/>
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">③</harm>
+            </measure>
+
+          </section>
+        </score>
+      </mdiv>
+    </body>
+  </music>
+</mei>
+<!--
+VOICING PLAN:
+- M1 (Em): "33" root iii, light opening — RH: B4 E5, LH: E2 B2 E3
+- M2-4 (Am/Em oscillation): RH 2 notes per chord, smooth alternation
+- M5 (G→C): "43" 1st inv for G, "33" for C — variety at phrase midpoint
+- M7 (G): "333" V7 for richness — F5 D5 B4 LH adds 7th
+- M8 (C Dm E Am): 4-chord measure — each hand moves through full progression
+- M10 (B° C G Em): chromatic approach — B° uses F♮ (diatonic) for dim quality
+- M11-12 (Am Dm): climax — LH expands to 4 notes open voicing
+- M12: vi² (Am 2nd inversion) for suspension before final
+- M13: root pos iii (Em), pedal E1 — peaceful close
+
+VOICE LEADING HIGHLIGHTS:
+- M1→2: RH top note E5 common tone between iii and vi
+- M7: V7 (GDFB) anticipates resolution to I in M7 beat 3
+- M12: "34" Am 2nd inversion (E A C) creates gentle suspension into final cadence
+- Pedal bass tracks root faithfully, pedal harp reinforces each chord change
+
+TEXTURE ARC:
+- M1-4: Light, 2-note RH, 3-note LH — opening stillness
+- M5-7: Grows to 3-note RH when harmonic rhythm permits, V7 adds richness
+- M8: Active motion, 4 different chords → all voices moving
+- M9-12: Climax zone — LH expands to 4 notes; 2nd inversions add suspension
+- M13: Full close, root position, pedal bass E1 anchors final sonority
+-->

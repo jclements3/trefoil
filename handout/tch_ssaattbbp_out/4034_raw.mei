@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hymn 4034: Hark the Glad Sound — G major, 3/4, 4 measures
+     Pedal harp arrangement: Melody + RH + LH + P
+
+     ABC: "^G"D G B | "^D"d2 "^D7"c | "^Em7"B "^Am"c "^D"A | "^C"G2 "^G"B |
+
+     Chord analysis:
+     m1: G → I (G B D)
+     m2: D, D7 → V, V7
+     m3: Em7, Am (non-diatonic), D → vi7, ii (sub for Am), V
+     m4: C, G → IV, I
+
+     G major diatonic: G A B C D E F#
+     Key: G major (1 sharp: F → accid.ges="s")
+
+     Diatonic substitutions:
+     - Am: non-diatonic (ii in G major would be Am — wait, Am IS diatonic in G major!)
+       G major scale: G A B C D E F#. ii chord = Am (A C E). Am is diatonic. ✓
+
+     Duration check (3/4 = 3 quarter notes per measure):
+     m1: D(1) G(1) B(1) = 3 beats ✓
+     m2: d(2) c(1) = 3 beats ✓
+     m3: B(1) c(1) A(1) = 3 beats ✓
+     m4: G(2) B(1) = 3 beats ✓
+
+     TEXTURE ARC: 4 measures — compact but varied
+     - m1: light opening, 2+3 notes, I root position
+     - m2: fuller V7, anticipation of D
+     - m3: moving inner voices across chord changes
+     - m4: final cadence, root pos I
+-->
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="4.0">
+  <meiHead>
+    <fileDesc>
+      <titleStmt>
+        <title>Hark the Glad Sound</title>
+      </titleStmt>
+      <pubStmt/>
+    </fileDesc>
+  </meiHead>
+  <music>
+    <body>
+      <mdiv>
+        <score>
+          <scoreDef meter.count="3" meter.unit="4" key.sig="1s">
+            <staffGrp symbol="bracket">
+              <staffDef n="1" lines="5" clef.shape="G" clef.line="2">
+                <keySig sig="1s"/>
+              </staffDef>
+              <staffGrp symbol="brace">
+                <staffDef n="2" lines="5" clef.shape="G" clef.line="2">
+                  <keySig sig="1s"/>
+                </staffDef>
+                <staffDef n="3" lines="5" clef.shape="F" clef.line="4">
+                  <keySig sig="1s"/>
+                </staffDef>
+              </staffGrp>
+            </staffGrp>
+          </scoreDef>
+          <section>
+
+            <!-- m1: G → melody D G B (all quarters = 3 beats) -->
+            <measure n="1">
+              <staff n="1">
+                <layer n="1">
+                  <note xml:id="m1n1" dur="4" oct="4" pname="d"/>
+                  <note xml:id="m1n2" dur="4" oct="4" pname="g"/>
+                  <note xml:id="m1n3" dur="4" oct="4" pname="b"/>
+                </layer>
+              </staff>
+              <!-- RH: G-B (I "33" light) on beat 1, arpeggiate ascending -->
+              <staff n="2">
+                <layer n="1">
+                  <!-- beat 1: D-G (I "44" quartal opening) quarter -->
+                  <chord dur="4">
+                    <note xml:id="m1r1a" oct="4" pname="d"/>
+                    <note xml:id="m1r1b" oct="4" pname="g"/>
+                  </chord>
+                  <!-- beat 2: G-B (I "33") quarter -->
+                  <chord dur="4">
+                    <note xml:id="m1r2a" oct="4" pname="g"/>
+                    <note xml:id="m1r2b" oct="4" pname="b"/>
+                  </chord>
+                  <!-- beat 3: B-D (I "33" upper) quarter -->
+                  <chord dur="4">
+                    <note xml:id="m1r3a" oct="4" pname="b"/>
+                    <note xml:id="m1r3b" oct="5" pname="d"/>
+                  </chord>
+                </layer>
+              </staff>
+              <!-- LH: G2-D3-G3 (I root) dotted half -->
+              <staff n="3">
+                <layer n="1">
+                  <chord dur="2" dots="1">
+                    <note xml:id="m1l1a" oct="2" pname="g"/>
+                    <note xml:id="m1l1b" oct="3" pname="d"/>
+                    <note xml:id="m1l1c" oct="3" pname="g"/>
+                    <note xml:id="m1l1d" oct="3" pname="b"/>
+                  </chord>
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">①</harm>
+            </measure>
+
+            <!-- m2: D half, D7 quarter → melody d2 c (d=D5, c=C5) -->
+            <!-- Duration: D(half=2) + c(quarter=1) = 3 beats ✓ -->
+            <measure n="2">
+              <staff n="1">
+                <layer n="1">
+                  <note xml:id="m2n1" dur="2" oct="5" pname="d"/>
+                  <note xml:id="m2n2" dur="4" oct="5" pname="c"/>
+                </layer>
+              </staff>
+              <!-- RH: D-A (V "34" 2nd inv) half, then F#-A-C (V7) quarter -->
+              <staff n="2">
+                <layer n="1">
+                  <!-- beat 1: F#-A (V "33" partial) half -->
+                  <chord dur="2">
+                    <note xml:id="m2r1a" oct="4" pname="f" accid.ges="s"/>
+                    <note xml:id="m2r1b" oct="4" pname="a"/>
+                  </chord>
+                  <!-- beat 3: A-C (V7 partial, passing tone) quarter -->
+                  <chord dur="4">
+                    <note xml:id="m2r2a" oct="4" pname="a"/>
+                    <note xml:id="m2r2b" oct="5" pname="c"/>
+                  </chord>
+                </layer>
+              </staff>
+              <!-- LH: D2-A2-D3-F#3 (V "334") half + C3-A3 quarter -->
+              <staff n="3">
+                <layer n="1">
+                  <!-- beat 1: D2-A2-D3 (V "334") half -->
+                  <chord dur="2">
+                    <note xml:id="m2l1a" oct="2" pname="d"/>
+                    <note xml:id="m2l1b" oct="3" pname="a"/>
+                    <note xml:id="m2l1c" oct="3" pname="d"/>
+                    <note xml:id="m2l1d" oct="3" pname="f" accid.ges="s"/>
+                  </chord>
+                  <!-- beat 3: C3-G3 (V7 bass) quarter -->
+                  <chord dur="4">
+                    <note xml:id="m2l2a" oct="3" pname="c"/>
+                    <note xml:id="m2l2b" oct="3" pname="g"/>
+                    <note xml:id="m2l2c" oct="4" pname="c"/>
+                  </chord>
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">⑤</harm>
+              <harm staff="1" tstamp="3">⑤7</harm>
+            </measure>
+
+            <!-- m3: Em7 B, Am c, D A → vi7, ii, V -->
+            <!-- Melody: B(1) c(1) A(1) = 3 quarters -->
+            <measure n="3">
+              <staff n="1">
+                <layer n="1">
+                  <note xml:id="m3n1" dur="4" oct="4" pname="b"/>
+                  <note xml:id="m3n2" dur="4" oct="5" pname="c"/>
+                  <note xml:id="m3n3" dur="4" oct="4" pname="a"/>
+                </layer>
+              </staff>
+              <!-- RH: moving through vi → ii → V -->
+              <staff n="2">
+                <layer n="1">
+                  <!-- beat 1: G-B (vi "33" partial = Em lower) quarter -->
+                  <chord dur="4">
+                    <note xml:id="m3r1a" oct="4" pname="g"/>
+                    <note xml:id="m3r1b" oct="4" pname="b"/>
+                  </chord>
+                  <!-- beat 2: A-C (ii "33" partial) quarter -->
+                  <chord dur="4">
+                    <note xml:id="m3r2a" oct="4" pname="a"/>
+                    <note xml:id="m3r2b" oct="5" pname="c"/>
+                  </chord>
+                  <!-- beat 3: A-D (V "34" partial) quarter -->
+                  <chord dur="4">
+                    <note xml:id="m3r3a" oct="4" pname="a"/>
+                    <note xml:id="m3r3b" oct="5" pname="d"/>
+                  </chord>
+                </layer>
+              </staff>
+              <!-- LH: E2-B2-E3 (vi "334") → A2-E3-A3 (ii) → D2-A2-D3 (V) -->
+              <staff n="3">
+                <layer n="1">
+                  <!-- beat 1: E2-B2-E3-G3 (vi "333") quarter -->
+                  <chord dur="4">
+                    <note xml:id="m3l1a" oct="2" pname="e"/>
+                    <note xml:id="m3l1b" oct="2" pname="b"/>
+                    <note xml:id="m3l1c" oct="3" pname="e"/>
+                    <note xml:id="m3l1d" oct="3" pname="g"/>
+                  </chord>
+                  <!-- beat 2: A2-E3-A3 (ii "334") quarter -->
+                  <chord dur="4">
+                    <note xml:id="m3l2a" oct="2" pname="a"/>
+                    <note xml:id="m3l2b" oct="3" pname="e"/>
+                    <note xml:id="m3l2c" oct="3" pname="a"/>
+                  </chord>
+                  <!-- beat 3: D2-A2-D3 (V) quarter -->
+                  <chord dur="4">
+                    <note xml:id="m3l3a" oct="2" pname="d"/>
+                    <note xml:id="m3l3b" oct="3" pname="a"/>
+                    <note xml:id="m3l3c" oct="3" pname="d"/>
+                  </chord>
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">⑥m7</harm>
+              <harm staff="1" tstamp="2">②m</harm>
+              <harm staff="1" tstamp="3">⑤</harm>
+            </measure>
+
+            <!-- m4: C half, G quarter → IV then I final cadence -->
+            <!-- Melody: G(2) B(1) = half + quarter = 3 beats ✓ -->
+            <measure n="4" right="end">
+              <staff n="1">
+                <layer n="1">
+                  <note xml:id="m4n1" dur="2" oct="4" pname="g"/>
+                  <note xml:id="m4n2" dur="4" oct="4" pname="b"/>
+                </layer>
+              </staff>
+              <!-- RH: C-E (IV) half, G-D (I "34") quarter -->
+              <staff n="2">
+                <layer n="1">
+                  <!-- beat 1: C-E (IV partial) half -->
+                  <chord dur="2">
+                    <note xml:id="m4r1a" oct="4" pname="c"/>
+                    <note xml:id="m4r1b" oct="4" pname="e"/>
+                  </chord>
+                  <!-- beat 3: G-D (I "44") quarter -->
+                  <chord dur="4">
+                    <note xml:id="m4r2a" oct="4" pname="g"/>
+                    <note xml:id="m4r2b" oct="5" pname="d"/>
+                  </chord>
+                </layer>
+              </staff>
+              <!-- LH: C2-G2-C3-E3 (IV "334") half + G2-D3-G3-B3 (I "334") quarter -->
+              <staff n="3">
+                <layer n="1">
+                  <!-- beat 1: C2-G2-C3 (IV) half -->
+                  <chord dur="2">
+                    <note xml:id="m4l1a" oct="2" pname="c"/>
+                    <note xml:id="m4l1b" oct="3" pname="g"/>
+                    <note xml:id="m4l1c" oct="3" pname="c"/>
+                    <note xml:id="m4l1d" oct="3" pname="e"/>
+                  </chord>
+                  <!-- beat 3: G2-D3-G3-B3 (I final) quarter -->
+                  <chord dur="4">
+                    <note xml:id="m4l2a" oct="2" pname="g"/>
+                    <note xml:id="m4l2b" oct="3" pname="d"/>
+                    <note xml:id="m4l2c" oct="3" pname="g"/>
+                    <note xml:id="m4l2d" oct="3" pname="b"/>
+                  </chord>
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">④</harm>
+              <harm staff="1" tstamp="3">①</harm>
+            </measure>
+
+          </section>
+        </score>
+      </mdiv>
+    </body>
+  </music>
+</mei>
+
+<!--
+VOICING PLAN:
+- G major, 4 measures only — this is a compact verse/phrase.
+- m1: Quartal opening (D-G "44") → "33" ascent (G-B, B-D) — arpeggiating the I chord
+  as melody rises from D to G to B. LH sustains G2-D3-G3-B3 "334".
+- m2: V with "334" bass (D2-A2-D3-F#3), then V7 passing (C3-G3-C4). RH has F#4-A4
+  then A4-C5. The F#4 accid.ges="s" gets the key sig accidental.
+- m3: Inner voice melody (vi7→ii→V) — each beat a new chord. LH moves by P4/P5:
+  E2→A2→D2. RH echoes the harmony with two-note groups.
+- m4: IV→I plagal flavor before final I. LH: C2→G2 by P5 to close.
+
+VOICE LEADING HIGHLIGHTS:
+- m1-m2 bass: G2→D2 (P5 descent, strong bass motion).
+- m3 bass: E2→A2→D2 — descending by P4 each step, elegant sequential motion.
+- m3-m4 RH: G4-B4 → A4-C5 → A4-D5 → C4-E4 → G4-D5 — smooth contrary with LH.
+- The RH "arpeggiates" the melody notes ascending in m1, then supports below in m3.
+
+TEXTURE ARC:
+- m1: Light, ascending arpeggio in RH over solid LH block.
+- m2: Fuller V chord, 4-note LH introduces some weight.
+- m3: Most rhythmic interest — quarter-note chord changes across all staves.
+- m4: Broad IV half-note cadence with bright I close. Final LH "334" completes arc.
+-->

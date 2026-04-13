@@ -209,8 +209,9 @@ svg g.harm text, svg g.harm text tspan {
     <input type="range" id="bpm-slider" min="20" max="240" value="80" style="width:100px;vertical-align:middle;"/>
     <span id="bpm-val" style="font-size:14px;font-weight:bold;min-width:28px;text-align:center;">80</span>
     <label>Vol:</label>
-    <input type="range" id="vol-slider" min="0" max="100" value="50" style="width:100px;vertical-align:middle;"/>
-    <span id="vol-label" style="font-size:11px;color:#888;min-width:18px;">50</span>
+    <input type="range" id="vol-slider" min="0" max="100" value="0" style="width:100px;vertical-align:middle;"/>
+    <span id="vol-label" style="font-size:11px;color:#888;min-width:18px;">0</span>
+    <button id="btn-mute" style="font-size:18px;padding:4px 8px;border:1px solid #ccc;border-radius:6px;background:#fff;cursor:pointer;vertical-align:middle;">&#x1F507;</button>
     <button id="btn-mel" style="font-size:14px;padding:6px 14px;border:2px solid #2563eb;border-radius:8px;background:#2563eb;color:#fff;cursor:pointer;">Melody</button>
     <button id="btn-mic" style="font-size:12px;padding:6px 8px;margin-left:8px;opacity:0.5;">Mic</button>
     <span id="mic-score" style="font-size:13px;font-weight:bold;color:#2563eb;min-width:40px;"></span>
@@ -223,9 +224,11 @@ svg g.harm text, svg g.harm text tspan {
 </div>
 <div id="library">
   <div id="lib-toolbar">
-    <label style="font-size:13px;color:#666;display:flex;align-items:center;gap:3px;cursor:pointer;-webkit-tap-highlight-color:transparent;">
-      <input type="checkbox" id="chk-tchaikovsky" checked style="width:16px;height:16px;"/> Tch
-    </label>
+    <select id="sel-mode" style="font-size:13px;padding:4px 6px;border-radius:6px;border:1px solid #ccc;">
+      <option value="tch">Tch</option>
+      <option value="tch-ssaattbb" selected>Tch-SSAATTBB</option>
+      <option value="ssaattbb">SSAATTBB</option>
+    </select>
     <div id="key-filters">
       <button class="key-btn" data-key="All">All</button>
       <button class="key-btn active" data-key="Eb">Eb</button>
@@ -299,10 +302,214 @@ abc2svg.loadjs = function(fn, relay, onerror) {
 var DRILLS = [
 ];
 
+// ── Tch MIDI parser + harp synth ��─
+function parseMidi(base64) {
+  // Decode base64 MIDI → array of {time_ms, note, velocity, channel, on}
+  var raw = atob(base64);
+  var buf = new Uint8Array(raw.length);
+  for (var i = 0; i < raw.length; i++) buf[i] = raw.charCodeAt(i);
+  var pos = 0;
+  function u16() { var v = (buf[pos]<<8)|buf[pos+1]; pos+=2; return v; }
+  function u32() { var v = (buf[pos]<<24)|(buf[pos+1]<<16)|(buf[pos+2]<<8)|buf[pos+3]; pos+=4; return v>>>0; }
+  function vlq() { var v = 0; while (true) { var b = buf[pos++]; v = (v<<7)|(b&0x7f); if (!(b&0x80)) break; } return v; }
+
+  // Header
+  pos = 4; // skip "MThd"
+  u32(); // header length
+  var fmt = u16(), ntrks = u16(), division = u16();
+  var usPerTick = 500000 / division; // default 120 BPM
+
+  var events = [];
+  for (var t = 0; t < ntrks; t++) {
+    pos += 4; // skip "MTrk"
+    var trkLen = u32();
+    var trkEnd = pos + trkLen;
+    var tick = 0, running = 0;
+    while (pos < trkEnd) {
+      tick += vlq();
+      var b = buf[pos];
+      if (b === 0xFF) { // meta
+        pos++; var type = buf[pos++]; var len = vlq();
+        if (type === 0x51 && len === 3) { // tempo
+          usPerTick = ((buf[pos]<<16)|(buf[pos+1]<<8)|buf[pos+2]) / division;
+        }
+        pos += len;
+      } else if (b === 0xF0 || b === 0xF7) { // sysex
+        pos++; var len = vlq(); pos += len;
+      } else {
+        if (b & 0x80) { running = b; pos++; } // new status
+        var cmd = running & 0xF0, ch = running & 0x0F;
+        if (cmd === 0x90 || cmd === 0x80) {
+          var note = buf[pos++], vel = buf[pos++];
+          var on = (cmd === 0x90 && vel > 0);
+          events.push({tick: tick, note: note, vel: vel, ch: ch, on: on});
+        } else if (cmd === 0xC0 || cmd === 0xD0) {
+          pos++; // 1-byte
+        } else {
+          pos += 2; // 2-byte (control, pitch bend, etc)
+        }
+      }
+    }
+  }
+  // Convert ticks to ms using final tempo (simple — works for constant-tempo hymns)
+  var msPerTick = usPerTick / 1000;
+  for (var i = 0; i < events.length; i++) events[i].time_ms = events[i].tick * msPerTick;
+  events.sort(function(a,b) { return a.time_ms - b.time_ms || a.note - b.note; });
+  return {events: events, duration_ms: events.length > 0 ? events[events.length-1].time_ms + 500 : 0};
+}
+
+var tchAudioCtx = null, tchGain = null, tchScheduledNodes = [];
+function getTchAudioCtx() {
+  if (!tchAudioCtx) {
+    tchAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    tchGain = tchAudioCtx.createGain();
+    tchGain.connect(tchAudioCtx.destination);
+  }
+  if (tchAudioCtx.state === 'suspended') tchAudioCtx.resume();
+  return tchAudioCtx;
+}
+
+function playTchMidi(midiData, speedRatio, volume, curveTimes) {
+  // curveTimes = tchCurveTimes array (measure boundary timestamps in ms at native tempo).
+  // We use these as the authoritative measure boundaries for cadenza redistribution.
+  var ctx = getTchAudioCtx();
+  tchGain.gain.value = volume;
+  stopTchAudio();
+  var startTime = ctx.currentTime + 0.05;
+  var events = midiData.events;
+
+  // Pre-compute note durations from on/off pairs, separate melody from cadenza
+  var melNotes = []; // ch 0 = melody (staff 1)
+  var cadNotes = []; // ch 1,2 = cadenza (staves 2,3)
+  var onMap = {};
+  for (var i = 0; i < events.length; i++) {
+    var e = events[i];
+    var key = e.ch + ':' + e.note;
+    if (e.on) {
+      if (!onMap[key]) onMap[key] = [];
+      onMap[key].push({time_ms: e.time_ms, vel: e.vel, ch: e.ch});
+    } else {
+      if (onMap[key] && onMap[key].length > 0) {
+        var s = onMap[key].shift();
+        var dur = (e.time_ms - s.time_ms) / speedRatio / 1000;
+        var n = {time_ms: s.time_ms, note: e.note, dur_s: Math.max(dur, 0.05), vel: s.vel, ch: s.ch};
+        if (s.ch === 0) melNotes.push(n);
+        else cadNotes.push(n);
+      }
+    }
+  }
+
+  // Build measure boundaries from the scroll curve (native-tempo ms).
+  // curveTimes has one entry per measure + one end sentinel.
+  var nMeasures = curveTimes.length - 1;
+
+  // Assign each cadenza note to a measure by finding the nearest downbeat.
+  // Verovio bunches all cadenza notes at each measure's downbeat tick,
+  // so we match each note to the closest curveTimes entry.
+  cadNotes.sort(function(a,b) { return a.time_ms - b.time_ms; });
+
+  // Map MIDI melody downbeats to scroll curve measures to establish the
+  // time mapping between MIDI timeline and scroll curve timeline.
+  // Strategy: find ch-0 note-on times as measure markers, then map cadenza
+  // clusters to those. But simpler: since melody downbeats should align
+  // with curveTimes, just assign cadenza notes to measures by order.
+  var cadBuckets = []; // one array of notes per measure
+  for (var m = 0; m < nMeasures; m++) cadBuckets.push([]);
+
+  // Group consecutive cadenza notes by large time gaps (measure boundaries)
+  var clusters = [];
+  for (var i = 0; i < cadNotes.length; i++) {
+    if (clusters.length === 0 || cadNotes[i].time_ms - cadNotes[i-1].time_ms > 50) {
+      clusters.push([cadNotes[i]]);
+    } else {
+      clusters[clusters.length-1].push(cadNotes[i]);
+    }
+  }
+  // Assign clusters to measures in order (cluster 0 = first measure with cadenza, etc.)
+  // Pickup measures typically have no cadenza, so first cluster goes to measure 1 or later.
+  var mi = 0;
+  for (var c = 0; c < clusters.length; c++) {
+    // Skip pickup measures (which have no cadenza)
+    while (mi < nMeasures && cadBuckets[mi].length === 0 && mi < c + 1) mi++;
+    if (mi >= nMeasures) mi = nMeasures - 1;
+    cadBuckets[mi] = clusters[c];
+    mi++;
+  }
+
+  // Redistribute each bucket evenly across its measure in the scroll timeline
+  var allNotes = [];
+  for (var m = 0; m < nMeasures; m++) {
+    var bucket = cadBuckets[m];
+    if (bucket.length === 0) continue;
+    var mStart = curveTimes[m];
+    var mEnd = curveTimes[m + 1];
+    var mDur = mEnd - mStart;
+    for (var j = 0; j < bucket.length; j++) {
+      var n = bucket[j];
+      // Spread evenly from 0% to 95% of the measure
+      n.time_ms = mStart + (j / bucket.length) * mDur * 0.95;
+      n.dur_s = Math.max((mDur * 0.95 / bucket.length) / speedRatio / 1000, 0.03);
+      allNotes.push(n);
+    }
+  }
+
+  // Map melody notes from MIDI timeline to scroll curve timeline.
+  // Melody notes are correctly spaced in MIDI, but the MIDI tempo might
+  // differ from our scroll curve. Scale melody times proportionally.
+  melNotes.sort(function(a,b) { return a.time_ms - b.time_ms; });
+  var midiEnd = melNotes.length > 0 ? melNotes[melNotes.length-1].time_ms : 1;
+  var curveEnd = curveTimes.length > 0 ? curveTimes[curveTimes.length-1] : 1;
+  var timeScale = midiEnd > 0 ? curveEnd / midiEnd : 1;
+  for (var i = 0; i < melNotes.length; i++) {
+    melNotes[i].time_ms *= timeScale;
+    allNotes.push(melNotes[i]);
+  }
+
+  // Schedule harp-like plucked sounds
+  for (var i = 0; i < allNotes.length; i++) {
+    var n = allNotes[i];
+    var freq = 440 * Math.pow(2, (n.note - 69) / 12);
+    var t = startTime + n.time_ms / speedRatio / 1000;
+    var dur = Math.min(n.dur_s, 2.0);
+    var vel = n.vel / 127;
+    // Cadenza notes quieter than melody
+    var gain = (n.ch === 0) ? vel * 0.35 : vel * 0.12;
+
+    var osc = ctx.createOscillator();
+    osc.type = 'triangle';
+    osc.frequency.value = freq;
+    var env = ctx.createGain();
+    env.gain.setValueAtTime(0, t);
+    env.gain.linearRampToValueAtTime(gain, t + 0.003);
+    env.gain.exponentialRampToValueAtTime(0.001, t + dur);
+    osc.connect(env);
+    env.connect(tchGain);
+    osc.start(t);
+    osc.stop(t + dur + 0.01);
+    tchScheduledNodes.push(osc);
+  }
+  console.log('Tch audio: ' + melNotes.length + ' melody + ' + cadNotes.length + ' cadenza (' + clusters.length + ' clusters) in ' + nMeasures + ' measures');
+  return {startTime: startTime, duration_s: curveEnd / speedRatio / 1000};
+}
+
+function stopTchAudio() {
+  for (var i = 0; i < tchScheduledNodes.length; i++) {
+    try { tchScheduledNodes[i].stop(); } catch(e) {}
+  }
+  tchScheduledNodes = [];
+}
+
 // ── State ──
 var currentDrill = 0, playing = false, bpm = 80, muted = true, autoAdvance = false, melodyOn = true;
 var abc = null, abcplay = null, svgScale = 1, scrollX = 0;
 var targetScrollX = 0, animId = null, playLeadPx = 0;
+var tchScrollActive = false, tchScrollStart = 0, tchScrollDur = 0;
+var tchMidiData = null; // parsed MIDI from Verovio
+var tchTimemap = null; // [{tstamp, on:[], off:[]}] from Verovio
+var tchCurveTimes = []; // ms timestamps for scroll curve
+var tchCurvePxs = []; // x-positions for scroll curve
+var tchSpeedRatio = 1.0;
+var tchMeasureMs = 0; // duration of one full measure at native tempo
 
 var $title = document.getElementById('title');
 var $container = document.getElementById('score-container');
@@ -375,6 +582,35 @@ var playCurveTimes = [], playCurveFracs = [], playFirstPx = 0, playPxRange = 0;
 
 function animateScroll(now) {
   if (!now) now = performance.now();
+  if (tchScrollActive && tchScrollDur > 0 && tchCurveTimes.length > 1) {
+    var elapsed = (now - tchScrollStart) * tchSpeedRatio;
+    // Binary search in curve (same approach as abc2svg PCHIP curve)
+    var lo = 0, hi = tchCurveTimes.length - 1;
+    while (lo < hi - 1) {
+      var mid = (lo + hi) >> 1;
+      if (tchCurveTimes[mid] <= elapsed) lo = mid; else hi = mid;
+    }
+    var t0 = tchCurveTimes[lo], t1 = tchCurveTimes[hi];
+    var p0 = tchCurvePxs[lo], p1 = tchCurvePxs[hi];
+    var frac = t1 > t0 ? Math.min((elapsed - t0) / (t1 - t0), 1.0) : 1.0;
+    var px = p0 + (p1 - p0) * frac;
+    setScroll(getPlayheadX() - px * svgScale);
+
+    var done = elapsed >= tchCurveTimes[tchCurveTimes.length - 1];
+    if (!done) {
+      animId = requestAnimationFrame(animateScroll);
+    } else {
+      tchScrollActive = false;
+      stopTchAudio();
+      playing = false;
+      $btnPlay.textContent = 'Play';
+      if (autoAdvance) {
+        var next = getNextHymn(currentDrill);
+        if (next >= 0) setTimeout(function() { selectDrill(next); startPlayback(); }, 800);
+      }
+    }
+    return;
+  }
   if (playTotalDuration > 0 && playCurveTimes.length > 1) {
     var elapsed = now - playStartTime;
 
@@ -445,8 +681,10 @@ function renderDrill(idx) {
   currentDrill = idx;
   var drill = DRILLS[idx];
 
-  // Check if Tchaikovsky mode — prefer MEI via Verovio, else fall back to ABC
-  var tchMode = document.getElementById('chk-tchaikovsky').checked;
+  // Mode selector: tch (Verovio MEI), tch-ssaattbb (ABC block chords), ssaattbb (original)
+  var mode = document.getElementById('sel-mode').value;
+  var tchMode = (mode === 'tch');
+  var tchSsaattbbMode = (mode === 'tch-ssaattbb');
   var useDrill = drill;
   var tchMei = null;
   if (tchMode) {
@@ -456,11 +694,19 @@ function renderDrill(idx) {
     if (tch && tch.abc) {
       useDrill = {t: drill.t + ' (Tch)', abc: tch.abc, key: tch.key, tempo: tch.tempo, npb: tch.npb, n: drill.n};
     }
+  } else if (tchSsaattbbMode) {
+    var cleanTitle = drill.t.replace(/^\d+\s*/, '').trim();
+    // Prefer MEI (Verovio) if available, fall back to ABC
+    tchMei = TCH_SSAATTBB_MEI[cleanTitle] || null;
+    var tchSsa = TCH_SSAATTBB[cleanTitle];
+    if (!tchMei && tchSsa && tchSsa.abc) {
+      useDrill = {t: drill.t + ' (Tch-SSAATTBB)', abc: tchSsa.abc, key: tchSsa.key, tempo: tchSsa.tempo, n: drill.n};
+    }
   }
   drill = useDrill;
 
-  // If Tch mode and Verovio is ready with MEI data, render via Verovio and return.
-  if (tchMode && tchMei && window.verovioReady && window.verovioTk) {
+  // If Tch/Tch-SSAATTBB mode with MEI data, render via Verovio and return.
+  if ((tchMode || tchSsaattbbMode) && tchMei && window.verovioReady && window.verovioTk) {
     $title.textContent = drill.t;
     $container.innerHTML = '';
     bpm = tchMei.tempo || 100;
@@ -514,6 +760,97 @@ function renderDrill(idx) {
       $container.style.transform = 'scale(' + svgScale + ')';
       console.log('Verovio rendered ' + pages + ' pages, svgScale=' + svgScale.toFixed(2) + ' totalH=' + totalH);
       positionPlayhead();
+
+      // Get MIDI + timemap from Verovio for audio + scroll sync
+      try {
+        var midiBase64 = window.verovioTk.renderToMIDI();
+        tchMidiData = parseMidi(midiBase64);
+        console.log('Tch MIDI: ' + tchMidiData.events.length + ' events, dur=' + tchMidiData.duration_ms.toFixed(0) + 'ms');
+        // Debug: log first 60 note-on events with pitch names
+        var noteNames = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
+        var dbg = tchMidiData.events.filter(function(e){return e.on;}).slice(0,60);
+        console.log('First 60 note-ons:');
+        var lastMs = -1;
+        for (var di = 0; di < dbg.length; di++) {
+          var e = dbg[di];
+          var gap = lastMs >= 0 ? (e.time_ms - lastMs).toFixed(0) : '-';
+          lastMs = e.time_ms;
+          console.log('  ' + di + ': ' + noteNames[e.note%12] + Math.floor(e.note/12-1) + ' @'+e.time_ms.toFixed(0)+'ms ch'+e.ch + ' gap='+gap);
+        }
+      } catch(e) {
+        console.warn('Verovio MIDI export failed:', e);
+        tchMidiData = null;
+      }
+
+      try {
+        var tmStr = window.verovioTk.renderToTimemap();
+        tchTimemap = (typeof tmStr === 'string') ? JSON.parse(tmStr) : tmStr;
+      } catch(e) {
+        console.warn('Verovio timemap failed:', e);
+        tchTimemap = null;
+      }
+
+      // Build scroll curve from measure positions — one point per measure.
+      // The timemap has events from all 3 staves (melody + harp treble + harp bass)
+      // whose x-positions can interleave non-monotonically. Measure boundaries
+      // are strictly left-to-right and each measure gets equal musical time,
+      // which gives a smooth, predictable scroll.
+      tchCurveTimes = [];
+      tchCurvePxs = [];
+      var cRect = $container.getBoundingClientRect();
+      var mGroups = $container.querySelectorAll('g.measure');
+      if (mGroups.length > 0) {
+        var tsMatch = tchMei.mei.match(/meter\.count="(\d+)"\s+meter\.unit="(\d+)"/);
+        var beatsPerMeasure = tsMatch ? parseInt(tsMatch[1]) : 4;
+        var msPerBeat = 60000 / bpm;
+
+        // Detect pickup: if measure 1 is narrower than measure 2, it's a pickup.
+        // Give pickup its proportional time based on width ratio.
+        var m1W = mGroups[0].getBoundingClientRect().width;
+        var m2W = mGroups.length > 1 ? mGroups[1].getBoundingClientRect().width : m1W;
+        var pickupRatio = (m1W < m2W * 0.7) ? m1W / m2W : 1.0;
+        var pickupMs = pickupRatio * beatsPerMeasure * msPerBeat;
+        var fullMeasureMs = beatsPerMeasure * msPerBeat;
+        tchMeasureMs = fullMeasureMs;
+
+        var t = 0;
+        for (var mi = 0; mi < mGroups.length; mi++) {
+          var mRect = mGroups[mi].getBoundingClientRect();
+          tchCurveTimes.push(t);
+          tchCurvePxs.push((mRect.left - cRect.left) / svgScale);
+          t += (mi === 0) ? pickupMs : fullMeasureMs;
+        }
+        // End sentinel: right edge of last measure
+        var lastMR = mGroups[mGroups.length - 1].getBoundingClientRect();
+        tchCurveTimes.push(t);
+        tchCurvePxs.push((lastMR.right - cRect.left) / svgScale);
+        console.log('Tch scroll curve: ' + tchCurveTimes.length + ' points, pickup=' + pickupMs.toFixed(0) + 'ms, full=' + fullMeasureMs.toFixed(0) + 'ms');
+      }
+
+      // Fallback: measure-based scroll if timemap produced nothing
+      if (tchCurveTimes.length < 2) {
+        var mGroups = $container.querySelectorAll('g.measure');
+        tchCurveTimes = [];
+        tchCurvePxs = [];
+        var tsMatch = tchMei.mei.match(/meter\.count="(\d+)"\s+meter\.unit="(\d+)"/);
+        var beatsPerMeasure = tsMatch ? parseInt(tsMatch[1]) : 4;
+        var msPerMeasure = beatsPerMeasure * (60000 / bpm);
+        for (var mi = 0; mi < mGroups.length; mi++) {
+          var mRect = mGroups[mi].getBoundingClientRect();
+          tchCurveTimes.push(mi * msPerMeasure);
+          tchCurvePxs.push((mRect.left - cRect.left) / svgScale);
+        }
+        if (mGroups.length > 0) {
+          var lastMR = mGroups[mGroups.length - 1].getBoundingClientRect();
+          tchCurveTimes.push(mGroups.length * msPerMeasure);
+          tchCurvePxs.push((lastMR.right - cRect.left) / svgScale);
+        }
+        console.log('Tch scroll curve: ' + tchCurveTimes.length + ' points from measures (fallback)');
+      }
+
+      tchScrollDur = tchCurveTimes.length > 0 ? tchCurveTimes[tchCurveTimes.length - 1] : 0;
+      abc = null; // clear so startPlayback knows we're in Tch mode
+
       // Scroll so the first bar is at the playhead
       setScroll(getPlayheadX());
       return;
@@ -558,7 +895,7 @@ function renderDrill(idx) {
   var renderAbc = getAbc(drill);
   // Tchaikovsky mode keeps ABC chord annotations (rendered natively by abc2svg).
   // Other modes strip them so JS fraction overlays can replace them.
-  if (!tchMode) {
+  if (!tchMode && !tchSsaattbbMode) {
     var beforeLen = renderAbc.length;
     renderAbc = renderAbc.replace(/"\^[^"]*"/g, '');
     renderAbc = renderAbc.replace(/"_[^"]*"/g, '');
@@ -579,7 +916,7 @@ function renderDrill(idx) {
   // Build chord fraction overlays on-the-fly from ABC
   setTimeout(function() {
     // Tchaikovsky mode renders its own chord annotations natively via abc2svg
-    if (tchMode) return;
+    if (tchMode || tchSsaattbbMode) return;
     var chords = extractChordAnnotations(drill.abc, drill.key || 'C');
     if (!chords.length) return;
     var rects = $container.querySelectorAll('.abcr');
@@ -808,6 +1145,29 @@ function getNextHymn(fromIdx) {
 
 function startPlayback() {
   autoAdvance = true;
+
+  // Tch/Verovio mode: MIDI audio + timemap scroll
+  if (!abc && tchCurveTimes.length > 1) {
+    var vol = parseInt($volSlider.value) / 100;
+    var cleanT = (DRILLS[currentDrill].t || '').replace(/^\d+\s*/, '').trim();
+    var tchMeiObj = TCHAIKOVSKY_MEI[cleanT];
+    var nativeBpm = (tchMeiObj && tchMeiObj.tempo) ? tchMeiObj.tempo : 100;
+    tchSpeedRatio = bpm / nativeBpm;
+    if (tchMidiData && vol > 0) {
+      playTchMidi(tchMidiData, tchSpeedRatio, vol, tchCurveTimes);
+    }
+    playing = true;
+    tchScrollActive = true;
+    $btnPlay.textContent = 'Pause';
+    tchScrollStart = performance.now();
+    scrollStarted = true;
+    playTotalDuration = tchScrollDur;
+    playStartTime = tchScrollStart;
+    startScrollAnim();
+    console.log('Tch playback: dur=' + tchScrollDur.toFixed(0) + 'ms, midi=' + !!tchMidiData + ', curve=' + tchCurveTimes.length + ' pts');
+    return;
+  }
+
   console.log('startPlayback: abc=' + !!abc + ' tunes=' + (abc ? abc.tunes.length : 0));
   if (!abc || !abc.tunes) { console.log('no abc/tunes'); return; }
   var tune = null;
@@ -930,8 +1290,10 @@ var micExpectedMap = null, micTotalBeats = 0, micLastScoredBeat = -1;
 function stopPlayback() {
   autoAdvance = false;
   if (abcplay) abcplay.stop();
+  stopTchAudio();
   playing = false;
   scrollStarted = false;
+  tchScrollActive = false;
   $btnPlay.textContent = 'Play';
   stopScrollAnim();
 }
@@ -998,7 +1360,26 @@ var $bpmSlider = document.getElementById('bpm-slider');
 $bpmSlider.oninput = function() {
   bpm = parseInt(this.value);
   $bpmVal.textContent = bpm;
-  if (playing && abcplay) {
+  if (playing && tchScrollActive) {
+    // Tch mode: BPM change while playing. Stop audio and restart at new speed.
+    // The scroll curve uses the original MIDI timestamps; speedRatio scales elapsed time.
+    var nativeBpm = 0;
+    var cleanT = (DRILLS[currentDrill].t || '').replace(/^\d+\s*/, '').trim();
+    var tchMeiObj = TCHAIKOVSKY_MEI[cleanT];
+    if (tchMeiObj) nativeBpm = tchMeiObj.tempo || 100;
+    if (!nativeBpm) nativeBpm = 100;
+    // Record how far we are in the original MIDI timeline
+    var elapsedMidi = (performance.now() - tchScrollStart) * tchSpeedRatio;
+    tchSpeedRatio = bpm / nativeBpm;
+    // Adjust start time so elapsed * newRatio = same MIDI position
+    tchScrollStart = performance.now() - elapsedMidi / tchSpeedRatio;
+    // Restart audio at new speed from current position
+    stopTchAudio();
+    if (tchMidiData) {
+      var vol = parseInt($volSlider.value) / 100;
+      if (vol > 0) playTchMidi(tchMidiData, tchSpeedRatio, vol, tchCurveTimes);
+    }
+  } else if (playing && abcplay) {
     var q = DRILLS[currentDrill].abc.match(/Q:\s*\d+\/\d+=(\d+)/);
     var nativeBpm = q ? parseInt(q[1]) : 80;
     abcplay.set_speed(bpm / nativeBpm);
@@ -1025,11 +1406,33 @@ $bpmSlider.oninput = function() {
 };
 var $volSlider = document.getElementById('vol-slider');
 var $volLabel = document.getElementById('vol-label');
+var $btnMute = document.getElementById('btn-mute');
+var savedVol = 50; // remembered volume for unmute
 $volSlider.oninput = function() {
   var vol = parseInt(this.value);
   muted = (vol === 0);
   $volLabel.textContent = vol;
+  $btnMute.textContent = muted ? '\u{1F507}' : '\u{1F50A}';
+  if (vol > 0) savedVol = vol;
   if (abcplay) abcplay.set_vol(vol / 100);
+  if (tchGain) tchGain.gain.value = vol / 100;
+};
+$btnMute.onclick = function() {
+  muted = !muted;
+  if (muted) {
+    savedVol = parseInt($volSlider.value) || savedVol;
+    $volSlider.value = 0;
+    $volLabel.textContent = '0';
+    $btnMute.textContent = '\u{1F507}';
+    if (abcplay) abcplay.set_vol(0);
+    if (tchGain) tchGain.gain.value = 0;
+  } else {
+    $volSlider.value = savedVol;
+    $volLabel.textContent = savedVol;
+    $btnMute.textContent = '\u{1F50A}';
+    if (abcplay) abcplay.set_vol(savedVol / 100);
+    if (tchGain) tchGain.gain.value = savedVol / 100;
+  }
 };
 window.addEventListener('resize', function() { positionPlayhead(); });
 // Spacebar = Play/Pause
@@ -1642,7 +2045,7 @@ function buildLibrary() {
 
 // Tchaikovsky checkbox — re-render current hymn when toggled
 var $hymnCols = document.getElementById('hymn-cols');
-document.getElementById('chk-tchaikovsky').onchange = function() {
+document.getElementById('sel-mode').onchange = function() {
   if (DRILLS[currentDrill]) renderDrill(currentDrill);
 };
 
@@ -1716,6 +2119,8 @@ positionPlayhead();
 // Load SSAATTBB data, then Tchaikovsky drills (ABC + MEI), then build library
 var TCHAIKOVSKY = {};  // keyed by cleaned title for lookup (ABC)
 var TCHAIKOVSKY_MEI = {};  // keyed by cleaned title (MEI for Verovio)
+var TCH_SSAATTBB = {};  // keyed by cleaned title (Tch-SSAATTBB ABC)
+var TCH_SSAATTBB_MEI = {};  // keyed by cleaned title (Tch-SSAATTBBP MEI for Verovio)
 var xhr2 = new XMLHttpRequest();
 xhr2.open('GET', 'ssaattbb_data.json?v=' + Date.now(), true);
 xhr2.onload = function() {
@@ -1748,9 +2153,51 @@ xhr2.onload = function() {
         }
         console.log('Loaded ' + mdata.length + ' Tchaikovsky drills (MEI)');
       }
-      buildLibrary();
-      applyKeyFilter();
-      if (DRILLS.length > 0) renderDrill(0);
+      // Load Tch-SSAATTBB data
+      var xhr5 = new XMLHttpRequest();
+      xhr5.open('GET', 'tch_ssaattbb_data.json?v=' + Date.now(), true);
+      xhr5.onload = function() {
+        if (xhr5.status === 200) {
+          var sdata = JSON.parse(xhr5.responseText);
+          for (var i = 0; i < sdata.length; i++) {
+            var ct = sdata[i].t.replace(/^\d+\s*/, '').trim();
+            TCH_SSAATTBB[ct] = sdata[i];
+          }
+          console.log('Loaded ' + sdata.length + ' Tch-SSAATTBB drills (ABC)');
+        }
+        // Load Tch-SSAATTBBP MEI data
+        var xhr6 = new XMLHttpRequest();
+        xhr6.open('GET', 'tch_ssaattbbp_mei.json?v=' + Date.now(), true);
+        xhr6.onload = function() {
+          try {
+            if (xhr6.status === 200) {
+              var mdata = JSON.parse(xhr6.responseText);
+              for (var i = 0; i < mdata.length; i++) {
+                var ct = mdata[i].t.replace(/^\d+\s*/, '').trim();
+                TCH_SSAATTBB_MEI[ct] = mdata[i];
+              }
+              console.log('Loaded ' + mdata.length + ' Tch-SSAATTBBP drills (MEI)');
+            }
+          } catch(e) { console.warn('Tch-SSAATTBBP parse error:', e); }
+          buildLibrary();
+          applyKeyFilter();
+          if (DRILLS.length > 0) renderDrill(0);
+        };
+        xhr6.onerror = function() {
+          console.warn('No Tch-SSAATTBBP MEI data');
+          buildLibrary();
+          applyKeyFilter();
+          if (DRILLS.length > 0) renderDrill(0);
+        };
+        xhr6.send();
+      };
+      xhr5.onerror = function() {
+        console.warn('No Tch-SSAATTBB data');
+        buildLibrary();
+        applyKeyFilter();
+        if (DRILLS.length > 0) renderDrill(0);
+      };
+      xhr5.send();
     };
     xhr4.onerror = function() {
       console.warn('No Tchaikovsky MEI data');

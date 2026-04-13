@@ -153,6 +153,87 @@ This repo is worked on from two machines (lab and home laptop) with separate Cla
 
 ### Pending sync notes (newest first):
 
+**Lab → Home (2026-04-12/13, marathon session):**
+
+### Major new features this session:
+
+**1. Tch-SSAATTBBP mode — AI-composed harp arrangements (270 hymns)**
+- New mode in the app dropdown: "Tch-SSAATTBB" renders composed pedal harp arrangements via Verovio
+- Each hymn was composed by Claude Sonnet subagents using `handout/tch_ssaattbbp_prompt.md`
+- 270 hymns composed (17 M:none excluded), 10MB combined MEI data
+- Arrangements use the handout chord table voicings (14 patterns x 7 degrees with inversions)
+- 3 staves: Melody + RH (2-3 notes, lighter) + LH (3-4 notes, heavier, carries harmony) + Pedal bass
+- Post-processed by `scripts/split_mei_layers.py` into moving (stems up) / sustained (stems down) layers
+- Beat-by-beat voice leading: common tones held, changed notes re-articulated
+- Rests use `<space>` elements (Verovio ignores `visible="false"` on `<rest>`)
+- `accid.ges` on all key-signature notes (Verovio MIDI export bug workaround)
+- Raw compositions in `handout/tch_ssaattbbp_out/NNNN_raw.mei`, split versions in `NNNN.mei`
+- Combined JSON: `app/tch_ssaattbbp_mei.json` → `app/app/src/main/assets/tch_ssaattbbp_mei.json`
+
+**2. Tch mode audio + scroll**
+- Verovio `renderToMIDI()` + custom Web Audio synth (triangle wave, pluck envelope)
+- Cadenza notes redistributed across measures (Verovio MIDI bunches tuplet notes at downbeat)
+- Melody on MIDI ch 0 (louder), cadenza on ch 1-2 (quieter)
+- Scroll uses measure-boundary curve (not timemap — timemap had non-monotonic x-positions from multi-staff events)
+- Mute button added between Vol slider and Melody button (default: muted)
+- BPM slider adjusts speed ratio mid-playback
+
+**3. Mode selector dropdown**
+- Replaced Tch checkbox with `<select id="sel-mode">`: Tch / Tch-SSAATTBB / SSAATTBB
+- Default: Tch-SSAATTBB
+- Each mode loads its own data: Tch→MEI cadenzas, Tch-SSAATTBB→composed MEI, SSAATTBB→ABC
+
+**4. MEI key signature fix for MIDI**
+- `accid.ges` attribute added to every note affected by the key signature in ALL MEI output
+- Both `build_tchaikovsky_mei.py` (Tch cadenzas) and the composed arrangements
+- `KEY_ACCID_GES` dict maps key → {pname: accid_value} for melody, cadenza, and chord notes
+- `key.sig` also added to `<scoreDef>` (belt and suspenders)
+
+**5. App icon**
+- Trefoil knot from parametric equation: `x=sin(t)+2sin(2t), y=cos(t)-2cos(2t)`
+- Gold (#E6BE3C) on dark teal (#1A3A4A) background
+- Properly scaled within adaptive icon safe zone (66.7% inner circle)
+- All mipmap densities regenerated (mdpi through xxxhdpi)
+
+**6. Handout finger drills updated**
+- `handout/handout_finger_drills.tex` replaced with `~/Downloads/FingerDrillsFull.tex`
+- 4-finger sequences, 3-finger sequences, pairs, and all cross combinations
+- Rebuilt to PDF, combined handout.pdf updated (2 pages)
+
+### New files:
+- `scripts/split_mei_layers.py` — post-processor: splits single-layer MEI into moving/sustained layers
+- `scripts/build_tch_ssaattbbp.py` — Claude API pipeline (needs API key, not used — subagents used instead)
+- `scripts/build_tch_ssaattbbp_mei.py` — algorithmic MEI builder (simpler version, not the AI-composed one)
+- `scripts/build_tch_ssaattbb.py` — ABC block-chord builder (early version, superseded by MEI)
+- `scripts/compose_hymn.py` — helper to print composition prompt for a hymn
+- `scripts/fix_tch_ssaattbbp_layers.py` — earlier post-processor attempt (superseded by split_mei_layers.py)
+- `handout/tch_ssaattbbp_prompt.md` — composition prompt for Claude subagents
+- `handout/tch_ssaattbbp_out/*.mei` — 270 raw + split MEI files
+- `app/tch_ssaattbb_data.json` — ABC block-chord data (fallback for hymns without MEI)
+- `app/tch_ssaattbbp_mei.json` — combined MEI JSON for app (10MB)
+
+### Build commands:
+```bash
+# Rebuild Tch-SSAATTBBP (post-process existing raw MEI + deploy):
+python3.10 scripts/split_mei_layers.py
+cp app/tch_ssaattbbp_mei.json app/app/src/main/assets/
+cd app && ANDROID_HOME=$HOME/Android/Sdk JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64 ./gradlew assembleDebug
+adb install -r app/build/outputs/apk/debug/app-debug.apk
+
+# Rebuild Tch cadenzas (if MEI builder changes):
+python3.10 scripts/build_tchaikovsky_mei.py
+cp app/tchaikovsky_mei.json app/app/src/main/assets/
+```
+
+### Known issues / future work:
+- **17 M:none hymns** not in Tch-SSAATTBB (no metered time signature to compose against)
+- **Some composed MEI may have duration errors** — subagents verified but edge cases possible. If a hymn renders badly in Tch-SSAATTBB, check the raw MEI duration math.
+- **Subagent-generated scripts** in `scripts/gen_*.py` — created by subagents during batch composition, may not be reusable. The canonical scripts are `split_mei_layers.py` and `tch_ssaattbbp_prompt.md`.
+- **Audio in Tch-SSAATTBB mode** — uses the same Verovio MIDI→Web Audio pipeline as Tch mode. Cadenza redistribution logic only applies to Tch cadenzas, not Tch-SSAATTBB block chords.
+- **Tch-SSAATTBB ABC fallback** — `tch_ssaattbb_data.json` (270 hymns, mechanical block chords) is loaded as fallback if MEI is missing for a hymn. Not musically interesting — the MEI versions are the real arrangements.
+
+---
+
 **Lab → Home (2026-04-11, late session):**
 - **BIG CHANGE: Tch mode now uses the full handout chord table (inversions!).** Previously every Tch chord was either row `33` (plain triad) or row `333` (root-pos 7th) — only 14 of 82 handout entries ever appeared. Now 75 of 82 appear, with 2,418 of 10,891 labels (22%) carrying an inversion superscript. See "Inversion detection pipeline" below for the full architecture.
 - **ALSO this session (earlier):** circled-digit chord labels, minor `m` markers, thin-space kerning, nested `<keySig>` fix, 220px label font, CSS font-family override. All in one APK on the tablet now.

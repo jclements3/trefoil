@@ -1,0 +1,772 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="5.0">
+  <meiHead>
+    <fileDesc>
+      <titleStmt>
+        <title>Blessed Jesus at Thy Word</title>
+        <title type="subtitle">Harp Arrangement -- SSAATTBB + Pedal (raw, single-layer)</title>
+      </titleStmt>
+      <pubStmt>
+        <date isodate="2026-04-12" />
+      </pubStmt>
+    </fileDesc>
+  </meiHead>
+  <music>
+    <body>
+      <mdiv>
+        <score>
+          <scoreDef meter.count="4" meter.unit="4" key.sig="1s">
+            <staffGrp symbol="bracket" barthru="true">
+              <staffDef n="1" lines="5" clef.shape="G" clef.line="2" label="Melody">
+                <keySig sig="1s" />
+              </staffDef>
+              <staffGrp symbol="brace">
+                <staffDef n="2" lines="5" clef.shape="G" clef.line="2" label="RH">
+                  <keySig sig="1s" />
+                </staffDef>
+                <staffDef n="3" lines="5" clef.shape="F" clef.line="4" label="LH">
+                  <keySig sig="1s" />
+                </staffDef>
+              </staffGrp>
+            </staffGrp>
+          </scoreDef>
+          <section>
+
+            <!-- ============================================================ -->
+            <!-- PHRASE 1 (mm. 1-5): Opening phrase — G major, lighter texture -->
+            <!-- ============================================================ -->
+
+            <!-- Measure 1: G D G D — B4 G4 A4 D5 -->
+            <!-- G(I) beat1, D(V) beat3 -->
+            <measure n="1" right="single">
+              <staff n="1">
+                <layer n="1">
+                  <note xml:id="m1s1n1" dur="4" oct="4" pname="b" />
+                  <note xml:id="m1s1n2" dur="4" oct="4" pname="g" />
+                  <note xml:id="m1s1n3" dur="4" oct="4" pname="a" />
+                  <note xml:id="m1s1n4" dur="4" oct="5" pname="d" />
+                </layer>
+              </staff>
+              <!-- RH: G(I) open 5th on 1, D(V) on 3 -->
+              <staff n="2">
+                <layer n="1">
+                  <chord xml:id="m1s2c1" dur="2">
+                    <note xml:id="m1s2n1" pname="b" oct="4" />
+                    <note xml:id="m1s2n2" pname="d" oct="5" />
+                  </chord>
+                  <chord xml:id="m1s2c2" dur="2">
+                    <note xml:id="m1s2n3" pname="a" oct="4" />
+                    <note xml:id="m1s2n4" pname="d" oct="5" />
+                  </chord>
+                </layer>
+              </staff>
+              <!-- LH: G2-D3-G3 (I root pos open) | D2-A2-D3 (V) -->
+              <staff n="3">
+                <layer n="1">
+                  <chord xml:id="m1s3c1" dur="2">
+                    <note xml:id="m1s3n1" pname="g" oct="2" />
+                    <note xml:id="m1s3n2" pname="d" oct="3" />
+                    <note xml:id="m1s3n3" pname="g" oct="3" />
+                  </chord>
+                  <chord xml:id="m1s3c2" dur="2">
+                    <note xml:id="m1s3n4" pname="d" oct="2" />
+                    <note xml:id="m1s3n5" pname="a" oct="2" />
+                    <note xml:id="m1s3n6" pname="d" oct="3" />
+                  </chord>
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">①</harm>
+              <harm staff="1" tstamp="3">⑤</harm>
+            </measure>
+
+            <!-- Measure 2: G Em D — B4 G4 A2 -->
+            <!-- G(I) beat1, Em(vi) beat2, D(V) beat3 -->
+            <measure n="2" right="single">
+              <staff n="1">
+                <layer n="1">
+                  <note xml:id="m2s1n1" dur="4" oct="4" pname="b" />
+                  <note xml:id="m2s1n2" dur="4" oct="4" pname="g" />
+                  <note xml:id="m2s1n3" dur="2" oct="4" pname="a" />
+                </layer>
+              </staff>
+              <!-- RH: arpeggiate G→Em→D -->
+              <staff n="2">
+                <layer n="1">
+                  <chord xml:id="m2s2c1" dur="4">
+                    <note xml:id="m2s2n1" pname="g" oct="4" />
+                    <note xml:id="m2s2n2" pname="b" oct="4" />
+                  </chord>
+                  <chord xml:id="m2s2c2" dur="4">
+                    <note xml:id="m2s2n3" pname="e" oct="4" />
+                    <note xml:id="m2s2n4" pname="g" oct="4" />
+                  </chord>
+                  <chord xml:id="m2s2c3" dur="2">
+                    <note xml:id="m2s2n5" pname="f" oct="4" accid.ges="s" />
+                    <note xml:id="m2s2n6" pname="a" oct="4" />
+                  </chord>
+                </layer>
+              </staff>
+              <!-- LH: G2-D3-B3 | E2-B2-E3 | D2-A2-F#3 -->
+              <staff n="3">
+                <layer n="1">
+                  <chord xml:id="m2s3c1" dur="4">
+                    <note xml:id="m2s3n1" pname="g" oct="2" />
+                    <note xml:id="m2s3n2" pname="d" oct="3" />
+                    <note xml:id="m2s3n3" pname="b" oct="3" />
+                  </chord>
+                  <chord xml:id="m2s3c2" dur="4">
+                    <note xml:id="m2s3n4" pname="e" oct="2" />
+                    <note xml:id="m2s3n5" pname="b" oct="2" />
+                    <note xml:id="m2s3n6" pname="e" oct="3" />
+                  </chord>
+                  <chord xml:id="m2s3c3" dur="2">
+                    <note xml:id="m2s3n7" pname="d" oct="2" />
+                    <note xml:id="m2s3n8" pname="a" oct="2" />
+                    <note xml:id="m2s3n9" pname="f" oct="3" accid.ges="s" />
+                  </chord>
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">①</harm>
+              <harm staff="1" tstamp="2">⑥m</harm>
+              <harm staff="1" tstamp="3">⑤</harm>
+            </measure>
+
+            <!-- Measure 3: G C G — G4 G4 G4 G4 -->
+            <!-- G(I) beats 1-2, C(IV) beat 3, G(I) beat 4 -->
+            <measure n="3" right="single">
+              <staff n="1">
+                <layer n="1">
+                  <note xml:id="m3s1n1" dur="4" oct="4" pname="g" />
+                  <note xml:id="m3s1n2" dur="4" oct="4" pname="g" />
+                  <note xml:id="m3s1n3" dur="4" oct="4" pname="g" />
+                  <note xml:id="m3s1n4" dur="4" oct="4" pname="g" />
+                </layer>
+              </staff>
+              <!-- RH: arpeggio on G, then C -->
+              <staff n="2">
+                <layer n="1">
+                  <note xml:id="m3s2n1" dur="4" pname="g" oct="4" />
+                  <note xml:id="m3s2n2" dur="4" pname="b" oct="4" />
+                  <chord xml:id="m3s2c1" dur="4">
+                    <note xml:id="m3s2n3" pname="e" oct="5" />
+                    <note xml:id="m3s2n4" pname="g" oct="5" />
+                  </chord>
+                  <chord xml:id="m3s2c2" dur="4">
+                    <note xml:id="m3s2n5" pname="d" oct="5" />
+                    <note xml:id="m3s2n6" pname="g" oct="5" />
+                  </chord>
+                </layer>
+              </staff>
+              <!-- LH: G2-B2-D3 open | C2-G2-C3 | G2-D3 -->
+              <staff n="3">
+                <layer n="1">
+                  <chord xml:id="m3s3c1" dur="2">
+                    <note xml:id="m3s3n1" pname="g" oct="2" />
+                    <note xml:id="m3s3n2" pname="b" oct="2" />
+                    <note xml:id="m3s3n3" pname="d" oct="3" />
+                  </chord>
+                  <chord xml:id="m3s3c2" dur="4">
+                    <note xml:id="m3s3n4" pname="c" oct="2" />
+                    <note xml:id="m3s3n5" pname="g" oct="2" />
+                    <note xml:id="m3s3n6" pname="c" oct="3" />
+                  </chord>
+                  <chord xml:id="m3s3c3" dur="4">
+                    <note xml:id="m3s3n7" pname="g" oct="2" />
+                    <note xml:id="m3s3n8" pname="d" oct="3" />
+                    <note xml:id="m3s3n9" pname="g" oct="3" />
+                  </chord>
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">①</harm>
+              <harm staff="1" tstamp="3">④</harm>
+              <harm staff="1" tstamp="4">①</harm>
+            </measure>
+
+            <!-- Measure 4: F#° G D — A4 B4 A2 -->
+            <!-- vii° beat1, G(I) beat2, D(V) beat3-4 -->
+            <measure n="4" right="single">
+              <staff n="1">
+                <layer n="1">
+                  <note xml:id="m4s1n1" dur="4" oct="4" pname="a" />
+                  <note xml:id="m4s1n2" dur="4" oct="4" pname="b" />
+                  <note xml:id="m4s1n3" dur="2" oct="4" pname="a" />
+                </layer>
+              </staff>
+              <!-- RH: vii°→I→V motion -->
+              <staff n="2">
+                <layer n="1">
+                  <chord xml:id="m4s2c1" dur="4">
+                    <note xml:id="m4s2n1" pname="f" oct="4" accid.ges="s" />
+                    <note xml:id="m4s2n2" pname="a" oct="4" />
+                  </chord>
+                  <chord xml:id="m4s2c2" dur="4">
+                    <note xml:id="m4s2n3" pname="g" oct="4" />
+                    <note xml:id="m4s2n4" pname="b" oct="4" />
+                  </chord>
+                  <chord xml:id="m4s2c3" dur="2">
+                    <note xml:id="m4s2n5" pname="f" oct="4" accid.ges="s" />
+                    <note xml:id="m4s2n6" pname="a" oct="4" />
+                  </chord>
+                </layer>
+              </staff>
+              <!-- LH: F#2-C3-F#3 | G2-D3-G3 | D2-A2-D3 -->
+              <staff n="3">
+                <layer n="1">
+                  <chord xml:id="m4s3c1" dur="4">
+                    <note xml:id="m4s3n1" pname="f" oct="2" accid.ges="s" />
+                    <note xml:id="m4s3n2" pname="c" oct="3" />
+                    <note xml:id="m4s3n3" pname="f" oct="3" accid.ges="s" />
+                  </chord>
+                  <chord xml:id="m4s3c2" dur="4">
+                    <note xml:id="m4s3n4" pname="g" oct="2" />
+                    <note xml:id="m4s3n5" pname="d" oct="3" />
+                    <note xml:id="m4s3n6" pname="g" oct="3" />
+                  </chord>
+                  <chord xml:id="m4s3c3" dur="2">
+                    <note xml:id="m4s3n7" pname="d" oct="2" />
+                    <note xml:id="m4s3n8" pname="a" oct="2" />
+                    <note xml:id="m4s3n9" pname="d" oct="3" />
+                  </chord>
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">⑦°</harm>
+              <harm staff="1" tstamp="2">①</harm>
+              <harm staff="1" tstamp="3">⑤</harm>
+            </measure>
+
+            <!-- Measure 5: G — G4 whole note -->
+            <measure n="5" right="single">
+              <staff n="1">
+                <layer n="1">
+                  <note xml:id="m5s1n1" dur="1" oct="4" pname="g" />
+                </layer>
+              </staff>
+              <!-- RH: G major full spread -->
+              <staff n="2">
+                <layer n="1">
+                  <chord xml:id="m5s2c1" dur="1">
+                    <note xml:id="m5s2n1" pname="d" oct="4" />
+                    <note xml:id="m5s2n2" pname="g" oct="4" />
+                    <note xml:id="m5s2n3" pname="b" oct="4" />
+                  </chord>
+                </layer>
+              </staff>
+              <!-- LH: G2-D3-G3-B3 full I chord -->
+              <staff n="3">
+                <layer n="1">
+                  <chord xml:id="m5s3c1" dur="1">
+                    <note xml:id="m5s3n1" pname="g" oct="2" />
+                    <note xml:id="m5s3n2" pname="d" oct="3" />
+                    <note xml:id="m5s3n3" pname="g" oct="3" />
+                    <note xml:id="m5s3n4" pname="b" oct="3" />
+                  </chord>
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">①</harm>
+            </measure>
+
+            <!-- ============================================================ -->
+            <!-- PHRASE 2 (mm. 6-10): Repeat of phrase 1 — build texture      -->
+            <!-- ============================================================ -->
+
+            <!-- Measure 6: same as m1 but fuller texture -->
+            <measure n="6" right="single">
+              <staff n="1">
+                <layer n="1">
+                  <note xml:id="m6s1n1" dur="4" oct="4" pname="b" />
+                  <note xml:id="m6s1n2" dur="4" oct="4" pname="g" />
+                  <note xml:id="m6s1n3" dur="4" oct="4" pname="a" />
+                  <note xml:id="m6s1n4" dur="4" oct="5" pname="d" />
+                </layer>
+              </staff>
+              <!-- RH: broken arpeggio G→D ascending -->
+              <staff n="2">
+                <layer n="1">
+                  <note xml:id="m6s2n1" dur="4" pname="d" oct="4" />
+                  <note xml:id="m6s2n2" dur="4" pname="g" oct="4" />
+                  <note xml:id="m6s2n3" dur="4" pname="d" oct="5" />
+                  <note xml:id="m6s2n4" dur="4" pname="f" oct="5" accid.ges="s" />
+                </layer>
+              </staff>
+              <!-- LH: G1-D2-G2-B2 | A2-D3-F#3 -->
+              <staff n="3">
+                <layer n="1">
+                  <chord xml:id="m6s3c1" dur="2">
+                    <note xml:id="m6s3n1" pname="g" oct="2" />
+                    <note xml:id="m6s3n2" pname="d" oct="3" />
+                    <note xml:id="m6s3n3" pname="g" oct="3" />
+                  </chord>
+                  <chord xml:id="m6s3c2" dur="2">
+                    <note xml:id="m6s3n4" pname="d" oct="2" />
+                    <note xml:id="m6s3n5" pname="a" oct="2" />
+                    <note xml:id="m6s3n6" pname="f" oct="3" accid.ges="s" />
+                  </chord>
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">①</harm>
+              <harm staff="1" tstamp="3">⑤</harm>
+            </measure>
+
+            <!-- Measure 7: G Em D -->
+            <measure n="7" right="single">
+              <staff n="1">
+                <layer n="1">
+                  <note xml:id="m7s1n1" dur="4" oct="4" pname="b" />
+                  <note xml:id="m7s1n2" dur="4" oct="4" pname="g" />
+                  <note xml:id="m7s1n3" dur="2" oct="4" pname="a" />
+                </layer>
+              </staff>
+              <!-- RH: G→Em→D with 7th color -->
+              <staff n="2">
+                <layer n="1">
+                  <chord xml:id="m7s2c1" dur="4">
+                    <note xml:id="m7s2n1" pname="g" oct="4" />
+                    <note xml:id="m7s2n2" pname="d" oct="5" />
+                  </chord>
+                  <chord xml:id="m7s2c2" dur="4">
+                    <note xml:id="m7s2n3" pname="e" oct="4" />
+                    <note xml:id="m7s2n4" pname="b" oct="4" />
+                  </chord>
+                  <chord xml:id="m7s2c3" dur="2">
+                    <note xml:id="m7s2n5" pname="f" oct="4" accid.ges="s" />
+                    <note xml:id="m7s2n6" pname="c" oct="5" />
+                  </chord>
+                </layer>
+              </staff>
+              <!-- LH: fuller open voicings -->
+              <staff n="3">
+                <layer n="1">
+                  <chord xml:id="m7s3c1" dur="4">
+                    <note xml:id="m7s3n1" pname="g" oct="2" />
+                    <note xml:id="m7s3n2" pname="d" oct="3" />
+                    <note xml:id="m7s3n3" pname="b" oct="3" />
+                  </chord>
+                  <chord xml:id="m7s3c2" dur="4">
+                    <note xml:id="m7s3n4" pname="e" oct="2" />
+                    <note xml:id="m7s3n5" pname="b" oct="2" />
+                    <note xml:id="m7s3n6" pname="g" oct="3" />
+                  </chord>
+                  <chord xml:id="m7s3c3" dur="2">
+                    <note xml:id="m7s3n7" pname="d" oct="2" />
+                    <note xml:id="m7s3n8" pname="a" oct="2" />
+                    <note xml:id="m7s3n9" pname="f" oct="3" accid.ges="s" />
+                  </chord>
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">①</harm>
+              <harm staff="1" tstamp="2">⑥m</harm>
+              <harm staff="1" tstamp="3">⑤</harm>
+            </measure>
+
+            <!-- Measure 8: G C G -->
+            <measure n="8" right="single">
+              <staff n="1">
+                <layer n="1">
+                  <note xml:id="m8s1n1" dur="4" oct="4" pname="g" />
+                  <note xml:id="m8s1n2" dur="4" oct="4" pname="g" />
+                  <note xml:id="m8s1n3" dur="4" oct="4" pname="g" />
+                  <note xml:id="m8s1n4" dur="4" oct="4" pname="g" />
+                </layer>
+              </staff>
+              <!-- RH: arpeggio wave G-B-D-G -->
+              <staff n="2">
+                <layer n="1">
+                  <note xml:id="m8s2n1" dur="4" pname="g" oct="4" />
+                  <note xml:id="m8s2n2" dur="4" pname="b" oct="4" />
+                  <note xml:id="m8s2n3" dur="4" pname="c" oct="5" />
+                  <note xml:id="m8s2n4" dur="4" pname="g" oct="4" />
+                </layer>
+              </staff>
+              <!-- LH: G root position, then IV -->
+              <staff n="3">
+                <layer n="1">
+                  <chord xml:id="m8s3c1" dur="2">
+                    <note xml:id="m8s3n1" pname="g" oct="2" />
+                    <note xml:id="m8s3n2" pname="d" oct="3" />
+                    <note xml:id="m8s3n3" pname="g" oct="3" />
+                  </chord>
+                  <chord xml:id="m8s3c2" dur="2">
+                    <note xml:id="m8s3n4" pname="c" oct="2" />
+                    <note xml:id="m8s3n5" pname="g" oct="2" />
+                    <note xml:id="m8s3n6" pname="e" oct="3" />
+                  </chord>
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">①</harm>
+              <harm staff="1" tstamp="3">④</harm>
+            </measure>
+
+            <!-- Measure 9: F#° G D -->
+            <measure n="9" right="single">
+              <staff n="1">
+                <layer n="1">
+                  <note xml:id="m9s1n1" dur="4" oct="4" pname="a" />
+                  <note xml:id="m9s1n2" dur="4" oct="4" pname="b" />
+                  <note xml:id="m9s1n3" dur="2" oct="4" pname="a" />
+                </layer>
+              </staff>
+              <!-- RH: suspension on A, resolve to G over D -->
+              <staff n="2">
+                <layer n="1">
+                  <chord xml:id="m9s2c1" dur="4">
+                    <note xml:id="m9s2n1" pname="f" oct="4" accid.ges="s" />
+                    <note xml:id="m9s2n2" pname="c" oct="5" />
+                  </chord>
+                  <chord xml:id="m9s2c2" dur="4">
+                    <note xml:id="m9s2n3" pname="g" oct="4" />
+                    <note xml:id="m9s2n4" pname="b" oct="4" />
+                  </chord>
+                  <chord xml:id="m9s2c3" dur="2">
+                    <note xml:id="m9s2n5" pname="a" oct="4" />
+                    <note xml:id="m9s2n6" pname="d" oct="5" />
+                  </chord>
+                </layer>
+              </staff>
+              <staff n="3">
+                <layer n="1">
+                  <chord xml:id="m9s3c1" dur="4">
+                    <note xml:id="m9s3n1" pname="f" oct="2" accid.ges="s" />
+                    <note xml:id="m9s3n2" pname="c" oct="3" />
+                    <note xml:id="m9s3n3" pname="a" oct="3" />
+                  </chord>
+                  <chord xml:id="m9s3c2" dur="4">
+                    <note xml:id="m9s3n4" pname="g" oct="2" />
+                    <note xml:id="m9s3n5" pname="d" oct="3" />
+                    <note xml:id="m9s3n6" pname="g" oct="3" />
+                  </chord>
+                  <chord xml:id="m9s3c3" dur="2">
+                    <note xml:id="m9s3n7" pname="d" oct="2" />
+                    <note xml:id="m9s3n8" pname="a" oct="2" />
+                    <note xml:id="m9s3n9" pname="d" oct="3" />
+                  </chord>
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">⑦°</harm>
+              <harm staff="1" tstamp="2">①</harm>
+              <harm staff="1" tstamp="3">⑤</harm>
+            </measure>
+
+            <!-- Measure 10: G — whole note -->
+            <measure n="10" right="single">
+              <staff n="1">
+                <layer n="1">
+                  <note xml:id="m10s1n1" dur="1" oct="4" pname="g" />
+                </layer>
+              </staff>
+              <!-- RH: G quartal for variety -->
+              <staff n="2">
+                <layer n="1">
+                  <chord xml:id="m10s2c1" dur="2">
+                    <note xml:id="m10s2n1" pname="d" oct="4" />
+                    <note xml:id="m10s2n2" pname="g" oct="4" />
+                  </chord>
+                  <chord xml:id="m10s2c2" dur="2">
+                    <note xml:id="m10s2n3" pname="g" oct="4" />
+                    <note xml:id="m10s2n4" pname="b" oct="4" />
+                  </chord>
+                </layer>
+              </staff>
+              <!-- LH: G2-D3-G3-B3 full cadence -->
+              <staff n="3">
+                <layer n="1">
+                  <chord xml:id="m10s3c1" dur="1">
+                    <note xml:id="m10s3n1" pname="g" oct="2" />
+                    <note xml:id="m10s3n2" pname="d" oct="3" />
+                    <note xml:id="m10s3n3" pname="g" oct="3" />
+                    <note xml:id="m10s3n4" pname="b" oct="3" />
+                  </chord>
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">①</harm>
+            </measure>
+
+            <!-- ============================================================ -->
+            <!-- PHRASE 3 (mm. 11-15): Climax — fuller texture, wider range   -->
+            <!-- ============================================================ -->
+
+            <!-- Measure 11: D D C#° D — D4 D4 E4 F#4 -->
+            <!-- D(V) throughout, C#° is vii°/V — use D (V) -->
+            <measure n="11" right="single">
+              <staff n="1">
+                <layer n="1">
+                  <note xml:id="m11s1n1" dur="4" oct="4" pname="d" />
+                  <note xml:id="m11s1n2" dur="4" oct="4" pname="d" />
+                  <note xml:id="m11s1n3" dur="4" oct="4" pname="e" />
+                  <note xml:id="m11s1n4" dur="4" oct="4" pname="f" accid.ges="s" />
+                </layer>
+              </staff>
+              <!-- RH: broken D chord ascending D-F#-A-D -->
+              <staff n="2">
+                <layer n="1">
+                  <note xml:id="m11s2n1" dur="4" pname="d" oct="4" />
+                  <note xml:id="m11s2n2" dur="4" pname="f" oct="4" accid.ges="s" />
+                  <note xml:id="m11s2n3" dur="4" pname="a" oct="4" />
+                  <note xml:id="m11s2n4" dur="4" pname="d" oct="5" />
+                </layer>
+              </staff>
+              <!-- LH: D2-A2-D3-F#3 sustained, open V -->
+              <staff n="3">
+                <layer n="1">
+                  <chord xml:id="m11s3c1" dur="2">
+                    <note xml:id="m11s3n1" pname="d" oct="2" />
+                    <note xml:id="m11s3n2" pname="a" oct="2" />
+                    <note xml:id="m11s3n3" pname="d" oct="3" />
+                  </chord>
+                  <chord xml:id="m11s3c2" dur="2">
+                    <note xml:id="m11s3n4" pname="a" oct="2" />
+                    <note xml:id="m11s3n5" pname="e" oct="3" />
+                    <note xml:id="m11s3n6" pname="a" oct="3" />
+                  </chord>
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">⑤</harm>
+              <harm staff="1" tstamp="3">⑤7</harm>
+            </measure>
+
+            <!-- Measure 12: G A D — G4 A4 F#4 D4 -->
+            <!-- G(I) beat1, A(II) beat2—sub with II(A diatonic=ii) beat2, D(V) beat3-4 -->
+            <measure n="12" right="single">
+              <staff n="1">
+                <layer n="1">
+                  <note xml:id="m12s1n1" dur="4" oct="4" pname="g" />
+                  <note xml:id="m12s1n2" dur="4" oct="4" pname="a" />
+                  <note xml:id="m12s1n3" dur="4" oct="4" pname="f" accid.ges="s" />
+                  <note xml:id="m12s1n4" dur="4" oct="4" pname="d" />
+                </layer>
+              </staff>
+              <!-- RH: I→ii→V motion, building toward climax -->
+              <staff n="2">
+                <layer n="1">
+                  <chord xml:id="m12s2c1" dur="4">
+                    <note xml:id="m12s2n1" pname="g" oct="4" />
+                    <note xml:id="m12s2n2" pname="b" oct="4" />
+                  </chord>
+                  <chord xml:id="m12s2c2" dur="4">
+                    <note xml:id="m12s2n3" pname="a" oct="4" />
+                    <note xml:id="m12s2n4" pname="c" oct="5" />
+                  </chord>
+                  <chord xml:id="m12s2c3" dur="2">
+                    <note xml:id="m12s2n5" pname="a" oct="4" />
+                    <note xml:id="m12s2n6" pname="d" oct="5" />
+                  </chord>
+                </layer>
+              </staff>
+              <!-- LH: G2-D3-G3 | A2-E3-A3 | D2-A2-D3 -->
+              <staff n="3">
+                <layer n="1">
+                  <chord xml:id="m12s3c1" dur="4">
+                    <note xml:id="m12s3n1" pname="g" oct="2" />
+                    <note xml:id="m12s3n2" pname="d" oct="3" />
+                    <note xml:id="m12s3n3" pname="g" oct="3" />
+                  </chord>
+                  <chord xml:id="m12s3c2" dur="4">
+                    <note xml:id="m12s3n4" pname="a" oct="2" />
+                    <note xml:id="m12s3n5" pname="e" oct="3" />
+                    <note xml:id="m12s3n6" pname="a" oct="3" />
+                  </chord>
+                  <chord xml:id="m12s3c3" dur="2">
+                    <note xml:id="m12s3n7" pname="d" oct="2" />
+                    <note xml:id="m12s3n8" pname="a" oct="2" />
+                    <note xml:id="m12s3n9" pname="f" oct="3" accid.ges="s" />
+                  </chord>
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">①</harm>
+              <harm staff="1" tstamp="2">②m</harm>
+              <harm staff="1" tstamp="3">⑤</harm>
+            </measure>
+
+            <!-- Measure 13: G Em D G — G4 G4 A4 B4 -->
+            <measure n="13" right="single">
+              <staff n="1">
+                <layer n="1">
+                  <note xml:id="m13s1n1" dur="4" oct="4" pname="g" />
+                  <note xml:id="m13s1n2" dur="4" oct="4" pname="g" />
+                  <note xml:id="m13s1n3" dur="4" oct="4" pname="a" />
+                  <note xml:id="m13s1n4" dur="4" oct="4" pname="b" />
+                </layer>
+              </staff>
+              <!-- RH: full 3-note voicings, climax building -->
+              <staff n="2">
+                <layer n="1">
+                  <chord xml:id="m13s2c1" dur="4">
+                    <note xml:id="m13s2n1" pname="g" oct="4" />
+                    <note xml:id="m13s2n2" pname="b" oct="4" />
+                    <note xml:id="m13s2n3" pname="d" oct="5" />
+                  </chord>
+                  <chord xml:id="m13s2c2" dur="4">
+                    <note xml:id="m13s2n4" pname="e" oct="4" />
+                    <note xml:id="m13s2n5" pname="g" oct="4" />
+                    <note xml:id="m13s2n6" pname="b" oct="4" />
+                  </chord>
+                  <chord xml:id="m13s2c3" dur="4">
+                    <note xml:id="m13s2n7" pname="f" oct="4" accid.ges="s" />
+                    <note xml:id="m13s2n8" pname="a" oct="4" />
+                    <note xml:id="m13s2n9" pname="d" oct="5" />
+                  </chord>
+                  <chord xml:id="m13s2c4" dur="4">
+                    <note xml:id="m13s2n10" pname="g" oct="4" />
+                    <note xml:id="m13s2n11" pname="b" oct="4" />
+                    <note xml:id="m13s2n12" pname="d" oct="5" />
+                  </chord>
+                </layer>
+              </staff>
+              <!-- LH: full open voicings each chord -->
+              <staff n="3">
+                <layer n="1">
+                  <chord xml:id="m13s3c1" dur="4">
+                    <note xml:id="m13s3n1" pname="g" oct="2" />
+                    <note xml:id="m13s3n2" pname="d" oct="3" />
+                    <note xml:id="m13s3n3" pname="g" oct="3" />
+                    <note xml:id="m13s3n4" pname="b" oct="3" />
+                  </chord>
+                  <chord xml:id="m13s3c2" dur="4">
+                    <note xml:id="m13s3n5" pname="e" oct="2" />
+                    <note xml:id="m13s3n6" pname="b" oct="2" />
+                    <note xml:id="m13s3n7" pname="e" oct="3" />
+                    <note xml:id="m13s3n8" pname="g" oct="3" />
+                  </chord>
+                  <chord xml:id="m13s3c3" dur="4">
+                    <note xml:id="m13s3n9" pname="d" oct="2" />
+                    <note xml:id="m13s3n10" pname="a" oct="2" />
+                    <note xml:id="m13s3n11" pname="d" oct="3" />
+                    <note xml:id="m13s3n12" pname="f" oct="3" accid.ges="s" />
+                  </chord>
+                  <chord xml:id="m13s3c4" dur="4">
+                    <note xml:id="m13s3n13" pname="g" oct="2" />
+                    <note xml:id="m13s3n14" pname="d" oct="3" />
+                    <note xml:id="m13s3n15" pname="g" oct="3" />
+                    <note xml:id="m13s3n16" pname="b" oct="3" />
+                  </chord>
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">①</harm>
+              <harm staff="1" tstamp="2">⑥m</harm>
+              <harm staff="1" tstamp="3">⑤</harm>
+              <harm staff="1" tstamp="4">①</harm>
+            </measure>
+
+            <!-- Measure 14: C G D — C5 B4 A2 -->
+            <!-- C(IV) beat1, G(I) beat2, D(V) beat3-4 -->
+            <measure n="14" right="single">
+              <staff n="1">
+                <layer n="1">
+                  <note xml:id="m14s1n1" dur="4" oct="5" pname="c" />
+                  <note xml:id="m14s1n2" dur="4" oct="4" pname="b" />
+                  <note xml:id="m14s1n3" dur="2" oct="4" pname="a" />
+                </layer>
+              </staff>
+              <!-- RH: IV→I→V with suspension on A -->
+              <staff n="2">
+                <layer n="1">
+                  <chord xml:id="m14s2c1" dur="4">
+                    <note xml:id="m14s2n1" pname="e" oct="4" />
+                    <note xml:id="m14s2n2" pname="g" oct="4" />
+                    <note xml:id="m14s2n3" pname="c" oct="5" />
+                  </chord>
+                  <chord xml:id="m14s2c2" dur="4">
+                    <note xml:id="m14s2n4" pname="d" oct="4" />
+                    <note xml:id="m14s2n5" pname="g" oct="4" />
+                    <note xml:id="m14s2n6" pname="b" oct="4" />
+                  </chord>
+                  <chord xml:id="m14s2c3" dur="2">
+                    <note xml:id="m14s2n7" pname="f" oct="4" accid.ges="s" />
+                    <note xml:id="m14s2n8" pname="c" oct="5" />
+                  </chord>
+                </layer>
+              </staff>
+              <!-- LH: C2-G2-C3-E3 | G2-D3-G3 | D2-A2-D3-F#3 cadence -->
+              <staff n="3">
+                <layer n="1">
+                  <chord xml:id="m14s3c1" dur="4">
+                    <note xml:id="m14s3n1" pname="c" oct="2" />
+                    <note xml:id="m14s3n2" pname="g" oct="2" />
+                    <note xml:id="m14s3n3" pname="c" oct="3" />
+                    <note xml:id="m14s3n4" pname="e" oct="3" />
+                  </chord>
+                  <chord xml:id="m14s3c2" dur="4">
+                    <note xml:id="m14s3n5" pname="g" oct="2" />
+                    <note xml:id="m14s3n6" pname="d" oct="3" />
+                    <note xml:id="m14s3n7" pname="g" oct="3" />
+                  </chord>
+                  <chord xml:id="m14s3c3" dur="2">
+                    <note xml:id="m14s3n8" pname="d" oct="2" />
+                    <note xml:id="m14s3n9" pname="a" oct="2" />
+                    <note xml:id="m14s3n10" pname="d" oct="3" />
+                    <note xml:id="m14s3n11" pname="f" oct="3" accid.ges="s" />
+                  </chord>
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">④</harm>
+              <harm staff="1" tstamp="2">①</harm>
+              <harm staff="1" tstamp="3">⑤</harm>
+            </measure>
+
+            <!-- Measure 15: G — final cadence, whole note -->
+            <measure n="15" right="end">
+              <staff n="1">
+                <layer n="1">
+                  <note xml:id="m15s1n1" dur="1" oct="4" pname="g" />
+                </layer>
+              </staff>
+              <!-- RH: full G major spread, high register -->
+              <staff n="2">
+                <layer n="1">
+                  <chord xml:id="m15s2c1" dur="1">
+                    <note xml:id="m15s2n1" pname="d" oct="4" />
+                    <note xml:id="m15s2n2" pname="g" oct="4" />
+                    <note xml:id="m15s2n3" pname="b" oct="4" />
+                  </chord>
+                </layer>
+              </staff>
+              <!-- LH: G1-D2-G2-B2-D3 full close, widest spread -->
+              <staff n="3">
+                <layer n="1">
+                  <chord xml:id="m15s3c1" dur="1">
+                    <note xml:id="m15s3n1" pname="g" oct="2" />
+                    <note xml:id="m15s3n2" pname="d" oct="3" />
+                    <note xml:id="m15s3n3" pname="g" oct="3" />
+                    <note xml:id="m15s3n4" pname="b" oct="3" />
+                  </chord>
+                </layer>
+              </staff>
+              <harm staff="1" tstamp="1">①</harm>
+            </measure>
+
+          </section>
+        </score>
+      </mdiv>
+    </body>
+  </music>
+</mei>
+
+<!-- ============================================================
+VOICING PLAN:
+- mm. 1-5 (Phrase 1): Lighter opening — "33" triad root position
+  throughout. LH: G2-D3-G3 open fifths (P4+P4). RH: 2-note dyads.
+- mm. 6-10 (Phrase 2): Repeat phrase builds texture. RH broken
+  arpeggios (single passing notes). LH gains a 4th note (B3) at
+  stronger beats. Em uses "33" vi in both phrases.
+- mm. 11-14 (Phrase 3): Climax. RH fills to 3 notes per chord;
+  ascending broken D (V) arpeggio in m.11. LH uses "334"
+  (triad+octave) in m.13 climax chord. Penultimate m.14 uses
+  IV→I→V with 4-note LH on IV.
+- m.15 (Final): Root-position I with 4-note LH and 3-note RH.
+  No pedal added (lever harp range sufficient).
+
+VOICE LEADING HIGHLIGHTS:
+- mm. 2/7: Em (vi) approached by step from G (I), LH E2→G2 (M3
+  upward leap, acceptable). D (V) follows Em by step in all voices.
+- mm. 4/9: vii° (F#°) resolves upward by half-step in RH (F#→G),
+  LH similar motion. This is the most chromatically active moment.
+- m.13 climax: all 4 harmonic functions in one bar (I vi V I),
+  contrary motion between hands (LH descends G→E→D→G, RH ascends).
+- m.14: IV suspension — RH holds C5 across IV→I boundary; resolves
+  downward to B4 on I.
+
+TEXTURE ARC:
+- mm. 1-5: 2+3 notes (light); RH dyads, LH 3-note open fifths.
+- mm. 6-10: 2+3→3+4 (building); RH broken, LH gains 4th note.
+- mm. 11-14: 3+4 (full); RH 3-note, LH 4-note, contrary motion.
+- m.15: 3+4 (settled); root position close, final tonic.
+============================================================ -->
