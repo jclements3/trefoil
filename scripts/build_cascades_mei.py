@@ -146,19 +146,31 @@ def build_cascade_measure(cascade, measure_id, key='Eb'):
     treble_parts = []  # event XML snippets for staff 1
     bass_parts = []    # event XML snippets for staff 2
 
-    # Build parallel streams: each sweep note goes on its pitch-appropriate
-    # staff; the opposite staff gets <space/>. Extreme pitches just use
-    # ledger lines (no 8va bracket) so the full range is visually honest.
+    # Insert EXTRA_GAP_SLOTS hidden slots on BOTH staves at each middle-C
+    # crossing so the two beam groups don't visually collide after the
+    # tuplet compresses the layer to one bar. (Same trick as the Tch
+    # cadenza; without it the last bass note crashes into the first
+    # treble note and vice versa.)
+    EXTRA_GAP_SLOTS = 6
+    hidden = f'<space dur="{note_dur}"/>'
+    prev_on_treble = None
+    event_slot = []  # layer slot position for each event (after gap insertion)
     for idx, ev in enumerate(events):
         s = ev['string']
         abc = string_to_abc(s)
         pp = abc_to_pitch(abc)
         if pp is None:
+            event_slot.append(None)
             continue
         pname, octnum = pp
         ges_attr = f' accid.ges="{ges_map[pname]}"' if pname in ges_map else ''
-        hidden = f'<space dur="{note_dur}"/>'
         on_treble = is_treble_string(s)
+        # Open a gap when the cascade crosses middle C (staff change).
+        if prev_on_treble is not None and prev_on_treble != on_treble:
+            for _ in range(EXTRA_GAP_SLOTS):
+                treble_parts.append((False, hidden, -1))
+                bass_parts.append((False, hidden, -1))
+        event_slot.append(len(treble_parts))
         if on_treble:
             note = (f'<note pname="{pname}" oct="{octnum}" dur="{note_dur}"'
                     f'{ges_attr} stem.dir="down"/>')
@@ -169,6 +181,7 @@ def build_cascade_measure(cascade, measure_id, key='Eb'):
                     f'{ges_attr} stem.dir="up"/>')
             treble_parts.append((False, hidden, s))
             bass_parts.append((True, note, s))
+        prev_on_treble = on_treble
 
     # Wrap consecutive notes in <beam>, breaking at direction changes and rests.
     def emit(parts):
@@ -204,9 +217,8 @@ def build_cascade_measure(cascade, measure_id, key='Eb'):
     treble_inner = emit(treble_parts)
     bass_inner = emit(bass_parts)
 
-    n = len(events)
+    n = len(treble_parts)  # includes gap slots so the tuplet ratio is right
     numbase = note_dur * 4 // 4  # 4/4 time: 8 eighths per bar
-    # Tuplet: N notes in the time of numbase eighths
     tuplet_open = (f'<tuplet num="{n}" numbase="{numbase}" '
                    f'num.visible="false" bracket.visible="false">')
     tuplet_close = '</tuplet>'
@@ -215,10 +227,11 @@ def build_cascade_measure(cascade, measure_id, key='Eb'):
     bass_layer = f'<staff n="2"><layer n="1">{tuplet_open}{bass_inner}{tuplet_close}</layer></staff>'
 
     # Chord labels from CHORD_NAMES (circled-digit official names).
+    # Anchor by layer-slot position (post gap insertion), not event index.
     harm_xml = ''
     for idx, ev in enumerate(events):
-        if ev['label']:
-            tstamp = 1 + idx * 4.0 / n
+        if ev['label'] and event_slot[idx] is not None:
+            tstamp = 1 + event_slot[idx] * 4.0 / n
             harm_xml += (f'<harm tstamp="{tstamp:.4f}" staff="1" place="above">'
                          f'{ev["label"]}</harm>')
 
