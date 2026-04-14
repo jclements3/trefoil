@@ -77,11 +77,6 @@ def is_treble_string(s):
     return s >= 15
 
 
-# 8va threshold: C6 (string 29) and above get an "8va" bracket so readers
-# don't have to count 4+ ledger lines above the treble staff.
-OCTAVE_UP_THRESHOLD = 29  # C6
-
-
 def build_cascade_measure(cascade, measure_id, key='Eb'):
     """Build MEI for one cascade: a measure with hidden-bracket tuplet across both staves.
 
@@ -106,34 +101,9 @@ def build_cascade_measure(cascade, measure_id, key='Eb'):
     treble_parts = []  # event XML snippets for staff 1
     bass_parts = []    # event XML snippets for staff 2
 
-    # Figure out which treble events sit in the 8va zone (sounding C6+).
-    # Notes inside a contiguous 8va run are written one octave lower so
-    # they fit on the staff; a <octave> element over startid..endid draws
-    # the "8" bracket.
-    octave_up_runs = []  # list of (start_idx, end_idx, startid, endid)
-    current = None
-    for idx, ev in enumerate(events):
-        if ev['string'] >= OCTAVE_UP_THRESHOLD:
-            if current is None:
-                current = [idx, idx]
-            else:
-                current[1] = idx
-        else:
-            if current is not None:
-                octave_up_runs.append(tuple(current))
-                current = None
-    if current is not None:
-        octave_up_runs.append(tuple(current))
-    in_octave_up = set()
-    for a, b in octave_up_runs:
-        for k in range(a, b + 1):
-            in_octave_up.add(k)
-
     # Build parallel streams: each sweep note goes on its pitch-appropriate
-    # staff; the opposite staff gets <space/>. Each event consumes one
-    # "slot" (one nominal eighth before tuplet scaling). Each note gets an
-    # xml:id so <octave> elements can reference its startid/endid.
-    note_ids = {}  # event_idx -> xml:id string
+    # staff; the opposite staff gets <space/>. Extreme pitches just use
+    # ledger lines (no 8va bracket) so the full range is visually honest.
     for idx, ev in enumerate(events):
         s = ev['string']
         abc = string_to_abc(s)
@@ -141,24 +111,16 @@ def build_cascade_measure(cascade, measure_id, key='Eb'):
         if pp is None:
             continue
         pname, octnum = pp
-        # Shift written octave down for notes inside an 8va bracket.
-        if idx in in_octave_up:
-            written_oct = octnum - 1
-        else:
-            written_oct = octnum
         ges_attr = f' accid.ges="{ges_map[pname]}"' if pname in ges_map else ''
         hidden = f'<space dur="{note_dur}"/>'
         on_treble = is_treble_string(s)
-        nid = f'c{measure_id}n{idx}'
-        note_ids[idx] = nid
-        id_attr = f' xml:id="{nid}"'
         if on_treble:
-            note = (f'<note{id_attr} pname="{pname}" oct="{written_oct}" dur="{note_dur}"'
+            note = (f'<note pname="{pname}" oct="{octnum}" dur="{note_dur}"'
                     f'{ges_attr} stem.dir="down"/>')
             treble_parts.append((True, note, s))
             bass_parts.append((False, hidden, s))
         else:
-            note = (f'<note{id_attr} pname="{pname}" oct="{written_oct}" dur="{note_dur}"'
+            note = (f'<note pname="{pname}" oct="{octnum}" dur="{note_dur}"'
                     f'{ges_attr} stem.dir="up"/>')
             treble_parts.append((False, hidden, s))
             bass_parts.append((True, note, s))
@@ -215,13 +177,6 @@ def build_cascade_measure(cascade, measure_id, key='Eb'):
             harm_xml += (f'<harm tstamp="{tstamp:.4f}" staff="1" place="above">'
                          f'{ev["label"]}</harm>')
 
-    # 8va brackets (octave up) over contiguous runs of high treble notes.
-    octave_xml = ''
-    for a, b in octave_up_runs:
-        if a in note_ids and b in note_ids:
-            octave_xml += (f'<octave staff="1" dis="8" dis.place="above" '
-                           f'startid="#{note_ids[a]}" endid="#{note_ids[b]}"/>')
-
     # Rehearsal mark with cascade title above the measure
     title_txt = cascade['title']
     subtitle_txt = cascade['subtitle']
@@ -231,7 +186,7 @@ def build_cascade_measure(cascade, measure_id, key='Eb'):
                  f'</tempo>')
 
     measure = (f'<measure n="{measure_id}" right="end">'
-               f'{treble_layer}{bass_layer}{tempo_xml}{harm_xml}{octave_xml}</measure>')
+               f'{treble_layer}{bass_layer}{tempo_xml}{harm_xml}</measure>')
     return measure
 
 
