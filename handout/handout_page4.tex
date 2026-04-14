@@ -1,0 +1,260 @@
+% Page 4 of tabloid handout: Composition & Voicing Reference (portrait letter)
+\documentclass[letterpaper]{article}
+\usepackage{fontspec}
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{multicol}
+\usepackage{enumitem}
+
+\geometry{letterpaper, margin=6mm}
+\setmainfont{DejaVu Sans}
+
+\definecolor{headerbg}{HTML}{2C3E50}
+\definecolor{altrow}{HTML}{F0F4F8}
+\definecolor{white}{HTML}{FFFFFF}
+
+% Cadence / motion color coding
+\definecolor{cadAuth}{HTML}{2E7D32}   % green — authentic / 4th motion
+\definecolor{cadHalf}{HTML}{F57C00}   % orange — half / step motion
+\definecolor{cadPlag}{HTML}{1565C0}   % blue — plagal / 3rd motion
+\definecolor{cadDec}{HTML}{C62828}    % red — deceptive
+\definecolor{cadPhr}{HTML}{6A1B9A}    % purple — phrygian
+
+\newcommand{\inv}[1]{\textsuperscript{#1}}
+\newcommand{\rn}[2]{\textbf{#1}#2}
+
+% Each section wrapped in a minipage so the header stays with its content
+% 2 args: title, body
+\newcommand{\sect}[2]{%
+  \noindent\begin{minipage}{\linewidth}%
+  \colorbox{headerbg}{\color{white}\textbf{\ #1\ }}\par
+  \vspace{1mm}
+  #2
+  \end{minipage}\par\vspace{2.5mm}%
+}
+
+\setlist[itemize]{leftmargin=4mm, itemsep=0.5pt, topsep=1pt, parsep=0pt, partopsep=0pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\pagestyle{empty}
+
+\begin{document}
+
+\begin{center}
+{\fontsize{16}{19}\selectfont\textbf{Composition \& Voicing Reference}}
+\end{center}
+
+\vspace{-1mm}
+
+\fontsize{8}{9.8}\selectfont
+\setlength{\columnsep}{3mm}
+\setlength{\columnseprule}{0.3pt}
+\raggedcolumns
+\begin{multicols}{3}
+
+\sect{Cadences}{%
+\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}ll@{}}
+\cellcolor{cadAuth!15}\textit{Authentic (perfect)} & \cellcolor{cadAuth!15}\textcolor{cadAuth}{\textbf{\rn{V}{7}--\rn{I}{}}} \\
+\cellcolor{cadAuth!15}\textit{Authentic (imperfect)} & \cellcolor{cadAuth!15}\textcolor{cadAuth}{\textbf{\rn{V}{}--\rn{I}{}}} \\
+\cellcolor{cadHalf!15}\textit{Half} & \cellcolor{cadHalf!15}\textcolor{cadHalf}{\textbf{\rn{I}{}--\rn{V}{} \textit{or} \rn{ii}{}--\rn{V}{}}} \\
+\cellcolor{cadPlag!15}\textit{Plagal (Amen)} & \cellcolor{cadPlag!15}\textcolor{cadPlag}{\textbf{\rn{IV}{}--\rn{I}{}}} \\
+\cellcolor{cadDec!15}\textit{Deceptive} & \cellcolor{cadDec!15}\textcolor{cadDec}{\textbf{\rn{V}{}--\rn{vi}{}}} \\
+\cellcolor{cadPhr!15}\textit{Phrygian half} & \cellcolor{cadPhr!15}\textcolor{cadPhr}{\textbf{\rn{iv}{}--\rn{V}{}}} \\
+\end{tabular}%
+}
+
+\sect{Common Progressions}{%
+\textit{Authentic close}\ \ \rn{I}{}--\rn{IV}{}--\rn{V}{}--\rn{I}{}\\
+\textit{Extended authentic}\ \ \rn{I}{}--\rn{ii}{}--\rn{V}{}--\rn{I}{}\\
+\textit{Circle of fifths}\ \ \rn{I}{}--\rn{IV}{}--\rn{vii}{°}--\rn{iii}{}--\rn{vi}{}--\rn{ii}{}--\rn{V}{}--\rn{I}{}\\
+\textit{Pop (I--V--vi--IV)}\ \ \rn{I}{}--\rn{V}{}--\rn{vi}{}--\rn{IV}{}\\
+\textit{Descending bass}\ \ \rn{I}{}--\rn{I}{}\inv{1}--\rn{IV}{}--\rn{IV}{}\inv{1}--\rn{V}{}\\
+\textit{Deceptive}\ \ \rn{I}{}--\rn{IV}{}--\rn{V}{}--\rn{vi}{}\\
+\textit{ii--V--I (jazz)}\ \ \rn{ii}{m7}--\rn{V}{7}--\rn{I}{}Δ\\
+\textit{Pachelbel/hymn}\ \ \rn{I}{}--\rn{V}{}--\rn{vi}{}--\rn{iii}{}--\rn{IV}{}--\rn{I}{}--\rn{IV}{}--\rn{V}{}\\
+\textit{Minor (natural)}\ \ \rn{i}{}--\rn{VII}{}--\rn{VI}{}--\rn{VII}{}--\rn{i}{}\\
+\textit{Minor cadential}\ \ \rn{i}{}--\rn{iv}{}--\rn{V}{}--\rn{i}{}%
+}
+
+\sect{Three Types of Chord Motion}{%
+Interval buddies (5\(\leftrightarrow\)4, 6\(\leftrightarrow\)3, 7\(\leftrightarrow\)2) share the same feel.
+
+\vspace{1mm}
+\renewcommand{\arraystretch}{1.15}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}p{8mm}p{13mm}p{38mm}@{}}
+\cellcolor{cadAuth!15}\textcolor{cadAuth}{\textbf{4th}} &
+\cellcolor{cadAuth!15}\textcolor{cadAuth}{\textbf{strongest}} &
+\cellcolor{cadAuth!15}emphasizes target chord \\
+\cellcolor{cadHalf!15}\textcolor{cadHalf}{\textbf{step}} &
+\cellcolor{cadHalf!15}\textcolor{cadHalf}{\textbf{medium}} &
+\cellcolor{cadHalf!15}creates momentum; emphasizes neither \\
+\cellcolor{cadPlag!15}\textcolor{cadPlag}{\textbf{3rd}} &
+\cellcolor{cadPlag!15}\textcolor{cadPlag}{\textbf{weakest}} &
+\cellcolor{cadPlag!15}extension of first chord \\
+\end{tabular}
+
+\vspace{1mm}
+\begin{itemize}
+  \item \textbf{Strong resolution}: approach home by 4th (V\(\to\)I)
+  \item \textbf{Tonal ambiguity}: approach tonic by 3rd; relative by 4th
+  \item \textbf{Flowing phrase}: walk by step, pinning no single chord
+  \item \textbf{Chromatic mediant}: 3rd motion between chords from different keys (C\(\to\)E\(\flat\), C\(\to\)A\(\flat\)m)
+  \item \textbf{Flat-2 (Neapolitan)}: step-down through \(\flat\)II brings darkness smoothly
+\end{itemize}%
+}
+
+\sect{Chord Function}{%
+\begin{tabular}{@{}ll@{}}
+\textbf{Tonic (T)} & \rn{I}{}, \rn{vi}{}, \rn{iii}{} \\
+\textbf{Subdominant (S)} & \rn{IV}{}, \rn{ii}{} \\
+\textbf{Dominant (D)} & \rn{V}{}, \rn{vii}{°} \\
+\end{tabular}
+
+\vspace{0.5mm}
+Flow: \textbf{T\(\to\)S\(\to\)D\(\to\)T}; D resolves to T (or \rn{vi}{} deceptive).%
+}
+
+\sect{Non-Chord Tones}{%
+Notes outside the underlying chord that decorate voices.
+\begin{itemize}
+  \item \textbf{Passing tone}: step up/down between two chord tones
+  \item \textbf{Neighbor tone}: step away from and back to the same chord tone
+  \item \textbf{Suspension (s)}: held over from previous chord, resolves down by step
+  \item \textbf{Retardation}: held over, resolves \textit{up} by step
+  \item \textbf{Anticipation}: arrives early on a note of the coming chord
+  \item \textbf{Appoggiatura}: leapt into, resolves by step (usually down)
+  \item \textbf{Escape tone}: left by leap in opposite direction
+\end{itemize}%
+}
+
+\sect{SATB Voice Ranges}{%
+\begin{tabular}{@{}lll@{}}
+\textbf{Voice} & \textbf{Low} & \textbf{High} \\
+Soprano & C4 & G5 \\
+Alto    & G3 & C5 \\
+Tenor   & C3 & G4 \\
+Bass    & E2 & C4 \\
+\end{tabular}\\[0.5mm]
+S--A gap: \(\leq\) octave\quad A--T gap: \(\leq\) octave\quad T--B gap: \(\leq\) 12th%
+}
+
+\sect{Doubling Rules}{%
+\begin{itemize}
+  \item Double the \textbf{root} in root-position chords
+  \item Double the \textbf{bass note} in 1st inversion
+  \item Avoid doubling the \textbf{leading tone} (7th degree)
+  \item Avoid doubling the \textbf{7th} of a 7th chord
+  \item In \rn{V}{7}: all 4 notes present---no doubling
+  \item \rn{vii}{°} triad: double the \textbf{3rd} (not root or 5th)
+\end{itemize}%
+}
+
+\sect{Voice Motion}{%
+\begin{itemize}
+  \item \textbf{No parallel 5ths / octaves} between any two voices
+  \item \textbf{No direct (hidden) 5ths/8ves} in outer voices via similar motion
+  \item \textbf{No voice crossing} or \textbf{overlap}
+  \item \textbf{Contrary} between outer voices is always safe
+  \item \textbf{Oblique} (one voice stationary) is safe
+  \item Prefer \textbf{stepwise motion}; after a leap, resolve by step opposite
+  \item Avoid \textbf{augmented} intervals melodically (esp. aug 2nd)
+\end{itemize}%
+}
+
+\sect{Tendency Tones}{%
+\begin{itemize}
+  \item \textbf{Leading tone} (7\(\hat{}\)): resolves \textbf{up} to tonic
+  \item \textbf{Chordal 7th}: resolves \textbf{down} by step
+  \item \rn{V}{7}--\rn{I}{}: 4\(\hat{}\) down to 3\(\hat{}\); 7\(\hat{}\) up to 1\(\hat{}\)
+  \item \textbf{Tritone} in \rn{V}{7}: dim 5th resolves inward to 1\(\hat{}\)--3\(\hat{}\)
+\end{itemize}%
+}
+
+\sect{Harmonic Rhythm}{%
+\begin{itemize}
+  \item \textbf{Slow changes} (1 chord/bar): solemn, spacious, hymn-like
+  \item \textbf{Medium} (2/bar): balanced; most common in folk/pop
+  \item \textbf{Fast} (4/bar): restless; used for drive or climax
+  \item \textbf{Accelerando}: speed up chord changes into cadences for tension
+  \item Stronger chords (I, V) on \textbf{stronger beats}; passing chords on weak beats
+\end{itemize}%
+}
+
+\sect{Modes}{%
+\renewcommand{\arraystretch}{1.1}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lll@{}}
+\textbf{Mode} & \textbf{Color} & \textbf{Character} \\
+Ionian (1) & major & bright, stable \\
+Dorian (2) & minor & jazzy, folk \\
+Phrygian (3) & minor & Spanish, dark \\
+Lydian (4) & major & floating, dreamy \\
+Mixolydian (5) & major & bluesy, rock \\
+Aeolian (6) & minor & natural minor \\
+Locrian (7) & dim & unstable, rare \\
+\end{tabular}%
+}
+
+\sect{Borrowed \& Secondary Chords}{%
+\begin{itemize}
+  \item \textbf{Borrowed}: from parallel minor (\(\flat\)III, \(\flat\)VI, \(\flat\)VII, iv) add darkness
+  \item \textbf{Relative ambiguity}: major \& relative minor share notes---emphasize one via cadence direction
+  \item \textbf{V/x}: secondary dominant targeting chord \textit{x}, spells with chromatic leading tone to \textit{x}'s root
+  \item Resolve the secondary LT up, then target resolves normally
+\end{itemize}%
+}
+
+\sect{Melody Shaping}{%
+\begin{itemize}
+  \item Each phrase should have \textbf{one high point} (climax)
+  \item Balance \textbf{leaps} with \textbf{stepwise recovery} in the opposite direction
+  \item \textbf{Repeat} motives with variation (sequence, inversion) for coherence
+  \item Align \textbf{melodic peaks} with \textbf{harmonic peaks} (V, tension chords)
+  \item End phrases on \textbf{scale degree 1, 3, or 5} for repose; on 2 or 7 for continuation
+\end{itemize}%
+}
+
+\sect{Practical Tips}{%
+\begin{itemize}
+  \item Keep \textbf{common tones} in the same voice when possible
+  \item \rn{I}{6} weakens a cadence---use for passing, not finals
+  \item \rn{V}{}--\rn{vi}{} (deceptive): double the \textbf{3rd} of \rn{vi}{}
+  \item \textbf{5th} is the most expendable tone---omit before the 3rd
+  \item \textbf{Open spacing} suits solemn; \textbf{close spacing} is bright
+  \item Avoid \textbf{unison} between adjacent voices except at cadences
+\end{itemize}%
+}
+
+\sect{Harmonizing a Melody}{%
+For each phrase, split the melody into \textbf{chord tones} and \textbf{approach tones}:
+\begin{itemize}
+  \item \textbf{Start} and \textbf{end} the phrase on chord tones of their current chord
+  \item \textbf{Land} the resolution (final note) cleanly---if that's solid, the path there can be loose
+  \item Middle notes are \textbf{passing} (walk by step), \textbf{neighbor} (step away + back), or \textbf{enclosure} (overshoot by ½ step + resolve)
+  \item Harmonize passing tones with \textbf{passing chords}, not the underlying chord itself
+  \item If the melody note is the chord's \textbf{root, 3rd, 5th, or 9th}, it harmonizes cleanly with that chord
+\end{itemize}%
+}
+
+\sect{Passing Chord Tricks}{%
+\begin{itemize}
+  \item \textbf{Dominant of target}: V7 of whatever's next pulls strongly toward it
+  \item \textbf{Chromatic slide}: drop the target chord down a ½ step for the note before (B6 \(\to\) C6)
+  \item \textbf{Diminished 7ths} resolve to almost anything---great for crunching in between
+  \item Use \textbf{ii} in place of \textbf{V} (same function, softer)
+  \item \textbf{Tritone sub}: \(\flat\)II7 replaces V7 (same tritone inside)
+  \item \textbf{Back-door cadence}: iv\(\to\)\(\flat\)VII\(\to\)I instead of V\(\to\)I
+  \item If each \textbf{inner voice} sounds good alone, the chord quality doesn't matter much
+  \item \textbf{No repeated notes} in inner lines---breaks the flow
+\end{itemize}%
+}
+
+
+\end{multicols}
+
+\end{document}

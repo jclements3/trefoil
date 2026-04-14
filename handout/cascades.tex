@@ -1,0 +1,312 @@
+\documentclass[14pt]{article}
+\usepackage[top=7mm, bottom=7mm, left=7mm, right=7mm, letterpaper]{geometry}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{multicol}
+\usepackage[T1]{fontenc}
+\usepackage{helvet}
+\usepackage{amssymb}
+\usepackage{tikz}
+\renewcommand{\familydefault}{\sfdefault}
+
+\definecolor{headbg}{gray}{0.15}
+\definecolor{headfg}{gray}{1.0}
+\definecolor{altrow}{gray}{0.91}
+\definecolor{upcolor}{rgb}{0.10,0.32,0.58}
+\definecolor{dncolor}{rgb}{0.52,0.08,0.08}
+% Category colors (match cadences on page 4)
+\definecolor{catTriad}{HTML}{2E7D32}   % green — triads/octave (anchoring)
+\definecolor{catSev}{HTML}{3F51B5}     % indigo — 7ths / 6ths (sophisticated)
+\definecolor{catSus}{HTML}{F57C00}     % orange — sus / quartal (modal)
+\definecolor{catMix}{HTML}{C62828}     % red — mixed / multi-family (dramatic)
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3mm}
+\pagestyle{empty}
+\renewcommand{\arraystretch}{1.15}
+
+\newcommand{\circled}[1]{%
+  \tikz[baseline=(x.base)]{
+    \node[circle,inner sep=1pt,draw,line width=0.6pt,
+          font=\normalsize\bfseries] (x) {#1};
+  }%
+}
+
+% Tight fixed-width columns — @{} suppresses outer padding
+% tabcolsep set to 0.8mm inside each table
+% H=6mm A=4mm N=9mm D=13mm C=14mm → 46mm content + 4×1.6mm=6.4mm gaps = 52.4mm
+\newcolumntype{H}{>{\bfseries\normalsize}p{6mm}}
+\newcolumntype{A}{>{\centering\arraybackslash}p{4mm}}
+\newcolumntype{N}{>{\ttfamily\normalsize\centering\arraybackslash}p{9mm}}
+\newcolumntype{D}{>{\normalsize\centering\arraybackslash}p{13mm}}
+\newcolumntype{C}{>{\normalsize\raggedright\arraybackslash}p{14mm}}
+
+\newcommand{\rowup}[4]{\rowcolor{white}#1 & \textcolor{upcolor}{$\uparrow$} & #2 & #3 & #4 \\}
+\newcommand{\rowdn}[4]{\rowcolor{altrow}#1 & \textcolor{dncolor}{$\downarrow$} & #2 & #3 & #4 \\}
+
+% 4 args: category color, title, subtitle, rows
+% minipage keeps title + header + table together in one indivisible block
+\newcommand{\cascadetable}[4]{%
+  \noindent\begin{minipage}{\linewidth}%
+  {\large\bfseries\color{#1} #2}\\[-1mm]
+  {\small\textit{#3}}\par\vspace{-1mm}
+  {\setlength{\tabcolsep}{0.8mm}%
+  \begin{tabular}{@{}HANDC@{}}
+  \toprule
+  \rowcolor{#1}
+  \color{headfg}\textbf{H} &
+  \color{headfg} &
+  \color{headfg}\textbf{Str} &
+  \color{headfg}\textbf{Addr} &
+  \color{headfg}\textbf{Chord} \\
+  \midrule
+  #4
+  \bottomrule
+  \end{tabular}\par}%
+  \end{minipage}\par\vspace{3mm}%
+}
+
+\begin{document}
+
+{\LARGE\bfseries Harp Cascade Reference}\quad
+{\normalsize Eb major (E A B strings) · 1=E\ 2=F\ 3=G\ 4=A\ 5=B\ 6=C\ 7=D}\\[1mm]
+{\normalsize \textcolor{upcolor}{$\uparrow$}~asc\quad
+\textcolor{dncolor}{$\downarrow$}~desc\quad
+Addr=\circled{deg}pattern\quad
+LH/RH alternate, each hand starts one string above the other}
+\smallskip\hrule\medskip
+
+\setlength{\columnsep}{6mm}
+\setlength{\columnseprule}{0.3pt}
+\begin{multicols}{3}
+
+\cascadetable{catTriad}{The Open Cascade}{triads, full range}{
+\rowup{LH}{E2}{\circled{1}33}{I}
+\rowup{RH}{C2}{\circled{6}33}{vi}
+\rowup{LH}{A3}{\circled{4}33}{IV}
+\rowup{RH}{F4}{\circled{2}33}{ii}
+\rowup{LH}{D4}{\circled{7}33}{vii$^\circ$}
+\rowup{RH}{B5}{\circled{5}33}{V}
+\rowdn{LH}{G5}{\circled{3}33}{iii}
+\rowdn{RH}{B4}{\circled{5}33}{V}
+\rowdn{LH}{D3}{\circled{7}33}{vii$^\circ$}
+\rowdn{RH}{F3}{\circled{2}33}{ii}
+}
+
+\cascadetable{catTriad}{The Tilted Cascade}{second inversions, 34}{
+\rowup{LH}{E2}{\circled{1}34}{vi$^2$}
+\rowup{RH}{D2}{\circled{7}34}{V$^2$}
+\rowup{LH}{C3}{\circled{6}34}{IV$^2$}
+\rowup{RH}{B4}{\circled{5}34}{iii$^2$}
+\rowup{LH}{A5}{\circled{4}34}{ii$^2$}
+\rowdn{RH}{E5}{\circled{1}34}{vi$^2$}
+\rowdn{LH}{F4}{\circled{2}34}{vii$^{\circ2}$}
+\rowdn{RH}{G3}{\circled{3}34}{I$^2$}
+\rowdn{LH}{A2}{\circled{4}34}{ii$^2$}
+}
+
+\cascadetable{catTriad}{The Grounded Cascade}{first inversions, 43}{
+\rowup{LH}{E2}{\circled{1}43}{I$^1$}
+\rowup{RH}{D2}{\circled{7}43}{vii$^{\circ1}$}
+\rowup{LH}{C3}{\circled{6}43}{vi$^1$}
+\rowup{RH}{B4}{\circled{5}43}{V$^1$}
+\rowup{LH}{A5}{\circled{4}43}{IV$^1$}
+\rowdn{RH}{F5}{\circled{2}43}{ii$^1$}
+\rowdn{LH}{G4}{\circled{3}43}{iii$^1$}
+\rowdn{RH}{A3}{\circled{4}43}{IV$^1$}
+\rowdn{LH}{B2}{\circled{5}43}{V$^1$}
+}
+
+\cascadetable{catSus}{The Suspended Cascade}{sus2 up, sus4 down}{
+\rowup{LH}{E2}{\circled{1}24}{Is2}
+\rowup{RH}{C2}{\circled{6}24}{vis2}
+\rowup{LH}{A3}{\circled{4}24}{IVs2}
+\rowup{RH}{F4}{\circled{2}24}{iis2}
+\rowup{LH}{B4}{\circled{5}24}{Vs2}
+\rowdn{RH}{E5}{\circled{1}42}{Is4}
+\rowdn{LH}{G4}{\circled{3}42}{iiis4}
+\rowdn{RH}{B3}{\circled{5}42}{Vs4}
+\rowdn{LH}{C2}{\circled{6}42}{vis4}
+}
+
+\cascadetable{catSus}{The Quartal Cascade}{open fourths, 44}{
+\rowup{LH}{F2}{\circled{2}44}{iiq}
+\rowup{RH}{B3}{\circled{5}44}{Vq}
+\rowup{LH}{G4}{\circled{3}44}{iiiq}
+\rowup{RH}{B5}{\circled{5}44}{Vq}
+\rowdn{LH}{D4}{\circled{7}44}{viiq}
+\rowdn{RH}{D3}{\circled{7}44}{viiq}
+\rowdn{LH}{D2}{\circled{7}44}{viiq}
+}
+
+\cascadetable{catSus}{The Cathedral Cascade}{sus4$+$oct up, sus4 down}{
+\rowup{LH}{E2}{\circled{1}433}{Is4$+$8}
+\rowup{RH}{F3}{\circled{2}433}{iis4$+$8}
+\rowup{LH}{B4}{\circled{5}433}{Vs4$+$8}
+\rowdn{RH}{E5}{\circled{1}42}{Is4}
+\rowdn{LH}{F4}{\circled{2}42}{iis4}
+\rowdn{RH}{F3}{\circled{2}42}{iis4}
+\rowdn{LH}{F2}{\circled{2}42}{iis4}
+}
+
+\cascadetable{catSev}{The Twilight Cascade}{7ths root position, 333}{
+\rowup{LH}{E2}{\circled{1}333}{I$\Delta$}
+\rowup{RH}{E3}{\circled{1}333}{I$\Delta$}
+\rowup{LH}{E4}{\circled{1}333}{I$\Delta$}
+\rowup{RH}{E5}{\circled{1}333}{I$\Delta$}
+\rowdn{LH}{D4}{\circled{7}333}{vii$\varnothing$7}
+\rowdn{RH}{D3}{\circled{7}333}{vii$\varnothing$7}
+\rowdn{LH}{D2}{\circled{7}333}{vii$\varnothing$7}
+\rowdn{RH}{G2}{\circled{3}333}{iiim7}
+}
+
+\cascadetable{catSev}{The Dusky Cascade}{7ths first inversion, 233}{
+\rowup{LH}{E2}{\circled{1}233}{I$\Delta^1$}
+\rowup{RH}{D2}{\circled{7}233}{vii$\varnothing7^1$}
+\rowup{LH}{C3}{\circled{6}233}{vim7$^1$}
+\rowup{RH}{B4}{\circled{5}233}{V7$^1$}
+\rowup{LH}{A5}{\circled{4}233}{IV$\Delta^1$}
+\rowdn{RH}{F5}{\circled{2}233}{iim7$^1$}
+\rowdn{LH}{G4}{\circled{3}233}{iiim7$^1$}
+\rowdn{RH}{A3}{\circled{4}233}{IV$\Delta^1$}
+\rowdn{LH}{A2}{\circled{4}233}{IV$\Delta^1$}
+}
+
+\cascadetable{catSev}{The Arching Cascade}{7ths second inversion, 323}{
+\rowup{LH}{E2}{\circled{1}323}{I$\Delta^2$}
+\rowup{RH}{D2}{\circled{7}323}{vii$\varnothing7^2$}
+\rowup{LH}{C3}{\circled{6}323}{vim7$^2$}
+\rowup{RH}{B4}{\circled{5}323}{V7$^2$}
+\rowup{LH}{A5}{\circled{4}323}{IV$\Delta^2$}
+\rowdn{RH}{E5}{\circled{1}323}{I$\Delta^2$}
+\rowdn{LH}{F4}{\circled{2}323}{iim7$^2$}
+\rowdn{RH}{G3}{\circled{3}323}{iiim7$^2$}
+\rowdn{LH}{G2}{\circled{3}323}{iiim7$^2$}
+}
+
+\cascadetable{catSev}{The Velvet Cascade}{6th chords, 332}{
+\rowup{LH}{E2}{\circled{1}332}{I6}
+\rowup{RH}{D2}{\circled{7}332}{V7$^3$}
+\rowup{LH}{C3}{\circled{6}332}{IV$\Delta^3$}
+\rowup{RH}{B4}{\circled{5}332}{V6}
+\rowup{LH}{A5}{\circled{4}332}{IV6}
+\rowdn{RH}{E5}{\circled{1}332}{I6}
+\rowdn{LH}{F4}{\circled{2}332}{iim6}
+\rowdn{RH}{G3}{\circled{3}332}{I$\Delta^3$}
+\rowdn{LH}{A2}{\circled{4}332}{IV6}
+}
+
+\cascadetable{catSev}{The Burnished Cascade}{6th inversions, 434}{
+\rowup{LH}{E2}{\circled{1}434}{I6$^1$}
+\rowup{RH}{G3}{\circled{3}434}{IV$\Delta^3$}
+\rowup{LH}{B4}{\circled{5}434}{V6$^1$}
+\rowup{RH}{A5}{\circled{4}434}{IV6$^1$}
+\rowdn{LH}{C4}{\circled{6}434}{I$\Delta^3$}
+\rowdn{RH}{C3}{\circled{6}434}{I$\Delta^3$}
+\rowdn{LH}{C2}{\circled{6}434}{I$\Delta^3$}
+}
+
+\cascadetable{catTriad}{The Thundering Cascade}{octave doublings, 334}{
+\rowup{LH}{E2}{\circled{1}334}{I$+$8}
+\rowup{RH}{F3}{\circled{2}334}{ii$+$8}
+\rowup{LH}{G4}{\circled{3}334}{iii$+$8}
+\rowup{RH}{A5}{\circled{4}334}{IV$+$8}
+\rowdn{LH}{D4}{\circled{7}334}{vii$+$8}
+\rowdn{RH}{D3}{\circled{7}334}{vii$+$8}
+\rowdn{LH}{D2}{\circled{7}334}{vii$+$8}
+\rowdn{RH}{F2}{\circled{2}334}{ii$+$8}
+}
+
+\cascadetable{catSus}{The Floating Cascade}{quartal 7ths, 444}{
+\rowup{LH}{F2}{\circled{2}444}{iiq7}
+\rowup{RH}{F3}{\circled{2}444}{iiq7}
+\rowup{LH}{G4}{\circled{3}444}{iiiq7}
+\rowup{RH}{G5}{\circled{3}444}{iiiq7}
+\rowdn{LH}{D4}{\circled{7}444}{viiq7}
+\rowdn{RH}{D3}{\circled{7}444}{viiq7}
+\rowdn{LH}{D2}{\circled{7}444}{viiq7}
+}
+
+\cascadetable{catMix}{The Stormy Cascade}{triads$\to$7ths, dramatic}{
+\rowup{LH}{E2}{\circled{1}33}{I}
+\rowup{RH}{C2}{\circled{6}33}{vi}
+\rowup{LH}{A3}{\circled{4}333}{IV$\Delta$}
+\rowup{RH}{A4}{\circled{4}333}{IV$\Delta$}
+\rowup{LH}{A5}{\circled{4}323}{IV$\Delta^2$}
+\rowdn{RH}{B5}{\circled{5}323}{V7$^2$}
+\rowdn{LH}{C4}{\circled{6}333}{vim7}
+\rowdn{RH}{C3}{\circled{6}333}{vim7}
+\rowdn{LH}{B2}{\circled{5}33}{V}
+}
+
+\cascadetable{catMix}{The Moonrise Cascade}{sus$\to$7th$\to$triad}{
+\rowup{LH}{F2}{\circled{2}42}{iis4}
+\rowup{RH}{C2}{\circled{6}24}{vis2}
+\rowup{LH}{A3}{\circled{4}233}{IV$\Delta^1$}
+\rowup{RH}{G4}{\circled{3}233}{iiim7$^1$}
+\rowup{LH}{F5}{\circled{2}233}{iim7$^1$}
+\rowdn{RH}{B5}{\circled{5}42}{Vs4}
+\rowdn{LH}{D4}{\circled{7}43}{vii$^{\circ1}$}
+\rowdn{RH}{E4}{\circled{1}43}{I$^1$}
+\rowdn{LH}{F3}{\circled{2}43}{ii$^1$}
+}
+
+\cascadetable{catMix}{The Fanfare Cascade}{sus4$+$8 to triads, heroic}{
+\rowup{LH}{E2}{\circled{1}433}{Is4$+$8}
+\rowup{RH}{F3}{\circled{2}433}{iis4$+$8}
+\rowup{LH}{B4}{\circled{5}433}{Vs4$+$8}
+\rowup{RH}{C5}{\circled{6}33}{vi}
+\rowdn{LH}{A5}{\circled{4}43}{IV$^1$}
+\rowdn{RH}{B4}{\circled{5}43}{V$^1$}
+\rowdn{LH}{C3}{\circled{6}43}{vi$^1$}
+\rowdn{RH}{D2}{\circled{7}43}{vii$^{\circ1}$}
+}
+
+\cascadetable{catMix}{The Impressionist Cascade}{F column, all 7th patterns}{
+\rowup{LH}{F2}{\circled{2}44}{iiq}
+\rowup{RH}{F3}{\circled{2}333}{iim7}
+\rowup{LH}{F4}{\circled{2}323}{iim7$^2$}
+\rowup{RH}{F5}{\circled{2}233}{iim7$^1$}
+\rowdn{LH}{C5}{\circled{6}332}{IV$\Delta^3$}
+\rowdn{RH}{D4}{\circled{7}332}{V7$^3$}
+\rowdn{LH}{E4}{\circled{1}332}{I6}
+\rowdn{RH}{E3}{\circled{1}332}{I6}
+}
+
+\cascadetable{catMix}{The Wistful Cascade}{vi family, minor feel}{
+\rowup{LH}{C2}{\circled{6}333}{vim7}
+\rowup{RH}{C3}{\circled{6}333}{vim7}
+\rowup{LH}{C4}{\circled{6}333}{vim7}
+\rowup{RH}{D4}{\circled{7}334}{vii$+$8}
+\rowup{LH}{D3}{\circled{7}334}{vii$+$8}
+\rowdn{LH}{D3}{\circled{7}334}{vii$+$8}
+\rowdn{RH}{D2}{\circled{7}334}{vii$+$8}
+}
+
+\cascadetable{catMix}{The Contemplative Cascade}{viq and V7, C column}{
+\rowup{LH}{C2}{\circled{6}44}{viq}
+\rowup{RH}{C3}{\circled{6}44}{viq}
+\rowup{LH}{C4}{\circled{6}44}{viq}
+\rowup{RH}{B3}{\circled{5}333}{V7}
+\rowup{LH}{B4}{\circled{5}333}{V7}
+\rowdn{RH}{B5}{\circled{5}333}{V7}
+\rowdn{LH}{C3}{\circled{6}444}{viq7}
+\rowdn{RH}{C2}{\circled{6}444}{viq7}
+}
+
+\cascadetable{catMix}{The Resolute Cascade}{434 all degrees, V$+$8, vi$+$8}{
+\rowup{LH}{E2}{\circled{1}434}{I6$^1$}
+\rowup{RH}{F3}{\circled{2}434}{iim6$^1$}
+\rowup{LH}{D4}{\circled{7}434}{V7$^3$}
+\rowup{RH}{B5}{\circled{5}334}{V$+$8}
+\rowdn{LH}{C4}{\circled{6}334}{vi$+$8}
+\rowdn{RH}{C3}{\circled{6}334}{vi$+$8}
+\rowdn{LH}{C2}{\circled{6}334}{vi$+$8}
+\rowdn{RH}{F2}{\circled{2}334}{ii$+$8}
+}
+
+\end{multicols}
+
+\end{document}

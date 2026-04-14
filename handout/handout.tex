@@ -1,13 +1,17 @@
 \documentclass[letterpaper]{article}
-\usepackage[margin=0in,landscape]{geometry}
+\usepackage[margin=0in]{geometry}
 \usepackage{pdfpages}
 \pagestyle{empty}
 \begin{document}
 
-%% Two reference pages, each built separately with xelatex:
-%%   handout_chord_table.pdf    — 14x7 diatonic chord table (circled-digit degrees)
-%%   handout_finger_drills.pdf  — 4-finger sequences + rhythm grids sidebar
-\includepdf[pages=-]{handout_chord_table.pdf}
-\includepdf[pages=-]{handout_finger_drills.pdf}
+%% Tabloid-fold handout: 4 portrait letter pages
+%%   Page 1: Chord Table + Finger Patterns   (front)
+%%   Pages 2-3: Cascades                      (inside spread)
+%%   Page 4: Composition & Voicing Reference  (back)
+%%
+%% Print on 11x17 tabloid, fold in half → 8.5x11 booklet.
+\includepdf[pages=-]{handout_page1.pdf}
+\includepdf[pages=-,fitpaper=false]{cascades.pdf}
+\includepdf[pages=-]{handout_page4.pdf}
 
 \end{document}

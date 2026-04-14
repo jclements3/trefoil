@@ -1,0 +1,121 @@
+\documentclass[letterpaper]{article}
+\usepackage{fontspec}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{longtable}
+\usepackage{microtype}
+
+\geometry{letterpaper, margin=8mm}
+
+\setmainfont{DejaVu Sans}
+
+\definecolor{headerbg}{HTML}{2C3E50}
+\definecolor{altrow}{HTML}{F0F4F8}
+\definecolor{white}{HTML}{FFFFFF}
+
+\newcommand{\inv}[1]{\textsuperscript{#1}}
+\newcommand{\rn}[2]{\textbf{#1}#2}
+
+\begin{document}
+
+\vspace*{-4mm}
+
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{0.95}
+\fontsize{13}{15}\selectfont
+
+\begin{longtable}{>{\bfseries\centering\arraybackslash}m{13mm}
+                  *{7}{>{\centering\arraybackslash}m{26mm}}}
+
+\rowcolor{headerbg}
+\color{white}{\small\textbf{}} &
+\color{white}{\small Ionian} &
+\color{white}{\small Dorian} &
+\color{white}{\small Phrygian} &
+\color{white}{\small Lydian} &
+\color{white}{\small Mixolydian} &
+\color{white}{\small Aeolian} &
+\color{white}{\small Locrian} \\
+\rowcolor{headerbg}
+\color{white}{\small\textbf{+intervals}} &
+\color{white}\textbf{1} &
+\color{white}\textbf{2} &
+\color{white}\textbf{3} &
+\color{white}\textbf{4} &
+\color{white}\textbf{5} &
+\color{white}\textbf{6} &
+\color{white}\textbf{7} \\
+\endfirsthead
+\rowcolor{headerbg}
+\color{white}{\small\textbf{}} &
+\color{white}{\small Ionian} &
+\color{white}{\small Dorian} &
+\color{white}{\small Phrygian} &
+\color{white}{\small Lydian} &
+\color{white}{\small Mixolydian} &
+\color{white}{\small Aeolian} &
+\color{white}{\small Locrian} \\
+\rowcolor{headerbg}
+\color{white}{\small\textbf{+intervals}} &
+\color{white}\textbf{1} &
+\color{white}\textbf{2} &
+\color{white}\textbf{3} &
+\color{white}\textbf{4} &
+\color{white}\textbf{5} &
+\color{white}\textbf{6} &
+\color{white}\textbf{7} \\
+\endhead
+
+\rowcolor{altrow}
+24 & \rn{①}{s2} & \rn{②}{s2} & — & \rn{④}{s2} & \rn{⑤}{s2} & \rn{⑥}{s2} & — \\
+
+33 & \rn{①}{} & \rn{②}{m} & \rn{③}{m} & \rn{④}{} & \rn{⑤}{} & \rn{⑥}{m} & \rn{⑦}{°} \\
+
+\rowcolor{altrow}
+34 & \rn{⑥}{m}\inv{2} & \rn{⑦}{°}\inv{2} & \rn{①}{}\inv{2} & \rn{②}{m}\inv{2} & \rn{③}{m}\inv{2} & \rn{④}{}\inv{2} & \rn{⑤}{}\inv{2} \\
+
+42 & \rn{①}{s4} & \rn{②}{s4} & \rn{③}{s4} & — & \rn{⑤}{s4} & \rn{⑥}{s4} & — \\
+
+\rowcolor{altrow}
+43 & \rn{④}{}\inv{1} & \rn{⑤}{}\inv{1} & \rn{⑥}{m}\inv{1} & \rn{⑦}{°}\inv{1} & \rn{①}{}\inv{1} & \rn{②}{m}\inv{1} & \rn{③}{m}\inv{1} \\
+
+44 & — & \rn{②}{q} & \rn{③}{q} & — & \rn{⑤}{q} & \rn{⑥}{q} & \rn{⑦}{q} \\
+
+\rowcolor{altrow}
+233 & \rn{②}{m7}\inv{1} & \rn{③}{m7}\inv{1} & \rn{④}{Δ}\inv{1} & \rn{⑤}{7}\inv{1} & \rn{⑥}{m7}\inv{1} & \rn{⑦}{ø7}\inv{1} & \rn{①}{Δ}\inv{1} \\
+
+323 & \rn{④}{Δ}\inv{2} & \rn{⑤}{7}\inv{2} & \rn{⑥}{m7}\inv{2} & \rn{⑦}{ø7}\inv{2} & \rn{①}{Δ}\inv{2} & \rn{②}{m7}\inv{2} & \rn{③}{m7}\inv{2} \\
+
+\rowcolor{altrow}
+332 & \rn{①}{6} & \rn{②}{m6} & \rn{①}{Δ}\inv{3} & \rn{④}{6} & \rn{⑤}{6} & \rn{④}{Δ}\inv{3} & \rn{⑤}{7}\inv{3} \\
+
+333 & \rn{①}{Δ} & \rn{②}{m7} & \rn{③}{m7} & \rn{④}{Δ} & \rn{⑤}{7} & \rn{⑥}{m7} & \rn{⑦}{ø7} \\
+
+\rowcolor{altrow}
+334 & \rn{①}{+8} & \rn{②}{m+8} & \rn{③}{m+8} & \rn{④}{+8} & \rn{⑤}{+8} & \rn{⑥}{m+8} & \rn{⑦}{+8} \\
+
+433 & \rn{①}{s4+8} & \rn{②}{s4+8} & — & — & \rn{⑤}{s4+8} & — & — \\
+
+\rowcolor{altrow}
+434 & \rn{④}{6}\inv{1} & \rn{⑤}{6}\inv{1} & \rn{④}{Δ}\inv{3} & \rn{⑤}{7}\inv{3} & \rn{①}{6}\inv{1} & \rn{②}{m6}\inv{1} & \rn{①}{Δ}\inv{3} \\
+
+444 & — & \rn{②}{q7} & \rn{③}{q7} & — & — & \rn{⑥}{q7} & \rn{⑦}{q7} \\
+
+\bottomrule
+\end{longtable}
+
+\vspace{3mm}
+{\small\bfseries Key:}\quad
+{\small
+\begin{tabular}[t]{@{}r@{~=~}l@{\qquad}r@{~=~}l@{\qquad}r@{~=~}l@{}}
+no suffix & major (①④⑤)         & °  & diminished        & q      & quartal \\
+m         & minor (②m ③m ⑥m)   & ø7 & half-diminished   & s2/s4  & sus2/sus4 \\
+Δ         & major 7th           & 7  & dominant 7th      & 6/m6   & major/minor 6th \\
++8        & root doubled at 8ve & s4+8 & sus4 w/ doubled root & \multicolumn{2}{@{}l}{\textsuperscript{1,2,3}~=~inversion} \\
+\end{tabular}
+}
+
+\end{document}

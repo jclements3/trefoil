@@ -1,0 +1,188 @@
+% Page 1 of tabloid handout: Chord Table + Finger Patterns
+\documentclass[letterpaper]{article}
+\usepackage{fontspec}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{longtable}
+\usepackage{enumitem}
+
+\geometry{letterpaper, margin=8mm}
+\setmainfont{DejaVu Sans}
+
+\definecolor{headerbg}{HTML}{2C3E50}
+\definecolor{altrow}{HTML}{F0F4F8}
+\definecolor{white}{HTML}{FFFFFF}
+
+\newcommand{\inv}[1]{\textsuperscript{#1}}
+\newcommand{\rn}[2]{\textbf{#1}#2}
+
+\setlist[itemize]{leftmargin=5mm, itemsep=0.5pt, topsep=1pt, parsep=0pt}
+\setlength{\parindent}{0pt}
+\pagestyle{empty}
+
+\begin{document}
+
+% ══════════════════════════════════════════════════════════
+% CHORD TABLE (top ~55% of page)
+% ══════════════════════════════════════════════════════════
+\begin{center}
+{\fontsize{15}{18}\selectfont\textbf{Diatonic Chord Table}}
+\end{center}
+
+\vspace{-2mm}
+
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{0.88}
+\fontsize{11.5}{13}\selectfont
+
+\begin{center}
+\begin{tabular}{>{\bfseries\centering\arraybackslash}m{10mm}
+                *{7}{>{\centering\arraybackslash}m{23mm}}}
+
+\rowcolor{headerbg}
+\color{white}{\scriptsize\textbf{Degree}} &
+\color{white}{\scriptsize Ionian} &
+\color{white}{\scriptsize Dorian} &
+\color{white}{\scriptsize Phrygian} &
+\color{white}{\scriptsize Lydian} &
+\color{white}{\scriptsize Mixolydian} &
+\color{white}{\scriptsize Aeolian} &
+\color{white}{\scriptsize Locrian} \\
+\rowcolor{headerbg}
+\color{white}{\scriptsize\textbf{Interval}} &
+\color{white}\textbf{1} &
+\color{white}\textbf{2} &
+\color{white}\textbf{3} &
+\color{white}\textbf{4} &
+\color{white}\textbf{5} &
+\color{white}\textbf{6} &
+\color{white}\textbf{7} \\
+
+\rowcolor{altrow}
+24 & \rn{①}{s2} & \rn{②}{s2} & --- & \rn{④}{s2} & \rn{⑤}{s2} & \rn{⑥}{s2} & --- \\
+33 & \rn{①}{} & \rn{②}{m} & \rn{③}{m} & \rn{④}{} & \rn{⑤}{} & \rn{⑥}{m} & \rn{⑦}{°} \\
+\rowcolor{altrow}
+34 & \rn{⑥}{m}\inv{2} & \rn{⑦}{°}\inv{2} & \rn{①}{}\inv{2} & \rn{②}{m}\inv{2} & \rn{③}{m}\inv{2} & \rn{④}{}\inv{2} & \rn{⑤}{}\inv{2} \\
+42 & \rn{①}{s4} & \rn{②}{s4} & \rn{③}{s4} & --- & \rn{⑤}{s4} & \rn{⑥}{s4} & --- \\
+\rowcolor{altrow}
+43 & \rn{④}{}\inv{1} & \rn{⑤}{}\inv{1} & \rn{⑥}{m}\inv{1} & \rn{⑦}{°}\inv{1} & \rn{①}{}\inv{1} & \rn{②}{m}\inv{1} & \rn{③}{m}\inv{1} \\
+44 & --- & \rn{②}{q} & \rn{③}{q} & --- & \rn{⑤}{q} & \rn{⑥}{q} & \rn{⑦}{q} \\
+\rowcolor{altrow}
+233 & \rn{②}{m7}\inv{1} & \rn{③}{m7}\inv{1} & \rn{④}{Δ}\inv{1} & \rn{⑤}{7}\inv{1} & \rn{⑥}{m7}\inv{1} & \rn{⑦}{ø7}\inv{1} & \rn{①}{Δ}\inv{1} \\
+323 & \rn{④}{Δ}\inv{2} & \rn{⑤}{7}\inv{2} & \rn{⑥}{m7}\inv{2} & \rn{⑦}{ø7}\inv{2} & \rn{①}{Δ}\inv{2} & \rn{②}{m7}\inv{2} & \rn{③}{m7}\inv{2} \\
+\rowcolor{altrow}
+332 & \rn{①}{6} & \rn{②}{m6} & \rn{①}{Δ}\inv{3} & \rn{④}{6} & \rn{⑤}{6} & \rn{④}{Δ}\inv{3} & \rn{⑤}{7}\inv{3} \\
+333 & \rn{①}{Δ} & \rn{②}{m7} & \rn{③}{m7} & \rn{④}{Δ} & \rn{⑤}{7} & \rn{⑥}{m7} & \rn{⑦}{ø7} \\
+\rowcolor{altrow}
+334 & \rn{①}{+8} & \rn{②}{m+8} & \rn{③}{m+8} & \rn{④}{+8} & \rn{⑤}{+8} & \rn{⑥}{m+8} & \rn{⑦}{+8} \\
+433 & \rn{①}{s4+8} & \rn{②}{s4+8} & --- & --- & \rn{⑤}{s4+8} & --- & --- \\
+\rowcolor{altrow}
+434 & \rn{④}{6}\inv{1} & \rn{⑤}{6}\inv{1} & \rn{④}{Δ}\inv{3} & \rn{⑤}{7}\inv{3} & \rn{①}{6}\inv{1} & \rn{②}{m6}\inv{1} & \rn{①}{Δ}\inv{3} \\
+444 & --- & \rn{②}{q7} & \rn{③}{q7} & --- & --- & \rn{⑥}{q7} & \rn{⑦}{q7} \\
+\end{tabular}
+\end{center}
+
+\vspace{1mm}
+\begin{center}
+{\fontsize{9}{12}\selectfont
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.1}
+\textbf{Key:}\\[1mm]
+\begin{tabular}{@{}r@{\ =\ }l@{\hspace{5mm}}r@{\ =\ }l@{\hspace{5mm}}r@{\ =\ }l@{\hspace{5mm}}r@{\ =\ }l@{}}
+no suffix & major (①④⑤) & \textbf{m} & minor (②m ③m ⑥m) & \textbf{°} & diminished & \textbf{ø7} & half-diminished \\
+\textbf{Δ} & major 7th & \textbf{7} & dominant 7th & \textbf{6 / m6} & major / minor 6th & \textbf{q} & quartal \\
+\textbf{s2 / s4} & sus2 / sus4 & \textbf{+8} & root doubled 8ve & \textbf{s4+8} & sus4 w/ doubled root & \textsuperscript{1,2,3} & inversion \\
+\end{tabular}
+}
+\end{center}
+
+\vspace{4mm}
+
+% ══════════════════════════════════════════════════════════
+% FINGER PATTERNS (bottom ~35% of page)
+% ══════════════════════════════════════════════════════════
+\begin{center}
+{\fontsize{15}{18}\selectfont\textbf{Finger Patterns}}\\
+{\fontsize{10}{12}\selectfont Pick any pattern for each hand; drill the combination, then swap or advance.}
+\end{center}
+
+\vspace{-1mm}
+
+\fontsize{12}{15}\selectfont
+\noindent
+\begin{tabular}{@{}r@{\hspace{4mm}}l@{}}
+\rowcolor{headerbg}\color{white}\textbf{4-fng sequences (8)} &
+\color{white}1234\ \ 2341\ \ 3412\ \ 4123\ \ 4321\ \ 3214\ \ 2143\ \ 1432 \\[0.5mm]
+\rowcolor{altrow}\textbf{3-fng sequences (6)} &
+123\ \ 231\ \ 312\ \ 321\ \ 213\ \ 132 \\[0.5mm]
+\rowcolor{headerbg}\color{white}\textbf{4-fng split pairs (10)} &
+\color{white}12\(\vert\)34\ \ 23\(\vert\)41\ \ 34\(\vert\)12\ \ 41\(\vert\)23\ \ 13\(\vert\)24\ \ 24\(\vert\)13\ \ 14\(\vert\)23\ \ 23\(\vert\)14\ \ 31\(\vert\)42\ \ 42\(\vert\)31 \\[0.5mm]
+\rowcolor{altrow}\textbf{3-fng split pairs (6)} &
+13\(\vert\)2\ \ 21\(\vert\)3\ \ 32\(\vert\)1\ \ 1\(\vert\)23\ \ 2\(\vert\)31\ \ 3\(\vert\)12 \\[0.5mm]
+\rowcolor{headerbg}\color{white}\textbf{2-fng pairs (12)} &
+\color{white}12\ \ 21\ \ 13\ \ 31\ \ 14\ \ 41\ \ 23\ \ 32\ \ 24\ \ 42\ \ 34\ \ 43 \\
+\end{tabular}
+
+\vspace{3mm}
+
+\fontsize{8.5}{10.5}\selectfont
+\setlength{\columnsep}{3mm}
+\setlist[itemize]{leftmargin=4mm, itemsep=0pt, topsep=1pt, parsep=0pt, partopsep=0pt}
+\begin{multicols}{3}
+
+\colorbox{headerbg}{\color{white}\textbf{\ Drill Types\ }}
+\vspace{1mm}
+\begin{itemize}
+\item \textbf{Unison} --- both hands play the same pattern.
+\item \textbf{Mirror} --- one hand forward, other reverse.
+\item \textbf{Contrary} --- different patterns per hand; alternate anchor.
+\item \textbf{Cross-size} --- 4-fng one hand, 3-fng or 2-fng other.
+\item \textbf{Independent rhythm} --- slow anchor + fast cycle; swap.
+\end{itemize}
+
+\vspace{1.5mm}
+\colorbox{headerbg}{\color{white}\textbf{\ Hand Technique\ }}
+\vspace{1mm}
+\begin{itemize}
+\item Play with \textbf{pads of fingertips}; fingers curved.
+\item \textbf{Thumb} stays above the fingers.
+\item Wrist \textbf{level} with forearm.
+\item \textbf{Close fingers into palm} after plucking.
+\item Relax between strokes.
+\end{itemize}
+
+\vspace{1.5mm}
+\colorbox{headerbg}{\color{white}\textbf{\ Harp Techniques\ }}
+\vspace{1mm}
+\begin{itemize}
+\item \textbf{Damping (étouffé)}: closed fingers mute strings between chords.
+\item \textbf{Rolled chord}: fingers 4\(\to\)1 fast within one beat.
+\item \textbf{Glissando}: set levers to mode, run finger across.
+\item \textbf{Bisbigliando}: soft hand-tremolo on same strings.
+\item \textbf{Harmonic}: palm at midpoint, thumb plucks; 8ve up, half vol.
+\end{itemize}
+
+\colorbox{headerbg}{\color{white}\textbf{\ Practice Progression\ }}
+\vspace{1mm}
+\begin{itemize}
+\item Start \textbf{slow}: metronome \(\approx\) 40--60 bpm.
+\item \textbf{4 reps} per pattern before moving on.
+\item Increase by \textbf{4--8 bpm} only when clean.
+\item Hands \textbf{separately first}, then combine.
+\item \textbf{5--10 min daily} beats long rare sessions.
+\end{itemize}
+
+
+
+\end{multicols}
+
+\vspace{2mm}
+{\fontsize{9}{11}\selectfont\centering
+\textit{Notation: digits 1--4 are thumb--index--middle--ring. A split pair \texttt{12\(\vert\)34} means fingers 1 \& 2 strike together, then 3 \& 4; \texttt{1\(\vert\)23} means 1 alone, then 2 \& 3. Sequences play each finger in order.}
+\par
+}
+
+\end{document}

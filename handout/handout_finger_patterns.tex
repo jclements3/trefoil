@@ -1,0 +1,73 @@
+\documentclass[letterpaper]{article}
+\usepackage{fontspec}
+\usepackage{geometry}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\geometry{letterpaper, margin=10mm}
+\setmainfont{DejaVu Sans}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.3}
+\definecolor{altrow}{HTML}{F0F4F8}
+\definecolor{headerbg}{HTML}{2C3E50}
+\definecolor{white}{HTML}{FFFFFF}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2mm}
+\begin{document}
+
+\begin{center}
+{\fontsize{20}{24}\selectfont\textbf{Finger Patterns}}\\
+\fontsize{11}{14}\selectfont
+Pick any pattern for each hand. Drill the combination at a steady tempo, then swap or advance.
+\end{center}
+
+\vspace{3mm}
+\fontsize{14}{17}\selectfont
+
+\begin{tabular}{@{}r@{\hspace{6mm}}l@{}}
+\rowcolor{headerbg}\color{white}\textbf{4-fng sequences (8)} &
+\color{white}1234\ \ 2341\ \ 3412\ \ 4123\ \ 4321\ \ 3214\ \ 2143\ \ 1432 \\[1mm]
+\rowcolor{altrow}\textbf{3-fng sequences (6)} &
+123\ \ 231\ \ 312\ \ 321\ \ 213\ \ 132 \\[1mm]
+\rowcolor{headerbg}\color{white}\textbf{4-fng split pairs (10)} &
+\color{white}12\(\vert\)34\ \ 23\(\vert\)41\ \ 34\(\vert\)12\ \ 41\(\vert\)23\ \ 13\(\vert\)24\ \ 24\(\vert\)13\ \ 14\(\vert\)23\ \ 23\(\vert\)14\ \ 31\(\vert\)42\ \ 42\(\vert\)31 \\[1mm]
+\rowcolor{altrow}\textbf{3-fng split pairs (6)} &
+13\(\vert\)2\ \ 21\(\vert\)3\ \ 32\(\vert\)1\ \ 1\(\vert\)23\ \ 2\(\vert\)31\ \ 3\(\vert\)12 \\[1mm]
+\rowcolor{headerbg}\color{white}\textbf{2-fng pairs (12)} &
+\color{white}12\ \ 21\ \ 13\ \ 31\ \ 14\ \ 41\ \ 23\ \ 32\ \ 24\ \ 42\ \ 34\ \ 43 \\
+\end{tabular}
+
+\vspace{6mm}
+\fontsize{12}{15}\selectfont
+\textbf{Drill routine:}
+\begin{itemize}\setlength{\itemsep}{1mm}
+\item \textbf{Unison:} both hands play the same pattern in parallel.
+\item \textbf{Mirror:} one hand plays forward, the other reverse (1234 \(\leftrightarrow\) 4321).
+\item \textbf{Contrary:} pick one pattern from a group for each hand; alternate anchor roles.
+\item \textbf{Cross-size:} one hand on a 4-fng pattern, the other on a 3-fng or 2-fng pattern.
+\item \textbf{Independent rhythm:} slow hand anchors while fast hand cycles; then swap.
+\end{itemize}
+
+\vspace{2mm}
+\fontsize{11}{14}\selectfont
+\textit{Notation: digits 1--4 are thumb--index--middle--ring. A split pair \texttt{12\(\vert\)34} means fingers 1 \& 2 strike together, then 3 \& 4 together; \texttt{1\(\vert\)23} means 1 alone, then 2 \& 3. Sequences play each finger in order; pairs play two fingers simultaneously.}
+
+\vspace{3mm}
+\fontsize{14}{17}\selectfont
+\textbf{Combinations to cycle:}
+
+\fontsize{11}{14}\selectfont
+8\(\times\)8\,=\,64 4-seq pairs \quad\(\cdot\)\quad
+10\(\times\)10\,=\,100 4-split-pair pairs \quad\(\cdot\)\quad
+6\(\times\)6\,=\,36 3-seq pairs \quad\(\cdot\)\quad
+6\(\times\)6\,=\,36 3-split-pair pairs \quad\(\cdot\)\quad
+12\(\times\)12\,=\,144 2-pair pairs \\
+8\(\times\)10\,=\,80 4-seq with 4-split \quad\(\cdot\)\quad
+8\(\times\)6\,=\,48 4-seq with 3-pair \quad\(\cdot\)\quad
+10\(\times\)6\,=\,60 4-split with 3-split \quad\(\cdot\)\quad
+... and so on.
+
+\vspace{3mm}
+\textit{Total pattern inventory: 42. Total ordered two-hand combinations: 1764. Unordered: 903.}
+
+\end{document}
