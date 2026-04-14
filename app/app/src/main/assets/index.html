@@ -1993,14 +1993,28 @@ function buildLibrary() {
     hymnIndices.push(i);
   }
   hymnIndices.sort(function(a,b) {
-    return hymnSortName(DRILLS[a].t).localeCompare(hymnSortName(DRILLS[b].t));
+    var da = DRILLS[a], db = DRILLS[b];
+    // Cascades (n=900..999) sort first, in numeric order (cascade table order).
+    var ca = da.n >= 900 && da.n <= 999;
+    var cb = db.n >= 900 && db.n <= 999;
+    if (ca && !cb) return -1;
+    if (cb && !ca) return 1;
+    if (ca && cb) return da.n - db.n;
+    return hymnSortName(da.t).localeCompare(hymnSortName(db.t));
   });
 
-  // Build alphabet bar (group by first letter of name, not number)
+  // Build alphabet bar (group by first letter of name, not number).
+  // Cascades land in their own "0" group so they're visually distinct
+  // from hymn letters and stay together.
   var letters = {};
   for (var i = 0; i < hymnIndices.length; i++) {
-    var name = hymnSortName(DRILLS[hymnIndices[i]].t);
-    var first = name.charAt(0).toUpperCase();
+    var entry = DRILLS[hymnIndices[i]];
+    var first;
+    if (entry.n >= 900 && entry.n <= 999) {
+      first = '0';  // cascades pool
+    } else {
+      first = hymnSortName(entry.t).charAt(0).toUpperCase();
+    }
     if (!letters[first]) letters[first] = [];
     letters[first].push(hymnIndices[i]);
   }
