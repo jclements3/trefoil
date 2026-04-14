@@ -15,8 +15,48 @@ import re
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from generate_drill import PAT_MAP, CHORD_NAMES, pattern_strings, string_to_abc, NOTES_PER_OCT
+from generate_drill import PAT_MAP, CHORD_NAMES, DEG_TO_FIRST_STRING, pattern_strings, string_to_abc, NOTES_PER_OCT
 from build_tchaikovsky_mei import KEY_ACCID_GES, abc_to_pitch
+
+HARP_MAX_STRING = 33  # 33-string lever harp: C2 (1) to G6 (33)
+
+
+def starts_for_deg(deg):
+    """All valid starting string numbers on the harp for a given scale degree."""
+    off = DEG_TO_FIRST_STRING[deg]
+    return [off + 7 * k for k in range(5) if off + 7 * k <= HARP_MAX_STRING]
+
+
+def plan_cascade(rows):
+    """Compute start positions so the cascade rises through the 'up' rows
+       and falls through the 'dn' rows. Preference is a monotonic sweep
+       (each arp continues one string past the previous), but if no chord
+       tone fits that rule we fall back to the nearest valid start so
+       every row gets played. The table's written positions are ignored --
+       the cascade is defined by its (chord, pattern, direction) sequence."""
+    plan = []
+    prev_end = None  # last-played string of previous arpeggio (dn: lowest; up: highest)
+    for r in rows:
+        pat = PAT_MAP[r['pat']]
+        span = sum(p - 1 for p in pat)
+        all_starts = [s for s in starts_for_deg(r['deg']) if s + span <= HARP_MAX_STRING]
+        if not all_starts:
+            plan.append(None)
+            continue
+        if r['dir'] == 'up':
+            if prev_end is None:
+                start = min(all_starts)
+            else:
+                above = [s for s in all_starts if s >= prev_end + 1]
+                start = min(above) if above else min(all_starts, key=lambda s: abs(s - (prev_end + 1)))
+            prev_end = start + span
+        else:  # dn: first played = start + span (top of pattern)
+            target_top = (prev_end - 1) if prev_end is not None else HARP_MAX_STRING
+            below = [s for s in all_starts if s + span <= target_top]
+            start = max(below) if below else min(all_starts, key=lambda s: abs((s + span) - target_top))
+            prev_end = start  # lowest played note of this arpeggio
+        plan.append(start)
+    return plan
 
 NOTE_OFFSET = {'C': 0, 'D': 1, 'E': 2, 'F': 3, 'G': 4, 'A': 5, 'B': 6}
 
@@ -82,11 +122,16 @@ def build_cascade_measure(cascade, measure_id, key='Eb'):
 
     Returns XML string for <section> containing <measure>.
     """
-    # Collect all sweep strings. Each arpeggio's first note carries the
-    # authoritative chord label from CHORD_NAMES[(pattern, starting_deg)].
+    # Starting positions are computed so the cascade rises monotonically
+    # through the 'up' rows and falls monotonically through the 'dn' rows.
+    # The positions written in cascades.tex are ignored -- the table's
+    # real content is the (chord, pattern, direction, hand) sequence.
+    plan = plan_cascade(cascade['rows'])
+
     events = []  # list of {'string': s, 'label': str or None}
-    for row in cascade['rows']:
-        start = pos_to_string(row['pos'])
+    for row, start in zip(cascade['rows'], plan):
+        if start is None:
+            continue  # no valid position fits -- drop this row quietly
         pat = PAT_MAP[row['pat']]
         strs = pattern_strings(start, pat)
         if row['dir'] == 'dn':
