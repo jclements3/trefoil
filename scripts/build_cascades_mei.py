@@ -151,7 +151,7 @@ def build_cascade_measure(cascade, measure_id, key='Eb'):
     # tuplet compresses the layer to one bar. (Same trick as the Tch
     # cadenza; without it the last bass note crashes into the first
     # treble note and vice versa.)
-    EXTRA_GAP_SLOTS = 6
+    EXTRA_GAP_SLOTS = 12
     hidden = f'<space dur="{note_dur}"/>'
     prev_on_treble = None
     event_slot = []  # layer slot position for each event (after gap insertion)
