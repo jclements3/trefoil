@@ -2232,6 +2232,9 @@ xhr2.onload = function() {
                 console.log('Loaded ' + CASCADES.length + ' cascade drills');
               } catch(e) { console.warn('cascades_data parse error:', e); }
             }
+            // Honor initial mode selection (drills or hymns).
+            var initMode = document.getElementById('sel-mode').value;
+            DRILLS = (initMode === 'drills') ? CASCADES : HYMNS;
             buildLibrary();
             applyKeyFilter();
             if (DRILLS.length > 0) renderDrill(0);
