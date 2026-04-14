@@ -1,0 +1,107 @@
+% Back cover of cascade_booklet: Practice Framework (portrait letter).
+\documentclass[letterpaper]{article}
+\usepackage{fontspec}
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{array}
+\usepackage{enumitem}
+
+\geometry{letterpaper, margin=10mm}
+\setmainfont{DejaVu Sans}
+
+\definecolor{headerbg}{HTML}{2C3E50}
+\definecolor{white}{HTML}{FFFFFF}
+\definecolor{loopClr}{HTML}{2E7D32}
+\definecolor{ratioClr}{HTML}{3F51B5}
+\definecolor{axesClr}{HTML}{F57C00}
+\definecolor{orderClr}{HTML}{C62828}
+
+\newcommand{\sect}[3]{%
+  \noindent\begin{minipage}{\linewidth}%
+  \colorbox{#1}{\color{white}\textbf{\ #2\ }}\par\vspace{1mm}
+  #3
+  \end{minipage}\par\vspace{3mm}%
+}
+
+\setlist[itemize]{leftmargin=5mm, itemsep=1.5pt, topsep=2pt, parsep=0pt, partopsep=0pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\pagestyle{empty}
+
+\begin{document}
+
+\begin{center}
+{\fontsize{18}{22}\selectfont\textbf{Practice Framework}}\\[-1mm]
+{\small\itshape How to actually improve, every session}
+\end{center}
+\vspace{2mm}
+\hrule
+\vspace{3mm}
+
+\fontsize{10}{13}\selectfont
+
+\sect{loopClr}{The Feedback Loop --- every single rep}{%
+No rep is wasted if you treat each one as an experiment.
+\begin{itemize}
+  \item \textbf{Plan}: before playing, set a specific target. Not ``play it better'' --- something like ``keep the LH thumb on the string until the RH note starts.''
+  \item \textbf{Play}: execute the target honestly, at whatever tempo lets you think.
+  \item \textbf{Evaluate}: did you hit the target? Be strict. 90\% is success; 50\% is information.
+  \item \textbf{Adjust}: change one variable before the next rep --- slow down, shorten the phrase, or pick a narrower target. Never repeat blindly.
+\end{itemize}
+Liszt: ``\textit{When practicing, think ten times and play once.}''
+}
+
+\sect{ratioClr}{The 90/10 Principle}{%
+To nail a skill at 100\%, stop grinding it head-on. Push a \textbf{harder related skill} to 90\% instead --- the easier one snaps into place automatically.
+
+\vspace{1mm}
+\textit{Examples for harp:}
+\begin{itemize}
+  \item Want clean arpeggios at tempo? Practice them with finger-numbers said out loud at 70\% tempo. When you stop speaking, tempo goes up.
+  \item Want a smooth LH/RH hand-off? Do the cascade in reverse (descending then ascending). When you go forward again it feels easy.
+  \item Want even dynamics? Practice crescendos and decrescendos over the same notes. Then ``flat'' feels natural.
+\end{itemize}
+You're not doing the target skill --- you're doing \emph{something harder}. When you remove the extra layer, the target skill runs on less effort.
+}
+
+\sect{axesClr}{Five Axes of Difficulty}{%
+When ``harder'' is vague, pick one of five axes. Raise one, lower another, cycle.
+
+\vspace{1mm}
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}p{22mm}p{\dimexpr\linewidth-28mm\relax}@{}}
+\textbf{Length} & one measure $\to$ two $\to$ phrase $\to$ whole piece. Endurance \textit{is} a skill. \\
+\textbf{Complexity} & one hand $\to$ two hands; melody alone $\to$ melody + chords; add a cascade across a bar line. \\
+\textbf{Depth} & not just notes: phrasing, dynamics, articulation, tone. The ``musicality'' layer. \\
+\textbf{Speed} & only after the first four feel solid. Speed is the easiest axis and the most overused. \\
+\textbf{Mental endurance} & how long you stay focused \textit{inside} the playing. Sustained attention, not just physical stamina. \\
+\end{tabular}
+}
+
+\sect{orderClr}{3-4-2-1 Session Order}{%
+Your brain's focus falls during any session. Front-load the hardest work.
+
+\vspace{1mm}
+Rank every chunk of material into four levels:
+\begin{itemize}
+  \item \textbf{Level 4} --- ``impossible right now.'' Can't play it cleanly even once.
+  \item \textbf{Level 3} --- ``hard.'' You have to be at your A-game.
+  \item \textbf{Level 2} --- ``almost there.'' Mostly clean, occasional slip.
+  \item \textbf{Level 1} --- ``automatic.'' Plays itself.
+\end{itemize}
+
+\textbf{Session order: 3 $\to$ 4 $\to$ 2 $\to$ 1.}
+Start at level 3 as a warm-up that demands real focus (skip level-1 warm-ups --- they set your brain to cruise). Move to level 4 while you're sharpest. Drop to level 2 as attention fades. End with level 1 for review, while your brain is already in ``just play'' mode.
+
+\textit{This works at any skill level --- your level 4 as a beginner and a professional's level 4 are different pieces, but the structure is identical.}
+}
+
+\vspace{2mm}
+\hrule
+\vspace{1mm}
+\small\centering\itshape
+Chopin told his students two hours a day was enough. They learned his etudes. The difference was never quantity.
+
+\end{document}

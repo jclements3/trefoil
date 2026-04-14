@@ -37,13 +37,19 @@ done
 pdfunite p*.pdf ../cascades_sheet.pdf
 cd ..
 rm -rf .cascades_pages
+# cwd is now handout/
 
-# Pad to a multiple of 4 pages for saddle-stitch booklet imposition.
+# Build the Practice Framework page (back cover of the booklet)
+xelatex -interaction=nonstopmode cascade_practice.tex >/dev/null
+
+# Append the practice page, then pad with blanks to a multiple of 4 pages.
+pdfunite cascades_sheet.pdf cascade_practice.pdf _with_practice.pdf
+mv _with_practice.pdf cascades_sheet.pdf
+
 PAGES=$(pdfinfo cascades_sheet.pdf | awk '/^Pages:/ {print $2}')
 REM=$((PAGES % 4))
 if [ "$REM" -ne 0 ]; then
     NEEDED=$((4 - REM))
-    # Simple blank letter page via a tiny .tex wrapper
     cat > /tmp/_blank.tex <<'TEX'
 \documentclass[letterpaper]{article}\usepackage[margin=0in]{geometry}\pagestyle{empty}\begin{document}\null\newpage\end{document}
 TEX
