@@ -123,7 +123,7 @@ Drills are hymnal entries with `n < 4000`; hymns are `n >= 4000`. Rendered as gr
 
 ## Handout PDFs
 
-Final output: `booklet.pdf` at the repo root — 2 tabloid (11×17) sheets that fold in half into an 8.5×11 4-page booklet. Built from `handout/handout.tex` (`\includepdf` wrapper).
+Final output: `booklet.pdf` at the repo root — 2 portrait tabloid (11×17) sheets that fold in half into a 4-page 11×8.5 landscape booklet. Build with `scripts/build_booklet.sh` (uses `pdftops` + `psutils pstops` 2-up imposition + `ps2pdf`). Requires `psutils` package.
 - Page 1 (`handout_page1.pdf`) — chord table + finger patterns
 - Pages 2–3 (`cascades.pdf`) — inside spread
 - Page 4 (`handout_page4.pdf`) — composition & voicing reference
