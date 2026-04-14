@@ -1,29 +1,29 @@
 #!/usr/bin/env python3
-"""Insert the 20 cascades into the Trefoil app as individual hymns.
+"""Insert the 20 cascades into the Trefoil app as a separate "Drills"
+library, not mixed in with the hymns.
 
-For each cascade we emit one standalone MEI document (one <measure>,
-grand staff, hidden-bracket tuplet -- same machinery as the handout
-booklet's cascades_sheet), paired with a minimal ABC fallback entry in
-ssaattbb_data.json. Titles get a zero-padded prefix like "000 ..." so
-they sort before the hymnal in the navigator.
+Outputs:
+  app/cascades_data.json            - list entry per cascade (n, t, key, tempo)
+                                      drives the library when mode = "drills"
+  app/tch_ssaattbbp_mei.json        - contains the per-cascade MEI at n=4901..4920
+                                      (rendered via Verovio when mode = "drills"
+                                       or "tch-ssaattbb")
+  app/ssaattbb_data.json            - cascades STRIPPED from here; hymns only
 
-Updates in place:
-  app/ssaattbb_data.json                 (+ app/app/src/main/assets/)
-  app/tch_ssaattbbp_mei.json             (+ app/app/src/main/assets/)
+Both data files mirrored to app/app/src/main/assets/.
+
+Per-cascade MEI is a standalone <mei> doc with one measure, hidden-bracket
+tuplet, grand staff, Eb key.
 """
 import json
 import os
-import re
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-from build_cascades_mei import (
-    parse_cascades, build_cascade_measure,
-)
+from build_cascades_mei import parse_cascades, build_cascade_measure
 
-N_START = 901            # cascades occupy n=901..920 in ssaattbb_data
-N_MEI_START = 4901       # n=4901..4920 in tch_ssaattbbp_mei.json
+N_MEI_START = 4901            # cascade MEI n=4901..4920 in tch_ssaattbbp_mei.json
 KEY = 'Eb'
 TEMPO = 100
 KEY_SIG_MAP = {'C': '0', 'G': '1s', 'D': '2s', 'A': '3s', 'E': '4s',
@@ -31,7 +31,6 @@ KEY_SIG_MAP = {'C': '0', 'G': '1s', 'D': '2s', 'A': '3s', 'E': '4s',
 
 
 def make_cascade_mei_doc(cascade, measure_id, key=KEY):
-    """Wrap build_cascade_measure in a standalone <mei> document."""
     key_sig = KEY_SIG_MAP[key]
     measure = build_cascade_measure(cascade, measure_id, key=key)
     return (
@@ -50,17 +49,6 @@ def make_cascade_mei_doc(cascade, measure_id, key=KEY):
     )
 
 
-def placeholder_abc(title, key):
-    """Minimal ABC shown only if the MEI fails to load."""
-    return (
-        f'X: 1\nT: {title}\nM: 4/4\nL: 1/8\nQ: 1/4={TEMPO}\n'
-        f'K: {key}\n'
-        '%%score (1 2)\n'
-        'V:1 clef=treble\nV:2 clef=bass\n'
-        '[V:1] z8 |]\n[V:2] z8 |]\n'
-    )
-
-
 def load_json(path):
     with open(path) as f:
         return json.load(f)
@@ -71,77 +59,63 @@ def save_json(path, data):
         json.dump(data, f, separators=(',', ':'))
 
 
-def upsert(data, entry, key_field='n'):
-    """Replace any existing entry with the same n, then append new ones."""
-    existing_ns = {e[key_field] for e in data}
-    if entry[key_field] in existing_ns:
-        for i, e in enumerate(data):
-            if e[key_field] == entry[key_field]:
-                data[i] = entry
-                return
-    data.append(entry)
+def n_int(e):
+    try:
+        return int(e.get('n', 0))
+    except (ValueError, TypeError):
+        return 0
 
 
 def main():
     root = os.path.abspath(os.path.join(HERE, '..'))
     tex_path = os.path.join(root, 'handout', 'cascades.tex')
     cascades = parse_cascades(tex_path)
-    if len(cascades) != 20:
-        print(f"WARN: expected 20 cascades, got {len(cascades)}")
 
     ssaattbb_path = os.path.join(root, 'app', 'ssaattbb_data.json')
     mei_path = os.path.join(root, 'app', 'tch_ssaattbbp_mei.json')
+    cascades_path = os.path.join(root, 'app', 'cascades_data.json')
+
     ssaattbb = load_json(ssaattbb_path)
     mei_list = load_json(mei_path)
 
-    def n_of(e):
-        try:
-            return int(e.get('n', 0))
-        except (ValueError, TypeError):
-            return 0
-    # Strip any previous cascade entries so re-running is idempotent.
-    ssaattbb = [e for e in ssaattbb if not (N_START <= n_of(e) <= N_START + 99)]
-    mei_list = [e for e in mei_list if not (N_MEI_START <= n_of(e) <= N_MEI_START + 99)]
+    # Purge cascades from hymns (previous placement at n=901..920)
+    ssaattbb = [e for e in ssaattbb if not (900 <= n_int(e) <= 999)]
+    # Purge previous cascade MEI entries
+    mei_list = [e for e in mei_list if not (4900 <= n_int(e) <= 4999)]
 
+    cascades_data = []
     for i, c in enumerate(cascades):
-        # 4-digit zero-pad: "0001 ..."..."0020 ...". Existing hymn titles
-        # use 3-digit prefixes ("001 ..."), so ANY 4-digit cascade prefix
-        # sorts before all of them (char 2: '0' < '1'..'3').
-        num = f"{i + 1:04d}"
-        title = f"{num} {c['title']}"
-        clean_title = c['title']
-        ssaattbb_entry = {
-            'n': N_START + i,
-            't': title,
-            'abc': placeholder_abc(title, KEY),
+        # Drill-library entry: plain title, ordered by n.
+        cascades_data.append({
+            'n': i + 1,
+            't': c['title'],
+            'subtitle': c['subtitle'],
             'key': KEY,
-            'violations': 0,
-            'bars': 1,
-            'bpb': 4,
             'tempo': TEMPO,
-        }
-        mei_entry = {
+        })
+        # MEI entry (looked up by cleaned title when rendering)
+        mei_list.append({
             'n': N_MEI_START + i,
-            't': title,
+            't': c['title'],
             'key': KEY,
             'tempo': TEMPO,
             'mei': make_cascade_mei_doc(c, measure_id=i + 1, key=KEY),
-        }
-        upsert(ssaattbb, ssaattbb_entry)
-        upsert(mei_list, mei_entry)
+        })
 
     save_json(ssaattbb_path, ssaattbb)
     save_json(mei_path, mei_list)
+    save_json(cascades_path, cascades_data)
 
-    # Mirror to app/app/src/main/assets for the APK.
+    # Mirror to the APK assets dir
     assets_dir = os.path.join(root, 'app', 'app', 'src', 'main', 'assets')
-    for src in (ssaattbb_path, mei_path):
+    for src in (ssaattbb_path, mei_path, cascades_path):
         dst = os.path.join(assets_dir, os.path.basename(src))
         with open(src, 'rb') as fi, open(dst, 'wb') as fo:
             fo.write(fi.read())
 
-    print(f"Added {len(cascades)} cascades to ssaattbb_data.json and tch_ssaattbbp_mei.json")
-    print(f"Titles: {ssaattbb[-20]['t']} ... {ssaattbb[-1]['t']}")
+    print(f"Wrote {len(cascades)} cascades to cascades_data.json")
+    print(f"Added MEI for {len(cascades)} cascades to tch_ssaattbbp_mei.json (n={N_MEI_START}..)")
+    print(f"Removed any prior cascade entries from ssaattbb_data.json")
 
 
 if __name__ == '__main__':

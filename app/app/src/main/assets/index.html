@@ -225,6 +225,7 @@ svg g.harm text, svg g.harm text tspan {
 <div id="library">
   <div id="lib-toolbar">
     <select id="sel-mode" style="font-size:13px;padding:4px 6px;border-radius:6px;border:1px solid #ccc;">
+      <option value="drills">Drills</option>
       <option value="tch">Tch</option>
       <option value="tch-ssaattbb" selected>Tch-SSAATTBB</option>
       <option value="ssaattbb">SSAATTBB</option>
@@ -684,7 +685,8 @@ function renderDrill(idx) {
   // Mode selector: tch (Verovio MEI), tch-ssaattbb (ABC block chords), ssaattbb (original)
   var mode = document.getElementById('sel-mode').value;
   var tchMode = (mode === 'tch');
-  var tchSsaattbbMode = (mode === 'tch-ssaattbb');
+  // Drills mode reuses the Tch-SSAATTBB MEI pipeline (same Verovio render path).
+  var tchSsaattbbMode = (mode === 'tch-ssaattbb' || mode === 'drills');
   var useDrill = drill;
   var tchMei = null;
   if (tchMode) {
@@ -1992,29 +1994,39 @@ function buildLibrary() {
   for (var i = 0; i < DRILLS.length; i++) {
     hymnIndices.push(i);
   }
+  // In Drills mode the library is a flat list in n-order (no letter tabs).
+  var mode = document.getElementById('sel-mode').value;
+  if (mode === 'drills') {
+    hymnIndices.sort(function(a,b) { return DRILLS[a].n - DRILLS[b].n; });
+    var flat = document.createElement('div');
+    flat.className = 'letter-items';
+    for (var i = 0; i < hymnIndices.length; i++) {
+      var idx = hymnIndices[i];
+      var item = document.createElement('div');
+      item.className = 'lib-item';
+      item.dataset.idx = idx;
+      if (DRILLS[idx].key) item.dataset.key = DRILLS[idx].key;
+      var label = DRILLS[idx].t;
+      if (DRILLS[idx].subtitle) label += ' \u2014 ' + DRILLS[idx].subtitle;
+      item.textContent = label;
+      item.onclick = (function(drillIdx) {
+        return function() { selectDrill(drillIdx); };
+      })(idx);
+      flat.appendChild(item);
+    }
+    $colL.appendChild(flat);
+    return;
+  }
+
   hymnIndices.sort(function(a,b) {
-    var da = DRILLS[a], db = DRILLS[b];
-    // Cascades (n=900..999) sort first, in numeric order (cascade table order).
-    var ca = da.n >= 900 && da.n <= 999;
-    var cb = db.n >= 900 && db.n <= 999;
-    if (ca && !cb) return -1;
-    if (cb && !ca) return 1;
-    if (ca && cb) return da.n - db.n;
-    return hymnSortName(da.t).localeCompare(hymnSortName(db.t));
+    return hymnSortName(DRILLS[a].t).localeCompare(hymnSortName(DRILLS[b].t));
   });
 
-  // Build alphabet bar (group by first letter of name, not number).
-  // Cascades land in their own "0" group so they're visually distinct
-  // from hymn letters and stay together.
+  // Build alphabet bar (group by first letter of name, not number)
   var letters = {};
   for (var i = 0; i < hymnIndices.length; i++) {
-    var entry = DRILLS[hymnIndices[i]];
-    var first;
-    if (entry.n >= 900 && entry.n <= 999) {
-      first = '0';  // cascades pool
-    } else {
-      first = hymnSortName(entry.t).charAt(0).toUpperCase();
-    }
+    var name = hymnSortName(DRILLS[hymnIndices[i]].t);
+    var first = name.charAt(0).toUpperCase();
     if (!letters[first]) letters[first] = [];
     letters[first].push(hymnIndices[i]);
   }
@@ -2060,7 +2072,17 @@ function buildLibrary() {
 // Tchaikovsky checkbox — re-render current hymn when toggled
 var $hymnCols = document.getElementById('hymn-cols');
 document.getElementById('sel-mode').onchange = function() {
-  if (DRILLS[currentDrill]) renderDrill(currentDrill);
+  // Drills mode swaps the library entirely (cascades instead of hymns).
+  var mode = this.value;
+  if (mode === 'drills') {
+    DRILLS = CASCADES;
+  } else {
+    DRILLS = HYMNS;
+  }
+  currentDrill = 0;
+  buildLibrary();
+  applyKeyFilter();
+  if (DRILLS.length > 0) renderDrill(0);
 };
 
 // Search filter
@@ -2135,13 +2157,19 @@ var TCHAIKOVSKY = {};  // keyed by cleaned title for lookup (ABC)
 var TCHAIKOVSKY_MEI = {};  // keyed by cleaned title (MEI for Verovio)
 var TCH_SSAATTBB = {};  // keyed by cleaned title (Tch-SSAATTBB ABC)
 var TCH_SSAATTBB_MEI = {};  // keyed by cleaned title (Tch-SSAATTBBP MEI for Verovio)
+// HYMNS holds the original 287 hymns; CASCADES holds the 20 drill cascades.
+// DRILLS is the "current library" — swapped by the mode selector.
+var HYMNS = [];
+var CASCADES = [];
 var xhr2 = new XMLHttpRequest();
 xhr2.open('GET', 'ssaattbb_data.json?v=' + Date.now(), true);
 xhr2.onload = function() {
   if (xhr2.status === 200) {
     var data = JSON.parse(xhr2.responseText);
-    for (var i = 0; i < data.length; i++) DRILLS.push(data[i]);
-    console.log('Loaded ' + DRILLS.length + ' hymns');
+    for (var i = 0; i < data.length; i++) HYMNS.push(data[i]);
+    // Default mode is 'tch-ssaattbb' so start with the hymns library.
+    DRILLS = HYMNS;
+    console.log('Loaded ' + HYMNS.length + ' hymns');
   }
   // Load Tchaikovsky drill data (ABC)
   var xhr3 = new XMLHttpRequest();
@@ -2193,9 +2221,28 @@ xhr2.onload = function() {
               console.log('Loaded ' + mdata.length + ' Tch-SSAATTBBP drills (MEI)');
             }
           } catch(e) { console.warn('Tch-SSAATTBBP parse error:', e); }
-          buildLibrary();
-          applyKeyFilter();
-          if (DRILLS.length > 0) renderDrill(0);
+          // Load Drills library (cascades). These are shown in "Drills" mode.
+          var xhr7 = new XMLHttpRequest();
+          xhr7.open('GET', 'cascades_data.json?v=' + Date.now(), true);
+          xhr7.onload = function() {
+            if (xhr7.status === 200) {
+              try {
+                var cdata = JSON.parse(xhr7.responseText);
+                for (var i = 0; i < cdata.length; i++) CASCADES.push(cdata[i]);
+                console.log('Loaded ' + CASCADES.length + ' cascade drills');
+              } catch(e) { console.warn('cascades_data parse error:', e); }
+            }
+            buildLibrary();
+            applyKeyFilter();
+            if (DRILLS.length > 0) renderDrill(0);
+          };
+          xhr7.onerror = function() {
+            console.warn('No cascades_data');
+            buildLibrary();
+            applyKeyFilter();
+            if (DRILLS.length > 0) renderDrill(0);
+          };
+          xhr7.send();
         };
         xhr6.onerror = function() {
           console.warn('No Tch-SSAATTBBP MEI data');
