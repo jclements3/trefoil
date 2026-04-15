@@ -98,6 +98,28 @@ class TestRewriteAbc(unittest.TestCase):
         with self.assertRaises(ValueError):
             rewrite_abc(abc, [("I!", "I")])
 
+    def test_accidentals_in_labels_are_allowed(self):
+        # Non-diatonic source chord symbols (e.g. 'F#7', 'C#m', 'Bb')
+        # must pass through the rewriter unchanged.
+        abc = '"^F#7"D "^C#m"E "^Bb"F'
+        out = rewrite_abc(abc, [("F#7", "F#7"), ("C#m", "C#m"),
+                                ("Bb", "Bb")])
+        self.assertIn('"^F#7""^F#7"', out)
+        self.assertIn('"^C#m""^C#m"', out)
+        self.assertIn('"^Bb""^Bb"', out)
+
+    def test_parens_in_labels_are_allowed(self):
+        # Parenthetical qualifiers like '(b9)' should pass validation.
+        abc = '"^C"D'
+        out = rewrite_abc(abc, [("V7(b9)", "I")])
+        self.assertIn('"^V7(b9)"', out)
+
+    def test_backslash_and_quote_still_rejected(self):
+        abc = '"^C"D'
+        for bad in ("I\\", 'I"', "I*"):
+            with self.assertRaises(ValueError):
+                rewrite_abc(abc, [(bad, "I")])
+
     def test_preserves_surrounding_text_byte_for_byte(self):
         abc = 'X: 1\nT: Hymn\nM: 4/4\nL: 1/4\nK: G\n|"^G"G2 "^D"A2|\n'
         out = rewrite_abc(abc, [("I", "I"), ("V", "V")])
