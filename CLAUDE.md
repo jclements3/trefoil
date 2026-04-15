@@ -150,4 +150,17 @@ Old sync-note backlog has been archived (see git log from 2026-04-05 through 202
 
 ### Pending sync notes (newest first)
 
-_(none — CLAUDE.md cleanup 2026-04-14. Next session, add your note here.)_
+**2026-04-15 (lab):** Modern mode is live in the APK. Built end-to-end reharmonization pipeline at `modern/` (Schneider-style journey/destination, 6 rules, voicing picker hits handout's 14×7 table). Outputs:
+- `modern/all_hymns.pdf` (115 pp, 6.5 MB) — printable lead sheets, 3-up portrait
+- `modern/by_key/*.pdf` (8 keys, 94 pp total) — per-key bundles
+- `modern/all_hymns_index.pdf` — 2-pp alphabetical TOC
+- `app/app/src/main/assets/modern_mei.json` (4.88 MB, 253 hymns) — wired to existing `MODERN_MEI` loader, renders inline via Verovio with stacked RH/LH `<harm vo=0/6>` fractions. Verified bundled WASM is 6.1.0-682d606; rendering confirmed against actual asset before APK install.
+- APK rebuilt + `adb install`-ed to tablet.
+
+CLI: `python3.10 -m modern {samples,all,perkey,audit,test,index,find,clean,help}`. New helpers under `modern/`: `build_all.py`, `build_per_key.py`, `build_svg.py` (LilyPond→SVG, kept as research artifact), `build_mei.py` (ABC→Verovio→post-process to inject paired harms — the production path), `build_stats.py` (writes `stats.md`), `build_booklet.sh` (saddle-stitch any N-page PDF), `find.py` (fuzzy hymn search), `meter_handler.py` (handles 25/26 M:none/3/2/8/4 exceptions; **not yet wired into `build_all.process_hymn`** — TODO, ~10 lines at lines 369–380).
+
+Pending follow-ups:
+- Wire `meter_handler.preprocess_abc` into `build_all.process_hymn` to pick up the +25 meter-exception hymns currently still skipped.
+- Stats finding worth investigating: Rule 6 (extensions) never fires because `melody_pitches` isn't populated on `ChordEvent` — easy color-on-destinations win. See `modern/stats.md`.
+- 8 cleanTitle collisions in `lead_sheets.json` cause the MEI/SVG dicts to lose 8 entries (261→253). Pre-existing data issue; second member overwrites the first.
+- `app/lead_sheets.json` had 196 hymns hardcoded to Q:1/4=100; `scripts/fix_lead_sheet_tempos.py` restored real tempos from `data/OpenHymnal.abc`. Backup at `app/lead_sheets.json.bak-pretempo` (gitignored).
