@@ -2,6 +2,19 @@
 app/app/build/
 app/.gradle/
 
+# Modern pipeline regenerables (run `python3.10 -m modern all` to recreate)
+modern/all_hymns.ly
+modern/all_hymns.pdf
+modern/all_hymns_manifest.json
+modern/all_hymns_skipped.json
+modern/all_hymns_index.ly
+modern/all_hymns_index.pdf
+modern/by_key/
+modern/mei_out/
+modern/svg_out/
+modern/modern_mei.json
+modern/modern_svg.json
+
 # LaTeX artifacts
 *.aux
 *.log
