@@ -107,9 +107,9 @@
 \newcommand{\tx}[6]{%
   \stepcounter{rowct}%
   \ifodd\value{rowct}\else\rowcolor{bandcol}\fi%
-  {\fontsize{11}{12}\selectfont{\color{rhcol}\rn{#1}{#2}}\,$\leftrightarrow$\,{\color{lhcol}\rn{#3}{#4}}} &
-  {\fontsize{9}{10}\selectfont\color{desccol}#5} &
-  {\fontsize{9}{10}\selectfont\itshape\color{flavcol}#6} \\
+  {\fontsize{15}{17}\selectfont{\color{rhcol}\rn{#1}{#2}}\,$\leftrightarrow$\,{\color{lhcol}\rn{#3}{#4}}} &
+  {\fontsize{11}{13}\selectfont\color{desccol}#5} &
+  {\fontsize{11}{13}\selectfont\itshape\color{flavcol}#6} \\
 }
 % Per-column footer block (page 4) — sits below each cycle's entries
 \newcommand{\colfoot}[2]{%
@@ -130,7 +130,7 @@
 % Cycle header row: spans all 3 columns
 \newcommand{\cyc}[2]{%
   \stepcounter{rowct}%
-  \multicolumn{3}{@{}l@{}}{\bfseries\fontsize{12}{14}\selectfont\color{#1}#2}\\[0.5mm]%
+  \multicolumn{3}{@{}l@{}}{\bfseries\fontsize{14}{16}\selectfont\color{#1}#2}\\[0.5mm]%
 }
 
 % Page-4 stacked-chord row — fraction + forward/reverse descriptions + LH/RH figures
@@ -398,15 +398,13 @@ $^{\osf{1,2,3}}$      & inversion                  &
 \fontsize{12}{14}\selectfont
 \setcounter{rowct}{0}
 
-% Place trefoil watermark in lower-right of this page
-\begin{tikzpicture}[remember picture, overlay]
-  \node[anchor=south east, xshift=0mm, yshift=2mm]
-    at (current page.south east)
-    {\includegraphics[width=200mm]{handout/trefoil_diag.pdf}};
-\end{tikzpicture}
+% Mini colored-bar header macro for the practice framework
+\newcommand{\practice}[2]{%
+  \noindent\colorbox{#1}{\color{white}\textbf{\strut\ #2\ }}\par\vspace{0.3mm}%
+}
 
-% Transitions table: 3-column tabular on the left, headers span all 3
-\begin{minipage}[t]{0.45\linewidth}
+% Transitions table on the left + Practice Framework on the upper right
+\noindent\begin{minipage}[t]{0.28\linewidth}
 \setlength{\tabcolsep}{4pt}
 \renewcommand{\arraystretch}{1.15}
 \begin{tabular}{@{}l l l@{}}
@@ -438,6 +436,33 @@ $^{\osf{1,2,3}}$      & inversion                  &
 \tx{V}{}{I}{}{Resolution}{Optimism}
 \end{tabular}
 \end{minipage}
+
+% Practice framework as TikZ overlay positioned at page's top-right corner, 2 columns
+\begin{tikzpicture}[remember picture, overlay]
+  \node[anchor=north east, xshift=-1mm, yshift=-6mm, text width=190mm, align=left]
+    at (current page.north east)
+    {\fontsize{11}{13}\selectfont\raggedright%
+     \noindent\begin{minipage}[t]{92mm}%
+       \practice{leafcyan!80!black}{The Feedback Loop \nd{} every rep}%
+       \textbf{Plan} a specific target (not ``play it better'' \nd{} ``keep the LH thumb on the string until the RH starts''), \textbf{play} honestly at thinking-tempo, \textbf{evaluate} strictly (90\%=success, 50\%=info), \textbf{adjust} one variable before the next rep.\par\vspace{1.5mm}%
+       \practice{leafyellow!80!black}{The 90/10 Principle}%
+       To nail a skill at 100\%, push a \emph{harder related skill} to 90\%: speak finger numbers while arpeggiating, practice the cascade in reverse, do crescendos on a flat passage. When you drop the extra layer the target runs on less effort.%
+     \end{minipage}\hfill%
+     \begin{minipage}[t]{92mm}%
+       \practice{ctrcolor}{Five Axes of Difficulty}%
+       Raise one axis, lower another, cycle: \textbf{Length} (bar\(\to\)phrase\(\to\)piece) \,\(\cdot\)\, \textbf{Complexity} (one hand\(\to\)two\(\to\)add cascade) \,\(\cdot\)\, \textbf{Depth} (phrasing, dynamics, tone) \,\(\cdot\)\, \textbf{Speed} (last, and the most overused) \,\(\cdot\)\, \textbf{Mental endurance}.\par\vspace{1.5mm}%
+       \practice{leafred}{3-4-2-1 Session Order}%
+       Rank L1 (automatic) $\to$ L4 (impossible). Go \textbf{L3\(\to\)L4\(\to\)L2\(\to\)L1}: L3 warm-up demands focus; L4 while sharpest; L2 as attention fades; L1 last for cruise-mode review. \emph{Never start with L1 \nd{} it sets your brain to autopilot.}%
+     \end{minipage}%
+    };
+\end{tikzpicture}
+
+% Place trefoil watermark in lower-right of this page
+\begin{tikzpicture}[remember picture, overlay]
+  \node[anchor=south east, xshift=-13mm, yshift=2mm]
+    at (current page.south east)
+    {\includegraphics[width=200mm]{handout/trefoil_diag.pdf}};
+\end{tikzpicture}
 
 \clearpage
 
