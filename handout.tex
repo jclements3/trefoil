@@ -1,0 +1,516 @@
+\documentclass[letterpaper,12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[letterpaper, landscape, margin=6mm]{geometry}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{longtable}
+\usepackage{microtype}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{helvet}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usetikzlibrary{arrows.meta,bending}
+\renewcommand{\familydefault}{\sfdefault}
+
+\definecolor{headerbg}{HTML}{2C3E50}
+\definecolor{altrow}{HTML}{F0F4F8}
+\definecolor{rhcol}{HTML}{1F4E79}
+\definecolor{lhcol}{HTML}{7B2B2B}
+\definecolor{desccol}{HTML}{2A3342}
+\definecolor{flavcol}{HTML}{6B7A8F}
+\definecolor{bandcol}{HTML}{F0F4F8}
+\definecolor{leafred}{RGB}{220,75,75}
+\definecolor{leafyellow}{RGB}{190,155,30}
+\definecolor{leafcyan}{RGB}{40,180,190}
+\definecolor{ctrcolor}{RGB}{220,140,40}
+
+\tikzset{
+  chord/.style={
+    circle, draw=white, line width=1.5pt, fill=#1, text=white,
+    font=\bfseries\normalsize, inner sep=0pt, minimum size=0.7cm},
+  lbl/.style={font=\fontsize{8}{9}\selectfont\itshape,
+              text width=2.0cm, align=center},
+}
+
+% Save the trefoil into a box so we can reuse it inside an overlay node
+\newsavebox{\trefoilbox}
+
+% ── chord notation macros ─────────────────────────────────────────────────────
+\newcommand{\osf}[1]{{\fontfamily{pplj}\selectfont #1}}
+\newcommand{\Ro}[1]{{\fontfamily{ppl}\fontseries{b}\selectfont #1}}
+\newcommand{\rp}{{\raisebox{0.55ex}{\footnotesize$+$}}}
+\newcommand{\halfdim}{$^{\scriptstyle\varnothing}$}
+\newcommand{\inv}[1]{$^{\osf{#1}}$}
+\newcommand{\nd}{\rule[0.42ex]{4.5mm}{0.55pt}}
+
+\newcommand{\rn}[2]{\Ro{#1}\rndq{#2}}
+\newcommand{\rndq}[1]{\rndqparse{#1}}
+\newcommand{\rndqparse}[1]{%
+\def\tmp{#1}%
+\def\tmpA{m7}\def\tmpB{m6}\def\tmpC{m}%
+\def\tmpD{q7}\def\tmpE{q}%
+\def\tmpF{s4+8}\def\tmpG{s4}\def\tmpH{s2}%
+\def\tmpI{+8}%
+\def\tmpJ{Δ}\def\tmpK{ø7}\def\tmpL{°}%
+\def\tmpM{7}\def\tmpN{6}%
+\ifx\tmp\tmpA $m$\osf{7}\else
+\ifx\tmp\tmpB $m$\osf{6}\else
+\ifx\tmp\tmpC $m$\else
+\ifx\tmp\tmpD $q$\osf{7}\else
+\ifx\tmp\tmpE $q$\else
+\ifx\tmp\tmpF $s$\osf{4}\rp\osf{8}\else
+\ifx\tmp\tmpG $s$\osf{4}\else
+\ifx\tmp\tmpH $s$\osf{2}\else
+\ifx\tmp\tmpI \rp\osf{8}\else
+\ifx\tmp\tmpJ $\Delta$\else
+\ifx\tmp\tmpK \halfdim\osf{7}\else
+\ifx\tmp\tmpL $^\circ$\else
+\ifx\tmp\tmpM \osf{7}\else
+\ifx\tmp\tmpN \osf{6}\else
+#1%
+\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi
+}
+
+% Stacked-chord entry macro (page 2)
+\newcounter{rowct}
+\setlength{\fboxsep}{1.5mm}
+\newcommand{\se}[7]{%
+  \stepcounter{rowct}%
+  \ifodd\value{rowct}\def\rowbg{white}\else\def\rowbg{bandcol}\fi%
+  \noindent\colorbox{\rowbg}{%
+    \begin{minipage}{\dimexpr\linewidth-2\fboxsep\relax}%
+      \noindent
+      \makebox[10mm][r]{%
+        \renewcommand{\arraystretch}{0.8}%
+        \begin{tabular}{@{}r@{}}%
+          {\color{rhcol}\rn{#1}{#2}}\\[-1.5pt]%
+          {\color{lhcol}\rn{#3}{#4}}%
+        \end{tabular}%
+      }\hspace{3mm}%
+      \begin{minipage}[c]{\dimexpr\linewidth-14mm\relax}%
+        {\fontsize{12}{13}\selectfont\color{desccol}#5}\\[-1pt]%
+        {\fontsize{12}{13}\selectfont\color{flavcol}\osf{#6}\ \ \osf{#7}}%
+      \end{minipage}%
+    \end{minipage}%
+  }%
+  \par
+}
+
+% Transition row (page 3) — chord pair | forward | reverse, banded
+% \tx{ch1-rom}{ch1-qual}{ch2-rom}{ch2-qual}{forward-label}{reverse-label}
+\newcommand{\tx}[6]{%
+  \stepcounter{rowct}%
+  \ifodd\value{rowct}\else\rowcolor{bandcol}\fi%
+  {\fontsize{11}{12}\selectfont{\color{rhcol}\rn{#1}{#2}}\,$\leftrightarrow$\,{\color{lhcol}\rn{#3}{#4}}} &
+  {\fontsize{9}{10}\selectfont\color{desccol}#5} &
+  {\fontsize{9}{10}\selectfont\itshape\color{flavcol}#6} \\
+}
+% Per-column footer block (page 4) — sits below each cycle's entries
+\newcommand{\colfoot}[2]{%
+  \vspace{1mm}%
+  \noindent\colorbox{bandcol}{%
+    \begin{minipage}{\dimexpr\linewidth-2\fboxsep\relax}%
+      \setlength{\parskip}{0pt}%
+      \setlength{\parindent}{0pt}%
+      \begin{spacing}{0.8}%
+      {\fontsize{12}{12}\selectfont\raggedright\color{desccol}%
+        \textbf{#1}\ #2\par%
+      }%
+      \end{spacing}%
+    \end{minipage}%
+  }\par%
+}
+
+% Cycle header row: spans all 3 columns
+\newcommand{\cyc}[2]{%
+  \stepcounter{rowct}%
+  \multicolumn{3}{@{}l@{}}{\bfseries\fontsize{12}{14}\selectfont\color{#1}#2}\\[0.5mm]%
+}
+
+% Page-4 stacked-chord row — fraction + forward/reverse descriptions + LH/RH figures
+% \sex{RH-rom}{RH-qual}{LH-rom}{LH-qual}{forward}{reverse}{LHfig}{RHfig}
+\newcommand{\sex}[8]{%
+  \stepcounter{rowct}%
+  \ifodd\value{rowct}\def\rowbg{white}\else\def\rowbg{bandcol}\fi%
+  \noindent\colorbox{\rowbg}{%
+    \begin{minipage}{\dimexpr\linewidth-2\fboxsep\relax}%
+      \noindent
+      \makebox[10mm][r]{%
+        \renewcommand{\arraystretch}{0.85}%
+        \begin{tabular}{@{}r@{}}%
+          {\color{rhcol}\rn{#1}{#2}}\\[-1.5pt]%
+          {\color{lhcol}\rn{#3}{#4}}%
+        \end{tabular}%
+      }\hspace{3mm}%
+      \begin{minipage}[c]{\dimexpr\linewidth-14mm\relax}%
+        {\fontsize{10}{11}\selectfont\color{desccol}#5\quad\itshape\color{flavcol}#6}\\[-2pt]%
+        {\fontsize{10}{11}\selectfont\color{flavcol}\osf{#7}\ \ \osf{#8}}%
+      \end{minipage}%
+    \end{minipage}%
+  }%
+  \par\vspace{-0.5mm}%
+}
+
+\pagestyle{empty}
+
+\begin{document}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% PAGE 1 — HarpChords
+% ═══════════════════════════════════════════════════════════════════════════════
+
+\vspace*{-4mm}
+\setlength{\LTpre}{0pt}
+\setlength{\LTpost}{2mm}
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.2}
+\fontsize{18}{21}\selectfont
+
+\begin{longtable}{>{\bfseries\centering\arraybackslash}p{24mm}
+*{7}{>{\centering\arraybackslash}p{33mm}}}
+
+\rowcolor{headerbg}
+\color{white}{\mdseries Intervals\strut\rule[-8pt]{0pt}{0pt}} &
+\color{white}{\shortstack{\rule{0pt}{5pt}\\{\fontsize{22}{24}\selectfont\bfseries 1}\\[1pt]Ionian\strut}} &
+\color{white}{\shortstack{\rule{0pt}{5pt}\\{\fontsize{22}{24}\selectfont\bfseries 2}\\[1pt]Dorian\strut}} &
+\color{white}{\shortstack{\rule{0pt}{5pt}\\{\fontsize{22}{24}\selectfont\bfseries 3}\\[1pt]Phrygian\strut}} &
+\color{white}{\shortstack{\rule{0pt}{5pt}\\{\fontsize{22}{24}\selectfont\bfseries 4}\\[1pt]Lydian\strut}} &
+\color{white}{\shortstack{\rule{0pt}{5pt}\\{\fontsize{22}{24}\selectfont\bfseries 5}\\[1pt]Mixolydian\strut}} &
+\color{white}{\shortstack{\rule{0pt}{5pt}\\{\fontsize{22}{24}\selectfont\bfseries 6}\\[1pt]Aeolian\strut}} &
+\color{white}{\shortstack{\rule{0pt}{5pt}\\{\fontsize{22}{24}\selectfont\bfseries 7}\\[1pt]Locrian\strut}} \\
+\endfirsthead
+\rowcolor{headerbg}
+\color{white}{\mdseries Intervals\strut\rule[-8pt]{0pt}{0pt}} &
+\color{white}{\shortstack{\rule{0pt}{5pt}\\{\fontsize{22}{24}\selectfont\bfseries 1}\\[1pt]Ionian\strut}} &
+\color{white}{\shortstack{\rule{0pt}{5pt}\\{\fontsize{22}{24}\selectfont\bfseries 2}\\[1pt]Dorian\strut}} &
+\color{white}{\shortstack{\rule{0pt}{5pt}\\{\fontsize{22}{24}\selectfont\bfseries 3}\\[1pt]Phrygian\strut}} &
+\color{white}{\shortstack{\rule{0pt}{5pt}\\{\fontsize{22}{24}\selectfont\bfseries 4}\\[1pt]Lydian\strut}} &
+\color{white}{\shortstack{\rule{0pt}{5pt}\\{\fontsize{22}{24}\selectfont\bfseries 5}\\[1pt]Mixolydian\strut}} &
+\color{white}{\shortstack{\rule{0pt}{5pt}\\{\fontsize{22}{24}\selectfont\bfseries 6}\\[1pt]Aeolian\strut}} &
+\color{white}{\shortstack{\rule{0pt}{5pt}\\{\fontsize{22}{24}\selectfont\bfseries 7}\\[1pt]Locrian\strut}} \\
+\endhead
+
+\rowcolor{altrow}
+\texttt{\textbf{24}} & \rn{I}{s2} & \rn{ii}{s2} & \nd & \rn{IV}{s2} & \rn{V}{s2} & \rn{vi}{s2} & \nd \\
+
+\texttt{\textbf{33}} & \rn{I}{} & \rn{ii}{} & \rn{iii}{} & \rn{IV}{} & \rn{V}{} & \rn{vi}{} & \rn{vii}{°} \\
+
+\rowcolor{altrow}
+\texttt{\textbf{34}} & \rn{vi}{}\inv{1} & \rn{vii}{°}\inv{1} & \rn{I}{}\inv{1} & \rn{ii}{}\inv{1} & \rn{iii}{}\inv{1} & \rn{IV}{}\inv{1} & \rn{V}{}\inv{1} \\
+
+\texttt{\textbf{42}} & \rn{I}{s4} & \rn{ii}{s4} & \rn{iii}{s4} & \nd & \rn{V}{s4} & \rn{vi}{s4} & \nd \\
+
+\rowcolor{altrow}
+\texttt{\textbf{43}} & \rn{IV}{}\inv{2} & \rn{V}{}\inv{2} & \rn{vi}{}\inv{2} & \rn{vii}{°}\inv{2} & \rn{I}{}\inv{2} & \rn{ii}{}\inv{2} & \rn{iii}{}\inv{2} \\
+
+\texttt{\textbf{44}} & \nd & \rn{ii}{q} & \rn{iii}{q} & \nd & \rn{V}{q} & \rn{vi}{q} & \rn{vii}{q} \\
+
+\rowcolor{altrow}
+\texttt{\textbf{233}} & \rn{ii}{m7}\inv{3} & \rn{iii}{m7}\inv{3} & \rn{IV}{Δ}\inv{3} & \rn{V}{7}\inv{3} & \rn{vi}{m7}\inv{3} & \rn{vii}{ø7}\inv{3} & \rn{I}{Δ}\inv{3} \\
+
+\texttt{\textbf{323}} & \rn{IV}{Δ}\inv{2} & \rn{V}{7}\inv{2} & \rn{vi}{m7}\inv{2} & \rn{vii}{ø7}\inv{2} & \rn{I}{Δ}\inv{2} & \rn{ii}{m7}\inv{2} & \rn{iii}{m7}\inv{2} \\
+
+\rowcolor{altrow}
+\texttt{\textbf{332}} & \rn{I}{6} & \rn{ii}{m6} & \rn{I}{Δ}\inv{1} & \rn{IV}{6} & \rn{V}{6} & \rn{IV}{Δ}\inv{1} & \rn{V}{7}\inv{1} \\
+
+\texttt{\textbf{333}} & \rn{I}{Δ} & \rn{ii}{m7} & \rn{iii}{m7} & \rn{IV}{Δ} & \rn{V}{7} & \rn{vi}{m7} & \rn{vii}{ø7} \\
+
+\rowcolor{altrow}
+\texttt{\textbf{334}} & \rn{I}{+8} & \rn{ii}{+8} & \rn{iii}{+8} & \rn{IV}{+8} & \rn{V}{+8} & \rn{vi}{+8} & \rn{vii}{+8} \\
+
+\texttt{\textbf{433}} & \rn{IV}{}\inv{2}\rp\osf{8} & \rn{V}{}\inv{2}\rp\osf{8} & \nd & \nd & \rn{I}{}\inv{2}\rp\osf{8} & \nd & \nd \\
+
+\rowcolor{altrow}
+\texttt{\textbf{434}} & \rn{ii}{m7}\inv{3} & \rn{iii}{m7}\inv{3} & \rn{IV}{Δ}\inv{3} & \rn{V}{7}\inv{3} & \rn{vi}{m7}\inv{3} & \rn{vii}{ø7}\inv{3} & \rn{I}{Δ}\inv{3} \\
+
+\texttt{\textbf{444}} & \nd & \rn{ii}{q7} & \rn{iii}{q7} & \nd & \nd & \rn{vi}{q7} & \rn{vii}{q7} \\
+
+\bottomrule
+\end{longtable}
+
+\vspace{-1mm}
+{\fontsize{13}{15}\selectfont\itshape\noindent Chord figure = column degree + row intervals (e.g., col \textbf{5} $\times$ row \osf{333} $\to$ figure \osf{5333} = \Ro{V}\osf{7}).\par}
+\vspace{1mm}
+\noindent
+{\fontsize{13}{15}\selectfont
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}[t]{@{}%
+>{\raggedleft\arraybackslash}p{18mm}@{~=~}%
+>{\raggedright\arraybackslash}p{40mm}@{\hspace{2mm}}%
+>{\raggedleft\arraybackslash}p{18mm}@{~=~}%
+>{\raggedright\arraybackslash}p{42mm}@{\hspace{2mm}}%
+>{\raggedleft\arraybackslash}p{14mm}@{~=~}%
+>{\raggedright\arraybackslash}p{32mm}@{\hspace{2mm}}%
+>{\raggedleft\arraybackslash}p{20mm}@{~=~}%
+>{\raggedright\arraybackslash}p{68mm}@{}}%
+\multicolumn{2}{@{}l}{\bfseries Key} & \multicolumn{4}{c}{} &
+\multicolumn{2}{l}{\bfseries Creating the Chord Figure} \\[0.5mm]
+Upper   & major (I,IV,V)                       &
+$^\circ$               & diminished                &
+$q$                    & quartal                   &
+\osf{333} / \osf{5333} & \textit{intervals} / \textit{deg}+\textit{intervals} \\[1mm]
+Lower   & minor (ii,iii,vi)                    &
+$^{\scriptstyle\varnothing}$\texttt{\textbf{7}} & half-dim     &
+$s$\osf{2}/$s$\texttt{\textbf{4}} & sus2/sus4                 &
+\osf{5333}             & deg \osf{5}, three thirds $=$ \Ro{V}\osf{7} \\[1mm]
+$\Delta$    & major 7th                              &
+\osf{7}                & dominant 7th              &
+\osf{6}/$m$\osf{6}    & major/minor 6th            &
+\osf{1233}             & deg \osf{1}, 2nd+2 thirds $=$ \Ro{I}$\Delta^{\osf{1}}$ \\[1mm]
+\rp\osf{8}  & root doubled at 8ve                   &
+$s$\osf{4}\rp\osf{8}  & sus4 w/ doubled root      &
+$^{\osf{1,2,3}}$      & inversion                  &
+\osf{1433}             & deg \osf{1}, 4th+2 thirds $=$ \Ro{I}$s$\osf{4}\rp\osf{8} \\
+\end{tabular}
+}
+
+\vspace{2mm}
+\noindent{\fontsize{11}{13}\selectfont\raggedright%
+\textbf{How to read.} Rows are voicing shapes (generic intervals bottom-up: \osf{2}=2nd, \osf{3}=3rd, \osf{4}=4th). Columns are diatonic degrees \osf{1}--\osf{7}. A cell is the Roman-numeral chord that results (case = major/minor; suffix = quality). A \emph{figure} concatenates column-degree + row-intervals (\osf{5333} = \Ro{V}\osf{7}). Superscripts \osf{1}/\osf{2}/\osf{3} mark inversion (bass chord tone). \nd{} = non-diatonic. \textbf{To voice a chord} (\Ro{G}\osf{7} in \Ro{C}): express as Roman (\Ro{V}\osf{7}), find the cell, stack the row intervals from the bass note.\par}
+
+\clearpage
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% PAGE 2 — StackedChords
+% ═══════════════════════════════════════════════════════════════════════════════
+
+\fontsize{12}{14}\selectfont
+\renewcommand{\arraystretch}{1}
+\setlength{\tabcolsep}{6pt}
+\setcounter{rowct}{0}
+
+\setlength{\columnsep}{4mm}
+\begin{multicols}{5}
+
+% Over I
+\se{ii}{}{I}{}{Warm \rn{I}{Δ}\osf{9}}{133}{933}
+\se{iii}{}{I}{}{Soft \rn{I}{Δ}}{133}{A33}
+\se{V}{}{I}{}{Bright \rn{I}{6}/\osf{9}}{133}{533}
+\se{vi}{}{I}{}{Pastoral \rn{I}{6}}{133}{633}
+\se{IV}{}{I}{}{Mixolydian blur}{133}{B33}
+\se{I}{Δ}{I}{}{Full maj7 stack}{133}{8333}
+\se{vii}{°}{I}{}{Tense \rn{I}{Δ}}{133}{733}
+\se{I}{s4}{I}{}{Sus4 hang}{133}{842}
+\se{I}{s2}{I}{}{Sus2 open}{133}{824}
+
+% Over IΔ
+\se{I}{}{I}{Δ}{Doubled tonic}{1333}{833}
+\se{IV}{}{I}{Δ}{Lydian tonic}{1333}{B33}
+\se{iii}{}{I}{Δ}{Sparse \rn{I}{Δ}\osf{9}}{1333}{A33}
+\se{ii}{}{I}{Δ}{Full jazz tonic}{1333}{933}
+\se{V}{}{I}{Δ}{Gospel tonic}{1333}{C33}
+
+% Over ii
+\se{V}{}{ii}{}{\rn{ii}{m7}+\osf{11}}{233}{C33}
+\se{IV}{}{ii}{}{\rn{ii}{m7}+\osf{9}}{233}{B33}
+\se{I}{}{ii}{}{\rn{ii}{m7}}{233}{833}
+\se{vi}{}{ii}{}{Rich}{233}{633}
+\se{iii}{}{ii}{}{Mournful}{233}{A33}
+
+% Over IV
+\se{I}{}{IV}{}{\rn{IV}{Δ}\osf{9}}{433}{833}
+\se{V}{}{IV}{}{Lydian}{433}{C33}
+\se{ii}{}{IV}{}{\rn{IV}{} add \osf{6}/\osf{9}}{433}{933}
+\se{I}{Δ}{IV}{}{Double-$\Delta$}{433}{8333}
+\se{iii}{}{IV}{}{\rn{IV}{Δ}\osf{9} (alt)}{433}{A33}
+\se{vi}{}{IV}{}{\rn{IV}{Δ} warm}{433}{D33}
+\se{IV}{s2}{IV}{}{Sus2 IV}{433}{B24}
+
+% Over IVΔ
+\se{V}{}{IV}{Δ}{\rn{IV}{Δ}\osf{9}$\sharp$\osf{11}}{4333}{C33}
+\se{ii}{}{IV}{Δ}{\rn{IV}{Δ}\osf{9}+\osf{6}}{4333}{G33}
+
+% Over V
+\se{IV}{}{V}{}{\rn{V}{}\osf{11} modal}{533}{B33}
+\se{ii}{}{V}{}{\rn{V}{7}+\osf{9}}{533}{933}
+\se{vii}{°}{V}{}{\rn{V}{7} bite}{533}{E33}
+\se{vi}{}{V}{}{Warm \rn{V}{7}+\osf{9}}{533}{D33}
+\se{I}{}{V}{}{\rn{V}{s4} hang}{533}{F33}
+\se{iii}{}{V}{}{\rn{V}{} add \osf{6}}{533}{A33}
+\se{V}{s4}{V}{}{Sus4 V}{533}{C42}
+\se{V}{s2}{V}{}{Sus2 V}{533}{C24}
+\se{V}{q}{V}{}{Quartal V}{533}{C44}
+
+% Over V7
+\se{V}{}{V}{7}{\rn{V}{7} thick}{5333}{C33}
+\se{IV}{}{V}{7}{\rn{V}{}\osf{11} suspended}{5333}{B33}
+\se{vi}{}{V}{7}{\rn{V}{}\osf{13} alt}{5333}{D33}
+\se{ii}{}{V}{7}{Jazz \rn{V}{7}\osf{9}}{5333}{G33}
+\se{I}{}{V}{7}{\rn{V}{}\osf{13}}{5333}{F33}
+\se{ii}{m7}{V}{7}{Jazz ii--V}{5333}{G333}
+\se{I}{Δ}{V}{7}{Cadence approach}{5333}{F333}
+\se{IV}{Δ}{V}{7}{Jazzy pre-cadence}{5333}{B333}
+
+% Over vi
+\se{iii}{}{vi}{}{\rn{vi}{m7}+\osf{9}}{633}{A33}
+\se{I}{}{vi}{}{\rn{vi}{m7} pad}{633}{F33}
+\se{IV}{}{vi}{}{\rn{vi}{m6}}{633}{B33}
+\se{V}{}{vi}{}{Aeolian modal}{633}{C33}
+\se{ii}{}{vi}{}{Spacious minor}{633}{G33}
+\se{vii}{°}{vi}{}{\rn{vi}{m}(maj\osf{7})}{633}{E33}
+
+% Over iii
+\se{V}{}{iii}{}{Phrygian tint}{333}{C33}
+\se{I}{}{iii}{}{Mellow mediant}{333}{833}
+\se{vi}{}{iii}{}{Phrygian add}{333}{D33}
+\se{IV}{}{iii}{}{Dark Phrygian}{333}{B33}
+
+% Secondary dominants
+\se{V}{}{ii}{m7}{Sec.\ dom of \Ro{ii}}{2333}{C33}
+\se{V}{}{vi}{m7}{Sec.\ dom of \Ro{vi}}{6333}{C33}
+\se{V}{7}{I}{Δ}{Prep.\ cadence}{1333}{C333}
+\se{V}{}{IV}{Δ}{Full Lydian}{4333}{C33}
+
+% Overlap stacks (RH starts at LH's top degree)
+\se{vii}{°}{iii}{}{\rn{iii}{m7}$\flat$\osf{5}}{333}{733}
+\se{IV}{}{vii}{°}{\rn{vii}{\halfdim 11}}{733}{B33}
+\se{vii}{°}{I}{Δ}{\rn{I}{Δ}\osf{9}$\sharp$\osf{11}}{1333}{733}
+\se{I}{}{ii}{m7}{\rn{ii}{m11} \nd{} Dm\osf{11} voicing}{2333}{833}
+\se{ii}{}{iii}{m7}{\rn{iii}{m11}}{3333}{933}
+\se{iii}{}{IV}{Δ}{\rn{IV}{Δ}\osf{9}$\sharp$\osf{11} alt}{4333}{A33}
+\se{V}{}{vi}{m7}{\rn{vi}{m13}}{6333}{C33}
+\se{vi}{}{vii}{ø7}{\rn{vii}{\halfdim 13}}{7333}{D33}
+
+% Octave Echoes (+8)
+\se{I}{+8}{I}{}{Bell-ring \Ro{I}}{133}{8334}
+\se{ii}{+8}{ii}{}{Minor bell}{233}{9334}
+\se{iii}{+8}{iii}{}{Mediant bell}{333}{A334}
+\se{IV}{+8}{IV}{}{Subdominant bell}{433}{B334}
+\se{V}{+8}{V}{}{Dominant bell}{533}{C334}
+\se{vi}{+8}{vi}{}{Rel.-minor bell}{633}{D334}
+\se{vii}{+8}{vii}{}{Leading-tone bell}{733}{E334}
+
+\end{multicols}
+
+\clearpage
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% PAGE 3 — Trefoil of Chord Transitions
+% ═══════════════════════════════════════════════════════════════════════════════
+
+\fontsize{12}{14}\selectfont
+\setcounter{rowct}{0}
+
+% Place trefoil watermark in lower-right of this page
+\begin{tikzpicture}[remember picture, overlay]
+  \node[anchor=south east, xshift=0mm, yshift=2mm]
+    at (current page.south east)
+    {\includegraphics[width=200mm]{handout/trefoil_diag.pdf}};
+\end{tikzpicture}
+
+% Transitions table: 3-column tabular on the left, headers span all 3
+\begin{minipage}[t]{0.45\linewidth}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{@{}l l l@{}}
+\cyc{leafcyan!80!black}{Cycle of 2nds}
+\tx{I}{}{ii}{}{Cloudy}{Nostalgia}
+\tx{ii}{}{iii}{}{Drama}{Burdened}
+\tx{iii}{}{IV}{}{Solace}{Solitude}
+\tx{IV}{}{V}{}{Joy}{Tempering}
+\tx{V}{}{vi}{}{Deceptive}{Uplifting}
+\tx{vi}{}{vii}{°}{Dark resolution}{Confusion}
+\tx{vii}{°}{I}{}{Bright resolution}{Chaos}
+\multicolumn{3}{@{}l@{}}{\rule{0pt}{4mm}}\\
+\cyc{leafred}{Cycle of 3rds}
+\tx{I}{}{iii}{}{Lonely}{Gentle}
+\tx{iii}{}{V}{}{Happy surprise}{Left hanging}
+\tx{V}{}{vii}{°}{Added tension}{Release}
+\tx{vii}{°}{ii}{}{Dark surprise}{Uncertainty}
+\tx{ii}{}{IV}{}{Darkening}{Sweetness}
+\tx{IV}{}{vi}{}{Hardship}{Redemption}
+\tx{vi}{}{I}{}{Melancholy}{Warmth}
+\multicolumn{3}{@{}l@{}}{\rule{0pt}{4mm}}\\
+\cyc{leafyellow!80!black}{Cycle of 4ths}
+\tx{I}{}{IV}{}{Exploration}{Bright peace}
+\tx{IV}{}{vii}{°}{Alarm}{Mystery}
+\tx{vii}{°}{iii}{}{Despair}{Unknown}
+\tx{iii}{}{vi}{}{Acceptance}{Epicness}
+\tx{vi}{}{ii}{}{Hope up}{Shyness}
+\tx{ii}{}{V}{}{Lightening}{Setback}
+\tx{V}{}{I}{}{Resolution}{Optimism}
+\end{tabular}
+\end{minipage}
+
+\clearpage
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% PAGE 4 — Cycle preview voicings (3 horizontal groups)
+% ═══════════════════════════════════════════════════════════════════════════════
+
+\fontsize{12}{14}\selectfont
+\setcounter{rowct}{0}
+
+\noindent
+\begin{minipage}[t]{0.325\linewidth}
+{\bfseries\fontsize{13}{15}\selectfont\color{leafcyan!80!black}Cycle of 2nds}\par\vspace{1mm}
+% Forward previews (RH = next chord)
+\sex{ii}{}{I}{}{Cloudy}{Nostalgia}{133}{933}
+\sex{iii}{}{ii}{}{Drama}{Burdened}{233}{A33}
+\sex{IV}{}{iii}{}{Solace}{Solitude}{333}{B33}
+\sex{V}{}{IV}{}{Joy}{Tempering}{433}{C33}
+\sex{vi}{}{V}{}{Deceptive}{Uplifting}{533}{D33}
+\sex{vii}{°}{vi}{}{Dark resolution}{Confusion}{633}{E33}
+\sex{I}{}{vii}{°}{Bright resolution}{Chaos}{733}{F33}
+% Pattern-drill previews (varied LH/RH patterns, same forward cycle motion)
+\sex{ii}{m7}{I}{}{Cloudy}{Nostalgia}{133}{9333}
+\sex{iii}{}{ii}{s2}{Drama}{Burdened}{224}{A33}
+\sex{IV}{}{iii}{s4}{Solace}{Solitude}{342}{B33}
+\sex{V}{7}{IV}{}{Joy}{Tempering}{433}{C333}
+\sex{vi}{}{V}{+8}{Deceptive}{Uplifting}{5334}{D33}
+\sex{vii}{ø7}{vi}{}{Dark resolution}{Confusion}{633}{E333}
+\sex{I}{+8}{vii}{°}{Bright resolution}{Chaos}{733}{F334}
+
+\colfoot{Stepwise bass.}{Journey chords moving by 2nd give smooth walking basslines; use slash chords (\rn{I}{}/\osf{3}, \rn{V}{}/\osf{3}) to step the bass through the melody. \textbf{Melody first:} any extension must fit the current melody note. \textbf{Passing chords:} drop any 2nd-step chord between two targets to smooth the approach.}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.325\linewidth}
+{\bfseries\fontsize{13}{15}\selectfont\color{leafred}Cycle of 3rds}\par\vspace{1mm}
+% Forward (RH = chord a 3rd up)
+\sex{iii}{}{I}{}{Lonely}{Gentle}{133}{A33}
+\sex{V}{}{iii}{}{Happy surprise}{Left hanging}{333}{C33}
+\sex{vii}{°}{V}{}{Added tension}{Release}{533}{E33}
+\sex{ii}{}{vii}{°}{Dark surprise}{Uncertainty}{733}{G33}
+\sex{IV}{}{ii}{}{Darkening}{Sweetness}{233}{B33}
+\sex{vi}{}{IV}{}{Hardship}{Redemption}{433}{D33}
+\sex{I}{}{vi}{}{Melancholy}{Warmth}{633}{F33}
+% Pattern-drill previews (varied LH/RH patterns, same forward cycle motion)
+\sex{iii}{m7}{I}{6}{Lonely}{Gentle}{1332}{A333}
+\sex{V}{}{iii}{}{Happy surprise}{Left hanging}{534}{C33}
+\sex{vii}{°}{V}{q}{Added tension}{Release}{544}{E33}
+\sex{ii}{}{vii}{ø7}{Dark surprise}{Uncertainty}{6233}{G33}
+\sex{IV}{}{ii}{q7}{Darkening}{Sweetness}{2444}{B33}
+\sex{vi}{}{IV}{}{Hardship}{Redemption}{143}{D33}
+\sex{I}{}{vi}{m7}{Melancholy}{Warmth}{3323}{F33}
+
+\colfoot{Substitution.}{Chords a 3rd apart share 3 of 4 tones: \Ro{IV}\,\(\leftrightarrow\)\,\Ro{ii} (subdom), \Ro{I}\,\(\leftrightarrow\)\,\Ro{vi} (tonic), \Ro{V}\,\(\leftrightarrow\)\,\Ro{iii} (dominant). Swap freely for colour without breaking function — the ``\Ro{ii} for \Ro{IV}'' move. \textbf{Add nine:} stacking a chord a 3rd up adds its 9 (iii over \Ro{I} \(\to\) \Ro{I}\,add\,\osf{9}). The 3rds cycle \emph{is} the add-9 engine.}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.325\linewidth}
+{\bfseries\fontsize{13}{15}\selectfont\color{leafyellow!80!black}Cycle of 4ths}\par\vspace{1mm}
+% Forward (RH = chord a 4th up)
+\sex{IV}{}{I}{}{Exploration}{Bright peace}{133}{B33}
+\sex{vii}{°}{IV}{}{Alarm}{Mystery}{433}{E33}
+\sex{iii}{}{vii}{°}{Despair}{Unknown}{733}{H33}
+\sex{vi}{}{iii}{}{Acceptance}{Epicness}{333}{D33}
+\sex{ii}{}{vi}{}{Hope up}{Shyness}{633}{G33}
+\sex{V}{}{ii}{}{Lightening}{Setback}{233}{C33}
+\sex{I}{}{V}{}{Resolution}{Optimism}{533}{F33}
+% Pattern-drill previews (varied LH/RH patterns, same forward cycle motion)
+\sex{IV}{Δ}{I}{}{Exploration}{Bright peace}{133}{B333}
+\sex{vii}{°}{IV}{}{Alarm}{Mystery}{1433}{E33}
+\sex{iii}{}{vii}{+8}{Despair}{Unknown}{7334}{H33}
+\sex{vi}{}{iii}{s4}{Acceptance}{Epicness}{342}{D33}
+\sex{ii}{}{vi}{m7}{Hope up}{Shyness}{3323}{G33}
+\sex{V}{}{ii}{m7}{Lightening}{Setback}{1434}{C33}
+\sex{I}{}{V}{6}{Resolution}{Optimism}{5332}{F33}
+
+\colfoot{Reharm engine.}{Approach any target \Ro{X} by \Ro{V}\,of\,\Ro{X} (default), \Ro{ii}\textendash\Ro{V}\,of\,\Ro{X} (jazz), \Ro{vii}$^\circ$\,of\,\Ro{X} (leading-tone), or \Ro{IV}\textendash\Ro{V}\textendash\Ro{X} (plagal). \textbf{Journey vs.\ destination:} rest points are destinations, tension chords are journey; pick destinations first, then approaches. \textbf{Delay:} \Ro{V}sus, deceptive \Ro{V}\(\to\)\Ro{vi}, or chained secondary dominants.}
+\end{minipage}
+
+\end{document}

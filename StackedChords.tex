@@ -1,0 +1,190 @@
+\documentclass[letterpaper,12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[letterpaper, landscape, margin=6mm]{geometry}
+\usepackage{multicol}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{helvet}
+\usepackage{array}
+\usepackage{xcolor}
+\renewcommand{\familydefault}{\sfdefault}
+
+% Chord notation macros (shared with HarpChords.tex)
+\newcommand{\osf}[1]{{\fontfamily{pplj}\selectfont #1}}
+\newcommand{\Ro}[1]{{\fontfamily{ppl}\fontseries{b}\selectfont #1}}
+\newcommand{\rp}{{\raisebox{0.55ex}{\footnotesize$+$}}}
+\newcommand{\halfdim}{$^{\scriptstyle\varnothing}$}
+\newcommand{\inv}[1]{$^{\osf{#1}}$}
+\newcommand{\nd}{\rule[0.42ex]{4.5mm}{0.55pt}}
+
+\newcommand{\rn}[2]{\Ro{#1}\rndq{#2}}
+\newcommand{\rndq}[1]{\rndqparse{#1}}
+\newcommand{\rndqparse}[1]{%
+\def\tmp{#1}%
+\def\tmpA{m7}\def\tmpB{m6}\def\tmpC{m}%
+\def\tmpD{q7}\def\tmpE{q}%
+\def\tmpF{s4+8}\def\tmpG{s4}\def\tmpH{s2}%
+\def\tmpI{+8}%
+\def\tmpJ{Δ}\def\tmpK{ø7}\def\tmpL{°}%
+\def\tmpM{7}\def\tmpN{6}%
+\ifx\tmp\tmpA $m$\osf{7}\else
+\ifx\tmp\tmpB $m$\osf{6}\else
+\ifx\tmp\tmpC $m$\else
+\ifx\tmp\tmpD $q$\osf{7}\else
+\ifx\tmp\tmpE $q$\else
+\ifx\tmp\tmpF $s$\osf{4}\rp\osf{8}\else
+\ifx\tmp\tmpG $s$\osf{4}\else
+\ifx\tmp\tmpH $s$\osf{2}\else
+\ifx\tmp\tmpI \rp\osf{8}\else
+\ifx\tmp\tmpJ $\Delta$\else
+\ifx\tmp\tmpK \halfdim\osf{7}\else
+\ifx\tmp\tmpL $^\circ$\else
+\ifx\tmp\tmpM \osf{7}\else
+\ifx\tmp\tmpN \osf{6}\else
+#1%
+\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi
+}
+
+\definecolor{rhcol}{HTML}{1F4E79}
+\definecolor{lhcol}{HTML}{7B2B2B}
+\definecolor{desccol}{HTML}{2A3342}
+\definecolor{flavcol}{HTML}{6B7A8F}
+\definecolor{bandcol}{HTML}{F0F4F8}
+
+\newcounter{rowct}
+\setlength{\fboxsep}{1.5mm}
+
+% Stacked fraction + desc + LH/RH figures
+% \se{RH-rom}{RH-qual}{LH-rom}{LH-qual}{desc}{LHfig}{RHfig}
+\newcommand{\se}[7]{%
+  \stepcounter{rowct}%
+  \ifodd\value{rowct}\def\rowbg{white}\else\def\rowbg{bandcol}\fi%
+  \noindent\colorbox{\rowbg}{%
+    \begin{minipage}{\dimexpr\linewidth-2\fboxsep\relax}%
+      \noindent
+      \makebox[10mm][r]{%
+        \renewcommand{\arraystretch}{0.8}%
+        \begin{tabular}{@{}r@{}}%
+          {\color{rhcol}\rn{#1}{#2}}\\[-1.5pt]%
+          {\color{lhcol}\rn{#3}{#4}}%
+        \end{tabular}%
+      }\hspace{3mm}%
+      \begin{minipage}[c]{\dimexpr\linewidth-14mm\relax}%
+        {\fontsize{12}{13}\selectfont\color{desccol}#5}\\[-1pt]%
+        {\fontsize{12}{13}\selectfont\color{flavcol}\osf{#6}\ \ \osf{#7}}%
+      \end{minipage}%
+    \end{minipage}%
+  }%
+  \par\vspace{0.8mm}%
+}
+
+\newcommand{\sect}[1]{\par\vspace{2.2mm}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\setlength{\columnsep}{4mm}
+\begin{multicols}{5}
+
+% Over I
+\se{ii}{}{I}{}{Warm \rn{I}{Δ}\osf{9}}{133}{233}
+\se{iii}{}{I}{}{Soft \rn{I}{Δ}}{133}{333}
+\se{V}{}{I}{}{Bright \rn{I}{6}/\osf{9}}{133}{533}
+\se{vi}{}{I}{}{Pastoral \rn{I}{6}}{133}{633}
+\se{IV}{}{I}{}{Mixolydian blur}{133}{433}
+\se{I}{Δ}{I}{}{Full maj7 stack}{133}{1333}
+\se{vii}{°}{I}{}{Tense \rn{I}{Δ}}{133}{733}
+\se{I}{s4}{I}{}{Sus4 hang}{133}{142}
+\se{I}{s2}{I}{}{Sus2 open}{133}{124}
+
+% Over IΔ
+\se{I}{}{I}{Δ}{Doubled tonic}{1333}{133}
+\se{IV}{}{I}{Δ}{Lydian tonic}{1333}{433}
+\se{iii}{}{I}{Δ}{Sparse \rn{I}{Δ}\osf{9}}{1333}{333}
+\se{ii}{}{I}{Δ}{Full jazz tonic}{1333}{233}
+\se{V}{}{I}{Δ}{Gospel tonic}{1333}{533}
+
+% Over ii
+\se{V}{}{ii}{}{\rn{ii}{m7}+\osf{11}}{233}{533}
+\se{IV}{}{ii}{}{\rn{ii}{m7}+\osf{9}}{233}{433}
+\se{I}{}{ii}{}{\rn{ii}{m7}}{233}{133}
+\se{vi}{}{ii}{}{Rich minor}{233}{633}
+\se{iii}{}{ii}{}{Mournful minor}{233}{333}
+
+% Over IV
+\se{I}{}{IV}{}{\rn{IV}{Δ}\osf{9}}{433}{133}
+\se{V}{}{IV}{}{Lydian sparkle}{433}{533}
+\se{ii}{}{IV}{}{\rn{IV}{} add \osf{6}/\osf{9}}{433}{233}
+\se{I}{Δ}{IV}{}{Double-\hbox{$\Delta$} pad}{433}{1333}
+\se{iii}{}{IV}{}{\rn{IV}{Δ}\osf{9} (alt)}{433}{333}
+\se{vi}{}{IV}{}{\rn{IV}{Δ} warm}{433}{633}
+\se{IV}{s2}{IV}{}{Sus2 \Ro{IV} airy}{433}{424}
+
+% Over IVΔ
+\se{V}{}{IV}{Δ}{\rn{IV}{Δ}\osf{9}$\sharp$\osf{11}}{4333}{533}
+\se{ii}{}{IV}{Δ}{\rn{IV}{Δ}\osf{9}+\osf{6}}{4333}{233}
+
+% Over V
+\se{IV}{}{V}{}{\rn{V}{}\osf{11} modal}{533}{433}
+\se{ii}{}{V}{}{\rn{V}{7}+\osf{9}}{533}{233}
+\se{vii}{°}{V}{}{\rn{V}{7} bite}{533}{733}
+\se{vi}{}{V}{}{Warm \rn{V}{7}+\osf{9}}{533}{633}
+\se{I}{}{V}{}{\rn{V}{s4} hang}{533}{133}
+\se{iii}{}{V}{}{\rn{V}{} add \osf{6}}{533}{333}
+\se{V}{s4}{V}{}{Sus4 \Ro{V}}{533}{542}
+\se{V}{s2}{V}{}{Sus2 \Ro{V}}{533}{524}
+\se{V}{q}{V}{}{Quartal \Ro{V}}{533}{544}
+
+% Over V7
+\se{V}{}{V}{7}{Thickened \rn{V}{7}}{5333}{533}
+\se{IV}{}{V}{7}{\rn{V}{}\osf{11} suspended}{5333}{433}
+\se{vi}{}{V}{7}{\rn{V}{}\osf{13} alt}{5333}{633}
+\se{ii}{}{V}{7}{Jazz \rn{V}{7}\osf{9}}{5333}{233}
+\se{I}{}{V}{7}{\rn{V}{}\osf{13}}{5333}{133}
+\se{ii}{m7}{V}{7}{Jazz ii--V}{5333}{2333}
+\se{I}{Δ}{V}{7}{Cadence approach}{5333}{1333}
+\se{IV}{Δ}{V}{7}{Jazzy pre-cadence}{5333}{4333}
+
+% Over vi
+\se{iii}{}{vi}{}{\rn{vi}{m7}+\osf{9}}{633}{333}
+\se{I}{}{vi}{}{\rn{vi}{m7} pad}{633}{133}
+\se{IV}{}{vi}{}{\rn{vi}{m6}}{633}{433}
+\se{V}{}{vi}{}{Aeolian modal}{633}{533}
+\se{ii}{}{vi}{}{Spacious minor}{633}{233}
+\se{vii}{°}{vi}{}{\rn{vi}{m}(maj\osf{7})}{633}{733}
+
+% Over iii
+\se{V}{}{iii}{}{Phrygian tint}{333}{533}
+\se{I}{}{iii}{}{Mellow mediant}{333}{133}
+\se{vi}{}{iii}{}{Phrygian add}{333}{633}
+\se{IV}{}{iii}{}{Dark Phrygian}{333}{433}
+
+% Secondary dominants
+\se{V}{}{ii}{m7}{Sec.\ dom of \Ro{ii}}{2333}{533}
+\se{V}{}{vi}{m7}{Sec.\ dom of \Ro{vi}}{6333}{533}
+\se{V}{7}{I}{Δ}{Prep.\ cadence}{1333}{5333}
+\se{V}{}{IV}{Δ}{Full Lydian}{4333}{533}
+
+% Overlap stacks (RH starts at LH's top degree — shared note between hands)
+\se{vii}{°}{iii}{}{\rn{iii}{m7}$\flat$\osf{5}}{333}{733}
+\se{IV}{}{vii}{°}{\rn{vii}{\halfdim 11}}{733}{433}
+\se{vii}{°}{I}{Δ}{\rn{I}{Δ}\osf{9}$\sharp$\osf{11}}{1333}{733}
+\se{I}{}{ii}{m7}{\rn{ii}{m11} \nd{} Dm\osf{11} voicing}{2333}{133}
+\se{ii}{}{iii}{m7}{\rn{iii}{m11}}{3333}{233}
+\se{iii}{}{IV}{Δ}{\rn{IV}{Δ}\osf{9}$\sharp$\osf{11} alt}{4333}{333}
+\se{V}{}{vi}{m7}{\rn{vi}{m13}}{6333}{533}
+\se{vi}{}{vii}{ø7}{\rn{vii}{\halfdim 13}}{7333}{633}
+
+% Octave Echoes (+8)
+\se{I}{+8}{I}{}{Bell-ring \Ro{I}}{133}{1334}
+\se{ii}{+8}{ii}{}{Minor bell}{233}{2334}
+\se{iii}{+8}{iii}{}{Mediant bell}{333}{3334}
+\se{IV}{+8}{IV}{}{Subdominant bell}{433}{4334}
+\se{V}{+8}{V}{}{Dominant bell}{533}{5334}
+\se{vi}{+8}{vi}{}{Rel.-minor bell}{633}{6334}
+\se{vii}{+8}{vii}{}{Leading-tone bell}{733}{7334}
+
+\end{multicols}
+
+\end{document}

@@ -1,0 +1,184 @@
+\documentclass[letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{longtable}
+\usepackage{microtype}
+\usepackage{multirow}
+\usepackage{helvet}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\renewcommand{\familydefault}{\sfdefault}
+
+\geometry{letterpaper, landscape, margin=6mm}
+
+\definecolor{headerbg}{HTML}{2C3E50}
+\definecolor{altrow}{HTML}{F0F4F8}
+
+% ── chord notation macros ─────────────────────────────────────────────────────
+% Palatino old-style figures
+\newcommand{\osf}[1]{{\fontfamily{pplj}\selectfont #1}}
+% Serif bold Palatino Roman numerals
+\newcommand{\Ro}[1]{{\fontfamily{ppl}\fontseries{b}\selectfont #1}}
+% Raised plus for +8
+\newcommand{\rp}{{\raisebox{0.55ex}{\footnotesize$+$}}}
+% Half-diminished: raised slashed circle matching height of °
+\newcommand{\halfdim}{$^{\scriptstyle\varnothing}$}
+% Inversion superscript in OSF
+\newcommand{\inv}[1]{$^{\osf{#1}}$}
+% Font-independent long dash (helvet T1 lacks U+2014)
+\newcommand{\nd}{\rule[0.42ex]{4.5mm}{0.55pt}}
+
+% \rn{roman}{quality} \nd main chord name macro
+% Roman gets \Ro{}, quality letters and digits get appropriate treatment
+\newcommand{\rn}[2]{\Ro{#1}\rndq{#2}}
+
+% \rndq processes the quality string after the Roman numeral
+% Handles: empty, m7, m6, m, q7, q, s2, s4, s4+8, 7, 6, +8, Δ, ø7, °, °inv
+\newcommand{\rndq}[1]{\rndqparse{#1}}
+
+\newcommand{\rndqparse}[1]{%
+\def\tmp{#1}%
+\def\tmpA{m7}\def\tmpB{m6}\def\tmpC{m}%
+\def\tmpD{q7}\def\tmpE{q}%
+\def\tmpF{s4+8}\def\tmpG{s4}\def\tmpH{s2}%
+\def\tmpI{+8}%
+\def\tmpJ{Δ}\def\tmpK{ø7}\def\tmpL{°}%
+\def\tmpM{7}\def\tmpN{6}%
+\ifx\tmp\tmpA $m$\osf{7}\else
+\ifx\tmp\tmpB $m$\osf{6}\else
+\ifx\tmp\tmpC $m$\else
+\ifx\tmp\tmpD $q$\osf{7}\else
+\ifx\tmp\tmpE $q$\else
+\ifx\tmp\tmpF $s$\osf{4}\rp\osf{8}\else
+\ifx\tmp\tmpG $s$\osf{4}\else
+\ifx\tmp\tmpH $s$\osf{2}\else
+\ifx\tmp\tmpI \rp\osf{8}\else
+\ifx\tmp\tmpJ $\Delta$\else
+\ifx\tmp\tmpK \halfdim\osf{7}\else
+\ifx\tmp\tmpL $^\circ$\else
+\ifx\tmp\tmpM \osf{7}\else
+\ifx\tmp\tmpN \osf{6}\else
+#1% fallback \nd pass through unchanged
+\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi
+}
+
+\begin{document}
+
+\vspace*{-4mm}
+\setlength{\LTpre}{0pt}
+\setlength{\LTpost}{2mm}
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.2}
+\fontsize{18}{21}\selectfont
+
+\begin{longtable}{>{\bfseries\centering\arraybackslash}p{24mm}
+*{7}{>{\centering\arraybackslash}p{33mm}}}
+
+\rowcolor{headerbg}
+\color{white}{\mdseries Intervals\strut\rule[-8pt]{0pt}{0pt}} &
+\color{white}{\shortstack{\rule{0pt}{5pt}\\{\fontsize{22}{24}\selectfont\bfseries 1}\\[1pt]Ionian\strut}} &
+\color{white}{\shortstack{\rule{0pt}{5pt}\\{\fontsize{22}{24}\selectfont\bfseries 2}\\[1pt]Dorian\strut}} &
+\color{white}{\shortstack{\rule{0pt}{5pt}\\{\fontsize{22}{24}\selectfont\bfseries 3}\\[1pt]Phrygian\strut}} &
+\color{white}{\shortstack{\rule{0pt}{5pt}\\{\fontsize{22}{24}\selectfont\bfseries 4}\\[1pt]Lydian\strut}} &
+\color{white}{\shortstack{\rule{0pt}{5pt}\\{\fontsize{22}{24}\selectfont\bfseries 5}\\[1pt]Mixolydian\strut}} &
+\color{white}{\shortstack{\rule{0pt}{5pt}\\{\fontsize{22}{24}\selectfont\bfseries 6}\\[1pt]Aeolian\strut}} &
+\color{white}{\shortstack{\rule{0pt}{5pt}\\{\fontsize{22}{24}\selectfont\bfseries 7}\\[1pt]Locrian\strut}} \\
+\endfirsthead
+\rowcolor{headerbg}
+\color{white}{\mdseries Intervals\strut\rule[-8pt]{0pt}{0pt}} &
+\color{white}{\shortstack{\rule{0pt}{5pt}\\{\fontsize{22}{24}\selectfont\bfseries 1}\\[1pt]Ionian\strut}} &
+\color{white}{\shortstack{\rule{0pt}{5pt}\\{\fontsize{22}{24}\selectfont\bfseries 2}\\[1pt]Dorian\strut}} &
+\color{white}{\shortstack{\rule{0pt}{5pt}\\{\fontsize{22}{24}\selectfont\bfseries 3}\\[1pt]Phrygian\strut}} &
+\color{white}{\shortstack{\rule{0pt}{5pt}\\{\fontsize{22}{24}\selectfont\bfseries 4}\\[1pt]Lydian\strut}} &
+\color{white}{\shortstack{\rule{0pt}{5pt}\\{\fontsize{22}{24}\selectfont\bfseries 5}\\[1pt]Mixolydian\strut}} &
+\color{white}{\shortstack{\rule{0pt}{5pt}\\{\fontsize{22}{24}\selectfont\bfseries 6}\\[1pt]Aeolian\strut}} &
+\color{white}{\shortstack{\rule{0pt}{5pt}\\{\fontsize{22}{24}\selectfont\bfseries 7}\\[1pt]Locrian\strut}} \\
+\endhead
+
+\rowcolor{altrow}
+\texttt{\textbf{24}} & \rn{I}{s2} & \rn{ii}{s2} & \nd & \rn{IV}{s2} & \rn{V}{s2} & \rn{vi}{s2} & \nd \\
+
+\texttt{\textbf{33}} & \rn{I}{} & \rn{ii}{} & \rn{iii}{} & \rn{IV}{} & \rn{V}{} & \rn{vi}{} & \rn{vii}{°} \\
+
+\rowcolor{altrow}
+\texttt{\textbf{34}} & \rn{vi}{}\inv{1} & \rn{vii}{°}\inv{1} & \rn{I}{}\inv{1} & \rn{ii}{}\inv{1} & \rn{iii}{}\inv{1} & \rn{IV}{}\inv{1} & \rn{V}{}\inv{1} \\
+
+\texttt{\textbf{42}} & \rn{I}{s4} & \rn{ii}{s4} & \rn{iii}{s4} & \nd & \rn{V}{s4} & \rn{vi}{s4} & \nd \\
+
+\rowcolor{altrow}
+\texttt{\textbf{43}} & \rn{IV}{}\inv{2} & \rn{V}{}\inv{2} & \rn{vi}{}\inv{2} & \rn{vii}{°}\inv{2} & \rn{I}{}\inv{2} & \rn{ii}{}\inv{2} & \rn{iii}{}\inv{2} \\
+
+\texttt{\textbf{44}} & \nd & \rn{ii}{q} & \rn{iii}{q} & \nd & \rn{V}{q} & \rn{vi}{q} & \rn{vii}{q} \\
+
+\rowcolor{altrow}
+\texttt{\textbf{233}} & \rn{ii}{m7}\inv{3} & \rn{iii}{m7}\inv{3} & \rn{IV}{Δ}\inv{3} & \rn{V}{7}\inv{3} & \rn{vi}{m7}\inv{3} & \rn{vii}{ø7}\inv{3} & \rn{I}{Δ}\inv{3} \\
+
+\texttt{\textbf{323}} & \rn{IV}{Δ}\inv{2} & \rn{V}{7}\inv{2} & \rn{vi}{m7}\inv{2} & \rn{vii}{ø7}\inv{2} & \rn{I}{Δ}\inv{2} & \rn{ii}{m7}\inv{2} & \rn{iii}{m7}\inv{2} \\
+
+\rowcolor{altrow}
+\texttt{\textbf{332}} & \rn{I}{6} & \rn{ii}{m6} & \rn{I}{Δ}\inv{1} & \rn{IV}{6} & \rn{V}{6} & \rn{IV}{Δ}\inv{1} & \rn{V}{7}\inv{1} \\
+
+\texttt{\textbf{333}} & \rn{I}{Δ} & \rn{ii}{m7} & \rn{iii}{m7} & \rn{IV}{Δ} & \rn{V}{7} & \rn{vi}{m7} & \rn{vii}{ø7} \\
+
+\rowcolor{altrow}
+\texttt{\textbf{334}} & \rn{I}{+8} & \rn{ii}{+8} & \rn{iii}{+8} & \rn{IV}{+8} & \rn{V}{+8} & \rn{vi}{+8} & \rn{vii}{+8} \\
+
+\texttt{\textbf{433}} & \rn{IV}{}\inv{2}\rp\osf{8} & \rn{V}{}\inv{2}\rp\osf{8} & \nd & \nd & \rn{I}{}\inv{2}\rp\osf{8} & \nd & \nd \\
+
+\rowcolor{altrow}
+\texttt{\textbf{434}} & \rn{ii}{m7}\inv{3} & \rn{iii}{m7}\inv{3} & \rn{IV}{Δ}\inv{3} & \rn{V}{7}\inv{3} & \rn{vi}{m7}\inv{3} & \rn{vii}{ø7}\inv{3} & \rn{I}{Δ}\inv{3} \\
+
+\texttt{\textbf{444}} & \nd & \rn{ii}{q7} & \rn{iii}{q7} & \nd & \nd & \rn{vi}{q7} & \rn{vii}{q7} \\
+
+\bottomrule
+\end{longtable}
+
+\vspace{-1mm}
+{\fontsize{13}{15}\selectfont\itshape\noindent Chord figure = column degree + row intervals (e.g., col \textbf{5} $\times$ row \osf{333} $\to$ figure \osf{5333} = \Ro{V}\osf{7}).\par}
+\vspace{1mm}
+\noindent
+% Single table: 3 key columns (each r=l pair) + figure description column
+% All = signs align vertically within each of the 3 key sub-columns
+% Key + Chord Figure table
+{\fontsize{13}{15}\selectfont
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}[t]{@{}%
+>{\raggedleft\arraybackslash}p{18mm}@{~=~}%
+>{\raggedright\arraybackslash}p{40mm}@{\hspace{2mm}}%
+>{\raggedleft\arraybackslash}p{18mm}@{~=~}%
+>{\raggedright\arraybackslash}p{42mm}@{\hspace{2mm}}%
+>{\raggedleft\arraybackslash}p{14mm}@{~=~}%
+>{\raggedright\arraybackslash}p{32mm}@{\hspace{2mm}}%
+>{\raggedleft\arraybackslash}p{20mm}@{~=~}%
+>{\raggedright\arraybackslash}p{68mm}@{}}%
+\multicolumn{2}{@{}l}{\bfseries Key} & \multicolumn{4}{c}{} &
+\multicolumn{2}{l}{\bfseries Creating the Chord Figure} \\[0.5mm]
+Upper   & major (I,IV,V)                       &
+$^\circ$               & diminished                &
+$q$                    & quartal                   &
+\osf{333} / \osf{5333} & \textit{intervals} / \textit{deg}+\textit{intervals} \\[1mm]
+Lower   & minor (ii,iii,vi)                    &
+$^{\scriptstyle\varnothing}$\texttt{\textbf{7}} & half-dim     &
+$s$\osf{2}/$s$\texttt{\textbf{4}} & sus2/sus4                 &
+\osf{5333}             & deg \osf{5}, three thirds $=$ \Ro{V}\osf{7} \\[1mm]
+$\Delta$    & major 7th                              &
+\osf{7}                & dominant 7th              &
+\osf{6}/$m$\osf{6}    & major/minor 6th            &
+\osf{1233}             & deg \osf{1}, 2nd+2 thirds $=$ \Ro{I}$\Delta^{\osf{1}}$ \\[1mm]
+\rp\osf{8}  & root doubled at 8ve                   &
+$s$\osf{4}\rp\osf{8}  & sus4 w/ doubled root      &
+$^{\osf{1,2,3}}$      & inversion                  &
+\osf{1433}             & deg \osf{1}, 4th+2 thirds $=$ \Ro{I}$s$\osf{4}\rp\osf{8} \\
+\end{tabular}
+}
+
+\vspace{2mm}
+\noindent{\fontsize{11}{13}\selectfont\raggedright%
+\textbf{How to read.} Rows are voicing shapes (generic intervals bottom-up: \osf{2}=2nd, \osf{3}=3rd, \osf{4}=4th). Columns are diatonic degrees \osf{1}--\osf{7}. A cell is the Roman-numeral chord that results (case = major/minor; suffix = quality). A \emph{figure} concatenates column-degree + row-intervals (\osf{5333} = \Ro{V}\osf{7}). Superscripts \osf{1}/\osf{2}/\osf{3} mark inversion (bass chord tone). \nodash{} = non-diatonic. \textbf{To voice a chord} (\Ro{G}\osf{7} in \Ro{C}): express as Roman (\Ro{V}\osf{7}), find the cell, stack the row intervals from the bass note.\par}
+
+\end{document}

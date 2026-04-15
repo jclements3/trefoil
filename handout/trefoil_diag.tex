@@ -1,0 +1,23 @@
+\documentclass[tikz,border=2pt]{standalone}
+\usepackage{tikz}
+\usepackage[scaled]{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage[T1]{fontenc}
+\usetikzlibrary{arrows.meta,bending}
+
+\definecolor{leafred}{RGB}{220,75,75}
+\definecolor{leafyellow}{RGB}{190,155,30}
+\definecolor{leafcyan}{RGB}{40,180,190}
+\definecolor{ctrcolor}{RGB}{220,140,40}
+
+\tikzset{
+  chord/.style={
+    circle, draw=white, line width=1.5pt, fill=#1, text=white,
+    font=\bfseries\normalsize, inner sep=0pt, minimum size=1.0cm},
+  lbl/.style={font=\fontsize{12}{13.5}\selectfont\itshape,
+              text width=3.0cm, align=center},
+}
+
+\begin{document}
+\input{trefoil_diag.tikz}
+\end{document}
