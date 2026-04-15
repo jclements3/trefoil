@@ -191,6 +191,16 @@ svg g.harm text, svg g.harm text tspan {
      captions, not billboards. */
   font-size: 220px !important;
 }
+/* Modern mode: Roman-numeral chord labels rendered in a serif face,
+   bold, with the handout's two-color scheme. The MEI emits inline @color
+   on each <harm>, but we still want the family/weight override here so
+   the label reads as a Roman numeral and not a chord symbol. */
+body.mode-modern svg g.harm text,
+body.mode-modern svg g.harm text tspan {
+  font-family: "Palatino Linotype", "Palatino", "Book Antiqua", Georgia, serif !important;
+  font-weight: bold !important;
+  font-size: 240px !important;
+}
 </style>
 </head>
 <body>
@@ -228,6 +238,7 @@ svg g.harm text, svg g.harm text tspan {
       <option value="drills">Drills</option>
       <option value="tch">Tch</option>
       <option value="tch-ssaattbb" selected>Tch-SSAATTBB</option>
+      <option value="modern">Modern</option>
       <option value="ssaattbb">SSAATTBB</option>
     </select>
     <div id="key-filters">
@@ -682,11 +693,12 @@ function renderDrill(idx) {
   currentDrill = idx;
   var drill = DRILLS[idx];
 
-  // Mode selector: tch (Verovio MEI), tch-ssaattbb (ABC block chords), ssaattbb (original)
+  // Mode selector: tch (Verovio MEI), tch-ssaattbb (ABC block chords), modern (MEI), ssaattbb (original)
   var mode = document.getElementById('sel-mode').value;
   var tchMode = (mode === 'tch');
   // Drills mode reuses the Tch-SSAATTBB MEI pipeline (same Verovio render path).
   var tchSsaattbbMode = (mode === 'tch-ssaattbb' || mode === 'drills');
+  var modernMode = (mode === 'modern');
   var useDrill = drill;
   var tchMei = null;
   if (tchMode) {
@@ -704,11 +716,16 @@ function renderDrill(idx) {
     if (!tchMei && tchSsa && tchSsa.abc) {
       useDrill = {t: drill.t + ' (Tch-SSAATTBB)', abc: tchSsa.abc, key: tchSsa.key, tempo: tchSsa.tempo, n: drill.n};
     }
+  } else if (modernMode) {
+    var cleanTitle = drill.t.replace(/^\d+\s*/, '').trim();
+    // Modern mode is MEI-only (no ABC fallback). If the asset is missing,
+    // tchMei stays null and we fall through to a placeholder message below.
+    tchMei = MODERN_MEI[cleanTitle] || null;
   }
   drill = useDrill;
 
-  // If Tch/Tch-SSAATTBB mode with MEI data, render via Verovio and return.
-  if ((tchMode || tchSsaattbbMode) && tchMei && window.verovioReady && window.verovioTk) {
+  // If Tch/Tch-SSAATTBB/Modern mode with MEI data, render via Verovio and return.
+  if ((tchMode || tchSsaattbbMode || modernMode) && tchMei && window.verovioReady && window.verovioTk) {
     $title.textContent = drill.t;
     $container.innerHTML = '';
     bpm = tchMei.tempo || 100;
@@ -860,6 +877,20 @@ function renderDrill(idx) {
       console.error('Verovio render error:', e);
       // fall through to abc2svg
     }
+  }
+
+  // Modern mode has no ABC fallback. If the MEI asset is missing (or the
+  // specific hymn isn't in it), show a friendly placeholder instead of
+  // dropping into the abc2svg path with no data.
+  if (modernMode && !tchMei) {
+    $title.textContent = drill.t;
+    var cleanT = drill.t.replace(/^\d+\s*/, '').trim();
+    $container.innerHTML = '<div style="padding:40px;text-align:center;font-size:16px;color:#666">' +
+      'Modern reharmonization for "<em>' + cleanT + '</em>" is not yet available.</div>';
+    $container.style.transform = '';
+    positionPlayhead();
+    abc = null;
+    return;
   }
 
   $title.textContent = drill.t;
@@ -2079,11 +2110,15 @@ document.getElementById('sel-mode').onchange = function() {
   } else {
     DRILLS = HYMNS;
   }
+  // Tag <body> with mode-<name> so mode-specific CSS (e.g. Modern harm styling) applies.
+  document.body.className = 'mode-' + mode;
   currentDrill = 0;
   buildLibrary();
   applyKeyFilter();
   if (DRILLS.length > 0) renderDrill(0);
 };
+// Initialize body className on page load to match the default mode.
+document.body.className = 'mode-' + document.getElementById('sel-mode').value;
 
 // Search filter
 document.getElementById('lib-search').addEventListener('input', function() {
@@ -2157,6 +2192,7 @@ var TCHAIKOVSKY = {};  // keyed by cleaned title for lookup (ABC)
 var TCHAIKOVSKY_MEI = {};  // keyed by cleaned title (MEI for Verovio)
 var TCH_SSAATTBB = {};  // keyed by cleaned title (Tch-SSAATTBB ABC)
 var TCH_SSAATTBB_MEI = {};  // keyed by cleaned title (Tch-SSAATTBBP MEI for Verovio)
+var MODERN_MEI = {};  // keyed by cleaned title (Modern reharm MEI for Verovio)
 // HYMNS holds the original 287 hymns; CASCADES holds the 20 drill cascades.
 // DRILLS is the "current library" — swapped by the mode selector.
 var HYMNS = [];
@@ -2221,6 +2257,29 @@ xhr2.onload = function() {
               console.log('Loaded ' + mdata.length + ' Tch-SSAATTBBP drills (MEI)');
             }
           } catch(e) { console.warn('Tch-SSAATTBBP parse error:', e); }
+          // Load Modern reharm MEI (optional; asset may be missing).
+          var xhr_modern = new XMLHttpRequest();
+          xhr_modern.open('GET', 'modern_mei.json?v=' + Date.now(), true);
+          xhr_modern.onload = function() {
+            if (xhr_modern.status === 200) {
+              try {
+                var mdata = JSON.parse(xhr_modern.responseText);
+                for (var i = 0; i < mdata.length; i++) {
+                  var ct = mdata[i].t.replace(/^\d+\s*/, '').trim();
+                  MODERN_MEI[ct] = mdata[i];
+                }
+                console.log('Loaded ' + mdata.length + ' Modern MEI');
+              } catch (e) {
+                console.warn('modern_mei.json parse failed:', e);
+              }
+            } else {
+              console.warn('modern_mei.json not found (status ' + xhr_modern.status + ')');
+            }
+          };
+          xhr_modern.onerror = function() {
+            console.warn('modern_mei.json fetch failed');
+          };
+          xhr_modern.send();
           // Load Drills library (cascades). These are shown in "Drills" mode.
           var xhr7 = new XMLHttpRequest();
           xhr7.open('GET', 'cascades_data.json?v=' + Date.now(), true);
