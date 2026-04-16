@@ -56,13 +56,7 @@ _HDIM  = "\u00f8"   # half-diminished (o-slash)
 # LilyPond fontsize #2 is ~13pt, and 2.8 gives a visibly-separated
 # stack that still reads as a fraction. Lower values (2.2) collide
 # the ascenders/descenders across the two rows.
-_BASELINE_SKIP = 2.8
-
-# Relative font size for superscripts (w.r.t. the base fontsize #2).
-# Handout uses \osf{...} at the enclosing size -- i.e. no size
-# reduction, just superscript positioning. We keep a tiny reduction
-# so the superscript reads as secondary to the Roman numeral.
-_SUPER_DELTA = -1
+_BASELINE_SKIP = 2.0
 
 # Set of ASCII characters that end the Roman-numeral "base" portion.
 # Everything after the first such character is treated as quality.
@@ -148,25 +142,36 @@ def _escape_ly_string(s):
 
 
 def _quality_markup(quality):
-    """LilyPond markup for a quality suffix as a smaller superscript.
+    """LilyPond markup for a quality suffix, matching handout.tex style.
 
-    Tightens the kern between the Roman base and the superscript via
-    word-space = 0. Relative font size = _SUPER_DELTA (e.g. -1).
+    The handout renders quality inline at the same baseline as the Roman
+    numeral, NOT as a raised superscript.  Specifics from \\rndqparse:
+      - "m", "q", "s" prefix letters: italic (math-style)
+      - "7","6","4","2","8" digits: same size, same baseline
+      - "°" (dim): true superscript (raised, smaller)
+      - "ø" (half-dim): true superscript
+      - "Δ" (maj7): inline, same baseline
     """
     if not quality:
         return ""
     glyph = _translate_quality(quality)
     safe = _escape_ly_string(glyph)
-    # \hspace #-0.3 pulls the superscript leftward, tightening the
-    # default gap that \concat leaves between markups (kern). The
-    # raise positions the glyph above the Roman-numeral baseline; the
-    # value is in the outer (base) fontsize's staff-space units.
-    return (
-        "\\hspace #-0.3 "
-        "\\raise #1.1 "
-        "\\fontsize #%d "
-        "\\bold \"%s\""
-    ) % (_SUPER_DELTA, safe)
+
+    # Only ° and ø get raised as true superscripts
+    if safe and safe[0] in ("\u00b0", "\u00f8"):
+        # Raised portion (the symbol), rest (e.g. trailing "7") inline
+        sup_char = safe[0]
+        rest = safe[1:]
+        out = (
+            "\\hspace #-0.2 "
+            "\\raise #0.8 \\fontsize #-2 \\bold \"%s\""
+        ) % sup_char
+        if rest:
+            out += " \\bold \"%s\"" % rest
+        return out
+
+    # Everything else: inline at same baseline, same size
+    return "\\bold \"%s\"" % safe
 
 
 def label_to_markup(label, color_rgb):
