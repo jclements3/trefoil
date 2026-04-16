@@ -206,23 +206,31 @@
 \setlength{\tabcolsep}{2pt}
 \renewcommand{\arraystretch}{1.15}
 \fontsize{16}{19}\selectfont
+\arrayrulecolor{white}\setlength{\arrayrulewidth}{1pt}
 \begin{tabular}{@{}>{\bfseries}l
->{\centering\arraybackslash\columncolor{mode1}}p{23mm}
->{\centering\arraybackslash\columncolor{mode2}}p{23mm}
->{\centering\arraybackslash\columncolor{mode3}}p{23mm}
->{\centering\arraybackslash\columncolor{mode4}}p{23mm}
->{\centering\arraybackslash\columncolor{mode5}}p{23mm}
->{\centering\arraybackslash\columncolor{mode6}}p{23mm}
->{\centering\arraybackslash\columncolor{mode7}}p{23mm}}
-\shortstack{\rule{0pt}{1pt}\\\phantom{x}\\[2pt]{\fontsize{14}{16}\selectfont$\hookrightarrow$\raisebox{0.3ex}{\footnotesize+}}} &
-\cellcolor{hdr1}\color{white}{\shortstack{\rule{0pt}{2pt}\\{\fontsize{12}{13}\selectfont Ionian}\\[-1pt]{\fontsize{24}{26}\selectfont\bfseries 1}\strut}} &
-\cellcolor{hdr2}\color{white}{\shortstack{\rule{0pt}{2pt}\\{\fontsize{12}{13}\selectfont Dorian}\\[-1pt]{\fontsize{24}{26}\selectfont\bfseries 2}\strut}} &
-\cellcolor{hdr3}\color{white}{\shortstack{\rule{0pt}{2pt}\\{\fontsize{12}{13}\selectfont Phrygian}\\[-1pt]{\fontsize{24}{26}\selectfont\bfseries 3}\strut}} &
-\cellcolor{hdr4}\color{white}{\shortstack{\rule{0pt}{2pt}\\{\fontsize{12}{13}\selectfont Lydian}\\[-1pt]{\fontsize{24}{26}\selectfont\bfseries 4}\strut}} &
-\cellcolor{hdr5}\color{white}{\shortstack{\rule{0pt}{2pt}\\{\fontsize{12}{13}\selectfont Mixolydian}\\[-1pt]{\fontsize{24}{26}\selectfont\bfseries 5}\strut}} &
-\cellcolor{hdr6}\color{white}{\shortstack{\rule{0pt}{2pt}\\{\fontsize{12}{13}\selectfont Aeolian}\\[-1pt]{\fontsize{24}{26}\selectfont\bfseries 6}\strut}} &
-\cellcolor{hdr7}\color{white}{\shortstack{\rule{0pt}{2pt}\\{\fontsize{12}{13}\selectfont Locrian}\\[-1pt]{\fontsize{24}{26}\selectfont\bfseries 7}\strut}} \\
-\arrayrulecolor{white}\setlength{\arrayrulewidth}{2pt}
+>{\columncolor{mode1}}w{c}{23mm}
+>{\columncolor{mode2}}w{c}{23mm}
+>{\columncolor{mode3}}w{c}{23mm}
+>{\columncolor{mode4}}w{c}{23mm}
+>{\columncolor{mode5}}w{c}{23mm}
+>{\columncolor{mode6}}w{c}{23mm}
+>{\columncolor{mode7}}w{c}{23mm}}
+ &
+\cellcolor{hdr1}{\color{white}\fontsize{12}{13}\selectfont Ionian} &
+\cellcolor{hdr2}{\color{white}\fontsize{12}{13}\selectfont Dorian} &
+\cellcolor{hdr3}{\color{white}\fontsize{12}{13}\selectfont Phrygian} &
+\cellcolor{hdr4}{\color{white}\fontsize{12}{13}\selectfont Lydian} &
+\cellcolor{hdr5}{\color{white}\fontsize{12}{13}\selectfont Mixolydian} &
+\cellcolor{hdr6}{\color{white}\fontsize{12}{13}\selectfont Aeolian} &
+\cellcolor{hdr7}{\color{white}\fontsize{12}{13}\selectfont Locrian} \\
+{\fontsize{14}{16}\selectfont$\looparrowright$\raisebox{0.3ex}{\footnotesize+}} &
+\cellcolor{hdr1}{\color{white}\fontsize{20}{22}\selectfont\bfseries 1} &
+\cellcolor{hdr2}{\color{white}\fontsize{20}{22}\selectfont\bfseries 2} &
+\cellcolor{hdr3}{\color{white}\fontsize{20}{22}\selectfont\bfseries 3} &
+\cellcolor{hdr4}{\color{white}\fontsize{20}{22}\selectfont\bfseries 4} &
+\cellcolor{hdr5}{\color{white}\fontsize{20}{22}\selectfont\bfseries 5} &
+\cellcolor{hdr6}{\color{white}\fontsize{20}{22}\selectfont\bfseries 6} &
+\cellcolor{hdr7}{\color{white}\fontsize{20}{22}\selectfont\bfseries 7} \\
 \textbf{24} & \rn{I}{s2} & \rn{ii}{s2} & \nd & \rn{IV}{s2} & \rn{V}{s2} & \rn{vi}{s2} & \nd \\
 \hline
 \textbf{33} & \rn{I}{} & \rn{ii}{} & \rn{iii}{} & \rn{IV}{} & \rn{V}{} & \rn{vi}{} & \rn{vii}{°} \\
@@ -310,7 +318,7 @@ $^{\osf{1,2,3}}$ & inversion (bass tone) \\
 \includegraphics[width=75mm]{handout/trefoil_diag.pdf}
 \par\vspace{1mm}
 \setlength{\tabcolsep}{4pt}
-\renewcommand{\arraystretch}{1.15}
+\renewcommand{\arraystretch}{1.1}
 \begin{tabular}{@{}l l l@{}}
 \cyc{leafcyan!80!black}{2nd}
 \tx{I}{}{ii}{}{Cloudy}{Grounding}
@@ -350,6 +358,8 @@ $^{\osf{1,2,3}}$ & inversion (bass tone) \\
 \small
 \setcounter{rowct}{0}
 
+\centerline{\fontsize{10}{12}\selectfont\color{flavcol}\textbf{Jazz Progressions} \itshape —\ Paired LH/RH voicings along the three diatonic cycles; CW ascends, CCW descends.}
+\vspace{-2mm}
 
 % Header row macro for each cycle table — args: color
 \newcommand{\cychdr}[1]{%
@@ -357,7 +367,7 @@ $^{\osf{1,2,3}}$ & inversion (bass tone) \\
   {\color{white}\textbf{LH}} & {\color{white}\textbf{RH}} & {\color{white}\textbf{Figure}} & {\color{white}\textbf{CW}} & {\color{white}\textbf{CCW}} & {\color{white}\textbf{Id}} \\
 }
 
-\setlength{\tabcolsep}{2pt}\renewcommand{\arraystretch}{1.15}
+\setlength{\tabcolsep}{2pt}\renewcommand{\arraystretch}{1.1}
 
 % Helper: rotated cycle-label cell spanning all 14 data rows
 \newcommand{\cyccol}[2]{\multirow{14}{*}{\rotatebox[origin=c]{90}{\color{white}\textbf{#1}}}\hspace{0pt}}
@@ -389,7 +399,9 @@ $^{\osf{1,2,3}}$ & inversion (bass tone) \\
 \end{tabular}
 \end{center}
 
-\vspace{2mm}
+\vspace{1mm}
+\centerline{\fontsize{10}{12}\selectfont\color{flavcol}\textbf{Stacked Chords} \itshape —\ Single-chord sonorities built by stacking an RH voicing over an LH voicing. Sorted by LH.}
+\vspace{-2mm}
 
 \fontsize{11}{13}\selectfont
 \setlength{\tabcolsep}{3pt}\renewcommand{\arraystretch}{1.1}
