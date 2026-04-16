@@ -1,10 +1,9 @@
 \documentclass[letterpaper,12pt]{article}
 \usepackage[T1]{fontenc}
-\usepackage[letterpaper, landscape, margin=6mm]{geometry}
+\usepackage[letterpaper, landscape, margin=3mm]{geometry}
 \usepackage{booktabs}
 \usepackage{array}
-\usepackage{xcolor}
-\usepackage{colortbl}
+\usepackage[table]{xcolor}
 \usepackage{longtable}
 \usepackage{microtype}
 \usepackage{multirow}
@@ -59,6 +58,9 @@
 \def\tmpI{+8}%
 \def\tmpJ{Δ}\def\tmpK{ø7}\def\tmpL{°}%
 \def\tmpM{7}\def\tmpN{6}%
+\def\tmpO{m7i}\def\tmpP{m7ii}\def\tmpQ{m7iii}%
+\def\tmpR{ø7i}\def\tmpS{ø7ii}%
+\def\tmpT{7i}\def\tmpU{7ii}\def\tmpV{7iii}%
 \ifx\tmp\tmpA $m$\osf{7}\else
 \ifx\tmp\tmpB $m$\osf{6}\else
 \ifx\tmp\tmpC $m$\else
@@ -73,12 +75,23 @@
 \ifx\tmp\tmpL $^\circ$\else
 \ifx\tmp\tmpM \osf{7}\else
 \ifx\tmp\tmpN \osf{6}\else
+\ifx\tmp\tmpO $m$\osf{7}\inv{1}\else
+\ifx\tmp\tmpP $m$\osf{7}\inv{2}\else
+\ifx\tmp\tmpQ $m$\osf{7}\inv{3}\else
+\ifx\tmp\tmpR \halfdim\osf{7}\inv{1}\else
+\ifx\tmp\tmpS \halfdim\osf{7}\inv{2}\else
+\ifx\tmp\tmpT \osf{7}\inv{1}\else
+\ifx\tmp\tmpU \osf{7}\inv{2}\else
+\ifx\tmp\tmpV \osf{7}\inv{3}\else
 #1%
-\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi
+\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi
 }
 
 % Stacked-chord entry macro (page 2)
 \newcounter{rowct}
+\newcounter{rowidx}
+\def\cycnum{0}
+\newcommand{\setcyc}[1]{\gdef\cycnum{#1}\setcounter{rowidx}{0}}
 \setlength{\fboxsep}{1.5mm}
 \newcommand{\se}[7]{%
   \stepcounter{rowct}%
@@ -133,27 +146,17 @@
 
 % Page-4 stacked-chord row — fraction + forward/reverse descriptions + LH/RH figures
 % \sex{RH-rom}{RH-qual}{LH-rom}{LH-qual}{forward}{reverse}{LHfig}{RHfig}
-\newcommand{\sex}[8]{%
-  \stepcounter{rowct}%
-  \ifodd\value{rowct}\def\rowbg{white}\else\def\rowbg{bandcol}\fi%
-  \noindent\colorbox{\rowbg}{%
-    \begin{minipage}{\dimexpr\linewidth-2\fboxsep\relax}%
-      \noindent
-      \makebox[10mm][r]{%
-        \renewcommand{\arraystretch}{0.85}%
-        \begin{tabular}{@{}r@{}}%
-          {\color{rhcol}\rn{#1}{#2}}\\[-1.5pt]%
-          {\color{lhcol}\rn{#3}{#4}}%
-        \end{tabular}%
-      }\hspace{3mm}%
-      \begin{minipage}[c]{\dimexpr\linewidth-14mm\relax}%
-        {\fontsize{10}{11}\selectfont\color{desccol}#5\quad\itshape\color{flavcol}#6}\\[-2pt]%
-        {\fontsize{10}{11}\selectfont\color{flavcol}\osf{#7}\ \ \osf{#8}}%
-      \end{minipage}%
-    \end{minipage}%
-  }%
-  \par\vspace{-0.5mm}%
-}
+% 6-cell row fragments for the 21-column multi-cycle layout.
+% Each cycle has its own row counter so the Id shows CN (e.g. 21, 31, 41) correctly.
+\newcounter{prow}
+% 5-cell row fragments (LH, RH, Figure, CW, CCW — Id removed)
+\newcommand{\sexcA}[8]{%
+  {\color{lhcol}\rn{#3}{#4}} & {\color{rhcol}\rn{#1}{#2}} & {\color{flavcol}\osf{#7}\hspace{2mm}\osf{#8}} & {\color{desccol}#5} & {\itshape\color{flavcol}#6}}
+\newcommand{\sexcB}[8]{%
+  {\color{lhcol}\rn{#3}{#4}} & {\color{rhcol}\rn{#1}{#2}} & {\color{flavcol}\osf{#7}\hspace{2mm}\osf{#8}} & {\color{desccol}#5} & {\itshape\color{flavcol}#6}}
+\newcommand{\sexcC}[8]{%
+  {\color{lhcol}\rn{#3}{#4}} & {\color{rhcol}\rn{#1}{#2}} & {\color{flavcol}\osf{#7}\hspace{2mm}\osf{#8}} & {\color{desccol}#5} & {\itshape\color{flavcol}#6}}
+\newcommand{\rowN}{\stepcounter{prow}{\fontsize{8}{9}\selectfont\color{flavcol}\theprow}}
 
 \pagestyle{empty}
 
@@ -210,14 +213,14 @@
 \texttt{\textbf{44}} & \nd & \rn{ii}{q} & \rn{iii}{q} & \nd & \rn{V}{q} & \rn{vi}{q} & \rn{vii}{q} \\
 
 \rowcolor{altrow}
-\texttt{\textbf{233}} & \rn{ii}{m7}\inv{3} & \rn{iii}{m7}\inv{3} & \rn{IV}{Δ}\inv{3} & \rn{V}{7}\inv{3} & \rn{vi}{m7}\inv{3} & \rn{vii}{ø7}\inv{3} & \rn{I}{Δ}\inv{3} \\
+\texttt{\textbf{233}} & \rn{ii}{7}\inv{3} & \rn{iii}{7}\inv{3} & \rn{IV}{Δ}\inv{3} & \rn{V}{7}\inv{3} & \rn{vi}{7}\inv{3} & \rn{vii}{ø7}\inv{3} & \rn{I}{Δ}\inv{3} \\
 
-\texttt{\textbf{323}} & \rn{IV}{Δ}\inv{2} & \rn{V}{7}\inv{2} & \rn{vi}{m7}\inv{2} & \rn{vii}{ø7}\inv{2} & \rn{I}{Δ}\inv{2} & \rn{ii}{m7}\inv{2} & \rn{iii}{m7}\inv{2} \\
+\texttt{\textbf{323}} & \rn{IV}{Δ}\inv{2} & \rn{V}{7}\inv{2} & \rn{vi}{7}\inv{2} & \rn{vii}{ø7}\inv{2} & \rn{I}{Δ}\inv{2} & \rn{ii}{7}\inv{2} & \rn{iii}{7}\inv{2} \\
 
 \rowcolor{altrow}
-\texttt{\textbf{332}} & \rn{I}{6} & \rn{ii}{m6} & \rn{I}{Δ}\inv{1} & \rn{IV}{6} & \rn{V}{6} & \rn{IV}{Δ}\inv{1} & \rn{V}{7}\inv{1} \\
+\texttt{\textbf{332}} & \rn{I}{6} & \rn{ii}{6} & \rn{I}{Δ}\inv{1} & \rn{IV}{6} & \rn{V}{6} & \rn{IV}{Δ}\inv{1} & \rn{V}{7}\inv{1} \\
 
-\texttt{\textbf{333}} & \rn{I}{Δ} & \rn{ii}{m7} & \rn{iii}{m7} & \rn{IV}{Δ} & \rn{V}{7} & \rn{vi}{m7} & \rn{vii}{ø7} \\
+\texttt{\textbf{333}} & \rn{I}{Δ} & \rn{ii}{7} & \rn{iii}{7} & \rn{IV}{Δ} & \rn{V}{7} & \rn{vi}{7} & \rn{vii}{ø7} \\
 
 \rowcolor{altrow}
 \texttt{\textbf{334}} & \rn{I}{+8} & \rn{ii}{+8} & \rn{iii}{+8} & \rn{IV}{+8} & \rn{V}{+8} & \rn{vi}{+8} & \rn{vii}{+8} \\
@@ -225,7 +228,7 @@
 \texttt{\textbf{433}} & \rn{IV}{}\inv{2}\rp\osf{8} & \rn{V}{}\inv{2}\rp\osf{8} & \nd & \nd & \rn{I}{}\inv{2}\rp\osf{8} & \nd & \nd \\
 
 \rowcolor{altrow}
-\texttt{\textbf{434}} & \rn{ii}{m7}\inv{3} & \rn{iii}{m7}\inv{3} & \rn{IV}{Δ}\inv{3} & \rn{V}{7}\inv{3} & \rn{vi}{m7}\inv{3} & \rn{vii}{ø7}\inv{3} & \rn{I}{Δ}\inv{3} \\
+\texttt{\textbf{434}} & \rn{ii}{7}\inv{3} & \rn{iii}{7}\inv{3} & \rn{IV}{Δ}\inv{3} & \rn{V}{7}\inv{3} & \rn{vi}{7}\inv{3} & \rn{vii}{ø7}\inv{3} & \rn{I}{Δ}\inv{3} \\
 
 \texttt{\textbf{444}} & \nd & \rn{ii}{q7} & \rn{iii}{q7} & \nd & \nd & \rn{vi}{q7} & \rn{vii}{q7} \\
 
@@ -306,9 +309,9 @@ $^{\osf{1,2,3}}$      & inversion                  &
 \se{V}{}{I}{Δ}{Gospel tonic}{1333}{C33}
 
 % Over ii
-\se{V}{}{ii}{}{\rn{ii}{m7}+\osf{11}}{233}{C33}
-\se{IV}{}{ii}{}{\rn{ii}{m7}+\osf{9}}{233}{B33}
-\se{I}{}{ii}{}{\rn{ii}{m7}}{233}{833}
+\se{V}{}{ii}{}{\rn{ii}{7}+\osf{11}}{233}{C33}
+\se{IV}{}{ii}{}{\rn{ii}{7}+\osf{9}}{233}{B33}
+\se{I}{}{ii}{}{\rn{ii}{7}}{233}{833}
 \se{vi}{}{ii}{}{Rich}{233}{633}
 \se{iii}{}{ii}{}{Mournful}{233}{A33}
 
@@ -342,13 +345,13 @@ $^{\osf{1,2,3}}$      & inversion                  &
 \se{vi}{}{V}{7}{\rn{V}{}\osf{13} alt}{5333}{D33}
 \se{ii}{}{V}{7}{Jazz \rn{V}{7}\osf{9}}{5333}{G33}
 \se{I}{}{V}{7}{\rn{V}{}\osf{13}}{5333}{F33}
-\se{ii}{m7}{V}{7}{Jazz ii--V}{5333}{G333}
+\se{ii}{7}{V}{7}{Jazz ii--V}{5333}{G333}
 \se{I}{Δ}{V}{7}{Cadence approach}{5333}{F333}
 \se{IV}{Δ}{V}{7}{Jazzy pre-cadence}{5333}{B333}
 
 % Over vi
-\se{iii}{}{vi}{}{\rn{vi}{m7}+\osf{9}}{633}{A33}
-\se{I}{}{vi}{}{\rn{vi}{m7} pad}{633}{F33}
+\se{iii}{}{vi}{}{\rn{vi}{7}+\osf{9}}{633}{A33}
+\se{I}{}{vi}{}{\rn{vi}{7} pad}{633}{F33}
 \se{IV}{}{vi}{}{\rn{vi}{m6}}{633}{B33}
 \se{V}{}{vi}{}{Aeolian modal}{633}{C33}
 \se{ii}{}{vi}{}{Spacious minor}{633}{G33}
@@ -361,19 +364,19 @@ $^{\osf{1,2,3}}$      & inversion                  &
 \se{IV}{}{iii}{}{Dark Phrygian}{333}{B33}
 
 % Secondary dominants
-\se{V}{}{ii}{m7}{Sec.\ dom of \Ro{ii}}{2333}{C33}
-\se{V}{}{vi}{m7}{Sec.\ dom of \Ro{vi}}{6333}{C33}
+\se{V}{}{ii}{7}{Sec.\ dom of \Ro{ii}}{2333}{C33}
+\se{V}{}{vi}{7}{Sec.\ dom of \Ro{vi}}{6333}{C33}
 \se{V}{7}{I}{Δ}{Prep.\ cadence}{1333}{C333}
 \se{V}{}{IV}{Δ}{Full Lydian}{4333}{C33}
 
 % Overlap stacks (RH starts at LH's top degree)
-\se{vii}{°}{iii}{}{\rn{iii}{m7}$\flat$\osf{5}}{333}{733}
+\se{vii}{°}{iii}{}{\rn{iii}{7}$\flat$\osf{5}}{333}{733}
 \se{IV}{}{vii}{°}{\rn{vii}{\halfdim 11}}{733}{B33}
 \se{vii}{°}{I}{Δ}{\rn{I}{Δ}\osf{9}$\sharp$\osf{11}}{1333}{733}
-\se{I}{}{ii}{m7}{\rn{ii}{m11} \nd{} Dm\osf{11} voicing}{2333}{833}
+\se{I}{}{ii}{7}{\rn{ii}{m11} \nd{} Dm\osf{11} voicing}{2333}{833}
 \se{ii}{}{iii}{m7}{\rn{iii}{m11}}{3333}{933}
 \se{iii}{}{IV}{Δ}{\rn{IV}{Δ}\osf{9}$\sharp$\osf{11} alt}{4333}{A33}
-\se{V}{}{vi}{m7}{\rn{vi}{m13}}{6333}{C33}
+\se{V}{}{vi}{7}{\rn{vi}{m13}}{6333}{C33}
 \se{vi}{}{vii}{ø7}{\rn{vii}{\halfdim 13}}{7333}{D33}
 
 % Octave Echoes (+8)
@@ -407,31 +410,31 @@ $^{\osf{1,2,3}}$      & inversion                  &
 \renewcommand{\arraystretch}{1.15}
 \begin{tabular}{@{}l l l@{}}
 \cyc{leafcyan!80!black}{Cycle of 2nds}
-\tx{I}{}{ii}{}{Cloudy}{Nostalgia}
-\tx{ii}{}{iii}{}{Drama}{Burdened}
-\tx{iii}{}{IV}{}{Solace}{Solitude}
-\tx{IV}{}{V}{}{Joy}{Tempering}
-\tx{V}{}{vi}{}{Deceptive}{Uplifting}
-\tx{vi}{}{vii}{°}{Dark resolution}{Confusion}
-\tx{vii}{°}{I}{}{Bright resolution}{Chaos}
+\tx{I}{}{ii}{}{Cloudy}{Grounding}
+\tx{ii}{}{iii}{}{Deepening}{Easing}
+\tx{iii}{}{IV}{}{Warming}{Cooling}
+\tx{IV}{}{V}{}{Tensing}{Calming}
+\tx{V}{}{vi}{}{Deceptive}{Pivoting}
+\tx{vi}{}{vii}{°}{Darkening}{Reposing}
+\tx{vii}{°}{I}{}{Releasing}{Fracturing}
 \multicolumn{3}{@{}l@{}}{\rule{0pt}{4mm}}\\
 \cyc{leafred}{Cycle of 3rds}
-\tx{I}{}{iii}{}{Lonely}{Gentle}
-\tx{iii}{}{V}{}{Happy surprise}{Left hanging}
-\tx{V}{}{vii}{°}{Added tension}{Release}
-\tx{vii}{°}{ii}{}{Dark surprise}{Uncertainty}
-\tx{ii}{}{IV}{}{Darkening}{Sweetness}
-\tx{IV}{}{vi}{}{Hardship}{Redemption}
-\tx{vi}{}{I}{}{Melancholy}{Warmth}
+\tx{I}{}{iii}{}{Drifting}{Homecoming}
+\tx{iii}{}{V}{}{Galvanizing}{Retreating}
+\tx{V}{}{vii}{°}{Fraying}{Steadying}
+\tx{vii}{°}{ii}{}{Tilting}{Curdling}
+\tx{ii}{}{IV}{}{Gladdening}{Shading}
+\tx{IV}{}{vi}{}{Grieving}{Consoling}
+\tx{vi}{}{I}{}{Triumphing}{Brooding}
 \multicolumn{3}{@{}l@{}}{\rule{0pt}{4mm}}\\
 \cyc{leafyellow!80!black}{Cycle of 4ths}
-\tx{I}{}{IV}{}{Exploration}{Bright peace}
-\tx{IV}{}{vii}{°}{Alarm}{Mystery}
-\tx{vii}{°}{iii}{}{Despair}{Unknown}
-\tx{iii}{}{vi}{}{Acceptance}{Epicness}
-\tx{vi}{}{ii}{}{Hope up}{Shyness}
-\tx{ii}{}{V}{}{Lightening}{Setback}
-\tx{V}{}{I}{}{Resolution}{Optimism}
+\tx{I}{}{IV}{}{Exploring}{Landing}
+\tx{IV}{}{vii}{°}{Alarming}{Quieting}
+\tx{vii}{°}{iii}{}{Despairing}{Rooting}
+\tx{iii}{}{vi}{}{Accepting}{Reverting}
+\tx{vi}{}{ii}{}{Wandering}{Dreaming}
+\tx{ii}{}{V}{}{Lifting}{Stepping}
+\tx{V}{}{I}{}{Resolving}{Lofting}
 \end{tabular}
 \end{minipage}
 
@@ -468,72 +471,44 @@ $^{\osf{1,2,3}}$      & inversion                  &
 % PAGE 4 — Cycle preview voicings (3 horizontal groups)
 % ═══════════════════════════════════════════════════════════════════════════════
 
-\fontsize{12}{14}\selectfont
+\small
 \setcounter{rowct}{0}
 
+% Header row macro for each cycle table — args: color
+\newcommand{\cychdr}[1]{%
+  \rowcolor{#1}%
+  {\color{white}\textbf{LH}} & {\color{white}\textbf{RH}} & {\color{white}\textbf{Figure}} & {\color{white}\textbf{CW}} & {\color{white}\textbf{CCW}} & {\color{white}\textbf{Id}} \\
+}
+
+\setlength{\tabcolsep}{2pt}\renewcommand{\arraystretch}{1.15}
+
+% Helper: rotated cycle-label cell spanning all 14 data rows
+\newcommand{\cyccol}[2]{\multirow{14}{*}{\rotatebox[origin=c]{90}{\color{white}\textbf{#1}}}\hspace{0pt}}
+
 \noindent
-\begin{minipage}[t]{0.325\linewidth}
-{\bfseries\fontsize{13}{15}\selectfont\color{leafcyan!80!black}Cycle of 2nds}\par\vspace{1mm}
-% Forward previews (RH = next chord)
-\sex{ii}{}{I}{}{Cloudy}{Nostalgia}{133}{933}
-\sex{iii}{}{ii}{}{Drama}{Burdened}{233}{A33}
-\sex{IV}{}{iii}{}{Solace}{Solitude}{333}{B33}
-\sex{V}{}{IV}{}{Joy}{Tempering}{433}{C33}
-\sex{vi}{}{V}{}{Deceptive}{Uplifting}{533}{D33}
-\sex{vii}{°}{vi}{}{Dark resolution}{Confusion}{633}{E33}
-\sex{I}{}{vii}{°}{Bright resolution}{Chaos}{733}{F33}
-% Pattern-drill previews (varied LH/RH patterns, same forward cycle motion)
-\sex{ii}{m7}{I}{}{Cloudy}{Nostalgia}{133}{9333}
-\sex{iii}{}{ii}{s2}{Drama}{Burdened}{224}{A33}
-\sex{IV}{}{iii}{s4}{Solace}{Solitude}{342}{B33}
-\sex{V}{7}{IV}{}{Joy}{Tempering}{433}{C333}
-\sex{vi}{}{V}{+8}{Deceptive}{Uplifting}{5334}{D33}
-\sex{vii}{ø7}{vi}{}{Dark resolution}{Confusion}{633}{E333}
-\sex{I}{+8}{vii}{°}{Bright resolution}{Chaos}{733}{F334}
-
-\colfoot{Stepwise bass.}{Journey chords moving by 2nd give smooth walking basslines; use slash chords (\rn{I}{}/\osf{3}, \rn{V}{}/\osf{3}) to step the bass through the melody. \textbf{Melody first:} any extension must fit the current melody note. \textbf{Passing chords:} drop any 2nd-step chord between two targets to smooth the approach.}
-\end{minipage}\hfill
-\begin{minipage}[t]{0.325\linewidth}
-{\bfseries\fontsize{13}{15}\selectfont\color{leafred}Cycle of 3rds}\par\vspace{1mm}
-% Forward (RH = chord a 3rd up)
-\sex{iii}{}{I}{}{Lonely}{Gentle}{133}{A33}
-\sex{V}{}{iii}{}{Happy surprise}{Left hanging}{333}{C33}
-\sex{vii}{°}{V}{}{Added tension}{Release}{533}{E33}
-\sex{ii}{}{vii}{°}{Dark surprise}{Uncertainty}{733}{G33}
-\sex{IV}{}{ii}{}{Darkening}{Sweetness}{233}{B33}
-\sex{vi}{}{IV}{}{Hardship}{Redemption}{433}{D33}
-\sex{I}{}{vi}{}{Melancholy}{Warmth}{633}{F33}
-% Pattern-drill previews (varied LH/RH patterns, same forward cycle motion)
-\sex{iii}{m7}{I}{6}{Lonely}{Gentle}{1332}{A333}
-\sex{V}{}{iii}{}{Happy surprise}{Left hanging}{534}{C33}
-\sex{vii}{°}{V}{q}{Added tension}{Release}{544}{E33}
-\sex{ii}{}{vii}{ø7}{Dark surprise}{Uncertainty}{6233}{G33}
-\sex{IV}{}{ii}{q7}{Darkening}{Sweetness}{2444}{B33}
-\sex{vi}{}{IV}{}{Hardship}{Redemption}{143}{D33}
-\sex{I}{}{vi}{m7}{Melancholy}{Warmth}{3323}{F33}
-
-\colfoot{Substitution.}{Chords a 3rd apart share 3 of 4 tones: \Ro{IV}\,\(\leftrightarrow\)\,\Ro{ii} (subdom), \Ro{I}\,\(\leftrightarrow\)\,\Ro{vi} (tonic), \Ro{V}\,\(\leftrightarrow\)\,\Ro{iii} (dominant). Swap freely for colour without breaking function — the ``\Ro{ii} for \Ro{IV}'' move. \textbf{Add nine:} stacking a chord a 3rd up adds its 9 (iii over \Ro{I} \(\to\) \Ro{I}\,add\,\osf{9}). The 3rds cycle \emph{is} the add-9 engine.}
-\end{minipage}\hfill
-\begin{minipage}[t]{0.325\linewidth}
-{\bfseries\fontsize{13}{15}\selectfont\color{leafyellow!80!black}Cycle of 4ths}\par\vspace{1mm}
-% Forward (RH = chord a 4th up)
-\sex{IV}{}{I}{}{Exploration}{Bright peace}{133}{B33}
-\sex{vii}{°}{IV}{}{Alarm}{Mystery}{433}{E33}
-\sex{iii}{}{vii}{°}{Despair}{Unknown}{733}{H33}
-\sex{vi}{}{iii}{}{Acceptance}{Epicness}{333}{D33}
-\sex{ii}{}{vi}{}{Hope up}{Shyness}{633}{G33}
-\sex{V}{}{ii}{}{Lightening}{Setback}{233}{C33}
-\sex{I}{}{V}{}{Resolution}{Optimism}{533}{F33}
-% Pattern-drill previews (varied LH/RH patterns, same forward cycle motion)
-\sex{IV}{Δ}{I}{}{Exploration}{Bright peace}{133}{B333}
-\sex{vii}{°}{IV}{}{Alarm}{Mystery}{1433}{E33}
-\sex{iii}{}{vii}{+8}{Despair}{Unknown}{7334}{H33}
-\sex{vi}{}{iii}{s4}{Acceptance}{Epicness}{342}{D33}
-\sex{ii}{}{vi}{m7}{Hope up}{Shyness}{3323}{G33}
-\sex{V}{}{ii}{m7}{Lightening}{Setback}{1434}{C33}
-\sex{I}{}{V}{6}{Resolution}{Optimism}{5332}{F33}
-
-\colfoot{Reharm engine.}{Approach any target \Ro{X} by \Ro{V}\,of\,\Ro{X} (default), \Ro{ii}\textendash\Ro{V}\,of\,\Ro{X} (jazz), \Ro{vii}$^\circ$\,of\,\Ro{X} (leading-tone), or \Ro{IV}\textendash\Ro{V}\textendash\Ro{X} (plagal). \textbf{Journey vs.\ destination:} rest points are destinations, tension chords are journey; pick destinations first, then approaches. \textbf{Delay:} \Ro{V}sus, deceptive \Ro{V}\(\to\)\Ro{vi}, or chained secondary dominants.}
-\end{minipage}
+\rowcolors{2}{white}{bandcol}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}>{\centering\arraybackslash}m{5mm} lllll >{\centering\arraybackslash}m{5mm} lllll >{\centering\arraybackslash}m{5mm} lllll@{}}
+\rowcolor{headerbg}
+\cellcolor{leafcyan!80!black} & {\color{white}\textbf{LH}} & {\color{white}\textbf{RH}} & {\color{white}\textbf{Figure}} & {\color{white}\textbf{CW}} & {\color{white}\textbf{CCW}}
+& \cellcolor{leafred} & {\color{white}\textbf{LH}} & {\color{white}\textbf{RH}} & {\color{white}\textbf{Figure}} & {\color{white}\textbf{CW}} & {\color{white}\textbf{CCW}}
+& \cellcolor{leafyellow!80!black} & {\color{white}\textbf{LH}} & {\color{white}\textbf{RH}} & {\color{white}\textbf{Figure}} & {\color{white}\textbf{CW}} & {\color{white}\textbf{CCW}} \\
+\cellcolor{leafcyan!80!black} & \sexcA{ii}{}{I}{}{Cloudy}{Grounding}{133}{933}
+& \cellcolor{leafred} & \sexcB{iii\inv{1}}{}{I}{}{Drifting}{Homecoming}{133}{743}
+& \cellcolor{leafyellow!80!black} & \sexcC{IV}{}{I}{}{Exploring}{Landing}{133}{B33} \\
+\cellcolor{leafcyan!80!black} & \sexcA{iii}{}{ii}{}{Deepening}{Easing}{233}{A33} & \cellcolor{leafred} & \sexcB{V}{}{iii}{}{Galvanizing}{Retreating}{333}{C33} & \cellcolor{leafyellow!80!black} & \sexcC{vii}{°}{IV}{}{Alarming}{Quieting}{433}{E33} \\
+\cellcolor{leafcyan!80!black} & \sexcA{IV}{}{iii}{}{Warming}{Cooling}{333}{B33} & \cellcolor{leafred} & \sexcB{vii}{°}{V}{}{Fraying}{Steadying}{533}{E33} & \cellcolor{leafyellow!80!black} & \sexcC{iii}{}{vii}{°}{Despairing}{Rooting}{733}{H33} \\
+\cellcolor{leafcyan!80!black} & \sexcA{V}{}{IV}{}{Tensing}{Calming}{433}{C33} & \cellcolor{leafred} & \sexcB{ii}{}{vii}{°}{Tilting}{Curdling}{733}{G33} & \cellcolor{leafyellow!80!black} & \sexcC{vi}{}{iii}{}{Accepting}{Reverting}{333}{D33} \\
+\cellcolor{leafcyan!80!black} & \sexcA{vi}{}{V}{}{Deceptive}{Pivoting}{533}{D33} & \cellcolor{leafred} & \sexcB{IV}{}{ii}{}{Gladdening}{Shading}{233}{B33} & \cellcolor{leafyellow!80!black} & \sexcC{ii}{}{vi}{}{Wandering}{Dreaming}{633}{G33} \\
+\cellcolor{leafcyan!80!black} & \sexcA{vii}{°}{vi}{}{Darkening}{Reposing}{633}{E33} & \cellcolor{leafred} & \sexcB{vi}{}{IV}{}{Grieving}{Consoling}{433}{D33} & \cellcolor{leafyellow!80!black} & \sexcC{V}{}{ii}{}{Lifting}{Stepping}{233}{C33} \\
+\cellcolor{leafcyan!80!black}\smash{\rotatebox{90}{\color{white}\bfseries Cycle 2nd}} & \sexcA{I}{}{vii}{°}{Releasing}{Fracturing}{733}{F33} & \cellcolor{leafred}\smash{\rotatebox{90}{\color{white}\bfseries Cycle 3rd}} & \sexcB{I}{}{vi}{}{Triumphing}{Brooding}{633}{F33} & \cellcolor{leafyellow!80!black}\smash{\rotatebox{90}{\color{white}\bfseries Cycle 4th}} & \sexcC{I}{}{V}{}{Resolving}{Lofting}{533}{F33} \\
+\cellcolor{leafcyan!80!black} & \sexcA{ii}{7}{I}{}{Cloudy}{Grounding}{133}{9333} & \cellcolor{leafred} & \sexcB{iii}{7}{I}{6}{Drifting}{Homecoming}{1332}{A333} & \cellcolor{leafyellow!80!black} & \sexcC{IV}{Δ}{I}{}{Exploring}{Landing}{133}{B333} \\
+\cellcolor{leafcyan!80!black} & \sexcA{iii}{}{ii}{s2}{Deepening}{Easing}{224}{A33} & \cellcolor{leafred} & \sexcB{V}{}{iii\inv{2}}{}{Galvanizing}{Retreating}{534}{C33} & \cellcolor{leafyellow!80!black} & \sexcC{vii}{ø7}{IV}{}{Alarming}{Quieting}{433}{E333} \\
+\cellcolor{leafcyan!80!black} & \sexcA{IV}{}{iii}{s4}{Warming}{Cooling}{342}{B33} & \cellcolor{leafred} & \sexcB{vii}{°}{V}{q}{Fraying}{Steadying}{544}{E33} & \cellcolor{leafyellow!80!black} & \sexcC{iii}{}{vii}{+8}{Despairing}{Rooting}{7334}{H33} \\
+\cellcolor{leafcyan!80!black} & \sexcA{V}{7}{IV}{}{Tensing}{Calming}{433}{C333} & \cellcolor{leafred} & \sexcB{ii}{}{vii}{ø7i}{Tilting}{Curdling}{6233}{G33} & \cellcolor{leafyellow!80!black} & \sexcC{vi}{}{iii}{s4}{Accepting}{Reverting}{342}{D33} \\
+\cellcolor{leafcyan!80!black} & \sexcA{vi}{}{V}{+8}{Deceptive}{Pivoting}{5334}{D33} & \cellcolor{leafred} & \sexcB{IV}{}{ii}{q7}{Gladdening}{Shading}{2444}{B33} & \cellcolor{leafyellow!80!black} & \sexcC{ii}{}{vi}{7}{Wandering}{Dreaming}{6333}{G33} \\
+\cellcolor{leafcyan!80!black} & \sexcA{vii}{ø7}{vi}{}{Darkening}{Reposing}{633}{E333} & \cellcolor{leafred} & \sexcB{vi}{}{IV\inv{1}}{}{Grieving}{Consoling}{143}{D33} & \cellcolor{leafyellow!80!black} & \sexcC{V}{}{ii}{7}{Lifting}{Stepping}{2333}{C33} \\
+\cellcolor{leafcyan!80!black} & \sexcA{I}{+8}{vii}{°}{Releasing}{Fracturing}{733}{F334} & \cellcolor{leafred} & \sexcB{I}{}{vi}{7ii}{Triumphing}{Brooding}{3323}{F33} & \cellcolor{leafyellow!80!black} & \sexcC{I}{}{V}{6}{Resolving}{Lofting}{5332}{F33} \\
+\end{tabular}
 
 \end{document}
