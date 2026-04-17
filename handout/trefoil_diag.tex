@@ -3,6 +3,7 @@
 \usepackage[scaled]{helvet}
 \renewcommand{\familydefault}{\sfdefault}
 \usepackage[T1]{fontenc}
+\usepackage{mathptmx}
 \usetikzlibrary{arrows.meta,bending}
 
 \definecolor{leafred}{RGB}{220,75,75}
@@ -12,8 +13,9 @@
 
 \tikzset{
   chord/.style={
-    circle, draw=white, line width=1.5pt, fill=#1, text=white,
-    font=\bfseries\normalsize, inner sep=0pt, minimum size=1.0cm},
+    circle, draw=none, fill=#1, text=white,
+    % WAS: circle, draw=white, line width=3pt, fill=#1, text=white,
+    font=\bfseries\fontsize{22}{24}\selectfont\rmfamily, inner sep=2pt, minimum size=1.8cm},
   lbl/.style={font=\fontsize{12}{13.5}\selectfont\itshape,
               text width=3.0cm, align=center},
 }
