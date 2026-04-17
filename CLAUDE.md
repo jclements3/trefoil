@@ -150,6 +150,24 @@ Old sync-note backlog has been archived (see git log from 2026-04-05 through 202
 
 ### Pending sync notes (newest first)
 
+**2026-04-16 night (lab):** 100 Jazz Licks OMR pipeline running overnight.
+- Extracted 100 per-lick PNG crops from `images/100JazzLicks.mp4` via `images/100jazzlicks_work/extract_licks.py` (dHash + white-ratio stable-run detection, ratio-based crop, 1920px wide).
+- Built `images/omr_a4.pdf` — 12 A4 pages packing all 100 licks with generous whitespace (sheet-music layout oemer can parse). Mapping of which lick sits on which page in `images/omr_a4_mapping.json`.
+- Started `images/run_omr_batch.sh` at ~22:38 CDT. Each page runs oemer (CPU, ~10-15 min/page), then `stitch_omr.py` merges the 12 MusicXML outputs into `images/licks_omr.abc` with chord symbols re-attached from the existing `licks.abc`. Progress in `images/omr_work/batch.log`, final state logged as `=== ALL DONE <timestamp> ===` at end.
+- Tested the stitch pipeline on the online OMR MusicXML (`images/1776395538740657_514.musicxml` — 39/100 licks captured because 20/page density was too tight) to confirm parser works: emits e.g. `"Gm7"zc/2B/2_BAGFD^D` for lick 00 bar 1 (1 8-rest, 2 16ths C5/B4, 6 8ths Bb4 A4 G4 F4 D4 D#4). Note oemer's octave reading may differ from the older hand-written `licks.abc`.
+- Oemer fails on the bare 1920×~200 single-staff strips (empty staff-line detection); only works on full-page multi-lick images.
+
+**Tomorrow's starting point:**
+1. `tail images/omr_work/batch.log` — look for `=== ALL DONE ===` line.
+2. If done, `head images/licks_omr.abc` to review; run `python3 images/build_review_pdf.py` (already updated to work with current `licks.abc` — update it to also accept `licks_omr.abc` as needed) to produce source+OMR-clone review PDF.
+3. If some pages failed, stitch still emits placeholders (`(OMR failed)` titles) preserving numbering; individual pages can be re-run with `oemer -o images/omr_work images/omr_work/page_NN.png`.
+4. Downstream use of `licks.abc` is `images/harp_reduce.py` which reduces to diatonic harp scale per-group (licks 00-19 F, 20-39 Eb, etc.) — pitch-class accuracy matters, octaves matter for C2-G6 harp range.
+
+Pending follow-ups:
+- Wire `licks_omr.abc` into `build_review_pdf.py` so user can pick source vs. clone source.
+- Consider per-lick octave sanity check (melody should land in treble staff range; oemer's output in the test came out roughly an octave low vs. hand transcription — may be a systemic offset).
+- `licks.abc` header still references old `{00..99}licks.jpg` — update after OMR result is accepted.
+
 **2026-04-15 (lab):** Modern mode is live in the APK. Built end-to-end reharmonization pipeline at `modern/` (Schneider-style journey/destination, 6 rules, voicing picker hits handout's 14×7 table). Outputs:
 - `modern/all_hymns.pdf` (115 pp, 6.5 MB) — printable lead sheets, 3-up portrait
 - `modern/by_key/*.pdf` (8 keys, 94 pp total) — per-key bundles
